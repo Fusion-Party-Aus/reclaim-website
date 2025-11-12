@@ -1,0 +1,88 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/policies', label: 'Policies' },
+  { href: '/manifesto', label: 'Manifesto' },
+  { href: '/faq', label: 'FAQ' },
+];
+---
+
+<header class="bg-black sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black no-underline">
+      <img src="/solo-full-colour.svg" alt="Fusion Victoria" class="h-8 w-auto" />
+      <span class="text-magenta">FUSION</span>
+      <span class="text-mint text-xl font-semibold">VICTORIA</span>
+    </a>
+    
+    <button 
+      class="md:hidden text-white text-3xl p-2 border-none bg-transparent cursor-pointer" 
+      aria-label="Toggle menu" 
+      id="mobile-menu-toggle"
+    >
+      ☰
+    </button>
+    
+    <nav 
+      class="hidden md:flex gap-8 items-center" 
+      id="main-nav"
+    >
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class={`text-white no-underline font-semibold transition-colors hover:text-mint ${
+            currentPath === item.href ? 'text-mint border-b-2 border-mint' : ''
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a 
+        href="/get-involved" 
+        class="bg-magenta text-white px-6 py-3 rounded font-bold no-underline transition-all hover:bg-magenta-dark hover:scale-105"
+      >
+        Get Involved
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const nav = document.getElementById('main-nav');
+  
+  toggle?.addEventListener('click', () => {
+    nav?.classList.toggle('hidden');
+    nav?.classList.toggle('flex');
+    nav?.classList.toggle('flex-col');
+    nav?.classList.toggle('absolute');
+    nav?.classList.toggle('top-full');
+    nav?.classList.toggle('left-0');
+    nav?.classList.toggle('right-0');
+    nav?.classList.toggle('bg-black');
+    nav?.classList.toggle('p-4');
+  });
+  
+  // Close menu when clicking nav link
+  nav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        nav.classList.add('hidden');
+        nav.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-black', 'p-4');
+      }
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
+      if (window.innerWidth < 768) {
+        nav?.classList.add('hidden');
+        nav?.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-black', 'p-4');
+      }
+    }
+  });
+</script>

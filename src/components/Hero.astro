@@ -1,0 +1,58 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  stats?: Array<{ number: string; label: string }>;
+  showCTA?: boolean;
+}
+
+const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props;
+---
+
+<section class="relative bg-gradient-to-br from-black via-gray-900 to-purple-900 text-white py-32 px-8 text-center overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSJyZ2JhKDIwMSwzOCwyNDIsMC4wNSkiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIvPjxyZWN0IGZpbGw9InJnYmEoOTQsMjU1LDIxNiwwLjA1KSIgeD0iNTAiIHk9IjUwIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiLz48L3N2Zz4=')]"></div>
+  
+  <div class="relative z-10 max-w-5xl mx-auto">
+    {eyebrow && (
+      <div class="text-mint text-sm font-bold uppercase tracking-wider mb-4">
+        {eyebrow}
+      </div>
+    )}
+    
+    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+      {title}
+    </h1>
+    
+    {subtitle && (
+      <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+        {subtitle}
+      </p>
+    )}
+    
+    {stats && stats.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-12 max-w-4xl mx-auto">
+        {stats.map(stat => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+            <div class="text-4xl md:text-5xl font-black text-mint mb-2">
+              {stat.number}
+            </div>
+            <div class="text-sm md:text-base text-gray-300 uppercase tracking-wide">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+    
+    {showCTA && (
+      <div class="cta-buttons">
+        <a href="/get-involved" class="btn btn-primary">JOIN THE FIGHT</a>
+        <a href="/manifesto" class="btn btn-secondary">READ THE PLAN</a>
+      </div>
+    )}
+    
+    <slot />
+  </div>
+</section>

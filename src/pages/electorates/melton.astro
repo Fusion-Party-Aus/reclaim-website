@@ -1,0 +1,270 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+
+const commitments = [
+  {
+    icon: '🚆',
+    title: 'Melton Line Electrification by 2029',
+    highlight: 'Not "planned." Not "funded." BUILT.',
+    timeline: [
+      'Begin procurement: 2027',
+      'Construction starts: 2027',
+      'Complete: 2029',
+      'Cost: $2 billion (funded from infrastructure waste savings)'
+    ],
+    outcomes: [
+      'Metro-standard frequency (every 10 minutes peak, 20 minutes off-peak)',
+      'Faster, cleaner, more reliable trains',
+      'No more diesel maintenance delays',
+      'Integrated with metropolitan network'
+    ]
+  },
+  {
+    icon: '🏘️',
+    title: '5,000 Public Homes in Growth Corridor',
+    details: [
+      'Part of statewide 50,000 homes program',
+      'Melton allocation: 5,000 homes over 4 years',
+      'Mix of apartments, townhouses, houses',
+      'Within 800m of transport and services',
+      '7+ star energy rating (lower bills for tenants)'
+    ],
+    cost: '$2.5B (funded through bond issue backed by rent + land tax increase on $1M+ properties)'
+  },
+  {
+    icon: '🏥',
+    title: 'Melton Hospital',
+    details: [
+      'Capacity: 400 beds',
+      'Services: Emergency, maternity, surgery, outpatient',
+      'Location: Central Melton (site TBD with community input)',
+      'Timeline: Begin 2027, open 2030',
+      'Cost: $1B capital'
+    ],
+    note: 'Stop forcing Melton residents to travel to Sunshine or Footscray for emergency care.'
+  },
+  {
+    icon: '🛑',
+    title: 'Infrastructure Before Development in Toolern Vale',
+    highlight: 'No more development approvals without infrastructure commitments.',
+    details: [
+      'Public transport access (existing or funded within 3 years)',
+      'School capacity (existing or funded)',
+      'Healthcare access (GP clinics, hospital access)',
+      'Parks and public space (15% of development area)'
+    ]
+  }
+];
+---
+
+<BaseLayout 
+  title="Melton | Fusion Victoria Candidate"
+  description="Melton Line by 2029. 5,000 public homes. Infrastructure before development. Vote Fusion in Melton."
+>
+  <Header />
+  
+  <Hero 
+    title="Fusion for Melton"
+    subtitle="16 Years of Broken Promises End in 2029"
+  />
+
+  <!-- THE BROKEN PROMISE -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-magenta-light border-l-4 border-magenta p-8 rounded mb-8">
+        <p class="text-2xl font-bold mb-4">They promised electrification in 2009. Then 2015. Then 2020. Then "the 2030s."</p>
+        <p class="text-3xl font-black text-magenta mb-4">16 years of delays. $750 million wasted in interest costs. Diesel trains when you should have metro-standard service.</p>
+        <p class="text-3xl font-black text-magenta">This ends in 2029.</p>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <h2 class="text-4xl font-black text-magenta mb-6">Why Melton Deserves Better</h2>
+        <p>Melton is one of Australia's fastest-growing areas. You've been promised infrastructure for decades. You've been delivered excuses.</p>
+        <p>Every year they delay costs $50 million in interest. That's money wasted because they won't build when it's cheaper. That's $750 million that could have built schools, hospitals, parks.</p>
+        <p><strong>They did this on purpose.</strong> It's cheaper politically to promise than to deliver. But it's costing you - in time, in money, in your quality of life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR COMMITMENTS -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">Our Commitments to Melton</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {commitments.map(commitment => (
+          <div class="bg-white p-8 rounded-lg border-2 border-transparent hover:border-mint transition-all shadow-md">
+            <div class="text-5xl mb-4">{commitment.icon}</div>
+            <h3 class="text-2xl font-bold text-magenta mb-4">{commitment.title}</h3>
+            
+            {commitment.highlight && (
+              <p class="text-xl font-bold text-magenta mb-4">{commitment.highlight}</p>
+            )}
+            
+            {commitment.timeline && (
+              <ul class="space-y-2 mb-4">
+                {commitment.timeline.map(item => (
+                  <li><strong>{item}</strong></li>
+                ))}
+              </ul>
+            )}
+            
+            {commitment.outcomes && (
+              <>
+                <p class="font-bold mb-2">What this means:</p>
+                <ul class="space-y-1 mb-4">
+                  {commitment.outcomes.map(item => (
+                    <li>• {item}</li>
+                  ))}
+                </ul>
+                <p class="text-xl font-bold text-magenta">4-year guarantee. Put it in writing. Hold us accountable.</p>
+              </>
+            )}
+            
+            {commitment.details && (
+              <ul class="space-y-1 mb-4">
+                {commitment.details.map(item => (
+                  <li>• {item}</li>
+                ))}
+              </ul>
+            )}
+            
+            {commitment.cost && (
+              <p class="font-semibold"><strong>Cost:</strong> {commitment.cost}</p>
+            )}
+            
+            {commitment.note && (
+              <p class="italic text-gray-600 mt-4">{commitment.note}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THE COST OF DELAY -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">What Delay Costs You</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-red-50 border-l-4 border-red-500 p-8 rounded">
+          <h3 class="text-2xl font-bold text-red-700 mb-4">Your Time</h3>
+          <ul class="space-y-2">
+            <li>• 2+ hours/day commuting on slow diesel trains</li>
+            <li>• 500+ hours/year stuck in traffic or on trains</li>
+            <li>• That's 3+ weeks of your life per year wasted</li>
+          </ul>
+        </div>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-8 rounded">
+          <h3 class="text-2xl font-bold text-red-700 mb-4">Your Money</h3>
+          <ul class="space-y-2">
+            <li>• Every year of delay costs $50M in interest</li>
+            <li>• 16 years = $750M wasted</li>
+            <li>• Enough to build 3,000 public homes</li>
+            <li>• Or 3 community hospitals</li>
+            <li>• Or hire 7,500 nurses</li>
+          </ul>
+        </div>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-8 rounded">
+          <h3 class="text-2xl font-bold text-red-700 mb-4">Your Future</h3>
+          <ul class="space-y-2">
+            <li>• Development without infrastructure reduces property values</li>
+            <li>• Lack of services makes areas less livable</li>
+            <li>• Your kids grow up without adequate schools, hospitals, parks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THEY FAILED -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">Why Major Parties Failed Melton</h2>
+      
+      <div class="bg-white p-10 rounded-lg shadow-lg mb-8">
+        <h3 class="text-3xl font-bold text-magenta mb-6">They Take Developer Donations, Then Approve Development Without Infrastructure</h3>
+        
+        <p class="text-lg mb-4">Labor takes millions from property developers. Then approves thousands of homes without building the rail to support them.</p>
+        
+        <p class="text-lg mb-4">Liberals defend developer profits over community needs. Then wonder why outer suburbs lack services.</p>
+        
+        <p class="text-2xl font-bold text-magenta">They're not incompetent. They're captured. And you're paying the price.</p>
+      </div>
+
+      <div class="bg-magenta-solid text-white p-10 rounded-lg">
+        <h3 class="text-3xl font-bold text-mint mb-6">Fusion Takes Zero Developer Donations</h3>
+        <p class="text-lg mb-4">We don't take corporate money. We're not funded by developers, property investors, or anyone with a vested interest in delaying infrastructure.</p>
+        <p class="text-2xl font-bold mb-4">We're funded by people like you who are tired of broken promises.</p>
+        <p class="text-xl">That means we can actually fight for Melton, not for developer profits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRST 100 DAYS -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">First 100 Days for Melton</h2>
+      
+      <div class="bg-mint-light border-l-4 border-mint p-8 rounded">
+        <ul class="space-y-3 text-lg">
+          <li>✅ Begin Melton Line electrification procurement</li>
+          <li>✅ Give Infrastructure Victoria binding authority (stops projects without IV approval)</li>
+          <li>✅ Freeze Toolern Vale development approvals pending infrastructure review</li>
+          <li>✅ Begin procurement for Melton Hospital site acquisition</li>
+          <li>✅ Announce first 1,000 public homes locations in Melton corridor</li>
+          <li>✅ Community consultation begins on hospital location and services needed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANDIDATE INFO -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">Your Fusion Candidate</h2>
+      
+      <div class="bg-white p-10 rounded-lg shadow-lg text-center">
+        <p class="text-2xl font-bold mb-6">[Candidate name and bio to be added when endorsed]</p>
+        
+        <p class="text-lg mb-8">Our candidate will be a Melton resident who understands the daily frustration of broken promises and inadequate infrastructure.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+          <div class="bg-light-grey p-6 rounded">
+            <p class="font-bold mb-2">Want to run for Fusion in Melton?</p>
+            <p>Email: <a href="mailto:preselection@fusionparty.org.au" class="text-magenta hover:underline">preselection@fusionparty.org.au</a></p>
+          </div>
+          
+          <div class="bg-light-grey p-6 rounded">
+            <p class="font-bold mb-2">Want to volunteer for the Melton campaign?</p>
+            <p>Sign up: <a href="https://fusionparty.org.au/volunteer" class="text-magenta hover:underline">fusionparty.org.au/volunteer</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-magenta-gradient text-white py-20 px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">16 Years of Promises. Time For Action.</h2>
+      <p class="text-2xl mb-4">Melton Line by 2029. 5,000 public homes. New hospital. Infrastructure before development.</p>
+      <p class="text-3xl font-bold mb-10 text-mint">Vote Fusion. Hold us accountable.</p>
+      
+      <div class="cta-buttons">
+        <a href="/get-involved" class="btn btn-primary">Volunteer in Melton</a>
+        <a href="/manifesto" class="btn btn-secondary">Read Full Manifesto</a>
+        <a href="/policies" class="btn btn-secondary">All Policies</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

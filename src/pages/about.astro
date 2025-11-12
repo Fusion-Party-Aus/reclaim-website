@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const values = [
+  {
+    icon: '🗽',
+    title: 'Personal Liberty',
+    intro: 'You should be free to live your life, make your own choices, and pursue your own goals, as long as you\'re not harming others.',
+    points: [
+      'No government surveillance state tracking your every move',
+      'Your body, your choice on reproductive healthcare, assisted dying, what you consume',
+      'Freedom of speech and the right to criticise power without retaliation',
+      'Privacy as a human right online and offline'
+    ],
+    note: 'True freedom requires security. You\'re not free if you\'re one paycheck from homelessness. Maximum net freedom means everyone has real choices, not just the wealthy.'
+  },
+  {
+    icon: '🚀',
+    title: 'Advancement',
+    intro: 'We\'re progressives. We believe in using evidence, technology, and smart policy to make life better for everyone.',
+    points: [
+      'Invest in renewable energy that pays for itself and creates jobs',
+      'Build public transport that\'s faster and cheaper than driving',
+      'Use technology to deliver services better, not to surveil and control',
+      'Universal healthcare that includes dental and mental health'
+    ],
+    note: 'We reject the false choice between progress and sustainability. The solution isn\'t to stop developing. It\'s to develop smarter.'
+  },
+  {
+    icon: '🌍',
+    title: 'Ecological Harmony',
+    intro: 'We have one planet. We\'re already past several tipping points. The time for gentle incrementalism is over.',
+    points: [
+      '100% renewable electricity by 2030, not 2035 or "eventually"',
+      'End all fossil fuel subsidies and redirect that money to clean energy',
+      'Protect what\'s left of our natural environment with real enforcement'
+    ],
+    note: 'We\'re ecomodernists: we believe technology and smart policy can give us high living standards and a livable planet. But only if we act now.'
+  },
+  {
+    icon: '🛡️',
+    title: 'Safety',
+    intro: 'Everyone deserves security: from violence, from exploitation, from deprivation.',
+    points: [
+      'Universal Basic Income so you\'re never one bad week from homelessness',
+      'Public housing at scale so shelter is a right, not a commodity',
+      'Strong worker protections so your boss can\'t exploit you',
+      'Public healthcare so illness doesn\'t bankrupt you'
+    ],
+    note: 'Safety isn\'t just physical. It\'s economic. It\'s knowing you can take risks, retrain, start a business, or leave a bad situation because you have a foundation.'
+  },
+  {
+    icon: '✓',
+    title: 'Ethical Conduct',
+    intro: 'We will act with integrity, transparency, and evidence. We\'ll publish our costings. We\'ll admit when we\'re wrong. We\'ll show our working.',
+    points: [
+      'No corporate donations ever',
+      'Quarterly progress reports on every promise',
+      'Independent verification of our fiscal claims',
+      'Truth in public debate, even when it\'s uncomfortable'
+    ],
+    note: 'If we fail to deliver, you\'ll know why, and you can vote us out. That\'s how democracy should work.'
+  },
+  {
+    icon: '⚖️',
+    title: 'Equity',
+    intro: 'The system should work for everyone, not just those born into wealth.',
+    points: [
+      'Equal access to education regardless of postcode or parental income',
+      'Public services funded properly so everyone gets quality care',
+      'Progressive taxation where those with the most capacity contribute the most',
+      'No one left behind when the economy changes'
+    ],
+    note: 'We\'re not asking for equality of outcome. We\'re demanding equality of opportunity.'
+  }
+];
+---
+
+<BaseLayout 
+  title="About Fusion Victoria | Who We Are & What We Stand For"
+  description="We're not left or right. We're the party where different economic philosophies work together. No corporate donations. Evidence-based policy. Real solutions."
+>
+  <Header />
+  
+  <!-- HERO -->
+  <Hero 
+    title="About Fusion Victoria"
+    subtitle="Real solutions. Real costings. No corporate donations. No bullshit."
+  />
+
+  <!-- WHO WE ARE -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-8">Who We Are</h2>
+      
+      <div class="bg-magenta-light border-l-4 border-magenta p-8 rounded mb-8">
+        <p class="text-2xl font-bold mb-4">We're not asking the establishment nicely to share. We're not negotiating for scraps.</p>
+        <p class="text-3xl font-black text-magenta">We're here to reclaim what was stolen.</p>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p>Fusion isn't left or right in the old sense. We're <strong>socially progressive</strong> and <strong>economically pragmatic</strong>. We believe in <strong>personal liberty</strong> and <strong>collective security</strong>. We're capitalists who think markets work better when everyone has a foundation. We're socialists who think freedom matters more than state control.</p>
+        
+        <p>We're the party where different economic philosophies work together because we agree on fundamental values: freedom, progress, ecological harmony, safety, ethical conduct, and equity.</p>
+        
+        <p>Your economic security. Your time. Your future. Your kids' future. And we're going to reclaim it by being the only adults in the room: with evidence, with costings, with competence, and with a plan that actually works.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta text-center mb-16">Our Values</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {values.map(value => (
+          <div class="bg-white p-8 rounded-lg border-2 border-transparent hover:border-mint transition-all hover:-translate-y-2 shadow-sm hover:shadow-lg">
+            <div class="text-5xl mb-4">{value.icon}</div>
+            <h3 class="text-3xl font-bold text-magenta mb-4">{value.title}</h3>
+            <p class="text-lg font-semibold text-gray-700 mb-4">{value.intro}</p>
+            <ul class="space-y-3 mb-6">
+              {value.points.map(point => (
+                <li class="flex items-start">
+                  <span class="text-mint mr-2">✓</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm italic text-gray-600 pt-4 border-t-2 border-gray-200">{value.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE'RE DIFFERENT -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">How We're Different</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">We Don't Take Corporate Donations</h4>
+          <p class="mb-4">Labor takes millions from property developers, health insurers, and fossil fuel companies. Then wonders why they can't fix housing, healthcare, or climate.</p>
+          <p class="text-xl font-bold text-magenta">We don't. We answer to you, not donors.</p>
+        </div>
+
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">We Publish Real Costings</h4>
+          <p class="mb-4">Every policy has a price tag, funding source, and independent verification. If we're wrong, show us and we'll adjust.</p>
+          <p><strong>Full details at fusionparty.org.au/costings</strong></p>
+        </div>
+
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">We're Not Tribal</h4>
+          <p class="mb-4">We'll work with anyone on good policy. But we won't compromise on:</p>
+          <ul class="space-y-2">
+            <li>• Housing is a right, not speculation</li>
+            <li>• Workers deserve security and fair pay</li>
+            <li>• Public services should be world-class</li>
+            <li>• Climate action is non-negotiable</li>
+            <li>• Every borrowed dollar must generate returns</li>
+          </ul>
+        </div>
+
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">We Use Every Parliamentary Tool</h4>
+          <p class="mb-4">Even one seat gives us:</p>
+          <ul class="space-y-2">
+            <li>• Questions without notice to expose waste</li>
+            <li>• Budget committee positions to investigate</li>
+            <li>• Media platform to shift debate</li>
+            <li>• Balance of power leverage if no majority</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE HONEST TRUTH -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-8 text-center">The Honest Truth</h2>
+      
+      <div class="prose prose-lg max-w-none mb-8">
+        <p class="text-3xl font-bold text-center">We won't form government in 2026. We know that.</p>
+        
+        <p>But every vote we win sends a message that Victorians are done with corporate-funded major parties. Every seat we contest forces them to explain why they won't adopt our policies. Every question we ask in Parliament exposes waste they'd rather hide.</p>
+        
+        <p><strong>The Greens started with one seat in 1996. Now they're kingmakers.</strong> Every movement starts somewhere.</p>
+        
+        <p>But we're also impatient. People are hurting now. So we'll fight like we can win. We'll use every tool Parliament gives us. We'll drag the major parties toward policies that actually help working people.</p>
+      </div>
+      
+      <div class="bg-grey-dark text-white p-10 rounded-lg">
+        <p class="text-2xl font-bold text-mint mb-4">And here's the part that might surprise you:</p>
+        <p class="mb-4">We don't care who implements these policies. If Labor reads this manifesto and decides to build 50,000 public homes, criminalise wage theft, and give Infrastructure Victoria binding authority - <strong>that's a win.</strong></p>
+        <p class="mb-4">If the Liberals suddenly discover fiscal responsibility by cutting infrastructure waste and investing in revenue-generating assets - <strong>that's a win.</strong></p>
+        <p class="text-3xl font-bold mb-4">We're not here to protect intellectual property. We're here to fix Victoria.</p>
+        <p>The ideas matter more than who gets credit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-magenta-gradient text-white py-20 px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Ready to Reclaim Your Future?</h2>
+      <p class="text-xl mb-10">Join the movement. Whether you can volunteer, donate, or just spread the word - every action matters.</p>
+      
+      <div class="cta-buttons">
+        <a href="/get-involved" class="btn btn-primary">Get Involved</a>
+        <a href="/manifesto" class="btn btn-secondary">Read Full Manifesto</a>
+        <a href="/policies" class="btn btn-secondary">Our Policies</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

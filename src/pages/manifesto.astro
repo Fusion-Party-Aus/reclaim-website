@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout 
+  title="Manifesto: Reclaim Victoria's Future | Fusion Party Victoria"
+  description="They stole your future. We're taking it back. Real solutions for working Victorians. No corporate donations. Evidence-based policy."
+>
+  <Header />
+  
+  <Hero 
+    title="Reclaim Victoria's Future"
+    subtitle="They stole your future. We're taking it back."
+  />
+
+  <!-- INTRO -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-magenta-light border-l-4 border-magenta p-8 rounded mb-8">
+        <p class="text-2xl font-bold mb-4">You work harder than your parents ever did. You're more educated. More productive. More skilled.</p>
+        <p class="text-2xl font-bold mb-4">And you have less to show for it.</p>
+        <p class="text-3xl font-black text-magenta">This isn't an accident. It's theft.</p>
+      </div>
+
+      <div class="prose prose-lg max-w-none mb-12">
+        <p>While you're one medical emergency away from financial ruin, property investors claimed <strong>$3.2 billion in tax breaks</strong> last year. While you're paying 60% of your income in rent, they're writing off losses on their third investment property against your taxes.</p>
+        
+        <p>While you wait six months for elective surgery, <strong>$1.5 billion in tax revenue</strong> subsidises private hospitals through exemptions. While you spend two hours a day in traffic, the government approved 30,000 new homes in Clyde without building the rail capacity to support them.</p>
+        
+        <p class="text-2xl font-bold text-magenta">The major parties did this. Both of them.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-light-grey p-6 rounded-lg text-center">
+          <div class="text-4xl mb-2">🚧</div>
+          <h4 class="text-lg font-bold mb-2">West Gate Tunnel</h4>
+          <p class="text-2xl font-black text-red-600">$5.5B → $15B</p>
+          <p class="text-sm">$9.5B wasted</p>
+        </div>
+        
+        <div class="bg-light-grey p-6 rounded-lg text-center">
+          <div class="text-4xl mb-2">🚂</div>
+          <h4 class="text-lg font-bold mb-2">Melton Line</h4>
+          <p class="text-2xl font-black text-red-600">16 years delayed</p>
+          <p class="text-sm">$750M wasted in interest</p>
+        </div>
+        
+        <div class="bg-light-grey p-6 rounded-lg text-center">
+          <div class="text-4xl mb-2">📊</div>
+          <h4 class="text-lg font-bold mb-2">Auditor-General</h4>
+          <p class="text-2xl font-black text-red-600">30% overruns</p>
+          <p class="text-sm">Systematic waste</p>
+        </div>
+        
+        <div class="bg-light-grey p-6 rounded-lg text-center">
+          <div class="text-4xl mb-2">💰</div>
+          <h4 class="text-lg font-bold mb-2">Wage Theft</h4>
+          <p class="text-2xl font-black text-red-600">$1.35B/year</p>
+          <p class="text-sm">Victorian workers robbed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR SOLUTIONS -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">Our Solutions</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- HOUSING -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">🏠 End The Housing Scam</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>50,000 public homes</strong> over 4 years (12,500/year)</li>
+            <li><strong>Buy one floor</strong> of every tower over 10 stories for public housing</li>
+            <li><strong>15% inclusionary zoning</strong> in all new developments</li>
+            <li><strong>Ban no-grounds evictions</strong></li>
+            <li><strong>Cap rent increases</strong> at CPI + 2% once/year</li>
+          </ul>
+          <p class="text-sm italic">Cost: $25B borrowed, generates $625M/year rent. Net cost: ~$100M/year</p>
+        </div>
+
+        <!-- TRANSPORT -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">🚆 Fix Transport</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>Melton Line</strong> electrified by 2029</li>
+            <li><strong>Clyde/Pakenham</strong> second track by 2030</li>
+            <li><strong>Sunbury</strong> electrification</li>
+            <li><strong>20-min frequency</strong> on all lines, all day</li>
+            <li><strong>Free trams</strong> in CBD zones</li>
+          </ul>
+          <p class="text-sm italic">Cost: $4.5B from infrastructure waste savings</p>
+        </div>
+
+        <!-- WORKERS -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">⚖️ Protect Workers</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>Criminalise wage theft</strong> with jail time for directors</li>
+            <li><strong>Triple Wage Inspectorate</strong> budget to $60M/year</li>
+            <li><strong>Presume gig workers are employees</strong></li>
+            <li><strong>Portable long service leave</strong> in gig economy</li>
+            <li><strong>UBI pilot programs</strong> + pressure on federal government</li>
+          </ul>
+          <p class="text-sm italic">Revenue: Recover $1.35B/year in stolen wages</p>
+        </div>
+
+        <!-- HEALTHCARE -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">🏥 Fix Healthcare</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>30% increase</strong> in public hospital funding over 4 years</li>
+            <li><strong>4 new hospitals:</strong> Clyde, Melton, Wyndham, North Melbourne</li>
+            <li><strong>End private hospital</strong> tax exemptions (+$400M/year)</li>
+            <li><strong>Triple elective surgery</strong> capacity</li>
+            <li><strong>Fix ambulance ramping</strong></li>
+          </ul>
+          <p class="text-sm italic">Cost: $8B hospitals + $3B/year operations, from waste savings</p>
+        </div>
+
+        <!-- CLIMATE -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">🌍 Climate Action</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>100% renewable electricity</strong> by 2030 (not 2035)</li>
+            <li><strong>2GW state-owned renewables</strong> (solar/wind/battery)</li>
+            <li><strong>End all fossil fuel subsidies</strong></li>
+            <li><strong>EV chargers</strong> every 5km on highways</li>
+            <li><strong>Green Jobs Transition</strong> Authority for Latrobe Valley</li>
+          </ul>
+          <p class="text-sm italic">Revenue: State renewables generate $280M/year profit</p>
+        </div>
+
+        <!-- INFRASTRUCTURE -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-3xl font-bold text-magenta mb-4">🏗️ Stop The Waste</h3>
+          <ul class="space-y-2 mb-4">
+            <li><strong>Infrastructure Victoria</strong> gets binding authority</li>
+            <li><strong>No development approvals</strong> without IV certification</li>
+            <li><strong>Transparent 30-year pipeline</strong></li>
+            <li><strong>Cut overruns</strong> from 30% to 10%</li>
+            <li><strong>Cancel marginal projects</strong></li>
+          </ul>
+          <p class="text-sm italic">Savings: $2B/year to redirect to essential services</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE PAY FOR IT -->
+  <section class="bg-white py-20 px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">How We Pay For It</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">1. Stop Waste</h4>
+          <p class="text-3xl font-black mb-4">$2.8B/year</p>
+          <ul class="space-y-2">
+            <li>• Infrastructure overruns 30%→10%: $1.5B</li>
+            <li>• End hospital tax exemptions: $400M</li>
+            <li>• Procurement reform: $400M</li>
+            <li>• Cut consultancy waste: $400M</li>
+          </ul>
+        </div>
+
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">2. Grow Revenue</h4>
+          <p class="text-3xl font-black mb-4">$2B/year</p>
+          <ul class="space-y-2">
+            <li>• Land tax (properties >$1M): $800M</li>
+            <li>• State renewables profit: $280M</li>
+            <li>• Close tax gaps: $500M</li>
+            <li>• Value capture: $300M</li>
+          </ul>
+        </div>
+
+        <div class="bg-light-grey p-8 rounded-lg">
+          <h4 class="text-2xl font-bold text-magenta mb-4">3. Smart Investment</h4>
+          <p class="text-3xl font-black mb-4">Assets pay back</p>
+          <ul class="space-y-2">
+            <li>• Public housing: 4-8% returns</li>
+            <li>• Renewables: $280M/year profit</li>
+            <li>• Transport: enables growth</li>
+            <li>• All via IV cost-benefit</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-magenta-solid text-white p-10 rounded-lg mt-12">
+        <h3 class="text-3xl font-bold mb-6 text-center">The Results</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+          <div>
+            <p class="font-bold text-xl mb-2 text-mint">Labor's Path:</p>
+            <ul class="space-y-1">
+              <li>• Debt: $250B by 2030 (32% GSP)</li>
+              <li>• Public housing: 80k over 10yr</li>
+              <li>• Melton Line: "Planned"</li>
+              <li>• Annual waste: $2.8B+</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-bold text-xl mb-2 text-mint">Fusion's Path:</p>
+            <ul class="space-y-1">
+              <li>• Debt: $210B by 2030 (25% GSP)</li>
+              <li>• Public housing: 50k over 4yr</li>
+              <li>• Melton Line: Built by 2029</li>
+              <li>• Annual waste: <$1B</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRST 100 DAYS -->
+  <section class="bg-light-grey py-20 px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-magenta mb-12 text-center">First 100 Days</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Housing</h4>
+          <ul class="space-y-2">
+            <li>• Establish Victorian Public Housing Authority</li>
+            <li>• Begin procurement for first 5,000 homes</li>
+            <li>• Introduce rental protection legislation</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Transport</h4>
+          <ul class="space-y-2">
+            <li>• Begin Melton Line procurement</li>
+            <li>• Order Clyde Line business case</li>
+            <li>• Announce 20-min frequency rollout</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Workers</h4>
+          <ul class="space-y-2">
+            <li>• Introduce wage theft criminalisation bill</li>
+            <li>• Begin Wage Inspectorate recruitment</li>
+            <li>• Establish Gig Economy Ombudsman</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Infrastructure</h4>
+          <ul class="space-y-2">
+            <li>• Give Infrastructure Victoria binding authority</li>
+            <li>• Order audit of all "Big Build" projects</li>
+            <li>• Publish 30-year infrastructure pipeline</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Healthcare</h4>
+          <ul class="space-y-2">
+            <li>• Inject $750M emergency funding</li>
+            <li>• Begin hospital procurement (Clyde, Melton)</li>
+            <li>• End private hospital tax exemptions</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="text-xl font-bold text-magenta mb-3">Climate</h4>
+          <ul class="space-y-2">
+            <li>• End fossil fuel subsidies</li>
+            <li>• Begin 2GW renewable procurement</li>
+            <li>• Fast-track renewable energy zones</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-magenta-gradient text-white py-20 px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">They Stole Your Future. We're Taking It Back.</h2>
+      <p class="text-xl mb-10">Real solutions. Real costings. No corporate donations. No bullshit.</p>
+      
+      <div class="cta-buttons">
+        <a href="/get-involved" class="btn btn-primary">Get Involved</a>
+        <a href="/policies" class="btn btn-secondary">All Policies</a>
+        <a href="https://fusionparty.org.au/costings" class="btn btn-secondary">View Full Costings</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
