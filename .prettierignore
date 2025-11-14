@@ -20,8 +20,14 @@ yarn.lock
 # Generated files
 .sanity/
 tina/
+coverage/
 
 # Legacy/migration scripts
-import-*.js
-migrate.js
-add-blog-to-nav.js
+scripts/migration/
+
+# Files with known formatting issues (HTML comments in JSX)
+docs/REFACTORING_GUIDE.md
+src/components/DynamicSidebar.astro
+src/pages/[slug].astro
+src/pages/blog/index.astro
+src/pages/faq/index.astro
