@@ -1,0 +1,85 @@
+---
+/**
+ * Section - Reusable Page Section Component
+ *
+ * Consistent section wrapper with optional background, padding, and borders.
+ * Provides consistent spacing and layout structure.
+ *
+ * @param {string} bg - Background color: 'white' | 'gray' | 'transparent'
+ * @param {string} padding - Vertical padding: 'sm' | 'md' | 'lg' | 'xl' | 'none'
+ * @param {boolean} border - Show border (top or bottom)
+ * @param {string} borderPosition - Border position: 'top' | 'bottom' | 'both'
+ * @param {string} borderColor - Border color: 'black' | 'magenta' | 'mint' | 'yellow'
+ * @param {string} id - HTML id attribute for anchors
+ * @param {string} class - Additional CSS classes
+ */
+
+interface Props {
+  bg?: 'white' | 'gray' | 'transparent'
+  padding?: 'sm' | 'md' | 'lg' | 'xl' | 'none'
+  border?: boolean
+  borderPosition?: 'top' | 'bottom' | 'both'
+  borderColor?: 'black' | 'magenta' | 'mint' | 'yellow'
+  id?: string
+  class?: string
+}
+
+const {
+  bg = 'white',
+  padding = 'lg',
+  border = false,
+  borderPosition = 'bottom',
+  borderColor = 'black',
+  id,
+  class: className = '',
+} = Astro.props
+
+// Background colors
+const backgrounds = {
+  white: 'bg-white',
+  gray: 'bg-gray-50',
+  transparent: 'bg-transparent',
+}
+
+// Padding sizes
+const paddings = {
+  none: '',
+  sm: 'py-8 px-4 md:px-8',
+  md: 'py-12 px-4 md:px-8',
+  lg: 'py-16 px-4 md:px-8',
+  xl: 'py-20 px-4 md:px-8',
+}
+
+// Border colors
+const borderColors = {
+  black: 'border-black',
+  magenta: 'border-magenta',
+  mint: 'border-mint',
+  yellow: 'border-yellow',
+}
+
+// Border classes
+const borderClasses = border
+  ? `${borderColors[borderColor]} ${
+      borderPosition === 'top'
+        ? 'border-t-4'
+        : borderPosition === 'bottom'
+          ? 'border-b-4'
+          : 'border-t-4 border-b-4'
+    }`
+  : ''
+---
+
+<section
+  id={id}
+  class={`
+    ${backgrounds[bg]}
+    ${paddings[padding]}
+    ${borderClasses}
+    ${className}
+  `}
+>
+  <div class="max-w-7xl mx-auto">
+    <slot />
+  </div>
+</section>

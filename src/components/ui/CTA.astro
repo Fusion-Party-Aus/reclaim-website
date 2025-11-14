@@ -1,0 +1,90 @@
+---
+/**
+ * CTA - Call-to-Action Component
+ *
+ * Reusable CTA boxes/banners with consistent styling.
+ * Used for join sections, donation prompts, newsletter signups, etc.
+ *
+ * @param {string} variant - Style variant: 'primary' | 'secondary' | 'magenta' | 'mint' | 'yellow' | 'lavender'
+ * @param {string} size - Size: 'md' | 'lg' | 'xl'
+ * @param {string} shadow - Shadow size: 'none' | 'sm' | 'md' | 'lg'
+ * @param {number} rotation - Rotation in degrees (-3 to 3)
+ * @param {boolean} centered - Center text content
+ * @param {string} class - Additional CSS classes
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'magenta' | 'mint' | 'yellow' | 'lavender'
+  size?: 'md' | 'lg' | 'xl'
+  shadow?: 'none' | 'sm' | 'md' | 'lg'
+  rotation?: -3 | -2 | -1 | 0 | 1 | 2 | 3
+  centered?: boolean
+  class?: string
+}
+
+const {
+  variant = 'primary',
+  size = 'lg',
+  shadow = 'lg',
+  rotation = 0,
+  centered = false,
+  class: className = '',
+} = Astro.props
+
+// Color variants
+const variants = {
+  primary: 'bg-magenta border-black text-white',
+  secondary: 'bg-mint border-black text-black',
+  magenta: 'bg-magenta border-black text-white',
+  mint: 'bg-mint border-black text-black',
+  yellow: 'bg-yellow border-black text-black',
+  lavender: 'bg-lavender border-black text-black',
+}
+
+// Sizes
+const sizes = {
+  md: 'p-6 md:p-8',
+  lg: 'p-8 md:p-10',
+  xl: 'p-10 md:p-12 lg:p-16',
+}
+
+// Shadow sizes
+const shadows = {
+  none: '',
+  sm: 'shadow-[4px_4px_0px_0px_#000000]',
+  md: 'shadow-[6px_6px_0px_0px_#000000]',
+  lg: 'shadow-[8px_8px_0px_0px_#000000]',
+}
+
+// Rotation classes
+const rotations = {
+  '-3': '-rotate-[3deg]',
+  '-2': '-rotate-[2deg]',
+  '-1': '-rotate-[1deg]',
+  '0': 'rotate-0',
+  '1': 'rotate-[1deg]',
+  '2': 'rotate-[2deg]',
+  '3': 'rotate-[3deg]',
+}
+
+const textAlign = centered ? 'text-center' : ''
+---
+
+<div
+  class={`
+    ${variants[variant]}
+    ${sizes[size]}
+    ${shadows[shadow]}
+    ${rotations[String(rotation) as keyof typeof rotations]}
+    border-6
+    transition-all duration-200
+    hover:scale-[1.02]
+    hover:shadow-[10px_10px_0px_0px_#000000]
+    ${textAlign}
+    ${className}
+  `}
+>
+  <slot />
+</div>
