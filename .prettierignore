@@ -1,0 +1,27 @@
+# Prettier ignore patterns
+node_modules/
+dist/
+.astro/
+build/
+public/
+.env
+.env.*
+*.log
+
+# Build outputs
+fusion/dist/
+fusion/node_modules/
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Generated files
+.sanity/
+tina/
+
+# Legacy/migration scripts
+import-*.js
+migrate.js
+add-blog-to-nav.js
