@@ -30,28 +30,34 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 ## THE THEFT: What They Stole From You
 
-*This section explains the PROBLEM using "theft" framing. Make it personal and specific.*
+_This section explains the PROBLEM using "theft" framing. Make it personal and specific._
 
 ### The Stats
+
 - **$[Amount]** - What this costs you per year
 - **[Number]** - How many people affected
 - **[Percentage]** - How much worse it's gotten
 - **[Concrete example]** - A specific person/place harmed
 
 ### What Was Stolen
+
 [Explain what people SHOULD have but don't. Examples:]
+
 - Affordable housing (stolen by developers)
 - Reliable transport (stolen by bad planning)
 - Fair wages (stolen by wage theft)
 - Access to healthcare (stolen by privatisation)
 
 ### The Evidence
+
 [Provide specific examples and data:]
+
 - **Example 1:** [Specific case study showing the problem]
 - **Example 2:** [Another concrete example]
 - **Data:** [Statistics, reports, academic studies]
 
 **Sources:**
+
 - [Link to source 1]
 - [Link to source 2]
 - [Link to source 3]
@@ -60,30 +66,34 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 ## THE SYSTEM: How They Rigged It
 
-*This section explains WHY the problem exists. Follow the money. Show the corruption.*
+_This section explains WHY the problem exists. Follow the money. Show the corruption._
 
 ### How It Works
+
 1. [Step 1 of how the corrupt system operates]
 2. [Step 2]
 3. [Step 3]
 4. [Result: Regular people lose, donors profit]
 
 ### Who Benefits
+
 - **[Group 1]:** [How they profit] - $[Amount] per year
 - **[Group 2]:** [How they profit] - $[Amount] per year
 - **Political Donations:** [Who donates to which parties]
 
 ### The Revolving Door
+
 [Examples of politicians/bureaucrats who went from government to the companies that benefit]
 
 **Example:**
+
 > [Name] was [Government role] when [Policy] was passed. Now works for [Company that benefits]. Salary: $[Amount].
 
 ---
 
 ## OUR SOLUTION: Taking It Back
 
-*This section explains what Fusion will DO. Be specific with timelines and targets.*
+_This section explains what Fusion will DO. Be specific with timelines and targets._
 
 ### The Core Policy
 
@@ -96,18 +106,21 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ### How It Works
 
 **Phase 1: [Timeframe, e.g., Year 1-2]**
+
 - [Specific action 1]
 - [Specific action 2]
 - [Specific action 3]
 - **Result:** [What people will see]
 
 **Phase 2: [Timeframe, e.g., Year 2-4]**
+
 - [Specific action 1]
 - [Specific action 2]
 - [Specific action 3]
 - **Result:** [What people will see]
 
 **Phase 3: [Timeframe, e.g., Year 4+]**
+
 - [Specific action 1]
 - [Specific action 2]
 - [Specific action 3]
@@ -126,6 +139,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ### Total Cost: $[X] Over [Y] Years
 
 **Breakdown:**
+
 - **[Item 1]:** $[Amount] - [What this pays for]
 - **[Item 2]:** $[Amount] - [What this pays for]
 - **[Item 3]:** $[Amount] - [What this pays for]
@@ -136,6 +150,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ### Revenue Generated: $[X] Per Year
 
 **Sources:**
+
 - **[Source 1]:** $[Amount]/year - [Explanation]
 - **[Source 2]:** $[Amount]/year - [Explanation]
 - **[Source 3]:** $[Amount]/year - [Explanation]
@@ -144,8 +159,8 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 **Operating Cost:** $[Amount]/year  
 **Annual Surplus:** $[Amount]/year
 
-*[If policy generates surplus: "System pays for itself. Then makes money."]*  
-*[If deficit: "Funded by [Land Value Tax / Progressive taxation / Other]"]*
+_[If policy generates surplus: "System pays for itself. Then makes money."]_  
+_[If deficit: "Funded by [Land Value Tax / Progressive taxation / Other]"]_
 
 ### What You Get Immediately
 
@@ -172,7 +187,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 ## THE EVIDENCE: Why This Works
 
-*Provide evidence from other jurisdictions, academic studies, and expert analysis.*
+_Provide evidence from other jurisdictions, academic studies, and expert analysis._
 
 ### Case Study 1: [City/Country]
 
@@ -196,7 +211,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 **What they did wrong:** [Brief description]  
 **Result:** [Why it failed]  
-**Evidence:** [Link to study/report]  
+**Evidence:** [Link to study/report]
 
 **Lesson for Victoria:** [What NOT to do]
 
@@ -215,7 +230,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 ## FIRST 100 DAYS: What Happens Immediately
 
-*What Fusion will do in the first 100 days in government. Be VERY specific.*
+_What Fusion will do in the first 100 days in government. Be VERY specific._
 
 - ✅ **Day 1:** [Specific action]
 - ✅ **Week 1:** [Specific action]
@@ -225,6 +240,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 - ✅ **Week 12:** [Specific action]
 
 **Visible Impact by Day 100:**
+
 - [What people will see/feel has changed]
 - [What people will see/feel has changed]
 - [What people will see/feel has changed]
@@ -233,14 +249,14 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 
 ## COMPARISON: What Major Parties Offer
 
-| Issue | Labor/Liberal | Greens | Fusion |
-|-------|---------------|--------|--------|
-| [Issue 1] | [Their position] | [Their position] | **[Our position]** |
-| [Issue 2] | [Their position] | [Their position] | **[Our position]** |
-| [Issue 3] | [Their position] | [Their position] | **[Our position]** |
-| [Issue 4] | [Their position] | [Their position] | **[Our position]** |
-| Total Cost | [Amount] | [Amount] | **$[Amount]** |
-| Timeline | [When] | [When] | **[When]** |
+| Issue      | Labor/Liberal    | Greens           | Fusion             |
+| ---------- | ---------------- | ---------------- | ------------------ |
+| [Issue 1]  | [Their position] | [Their position] | **[Our position]** |
+| [Issue 2]  | [Their position] | [Their position] | **[Our position]** |
+| [Issue 3]  | [Their position] | [Their position] | **[Our position]** |
+| [Issue 4]  | [Their position] | [Their position] | **[Our position]** |
+| Total Cost | [Amount]         | [Amount]         | **$[Amount]**      |
+| Timeline   | [When]           | [When]           | **[When]**         |
 
 ---
 
@@ -281,11 +297,13 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ### Key Stakeholders
 
 **Supportive:**
+
 - [Group 1]
 - [Group 2]
 - [Group 3]
 
 **Opposition Expected From:**
+
 - [Group 1] - [Why they'll oppose]
 - [Group 2] - [Why they'll oppose]
 
@@ -353,12 +371,14 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ### Social Media Content
 
 **Thread 1:** [Topic]
+
 - Tweet 1: [Content]
 - Tweet 2: [Content]
 - Tweet 3: [Content]
 - Tweet 4: [Content]
 
 **Thread 2:** [Topic]
+
 - Tweet 1: [Content]
 - Tweet 2: [Content]
 - Tweet 3: [Content]
@@ -375,18 +395,22 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ## SOURCES & REFERENCES
 
 ### Government Reports
+
 1. [Title] - [Department/Agency] - [Year] - [Link]
 2. [Title] - [Department/Agency] - [Year] - [Link]
 
 ### Academic Studies
+
 1. [Author] ([Year]). [Title]. [Journal]. [Link]
 2. [Author] ([Year]). [Title]. [Journal]. [Link]
 
 ### News Articles
+
 1. [Title] - [Publication] - [Date] - [Link]
 2. [Title] - [Publication] - [Date] - [Link]
 
 ### NGO/Think Tank Reports
+
 1. [Title] - [Organisation] - [Year] - [Link]
 2. [Title] - [Organisation] - [Year] - [Link]
 
@@ -395,11 +419,13 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ## CONTRIBUTOR NOTES
 
 **Version History:**
+
 - v1.0 - [Date] - [Author] - Initial draft
 - v1.1 - [Date] - [Author] - [Changes]
 - v2.0 - [Date] - [Author] - [Changes]
 
 **Review Status:**
+
 - [ ] Policy Committee Review
 - [ ] Costings Verified by Economist
 - [ ] Legal Review (if needed)
@@ -414,6 +440,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ## STYLE GUIDE REMINDERS
 
 ✅ **DO:**
+
 - Use "theft" framing to explain problems
 - Provide specific numbers and timelines
 - Show who profits from the current system
@@ -424,6 +451,7 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 - Make it personal ("what this costs YOU")
 
 ❌ **DON'T:**
+
 - Use jargon or technical language
 - Make vague promises without timelines
 - Ignore the costs
@@ -437,9 +465,11 @@ This template helps you write policy proposals in the Fusion Reclaim style. Foll
 ## EXAMPLE: Good vs Bad Policy Writing
 
 ### ❌ BAD (Vague, No Numbers, No Timeline)
+
 "We support affordable housing and will work with stakeholders to explore options for increasing supply through a range of mechanisms."
 
 ### ✅ GOOD (Specific, Costed, Timeline)
+
 "We'll build 50,000 public homes over 4 years at a cost of $25 billion, funded by a $25 billion bond issue. This will house 125,000 people currently in housing stress and reduce rents by 15% across Melbourne."
 
 ---
