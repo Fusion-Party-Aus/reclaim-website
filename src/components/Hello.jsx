@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function Hello({ name = 'Fusion' }) {
   return (
@@ -6,5 +6,5 @@ export default function Hello({ name = 'Fusion' }) {
       <h2 className="text-2xl font-bold text-magenta">Hello from React — {name}</h2>
       <p className="mt-2 text-sm text-gray-700">This page demonstrates Astro + React + Tailwind.</p>
     </div>
-  );
+  )
 }
