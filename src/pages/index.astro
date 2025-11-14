@@ -1,294 +1,414 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Footer from '../components/Footer.astro'
+import { getDocuments } from '../lib/sanity'
+import { urlFor } from '../lib/sanity'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
 
-const heroStats = [
-  { number: '4', label: 'Electorates' },
-  { number: '847', label: 'Volunteers' },
-  { number: '$2.8B', label: 'Waste We\'ll Cut' }
-];
+// Component Library
+import Section from '../components/ui/Section.astro'
+import Grid from '../components/ui/Grid.astro'
+import BrutalCard from '../components/ui/BrutalCard.astro'
+import BrutalButton from '../components/ui/BrutalButton.astro'
+import StatCard from '../components/ui/StatCard.astro'
+import IconBadge from '../components/ui/IconBadge.astro'
+import CTA from '../components/ui/CTA.astro'
+import FloatingIcon from '../components/ui/FloatingIcon.astro'
 
-const theftCards = [
-  {
-    category: 'Transport',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600',
-    amount: '$750 MILLION',
-    description: 'The Melton Line has been "coming soon" since 2009. That\'s 16 years of broken promises. Every year of delay costs $50 million in interest.',
-    impact: 'Two hours a day in traffic or on packed diesel trains.',
-    link: '/policy-transport',
-    linkText: 'WE\'LL BUILD IT IN 4 YEARS'
-  },
-  {
-    category: 'Infrastructure Waste',
-    image: 'https://images.unsplash.com/photo-1581092918484-8313e0e767b7?w=600',
-    amount: '$9.5 BILLION',
-    description: 'West Gate Tunnel budgeted at $5.5 billion. Now tracking toward $15 billion. That\'s $9.5 billion in cost blowouts. Enough to build 38,000 public homes.',
-    impact: 'Your taxes wasted on mates\' contracts.',
-    link: '/policies',
-    linkText: 'WE\'LL CUT WASTE BY 30%'
-  },
-  {
-    category: 'Housing',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600',
-    amount: '$3.2 BILLION',
-    description: 'Victorian property investors claimed $3.2 billion in tax breaks last year through negative gearing. While you pay 60% of your income in rent.',
-    impact: 'Can\'t afford to buy. Can barely afford to rent.',
-    link: '/policy-housing',
-    linkText: 'WE\'LL BUILD 50,000 PUBLIC HOMES'
-  },
-  {
-    category: 'Healthcare',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600',
-    amount: '6+ MONTHS',
-    description: 'Average wait for elective surgery in Victorian public hospitals. Meanwhile, $1.5 billion in tax revenue subsidises private hospitals through exemptions.',
-    impact: 'Waiting in pain while rich people jump the queue.',
-    link: '/policy-healthcare',
-    linkText: 'WE\'LL BUILD 4 NEW HOSPITALS'
-  },
-  {
-    category: 'Workers\' Rights',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600',
-    amount: '$1.35 BILLION',
-    description: 'Victorian workers lose $1.35 billion per year to wage theft. Current penalties are cheaper than paying people properly. It\'s a calculated business decision.',
-    impact: 'Your boss steals your wages. Gets a slap on the wrist.',
-    link: '/policy-workers',
-    linkText: 'WE\'LL MAKE IT A CRIME'
-  },
-  {
-    category: 'Climate & Energy',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600',
-    amount: '30% FROM COAL',
-    description: 'Victoria still generates 30% of electricity from coal. They subsidise fossil fuels while your energy bills climb and the planet burns.',
-    impact: 'Higher bills. Hotter summers. Your kids\' future stolen.',
-    link: '/policies',
-    linkText: '100% RENEWABLES BY 2030'
-  }
-];
+// Fetch home page data from Sanity
+const homePages = await getDocuments('homePage')
+const homePage = homePages[0] // There should only be one home page
 
-const electorates = [
-  {
-    name: 'Melton',
-    candidate: 'Ethan Cornwill',
-    description: 'Former restaurant manager and software engineer. Sick of watching infrastructure promises get broken while developers get rich.',
-    priorities: [
-      '<strong>Melton Line electrified by 2029</strong>',
-      '5,000 public homes in growth corridor',
-      'Infrastructure before development approvals',
-      'Local jobs in renewable energy'
-    ],
-    link: '/electorate-melton'
-  },
-  {
-    name: 'Sunbury',
-    candidate: 'Candidate TBA',
-    description: 'Sunbury deserves better than buses that come every 40 minutes and trains that stop at Watergardens.',
-    priorities: [
-      '<strong>Electrify rail to Sunbury</strong>',
-      '20-minute train frequency minimum',
-      'Community health centre expansion',
-      'Local renewable energy projects'
-    ],
-    link: '/electorate-sunbury'
-  },
-  {
-    name: 'Werribee',
-    candidate: 'Candidate TBA',
-    description: 'Wyndham is one of Australia\'s fastest-growing areas. The infrastructure should have been built first.',
-    priorities: [
-      '<strong>New public hospital in Wyndham</strong>',
-      'Quadruple Wyndham Vale parking',
-      '15-minute bus frequencies',
-      '3,000 public homes locally'
-    ],
-    link: '/electorate-werribee'
-  },
-  {
-    name: 'Pakenham',
-    candidate: 'Candidate TBA',
-    description: 'Clyde and Officer got 30,000 new homes with one overwhelmed train line. That\'s not planning. That\'s theft.',
-    priorities: [
-      '<strong>Clyde/Officer rail duplication now</strong>',
-      'Express services during peak',
-      'Officer town centre infrastructure',
-      '3,000 public homes in Cardinia'
-    ],
-    link: '/electorate-pakenham'
-  }
-];
+if (!homePage) {
+  throw new Error('Home page not found in Sanity')
+}
+
+// Fetch electorates for the electorates section
+const electorates = await getDocuments('electorate')
 ---
 
-<BaseLayout 
-  title="Fusion Victoria | Reclaim Our State. They Stole It. We're Taking It Back."
-  description="Contesting Victoria's 2026 state election. 50,000 public homes. Melton Line in 4 years. End infrastructure waste. Real solutions for Melbourne's West and all of Victoria."
+<BaseLayout
+  title={homePage.seo?.metaTitle || homePage.title}
+  description={homePage.seo?.metaDescription || ''}
 >
   <Header />
-  
-  <!-- ALERT BAR -->
-  <div class="alert-bar">
-    🗳️ Contesting Victoria's 2026 State Election | <a href="#electorates">Find your electorate</a>
+
+  <!-- ALERT BAR - Enhanced with icon -->
+  <div class="alert-bar relative overflow-hidden">
+    <div class="absolute top-0 right-0 text-white/10 text-6xl animate-pulse-gentle">
+      <Icon name="mdi:vote" class="w-16 h-16" />
+    </div>
+    <div class="relative z-10">
+      <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
+      Contesting Victoria's 2026 State Election | <a href="#electorates">Find your electorate</a>
+    </div>
   </div>
 
   <!-- HERO -->
-  <Hero 
-    eyebrow="Victoria 2026"
-    title="RECLAIM OUR STATE"
-    subtitle="They wasted billions. We'll build what you need."
-    stats={heroStats}
+  <Hero
+    title={homePage.hero.title}
+    subtitle={homePage.hero.subtitle}
+    stats={homePage.hero.stats}
     showCTA={true}
   />
 
   <!-- THE THEFT - Victoria Specific -->
-  <section class="bg-white py-20 px-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4" style="color: #c926f2;">THE VICTORIAN THEFT</h2>
-        <p class="text-xl text-gray-700">
-          They've been in power for decades. Both major parties. Here's what 
-          they've stolen from you while taking donations from developers, 
-          fossil fuel companies, and private hospitals.
-        </p>
-      </div>
+  <Section border={true} borderPosition="bottom" padding="xl">
+    <FloatingIcon
+      name="mdi:hand-coin"
+      color="rgba(255, 51, 153, 0.05)"
+      size={256}
+      animation="float"
+      position={{ top: '5rem', left: '2.5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:cash-remove"
+      color="rgba(0, 255, 204, 0.05)"
+      size={192}
+      animation="float"
+      position={{ bottom: '5rem', right: '2.5rem' }}
+      delay="1s"
+    />
 
-      <div class="theft-grid">
-        {theftCards.map(card => (
-          <div class="theft-card">
-            <img src={card.image} alt={card.category} class="theft-card-image" />
-            <div class="theft-card-content">
-              <div class="theft-card-category">{card.category}</div>
-              <h3>{card.amount}</h3>
-              <p class="theft-card-description">{card.description}</p>
-              <div class="theft-card-impact">
-                <strong>Your Impact:</strong>
-                <p>{card.impact}</p>
-              </div>
-              <a href={card.link}>{card.linkText} →</a>
-            </div>
-          </div>
-        ))}
+    <div class="text-center max-w-3xl mx-auto mb-16" style="transform: rotate(-0.5deg);">
+      <div class="inline-block mb-4 animate-wiggle-subtle">
+        <Icon name="mdi:alert-decagram" class="w-16 h-16 text-magenta" />
       </div>
+      <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-magenta">
+        {homePage.theftSection.heading}
+      </h2>
+      <p class="text-xl text-gray-700 font-bold">
+        {homePage.theftSection.description}
+      </p>
     </div>
-  </section>
+
+    <div class="theft-grid">
+      {
+        homePage.theftSection.cards.map((card: any, index: number) => {
+          const imageUrl = card.image
+            ? urlFor(card.image).width(600).height(400).url()
+            : card.imageUrl
+          const colors = ['magenta', 'mint', 'yellow', 'lavender']
+          const color = colors[index % colors.length]
+
+          return (
+            <div
+              class={`theft-card group hover:shadow-[12px_12px_0px_0px_#000000] transition-all duration-200 hover:-translate-y-1`}
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src={imageUrl}
+                  alt={card.category}
+                  class="theft-card-image group-hover:scale-105 transition-transform duration-300"
+                />
+                {card.icon && card.icon.includes(':') && (
+                  <div
+                    class={`absolute top-4 right-4 bg-${color} p-3 border-4 border-black shadow-[4px_4px_0px_0px_#000000]`}
+                  >
+                    <Icon name={card.icon} class="w-8 h-8 text-black" />
+                  </div>
+                )}
+              </div>
+              <div class="theft-card-content">
+                <div class="theft-card-category">{card.category}</div>
+                <h3 class="group-hover:text-magenta transition-colors">{card.amount}</h3>
+                <p class="theft-card-description">{card.description}</p>
+                <div class="theft-card-impact">
+                  <strong class="flex items-center gap-2">
+                    <Icon name="mdi:hand-heart" class="w-5 h-5 text-magenta" />
+                    Your Impact:
+                  </strong>
+                  <p>{card.impact}</p>
+                </div>
+                <a
+                  href={card.link}
+                  class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform"
+                >
+                  {card.linkText}
+                  <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+  </Section>
 
   <!-- ELECTORATES -->
-  <section id="electorates" class="bg-light-grey py-20 px-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4" style="color: #c926f2;">OUR CANDIDATES</h2>
-        <p class="text-xl text-gray-700">
-          Local people with real plans to fix the failures in their communities. 
-          Not career politicians. Not beholden to donors.
-        </p>
-      </div>
+  <Section
+    id="electorates"
+    bg="gray"
+    border={true}
+    borderPosition="bottom"
+    borderColor="magenta"
+    padding="xl"
+  >
+    <FloatingIcon
+      name="mdi:map-marker-star"
+      color="rgba(230, 230, 250, 0.05)"
+      size={224}
+      animation="spin"
+      position={{ top: '2.5rem', right: '5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:account-group"
+      color="rgba(255, 255, 0, 0.05)"
+      size={192}
+      animation="float"
+      position={{ bottom: '2.5rem', left: '5rem' }}
+      delay="2s"
+    />
 
-      <div class="electorate-grid">
-        {electorates.map(electorate => (
-          <div class="electorate-card">
-            <h3>{electorate.name}</h3>
-            <span class="candidate-name">{electorate.candidate}</span>
-            <p>{electorate.description}</p>
-            <ul class="electorate-priorities">
-              {electorate.priorities.map(priority => (
-                <li set:html={priority} />
-              ))}
-            </ul>
-            <a href={electorate.link}>Learn more →</a>
-          </div>
-        ))}
+    <div class="text-center max-w-3xl mx-auto mb-16" style="transform: rotate(0.5deg);">
+      <div class="inline-block mb-4 animate-bounce-subtle">
+        <Icon name="mdi:map-search" class="w-16 h-16 text-magenta" />
       </div>
-
-      <div class="text-center mt-12">
-        <p class="text-xl font-semibold mb-3">
-          <strong>Not in one of these electorates?</strong>
-        </p>
-        <p class="mb-6">
-          We're building campaigns across Victoria. Help us bring Fusion to your area.
-        </p>
-        <a href="/get-involved" class="btn btn-primary">VOLUNTEER IN YOUR AREA</a>
-      </div>
+      <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-magenta">
+        {homePage.electoratesSection.heading}
+      </h2>
+      <p class="text-xl text-gray-700 font-bold">
+        {homePage.electoratesSection.description}
+      </p>
     </div>
-  </section>
+
+    <div class="electorate-grid">
+      {
+        electorates.map((electorate: any, index: number) => {
+          const isEven = index % 2 === 0
+          return (
+            <div
+              class={`electorate-card group hover:shadow-[12px_12px_0px_0px_#${isEven ? 'C926F2' : '5EFFD8'}] transition-all duration-200`}
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class={`p-3 ${isEven ? 'bg-magenta' : 'bg-mint'} border-4 border-black shadow-[4px_4px_0px_0px_#000000]`}
+                  >
+                    <Icon name="mdi:map-marker" class="w-6 h-6 text-black" />
+                  </div>
+                  <h3 class="group-hover:text-magenta transition-colors">{electorate.name}</h3>
+                </div>
+                <div class="animate-pulse-gentle">
+                  <Icon
+                    name="mdi:star"
+                    class={`w-8 h-8 ${isEven ? 'text-magenta' : 'text-mint'}`}
+                  />
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 mb-4">
+                <Icon name="mdi:account-tie" class="w-5 h-5 text-magenta" />
+                <span class="candidate-name">{electorate.candidate}</span>
+              </div>
+
+              <p class="mb-4">{electorate.description}</p>
+
+              <ul class="electorate-priorities">
+                {electorate.commitments.slice(0, 4).map((commitment: any) => (
+                  <li class="flex items-start gap-2">
+                    <Icon name="mdi:check-bold" class="w-5 h-5 text-magenta flex-shrink-0 mt-0.5" />
+                    <strong>{commitment.title}</strong>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`/electorates/${electorate.slug.current}`}
+                class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform"
+              >
+                Learn more
+                <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
+              </a>
+            </div>
+          )
+        })
+      }
+    </div>
+
+    <CTA variant="white" size="lg" shadow="lg" class="mt-12 max-w-2xl mx-auto">
+      <div class="inline-block mb-4 animate-wiggle-subtle">
+        <Icon name="mdi:bullhorn" class="w-12 h-12 text-magenta" />
+      </div>
+      <p class="text-xl font-semibold mb-3">
+        <strong>{homePage.electoratesSection.callToAction.heading}</strong>
+      </p>
+      <p class="mb-6">
+        {homePage.electoratesSection.callToAction.description}
+      </p>
+      <BrutalButton
+        href={homePage.electoratesSection.callToAction.buttonLink}
+        variant="primary"
+        icon="mdi:email-fast"
+      >
+        {homePage.electoratesSection.callToAction.buttonText}
+      </BrutalButton>
+    </CTA>
+  </Section>
 
   <!-- MANIFESTO HIGHLIGHT -->
-  <section class="bg-magenta-gradient text-white py-20 px-8 text-center">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">THE VICTORIA MANIFESTO</h2>
-      <p class="text-xl mb-8">
-        Our complete plan to fix Victoria's broken systems. Every policy 
-        costed. Every claim sourced. Every promise tracked.
+  <Section
+    border={true}
+    borderPosition="both"
+    borderColor="mint"
+    padding="xl"
+    class="text-center"
+    style="border-left: 8px solid #5EFFD8;"
+  >
+    <FloatingIcon
+      name="mdi:file-document-edit"
+      color="rgba(0, 255, 204, 0.05)"
+      size={256}
+      animation="float"
+      position={{ top: '50%', left: '2.5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:book-open-page-variant"
+      color="rgba(255, 51, 153, 0.05)"
+      size={192}
+      animation="spin"
+      position={{ top: '25%', right: '2.5rem' }}
+    />
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="inline-block mb-4 animate-pulse-gentle">
+        <Icon name="mdi:scroll-text" class="w-16 h-16 text-mint" />
+      </div>
+      <h2
+        class="text-4xl md:text-5xl font-black mb-6 uppercase text-magenta"
+        style="transform: rotate(-0.5deg); display: inline-block;"
+      >
+        {homePage.manifestoSection.heading}
+      </h2>
+      <p class="text-xl mb-8 font-bold text-black">
+        {homePage.manifestoSection.description}
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 my-12">
-        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-lg">
-          <span class="text-5xl font-black block mb-2" style="color: #5effd8;">50,000</span>
-          <span class="text-sm">Public homes over 4 years</span>
-        </div>
-        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-lg">
-          <span class="text-5xl font-black block mb-2" style="color: #5effd8;">$2.8B</span>
-          <span class="text-sm">Infrastructure waste cut per year</span>
-        </div>
-        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-lg">
-          <span class="text-5xl font-black block mb-2" style="color: #5effd8;">4</span>
-          <span class="text-sm">New public hospitals</span>
-        </div>
-        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-lg">
-          <span class="text-5xl font-black block mb-2" style="color: #5effd8;">2030</span>
-          <span class="text-sm">100% renewable electricity</span>
-        </div>
+        {
+          homePage.manifestoSection.stats.map((stat: any, index: number) => {
+            const colSpan =
+              stat.size === 'large'
+                ? 'md:col-span-2'
+                : stat.size === 'small'
+                  ? 'md:col-span-1'
+                  : 'md:col-span-2'
+            const rotations = ['-1deg', '1deg', '-2deg', '1.5deg']
+            const translations = ['-10px', '15px', '5px', '-20px']
+            const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
+            const icon = icons[index % icons.length]
+
+            return (
+              <div
+                class={`bg-white border-6 border-mint p-6 ${colSpan} ${index === 3 ? 'md:col-start-2' : ''} group hover:shadow-[12px_12px_0px_0px_#5EFFD8] transition-all duration-200 hover:-translate-y-1`}
+                style={`box-shadow: 8px 8px 0px 0px #5EFFD8; transform: rotate(${rotations[index % 4]}) translateY(${translations[index % 4]});`}
+              >
+                <div class="mb-3 animate-bounce-subtle" style={`animation-delay: ${index * 0.2}s;`}>
+                  <Icon name={icon} class="w-10 h-10 text-mint mx-auto" />
+                </div>
+                <span
+                  class="text-5xl font-black block mb-2 uppercase text-mint group-hover:text-magenta transition-colors"
+                  style="font-family: 'Archivo Black', sans-serif;"
+                >
+                  {stat.number}
+                </span>
+                <span class="text-sm font-black uppercase text-black">{stat.label}</span>
+              </div>
+            )
+          })
+        }
       </div>
 
-      <div class="cta-buttons">
-        <a href="/manifesto" class="btn btn-secondary">READ FULL MANIFESTO</a>
-        <a href="/policies" class="btn btn-secondary">SEE THE COSTINGS</a>
+      <div class="cta-buttons flex flex-wrap gap-4 justify-center">
+        <BrutalButton href="/manifesto" variant="secondary" icon="mdi:book-open">
+          READ FULL MANIFESTO
+        </BrutalButton>
+        <BrutalButton href="/policies" variant="secondary" icon="mdi:calculator">
+          SEE THE COSTINGS
+        </BrutalButton>
       </div>
     </div>
-  </section>
+  </Section>
 
   <!-- TAKE ACTION -->
-  <section class="bg-magenta-gradient text-white py-20 px-8">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-black text-center mb-6">JOIN THE FIGHT</h2>
-      <p class="text-xl text-center mb-12 max-w-3xl mx-auto">
-        Victoria won't fix itself. The major parties have had decades 
-        and delivered failure. Real change requires a movement of working 
-        people who've had enough.
-      </p>
+  <section
+    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-8 border-t-4 border-yellow relative overflow-hidden"
+    style="border-right: 8px solid #FFED00;"
+  >
+    <FloatingIcon
+      name="mdi:hand-peace"
+      color="rgba(255, 255, 0, 0.1)"
+      size={256}
+      animation="spin"
+      position={{ top: '5rem', right: '5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:human-greeting-proximity"
+      color="rgba(0, 255, 204, 0.1)"
+      size={192}
+      animation="float"
+      position={{ bottom: '2.5rem', left: '2.5rem' }}
+    />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white/15 backdrop-blur-lg p-8 rounded-lg">
-          <div class="text-5xl mb-4">🚪</div>
-          <h3 class="text-2xl font-bold mb-3">VOLUNTEER</h3>
-          <p class="mb-6">
-            Door knock in your electorate. Phone bank. Help at events. 
-            Even a few hours makes a difference. This is how we win.
-          </p>
-          <a href="/get-involved" class="btn btn-primary">SIGN UP NOW</a>
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="text-center">
+        <div class="inline-block mb-4 animate-pulse-gentle">
+          <Icon name="mdi:bullhorn-variant" class="w-16 h-16 text-yellow" />
         </div>
-
-        <div class="bg-white/15 backdrop-blur-lg p-8 rounded-lg">
-          <div class="text-5xl mb-4">💰</div>
-          <h3 class="text-2xl font-bold mb-3">DONATE</h3>
-          <p class="mb-6">
-            We don't take corporate money. Every dollar comes from 
-            people like you, $20-$50 at a time. That's why we answer 
-            to you.
-          </p>
-          <a href="/get-involved#donate" class="btn btn-secondary">CONTRIBUTE</a>
-        </div>
-
-        <div class="bg-white/15 backdrop-blur-lg p-8 rounded-lg">
-          <div class="text-5xl mb-4">📢</div>
-          <h3 class="text-2xl font-bold mb-3">SPREAD THE WORD</h3>
-          <p class="mb-6">
-            Share our policies. Print our fact sheets. Talk to your 
-            neighbors. When people complain, tell them there's a 
-            real alternative.
-          </p>
-          <a href="/manifesto" class="btn btn-secondary">GET MATERIALS</a>
-        </div>
+        <h2
+          class="text-4xl md:text-5xl font-black mb-6 uppercase"
+          style="transform: rotate(0.5deg); display: inline-block;"
+        >
+          {homePage.joinSection.heading}
+        </h2>
+        <p class="text-xl mb-12 max-w-3xl mx-auto font-bold">
+          {homePage.joinSection.description}
+        </p>
       </div>
+
+      <Grid variant="3col" gap="lg">
+        {
+          homePage.joinSection.cards.map((card: any, index: number) => {
+            const colSpan =
+              card.size === 'large'
+                ? 'md:col-span-3'
+                : card.size === 'medium'
+                  ? 'md:col-span-2'
+                  : 'md:col-span-1'
+            const rowSpan = card.size === 'small' ? 'md:row-span-2' : ''
+            const rotations = ['-0.5deg', '1deg', '0.5deg']
+            const translations = ['10px', '-15px', '-5px']
+
+            return (
+              <BrutalCard
+                hover={true}
+                shadow="lg"
+                padding="lg"
+                class={`${colSpan} ${rowSpan}`}
+                style={`transform: rotate(${rotations[index % 3]}) translateY(${translations[index % 3]});`}
+              >
+                {card.icon && card.icon.includes(':') && (
+                  <div class="mb-4 animate-wiggle-subtle">
+                    <Icon name={card.icon} class="w-16 h-16 text-magenta" />
+                  </div>
+                )}
+                <h3 class="text-2xl font-black mb-3 uppercase">{card.title}</h3>
+                <p class="mb-6 font-bold">{card.description}</p>
+                <BrutalButton
+                  href={card.buttonLink}
+                  variant={card.buttonStyle === 'primary' ? 'primary' : 'secondary'}
+                  icon="mdi:arrow-right-circle"
+                >
+                  {card.buttonText}
+                </BrutalButton>
+              </BrutalCard>
+            )
+          })
+        }
+      </Grid>
     </div>
   </section>
 

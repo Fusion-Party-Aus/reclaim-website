@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import Hero from '../../components/Hero.astro'
+import { Icon } from 'astro-icon/components'
+import { getDocuments, getDocumentBySlug, urlFor } from '../../lib/sanity'
+import { renderPortableText } from '../../lib/portableText'
+import type { PortableTextBlock } from '../../lib/portableText'
+import '../../styles/global.css'
+
+interface CommitmentDetail {
+  detail: string
+}
+
+interface Commitment {
+  icon: string
+  title: string
+  highlight: string
+  details?: CommitmentDetail[]
+}
+
+interface Electorate {
+  _id: string
+  name: string
+  slug: { current: string }
+  subtitle?: string
+  candidateName?: string
+  candidateImage?: any
+  candidateBio?: string
+  commitments?: Commitment[]
+  body?: PortableTextBlock[]
+}
+
+export async function getStaticPaths() {
+  const electorates = await getDocuments<Electorate>('electorate')
+
+  return electorates
+    .filter((e) => e.slug?.current)
+    .map((e) => ({
+      params: { slug: e.slug.current },
+      props: { electorate: e },
+    }))
+}
+
+export interface Props {
+  electorate: Electorate;
+}
+
+const { electorate } = Astro.props;
+---
+
+<BaseLayout title={`${electorate.name} | Fusion Victoria`}>
+  <Header />
+
+  <Hero
+    title={electorate.name}
+    subtitle={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
+  />
+
+  <main class="bg-white pt-10 pb-24">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <!-- Breadcrumbs -->
+      <nav class="text-xs font-mono uppercase tracking-wide mb-6 flex items-center gap-2">
+        <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint">Home</a>
+        <span class="opacity-60">/</span>
+        <a href="/electorates" class="px-2 py-1 border-2 border-black bg-white hover:bg-mint"
+          >Electorates</a
+        >
+        <span class="opacity-60">/</span>
+        <span
+          class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
+          title={electorate.name}
+        >
+          {electorate.name}
+        </span>
+      </nav>
+
+      <!-- Candidate + summary -->
+      <section class="mb-16 grid grid-cols-1 md:grid-cols-[2fr_1.2fr] gap-8 items-start">
+        <article class="brutal-card brutal-card-magenta">
+          <h2 class="text-2xl md:text-3xl font-black text-magenta mb-4 uppercase">
+            What we're fighting for here
+          </h2>
+          {
+            electorate.body ? (
+              <div
+                class="prose prose-lg max-w-none"
+                set:html={renderPortableText(electorate.body)}
+              />
+            ) : (
+              <p class="text-lg font-semibold">
+                This electorate has a candidate and commitments but no long-form body yet. Add more
+                detail in Sanity to flesh out this section.
+              </p>
+            )
+          }
+        </article>
+
+        <aside class="brutal-card brutal-card-mint">
+          <h2 class="text-xl font-black mb-4 uppercase flex items-center gap-2">
+            <Icon name="mdi:account" class="w-5 h-5" aria-hidden="true" />
+            Candidate
+          </h2>
+
+          {
+            electorate.candidateName ? (
+              <>
+                {electorate.candidateImage && (
+                  <img
+                    src={urlFor(electorate.candidateImage).width(400).height(400).fit('crop').url()}
+                    alt={electorate.candidateName}
+                    class="w-full h-auto mb-4 border-4 border-black"
+                    style="box-shadow: 4px 4px 0 0 #000;"
+                  />
+                )}
+                <p class="text-lg font-bold mb-2">{electorate.candidateName}</p>
+                {electorate.candidateBio && (
+                  <p class="text-sm leading-relaxed mb-4">{electorate.candidateBio}</p>
+                )}
+              </>
+            ) : (
+              <p class="text-sm font-semibold">
+                Candidate not yet announced. If you're from {electorate.name} and want to run, email{' '}
+                <a href="mailto:preselection@fusionparty.org.au" class="brutal-link">
+                  preselection@fusionparty.org.au
+                </a>
+                .
+              </p>
+            )
+          }
+        </aside>
+      </section>
+
+      <!-- Commitments -->
+      {
+        Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
+          <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-black text-magenta mb-8 uppercase">
+              Our commitments to {electorate.name}
+            </h2>
+
+            <div class="grid gap-6 md:grid-cols-2">
+              {electorate.commitments.map((commitment) => (
+                <article
+                  class="bg-white border-4 border-black p-6"
+                  style="box-shadow: 6px 6px 0 0 #000;"
+                >
+                  <div class="flex items-start gap-4 mb-4">
+                    <span class="text-4xl" role="img" aria-label="commitment icon">
+                      {commitment.icon}
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-xl font-black text-magenta mb-2">{commitment.title}</h3>
+                      <p class="font-semibold text-gray-800">{commitment.highlight}</p>
+                    </div>
+                  </div>
+                  {commitment.details && commitment.details.length > 0 && (
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 ml-14">
+                      {commitment.details.map((item) => (
+                        <li>{item.detail}</li>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <!-- CTA -->
+      <section
+        class="bg-magenta-light border-4 border-magenta p-8 mt-12"
+        style="box-shadow: 8px 8px 0 0 #000;"
+      >
+        <h2 class="text-2xl md:text-3xl font-black text-magenta mb-4 uppercase">
+          Help us win {electorate.name}
+        </h2>
+        <p class="text-lg mb-4">
+          We don't take developer or corporate money. We win by people power: volunteers,
+          conversations, and small donations.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/get-involved" class="btn btn-primary">Volunteer</a>
+          <a href="/manifesto" class="btn btn-secondary">Read the Manifesto</a>
+          <a href="/policies" class="btn btn-secondary">See All Policies</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

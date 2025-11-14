@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+---
+
+<BaseLayout
+  title="Coming Soon | Fusion Victoria"
+  description="Exciting new features are on the way! Stay tuned."
+>
+  <Header />
+
+  <main
+    class="min-h-screen relative overflow-hidden pt-28 pb-20"
+    style="background: linear-gradient(135deg, #C926F2 0%, #8B1FA8 50%, #C926F2 100%);"
+  >
+    <!-- Sparkles and stars -->
+    <div class="absolute inset-0 opacity-20">
+      {
+        [...Array(15)].map((_, i) => (
+          <div
+            class="absolute text-5xl"
+            style={`
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            animation: twinkle ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s;
+          `}
+          >
+            {['✨', '⭐', '🌟', '💫', '⚡'][i % 5]}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <!-- Main Content -->
+      <div class="text-center mb-16">
+        <!-- Animated rocket -->
+        <div class="relative inline-block mb-8">
+          <div class="absolute inset-0 bg-yellow-400 blur-3xl opacity-60"></div>
+          <div class="relative text-9xl" style="animation: float 3s ease-in-out infinite;">🚀</div>
+          <!-- Smoke trail -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
+            <div class="text-6xl opacity-60" style="animation: fadeOut 2s ease-in-out infinite;">
+              ☁️
+            </div>
+          </div>
+        </div>
+
+        <h1
+          class="text-6xl md:text-8xl font-black uppercase mb-6 text-white leading-tight"
+          style="
+            font-family: 'Anton', 'Archivo Black', sans-serif;
+            text-shadow: 4px 4px 0px #FFED00, 8px 8px 0px #5EFFD8, 12px 12px 0px #000;
+            animation: pulse 3s ease-in-out infinite;
+          "
+        >
+          COMING SOON
+        </h1>
+
+        <p
+          class="text-3xl font-bold text-yellow-400 mb-4"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
+          Something Amazing is Launching!
+        </p>
+
+        <p class="text-xl font-bold text-mint max-w-2xl mx-auto">
+          We're cooking up something special. Big things are coming to Fusion Victoria!
+        </p>
+      </div>
+
+      <!-- Countdown / Hype Section -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div
+          class="bg-black border-8 border-yellow-400 p-8 md:p-12 transform -rotate-1"
+          style="box-shadow: 12px 12px 0px 0px #5EFFD8, 24px 24px 0px 0px #FFED00;"
+        >
+          <div class="text-center mb-8">
+            <h2
+              class="text-3xl font-black uppercase text-yellow-400 mb-4"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              What's Coming?
+            </h2>
+            <div class="flex items-center justify-center gap-2 mb-6">
+              <div
+                class="w-3 h-3 bg-yellow-400 rounded-full"
+                style="animation: pulse 1s ease-in-out infinite;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-mint rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.2s;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-magenta rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.4s;"
+              >
+              </div>
+            </div>
+          </div>
+
+          <!-- Teaser Grid -->
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div
+              class="bg-gradient-to-br from-yellow-400 to-orange-400 border-5 border-white p-6 text-center transform hover:scale-105 transition-all"
+              style="box-shadow: 4px 4px 0px 0px #fff;"
+            >
+              <Icon
+                name="mdi:rocket-launch"
+                class="w-16 h-16 mx-auto mb-3 text-black"
+                style="animation: wiggle 2s ease-in-out infinite;"
+              />
+              <h3 class="font-black uppercase text-lg mb-2 text-black">New Features</h3>
+              <p class="text-sm font-bold text-black">Game-changing functionality</p>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-mint to-green-400 border-5 border-white p-6 text-center transform hover:scale-105 transition-all"
+              style="box-shadow: 4px 4px 0px 0px #fff;"
+            >
+              <Icon
+                name="mdi:star-four-points"
+                class="w-16 h-16 mx-auto mb-3 text-black"
+                style="animation: spin 4s linear infinite;"
+              />
+              <h3 class="font-black uppercase text-lg mb-2 text-black">Better UX</h3>
+              <p class="text-sm font-bold text-black">Sleeker, faster, smoother</p>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-magenta to-purple-600 border-5 border-white p-6 text-center transform hover:scale-105 transition-all"
+              style="box-shadow: 4px 4px 0px 0px #fff;"
+            >
+              <Icon
+                name="mdi:lightbulb-on"
+                class="w-16 h-16 mx-auto mb-3 text-white"
+                style="animation: pulse 2s ease-in-out infinite;"
+              />
+              <h3 class="font-black uppercase text-lg mb-2 text-white">More Content</h3>
+              <p class="text-sm font-bold text-white">Expanded resources</p>
+            </div>
+          </div>
+
+          <!-- Call to action -->
+          <div class="text-center pt-6 border-t-4 border-mint">
+            <p class="text-white font-bold mb-4">Want to be the first to know when we launch?</p>
+            <form class="max-w-md mx-auto flex gap-3">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                class="flex-1 px-4 py-3 border-4 border-mint bg-white font-bold focus:outline-none focus:border-yellow-400"
+                style="font-family: 'Space Grotesk', sans-serif;"
+              />
+              <button
+                type="submit"
+                class="px-6 py-3 bg-yellow-400 text-black border-4 border-white font-black uppercase hover:bg-mint transition-all whitespace-nowrap"
+                style="box-shadow: 4px 4px 0px 0px #fff;"
+              >
+                Notify Me!
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sneak Peek Features -->
+      <div class="mb-16">
+        <h3
+          class="text-4xl font-black uppercase text-center text-white mb-10"
+          style="font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px #000;"
+        >
+          🎉 Sneak Peek 🎉
+        </h3>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div
+            class="bg-white border-6 border-black p-8 transform hover:rotate-2 transition-all"
+            style="box-shadow: 8px 8px 0px 0px #FFED00;"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-12 h-12 bg-magenta border-4 border-black flex items-center justify-center rotate-12"
+              >
+                <Icon name="mdi:bell-ring" class="w-8 h-8 text-white" />
+              </div>
+              <h4
+                class="text-2xl font-black uppercase"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                Stay Updated
+              </h4>
+            </div>
+            <p class="text-lg font-bold text-gray-800 mb-4">
+              Follow us on social media for behind-the-scenes updates and launch announcements!
+            </p>
+            <div class="flex gap-3">
+              <a
+                href="https://twitter.com/fusionparty"
+                target="_blank"
+                class="w-12 h-12 bg-black border-3 border-black flex items-center justify-center hover:bg-yellow-400 transition-all"
+              >
+                <Icon name="mdi:twitter" class="w-7 h-7 text-white hover:text-black" />
+              </a>
+              <a
+                href="https://facebook.com/fusionparty"
+                target="_blank"
+                class="w-12 h-12 bg-black border-3 border-black flex items-center justify-center hover:bg-yellow-400 transition-all"
+              >
+                <Icon name="mdi:facebook" class="w-7 h-7 text-white hover:text-black" />
+              </a>
+              <a
+                href="https://instagram.com/fusionparty"
+                target="_blank"
+                class="w-12 h-12 bg-black border-3 border-black flex items-center justify-center hover:bg-yellow-400 transition-all"
+              >
+                <Icon name="mdi:instagram" class="w-7 h-7 text-white hover:text-black" />
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="bg-mint border-6 border-black p-8 transform hover:-rotate-2 transition-all"
+            style="box-shadow: 8px 8px 0px 0px #C926F2;"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-12 h-12 bg-black border-4 border-white flex items-center justify-center -rotate-12"
+              >
+                <Icon name="mdi:progress-clock" class="w-8 h-8 text-mint" />
+              </div>
+              <h4
+                class="text-2xl font-black uppercase text-black"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                In The Works
+              </h4>
+            </div>
+            <p class="text-lg font-bold text-black mb-4">
+              Our team is working around the clock to bring you something truly special. Worth the
+              wait!
+            </p>
+            <div class="flex items-center gap-2">
+              <div class="flex-1 h-4 bg-black border-3 border-black rounded-full overflow-hidden">
+                <div
+                  class="h-full bg-yellow-400 rounded-full"
+                  style="width: 73%; animation: pulse 2s ease-in-out infinite;"
+                >
+                </div>
+              </div>
+              <span class="font-black text-lg text-black">73%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- While You Wait -->
+      <div class="text-center">
+        <div
+          class="inline-block bg-yellow-400 border-6 border-black p-8 transform rotate-1"
+          style="box-shadow: 10px 10px 0px 0px #000;"
+        >
+          <h3
+            class="text-2xl font-black uppercase mb-4"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            While You Wait:
+          </h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a
+              href="/"
+              class="px-6 py-3 bg-black text-yellow-400 border-4 border-black font-black uppercase hover:bg-magenta hover:text-white transition-all"
+            >
+              <Icon name="mdi:home" class="w-5 h-5 inline mr-2" />
+              Explore Home
+            </a>
+            <a
+              href="/policies"
+              class="px-6 py-3 bg-black text-yellow-400 border-4 border-black font-black uppercase hover:bg-mint hover:text-black transition-all"
+            >
+              <Icon name="mdi:file-document" class="w-5 h-5 inline mr-2" />
+              Read Policies
+            </a>
+            <a
+              href="/blog"
+              class="px-6 py-3 bg-black text-yellow-400 border-4 border-black font-black uppercase hover:bg-white hover:text-black transition-all"
+            >
+              <Icon name="mdi:newspaper" class="w-5 h-5 inline mr-2" />
+              Read Blog
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 0.6;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(50px) scale(1.5);
+    }
+  }
+</style>

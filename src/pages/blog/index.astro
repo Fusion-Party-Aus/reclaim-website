@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getDocuments } from '../../lib/sanity';
+import { urlFor } from '../../lib/sanity';
+import '../../styles/global.css';
+
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  publishedAt: string;
+  category: string;
+  featured?: boolean;
+  featuredImage?: any;
+  author?: {
+    name: string;
+    role?: string;
+  };
+  tags?: string[];
+}
+
+// Fetch all blog posts, sorted by date
+const allPosts = await getDocuments<BlogPost>('blogPost');
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+);
+
+// Separate featured and regular posts
+const featuredPost = sortedPosts.find(post => post.featured);
+const regularPosts = sortedPosts.filter(post => post._id !== featuredPost?._id);
+
+// Category color mapping
+const categoryColors: Record<string, { bg: string; border: string; shadow: string }> = {
+  campaign: { bg: '#C926F2', border: '#8B1FA8', shadow: '#C926F2' },
+  policy: { bg: '#5EFFD8', border: '#4DE5C5', shadow: '#5EFFD8' },
+  community: { bg: '#FFED00', border: '#000000', shadow: '#FFED00' },
+  media: { bg: '#9A94E7', border: '#8080D0', shadow: '#9A94E7' },
+  opinion: { bg: '#FF9500', border: '#E08400', shadow: '#FF9500' },
+  event: { bg: '#FF3B30', border: '#D02E24', shadow: '#FF3B30' },
+};
+
+function getCategoryColor(category: string) {
+  return categoryColors[category] || categoryColors.community;
+}
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-AU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout 
+  title="Blog | Fusion Victoria"
+  description="Latest news, updates, and insights from Fusion Party Victoria. Campaign updates, policy announcements, and community stories."
+>
+  <Header />
+
+  <div class="alert-bar">
+    📰 Stay Updated with Fusion | <a href="#latest">Read the latest</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="bg-black text-white py-16 md:py-20 px-4 md:px-8 border-b-6 border-magenta" style="border-bottom-width: 6px; box-shadow: 0 4px 0 0 #FFED00;">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase" style="font-family: 'Anton', 'Archivo Black', sans-serif; letter-spacing: -0.02em; color: #C926F2;">
+        THE FUSION BLOG
+      </h1>
+      <p class="text-xl md:text-2xl font-bold max-w-3xl mx-auto" style="color: #5EFFD8;">
+        Campaign updates, policy announcements, and stories from the movement to reclaim our democracy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Post (if exists) -->
+  {featuredPost && (
+    <section class="bg-white py-16 px-4 md:px-8 border-b-6 border-black" style="border-bottom-width: 6px;">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-6">
+          <span class="inline-block px-4 py-2 bg-magenta text-white font-black uppercase text-sm border-4 border-black" style="box-shadow: 4px 4px 0px 0px #000000;">
+            ⭐ Featured Post
+          </span>
+        </div>
+        
+        <div class="grid md:grid-cols-12 gap-8">
+          <!-- Image column - asymmetric 7 cols -->
+          <div class="md:col-span-7">
+            {featuredPost.featuredImage && (
+              <a href={`/blog/${featuredPost.slug.current}`}>
+                <img 
+                  src={urlFor(featuredPost.featuredImage).width(800).height(500).url()} 
+                  alt={featuredPost.featuredImage.alt || featuredPost.title}
+                  class="w-full h-full object-cover border-6 border-black transition-transform hover:translate-x-1 hover:translate-y-1"
+                  style="box-shadow: 8px 8px 0px 0px #C926F2; border-width: 6px;"
+                />
+              </a>
+            )}
+          </div>
+          
+          <!-- Content column - asymmetric 5 cols -->
+          <div class="md:col-span-5 flex flex-col justify-center">
+            <div class="mb-4">
+              {featuredPost.category && (
+                <span 
+                  class="inline-block px-3 py-1 font-black uppercase text-xs border-3 border-black"
+                  style={`background: ${getCategoryColor(featuredPost.category).bg}; color: #000; box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;`}
+                >
+                  {featuredPost.category}
+                </span>
+              )}
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-black mb-4 uppercase leading-tight" style="font-family: 'Archivo Black', sans-serif; color: #C926F2;">
+              <a href={`/blog/${featuredPost.slug.current}`} class="hover:text-black transition-colors">
+                {featuredPost.title}
+              </a>
+            </h2>
+            
+            <p class="text-lg font-semibold mb-6 leading-relaxed text-gray-800">
+              {featuredPost.excerpt}
+            </p>
+            
+            <div class="flex items-center gap-4 mb-6 text-sm font-bold text-gray-600">
+              {featuredPost.author?.name && (
+                <span>By {featuredPost.author.name}</span>
+              )}
+              <span>•</span>
+              <time>{formatDate(featuredPost.publishedAt)}</time>
+            </div>
+            
+            <a 
+              href={`/blog/${featuredPost.slug.current}`}
+              class="btn btn-primary w-fit"
+            >
+              Read Full Story →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Latest Posts Grid -->
+  <section id="latest" class="bg-light-grey py-16 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black mb-12 uppercase" style="font-family: 'Archivo Black', sans-serif; color: #000;">
+        Latest Posts
+      </h2>
+      
+      <!-- Asymmetric Blog Grid -->
+      <div class="grid grid-cols-12 gap-6">
+        {regularPosts.map((post, index) => {
+          const colors = getCategoryColor(post.category);
+          const imageUrl = post.featuredImage ? urlFor(post.featuredImage).width(600).height(400).url() : null;
+          
+          // Asymmetric column spanning
+          const colSpan = index % 3 === 0 ? 'col-span-12 md:col-span-7' : 
+                         index % 3 === 1 ? 'col-span-12 md:col-span-5' : 
+                         'col-span-12 md:col-span-12';
+          
+          return (
+            <article class={`${colSpan}`}>
+              <div class="bg-white border-6 border-black h-full flex flex-col transition-all hover:translate-x-1 hover:translate-y-1" style={`box-shadow: 6px 6px 0px 0px ${colors.shadow}; border-width: 6px;`}>
+                {imageUrl && (
+                  <a href={`/blog/${post.slug.current}`}>
+                    <img 
+                      src={imageUrl} 
+                      alt={post.featuredImage?.alt || post.title}
+                      class="w-full h-48 object-cover border-b-5 border-black"
+                      style="border-bottom-width: 5px;"
+                    />
+                  </a>
+                )}
+                
+                <div class="p-6 flex flex-col flex-1">
+                  <div class="mb-3">
+                    {post.category && (
+                      <span 
+                        class="inline-block px-3 py-1 font-black uppercase text-xs border-3 border-black"
+                        style={`background: ${colors.bg}; color: #000; box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;`}
+                      >
+                        {post.category}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <h3 class="text-2xl font-black mb-3 uppercase leading-tight" style="font-family: 'Archivo Black', sans-serif;">
+                    <a href={`/blog/${post.slug.current}`} class="hover:text-magenta transition-colors">
+                      {post.title}
+                    </a>
+                  </h3>
+                  
+                  <p class="font-semibold mb-4 leading-relaxed text-gray-700 flex-1">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div class="flex items-center justify-between pt-4 border-t-3 border-black text-sm font-bold text-gray-600">
+                    <div class="flex items-center gap-2">
+                      {post.author?.name && (
+                        <span>{post.author.name}</span>
+                      )}
+                    </div>
+                    <time>{formatDate(post.publishedAt)}</time>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      
+      {regularPosts.length === 0 && !featuredPost && (
+        <div class="text-center py-20">
+          <div class="brutal-card brutal-card-yellow inline-block px-12 py-8">
+            <p class="text-2xl font-black uppercase mb-4">No posts yet!</p>
+            <p class="font-bold">Check back soon for updates from the campaign.</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

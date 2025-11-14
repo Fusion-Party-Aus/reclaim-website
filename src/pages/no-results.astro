@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+// Get search query from URL
+const url = new URL(Astro.request.url)
+const searchQuery = url.searchParams.get('q') || ''
+
+const noResultsMessages = [
+  "We couldn't find that, but we found our sense of humor!",
+  'Zero results. Unlike our commitment to democracy.',
+  'Nothing here... yet. Try something else!',
+  "Search came up empty, but our policy platform sure doesn't!",
+  "404 results found. Wait, that's not how this works.",
+]
+
+const randomMessage = noResultsMessages[Math.floor(Math.random() * noResultsMessages.length)]
+
+// Suggested searches
+const suggestions = [
+  { text: 'Climate Policy', href: '/policies/climate' },
+  { text: 'Housing Crisis', href: '/policies/housing' },
+  { text: 'Healthcare', href: '/policies/healthcare' },
+  { text: 'Education', href: '/policies/education' },
+]
+---
+
+<BaseLayout
+  title={`No Results for "${searchQuery}" | Fusion Victoria`}
+  description="We couldn't find what you're looking for, but here are some suggestions."
+>
+  <Header />
+
+  <main class="min-h-screen bg-light-grey pt-28 pb-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Search Icon -->
+      <div class="text-center mb-12">
+        <div class="inline-block relative mb-8">
+          <div
+            class="w-48 h-48 mx-auto bg-white border-8 border-black rounded-full flex items-center justify-center transform -rotate-6"
+            style="box-shadow: 10px 10px 0px 0px #FFED00, 20px 20px 0px 0px #5EFFD8;"
+          >
+            <Icon name="mdi:magnify" class="w-32 h-32 text-magenta" />
+            <div
+              class="absolute top-12 right-12 text-6xl"
+              style="animation: wiggle 2s ease-in-out infinite;"
+            >
+              ❌
+            </div>
+          </div>
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl font-black uppercase mb-6"
+          style="font-family: 'Anton', 'Archivo Black', sans-serif; color: #C926F2;"
+        >
+          NO RESULTS FOUND
+        </h1>
+
+        {
+          searchQuery && (
+            <div class="mb-6">
+              <p class="text-xl font-bold text-gray-600 mb-3">You searched for:</p>
+              <div
+                class="inline-block bg-yellow border-5 border-black px-6 py-3 transform rotate-2"
+                style="box-shadow: 6px 6px 0px 0px #000;"
+              >
+                <p class="text-2xl font-black" style="font-family: 'Archivo Black', sans-serif;">
+                  "{searchQuery}"
+                </p>
+              </div>
+            </div>
+          )
+        }
+
+        <p
+          class="text-2xl font-bold text-gray-700 max-w-2xl mx-auto"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
+          {randomMessage}
+        </p>
+      </div>
+
+      <!-- Try Another Search -->
+      <div class="max-w-2xl mx-auto mb-16">
+        <div
+          class="bg-white border-6 border-black p-8 transform -rotate-1"
+          style="box-shadow: 8px 8px 0px 0px #C926F2;"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-mint border-4 border-black flex items-center justify-center rotate-12"
+            >
+              <Icon name="mdi:magnify-plus-outline" class="w-8 h-8 text-black" />
+            </div>
+            <h2
+              class="text-2xl font-black uppercase"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Try Another Search
+            </h2>
+          </div>
+
+          <form action="/search" method="get" class="flex gap-3">
+            <input
+              type="text"
+              name="q"
+              value={searchQuery}
+              placeholder="What are you looking for?"
+              class="flex-1 px-4 py-4 border-5 border-black bg-light-grey font-bold text-lg focus:outline-none focus:border-magenta focus:bg-white transition-all"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            />
+            <button
+              type="submit"
+              class="px-8 py-4 bg-magenta border-5 border-black text-white font-black uppercase hover:bg-yellow hover:text-black transition-all"
+              style="box-shadow: 4px 4px 0px 0px #000;"
+            >
+              <Icon name="mdi:magnify" class="w-6 h-6" />
+            </button>
+          </form>
+
+          <div class="mt-6 pt-6 border-t-4 border-black">
+            <p class="text-sm font-bold text-gray-600 mb-3 uppercase">Search Tips:</p>
+            <ul class="space-y-2 text-sm font-bold text-gray-700">
+              <li class="flex items-start gap-2">
+                <Icon name="mdi:check-circle" class="w-5 h-5 text-mint flex-shrink-0 mt-0.5" />
+                <span>Try different keywords or phrases</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="mdi:check-circle" class="w-5 h-5 text-mint flex-shrink-0 mt-0.5" />
+                <span>Check your spelling</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="mdi:check-circle" class="w-5 h-5 text-mint flex-shrink-0 mt-0.5" />
+                <span>Use more general terms</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Searches / Suggestions -->
+      <div class="mb-16">
+        <h3
+          class="text-3xl font-black uppercase text-center mb-8"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Popular Searches:
+        </h3>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          {
+            suggestions.map((item, i) => (
+              <a
+                href={item.href}
+                class="px-6 py-3 border-5 border-black font-black uppercase hover:translate-x-1 hover:translate-y-1 transition-all"
+                style={`
+                background: ${['#C926F2', '#5EFFD8', '#FFED00', '#9A94E7'][i % 4]};
+                box-shadow: 4px 4px 0px 0px #000;
+                ${i % 2 === 0 ? 'transform: rotate(2deg);' : 'transform: rotate(-2deg);'}
+              `}
+              >
+                {item.text}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Browse by Category -->
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+        <a
+          href="/policies"
+          class="block bg-magenta border-6 border-black p-8 text-center group transition-all hover:-translate-y-2"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <div
+            class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white border-5 border-black rounded-full group-hover:rotate-180 transition-transform duration-500"
+          >
+            <Icon name="mdi:file-document-multiple" class="w-12 h-12 text-magenta" />
+          </div>
+          <h3
+            class="text-2xl font-black uppercase mb-2 text-white"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            All Policies
+          </h3>
+          <p class="text-sm font-bold text-white opacity-90">Browse our full policy platform</p>
+        </a>
+
+        <a
+          href="/blog"
+          class="block bg-mint border-6 border-black p-8 text-center group transition-all hover:-translate-y-2"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <div
+            class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black border-5 border-white rounded-full group-hover:rotate-180 transition-transform duration-500"
+          >
+            <Icon name="mdi:newspaper-variant" class="w-12 h-12 text-mint" />
+          </div>
+          <h3
+            class="text-2xl font-black uppercase mb-2 text-black"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Latest News
+          </h3>
+          <p class="text-sm font-bold text-black opacity-90">Check out recent updates</p>
+        </a>
+
+        <a
+          href="/faq"
+          class="block bg-yellow border-6 border-black p-8 text-center group transition-all hover:-translate-y-2"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <div
+            class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black border-5 border-yellow rounded-full group-hover:rotate-180 transition-transform duration-500"
+          >
+            <Icon name="mdi:frequently-asked-questions" class="w-12 h-12 text-yellow" />
+          </div>
+          <h3
+            class="text-2xl font-black uppercase mb-2 text-black"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            FAQ
+          </h3>
+          <p class="text-sm font-bold text-black opacity-90">Get your questions answered</p>
+        </a>
+      </div>
+
+      <!-- Still Can't Find It -->
+      <div class="max-w-2xl mx-auto text-center">
+        <div
+          class="bg-white border-6 border-black p-8 transform rotate-1"
+          style="box-shadow: 8px 8px 0px 0px #FFED00;"
+        >
+          <div
+            class="w-16 h-16 bg-magenta border-5 border-black rounded-full flex items-center justify-center mx-auto mb-6 -rotate-12"
+          >
+            <Icon name="mdi:help-circle" class="w-10 h-10 text-white" />
+          </div>
+          <h3
+            class="text-2xl font-black uppercase mb-4"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Still Can't Find It?
+          </h3>
+          <p class="text-lg font-bold text-gray-700 mb-6">
+            Reach out to us! We're here to help and would love to hear from you.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block px-8 py-4 bg-magenta text-white border-5 border-black font-black uppercase hover:bg-black hover:text-magenta transition-all"
+            style="box-shadow: 4px 4px 0px 0px #000;"
+          >
+            <Icon name="mdi:email" class="w-5 h-5 inline mr-2" />
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+  }
+</style>

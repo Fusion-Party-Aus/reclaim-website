@@ -1,13 +1,13 @@
 ---
 interface Props {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
 
-const { title, description = 'Fusion Victoria - Taking back what they stole.' } = Astro.props;
+const { title, description = 'Fusion Victoria - Taking back what they stole.' } = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
@@ -15,10 +15,142 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C926F2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Fusion VIC" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />
+
+    <!-- PWA Install Prompt -->
+    <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">
+      <div
+        class="bg-black border-6 border-magenta p-6 max-w-sm transform rotate-1"
+        style="box-shadow: 8px 8px 0px 0px #FFED00, 16px 16px 0px 0px #5EFFD8;"
+      >
+        <button
+          id="pwa-close"
+          class="absolute -top-3 -right-3 w-10 h-10 bg-yellow border-4 border-black flex items-center justify-center font-black text-xl hover:bg-mint transition-all"
+          style="box-shadow: 3px 3px 0px 0px #000;"
+        >
+          ✕
+        </button>
+        <div class="flex items-start gap-4 mb-4">
+          <div
+            class="w-12 h-12 bg-magenta border-4 border-white flex items-center justify-center flex-shrink-0 rotate-12"
+          >
+            <span class="text-2xl">📱</span>
+          </div>
+          <div>
+            <h3
+              class="text-lg font-black uppercase text-magenta mb-2"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Install Fusion App
+            </h3>
+            <p class="text-sm font-bold text-white leading-tight">
+              Add to your home screen for quick access & offline use!
+            </p>
+          </div>
+        </div>
+        <button
+          id="pwa-install"
+          class="w-full px-4 py-3 bg-magenta text-white border-4 border-white font-black uppercase hover:bg-yellow hover:text-black transition-all"
+          style="box-shadow: 4px 4px 0px 0px #fff; font-family: 'Archivo Black', sans-serif;"
+        >
+          Install Now
+        </button>
+      </div>
+    </div>
+
+    <!-- PWA Service Worker Registration & Install Prompt -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('Service Worker registered:', registration)
+            })
+            .catch((error) => {
+              console.log('Service Worker registration failed:', error)
+            })
+        })
+      }
+
+      // PWA Install Prompt
+      let deferredPrompt
+      const installPrompt = document.getElementById('pwa-install-prompt')
+      const installButton = document.getElementById('pwa-install')
+      const closeButton = document.getElementById('pwa-close')
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the mini-infobar from appearing
+        e.preventDefault()
+        deferredPrompt = e
+
+        // Show our custom install prompt after a short delay
+        setTimeout(() => {
+          if (installPrompt) {
+            installPrompt.classList.remove('hidden')
+            installPrompt.style.animation = 'slideInRight 0.5s ease-out'
+          }
+        }, 3000) // Show after 3 seconds
+      })
+
+      if (installButton) {
+        installButton.addEventListener('click', async () => {
+          if (!deferredPrompt) return
+
+          deferredPrompt.prompt()
+          const { outcome } = await deferredPrompt.userChoice
+
+          console.log(`User response: ${outcome}`)
+          deferredPrompt = null
+
+          if (installPrompt) {
+            installPrompt.classList.add('hidden')
+          }
+        })
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener('click', () => {
+          if (installPrompt) {
+            installPrompt.classList.add('hidden')
+          }
+        })
+      }
+
+      // Hide prompt if already installed
+      window.addEventListener('appinstalled', () => {
+        console.log('PWA installed')
+        if (installPrompt) {
+          installPrompt.classList.add('hidden')
+        }
+      })
+    </script>
+
+    <style is:inline>
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100%) rotate(1deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) rotate(1deg);
+        }
+      }
+    </style>
   </body>
 </html>

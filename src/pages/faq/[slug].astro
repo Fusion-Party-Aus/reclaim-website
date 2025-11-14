@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import ShareIcon from '../../components/ShareIcon.astro'
+import { getDocuments } from '../../lib/sanity'
+import { renderPortableText } from '../../lib/portableText'
+import type { PortableTextBlock } from '../../lib/portableText'
+
+interface FAQ {
+  _id: string
+  category: string
+  question: string
+  answer: PortableTextBlock[]
+  slug: { current: string }
+}
+
+export async function getStaticPaths() {
+  const faqs = await getDocuments<FAQ>('faq')
+
+  return faqs
+    .filter((faq) => faq.slug?.current)
+    .map((faq) => ({
+      params: { slug: faq.slug.current },
+      props: { faq },
+    }))
+}
+
+export interface Props {
+  faq: FAQ
+}
+
+const { faq } = Astro.props
+---
+
+<BaseLayout title={`${faq.question} | Fusion Victoria FAQ`}>
+  <Header />
+
+  <main class="bg-off-white min-h-screen pt-28 pb-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Breadcrumbs -->
+      <nav class="text-xs font-mono uppercase tracking-wide mb-6 flex items-center gap-2">
+        <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint">Home</a>
+        <span class="opacity-60">/</span>
+        <a href="/faq" class="px-2 py-1 border-2 border-black bg-white hover:bg-mint">FAQ</a>
+        <span class="opacity-60">/</span>
+        <span
+          class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
+          title={faq.question}
+        >
+          {faq.question}
+        </span>
+      </nav>
+
+      <!-- Main card -->
+      <article class="bg-white border-4 border-black shadow-[6px_6px_0_0_#000] p-8 md:p-10">
+        <div class="flex items-start justify-between gap-4 mb-6">
+          <h1 class="text-3xl md:text-4xl font-black text-magenta leading-tight">
+            {faq.question}
+          </h1>
+
+          <div class="flex flex-col items-end gap-2">
+            <span
+              class="inline-flex items-center gap-1 px-3 py-1 border-2 border-black bg-mint text-xs font-black uppercase tracking-wide"
+            >
+              <span class="w-2 h-2 bg-black rounded-full"></span>
+              {faq.category}
+            </span>
+            <div class="flex items-center gap-2">
+              <button
+                id="copy-link-button"
+                type="button"
+                class="inline-flex items-center gap-1 text-[10px] uppercase font-black border-2 border-black px-2 py-1 bg-yellow hover:bg-mint"
+              >
+                <ShareIcon />
+                <span>Copy link</span>
+              </button>
+              <button
+                id="open-share-dialog"
+                type="button"
+                class="text-[10px] uppercase font-black border-2 border-black px-2 py-1 bg-white hover:bg-mint"
+              >
+                More options
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prose prose-lg max-w-none" set:html={renderPortableText(faq.answer)} />
+      </article>
+    </div>
+
+    <!-- Copy toast -->
+    <div
+      id="copy-toast"
+      class="fixed bottom-6 right-6 z-50 px-4 py-2 bg-black text-white text-xs font-black uppercase tracking-wide border-2 border-white shadow-[4px_4px_0_0_#fff] hidden"
+    >
+      Link copied
+    </div>
+
+    <!-- Share dialog -->
+    <div
+      id="share-dialog"
+      class="fixed inset-0 z-40 flex items-center justify-center bg-black/40 hidden"
+    >
+      <div
+        class="bg-white border-4 border-black shadow-[6px_6px_0_0_#000] p-6 max-w-sm w-full mx-4"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-sm font-black uppercase tracking-wide text-magenta">Share this answer</h2>
+          <button
+            id="close-share-dialog"
+            type="button"
+            class="text-xs font-black px-2 py-1 border-2 border-black bg-light-grey hover:bg-mint"
+          >
+            Close
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <a
+            id="share-twitter"
+            class="px-3 py-2 border-2 border-black bg-black text-white text-xs font-black uppercase tracking-wide hover:bg-gray-900"
+          >
+            Share on X / Twitter
+          </a>
+          <a
+            id="share-facebook"
+            class="px-3 py-2 border-2 border-black bg-[#1877F2] text-white text-xs font-black uppercase tracking-wide hover:bg-[#0f5dc0]"
+          >
+            Share on Facebook
+          </a>
+          <a
+            id="share-email"
+            class="px-3 py-2 border-2 border-black bg-yellow text-black text-xs font-black uppercase tracking-wide hover:bg-mint"
+          >
+            Share via Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const copyBtn = document.getElementById('copy-link-button')
+    const toast = document.getElementById('copy-toast')
+    const openDialogBtn = document.getElementById('open-share-dialog')
+    const closeDialogBtn = document.getElementById('close-share-dialog')
+    const dialog = document.getElementById('share-dialog')
+
+    const url = encodeURIComponent(window.location.href)
+    const text = encodeURIComponent(document.title)
+
+    const twitter = document.getElementById('share-twitter')
+    const facebook = document.getElementById('share-facebook')
+    const email = document.getElementById('share-email')
+
+    if (twitter) {
+      twitter.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+      twitter.target = '_blank'
+      twitter.rel = 'noopener noreferrer'
+    }
+
+    if (facebook) {
+      facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+      facebook.target = '_blank'
+      facebook.rel = 'noopener noreferrer'
+    }
+
+    if (email) {
+      email.href = `mailto:?subject=${text}&body=${url}`
+    }
+
+    if (copyBtn && toast) {
+      copyBtn.addEventListener('click', async () => {
+        const urlRaw = window.location.href
+        const title = document.title
+
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, text: title, url: urlRaw })
+            return
+          } catch (err) {
+            // fall through to clipboard
+          }
+        }
+
+        if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(urlRaw)
+            toast.classList.remove('hidden')
+            setTimeout(() => toast.classList.add('hidden'), 2000)
+          } catch (err) {
+            // ignore
+          }
+        }
+      })
+    }
+
+    if (openDialogBtn && closeDialogBtn && dialog) {
+      openDialogBtn.addEventListener('click', () => dialog.classList.remove('hidden'))
+      closeDialogBtn.addEventListener('click', () => dialog.classList.add('hidden'))
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.classList.add('hidden')
+      })
+    }
+  </script>
+
+  <Footer />
+</BaseLayout>

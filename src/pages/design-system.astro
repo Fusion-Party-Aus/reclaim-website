@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+---
+
+<BaseLayout
+  title="Fusion Design System | Reclaim"
+  description="Complete neo-brutalist design system for the Fusion Party rebrand."
+>
+  <Header />
+
+  <div class="alert-bar">
+    📚 Complete Neo-Brutalist Design System | <a href="#colors">Explore the chaos</a>
+  </div>
+
+  <section
+    class="bg-black text-white py-20 px-8 text-center border-b-8 border-magenta relative overflow-hidden"
+    style="border-left: 12px solid #5EFFD8; border-right: 12px solid #FFED00;"
+  >
+    <!-- Background geometric chaos -->
+    <div class="absolute inset-0 opacity-20">
+      <div
+        class="absolute top-0 right-0 w-64 h-64 border-8 border-mint transform rotate-45 translate-x-20 -translate-y-20"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-56 h-56 bg-yellow transform -rotate-30 -translate-x-16 translate-y-16"
+      >
+      </div>
+      <div class="absolute top-1/3 left-1/4 w-40 h-40 border-6 border-red transform rotate-12">
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <h1
+        class="text-5xl md:text-8xl font-black mb-6 uppercase relative inline-block"
+        style="color: #C926F2; font-family: 'Anton', 'Archivo Black', sans-serif; letter-spacing: -0.03em;"
+      >
+        <span class="absolute inset-0 text-yellow" style="transform: translate(4px, 4px);"
+          >FUSION DESIGN SYSTEM</span
+        >
+        <span class="relative z-10" style="text-shadow: 6px 6px 0 #000;">FUSION DESIGN SYSTEM</span>
+      </h1>
+      <p
+        class="text-2xl font-bold px-6 py-4 inline-block border-t-6 border-b-6 border-lavender"
+        style="color: #9A94E7; border-top-width: 6px; border-bottom-width: 6px;"
+      >
+        Reclaim Brand — Maximum brutalism for political revolution
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 px-8 border-b-8 border-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2
+          id="principles"
+          class="text-4xl md:text-5xl font-black mb-4 uppercase inline-block relative"
+          style="color: #c926f2; font-family: 'Anton', 'Archivo Black', sans-serif; transform: rotate(-1deg);"
+        >
+          BRAND PRINCIPLES
+          <span class="absolute -bottom-2 left-0 w-32 h-2 bg-magenta"></span>
+        </h2>
+        <p class="text-xl text-gray-700 font-bold mt-8">
+          Our design system embodies our values: bold, transparent, unapologetic, and maximally
+          impactful.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="brutal-card brutal-card-mint relative">
+          <div
+            class="absolute -top-4 -left-4 w-8 h-8 bg-magenta border-4 border-black transform rotate-45"
+          >
+          </div>
+          <h3
+            class="text-magenta text-3xl font-black mb-4 uppercase"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Bold & Unapologetic
+          </h3>
+          <p class="font-semibold text-lg">
+            Maximum contrast colors, aggressive shadows, and typography that screams for attention.
+          </p>
+        </div>
+        <div class="brutal-card brutal-card-magenta relative">
+          <div class="absolute -top-4 -left-4 w-8 h-8 bg-yellow border-4 border-black"></div>
+          <h3
+            class="text-white text-3xl font-black mb-4 uppercase"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Clear & Direct
+          </h3>
+          <p class="font-semibold text-white text-lg">
+            No political BS. Geometric clarity and straightforward messaging that cuts through the
+            noise.
+          </p>
+        </div>
+        <div class="brutal-card brutal-card-yellow relative">
+          <div
+            class="absolute -top-4 -left-4 w-8 h-8 bg-mint border-4 border-black transform -rotate-12"
+          >
+          </div>
+          <h3
+            class="text-black text-3xl font-black mb-4 uppercase"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Modern & Aggressive
+          </h3>
+          <p class="font-semibold text-lg">
+            Forward-looking design that breaks conventions. Asymmetry, collision, and controlled
+            chaos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="colors" class="bg-light-grey py-20 px-8 border-b-4 border-mint">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
+          COLOR SYSTEM
+        </h2>
+        <p class="text-xl text-gray-700 font-bold">
+          Our palette combines vibrant energy with professional credibility
+        </p>
+      </div>
+
+      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Primary Colors</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="brutal-card">
+          <div
+            class="bg-fusion-magenta text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+          >
+            Aa
+          </div>
+          <div>
+            <div class="text-2xl font-black mb-4 uppercase">Magenta</div>
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HEX</span>
+                <span>#C926F2</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">RGB</span>
+                <span>201, 38, 242</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HSL</span>
+                <span>288°, 89%, 55%</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">CMYK</span>
+                <span>17, 84, 0, 5</span>
+              </div>
+            </div>
+            <div class="brutal-badge brutal-badge-magenta font-mono text-xs">--fusion-magenta</div>
+          </div>
+        </div>
+
+        <div class="brutal-card">
+          <div
+            class="bg-fusion-mint text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+          >
+            Aa
+          </div>
+          <div>
+            <div class="text-2xl font-black mb-4 uppercase">Mint</div>
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HEX</span>
+                <span>#5EFFD8</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">RGB</span>
+                <span>94, 255, 216</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HSL</span>
+                <span>165°, 100%, 68%</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">CMYK</span>
+                <span>63, 0, 15, 0</span>
+              </div>
+            </div>
+            <div class="brutal-badge font-mono text-xs">--fusion-mint</div>
+          </div>
+        </div>
+
+        <div class="brutal-card">
+          <div
+            class="bg-fusion-lavender text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+          >
+            Aa
+          </div>
+          <div>
+            <div class="text-2xl font-black mb-4 uppercase">Lavender</div>
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HEX</span>
+                <span>#9A94E7</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">RGB</span>
+                <span>154, 148, 231</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HSL</span>
+                <span>244°, 62%, 74%</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">CMYK</span>
+                <span>33, 36, 0, 9</span>
+              </div>
+            </div>
+            <div class="brutal-badge font-mono text-xs">--fusion-lavender</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Secondary Colors</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="brutal-card">
+          <div
+            class="bg-fusion-yellow text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+          >
+            Aa
+          </div>
+          <div>
+            <div class="text-2xl font-black mb-4 uppercase">Yellow</div>
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HEX</span>
+                <span>#FFED00</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">RGB</span>
+                <span>255, 237, 0</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HSL</span>
+                <span>56°, 100%, 50%</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">CMYK</span>
+                <span>0, 7, 100, 0</span>
+              </div>
+            </div>
+            <div class="brutal-badge brutal-badge-yellow font-mono text-xs">--fusion-yellow</div>
+          </div>
+        </div>
+
+        <div class="brutal-card">
+          <div
+            class="bg-black text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+          >
+            Aa
+          </div>
+          <div>
+            <div class="text-2xl font-black mb-4 uppercase">Black</div>
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HEX</span>
+                <span>#010102</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">RGB</span>
+                <span>1, 1, 2</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">HSL</span>
+                <span>240°, 33%, 1%</span>
+              </div>
+              <div class="flex justify-between items-center font-mono text-sm font-semibold">
+                <span class="font-black">CMYK</span>
+                <span>50, 50, 0, 99</span>
+              </div>
+            </div>
+            <div class="brutal-badge font-mono text-xs">--fusion-black</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="buttons" class="bg-white py-20 px-8 border-b-4 border-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
+          COMPONENTS
+        </h2>
+      </div>
+
+      <div class="brutal-card mb-12">
+        <h3 class="text-3xl font-black mb-6 uppercase">Buttons</h3>
+        <div class="flex flex-wrap gap-4">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-primary btn-lg">Large Button</button>
+          <button class="btn btn-primary btn-sm">Small Button</button>
+        </div>
+      </div>
+
+      <div class="brutal-card mb-12">
+        <h3 class="text-3xl font-black mb-6 uppercase">Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="brutal-card brutal-card-magenta">
+            <h5 class="text-fusion-magenta font-black text-lg mb-2 uppercase">Magenta Card</h5>
+            <p class="font-semibold">Card with magenta accent border</p>
+          </div>
+          <div class="brutal-card brutal-card-mint">
+            <h5 class="text-fusion-mint font-black text-lg mb-2 uppercase">Mint Card</h5>
+            <p class="font-semibold">Card with mint accent border</p>
+          </div>
+          <div class="brutal-card brutal-card-yellow">
+            <h5 class="text-black font-black text-lg mb-2 uppercase">Yellow Card</h5>
+            <p class="font-semibold">Card with yellow background</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="brutal-card">
+        <h3 class="text-3xl font-black mb-6 uppercase">Badges</h3>
+        <div class="flex flex-wrap gap-4">
+          <span class="brutal-badge">Default Badge</span>
+          <span class="brutal-badge brutal-badge-magenta">Magenta Badge</span>
+          <span class="brutal-badge brutal-badge-yellow">Yellow Badge</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-magenta-gradient text-white py-20 px-8 border-t-4 border-yellow">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 uppercase">READY TO BUILD?</h2>
+      <p class="text-xl mb-12 max-w-3xl mx-auto font-bold">
+        Use this design system to create consistent, powerful experiences.
+      </p>
+      <div class="cta-buttons">
+        <a href="/" class="btn btn-secondary">BACK TO HOME</a>
+        <a href="/policies" class="btn btn-secondary">VIEW POLICIES</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.astro'
+import Hero from '../../components/Hero.astro'
+import Footer from '../../components/Footer.astro'
+import Sidebar from '../../components/Sidebar.astro'
+import { getDocuments } from '../../lib/sanity'
+import { renderPortableText } from '../../lib/portableText'
+import { Icon } from 'astro-icon/components'
+import '../../styles/global.css'
+
+// Component Library
+import Section from '../../components/ui/Section.astro'
+import BrutalCard from '../../components/ui/BrutalCard.astro'
+import BrutalButton from '../../components/ui/BrutalButton.astro'
+import BrutalBadge from '../../components/ui/BrutalBadge.astro'
+import CTA from '../../components/ui/CTA.astro'
+import FloatingIcon from '../../components/ui/FloatingIcon.astro'
+
+// Fetch policies from Sanity
+interface Policy {
+  _id: string
+  title: string
+  slug: {
+    current: string
+  }
+  icon?: string
+  summary: string
+  keyPoints?: string[]
+  cost?: string
+  funding?: string
+  body?: any
+}
+
+const policies = await getDocuments<Policy>('policy')
+
+// Generate sidebar sections from policies (ordered as imported)
+const sidebarSections = policies.map((policy) => ({
+  id: policy.slug.current,
+  title: policy.title,
+}))
+---
+
+<BaseLayout
+  title="Our Policies | Fusion Victoria - Evidence-Based Solutions"
+  description="50,000 public homes. Melton Line by 2029. Wage theft criminalised. 100% renewables by 2030. Evidence-based policies with full costings."
+>
+  <Header />
+
+  <!-- HERO -->
+  <Hero title="Our Policies" subtitle="Evidence-based solutions. Real costings. No bullshit." />
+
+  <!-- POLICY OVERVIEW + MAIN CONTENT (from Sanity) -->
+  <div class="max-w-7xl mx-auto px-8 flex gap-8 relative">
+    <!-- Main Content Column -->
+    <div class="flex-1 relative">
+      <FloatingIcon
+        name="mdi:file-document-multiple"
+        color="rgba(255, 51, 153, 0.03)"
+        size={384}
+        animation="float-slow"
+        position={{ top: '0', right: '0' }}
+      />
+      <FloatingIcon
+        name="mdi:chart-line"
+        color="rgba(0, 255, 204, 0.03)"
+        size={256}
+        animation="spin-slow"
+        position={{ bottom: '5rem', left: '0' }}
+      />
+
+      <!-- Intro panel -->
+      <Section
+        border={true}
+        borderPosition="bottom"
+        borderColor="magenta"
+        padding="lg"
+        class="-mx-8 px-8"
+      >
+        <div class="max-w-5xl mx-auto">
+          <BrutalCard
+            variant="white"
+            borderWidth="lg"
+            shadow="lg"
+            shadowSize="8"
+            rotation={-0.5}
+            hover={true}
+            class="mb-12 text-center"
+          >
+            <div class="mb-4 animate-wiggle-subtle">
+              <Icon name="mdi:gavel" class="w-12 h-12 text-magenta mx-auto" />
+            </div>
+            <p class="text-2xl font-bold mb-4 uppercase">
+              The major parties waste billions on poorly planned projects while telling you there's
+              "no money" for housing, healthcare, or transport.
+            </p>
+            <p
+              class="text-3xl font-black text-magenta uppercase flex items-center justify-center gap-3"
+            >
+              <Icon name="mdi:hand-back-left" class="w-10 h-10" />
+              We're taking it back.
+              <Icon name="mdi:home" class="w-10 h-10" />
+            </p>
+          </BrutalCard>
+
+          {
+            policies.length > 0 && (
+              <div class="grid grid-cols-1 gap-8">
+                {policies.map((policy, index) => (
+                  <BrutalCard
+                    id={policy.slug.current}
+                    variant={index % 2 === 0 ? 'white' : 'white'}
+                    shadow="lg"
+                    shadowSize="10"
+                    borderWidth="lg"
+                    rotation={index % 2 === 0 ? -0.6 : 0.6}
+                    hover={true}
+                    padding="lg"
+                    class="relative overflow-visible"
+                  >
+                    <BrutalBadge
+                      variant="black"
+                      size="sm"
+                      icon="mdi:file-certificate"
+                      class="absolute -top-3 left-6 text-yellow border-2 border-white animate-pulse-gentle"
+                    >
+                      Policy
+                    </BrutalBadge>
+
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                      <div>
+                        <h2 class="text-2xl md:text-3xl font-black text-magenta mb-3 uppercase flex items-center gap-3 tracking-tight group-hover:text-mint transition-colors">
+                          {policy.icon && policy.icon.includes(':') && (
+                            <span class="animate-pulse-gentle">
+                              <Icon name={policy.icon} class="w-10 h-10" />
+                            </span>
+                          )}
+                          <span class="leading-tight">{policy.title}</span>
+                        </h2>
+                        <p class="text-lg md:text-xl font-bold mb-3 leading-snug">
+                          {policy.summary}
+                        </p>
+                      </div>
+                      <a
+                        href={`/policies/${policy.slug.current}`}
+                        class="hidden md:inline-flex flex-col items-center justify-center bg-black text-yellow px-3 py-2 font-black uppercase border-4 border-yellow text-[0.6rem] leading-tight tracking-[0.08em] hover:rotate-0 transition-transform duration-200"
+                        style="box-shadow: 4px 4px 0px 0px #000000; height: fit-content; transform: rotate(2deg);"
+                      >
+                        <Icon name="mdi:file-eye" class="w-4 h-4 mb-1" />
+                        <span>Policy</span>
+                        <span class="text-[0.55rem]">/{policy.slug.current}</span>
+                      </a>
+                    </div>
+
+                    {policy.keyPoints && policy.keyPoints.length > 0 && (
+                      <ul class="space-y-2 mb-4">
+                        {policy.keyPoints.map((point) => (
+                          <li class="flex items-start">
+                            <Icon
+                              name="mdi:check-bold"
+                              class="w-6 h-6 text-mint mr-2 flex-shrink-0"
+                            />
+                            <span class="font-semibold">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {policy.cost && (
+                      <div
+                        class="bg-yellow border-6 border-black p-4 mb-4 inline-block max-w-md hover:shadow-[6px_6px_0px_0px_#000000] transition-shadow duration-200"
+                        style="box-shadow: 4px 4px 0px 0px #000000; transform: rotate(-1.5deg);"
+                      >
+                        <p class="text-[0.7rem] font-black uppercase tracking-[0.16em] text-black/70 mb-1 flex items-center gap-1">
+                          <Icon name="mdi:calculator" class="w-3 h-3" />
+                          Costing
+                        </p>
+                        <p class="font-bold text-lg leading-snug flex items-center gap-2">
+                          <Icon name="mdi:currency-usd" class="w-5 h-5" />
+                          Cost: {policy.cost}
+                        </p>
+                        {policy.funding && (
+                          <p class="text-xs mt-2 font-semibold leading-snug flex items-start gap-1">
+                            <Icon name="mdi:piggy-bank" class="w-4 h-4 flex-shrink-0" />
+                            <span>Funded by: {policy.funding}</span>
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    <BrutalButton
+                      href={`/policies/${policy.slug.current}`}
+                      variant="primary"
+                      icon="mdi:book-open-page-variant"
+                      class="skew-x-[-4deg]"
+                    >
+                      Read Full Policy
+                    </BrutalButton>
+                  </BrutalCard>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </Section>
+    </div>
+
+    <!-- Sidebar -->
+    <Sidebar sections={sidebarSections} page="policies" />
+  </div>
+
+  <!-- CTA -->
+  <Section padding="xl" class="bg-magenta-gradient text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 text-white">These Policies Can Win</h2>
+      <p class="text-xl mb-10 text-white">
+        But only if we build a movement that can't be ignored. Join us.
+      </p>
+
+      <div class="cta-buttons">
+        <BrutalButton href="/get-involved" variant="white" size="lg"> Get Involved </BrutalButton>
+        <BrutalButton href="/manifesto" variant="mint" size="lg">
+          Read Full Manifesto
+        </BrutalButton>
+        <BrutalButton href="https://fusionparty.org.au/costings" variant="mint" size="lg">
+          View Costings
+        </BrutalButton>
+      </div>
+    </div>
+  </Section>
+
+  <Footer />
+</BaseLayout>
