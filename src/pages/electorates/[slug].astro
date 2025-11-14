@@ -44,10 +44,10 @@ export async function getStaticPaths() {
 }
 
 export interface Props {
-  electorate: Electorate;
+  electorate: Electorate
 }
 
-const { electorate } = Astro.props;
+const { electorate } = Astro.props
 ---
 
 <BaseLayout title={`${electorate.name} | Fusion Victoria`}>
