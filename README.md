@@ -1,46 +1,95 @@
-# Astro Starter Kit: Basics
+# Fusion Victoria Website
 
-```sh
-npm create astro@latest -- --template basics
+A modern, performant website for the Fusion Party Victoria built with Astro, Sanity CMS, and Neo-Brutalist design principles.
+
+## 🚀 Tech Stack
+
+- **Framework**: [Astro 5.x](https://astro.build) - Static Site Generation
+- **CMS**: [Sanity.io](https://www.sanity.io) - Headless CMS
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com)
+- **TypeScript**: Strict type-checking enabled
+- **Testing**: [Vitest](https://vitest.dev)
+- **Icons**: [MDI Icons](https://icon-sets.iconify.design/mdi/)
+
+## 📦 Quick Start
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Set up environment variables
+cp .env.example .env
+# Edit .env and add your Sanity project ID
+
+# 3. Run development servers
+npm run dev                 # Frontend (localhost:4321)
+npm run dev:sanity          # Sanity Studio (localhost:3333)
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🏗️ Project Structure
 
-## 🚀 Project Structure
+```
+src/
+├── components/ui/     # Design system (10 components)
+├── layouts/           # Page layouts
+├── pages/             # File-based routing
+├── lib/               # Utilities & API clients
+├── types/             # TypeScript definitions
+└── test/              # Test utilities
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+fusion/                # Sanity Studio config
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📚 Documentation
+
+- [Component Library](./COMPONENT_LIBRARY.md) - API reference
+- [Refactoring Guide](./REFACTORING_GUIDE.md) - Migration patterns
+- [Design Rationale](./DESIGN_RATIONALE.md) - Design decisions
+- [DX Audit Report](./DX_AUDIT_REPORT.md) - Developer experience
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+| Command            | Action               |
+| ------------------ | -------------------- |
+| `npm run dev`      | Start dev server     |
+| `npm run build`    | Build for production |
+| `npm run lint`     | Lint code            |
+| `npm run format`   | Format code          |
+| `npm test`         | Run tests            |
+| `npm run validate` | Run all checks       |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🎨 Component Library
 
-## 👀 Want to learn more?
+10 reusable components for consistent UI:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `BrutalCard`, `BrutalButton`, `BrutalBadge`
+- `FloatingIcon`, `Section`, `Grid`, `CTA`
+- `Breadcrumb`, `StatCard`, `IconBadge`
+
+**Example:**
+
+```astro
+import {(BrutalCard, BrutalButton)} from '../components/ui';
+
+<BrutalCard variant="magenta" hover={true}>
+  <h2>Title</h2>
+  <BrutalButton href="/link" variant="white">Read More</BrutalButton>
+</BrutalCard>
+```
+
+## 🤝 Contributing
+
+1. Create feature branch
+2. Make changes
+3. Run `npm run validate`
+4. Create pull request
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/Fusion-Party-Aus/reclaim-website-poc/issues)
+- **Website**: https://fusionparty.org.au
+- **Email**: hello@fusionparty.org.au
+
+---
+
+Built with ❤️ by the Fusion Party community
