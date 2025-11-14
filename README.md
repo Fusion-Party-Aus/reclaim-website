@@ -42,10 +42,29 @@ fusion/                # Sanity Studio config
 
 ## 📚 Documentation
 
-- [Component Library](./COMPONENT_LIBRARY.md) - API reference
-- [Refactoring Guide](./REFACTORING_GUIDE.md) - Migration patterns
-- [Design Rationale](./DESIGN_RATIONALE.md) - Design decisions
-- [DX Audit Report](./DX_AUDIT_REPORT.md) - Developer experience
+### Getting Started
+
+- **[Quick Reference](./docs/QUICK_REFERENCE.md)** - Daily workflow, common commands
+- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute (2000+ words)
+
+### Component System
+
+- **[Component Library](./docs/COMPONENT_LIBRARY.md)** - Full API reference (24KB)
+- **[Component Summary](./docs/COMPONENT_LIBRARY_SUMMARY.md)** - Quick component guide
+- **[Refactoring Guide](./docs/REFACTORING_GUIDE.md)** - Migration patterns (16KB)
+
+### Developer Experience
+
+- **[DX Achievement Report](./docs/DX_ACHIEVEMENT_REPORT.md)** - 10/10 DX journey
+- **[DX Improvements Summary](./docs/DX_IMPROVEMENTS_SUMMARY.md)** - Complete improvement log
+- **[DX Audit Report](./docs/DX_AUDIT_REPORT.md)** - Initial assessment
+
+### Design & Features
+
+- **[Design Rationale](./docs/DESIGN_RATIONALE.md)** - Yellow color justification
+- **[Styling Enhancements](./docs/STYLING_ENHANCEMENTS.md)** - Neo-brutalist styling
+- **[Icon System](./docs/ICON_MIGRATION_GUIDE.md)** - MDI icon usage
+- **[New Features](./docs/NEW_FEATURES.md)** - Feature documentation
 
 ## 🧞 Commands
 
