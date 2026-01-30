@@ -1,0 +1,59 @@
+---
+// Client-side form — hydrate where used with `client:load` (or other directive)
+---
+
+<section class="member-signup max-w-2xl mx-auto my-12 p-6 bg-white border-4 border-black shadow-lg">
+  <h3 class="text-2xl font-black mb-4">Join as a member</h3>
+  <form id="member-signup-form" class="grid grid-cols-1 gap-3">
+    <div class="grid grid-cols-2 gap-3">
+      <input name="first_name" placeholder="First name" required class="p-2 border" />
+      <input name="last_name" placeholder="Last name" required class="p-2 border" />
+    </div>
+    <input name="email" type="email" placeholder="Email" required class="p-2 border" />
+    <input name="phone" placeholder="Phone" class="p-2 border" />
+    <input name="primary_city" placeholder="City" class="p-2 border" />
+    <input name="primary_country_code" placeholder="Country (AU)" value="AU" class="p-2 border" />
+
+    <div class="flex items-center gap-3 mt-2">
+      <button type="submit" id="signup-submit" class="bg-magenta text-white px-4 py-2 font-bold"
+        >Sign up</button
+      >
+      <div id="signup-status" class="text-sm"></div>
+    </div>
+  </form>
+
+  <script type="module">
+    const form = document.getElementById('member-signup-form')
+    const statusEl = document.getElementById('signup-status')
+    const submitBtn = document.getElementById('signup-submit')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      statusEl.textContent = ''
+      submitBtn.disabled = true
+
+      const data = Object.fromEntries(new FormData(form))
+
+      try {
+        const res = await fetch('/api/members', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        })
+
+        const json = await res.json().catch(() => null)
+
+        if (res.ok) {
+          statusEl.textContent = 'Thanks — check your email for confirmation.'
+          form.reset()
+        } else {
+          statusEl.textContent = json?.error || json?.detail || 'Signup failed'
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error; try again later.'
+      } finally {
+        submitBtn.disabled = false
+      }
+    })
+  </script>
+</section>

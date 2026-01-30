@@ -1,0 +1,235 @@
+---
+/**
+ * Konami Code Easter Egg
+ * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
+ * Triggers: Confetti explosion + hidden manifesto download
+ */
+---
+
+<div
+  id="konami-modal"
+  class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300"
+>
+  <div
+    class="bg-white border-8 border-magenta max-w-2xl w-full p-8 md:p-12 relative"
+    style="box-shadow: 16px 16px 0px 0px #C926F2; transform: rotate(-1deg);"
+  >
+    <button
+      id="konami-close"
+      class="absolute top-4 right-4 text-4xl font-black hover:text-magenta transition-colors"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <div class="text-center">
+      <div class="text-6xl mb-6 animate-bounce">🎉</div>
+      <h2 class="text-4xl font-black uppercase text-magenta mb-4" style="transform: rotate(1deg);">
+        You Found the Secret!
+      </h2>
+      <p class="text-xl font-bold mb-6">
+        True democracy rewards the curious. Here's something special for developers, gamers, and
+        people who actually read the code...
+      </p>
+
+      <div class="bg-mint/10 border-4 border-mint p-6 mb-6 text-left">
+        <div class="flex items-start gap-3 mb-4">
+          <span class="text-3xl">📜</span>
+          <div>
+            <h3 class="font-black text-xl mb-2">ANNOTATED MANIFESTO</h3>
+            <p class="text-sm font-bold text-gray-700">
+              Full manifesto with policy team annotations, research citations, and implementation
+              roadmap. This is the behind-the-scenes version we use internally.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div class="bg-yellow/20 border-4 border-black p-4">
+          <div class="text-2xl mb-2">💻</div>
+          <h4 class="font-black mb-2">OPEN SOURCE</h4>
+          <p class="text-sm font-bold">
+            This entire site is open source. Fork it, learn from it, improve it.
+          </p>
+          <a
+            href="https://github.com/Fusion-Party-Aus/reclaim-website-poc"
+            target="_blank"
+            class="inline-flex items-center gap-2 mt-3 text-magenta font-black hover:underline"
+          >
+            <span>View on GitHub</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="bg-magenta/10 border-4 border-black p-4">
+          <div class="text-2xl mb-2">🔍</div>
+          <h4 class="font-black mb-2">ZERO TRACKING</h4>
+          <p class="text-sm font-bold">
+            Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="download-manifesto"
+        class="bg-magenta text-white px-8 py-4 font-black uppercase border-4 border-black hover:bg-magenta-dark transition-all hover:shadow-[8px_8px_0px_0px_#000000] hover:-translate-y-1"
+        style="box-shadow: 6px 6px 0px 0px #000000;"
+      >
+        📥 Download Annotated Manifesto
+      </button>
+
+      <p class="text-sm text-gray-600 mt-6 font-bold">
+        P.S. Share this with other curious people. Democracy needs more of them.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Konami Code sequence: ↑ ↑ ↓ ↓ ← → ← → B A
+  const konamiCode = [
+    'ArrowUp',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowLeft',
+    'ArrowRight',
+    'b',
+    'a',
+  ]
+  let konamiIndex = 0
+
+  // Confetti animation
+  function createConfetti() {
+    const colors = ['#C926F2', '#5EFFD8', '#FFED00', '#E6E6FA']
+    const confettiCount = 150
+
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div')
+      confetti.style.position = 'fixed'
+      confetti.style.width = '10px'
+      confetti.style.height = '10px'
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+      confetti.style.left = Math.random() * 100 + 'vw'
+      confetti.style.top = '-10px'
+      confetti.style.opacity = '1'
+      confetti.style.zIndex = '10000'
+      confetti.style.pointerEvents = 'none'
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`
+
+      document.body.appendChild(confetti)
+
+      // Animate
+      const duration = Math.random() * 3 + 2
+      const drift = (Math.random() - 0.5) * 100
+
+      confetti.animate(
+        [
+          { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+          {
+            transform: `translateY(100vh) translateX(${drift}px) rotate(${Math.random() * 720}deg)`,
+            opacity: 0,
+          },
+        ],
+        {
+          duration: duration * 1000,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        }
+      )
+
+      setTimeout(() => confetti.remove(), duration * 1000)
+    }
+  }
+
+  // Listen for Konami Code
+  document.addEventListener('keydown', (e) => {
+    const expectedKey = konamiCode[konamiIndex]
+    const pressedKey = e.key
+
+    if (pressedKey.toLowerCase() === expectedKey.toLowerCase()) {
+      konamiIndex++
+
+      if (konamiIndex === konamiCode.length) {
+        // Success! Trigger easter egg
+        triggerEasterEgg()
+        konamiIndex = 0
+      }
+    } else {
+      konamiIndex = 0
+    }
+  })
+
+  function triggerEasterEgg() {
+    // Create confetti
+    createConfetti()
+
+    // Show modal
+    const modal = document.getElementById('konami-modal')
+    if (modal) {
+      modal.classList.remove('opacity-0', 'pointer-events-none')
+    }
+
+    // Track in console
+    console.log('🎉 Konami Code activated! Welcome, curious mind.')
+  }
+
+  // Close modal
+  const closeBtn = document.getElementById('konami-close')
+  const modal = document.getElementById('konami-modal')
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('opacity-0', 'pointer-events-none')
+    })
+
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('opacity-0', 'pointer-events-none')
+      }
+    })
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+        modal.classList.add('opacity-0', 'pointer-events-none')
+      }
+    })
+  }
+
+  // Download manifesto button
+  const downloadBtn = document.getElementById('download-manifesto')
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      // For now, just log (you'd link to actual PDF)
+      console.log('📥 Downloading annotated manifesto...')
+      alert(
+        '📥 In production, this would download the annotated manifesto PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
+      )
+
+      // Track the download
+      if (window.plausible) {
+        window.plausible('Konami Code - Manifesto Download')
+      }
+    })
+  }
+</script>
+
+<style>
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+  }
+</style>

@@ -21,6 +21,7 @@ export { default as CTA } from './CTA.astro'
 export { default as StatCard } from './StatCard.astro'
 export { default as IconBadge } from './IconBadge.astro'
 export { default as FloatingIcon } from './FloatingIcon.astro'
+export { default as MovementMetrics } from './MovementMetrics.astro'
 
 // Navigation Components
 export { default as Breadcrumb } from './Breadcrumb.astro'

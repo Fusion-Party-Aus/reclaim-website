@@ -1,0 +1,442 @@
+---
+/**
+ * Member Badge Component
+ * Shows personalized member number with sharing functionality
+ * Viral mechanic: "I'm member #847!" creates FOMO + social proof
+ */
+
+interface Props {
+  memberNumber?: number
+  showShareButtons?: boolean
+  variant?: 'default' | 'hero' | 'compact'
+}
+
+const { memberNumber, showShareButtons = true, variant = 'default' } = Astro.props
+
+// If no member number provided, show signup prompt
+const isSignedUp = memberNumber !== undefined
+---
+
+<div class={`member-badge ${variant}`} data-member-number={memberNumber}>
+  {
+    isSignedUp ? (
+      <div class="badge-content">
+        <div class="badge-header">
+          <div class="badge-icon">🎯</div>
+          <div class="badge-label">You're a founding member!</div>
+        </div>
+
+        <div class="badge-number-container">
+          <div class="badge-number-label">Member</div>
+          <div class="badge-number">#{memberNumber}</div>
+          <div class="badge-sublabel">of the movement</div>
+        </div>
+
+        {showShareButtons && (
+          <div class="badge-share">
+            <p class="badge-share-prompt">Share your number and inspire others:</p>
+
+            <div class="badge-share-buttons">
+              <button
+                class="badge-share-btn twitter"
+                data-platform="twitter"
+                data-member-number={memberNumber}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                <span>Tweet</span>
+              </button>
+
+              <button
+                class="badge-share-btn facebook"
+                data-platform="facebook"
+                data-member-number={memberNumber}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+                <span>Share</span>
+              </button>
+
+              <button class="badge-share-btn download" id="download-badge">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                </svg>
+                <span>Download</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div class="badge-footer">
+          <p class="badge-footer-text">Every number is a person. Every person is the movement.</p>
+        </div>
+      </div>
+    ) : (
+      <div class="badge-signup">
+        <div class="badge-signup-icon">👥</div>
+        <h3 class="badge-signup-heading">Get Your Member Number</h3>
+        <p class="badge-signup-text">
+          Join the movement and become part of history. Every founding member gets a unique number.
+        </p>
+        <a href="/get-involved" class="badge-signup-button">
+          Join Now & Get Your Number
+        </a>
+        <p class="badge-signup-subtext">
+          Current members: <strong>847</strong> | Goal: <strong>1,000</strong>
+        </p>
+      </div>
+    )
+  }
+</div>
+
+<!-- Hidden canvas for badge image generation -->
+<canvas id="badge-canvas" style="display: none;"></canvas>
+
+<script>
+  // Share on Twitter
+  document.querySelectorAll('.badge-share-btn.twitter').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const memberNumber = btn.getAttribute('data-member-number')
+      const text = `I'm founding member #${memberNumber} of @FusionPartyAus! 🎯\n\nJoin the movement for real democracy in Victoria.\n\nEvery number is a person. Every person matters.`
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&hashtags=FusionParty,Member${memberNumber},VicVotes2026`
+      window.open(url, '_blank', 'width=550,height=420')
+    })
+  })
+
+  // Share on Facebook
+  document.querySelectorAll('.badge-share-btn.facebook').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const memberNumber = btn.getAttribute('data-member-number')
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}&quote=${encodeURIComponent(`I'm founding member #${memberNumber} of Fusion Party!`)}`
+      window.open(url, '_blank', 'width=550,height=420')
+    })
+  })
+
+  // Download badge as image
+  document.querySelectorAll('#download-badge').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const badge = btn.closest('.member-badge')
+      const memberNumber = badge?.getAttribute('data-member-number')
+      if (!memberNumber) return
+
+      generateBadgeImage(parseInt(memberNumber))
+    })
+  })
+
+  function generateBadgeImage(memberNumber: number) {
+    const canvas = document.getElementById('badge-canvas') as HTMLCanvasElement
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Set canvas size (Instagram square format)
+    canvas.width = 1080
+    canvas.height = 1080
+
+    // Background gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
+    gradient.addColorStop(0, '#C926F2')
+    gradient.addColorStop(1, '#5EFFD8')
+    ctx.fillStyle = gradient
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    // Border
+    ctx.strokeStyle = '#000000'
+    ctx.lineWidth = 20
+    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80)
+
+    // White background for content
+    ctx.fillStyle = '#FFFFFF'
+    ctx.fillRect(120, 200, canvas.width - 240, 680)
+
+    // Black border on white section
+    ctx.strokeStyle = '#000000'
+    ctx.lineWidth = 10
+    ctx.strokeRect(120, 200, canvas.width - 240, 680)
+
+    // "FOUNDING MEMBER" label
+    ctx.fillStyle = '#000000'
+    ctx.font = 'bold 48px Arial, sans-serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('FOUNDING MEMBER', canvas.width / 2, 320)
+
+    // Member number (large)
+    ctx.fillStyle = '#C926F2'
+    ctx.font = 'bold 160px Arial, sans-serif'
+    ctx.fillText(`#${memberNumber}`, canvas.width / 2, 520)
+
+    // Subtitle
+    ctx.fillStyle = '#000000'
+    ctx.font = 'bold 42px Arial, sans-serif'
+    ctx.fillText('OF THE MOVEMENT', canvas.width / 2, 600)
+
+    // Quote
+    ctx.font = 'italic 36px Arial, sans-serif'
+    ctx.fillStyle = '#666666'
+    ctx.fillText('Every number is a person.', canvas.width / 2, 720)
+    ctx.fillText('Every person matters.', canvas.width / 2, 780)
+
+    // Logo/branding
+    ctx.fillStyle = '#C926F2'
+    ctx.font = 'bold 56px Arial, sans-serif'
+    ctx.fillText('FUSION PARTY', canvas.width / 2, 950)
+
+    ctx.fillStyle = '#000000'
+    ctx.font = 'bold 32px Arial, sans-serif'
+    ctx.fillText('Victoria 2026', canvas.width / 2, 1000)
+
+    // Download
+    const link = document.createElement('a')
+    link.download = `fusion-member-${memberNumber}.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+
+    // Track download
+    if (window.plausible) {
+      window.plausible('Member Badge Download', { props: { memberNumber } })
+    }
+  }
+</script>
+
+<style>
+  .member-badge {
+    background: linear-gradient(135deg, #c926f2 0%, #5effd8 100%);
+    border: 6px solid #000000;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 12px 12px 0px 0px #000000;
+    position: relative;
+  }
+
+  .member-badge.hero {
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+
+  .member-badge.compact {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .badge-content {
+    background-color: #ffffff;
+    border: 4px solid #000000;
+    padding: 2rem;
+  }
+
+  .badge-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .compact .badge-icon {
+    font-size: 2rem;
+  }
+
+  .badge-label {
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000;
+    letter-spacing: 0.05em;
+  }
+
+  .compact .badge-label {
+    font-size: 1rem;
+  }
+
+  .badge-number-container {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 4px solid #000000;
+    border-bottom: 4px solid #000000;
+    margin-bottom: 1.5rem;
+  }
+
+  .compact .badge-number-container {
+    padding: 1rem 0;
+  }
+
+  .badge-number-label {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #666666;
+    margin-bottom: 0.5rem;
+  }
+
+  .badge-number {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #c926f2;
+    line-height: 1;
+    font-family: 'Archivo Black', sans-serif;
+  }
+
+  .compact .badge-number {
+    font-size: 3rem;
+  }
+
+  .badge-sublabel {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000;
+    margin-top: 0.5rem;
+  }
+
+  .badge-share {
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-share-prompt {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+
+  .badge-share-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .badge-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 800;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    border: 3px solid #000000;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .badge-share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+
+  .badge-share-btn.twitter:hover {
+    background-color: #000000;
+    border-color: #5effd8;
+  }
+
+  .badge-share-btn.facebook:hover {
+    background-color: #1877f2;
+    border-color: #1877f2;
+  }
+
+  .badge-share-btn.download:hover {
+    background-color: #ffed00;
+    color: #000000;
+    border-color: #ffed00;
+  }
+
+  .badge-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .badge-footer-text {
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #666666;
+  }
+
+  /* Signup variant */
+  .badge-signup {
+    background-color: #ffffff;
+    border: 4px solid #000000;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .badge-signup-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .badge-signup-heading {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+
+  .badge-signup-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #666666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .badge-signup-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #c926f2;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 4px solid #000000;
+    transition: all 0.2s;
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+
+  .badge-signup-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+
+  .badge-signup-subtext {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #666666;
+  }
+
+  .badge-signup-subtext strong {
+    color: #c926f2;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .member-badge {
+      padding: 1rem;
+    }
+
+    .badge-number {
+      font-size: 3.5rem;
+    }
+
+    .badge-share-buttons {
+      flex-direction: column;
+    }
+
+    .badge-share-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
