@@ -1,25 +1,9 @@
-import { createClient } from '@sanity/client'
-import type { SanityClient } from '@sanity/client'
+import { sanityClient } from 'sanity:client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { Policy, Electorate, FAQ, Page, HomePage } from '../types/sanity'
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID
-const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production'
-
-if (!projectId) {
-  throw new Error(
-    'Missing PUBLIC_SANITY_PROJECT_ID environment variable. ' +
-      'Copy .env.sanity.example to .env and add your project ID.'
-  )
-}
-
-export const client: SanityClient = createClient({
-  projectId,
-  dataset,
-  useCdn: false, // Use fresh data for live updates
-  apiVersion: '2024-11-13', // Today's date
-})
+export const client = sanityClient
 
 /**
  * Image URL builder for Sanity images
