@@ -1,0 +1,929 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { BrutalCard, BrutalButton, FloatingIcon, Section } from '../components/ui'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+interface MessageTemplate {
+  id: string
+  title: string
+  audience: string
+  channel: 'email' | 'text' | 'social' | 'linkedin'
+  icon: string
+  color: 'magenta' | 'mint' | 'yellow'
+  subject?: string
+  body: string
+  tags: string[]
+}
+
+const templates: MessageTemplate[] = [
+  {
+    id: 'boomer-housing',
+    title: 'Email to Boomer Parents About Housing',
+    audience: 'Parents/Older Generation',
+    channel: 'email',
+    icon: 'mdi:home-heart',
+    color: 'magenta',
+    subject: 'A political party that actually makes sense on housing',
+    body: `Hi Mum/Dad,
+
+I know you've been worried about me and my friends ever being able to afford a home. I wanted to share something that actually gives me hope.
+
+I've been looking into the Fusion Party, and they're the first political party I've seen with housing policies that would actually help our generation without hurting yours.
+
+Here's what caught my attention:
+
+• They want to build more homes (not just talk about it)
+• They're targeting the property investors hoarding multiple homes, not regular homeowners
+• They support renters' rights without attacking landlords who are doing the right thing
+• Their plans would make housing more affordable without crashing the market
+
+Unlike Labor and Liberal who've failed for decades, Fusion is running independent candidates who aren't beholden to property developer donations or the real estate lobby.
+
+I'm not asking you to change your whole political outlook - just to check out their housing policy: https://fusionparty.org.au/policies/housing
+
+Would love to hear what you think. Maybe we could talk about it over dinner?
+
+Love,
+[Your name]
+
+P.S. They're also serious about climate action and fixing our broken political system. Worth a look.`,
+    tags: ['housing', 'family', 'intergenerational'],
+  },
+  {
+    id: 'work-chat-transport',
+    title: 'Message to Work Chat About Transport',
+    audience: 'Work Colleagues',
+    channel: 'text',
+    icon: 'mdi:train-car',
+    color: 'mint',
+    body: `Anyone else sick of spending 2+ hours commuting and paying $200+ a month for the privilege? 🚆😤
+
+Just discovered Fusion Party wants to make public transport actually WORK:
+- Free trams/buses in metro areas
+- High-speed rail connecting cities
+- Metro expansion that's not 20 years away
+- Actually frequent services
+
+They've done the budget math and it's cheaper than building more freeways. Plus we'd get our time back and help the environment.
+
+Not affiliated, just tired of both major parties doing nothing while we waste our lives in transit.
+
+Check it out: fusionparty.org.au/policies/transport
+
+#MakeTransportWork #TimeIsLife`,
+    tags: ['transport', 'workplace', 'time-poverty'],
+  },
+  {
+    id: 'climate-anxious-friend',
+    title: 'Text to Your Climate-Anxious Friend',
+    audience: 'Climate-Concerned Friends',
+    channel: 'text',
+    icon: 'mdi:earth',
+    color: 'yellow',
+    body: `Hey! I know you've been feeling hopeless about climate stuff lately. Same tbh.
+
+But I found something that actually made me feel less doomed: Fusion Party
+
+They're not like the Greens (unrealistic timelines) or Labor (too slow). They've got actual plans:
+
+🌱 100% renewable by 2035 (achievable)
+💰 Make polluters pay, not us
+🏭 Support workers transitioning from fossil fuels
+🌊 Real action on adaptation (floods, fires etc)
+
+Best part: They're running in winnable seats. This isn't pie-in-the-sky stuff.
+
+I'm not saying they'll save the world, but they might actually DO something instead of just talking.
+
+Worth 5 mins: fusionparty.org.au/policies/climate
+
+Want to check it out together? ☕`,
+    tags: ['climate', 'mental-health', 'hope'],
+  },
+  {
+    id: 'linkedin-corporate',
+    title: 'LinkedIn Post for Corporate Types',
+    audience: 'Professional Network',
+    channel: 'linkedin',
+    icon: 'mdi:briefcase-account',
+    color: 'magenta',
+    body: `🗳️ Why I'm Taking a Serious Look at Fusion Party
+
+As someone who works in [industry], I've watched both major parties fail to deliver meaningful reform for decades.
+
+I'm pragmatic, not ideological. So when I found a political movement with:
+
+✅ Evidence-based policy (not populism)
+✅ Fiscal responsibility (actually costed plans)
+✅ Anti-corruption measures (transparency by design)
+✅ Long-term thinking (beyond election cycles)
+
+...I paid attention.
+
+Fusion Party isn't left or right - they're forward. Their policies on:
+
+• Housing supply (economics 101, finally)
+• Public transport (infrastructure investment)
+• Climate transition (supporting workers)
+• Political integrity (ending the revolving door)
+
+...are exactly what we need.
+
+I'm not suggesting we all agree on everything. But I am suggesting we demand better than "not as bad as the other guys."
+
+Australia deserves a government that treats us like adults.
+
+Check their policies: fusionparty.org.au
+
+Curious what others think - especially those in [policy/economics/infrastructure].
+
+#AusPol #PolicyMatters #EvidenceBasedPolicy #FusionParty`,
+    tags: ['professional', 'policy', 'evidence-based'],
+  },
+  {
+    id: 'instagram-story',
+    title: 'Instagram Story Script',
+    audience: 'Social Media Friends',
+    channel: 'social',
+    icon: 'mdi:instagram',
+    color: 'mint',
+    body: `📱 COPY THIS FOR YOUR STORY:
+
+POV: You found a political party that isn't completely cooked 👀
+
+Just spent 20 mins reading @fusionpartyaus policies and I'm actually... impressed??
+
+Like they want to:
+🏠 Actually build houses (revolutionary concept)
+🚊 Make public transport free
+🌏 Do climate stuff without destroying the economy
+💰 Tax the rich (properly this time)
+⚖️ End political corruption
+
+Is this... hope? In 2025??
+
+Not saying they're perfect but they're running in [YOUR ELECTORATE] and honestly anything is better than LibLab at this point
+
+Link in bio or google Fusion Party
+
+#NotAnAd #JustTiredOfThis #AusPol #FusionParty #VoteIndependent
+
+[Add sticker: "Swipe Up" → fusionparty.org.au]`,
+    tags: ['social-media', 'youth', 'viral'],
+  },
+  {
+    id: 'facebook-parents-group',
+    title: 'Facebook Post for Parents Groups',
+    audience: 'Parent Communities',
+    channel: 'social',
+    icon: 'mdi:facebook',
+    color: 'yellow',
+    body: `👪 Fellow parents: Can we talk about our kids' future?
+
+I'm not usually political, but I'm genuinely worried about what kind of world we're leaving them.
+
+• Will they ever afford a home?
+• Will their schools be properly funded?
+• Will they have clean air and water?
+• Will they have good jobs?
+
+The major parties have had decades to fix these things. They haven't.
+
+I've been looking into the Fusion Party (independent candidates, not Labor/Liberal/Greens) and their policies actually address these concerns:
+
+📚 Fully funded public education
+🏠 Housing our kids can afford
+🌱 Liveable climate for their future
+💼 Jobs that pay properly
+🏥 Healthcare that works
+
+I'm done voting for "least worst." Our kids deserve better than that.
+
+Not asking anyone to agree with everything - just asking you to LOOK:
+fusionparty.org.au
+
+What do other parents think? Are we all just accepting this is as good as it gets?
+
+#ParentsForChange #ThinkOfTheKids #FusionParty #IndependentVoices`,
+    tags: ['parenting', 'future', 'family-values'],
+  },
+]
+
+const channelInfo = {
+  email: {
+    icon: 'mdi:email',
+    name: 'Email',
+    tip: 'Best for: Detailed conversations with family/older friends',
+  },
+  text: {
+    icon: 'mdi:message-text',
+    name: 'Text/WhatsApp',
+    tip: 'Best for: Quick shares with close friends',
+  },
+  social: {
+    icon: 'mdi:share-variant',
+    name: 'Social Media',
+    tip: 'Best for: Reaching your wider network',
+  },
+  linkedin: {
+    icon: 'mdi:linkedin',
+    name: 'LinkedIn',
+    tip: 'Best for: Professional networks and colleagues',
+  },
+}
+---
+
+<BaseLayout
+  title="Convince Your Friends | Fusion Victoria"
+  description="Ready-to-send templates to share Fusion policies with your network. Make it easy to spread the word."
+>
+  <Header />
+
+  <!-- Floating Background Icons -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden opacity-5 z-0">
+    <FloatingIcon name="mdi:email-fast" left="5%" top="10%" delay={0} size={80} />
+    <FloatingIcon name="mdi:share-variant" left="85%" top="15%" delay={2} size={60} />
+    <FloatingIcon name="mdi:account-group" left="10%" top="60%" delay={4} size={70} />
+    <FloatingIcon name="mdi:bullhorn" left="80%" top="65%" delay={3} size={90} />
+    <FloatingIcon name="mdi:heart-multiple" left="50%" top="80%" delay={1} size={50} />
+  </div>
+
+  <main class="relative z-10">
+    <!-- Hero Section -->
+    <Section padding="xl" background="mint" class="pt-32 pb-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block mb-6">
+          <div
+            class="bg-magenta border-4 border-black px-6 py-2 transform -rotate-2"
+            style="box-shadow: 4px 4px 0px 0px #000;"
+          >
+            <p class="text-white font-black uppercase text-sm tracking-wide">
+              Grassroots Organizing
+            </p>
+          </div>
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl font-black uppercase mb-6 leading-none"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Convince Your
+          <span class="text-magenta">Friends</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight">
+          Don't know what to say? Use these pre-written templates to share Fusion policies with your
+          network. One click to copy, customized for different audiences.
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
+          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+            <Icon name="mdi:rocket-launch" class="w-5 h-5 text-magenta" />
+            <span class="font-black text-sm">READY TO SEND</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+            <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
+            <span class="font-black text-sm">6 AUDIENCES</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+            <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
+            <span class="font-black text-sm">ONE CLICK COPY</span>
+          </div>
+        </div>
+
+        <!-- Why It Works -->
+        <BrutalCard variant="white" shadow="magenta" padding="lg" class="text-left">
+          <h3 class="text-2xl font-black text-magenta mb-4 uppercase flex items-center gap-3">
+            <Icon name="mdi:lightbulb-on" class="w-8 h-8" />
+            Why This Works
+          </h3>
+          <ul class="space-y-3 text-lg">
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+              <span
+                ><strong>Lower Friction:</strong> Don't know what to say? We've written it for you.</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+              <span
+                ><strong>Targeted Messaging:</strong> Different approaches for different audiences.</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+              <span
+                ><strong>Exponential Growth:</strong> Every person you reach can reach their network.</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+              <span><strong>Authentic:</strong> Fully customizable - make it your own voice.</span>
+            </li>
+          </ul>
+        </BrutalCard>
+      </div>
+    </Section>
+
+    <!-- Channel Filter Section -->
+    <Section padding="lg" background="white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-black text-center mb-8 uppercase">Choose Your Channel</h2>
+        <div class="grid md:grid-cols-4 gap-4 mb-12">
+          {
+            Object.entries(channelInfo).map(([key, info]) => (
+              <button
+                data-channel={key}
+                class="channel-filter bg-white border-4 border-black p-4 hover:bg-yellow transition-all transform hover:scale-105 active:scale-95"
+                style="box-shadow: 4px 4px 0px 0px #000;"
+              >
+                <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-magenta" />
+                <p class="font-black uppercase text-sm mb-1">{info.name}</p>
+                <p class="text-xs text-gray-600">{info.tip}</p>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </Section>
+
+    <!-- Templates Grid -->
+    <Section padding="xl" background="mint">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black uppercase mb-4">Pick Your Template</h2>
+          <p class="text-lg font-bold max-w-2xl mx-auto">
+            Click to expand, customize if needed, then copy and send!
+          </p>
+        </div>
+
+        <div class="space-y-6" id="templates-container">
+          {
+            templates.map((template) => (
+              <div
+                class="template-card bg-white border-6 border-black p-6 cursor-pointer hover:shadow-[12px_12px_0px_0px_#000] transition-all transform hover:-translate-y-1"
+                style={`box-shadow: 8px 8px 0px 0px #000; border-color: ${template.color === 'magenta' ? '#C926F2' : template.color === 'mint' ? '#5EFFD8' : '#FFED00'};`}
+                data-channel={template.channel}
+              >
+                {/* Collapsed View */}
+                <div class="template-header flex items-center justify-between">
+                  <div class="flex items-center gap-4 flex-1">
+                    <div
+                      class={`w-16 h-16 bg-${template.color} border-4 border-black flex items-center justify-center flex-shrink-0`}
+                    >
+                      <Icon name={template.icon} class="w-8 h-8 text-black" />
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-xl font-black uppercase mb-1">{template.title}</h3>
+                      <p class="text-sm font-bold text-gray-600 mb-2">{template.audience}</p>
+                      <div class="flex flex-wrap gap-2">
+                        {template.tags.map((tag) => (
+                          <span class="text-xs bg-gray-200 border-2 border-black px-2 py-1 font-bold">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <button class="expand-btn bg-magenta border-4 border-black text-white px-6 py-3 font-black uppercase hover:bg-yellow hover:text-black transition-all flex items-center gap-2">
+                    <Icon name="mdi:chevron-down" class="w-6 h-6" />
+                    OPEN
+                  </button>
+                </div>
+
+                {/* Expanded View */}
+                <div class="template-body hidden mt-6 pt-6 border-t-4 border-black">
+                  {template.subject && (
+                    <div class="mb-4">
+                      <label class="block text-sm font-black uppercase mb-2 text-magenta">
+                        Subject Line:
+                      </label>
+                      <div class="bg-gray-100 border-4 border-black p-3 font-bold">
+                        {template.subject}
+                      </div>
+                    </div>
+                  )}
+
+                  <div class="mb-4">
+                    <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
+                      <span>Message:</span>
+                      <span class="text-xs text-gray-600 normal-case font-bold">
+                        (Click to edit if you want to personalize)
+                      </span>
+                    </label>
+                    <textarea
+                      class="w-full h-64 bg-gray-100 border-4 border-black p-4 font-mono text-sm resize-none focus:outline-none focus:border-magenta"
+                      style="font-family: 'Space Grotesk', monospace;"
+                    >
+                      {template.body}
+                    </textarea>
+                  </div>
+
+                  <div class="flex flex-wrap gap-3">
+                    <button
+                      class="copy-btn bg-magenta border-4 border-black text-white px-8 py-4 font-black uppercase hover:bg-mint hover:text-black transition-all flex items-center gap-2"
+                      style="box-shadow: 4px 4px 0px 0px #000;"
+                    >
+                      <Icon name="mdi:content-copy" class="w-5 h-5" />
+                      COPY TO CLIPBOARD
+                    </button>
+                    <button class="collapse-btn bg-white border-4 border-black text-black px-6 py-4 font-black uppercase hover:bg-gray-200 transition-all">
+                      CLOSE
+                    </button>
+                  </div>
+
+                  <div class="mt-4 p-4 bg-yellow border-4 border-black">
+                    <p class="text-sm font-bold flex items-start gap-2">
+                      <Icon
+                        name="mdi:lightbulb"
+                        class="w-5 h-5 text-magenta flex-shrink-0 mt-0.5"
+                      />
+                      <span>
+                        <strong>Pro tip:</strong> Personalize the template with your own words and
+                        experiences. Authentic messages are more convincing!
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Section>
+
+    <!-- Tips Section -->
+    <Section padding="xl" background="white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-black text-center mb-8 uppercase">Tips for Maximum Impact</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <BrutalCard variant="white" shadow="magenta" padding="lg">
+            <h3 class="text-xl font-black text-magenta mb-3 uppercase flex items-center gap-2">
+              <Icon name="mdi:pencil" class="w-6 h-6" />
+              Personalize It
+            </h3>
+            <p class="font-bold text-gray-700">
+              Add your own experiences. "I've been paying $650/week for a shoebox apartment" hits
+              harder than generic statements.
+            </p>
+          </BrutalCard>
+
+          <BrutalCard variant="white" shadow="mint" padding="lg">
+            <h3 class="text-xl font-black text-mint mb-3 uppercase flex items-center gap-2">
+              <Icon name="mdi:account-group" class="w-6 h-6" />
+              Know Your Audience
+            </h3>
+            <p class="font-bold text-gray-700">
+              Climate messaging for young friends, economic messaging for business contacts. Match
+              the template to your audience.
+            </p>
+          </BrutalCard>
+
+          <BrutalCard variant="white" shadow="yellow" padding="lg">
+            <h3 class="text-xl font-black text-yellow mb-3 uppercase flex items-center gap-2">
+              <Icon name="mdi:clock-fast" class="w-6 h-6" />
+              Timing Matters
+            </h3>
+            <p class="font-bold text-gray-700">
+              Share when people are paying attention: during election campaigns, after major news
+              events, or when issues directly affect them.
+            </p>
+          </BrutalCard>
+
+          <BrutalCard variant="white" shadow="magenta" padding="lg">
+            <h3 class="text-xl font-black text-magenta mb-3 uppercase flex items-center gap-2">
+              <Icon name="mdi:heart" class="w-6 h-6" />
+              Be Genuine
+            </h3>
+            <p class="font-bold text-gray-700">
+              Don't spam. Share because you genuinely believe in the cause. Authenticity is
+              contagious.
+            </p>
+          </BrutalCard>
+        </div>
+      </div>
+    </Section>
+
+    <!-- Share Your Success Section -->
+    <Section padding="xl" background="yellow">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <div
+            class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-6 transform -rotate-2"
+            style="box-shadow: 4px 4px 0px 0px #000;"
+          >
+            <p
+              class="text-white font-black uppercase text-2xl tracking-wide flex items-center gap-3"
+            >
+              <Icon name="mdi:message-star" class="w-8 h-8" />
+              Used a Template?
+            </p>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 leading-tight">
+            Tell Us How It Went!
+          </h2>
+          <p class="text-xl font-bold mb-8 max-w-2xl mx-auto">
+            Did it work? Did you customize it? Did your boomer dad actually read it? Your feedback
+            helps us improve these for everyone.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <BrutalCard variant="white" shadow="magenta" padding="lg">
+            <Icon name="mdi:thumb-up" class="w-12 h-12 text-magenta mb-3" />
+            <h3 class="text-xl font-black uppercase mb-2">Success Stories</h3>
+            <p class="font-bold text-gray-700 text-sm">
+              "Used the parent template and my mum actually joined!" - These are gold. Help others
+              see what works.
+            </p>
+          </BrutalCard>
+
+          <BrutalCard variant="white" shadow="mint" padding="lg">
+            <Icon name="mdi:pencil-box" class="w-12 h-12 text-mint mb-3" />
+            <h3 class="text-xl font-black uppercase mb-2">Your Tweaks</h3>
+            <p class="font-bold text-gray-700 text-sm">
+              Changed something that landed better? Share it! Community-sourced improvements make
+              these templates stronger.
+            </p>
+          </BrutalCard>
+        </div>
+
+        <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
+          <h3 class="text-2xl font-black uppercase mb-4 text-white">Quick Feedback Form</h3>
+          <form
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            class="max-w-xl mx-auto space-y-4"
+          >
+            <!-- TODO: Replace YOUR_FORM_ID with actual Formspree ID or use your own form endpoint -->
+            <input type="hidden" name="_subject" value="Convince Your Friends - Feedback" />
+            <div class="text-left">
+              <label class="block text-white font-black uppercase text-sm mb-2">
+                Which template did you use?
+              </label>
+              <select
+                name="template"
+                required
+                class="w-full px-4 py-3 border-4 border-black font-bold focus:outline-none focus:border-yellow"
+              >
+                <option value="">Select a template...</option>
+                <option value="boomer-housing">Boomer Parents - Housing</option>
+                <option value="work-chat">Work Chat - Transport</option>
+                <option value="climate-friend">Climate-Anxious Friend</option>
+                <option value="linkedin">LinkedIn - Professional</option>
+                <option value="instagram">Instagram Story</option>
+                <option value="facebook-parents">Facebook Parents Group</option>
+              </select>
+            </div>
+
+            <div class="text-left">
+              <label class="block text-white font-black uppercase text-sm mb-2">
+                How did it go?
+              </label>
+              <div class="flex gap-3">
+                <label class="flex-1">
+                  <input type="radio" name="result" value="great" class="sr-only peer" required />
+                  <div
+                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-mint transition-all peer-checked:bg-mint peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                  >
+                    😊 Great!
+                  </div>
+                </label>
+                <label class="flex-1">
+                  <input type="radio" name="result" value="ok" class="sr-only peer" />
+                  <div
+                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-yellow transition-all peer-checked:bg-yellow peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                  >
+                    😐 OK
+                  </div>
+                </label>
+                <label class="flex-1">
+                  <input type="radio" name="result" value="meh" class="sr-only peer" />
+                  <div
+                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-gray-200 transition-all peer-checked:bg-gray-200 peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                  >
+                    😕 Meh
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="text-left">
+              <label class="block text-white font-black uppercase text-sm mb-2">
+                What happened? (Optional but helpful!)
+              </label>
+              <textarea
+                name="feedback"
+                rows="4"
+                placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
+                class="w-full px-4 py-3 border-4 border-black font-bold resize-none focus:outline-none focus:border-yellow"
+              ></textarea>
+            </div>
+
+            <div class="text-left">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="can_share"
+                  value="yes"
+                  class="mt-1 w-5 h-5 border-4 border-black"
+                />
+                <span class="text-white font-bold text-sm">
+                  You can share this as a testimonial (we'll keep you anonymous unless you tell us
+                  otherwise)
+                </span>
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-yellow border-4 border-black text-black px-8 py-4 font-black uppercase hover:bg-white transition-all transform hover:scale-105 active:scale-95"
+              style="box-shadow: 6px 6px 0px 0px #000;"
+            >
+              <span class="flex items-center justify-center gap-2">
+                <Icon name="mdi:send" class="w-6 h-6" />
+                Send Feedback
+              </span>
+            </button>
+          </form>
+
+          <p class="text-white text-sm font-bold mt-6 opacity-90">
+            Your feedback literally makes these templates better. Thank you! 💛
+          </p>
+        </BrutalCard>
+      </div>
+    </Section>
+
+    <!-- The Contrast Section -->
+    <Section padding="xl">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-black uppercase mb-4">
+            This Isn't Normal <span class="text-magenta">Marketing</span>
+          </h2>
+          <p class="text-xl font-bold max-w-3xl mx-auto">
+            Major parties say "Share our posts!" - We say "Here's how to have real conversations."
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Major Parties Way -->
+          <div>
+            <div
+              class="bg-gray-300 border-4 border-gray-400 p-6 mb-4 relative"
+              style="box-shadow: 4px 4px 0px 0px #999;"
+            >
+              <div
+                class="absolute -top-3 -right-3 bg-gray-500 text-white px-3 py-1 text-xs font-black"
+              >
+                OLD POLITICS
+              </div>
+              <Icon name="mdi:alert-circle" class="w-10 h-10 text-gray-600 mb-3" />
+              <h3 class="text-xl font-black uppercase mb-3 text-gray-700">"Share Our Posts!"</h3>
+              <ul class="space-y-2 text-sm font-bold text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">✗</span>
+                  <span>Canned corporate messages</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">✗</span>
+                  <span>One-size-fits-all copy</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">✗</span>
+                  <span>Obvious marketing</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">✗</span>
+                  <span>You're just a megaphone</span>
+                </li>
+              </ul>
+              <p class="mt-4 text-xs font-black text-gray-500 italic">
+                Feels like: Being used as free advertising
+              </p>
+            </div>
+          </div>
+
+          <!-- Fusion Way -->
+          <div>
+            <BrutalCard variant="white" shadow="magenta" padding="lg" class="h-full">
+              <div
+                class="absolute -top-3 -right-3 bg-magenta text-white px-3 py-1 text-xs font-black border-2 border-black"
+              >
+                FUSION WAY
+              </div>
+              <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
+              <h3 class="text-xl font-black uppercase mb-3 text-magenta">
+                "Talk About What Matters"
+              </h3>
+              <ul class="space-y-2 text-sm font-bold">
+                <li class="flex items-start gap-2">
+                  <span class="text-mint">✓</span>
+                  <span>6 templates for different audiences</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-mint">✓</span>
+                  <span>Fully customizable - make it yours</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-mint">✓</span>
+                  <span>Real conversations, not propaganda</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-mint">✓</span>
+                  <span>You're building something real</span>
+                </li>
+              </ul>
+              <p class="mt-4 text-xs font-black text-magenta italic">
+                Feels like: Being empowered to make change
+              </p>
+            </BrutalCard>
+          </div>
+        </div>
+
+        <!-- Key Insight -->
+        <div class="mt-12">
+          <BrutalCard variant="yellow" shadow="black" padding="xl" class="text-center">
+            <Icon name="mdi:lightbulb-on" class="w-16 h-16 mx-auto mb-4 text-magenta" />
+            <h3 class="text-2xl font-black uppercase mb-4">The Message IS the Medium</h3>
+            <p class="text-lg font-bold max-w-2xl mx-auto leading-relaxed">
+              When you use these templates, you're not saying "vote Fusion" - you're having a
+              conversation about:
+            </p>
+            <div class="grid sm:grid-cols-2 gap-3 mt-6 max-w-2xl mx-auto text-left">
+              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
+                <Icon name="mdi:home" class="w-5 h-5 text-magenta flex-shrink-0" />
+                <span class="font-black text-sm">Why rent is unaffordable</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
+                <Icon name="mdi:train-car" class="w-5 h-5 text-magenta flex-shrink-0" />
+                <span class="font-black text-sm">Why commutes suck</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
+                <Icon name="mdi:earth" class="w-5 h-5 text-magenta flex-shrink-0" />
+                <span class="font-black text-sm">Why climate matters</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
+                <Icon name="mdi:account-alert" class="w-5 h-5 text-magenta flex-shrink-0" />
+                <span class="font-black text-sm">Why politics feels broken</span>
+              </div>
+            </div>
+            <p class="text-lg font-bold mt-6 max-w-2xl mx-auto">
+              Fusion policy is packaged inside <strong>personally relevant storytelling</strong>.
+              That's how ideas actually spread.
+            </p>
+          </BrutalCard>
+        </div>
+      </div>
+    </Section>
+
+    <!-- CTA Section -->
+    <Section padding="xl" background="magenta">
+      <div class="max-w-3xl mx-auto text-center text-white">
+        <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-yellow" />
+        <h2 class="text-4xl font-black uppercase mb-6">Every Conversation Counts</h2>
+        <p class="text-xl font-bold mb-8 leading-relaxed">
+          The major parties have millions in corporate donations. We have something better: real
+          people having real conversations. You're not just sharing a message - you're building a
+          movement.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <BrutalButton variant="yellow" size="lg" href="/get-involved">
+            <Icon name="mdi:hand-heart" class="w-6 h-6" />
+            Join the Movement
+          </BrutalButton>
+          <BrutalButton variant="white" size="lg" href="/policies">
+            <Icon name="mdi:file-document" class="w-6 h-6" />
+            Read All Policies
+          </BrutalButton>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Template expand/collapse functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.template-card')
+
+    cards.forEach((card) => {
+      const expandBtn = card.querySelector('.expand-btn')
+      const collapseBtn = card.querySelector('.collapse-btn')
+      const body = card.querySelector('.template-body')
+      const copyBtn = card.querySelector('.copy-btn')
+      const textarea = card.querySelector('textarea')
+
+      expandBtn?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        body?.classList.remove('hidden')
+        expandBtn.innerHTML =
+          '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg> CLOSE'
+      })
+
+      collapseBtn?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        body?.classList.add('hidden')
+        expandBtn!.innerHTML =
+          '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg> OPEN'
+      })
+
+      copyBtn?.addEventListener('click', async () => {
+        if (textarea) {
+          try {
+            await navigator.clipboard.writeText(textarea.value)
+
+            // Visual feedback
+            const originalText = copyBtn.innerHTML
+            copyBtn.innerHTML =
+              '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" /></svg> COPIED!'
+            copyBtn.classList.add('bg-mint', 'text-black')
+            copyBtn.classList.remove('bg-magenta', 'text-white')
+
+            setTimeout(() => {
+              copyBtn.innerHTML = originalText
+              copyBtn.classList.remove('bg-mint', 'text-black')
+              copyBtn.classList.add('bg-magenta', 'text-white')
+            }, 2000)
+          } catch (err) {
+            console.error('Failed to copy:', err)
+            alert('Failed to copy. Please select and copy manually.')
+          }
+        }
+      })
+    })
+
+    // Channel filter functionality
+    const channelFilters = document.querySelectorAll('.channel-filter')
+    let activeChannel: string | null = null
+
+    channelFilters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const channel = filter.getAttribute('data-channel')
+
+        // Toggle active state
+        if (activeChannel === channel) {
+          activeChannel = null
+          channelFilters.forEach((f) => f.classList.remove('bg-yellow'))
+          cards.forEach((card) => ((card as HTMLElement).style.display = 'block'))
+        } else {
+          activeChannel = channel
+          channelFilters.forEach((f) => f.classList.remove('bg-yellow'))
+          filter.classList.add('bg-yellow')
+
+          // Filter cards
+          cards.forEach((card) => {
+            const cardChannel = card.getAttribute('data-channel')
+            ;(card as HTMLElement).style.display = cardChannel === channel ? 'block' : 'none'
+          })
+        }
+      })
+    })
+  })
+</script>
+
+<style>
+  /* Make copy button animation smoother */
+  .copy-btn {
+    transition: all 0.3s ease;
+  }
+
+  /* Textarea styling */
+  textarea {
+    line-height: 1.6;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: #c926f2;
+  }
+
+  /* Channel filter hover effect */
+  .channel-filter {
+    cursor: pointer;
+  }
+
+  .channel-filter.bg-yellow {
+    border-color: #c926f2;
+  }
+
+  /* Template card hover effect */
+  .template-card {
+    transition: all 0.3s ease;
+  }
+
+  /* Expand button icon rotation */
+  .expand-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .template-body:not(.hidden) ~ .template-header .expand-btn svg {
+    transform: rotate(180deg);
+  }
+</style>

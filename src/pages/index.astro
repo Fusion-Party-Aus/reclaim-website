@@ -17,6 +17,13 @@ import StatCard from '../components/ui/StatCard.astro'
 import IconBadge from '../components/ui/IconBadge.astro'
 import CTA from '../components/ui/CTA.astro'
 import FloatingIcon from '../components/ui/FloatingIcon.astro'
+import MovementMetrics from '../components/ui/MovementMetrics.astro'
+import KonamiCode from '../components/KonamiCode.astro'
+import DeveloperMessages from '../components/DeveloperMessages.astro'
+import ShareQuoteCard from '../components/ShareQuoteCard.astro'
+import ScrollProgress from '../components/ScrollProgress.astro'
+import FloatingShareButtons from '../components/FloatingShareButtons.astro'
+import MemberSignup from '../components/MemberSignup.astro'
 
 // Fetch home page data from Sanity
 const homePages = await getDocuments('homePage')
@@ -28,6 +35,40 @@ if (!homePage) {
 
 // Fetch electorates for the electorates section
 const electorates = await getDocuments('electorate')
+
+// Movement Metrics - Dummy data for concept site
+const movementMetrics = [
+  {
+    label: 'Registered Members',
+    current: 847,
+    goal: 1000,
+    icon: '👥',
+    color: 'magenta' as const,
+  },
+  {
+    label: 'Active Volunteers',
+    current: 234,
+    goal: 320,
+    icon: '🙋',
+    color: 'mint' as const,
+  },
+  {
+    label: 'Candidates Ready',
+    current: 12,
+    goal: 88,
+    icon: '🗳️',
+    color: 'yellow' as const,
+    suffix: ' electorates',
+  },
+  {
+    label: 'Monthly Donations',
+    current: 4250,
+    goal: 10000,
+    icon: '💰',
+    color: 'magenta' as const,
+    prefix: '$',
+  },
+]
 ---
 
 <BaseLayout
@@ -35,6 +76,18 @@ const electorates = await getDocuments('electorate')
   description={homePage.seo?.metaDescription || ''}
 >
   <Header />
+
+  <!-- Developer Messages (injected via console, Astro strips HTML comments) -->
+  <DeveloperMessages />
+
+  <!-- Scroll Progress with Milestones -->
+  <ScrollProgress showMilestones={true} color="magenta" />
+
+  <!-- Floating Share Buttons -->
+  <FloatingShareButtons
+    title="Fusion Party - Democracy shouldn't be a spectator sport"
+    position="left"
+  />
 
   <!-- ALERT BAR - Enhanced with icon -->
   <div class="alert-bar relative overflow-hidden">
@@ -54,6 +107,27 @@ const electorates = await getDocuments('electorate')
     stats={homePage.hero.stats}
     showCTA={true}
   />
+
+  <!-- MOVEMENT METRICS - Gamified Progress Tracking -->
+  <Section padding="xl" border={true} borderPosition="bottom" borderColor="magenta">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-block mb-4 animate-pulse-gentle">
+          <Icon name="mdi:chart-line" class="w-12 h-12 text-magenta" />
+        </div>
+        <h2
+          class="text-3xl md:text-4xl font-black mb-3 uppercase text-magenta"
+          style="transform: rotate(-0.5deg); display: inline-block;"
+        >
+          Movement In Motion
+        </h2>
+        <p class="text-lg text-gray-700 font-bold max-w-2xl mx-auto">
+          Real people. Real progress. Real democracy. Watch us grow in real-time.
+        </p>
+      </div>
+      <MovementMetrics metrics={movementMetrics} />
+    </div>
+  </Section>
 
   <!-- THE THEFT - Victoria Specific -->
   <Section border={true} borderPosition="bottom" padding="xl">
@@ -123,6 +197,19 @@ const electorates = await getDocuments('electorate')
                   </strong>
                   <p>{card.impact}</p>
                 </div>
+
+                {/* Share Quote Card for each theft stat */}
+                <div class="mt-4 pt-4 border-t-2 border-gray-200">
+                  <ShareQuoteCard
+                    quote={`${card.amount} - ${card.description}`}
+                    attribution="Victorian Theft Report 2024"
+                    category={card.category}
+                    policyUrl={card.link}
+                    color={color}
+                    compact={true}
+                  />
+                </div>
+
                 <a
                   href={card.link}
                   class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform"
@@ -200,12 +287,22 @@ const electorates = await getDocuments('electorate')
                 </div>
               </div>
 
+              {electorate.candidateImage && (
+                <div class="mb-4">
+                  <img
+                    src={urlFor(electorate.candidateImage).width(400).height(400).fit('crop').url()}
+                    alt={electorate.candidateName}
+                    class="w-full h-48 object-cover border-4 border-black shadow-[4px_4px_0px_0px_#000000]"
+                  />
+                </div>
+              )}
+
               <div class="flex items-center gap-2 mb-4">
                 <Icon name="mdi:account-tie" class="w-5 h-5 text-magenta" />
-                <span class="candidate-name">{electorate.candidate}</span>
+                <span class="candidate-name">{electorate.candidateName}</span>
               </div>
 
-              <p class="mb-4">{electorate.description}</p>
+              {electorate.subtitle && <p class="mb-4">{electorate.subtitle}</p>}
 
               <ul class="electorate-priorities">
                 {electorate.commitments.slice(0, 4).map((commitment: any) => (
@@ -412,5 +509,10 @@ const electorates = await getDocuments('electorate')
     </div>
   </section>
 
+  <MemberSignup client:load />
+
   <Footer />
+
+  <!-- Konami Code Easter Egg -->
+  <KonamiCode />
 </BaseLayout>
