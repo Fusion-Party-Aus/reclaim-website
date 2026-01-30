@@ -1,0 +1,81 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{{ page_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="theme.scss" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    {{ content_for_header }}
+
+    <script type="text/javascript">
+      NB.appConfig.userIsLoggedIn = {{request.logged_in?}};
+    </script>
+  </head>
+  <body class="aware-theme v2-theme {{ page.page_class_name }} js">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="header-actions">
+          <a href="https://www.fusionparty.org.au/" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Back to Website
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <div class="container">
+        {% if request.flash %}
+        <div class="flash-container">{{ request.flash | join: '<br />' }}</div>
+        {% endif %}
+
+        <div class="content-container">
+          <!-- Main Content -->
+          <main role="main">{{ content_for_layout }}</main>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-logo">FUSION<span>PARTY</span></div>
+        {{content_for_footer}}
+        <div class="footer-links">
+          <a href="/about">About</a>
+          <a href="/join">Join</a>
+          <a href="/donate">Donate</a>
+          <a href="/policies">Policies</a>
+          <a href="/contact">Contact</a>
+        </div>
+
+        <div class="copyright">
+          &copy; {{ now | date: "%Y" }} Fusion Party. All rights reserved.<br />
+          Authorised by K. Hunt, Fusion, 254 McLeod Ln, Manfield.<br />
+          <a href="https://www.fusionparty.org.au" target="_blank"
+            >Fusion: The Progressive Coalition</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
