@@ -15,6 +15,9 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="icon" href="/icons/favicon.ico" />
 
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
@@ -22,7 +25,7 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Fusion VIC" />
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,11 +81,11 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
         window.addEventListener('load', () => {
           navigator.serviceWorker
             .register('/sw.js')
-            .then((registration) => {
-              console.log('Service Worker registered:', registration)
+            .then((_registration) => {
+              // console.log('Service Worker registered:', registration)
             })
-            .catch((error) => {
-              console.log('Service Worker registration failed:', error)
+            .catch((_error) => {
+              // console.log('Service Worker registration failed:', error)
             })
         })
       }
@@ -112,9 +115,9 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
           if (!deferredPrompt) return
 
           deferredPrompt.prompt()
-          const { outcome } = await deferredPrompt.userChoice
+          const { outcome: _outcome } = await deferredPrompt.userChoice
 
-          console.log(`User response: ${outcome}`)
+          // console.log(`User response: ${outcome}`)
           deferredPrompt = null
 
           if (installPrompt) {
@@ -133,7 +136,7 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
 
       // Hide prompt if already installed
       window.addEventListener('appinstalled', () => {
-        console.log('PWA installed')
+        // console.log('PWA installed')
         if (installPrompt) {
           installPrompt.classList.add('hidden')
         }

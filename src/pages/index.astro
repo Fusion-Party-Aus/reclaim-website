@@ -61,7 +61,7 @@ interface HomePage {
     current: number
     goal: number
     icon: string
-    color: string
+    color: 'magenta' | 'mint' | 'yellow'
     suffix?: string
     prefix?: string
   }[]
@@ -239,7 +239,12 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
           const imageUrl = card.image
             ? urlFor(card.image).width(600).height(400).url()
             : card.imageUrl
-          const colors = ['magenta', 'mint', 'yellow', 'lavender']
+          const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
+            'magenta',
+            'mint',
+            'yellow',
+            'lavender',
+          ]
           const color = colors[index % colors.length]
 
           return (
@@ -400,7 +405,7 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
       }
     </div>
 
-    <CTA variant="white" size="lg" shadow="lg" class="mt-12 max-w-2xl mx-auto">
+    <CTA variant="secondary" size="lg" shadow="lg" class="mt-12 max-w-2xl mx-auto">
       <div class="inline-block mb-4 animate-wiggle-subtle">
         <Icon name="mdi:bullhorn" class="w-12 h-12 text-magenta" />
       </div>
@@ -467,7 +472,12 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
         {
           homePageTyped.manifestoSection.stats.map((stat: any, index: number) => {
             const rotations = ['-1deg', '1deg', '-1.5deg', '1.5deg']
-            const colors = ['#C926F2', '#FFED00', '#5EFFD8', '#C926F2'] // Magenta, Yellow, Mint
+            const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
+              '#C926F2',
+              '#FFED00',
+              '#5EFFD8',
+              '#C926F2',
+            ] // Magenta, Yellow, Mint
             const color = colors[index % colors.length]
             const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
             const icon = icons[index % icons.length]
