@@ -132,5 +132,32 @@ export default defineType({
       type: 'string',
       description: 'Legal authorization text for political material',
     }),
+    defineField({
+      name: 'copyrightText',
+      title: 'Copyright Text',
+      type: 'string',
+      description: 'e.g. "2024-2025 Fusion Party Victoria. All rights reserved."',
+      initialValue: '2024-2026 Fusion Party. All rights reserved.',
+    }),
+    defineField({
+      name: 'networkBranding',
+      title: 'Network Branding',
+      description: 'The "Part of..." section at the bottom',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'text',
+          title: 'Text',
+          type: 'string',
+          initialValue: 'Fusion: Science, Pirate, Secular, Climate Emergency',
+        }),
+        defineField({
+          name: 'url',
+          title: 'URL',
+          type: 'url',
+          initialValue: 'https://www.fusionparty.org.au',
+        }),
+      ],
+    }),
   ],
 })

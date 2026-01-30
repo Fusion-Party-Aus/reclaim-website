@@ -7,6 +7,10 @@ import navigation from './navigation'
 import footer from './footer'
 import sidebar from './sidebar'
 import blogPost from './blogPost'
+import convinceYourFriends from './convinceYourFriends'
+import policiesPage from './policiesPage'
+import electoratesPage from './electoratesPage'
+import blogPage from './blogPage'
 
 export const schemaTypes = [
   page,
@@ -18,4 +22,8 @@ export const schemaTypes = [
   footer,
   sidebar,
   blogPost,
+  convinceYourFriends,
+  policiesPage,
+  electoratesPage,
+  blogPage,
 ]

@@ -17,6 +17,12 @@ export default defineType({
       type: 'object',
       fields: [
         {
+          name: 'eyebrow',
+          title: 'Eyebrow Text',
+          type: 'string',
+          description: 'Small text above the main title (e.g. "The Progressive Coalition")',
+        },
+        {
           name: 'title',
           title: 'Hero Title',
           type: 'string',
@@ -26,6 +32,12 @@ export default defineType({
           name: 'subtitle',
           title: 'Hero Subtitle',
           type: 'string',
+        },
+        {
+          name: 'showCTA',
+          title: 'Show Call to Action Buttons',
+          type: 'boolean',
+          initialValue: true,
         },
         {
           name: 'stats',
@@ -329,6 +341,69 @@ export default defineType({
               ],
             },
           ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'alertBar',
+      title: 'Alert Bar',
+      type: 'object',
+      fields: [
+        {name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true},
+        {name: 'text', title: 'Text', type: 'string'},
+        {name: 'linkText', title: 'Link Text', type: 'string'},
+        {name: 'linkUrl', title: 'Link URL', type: 'string'},
+      ],
+    }),
+    defineField({
+      name: 'movementMetrics',
+      title: 'Movement Metrics',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'label', title: 'Label', type: 'string'},
+            {name: 'current', title: 'Current Value', type: 'number'},
+            {name: 'goal', title: 'Goal Value', type: 'number'},
+            {name: 'icon', title: 'Icon (Emoji)', type: 'string'},
+            {name: 'suffix', title: 'Suffix (e.g. "electorates")', type: 'string'},
+            {name: 'prefix', title: 'Prefix (e.g. "$")', type: 'string'},
+            {
+              name: 'color',
+              title: 'Color',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Magenta', value: 'magenta'},
+                  {title: 'Mint', value: 'mint'},
+                  {title: 'Yellow', value: 'yellow'},
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'signupCTA',
+      title: 'Signup CTA (NationBuilder Replacement)',
+      type: 'object',
+      fields: [
+        {name: 'heading', title: 'Heading', type: 'string', initialValue: 'Join the movement'},
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          initialValue:
+            'We need people like you to help us reclaim our future. Join Fusion Party today and be part of the change.',
+        },
+        {name: 'buttonText', title: 'Button Text', type: 'string', initialValue: 'Sign Up Now'},
+        {
+          name: 'footerText',
+          title: 'Footer Text',
+          type: 'string',
+          initialValue: 'You will be redirected to our official membership portal.',
         },
       ],
     }),

@@ -6,6 +6,25 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'pillar',
+      title: 'Pillar',
+      type: 'string',
+      options: {
+        list: [
+          'RECLAIM OUR ECONOMY',
+          'SOLVE THE HOUSING CRISIS',
+          'FIX THE TAX EXPLOITS',
+          'RECLAIM OUR FUTURE',
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
