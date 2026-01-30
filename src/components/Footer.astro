@@ -27,6 +27,11 @@ interface Footer {
     rotation: number
   }
   authorization: string
+  copyrightText?: string
+  networkBranding?: {
+    text: string
+    url: string
+  }
 }
 
 // Fetch footer from Sanity with fallback
@@ -345,17 +350,20 @@ const socialColors = [
     <!-- Bottom Bar -->
     <div class="pt-8 border-t-4 border-mint text-center space-y-3">
       <p class="text-sm font-black uppercase" style="color: #E5E5E5;">
-        &copy; 2024-2025 Fusion Party Victoria. All rights reserved.
+        &copy; {footerData.copyrightText || '2024-2025 Fusion Party Victoria. All rights reserved.'}
       </p>
       <p class="text-sm font-bold" style="color: #E5E5E5;">
         {footerData.authorization}
       </p>
       <p class="text-xs mt-4" style="color: #9A94E7;">
         Part of <a
-          href="https://www.fusionparty.org.au"
+          href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
           class="underline hover:text-mint transition-colors"
-          >Fusion: Science, Pirate, Secular, Climate Emergency</a
+          >{
+            footerData.networkBranding?.text ||
+              'Fusion: Science, Pirate, Secular, Climate Emergency'
+          }</a
         >
       </p>
     </div>

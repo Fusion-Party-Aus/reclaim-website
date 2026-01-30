@@ -103,6 +103,8 @@ const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
             const icons = ['mdi:trending-up', 'mdi:account-group', 'mdi:cash-multiple']
             const bgColor = colors[index % 3]
             const icon = icons[index % 3]
+            // Use black text for yellow and mint to ensure accessible contrast
+            const textColor = index % 3 === 0 ? bgColor : '#000000'
 
             return (
               <div
@@ -114,7 +116,7 @@ const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
                 </div>
                 <div
                   class="text-4xl md:text-5xl lg:text-6xl font-black mb-3 uppercase leading-none group-hover:scale-110 transition-transform"
-                  style={`color: ${bgColor}; font-family: 'Archivo Black', sans-serif;`}
+                  style={`color: ${textColor}; font-family: 'Archivo Black', sans-serif;`}
                 >
                   {stat.number}
                 </div>

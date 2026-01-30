@@ -22,6 +22,8 @@ interface Props {
   borderColor?: 'black' | 'magenta' | 'mint' | 'yellow'
   id?: string
   class?: string
+  style?: string
+  [key: string]: any
 }
 
 const {
@@ -32,6 +34,8 @@ const {
   borderColor = 'black',
   id,
   class: className = '',
+  style,
+  ...rest
 } = Astro.props
 
 // Background colors
@@ -72,12 +76,14 @@ const borderClasses = border
 
 <section
   id={id}
+  style={style}
   class={`
     ${backgrounds[bg]}
     ${paddings[padding]}
     ${borderClasses}
     ${className}
   `}
+  {...rest}
 >
   <div class="max-w-7xl mx-auto">
     <slot />
