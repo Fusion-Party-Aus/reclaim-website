@@ -7,7 +7,6 @@ import sitemap from '@astrojs/sitemap'
 import cloudflare from '@astrojs/cloudflare'
 import sanity from '@sanity/astro'
 
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -20,9 +19,9 @@ export default defineConfig({
     agentsSummary(),
     sitemap(),
     sanity({
-      projectId: env.PUBLIC_SANITY_PROJECT_ID,
-      dataset: env.PUBLIC_SANITY_DATASET || 'production',
-      useCdn: false,
+      projectId: 'qwl3f8jb',
+      dataset: 'production',
+      useCdn: true,
     }),
   ],
 
