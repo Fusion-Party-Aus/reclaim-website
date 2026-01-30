@@ -125,3 +125,8 @@ export async function getBlogPage(): Promise<any | null> {
   const query = `*[_type == "blogPage"][0]`
   return await client.fetch(query)
 }
+
+export async function getSiteConfig(): Promise<any | null> {
+  const query = `*[_type == "siteConfig"][0]`
+  return await client.fetch(query)
+}

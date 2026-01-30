@@ -1,0 +1,15 @@
+name = "fusion-website"
+main = "./dist/_worker.js/index.js"
+compatibility_date = "2025-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+
+[observability]
+enabled = false
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+persist = true

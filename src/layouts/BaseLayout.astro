@@ -1,10 +1,15 @@
 ---
+import { getSiteConfig } from '../lib/sanity'
+import KonamiCode from '../components/KonamiCode.astro'
+
 interface Props {
   title: string
   description?: string
 }
 
 const { title, description = 'Fusion Victoria - Taking back what they stole.' } = Astro.props
+
+const siteConfig = await getSiteConfig()
 ---
 
 <!doctype html>
@@ -33,6 +38,9 @@ const { title, description = 'Fusion Victoria - Taking back what they stole.' } 
   </head>
   <body>
     <slot />
+
+    <!-- Site-wide Secret Features -->
+    <KonamiCode konami={siteConfig?.konamiCode} />
 
     <!-- PWA Install Prompt -->
     <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">

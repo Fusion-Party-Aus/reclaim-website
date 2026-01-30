@@ -11,6 +11,7 @@ import convinceYourFriends from './convinceYourFriends'
 import policiesPage from './policiesPage'
 import electoratesPage from './electoratesPage'
 import blogPage from './blogPage'
+import siteConfig from './siteConfig'
 
 export const schemaTypes = [
   page,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   policiesPage,
   electoratesPage,
   blogPage,
+  siteConfig,
 ]

@@ -4,6 +4,43 @@
  * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
  * Triggers: Confetti explosion + hidden manifesto download
  */
+interface Props {
+  konami?: {
+    title?: string
+    description?: string
+    manifestoTitle?: string
+    manifestoDescription?: string
+    githubUrl?: string
+    githubLabel?: string
+    zeroTrackingTitle?: string
+    zeroTrackingDescription?: string
+    downloadButtonLabel?: string
+    footerMessage?: string
+  }
+}
+
+const { konami } = Astro.props
+
+const content = {
+  title: konami?.title || 'You Found the Secret!',
+  description:
+    konami?.description ||
+    "True democracy rewards the curious. Here's something special for developers, gamers, and people who actually read the code...",
+  manifestoTitle: konami?.manifestoTitle || 'ANNOTATED MANIFESTO',
+  manifestoDescription:
+    konami?.manifestoDescription ||
+    'Full manifesto with policy team annotations, research citations, and implementation roadmap. This is the behind-the-scenes version we use internally.',
+  githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website-poc',
+  githubLabel: konami?.githubLabel || 'View on GitHub',
+  zeroTrackingTitle: konami?.zeroTrackingTitle || 'ZERO TRACKING',
+  zeroTrackingDescription:
+    konami?.zeroTrackingDescription ||
+    'Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.',
+  downloadButtonLabel: konami?.downloadButtonLabel || '📥 Download Annotated Manifesto',
+  footerMessage:
+    konami?.footerMessage ||
+    'P.S. Share this with other curious people. Democracy needs more of them.',
+}
 ---
 
 <div
@@ -25,21 +62,19 @@
     <div class="text-center">
       <div class="text-6xl mb-6 animate-bounce">🎉</div>
       <h2 class="text-4xl font-black uppercase text-magenta mb-4" style="transform: rotate(1deg);">
-        You Found the Secret!
+        {content.title}
       </h2>
       <p class="text-xl font-bold mb-6">
-        True democracy rewards the curious. Here's something special for developers, gamers, and
-        people who actually read the code...
+        {content.description}
       </p>
 
       <div class="bg-mint/10 border-4 border-mint p-6 mb-6 text-left">
         <div class="flex items-start gap-3 mb-4">
           <span class="text-3xl">📜</span>
           <div>
-            <h3 class="font-black text-xl mb-2">ANNOTATED MANIFESTO</h3>
+            <h3 class="font-black text-xl mb-2">{content.manifestoTitle}</h3>
             <p class="text-sm font-bold text-gray-700">
-              Full manifesto with policy team annotations, research citations, and implementation
-              roadmap. This is the behind-the-scenes version we use internally.
+              {content.manifestoDescription}
             </p>
           </div>
         </div>
@@ -48,12 +83,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <div class="bg-yellow/20 border-4 border-black p-4">
           <div class="text-2xl mb-2">💻</div>
-          <h4 class="font-black mb-2">OPEN SOURCE</h4>
+          <h4 class="font-black mb-2">{content.githubLabel}</h4>
           <p class="text-sm font-bold">
             This entire site is open source. Fork it, learn from it, improve it.
           </p>
           <a
-            href="https://github.com/Fusion-Party-Aus/reclaim-website-poc"
+            href={content.githubUrl}
             target="_blank"
             class="inline-flex items-center gap-2 mt-3 text-magenta font-black hover:underline"
           >
@@ -64,9 +99,9 @@
 
         <div class="bg-magenta/10 border-4 border-black p-4">
           <div class="text-2xl mb-2">🔍</div>
-          <h4 class="font-black mb-2">ZERO TRACKING</h4>
+          <h4 class="font-black mb-2">{content.zeroTrackingTitle}</h4>
           <p class="text-sm font-bold">
-            Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.
+            {content.zeroTrackingDescription}
           </p>
         </div>
       </div>
@@ -76,11 +111,11 @@
         class="bg-magenta text-white px-8 py-4 font-black uppercase border-4 border-black hover:bg-magenta-dark transition-all hover:shadow-[8px_8px_0px_0px_#000000] hover:-translate-y-1"
         style="box-shadow: 6px 6px 0px 0px #000000;"
       >
-        📥 Download Annotated Manifesto
+        {content.downloadButtonLabel}
       </button>
 
       <p class="text-sm text-gray-600 mt-6 font-bold">
-        P.S. Share this with other curious people. Democracy needs more of them.
+        {content.footerMessage}
       </p>
     </div>
   </div>
