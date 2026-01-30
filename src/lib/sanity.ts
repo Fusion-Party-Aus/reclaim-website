@@ -17,7 +17,7 @@ if (!projectId) {
 export const client: SanityClient = createClient({
   projectId,
   dataset,
-  useCdn: true, // Use CDN for faster reads
+  useCdn: false, // Use fresh data for live updates
   apiVersion: '2024-11-13', // Today's date
 })
 
@@ -114,7 +114,30 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
   return await client.fetch(query, { slug })
 }
 
+// ... (existing exports)
+
 export async function getHomePage(): Promise<HomePage | null> {
   const query = `*[_type == "homePage"][0]`
+  return await client.fetch(query)
+}
+
+// ...
+export async function getConvinceYourFriendsPage(): Promise<any | null> {
+  const query = `*[_type == "convinceYourFriends"][0]`
+  return await client.fetch(query)
+}
+
+export async function getPoliciesPage(): Promise<any | null> {
+  const query = `*[_type == "policiesPage"][0]`
+  return await client.fetch(query)
+}
+
+export async function getElectoratesPage(): Promise<any | null> {
+  const query = `*[_type == "electoratesPage"][0]`
+  return await client.fetch(query)
+}
+
+export async function getBlogPage(): Promise<any | null> {
+  const query = `*[_type == "blogPage"][0]`
   return await client.fetch(query)
 }

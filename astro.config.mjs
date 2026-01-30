@@ -9,6 +9,12 @@ import { agentsSummary } from '@nuasite/agent-summary'
 
 import icon from 'astro-icon'
 
+import sitemap from '@astrojs/sitemap'
+
+import cloudflare from '@astrojs/cloudflare'
+
+import sanity from '@sanity/astro'
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -19,9 +25,14 @@ export default defineConfig({
       },
     }),
     agentsSummary(),
+    sitemap(),
+    sanity(),
   ],
 
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare(),
+  output: 'hybrid',
 })
