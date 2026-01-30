@@ -47,6 +47,25 @@ fusion/                # Sanity Studio config
 - **[Quick Reference](./docs/QUICK_REFERENCE.md)** - Daily workflow, common commands
 - **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute (2000+ words)
 
+### Viral Features 🎯
+
+- **[Viral Mechanics Complete Guide](./docs/VIRAL_MECHANICS_COMPLETE.md)** - Full implementation of all 8 viral mechanics
+- **[Viral Features Summary](./VIRAL_FEATURES_SUMMARY.md)** - Overview of all viral mechanics
+- **[Movement Metrics](./docs/MOVEMENT_METRICS.md)** - Gamified progress tracking widget
+- **[Viral Strategy](./docs/VIRAL_FEATURES.md)** - Complete organic growth playbook
+- **[Testing Viral Features](./TESTING_VIRAL_FEATURES.md)** - How to test Konami Code, console messages, etc.
+
+**8 Viral Mechanics Implemented**:
+
+1. ✅ Share Quote Cards (Victorian Theft section)
+2. ✅ Movement Metrics Widget (Homepage)
+3. ✅ Scroll Progress with Milestones (Global)
+4. ✅ Floating Share Buttons (Homepage)
+5. ✅ Konami Code Easter Egg (Global)
+6. ✅ Developer Console Messages (Global)
+7. ✅ Click-to-Tweet Component (Ready to use)
+8. ✅ Member Badge Component (Ready to use)
+
 ### Component System
 
 - **[Component Library](./docs/COMPONENT_LIBRARY.md)** - Full API reference (24KB)
