@@ -1,21 +1,13 @@
 ---
+export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Hero from '../../components/Hero.astro'
 import Footer from '../../components/Footer.astro'
 import { Icon } from 'astro-icon/components'
-import { getDocuments, urlFor } from '../../lib/sanity'
-import type { PortableTextBlock } from '../../lib/portableText'
+import { getDocuments, getElectoratesPage, urlFor } from '../../lib/sanity'
 import '../../styles/global.css'
-import {
-  Section,
-  BrutalCard,
-  BrutalButton,
-  BrutalBadge,
-  FloatingIcon,
-  Grid,
-  CTA,
-} from '../../components/ui'
+import { BrutalCard, BrutalButton, FloatingIcon, CTA } from '../../components/ui'
 
 interface CommitmentDetail {
   detail: string
@@ -44,15 +36,30 @@ interface Electorate {
 }
 
 const electorates = await getDocuments<Electorate>('electorate')
+const pageData = await getElectoratesPage()
+
+// Display Logic
+const title = pageData?.title || 'Electorates'
+const subtitle = pageData?.subtitle || "Where we're taking back what they stole"
+const introCard = pageData?.introCard || {
+  title: 'Target Seats',
+  body: "We're starting where the neglect has been the worst: growth corridors and outer suburbs that were promised infrastructure and delivered excuses.",
+  highlight:
+    "Each electorate page shows our candidate, local commitments, and exactly how we'll fund and deliver them.",
+}
+const ctaSection = pageData?.ctaSection || {
+  title: 'Not in these electorates?',
+  body: "We're building campaigns across Victoria. Help us bring real change to your area.",
+}
 ---
 
 <BaseLayout
-  title="Electorates | Fusion Victoria"
+  title={`${title} | Fusion Victoria`}
   description="Where we're running, what we stand for, and how we'll fix decades of neglect in outer suburbs."
 >
   <Header />
 
-  <Hero title="Electorates" subtitle="Where we're taking back what they stole" />
+  <Hero title={title} subtitle={subtitle} />
 
   <main class="bg-white py-16 px-4 md:px-8 relative overflow-hidden">
     <!-- Floating background elements -->
@@ -82,22 +89,16 @@ const electorates = await getDocuments<Electorate>('electorate')
               class="text-3xl md:text-4xl font-black uppercase text-magenta"
               style="font-family: 'Archivo Black', sans-serif;"
             >
-              Target Seats
+              {introCard.title}
             </h2>
           </div>
           <p class="text-lg font-bold mb-3 leading-relaxed flex items-start gap-2">
             <Icon name="mdi:alert-circle" class="w-6 h-6 text-magenta flex-shrink-0 mt-1" />
-            <span
-              >We're starting where the neglect has been the worst: growth corridors and outer
-              suburbs that were promised infrastructure and delivered excuses.</span
-            >
+            <span>{introCard.body}</span>
           </p>
           <p class="text-lg font-semibold leading-relaxed flex items-start gap-2">
             <Icon name="mdi:information" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-            <span
-              >Each electorate page shows our candidate, local commitments, and exactly how we'll
-              fund and deliver them.</span
-            >
+            <span>{introCard.highlight}</span>
           </p>
         </BrutalCard>
       </section>
@@ -240,10 +241,10 @@ const electorates = await getDocuments<Electorate>('electorate')
             class="text-3xl md:text-4xl font-black mb-4 uppercase text-white"
             style="font-family: 'Archivo Black', sans-serif;"
           >
-            Not in these electorates?
+            {ctaSection.title}
           </h3>
           <p class="text-lg md:text-xl font-bold mb-6 max-w-3xl mx-auto text-white">
-            We're building campaigns across Victoria. Help us bring real change to your area.
+            {ctaSection.body}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <BrutalButton

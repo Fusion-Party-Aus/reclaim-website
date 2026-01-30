@@ -1,10 +1,15 @@
 ---
+export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { BrutalCard, BrutalButton, FloatingIcon, Section } from '../components/ui'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
+import { getConvinceYourFriendsPage } from '../lib/sanity'
+
+// Fetch content from Sanity
+const pageData = await getConvinceYourFriendsPage()
 
 interface MessageTemplate {
   id: string
@@ -18,7 +23,7 @@ interface MessageTemplate {
   tags: string[]
 }
 
-const templates: MessageTemplate[] = [
+const defaultTemplates: MessageTemplate[] = [
   {
     id: 'boomer-housing',
     title: 'Email to Boomer Parents About Housing',
@@ -212,6 +217,8 @@ What do other parents think? Are we all just accepting this is as good as it get
   },
 ]
 
+const templates: MessageTemplate[] = pageData?.templates || defaultTemplates
+
 const channelInfo = {
   email: {
     icon: 'mdi:email',
@@ -228,27 +235,104 @@ const channelInfo = {
     name: 'Social Media',
     tip: 'Best for: Reaching your wider network',
   },
-  linkedin: {
-    icon: 'mdi:linkedin',
-    name: 'LinkedIn',
-    tip: 'Best for: Professional networks and colleagues',
+}
+
+const defaultTips = [
+  {
+    title: 'Personalize It',
+    description:
+      'Add your own experiences. "I\'ve been paying $650/week for a shoebox apartment" hits harder than generic statements.',
+    icon: 'mdi:pencil',
+    color: 'magenta',
+  },
+  {
+    title: 'Know Your Audience',
+    description:
+      'Climate messaging for young friends, economic messaging for business contacts. Match the template to your audience.',
+    icon: 'mdi:account-group',
+    color: 'mint',
+  },
+  {
+    title: 'Timing Matters',
+    description:
+      'Share when people are paying attention: during election campaigns, after major news events, or when issues directly affect them.',
+    icon: 'mdi:clock-fast',
+    color: 'yellow',
+  },
+  {
+    title: 'Be Genuine',
+    description:
+      "Don't spam. Share because you genuinely believe in the cause. Authenticity is contagious.",
+    icon: 'mdi:heart',
+    color: 'magenta',
+  },
+]
+
+const tips = pageData?.tips || defaultTips
+
+const defaultContrastSection = {
+  title: "This Isn't Normal Marketing",
+  subtitle:
+    'Major parties say "Share our posts!" - We say "Here\'s how to have real conversations."',
+  oldWay: {
+    title: '"Share Our Posts!"',
+    points: [
+      'Canned corporate messages',
+      'One-size-fits-all copy',
+      'Obvious marketing',
+      "You're just a megaphone",
+    ],
+    feeling: 'Being used as free advertising',
+  },
+  fusionWay: {
+    title: '"Talk About What Matters"',
+    points: [
+      '6 templates for different audiences',
+      'Fully customizable - make it yours',
+      'Real conversations, not propaganda',
+      "You're building something real",
+    ],
+    feeling: 'Being empowered to make change',
   },
 }
+
+const contrastSection = pageData?.contrastSection || defaultContrastSection
 ---
 
 <BaseLayout
-  title="Convince Your Friends | Fusion Victoria"
-  description="Ready-to-send templates to share Fusion policies with your network. Make it easy to spread the word."
+  title={`${pageData?.title || 'Convince Your Friends'} | Fusion Victoria`}
+  description={pageData?.subtitle ||
+    'Ready-to-send templates to share Fusion policies with your network. Make it easy to spread the word.'}
 >
   <Header />
 
   <!-- Floating Background Icons -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden opacity-5 z-0">
-    <FloatingIcon name="mdi:email-fast" left="5%" top="10%" delay={0} size={80} />
-    <FloatingIcon name="mdi:share-variant" left="85%" top="15%" delay={2} size={60} />
-    <FloatingIcon name="mdi:account-group" left="10%" top="60%" delay={4} size={70} />
-    <FloatingIcon name="mdi:bullhorn" left="80%" top="65%" delay={3} size={90} />
-    <FloatingIcon name="mdi:heart-multiple" left="50%" top="80%" delay={1} size={50} />
+    <FloatingIcon
+      name="mdi:email-fast"
+      position={{ left: '5%', top: '10%' }}
+      delay="0s"
+      size={80}
+    />
+    <FloatingIcon
+      name="mdi:share-variant"
+      position={{ left: '85%', top: '15%' }}
+      delay="2s"
+      size={60}
+    />
+    <FloatingIcon
+      name="mdi:account-group"
+      position={{ left: '10%', top: '60%' }}
+      delay="4s"
+      size={70}
+    />
+    <FloatingIcon name="mdi:bullhorn" position={{ left: '80%', top: '65%' }} delay="3s" size={90} />
+    <FloatingIcon
+      name="mdi:heart-multiple"
+      position={{ left: '50%', top: '80%' }}
+      delay="1s"
+      size={50}
+    />
   </div>
 
   <main class="relative z-10">
@@ -270,13 +354,15 @@ const channelInfo = {
           class="text-5xl md:text-7xl font-black uppercase mb-6 leading-none"
           style="font-family: 'Archivo Black', sans-serif;"
         >
-          Convince Your
-          <span class="text-magenta">Friends</span>
+          {pageData?.title || 'Convince Your'}
+          {!pageData?.title && <span class="text-magenta">Friends</span>}
         </h1>
 
         <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight">
-          Don't know what to say? Use these pre-written templates to share Fusion policies with your
-          network. One click to copy, customized for different audiences.
+          {
+            pageData?.subtitle ||
+              "Don't know what to say? Use these pre-written templates to share Fusion policies with your network. One click to copy, customized for different audiences."
+          }
         </p>
 
         <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
@@ -286,7 +372,7 @@ const channelInfo = {
           </div>
           <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
             <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
-            <span class="font-black text-sm">6 AUDIENCES</span>
+            <span class="font-black text-sm">{templates.length} AUDIENCES</span>
           </div>
           <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
             <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
@@ -301,28 +387,49 @@ const channelInfo = {
             Why This Works
           </h3>
           <ul class="space-y-3 text-lg">
-            <li class="flex items-start gap-3">
-              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-              <span
-                ><strong>Lower Friction:</strong> Don't know what to say? We've written it for you.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-              <span
-                ><strong>Targeted Messaging:</strong> Different approaches for different audiences.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-              <span
-                ><strong>Exponential Growth:</strong> Every person you reach can reach their network.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-              <span><strong>Authentic:</strong> Fully customizable - make it your own voice.</span>
-            </li>
+            {
+              pageData?.whyItWorks?.map((item: any) => (
+                <li class="flex items-start gap-3">
+                  <Icon
+                    name={item.icon || 'mdi:check-bold'}
+                    class="w-6 h-6 text-mint flex-shrink-0 mt-1"
+                  />
+                  <span>
+                    <strong>{item.title}:</strong> {item.description}
+                  </span>
+                </li>
+              )) || (
+                <>
+                  <li class="flex items-start gap-3">
+                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                    <span>
+                      <strong>Lower Friction:</strong> Don't know what to say? We've written it for
+                      you.
+                    </span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                    <span>
+                      <strong>Targeted Messaging:</strong> Different approaches for different
+                      audiences.
+                    </span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                    <span>
+                      <strong>Exponential Growth:</strong> Every person you reach can reach their
+                      network.
+                    </span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                    <span>
+                      <strong>Authentic:</strong> Fully customizable - make it your own voice.
+                    </span>
+                  </li>
+                </>
+              )
+            }
           </ul>
         </BrutalCard>
       </div>
@@ -461,49 +568,19 @@ const channelInfo = {
         <h2 class="text-3xl font-black text-center mb-8 uppercase">Tips for Maximum Impact</h2>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <BrutalCard variant="white" shadow="magenta" padding="lg">
-            <h3 class="text-xl font-black text-magenta mb-3 uppercase flex items-center gap-2">
-              <Icon name="mdi:pencil" class="w-6 h-6" />
-              Personalize It
-            </h3>
-            <p class="font-bold text-gray-700">
-              Add your own experiences. "I've been paying $650/week for a shoebox apartment" hits
-              harder than generic statements.
-            </p>
-          </BrutalCard>
-
-          <BrutalCard variant="white" shadow="mint" padding="lg">
-            <h3 class="text-xl font-black text-mint mb-3 uppercase flex items-center gap-2">
-              <Icon name="mdi:account-group" class="w-6 h-6" />
-              Know Your Audience
-            </h3>
-            <p class="font-bold text-gray-700">
-              Climate messaging for young friends, economic messaging for business contacts. Match
-              the template to your audience.
-            </p>
-          </BrutalCard>
-
-          <BrutalCard variant="white" shadow="yellow" padding="lg">
-            <h3 class="text-xl font-black text-yellow mb-3 uppercase flex items-center gap-2">
-              <Icon name="mdi:clock-fast" class="w-6 h-6" />
-              Timing Matters
-            </h3>
-            <p class="font-bold text-gray-700">
-              Share when people are paying attention: during election campaigns, after major news
-              events, or when issues directly affect them.
-            </p>
-          </BrutalCard>
-
-          <BrutalCard variant="white" shadow="magenta" padding="lg">
-            <h3 class="text-xl font-black text-magenta mb-3 uppercase flex items-center gap-2">
-              <Icon name="mdi:heart" class="w-6 h-6" />
-              Be Genuine
-            </h3>
-            <p class="font-bold text-gray-700">
-              Don't spam. Share because you genuinely believe in the cause. Authenticity is
-              contagious.
-            </p>
-          </BrutalCard>
+          {
+            tips.map((tip: any) => (
+              <BrutalCard variant="white" shadow={tip.color} padding="lg">
+                <h3
+                  class={`text-xl font-black text-${tip.color} mb-3 uppercase flex items-center gap-2`}
+                >
+                  <Icon name={tip.icon} class="w-6 h-6" />
+                  {tip.title}
+                </h3>
+                <p class="font-bold text-gray-700">{tip.description}</p>
+              </BrutalCard>
+            ))
+          }
         </div>
       </div>
     </Section>
@@ -553,6 +630,7 @@ const channelInfo = {
         </div>
 
         <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
+          <!-- Form content (same as before) -->
           <h3 class="text-2xl font-black uppercase mb-4 text-white">Quick Feedback Form</h3>
           <form
             action="https://formspree.io/f/YOUR_FORM_ID"
@@ -571,12 +649,7 @@ const channelInfo = {
                 class="w-full px-4 py-3 border-4 border-black font-bold focus:outline-none focus:border-yellow"
               >
                 <option value="">Select a template...</option>
-                <option value="boomer-housing">Boomer Parents - Housing</option>
-                <option value="work-chat">Work Chat - Transport</option>
-                <option value="climate-friend">Climate-Anxious Friend</option>
-                <option value="linkedin">LinkedIn - Professional</option>
-                <option value="instagram">Instagram Story</option>
-                <option value="facebook-parents">Facebook Parents Group</option>
+                {templates.map((t) => <option value={t.id}>{t.title}</option>)}
               </select>
             </div>
 
@@ -663,10 +736,10 @@ const channelInfo = {
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-black uppercase mb-4">
-            This Isn't Normal <span class="text-magenta">Marketing</span>
+            {contrastSection.title}
           </h2>
           <p class="text-xl font-bold max-w-3xl mx-auto">
-            Major parties say "Share our posts!" - We say "Here's how to have real conversations."
+            {contrastSection.subtitle}
           </p>
         </div>
 
@@ -683,27 +756,21 @@ const channelInfo = {
                 OLD POLITICS
               </div>
               <Icon name="mdi:alert-circle" class="w-10 h-10 text-gray-600 mb-3" />
-              <h3 class="text-xl font-black uppercase mb-3 text-gray-700">"Share Our Posts!"</h3>
+              <h3 class="text-xl font-black uppercase mb-3 text-gray-700">
+                {contrastSection.oldWay.title}
+              </h3>
               <ul class="space-y-2 text-sm font-bold text-gray-600">
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500">✗</span>
-                  <span>Canned corporate messages</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500">✗</span>
-                  <span>One-size-fits-all copy</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500">✗</span>
-                  <span>Obvious marketing</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500">✗</span>
-                  <span>You're just a megaphone</span>
-                </li>
+                {
+                  contrastSection.oldWay.points.map((point: any) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-red-500">✗</span>
+                      <span>{point}</span>
+                    </li>
+                  ))
+                }
               </ul>
               <p class="mt-4 text-xs font-black text-gray-500 italic">
-                Feels like: Being used as free advertising
+                Feels like: {contrastSection.oldWay.feeling}
               </p>
             </div>
           </div>
@@ -718,28 +785,20 @@ const channelInfo = {
               </div>
               <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
               <h3 class="text-xl font-black uppercase mb-3 text-magenta">
-                "Talk About What Matters"
+                {contrastSection.fusionWay.title}
               </h3>
               <ul class="space-y-2 text-sm font-bold">
-                <li class="flex items-start gap-2">
-                  <span class="text-mint">✓</span>
-                  <span>6 templates for different audiences</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-mint">✓</span>
-                  <span>Fully customizable - make it yours</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-mint">✓</span>
-                  <span>Real conversations, not propaganda</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-mint">✓</span>
-                  <span>You're building something real</span>
-                </li>
+                {
+                  contrastSection.fusionWay.points.map((point: any) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-mint">✓</span>
+                      <span>{point}</span>
+                    </li>
+                  ))
+                }
               </ul>
               <p class="mt-4 text-xs font-black text-magenta italic">
-                Feels like: Being empowered to make change
+                Feels like: {contrastSection.fusionWay.feeling}
               </p>
             </BrutalCard>
           </div>

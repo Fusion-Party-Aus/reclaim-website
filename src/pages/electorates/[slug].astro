@@ -1,10 +1,11 @@
 ---
+export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import Hero from '../../components/Hero.astro'
 import { Icon } from 'astro-icon/components'
-import { getDocuments, getDocumentBySlug, urlFor } from '../../lib/sanity'
+import { getDocumentBySlug, urlFor } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
@@ -32,22 +33,17 @@ interface Electorate {
   body?: PortableTextBlock[]
 }
 
-export async function getStaticPaths() {
-  const electorates = await getDocuments<Electorate>('electorate')
+const { slug } = Astro.params
 
-  return electorates
-    .filter((e) => e.slug?.current)
-    .map((e) => ({
-      params: { slug: e.slug.current },
-      props: { electorate: e },
-    }))
+if (!slug) {
+  return Astro.redirect('/404')
 }
 
-export interface Props {
-  electorate: Electorate
-}
+const electorate = await getDocumentBySlug<Electorate>('electorate', slug)
 
-const { electorate } = Astro.props
+if (!electorate) {
+  return Astro.redirect('/404')
+}
 ---
 
 <BaseLayout title={`${electorate.name} | Fusion Victoria`}>

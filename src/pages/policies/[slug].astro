@@ -1,9 +1,10 @@
 ---
+export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import Sidebar from '../../components/Sidebar.astro'
-import { getDocumentBySlug, getDocuments } from '../../lib/sanity'
+import { getDocumentBySlug } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
 import type { PortableTextBlock } from '../../lib/portableText'
@@ -21,20 +22,16 @@ interface Policy {
   body?: PortableTextBlock[]
 }
 
-export async function getStaticPaths() {
-  const policies = await getDocuments<Policy>('policy')
+const { slug } = Astro.params
 
-  return policies.map((policy) => ({
-    params: { slug: policy.slug.current },
-    props: { policy },
-  }))
+if (!slug) {
+  return Astro.redirect('/404')
 }
 
-const { slug } = Astro.params
-const { policy } = Astro.props
+const policy = await getDocumentBySlug<Policy>('policy', slug)
 
-if (!slug || !policy) {
-  throw new Error('Missing policy slug or data')
+if (!policy) {
+  return Astro.redirect('/404')
 }
 
 const bodyHtml = policy.body ? wrapSectionsInBoxes(renderPortableText(policy.body)) : ''

@@ -1,9 +1,10 @@
 ---
+export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import ShareIcon from '../../components/ShareIcon.astro'
-import { getDocuments } from '../../lib/sanity'
+import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
@@ -28,16 +29,17 @@ interface BlogPost {
   seoDescription?: string
 }
 
-export async function getStaticPaths() {
-  const posts = await getDocuments<BlogPost>('blogPost')
+const { slug } = Astro.params
 
-  return posts.map((post) => ({
-    params: { slug: post.slug.current },
-    props: { post },
-  }))
+if (!slug) {
+  return Astro.redirect('/404')
 }
 
-const { post } = Astro.props
+const post = await getDocumentBySlug<BlogPost>('blogPost', slug)
+
+if (!post) {
+  return Astro.redirect('/404')
+}
 
 // Category color mapping
 const categoryColors: Record<string, { bg: string; border: string }> = {
