@@ -4,12 +4,19 @@ export default defineType({
   name: 'page',
   title: 'Page',
   type: 'document',
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'bio', title: 'Bio (Profile)'},
+    {name: 'settings', title: 'Page Settings'},
+    {name: 'seo', title: 'SEO & Metadata'},
+  ],
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      group: 'settings',
     }),
     defineField({
       name: 'slug',
@@ -20,6 +27,7 @@ export default defineType({
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+      group: 'settings',
     }),
     defineField({
       name: 'parent',
@@ -34,17 +42,20 @@ export default defineType({
           }
           return true
         }),
+      group: 'settings',
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
+      group: 'settings',
     }),
     defineField({
       name: 'metaDescription',
       title: 'Meta Description',
       type: 'text',
       rows: 3,
+      group: 'seo',
     }),
     defineField({
       name: 'showSidebar',
@@ -52,6 +63,7 @@ export default defineType({
       type: 'boolean',
       description: 'Display a table of contents sidebar based on page headings',
       initialValue: false,
+      group: 'settings',
     }),
     defineField({
       name: 'sidebarPosition',
@@ -65,6 +77,7 @@ export default defineType({
       },
       initialValue: 'right',
       hidden: ({document}) => !document?.showSidebar,
+      group: 'settings',
     }),
     defineField({
       name: 'pageType',
