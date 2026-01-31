@@ -23,7 +23,9 @@ const breadcrumbs = segments.map((seg, i) => {
   }
 })
 
-const pageHtml = page.body ? renderPortableText(page.body) : ''
+import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
+
+const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
 ---
 
 <div class="max-w-6xl mx-auto">

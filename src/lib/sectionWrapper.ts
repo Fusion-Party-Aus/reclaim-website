@@ -34,9 +34,12 @@ export function wrapSectionsInBoxes(html: string): string {
   }
 
   // Process each h2 section
+  const sectionColors = ['bg-magenta', 'bg-mint', 'bg-yellow']
+
   for (let i = 0; i < matches.length; i++) {
     const h2Match = matches[i]
     const sectionContent = parts[i + 1] || ''
+    const bgColor = sectionColors[i % sectionColors.length]
 
     // Find the next h2 to know where this section ends
     const nextH2Index = sectionContent.search(/<h2[^>]*>/i)
@@ -48,8 +51,8 @@ export function wrapSectionsInBoxes(html: string): string {
 
     // Wrap in brutal box, preserving the ID attribute
     result += `
-      <div class="brutal-section mb-8">
-        <h2 class="brutal-section-header"${h2Match.attrs}>${h2Match.content}</h2>
+      <div class="brutal-section mb-12">
+        <h2 class="brutal-section-header ${bgColor}"${h2Match.attrs}>${h2Match.content}</h2>
         <div class="brutal-section-content">
           ${thisSection}
         </div>

@@ -139,6 +139,8 @@ export interface Page extends SanityDocument {
     url: string
   }>
   subtitle?: string
+  showSidebar?: boolean
+  sidebarPosition?: 'left' | 'right'
   body?: PortableTextBlock[]
   sidebar?: PortableTextBlock[]
   publishedAt?: string
