@@ -58,9 +58,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     }
   </nav>
 
-  <div class="grid lg:grid-cols-[400px_1fr] gap-12 items-start">
+  <div class="flex flex-col lg:flex-row gap-8 md:gap-12 items-start">
     <!-- Left Column: Image & Status -->
-    <div class="space-y-8">
+    <div class="w-full lg:w-[350px] space-y-8 shrink-0">
       {
         page.profileImage && (
           <div
@@ -118,7 +118,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     </div>
 
     <!-- Right Column: Biography -->
-    <div class="space-y-8">
+    <div class="flex-1 min-w-0 space-y-8">
       <div class="brutal-card bg-white p-8 md:p-12" style="box-shadow: 12px 12px 0 0 #000;">
         <div class="prose prose-lg max-w-none prose-headings:uppercase prose-headings:font-black">
           {
