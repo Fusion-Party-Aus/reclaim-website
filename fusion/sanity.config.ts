@@ -1,7 +1,37 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
+import {defineConfig, type ConfigContext} from 'sanity'
+import {structureTool, type StructureBuilder} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+
+/**
+ * Recursive helper to build a nested page tree in the Sanity Desk
+ */
+const getPageStructure = (S: StructureBuilder, parentId?: string): any => {
+  const filter = parentId
+    ? `_type == "page" && parent._ref == $parentId`
+    : `_type == "page" && !defined(parent)`
+
+  const title = parentId ? 'Subpages' : 'Top Level Pages'
+
+  return S.documentTypeList('page')
+    .title(title)
+    .filter(filter)
+    .params({parentId})
+    .child((id: string) =>
+      S.list()
+        .title('Page Options')
+        .items([
+          S.listItem()
+            .title('Edit Page Content')
+            .icon(() => '📝')
+            .child(S.document().schemaType('page').documentId(id)),
+          S.listItem()
+            .title('Subpages')
+            .icon(() => '📁')
+            .child(getPageStructure(S, id)),
+        ]),
+    )
+}
 
 export default defineConfig({
   name: 'default',
@@ -12,7 +42,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S: StructureBuilder, _context: ConfigContext) =>
         S.list()
           .title('Website Management')
           .items([
@@ -55,31 +85,8 @@ export default defineConfig({
                 S.list()
                   .title('Editorial Content')
                   .items([
-                    // Hierarchical Pages
-                    S.listItem()
-                      .title('📄 Pages')
-                      .child(
-                        S.documentTypeList('page')
-                          .title('Top Level Pages')
-                          .filter('_type == "page" && !defined(parent)')
-                          .child((id) =>
-                            S.list()
-                              .title('Page Settings')
-                              .items([
-                                S.listItem()
-                                  .title('Edit Page')
-                                  .child(S.document().schemaType('page').documentId(id)),
-                                S.listItem()
-                                  .title('Subpages')
-                                  .child(
-                                    S.documentTypeList('page')
-                                      .title('Subpages')
-                                      .filter('_type == "page" && parent._ref == $id')
-                                      .params({id}),
-                                  ),
-                              ]),
-                          ),
-                      ),
+                    // Recursive Hierarchical Pages
+                    S.listItem().title('📄 Pages').child(getPageStructure(S)),
                     S.listItem()
                       .title('📰 Blog Posts')
                       .icon(() => '📰')
