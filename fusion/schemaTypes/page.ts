@@ -67,9 +67,75 @@ export default defineType({
       hidden: ({document}) => !document?.showSidebar,
     }),
     defineField({
+      name: 'pageType',
+      title: 'Page Type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Standard', value: 'standard'},
+          {title: 'Bio (Profile)', value: 'bio'},
+          {title: 'Landing Page (Campaign)', value: 'landing'},
+        ],
+      },
+      initialValue: 'standard',
+      group: 'content',
+    }),
+    defineField({
+      name: 'profileImage',
+      title: 'Profile Image',
+      type: 'image',
+      options: {hotspot: true},
+      hidden: ({document}) => document?.pageType !== 'bio',
+      group: 'bio',
+    }),
+    defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      description: 'e.g. Lead Candidate for Victoria',
+      hidden: ({document}) => document?.pageType !== 'bio',
+      group: 'bio',
+    }),
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'platform',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'X / Twitter', value: 'twitter'},
+                  {title: 'LinkedIn', value: 'linkedin'},
+                  {title: 'Facebook', value: 'facebook'},
+                  {title: 'Instagram', value: 'instagram'},
+                  {title: 'GitHub', value: 'github'},
+                  {title: 'Website', value: 'website'},
+                ],
+              },
+            },
+            {name: 'url', type: 'url', title: 'URL'},
+          ],
+          preview: {
+            select: {
+              title: 'platform',
+              subtitle: 'url',
+            },
+          },
+        },
+      ],
+      hidden: ({document}) => document?.pageType !== 'bio',
+      group: 'bio',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
+      group: 'content',
       of: [
         {
           type: 'block',

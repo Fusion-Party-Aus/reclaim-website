@@ -130,6 +130,14 @@ export interface Page extends SanityDocument {
   _type: 'page'
   title: string
   slug: SanitySlug
+  parent?: SanityReference
+  pageType?: 'standard' | 'bio' | 'landing'
+  profileImage?: SanityImageAsset
+  role?: string
+  socialLinks?: Array<{
+    platform: string
+    url: string
+  }>
   subtitle?: string
   body?: PortableTextBlock[]
   sidebar?: PortableTextBlock[]
