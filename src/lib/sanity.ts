@@ -1,14 +1,19 @@
-import { sanityClient } from 'sanity:client'
+import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { Policy, Electorate, FAQ, Page, HomePage } from '../types/sanity'
 
-export const client = sanityClient
+export const client = createClient({
+  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
+  dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
+  useCdn: true,
+  apiVersion: '2024-01-29',
+})
 
 /**
  * Image URL builder for Sanity images
  */
-const builder = imageUrlBuilder(client)
+const builder = imageUrlBuilder(client as any)
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source)
@@ -88,8 +93,19 @@ export async function getFAQsByCategory(category: string): Promise<FAQ[]> {
   return await client.fetch(query, { category })
 }
 
-export async function getPages(): Promise<Page[]> {
-  const query = `*[_type == "page"] | order(_createdAt desc)`
+export async function getPages(): Promise<any[]> {
+  const query = `*[_type == "page"] {
+    ...,
+    "parent": parent->{
+      slug,
+      "parent": parent->{
+        slug,
+        "parent": parent->{
+          slug
+        }
+      }
+    }
+  }`
   return await client.fetch(query)
 }
 
@@ -101,7 +117,21 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
 // ... (existing exports)
 
 export async function getHomePage(): Promise<HomePage | null> {
-  const query = `*[_type == "homePage"][0]`
+  const query = `*[_type == "homePage"][0]{
+    ...,
+    theftSection {
+      ...,
+      featuredPolicies[]->{
+        title,
+        slug,
+        icon,
+        summary,
+        category,
+        cost,
+        impact
+      }
+    }
+  }`
   return await client.fetch(query)
 }
 

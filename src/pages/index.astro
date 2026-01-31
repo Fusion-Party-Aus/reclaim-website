@@ -14,8 +14,6 @@ import Section from '../components/ui/Section.astro'
 import Grid from '../components/ui/Grid.astro'
 import BrutalCard from '../components/ui/BrutalCard.astro'
 import BrutalButton from '../components/ui/BrutalButton.astro'
-import StatCard from '../components/ui/StatCard.astro'
-import IconBadge from '../components/ui/IconBadge.astro'
 import CTA from '../components/ui/CTA.astro'
 import FloatingIcon from '../components/ui/FloatingIcon.astro'
 import MovementMetrics from '../components/ui/MovementMetrics.astro'
@@ -74,6 +72,7 @@ interface HomePage {
     heading: string
     description: string
     cards: any[]
+    featuredPolicies?: any[]
   }
   electoratesSection: {
     heading: string
@@ -234,10 +233,18 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
 
     <div class="theft-grid">
       {
-        homePageTyped.theftSection.cards.map((card: any, index: number) => {
-          const imageUrl = card.image
-            ? urlFor(card.image).width(600).height(400).url()
-            : card.imageUrl
+        (homePageTyped.theftSection.featuredPolicies &&
+        homePageTyped.theftSection.featuredPolicies.length > 0
+          ? homePageTyped.theftSection.featuredPolicies
+          : homePageTyped.theftSection.cards
+        ).map((item: any, index: number) => {
+          // Detect if it's a dynamic policy document or a manual card
+          const isPolicy = !!item.slug
+
+          const imageUrl = item.image
+            ? urlFor(item.image).width(600).height(400).url()
+            : item.imageUrl || '/images/policy-fallback.jpg'
+
           const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
             'magenta',
             'mint',
@@ -246,6 +253,15 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
           ]
           const color = colors[index % colors.length]
 
+          // Map fields
+          const title = isPolicy ? item.title : item.amount
+          const description = isPolicy ? item.summary : item.description
+          const category = item.category
+          const icon = item.icon
+          const link = isPolicy ? `/policies/${item.slug.current}` : item.link
+          const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
+          const impact = isPolicy ? item.impact : item.impact
+
           return (
             <div
               class={`theft-card group hover:shadow-[12px_12px_0px_0px_#000000] transition-all duration-200 hover:-translate-y-1`}
@@ -253,46 +269,51 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
               <div class="relative overflow-hidden">
                 <img
                   src={imageUrl}
-                  alt={card.category}
+                  alt={category}
                   class="theft-card-image group-hover:scale-105 transition-transform duration-300"
                 />
-                {card.icon && card.icon.includes(':') && (
+                {icon && icon.includes(':') && (
                   <div
                     class={`absolute top-4 right-4 bg-${color} p-3 border-4 border-black shadow-[4px_4px_0px_0px_#000000]`}
                   >
-                    <Icon name={card.icon} class="w-8 h-8 text-black" />
+                    <Icon name={icon} class="w-8 h-8 text-black" />
                   </div>
                 )}
               </div>
               <div class="theft-card-content">
-                <div class="theft-card-category">{card.category}</div>
-                <h3 class="group-hover:text-magenta transition-colors">{card.amount}</h3>
-                <p class="theft-card-description">{card.description}</p>
-                <div class="theft-card-impact">
-                  <strong class="flex items-center gap-2">
-                    <Icon name="mdi:hand-heart" class="w-5 h-5 text-magenta" />
-                    Your Impact:
-                  </strong>
-                  <p>{card.impact}</p>
-                </div>
+                <div class="theft-card-category">{category}</div>
+                <h3 class="group-hover:text-magenta transition-colors">{title}</h3>
+                <p class="theft-card-description">{description}</p>
 
-                {/* Share Quote Card for each theft stat */}
+                {impact && (
+                  <div class="theft-card-impact">
+                    <strong class="flex items-center gap-2">
+                      <Icon name="mdi:hand-heart" class="w-5 h-5 text-magenta" />
+                      Impact:
+                    </strong>
+                    <p>{impact}</p>
+                  </div>
+                )}
+
+                {/* Share Quote Card */}
                 <div class="mt-4 pt-4 border-t-2 border-gray-200">
                   <ShareQuoteCard
-                    quote={`${card.amount} - ${card.description}`}
-                    attribution="Victorian Theft Report 2024"
-                    category={card.category}
-                    policyUrl={card.link}
+                    quote={`${title} - ${description}`}
+                    attribution={
+                      isPolicy ? 'Fusion Victoria Policy' : 'Victorian Theft Report 2024'
+                    }
+                    category={category}
+                    policyUrl={link}
                     color={color}
                     compact={true}
                   />
                 </div>
 
                 <a
-                  href={card.link}
-                  class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform"
+                  href={link}
+                  class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform mt-4"
                 >
-                  {card.linkText}
+                  {linkText}
                   <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
                 </a>
               </div>

@@ -83,8 +83,10 @@ export default defineType({
         },
         {
           name: 'cards',
-          title: 'Theft Cards',
+          title: 'Theft Cards (Manual Content)',
           type: 'array',
+          description:
+            'Original static cards. These will be used if no featured policies are selected.',
           of: [
             {
               type: 'object',
@@ -146,6 +148,19 @@ export default defineType({
                   type: 'string',
                 },
               ],
+            },
+          ],
+        },
+        {
+          name: 'featuredPolicies',
+          title: 'Featured Policies (Dynamic Content)',
+          type: 'array',
+          description:
+            'Select policies to feature in this section. If selected, these will replace the manual cards above.',
+          of: [
+            {
+              type: 'reference',
+              to: [{type: 'policy'}],
             },
           ],
         },

@@ -22,6 +22,20 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'parent',
+      title: 'Parent Page',
+      type: 'reference',
+      to: [{type: 'page'}],
+      description: 'Select the parent page to create a nested URL (e.g., about/team)',
+      validation: (Rule) =>
+        Rule.custom((parent, context) => {
+          if (parent && parent._ref === (context.document as any)._id?.replace(/^drafts\./, '')) {
+            return 'A page cannot be its own parent'
+          }
+          return true
+        }),
+    }),
+    defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',

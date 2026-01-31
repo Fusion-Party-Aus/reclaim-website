@@ -8,6 +8,7 @@
     "dev:sanity": "cd fusion && sanity dev --port 3333",
     "build": "astro build",
     "build:sanity": "cd fusion && sanity build",
+    "deploy:sanity": "cd fusion && sanity deploy",
     "preview": "astro preview",
     "astro": "astro",
     "sanity": "cd fusion && sanity",
