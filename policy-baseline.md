@@ -30,7 +30,38 @@
 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
-Give every Australian a Universal Basic Income set at the Henderson Poverty Line to provide economic security and dignity while simplifying the welfare system. This ensures everyone shares in our nation’s wealth, no one falls through the cracks, and Australia is prepared for a future shaped by AI-driven workplaces.
+1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
+    1. A reliable income foundation will support stability through job changes, illness, and economic transition.
+    2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
+    3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
+    4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
+    5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+A Universal Basic Income was selected over expanded conditional welfare and negative income tax models because it establishes a clear, permanent income floor without eligibility churn, behavioural conditions, or ongoing recalibration. Conditional and targeted systems were assessed as structurally complex, exclusion-prone, and poorly suited to labour-market volatility. The design intent is to provide a stable baseline that does not require frequent policy intervention as economic conditions change.
+
+**System interaction**  
+The Citizens Dividend replaces baseline income-support payments that provide subsistence-level income, while leaving supplementary and needs-based supports intact. Payments related to disability, caring responsibilities, housing assistance, or additional costs remain layered above the baseline. Interaction with the tax system occurs through ordinary income taxation rather than withdrawal rules, avoiding sharp cliffs and preserving universality.
+
+**Economic and institutional logic**  
+The policy alters incentive structures by separating basic income security from continuous employment. This reduces effective marginal tax rates created by benefit withdrawal, increases flexibility around part-time work, retraining, caregiving, and entrepreneurship, and improves worker bargaining position without relying on compliance enforcement. The design assumes that labour participation is primarily driven by income above subsistence levels, job quality, and social participation rather than coercive welfare conditionality.
+
+**Risk and failure modes**  
+Key risks include fiscal miscalibration if the baseline level is poorly set, political pressure to reintroduce conditionality that erodes universality, inflationary pressure if introduced without complementary supply-side reforms, and partial implementation that preserves complexity while losing coherence. Indicators of underperformance would include persistent poverty despite rollout, re-emergence of multiple overlapping income tests, or labour-market responses that significantly deviate from modelling assumptions.
+
+**Evidence and precedent**  
+Relevant evidence includes international income-floor pilots, negative income tax experiments, Australian basic-income modelling, and long-standing universal payment frameworks such as pensions and family benefits. Results consistently show strong poverty-reduction effects and administrative simplification, with labour-market impacts varying by design scale, interaction with taxation, and surrounding economic conditions. No single trial is treated as decisive; the policy draws on converging findings across multiple approaches.
+
+**Implementation outline**  
+Implementation is sequenced around legislative consolidation of baseline payments, integration with existing tax and reporting systems, and a managed transition period to prevent duplication or income gaps. Dependencies include accurate income data flows, agency coordination, and clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
+
+---
+</details>
 
 ### **Guarantee Fair Wages for All Workers**
 
