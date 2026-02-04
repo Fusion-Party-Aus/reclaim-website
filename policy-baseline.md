@@ -1,24 +1,24 @@
 # Fix Our Systems, Fix Our Country
 
-_Our country became prosperous because we developed systems that incentivised <u>long-term</u> economic growth._
-_Over the past 50 years, those systems have been steadily dismantled dismantled and replaced with ones that incentivise <u>short-term</u> gains instead._
-_Growth continued for a while - not because the systems were good, but because of the cultural legacy which shaped our expectations and decisions._
+*Our country became prosperous because we developed systems that incentivised <u>long-term</u> economic growth.*
+*Over the past 50 years, those systems have been steadily dismantled dismantled and replaced with ones that incentivise <u>short-term</u> gains instead.*
+*Growth continued for a while - not because the systems were good, but because of the cultural legacy which shaped our expectations and decisions.*
 
-_But cultural legacy is temporary._
-_It evolves from generation to generation, and changes as we adapt to the world around us._
-_Now that legacy has been diluted to the point that long-term growth is no longer an outcome of our systems._
+*But cultural legacy is temporary.*
+*It evolves from generation to generation, and changes as we adapt to the world around us.*
+*Now that legacy has been diluted to the point that long-term growth is no longer an outcome of our systems.*
 
-_This is not the fault of the youth, nor the immigrant, nor the retiree._
+*This is not the fault of the youth, nor the immigrant, nor the retiree.*
 
-_It is the fault of an ultra-wealthy minority who used their influence over government to bend our systems to their own advantage._
+*It is the fault of an ultra-wealthy minority who used their influence over government to bend our systems to their own advantage.*
 
-_And we cannot just go backwards. The systems of the past will not work again in the present, the world has changed too much._
+*And we cannot just go backwards. The systems of the past will not work again in the present, the world has changed too much.*
 
-_We must Rebuild systems that generate long-term growth from first principles._
-_We must Reclaim our economy for the benefit of our future generations._
+*We must Rebuild systems that generate long-term growth from first principles.*
+*We must Reclaim our economy for the benefit of our future generations.*
 
-_Fix our systems, fix our country._
-_It is the only way._
+*Fix our systems, fix our country.*
+*It is the only way.*
 
 **Australia will not secure its future until we fix the systems that reward short-term gain at the expense of long-term prosperity.**
 
@@ -31,11 +31,11 @@ _It is the only way._
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
 1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
-   1. A reliable income foundation will support stability through job changes, illness, and economic transition.
-   2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
-   3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
-   4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
-   5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
+    1. A reliable income foundation will support stability through job changes, illness, and economic transition.
+    2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
+    3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
+    4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
+    5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -61,7 +61,6 @@ Relevant evidence includes international income-floor pilots, negative income ta
 Implementation is sequenced around legislative consolidation of baseline payments, integration with existing tax and reporting systems, and a managed transition period to prevent duplication or income gaps. Dependencies include accurate income data flows, agency coordination, and clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
 
 ---
-
 </details>
 
 ### **Guarantee Fair Wages for All Workers**
@@ -167,20 +166,20 @@ Shift the tax burden away from work and productivity toward land value, ensuring
 
 # FIX THE TAX EXPLOITS
 
-- Make the wealthy pay their fair share
-- End fossil fuel subsidies
-- Price carbon pollution
-- Close tax loopholes
-- Build a federal ICAC with teeth
-- Expose political donations
-- Build up small business
-- Break up media monopolies
-- End payroll tax
-- Take back your privacy from Big Tech
-- Guarantee net neutrality
-- Reform copyright for creators
-- Build a green hydrogen industry
-- Build a circular economy
+* Make the wealthy pay their fair share
+* End fossil fuel subsidies
+* Price carbon pollution
+* Close tax loopholes
+* Build a federal ICAC with teeth
+* Expose political donations
+* Build up small business
+* Break up media monopolies
+* End payroll tax
+* Take back your privacy from Big Tech
+* Guarantee net neutrality
+* Reform copyright for creators
+* Build a green hydrogen industry
+* Build a circular economy
 
 ---
 
@@ -188,47 +187,47 @@ Shift the tax burden away from work and productivity toward land value, ensuring
 
 ## Rebuild Our Communities
 
-- Restore ABC and SBS funding
-- Keep essential services public
-- Legalise cannabis
-- Launch a Royal Commission into media
-- Hold media accountable for misinformation
-- Build high-speed rail connecting regions
-- Make electric vehicles affordable for families
-- Roll out EV chargers everywhere
-- Take back privatised assets
-- Teach ethics in schools
-- Separate church and state
-- Strengthen animal welfare laws
+* Restore ABC and SBS funding
+* Keep essential services public
+* Legalise cannabis
+* Launch a Royal Commission into media
+* Hold media accountable for misinformation
+* Build high-speed rail connecting regions
+* Make electric vehicles affordable for families
+* Roll out EV chargers everywhere
+* Take back privatised assets
+* Teach ethics in schools
+* Separate church and state
+* Strengthen animal welfare laws
 
 ## Update Our Schools
 
-- Deliver Gonski reforms now
-- Fund education properly
-- Teach critical thinking in every classroom
-- Teach democracy in high school
-- Provide skills training for changing industries
-- Keep HECS/HELP accessible
-- Cut university bureaucracy
-- Give researchers funding security
+* Deliver Gonski reforms now
+* Fund education properly
+* Teach critical thinking in every classroom
+* Teach democracy in high school
+* Provide skills training for changing industries
+* Keep HECS/HELP accessible
+* Cut university bureaucracy
+* Give researchers funding security
 
 ## Transform Our Industries
 
-- Create hundreds of thousands of green jobs
-- Declare a climate emergency now
-- Build 800% renewable energy capacity
-- Reach negative emissions within 10 years
-- Cut rogue emissions from mining
-- Build green hydrogen for heavy transport
-- Modernise agriculture with precision fermentation
-- Build closed-loop manufacturing
-- Invest in fusion energy research
+* Create hundreds of thousands of green jobs
+* Declare a climate emergency now
+* Build 800% renewable energy capacity
+* Reach negative emissions within 10 years
+* Cut rogue emissions from mining
+* Build green hydrogen for heavy transport
+* Modernise agriculture with precision fermentation
+* Build closed-loop manufacturing
+* Invest in fusion energy research
 
 ## Repair Our Environment
 
-- Enrich soil carbon
-- Regenerate degraded farmland
-- End native logging now
-- Restore wetlands and ocean ecosystems
-- Promote regenerative agriculture
-- Invest in immediate cooling research
+* Enrich soil carbon
+* Regenerate degraded farmland
+* End native logging now
+* Restore wetlands and ocean ecosystems
+* Promote regenerative agriculture
+* Invest in immediate cooling research
