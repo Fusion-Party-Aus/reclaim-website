@@ -31,3 +31,8 @@ src/components/DynamicSidebar.astro
 src/pages/[slug].astro
 src/pages/blog/index.astro
 src/pages/faq/index.astro
+
+# Files with template syntax or code examples
+docs/MOVEMENT_METRICS.md
+nationbuilder/
+VIRAL_FEATURES_SUMMARY.md
