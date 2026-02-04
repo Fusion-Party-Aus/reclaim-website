@@ -1,0 +1,104 @@
+---
+/**
+ * BrutalButton - Reusable Neo-Brutalist Button Component
+ *
+ * Consistent button styling across the site.
+ * Supports different variants, sizes, and as link or button element.
+ *
+ * @param {string} variant - Style variant: 'primary' | 'secondary' | 'yellow' | 'mint' | 'magenta' | 'white' | 'black'
+ * @param {string} size - Button size: 'sm' | 'md' | 'lg'
+ * @param {string} href - If provided, renders as <a> tag
+ * @param {string} type - Button type if rendering as button
+ * @param {boolean} fullWidth - Make button full width
+ * @param {string} class - Additional CSS classes
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'yellow' | 'mint' | 'magenta' | 'white' | 'black'
+  size?: 'sm' | 'md' | 'lg'
+  href?: string
+  type?: 'button' | 'submit' | 'reset'
+  fullWidth?: boolean
+  icon?: string
+  iconPosition?: 'left' | 'right'
+  class?: string
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  fullWidth = false,
+  icon,
+  iconPosition = 'left',
+  class: className = '',
+} = Astro.props
+
+// Variant styles
+const variantStyles = {
+  primary: 'bg-magenta text-white border-black hover:bg-magenta-dark shadow-[6px_6px_0_0_#000]',
+  secondary: 'bg-mint text-black border-black hover:bg-yellow shadow-[6px_6px_0_0_#000]',
+  yellow: 'bg-yellow text-black border-black hover:bg-mint shadow-[6px_6px_0_0_#000]',
+  mint: 'bg-mint text-black border-black hover:bg-magenta hover:text-white shadow-[6px_6px_0_0_#000]',
+  magenta: 'bg-magenta text-white border-black hover:bg-magenta-dark shadow-[6px_6px_0_0_#C926F2]',
+  white: 'bg-white text-black border-black hover:bg-mint shadow-[6px_6px_0_0_#000]',
+  black:
+    'bg-black text-white border-white hover:bg-white hover:text-black shadow-[6px_6px_0_0_#FFF]',
+}
+
+// Size styles
+const sizeStyles = {
+  sm: 'px-4 py-2 text-sm border-4',
+  md: 'px-6 py-3 text-base border-5',
+  lg: 'px-8 py-4 text-lg border-6',
+}
+
+const baseClasses = `
+  inline-flex items-center justify-center gap-2
+  font-black uppercase tracking-wide
+  transition-all duration-150
+  hover:translate-x-1 hover:translate-y-1
+  hover:shadow-[2px_2px_0_0_#000]
+  ${sizeStyles[size]}
+  ${variantStyles[variant]}
+  ${fullWidth ? 'w-full' : ''}
+  ${className}
+`
+
+const Element = href ? 'a' : 'button'
+---
+
+<Element
+  href={href}
+  type={!href ? type : undefined}
+  class={baseClasses}
+  style="font-family: 'Archivo Black', sans-serif;"
+>
+  {icon && iconPosition === 'left' && <Icon name={icon} class="w-5 h-5" />}
+  <slot />
+  {icon && iconPosition === 'right' && <Icon name={icon} class="w-5 h-5" />}
+</Element>
+
+<style>
+  button,
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  button:active,
+  a:active {
+    transform: translate(6px, 6px);
+    box-shadow: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button,
+    a {
+      transition: none !important;
+    }
+  }
+</style>

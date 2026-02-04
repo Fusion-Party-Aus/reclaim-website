@@ -1,0 +1,100 @@
+---
+interface Props {
+  sections: Array<{
+    id: string
+    title: string
+    questions: Array<{
+      id: string
+      title: string
+    }>
+  }>
+}
+
+const { sections } = Astro.props
+---
+
+<aside class="faq-sidebar">
+  <div class="sticky top-8">
+    <div class="bg-white border-4 border-black p-6" style="box-shadow: 8px 8px 0px 0px #000000;">
+      <h3 class="text-xl font-black text-magenta mb-6 uppercase">Questions</h3>
+      <nav class="space-y-6">
+        {
+          sections.map((section) => (
+            <div class="category-section">
+              <a
+                href={`#${section.id}`}
+                class="block py-2 px-3 font-black uppercase border-3 border-black bg-yellow hover:bg-mint transition-colors text-sm mb-3"
+                style="box-shadow: 3px 3px 0px 0px #000000;"
+              >
+                {section.title}
+              </a>
+              <ul class="space-y-1 pl-2">
+                {section.questions.map((question) => (
+                  <li>
+                    <a
+                      href={`#${question.id}`}
+                      class="block py-2 px-3 text-xs font-bold border-2 border-black bg-white hover:bg-mint hover:translate-x-1 transition-all"
+                      style="box-shadow: 2px 2px 0px 0px #000000;"
+                    >
+                      {question.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+
+      <div class="mt-8 pt-6 border-t-4 border-black">
+        <h4 class="text-lg font-black text-magenta mb-4 uppercase">Quick Links</h4>
+        <div class="space-y-2">
+          <a
+            href="/manifesto"
+            class="block py-2 px-3 font-bold text-sm border-2 border-black bg-white hover:bg-mint transition-colors"
+            style="box-shadow: 2px 2px 0px 0px #000000;"
+          >
+            📄 Full Manifesto
+          </a>
+          <a
+            href="/get-involved"
+            class="block py-2 px-3 font-bold text-sm border-2 border-black bg-white hover:bg-magenta hover:text-white transition-colors"
+            style="box-shadow: 2px 2px 0px 0px #000000;"
+          >
+            🚀 Get Involved
+          </a>
+          <a
+            href="https://fusionparty.org.au/donate"
+            class="block py-2 px-3 font-bold text-sm border-2 border-black bg-yellow hover:bg-magenta hover:text-white transition-colors"
+            style="box-shadow: 2px 2px 0px 0px #000000;"
+          >
+            💰 Donate
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="mt-6 p-4 border-4 border-magenta bg-magenta text-white"
+        style="box-shadow: 4px 4px 0px 0px #000000;"
+      >
+        <p class="font-black text-sm uppercase">No Corporate Donations. Ever.</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .faq-sidebar {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .faq-sidebar a {
+    display: block;
+  }
+
+  .category-section {
+    border-left: 4px solid #c926f2;
+    padding-left: 0.5rem;
+  }
+</style>

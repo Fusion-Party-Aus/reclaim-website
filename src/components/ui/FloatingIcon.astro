@@ -1,0 +1,101 @@
+---
+/**
+ * FloatingIcon - Animated Background Decoration Component
+ *
+ * Displays an animated icon as a background decoration element.
+ * Used for adding visual interest without interfering with content.
+ *
+ * @param {string} name - MDI icon name (required)
+ * @param {string} color - CSS color value (rgba, hex, etc.)
+ * @param {number} size - Icon size in pixels
+ * @param {string} animation - Animation type
+ * @param {object} position - Position object with top/right/bottom/left properties
+ * @param {number} opacity - Opacity (0-1)
+ * @param {string} delay - Animation delay (e.g., '1s', '500ms')
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  name: string
+  color?: string
+  size?: number
+  animation?:
+    | 'float'
+    | 'float-gentle'
+    | 'float-slow'
+    | 'spin'
+    | 'spin-slow'
+    | 'wiggle'
+    | 'wiggle-subtle'
+    | 'bounce'
+    | 'bounce-subtle'
+    | 'pulse'
+    | 'pulse-gentle'
+    | 'none'
+  position?: {
+    top?: string
+    right?: string
+    bottom?: string
+    left?: string
+  }
+  opacity?: number
+  delay?: string
+}
+
+const {
+  name,
+  color = 'rgba(0, 0, 0, 0.05)',
+  size = 100,
+  animation = 'float-gentle',
+  position = { top: '10%', right: '5%' },
+  opacity = 1,
+  delay = '0s',
+} = Astro.props
+
+// Animation classes - map short names to full animation classes
+const animations = {
+  float: 'animate-float-gentle',
+  'float-gentle': 'animate-float-gentle',
+  'float-slow': 'animate-float-slow',
+  spin: 'animate-spin-slow',
+  'spin-slow': 'animate-spin-slow',
+  wiggle: 'animate-wiggle-subtle',
+  'wiggle-subtle': 'animate-wiggle-subtle',
+  bounce: 'animate-bounce-subtle',
+  'bounce-subtle': 'animate-bounce-subtle',
+  pulse: 'animate-pulse-gentle',
+  'pulse-gentle': 'animate-pulse-gentle',
+  none: '',
+}
+
+const animationClass = animations[animation] || ''
+
+// Build position styles
+const positionStyles = Object.entries(position)
+  .map(([key, value]) => `${key}: ${value}`)
+  .join('; ')
+
+const iconStyles = `
+  ${positionStyles};
+  opacity: ${opacity};
+  animation-delay: ${delay};
+`
+---
+
+<div class={`absolute pointer-events-none ${animationClass}`} style={iconStyles}>
+  <Icon name={name} style={`width: ${size}px; height: ${size}px; color: ${color};`} />
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-gentle,
+    .animate-float-slow,
+    .animate-spin-slow,
+    .animate-wiggle-subtle,
+    .animate-bounce-subtle,
+    .animate-pulse-gentle {
+      animation: none;
+    }
+  }
+</style>

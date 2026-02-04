@@ -1,0 +1,636 @@
+---
+export const prerender = false
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Footer from '../components/Footer.astro'
+import { getDocuments } from '../lib/sanity'
+import { urlFor } from '../lib/sanity'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+// Component Library
+import Section from '../components/ui/Section.astro'
+import Grid from '../components/ui/Grid.astro'
+import BrutalCard from '../components/ui/BrutalCard.astro'
+import BrutalButton from '../components/ui/BrutalButton.astro'
+import CTA from '../components/ui/CTA.astro'
+import FloatingIcon from '../components/ui/FloatingIcon.astro'
+import MovementMetrics from '../components/ui/MovementMetrics.astro'
+import DeveloperMessages from '../components/DeveloperMessages.astro'
+import ShareQuoteCard from '../components/ShareQuoteCard.astro'
+import ScrollProgress from '../components/ScrollProgress.astro'
+import FloatingShareButtons from '../components/FloatingShareButtons.astro'
+import MemberSignup from '../components/MemberSignup.astro'
+
+// Fetch home page data from Sanity
+const homePages = await getDocuments('homePage')
+const homePage = homePages[0] // There should only be one home page
+
+if (!homePage) {
+  throw new Error('Home page not found in Sanity')
+}
+
+// Fetch electorates for the electorates section
+const electorates = await getDocuments('electorate')
+
+interface HomePage {
+  title: string
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+  hero: {
+    eyebrow?: string
+    title: string
+    subtitle?: string
+    showCTA?: boolean
+    stats?: { number: string; label: string }[]
+  }
+  alertBar?: {
+    enabled?: boolean
+    text?: string
+    linkText?: string
+    linkUrl?: string
+  }
+  movementMetrics?: {
+    label: string
+    current: number
+    goal: number
+    icon: string
+    color: 'magenta' | 'mint' | 'yellow'
+    suffix?: string
+    prefix?: string
+  }[]
+  signupCTA?: {
+    heading?: string
+    description?: string
+    buttonText?: string
+    footerText?: string
+  }
+  theftSection: {
+    heading: string
+    description: string
+    cards: any[]
+    featuredPolicies?: any[]
+  }
+  electoratesSection: {
+    heading: string
+    description: string
+    callToAction: {
+      heading: string
+      description: string
+      buttonText: string
+      buttonLink: string
+    }
+  }
+  manifestoSection: {
+    heading: string
+    description: string
+    stats: any[]
+  }
+  joinSection: {
+    heading: string
+    description: string
+    cards: any[]
+  }
+}
+
+const homePageTyped = homePage as unknown as HomePage
+
+// Merge Sanity metrics with defaults if Sanity data is missing or empty
+const defaultMetrics = [
+  {
+    label: 'Registered Members',
+    current: 847,
+    goal: 1000,
+    icon: '👥',
+    color: 'magenta' as const,
+  },
+  {
+    label: 'Active Volunteers',
+    current: 234,
+    goal: 320,
+    icon: '🙋',
+    color: 'mint' as const,
+  },
+  {
+    label: 'Candidates Ready',
+    current: 12,
+    goal: 88,
+    icon: '🗳️',
+    color: 'yellow' as const,
+    suffix: ' electorates',
+  },
+  {
+    label: 'Monthly Donations',
+    current: 4250,
+    goal: 10000,
+    icon: '💰',
+    color: 'magenta' as const,
+    prefix: '$',
+  },
+]
+
+const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
+---
+
+<BaseLayout
+  title={homePageTyped.seo?.metaTitle || homePageTyped.title}
+  description={homePageTyped.seo?.metaDescription || ''}
+>
+  <Header />
+
+  <!-- Developer Messages (injected via console, Astro strips HTML comments) -->
+  <DeveloperMessages />
+
+  <!-- Scroll Progress with Milestones -->
+  <ScrollProgress showMilestones={true} color="magenta" />
+
+  <!-- Floating Share Buttons -->
+  <FloatingShareButtons
+    title="Fusion Party - Democracy shouldn't be a spectator sport"
+    position="left"
+  />
+
+  <!-- ALERT BAR - Enhanced with icon -->
+  {
+    homePageTyped.alertBar?.enabled !== false && (
+      <div class="alert-bar relative overflow-hidden">
+        <div class="absolute top-0 right-0 text-white/10 text-6xl animate-pulse-gentle">
+          <Icon name="mdi:vote" class="w-16 h-16" />
+        </div>
+        <div class="relative z-10">
+          <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
+          {homePageTyped.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
+          <a href={homePageTyped.alertBar?.linkUrl || '#electorates'}>
+            {homePageTyped.alertBar?.linkText || 'Find your electorate'}
+          </a>
+        </div>
+      </div>
+    )
+  }
+
+  <!-- HERO -->
+  <Hero
+    eyebrow={homePageTyped.hero.eyebrow}
+    title={homePageTyped.hero.title}
+    subtitle={homePageTyped.hero.subtitle}
+    stats={homePageTyped.hero.stats}
+    showCTA={homePageTyped.hero.showCTA}
+  />
+
+  <!-- MOVEMENT METRICS - Gamified Progress Tracking -->
+  <Section padding="xl" border={true} borderPosition="bottom" borderColor="magenta">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-block mb-4 animate-pulse-gentle">
+          <Icon name="mdi:chart-line" class="w-12 h-12 text-magenta" />
+        </div>
+        <h2
+          class="text-3xl md:text-4xl font-black mb-3 uppercase text-magenta"
+          style="transform: rotate(-0.5deg); display: inline-block;"
+        >
+          Movement In Motion
+        </h2>
+        <p class="text-lg text-gray-700 font-bold max-w-2xl mx-auto">
+          Real people. Real progress. Real democracy. Watch us grow in real-time.
+        </p>
+      </div>
+      <MovementMetrics metrics={movementMetrics} />
+    </div>
+  </Section>
+
+  <!-- THE THEFT - Victoria Specific -->
+  <Section border={true} borderPosition="bottom" padding="xl">
+    <FloatingIcon
+      name="mdi:hand-coin"
+      color="rgba(255, 51, 153, 0.05)"
+      size={256}
+      animation="float"
+      position={{ top: '5rem', left: '2.5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:cash-remove"
+      color="rgba(0, 255, 204, 0.05)"
+      size={192}
+      animation="float"
+      position={{ bottom: '5rem', right: '2.5rem' }}
+      delay="1s"
+    />
+
+    <div class="text-center max-w-3xl mx-auto mb-16" style="transform: rotate(-0.5deg);">
+      <div class="inline-block mb-4 animate-wiggle-subtle">
+        <Icon name="mdi:alert-decagram" class="w-16 h-16 text-magenta" />
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-magenta">
+        {homePageTyped.theftSection.heading}
+      </h2>
+      <p class="text-xl text-gray-700 font-bold">
+        {homePageTyped.theftSection.description}
+      </p>
+    </div>
+
+    <div class="theft-grid">
+      {
+        (homePageTyped.theftSection.featuredPolicies &&
+        homePageTyped.theftSection.featuredPolicies.length > 0
+          ? homePageTyped.theftSection.featuredPolicies
+          : homePageTyped.theftSection.cards
+        ).map((item: any, index: number) => {
+          // Detect if it's a dynamic policy document or a manual card
+          const isPolicy = !!item.slug
+
+          const imageUrl = item.image
+            ? urlFor(item.image).width(600).height(400).url()
+            : item.imageUrl || '/images/policy-fallback.jpg'
+
+          const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
+            'magenta',
+            'mint',
+            'yellow',
+            'lavender',
+          ]
+          const color = colors[index % colors.length]
+
+          // Map fields
+          const title = isPolicy ? item.title : item.amount
+          const description = isPolicy ? item.summary : item.description
+          const category = item.category
+          const icon = item.icon
+          const link = isPolicy ? `/policies/${item.slug.current}` : item.link
+          const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
+          const impact = isPolicy ? item.impact : item.impact
+
+          return (
+            <div
+              class={`theft-card group hover:shadow-[12px_12px_0px_0px_#000000] transition-all duration-200 hover:-translate-y-1`}
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src={imageUrl}
+                  alt={category}
+                  class="theft-card-image group-hover:scale-105 transition-transform duration-300"
+                />
+                {icon && icon.includes(':') && (
+                  <div
+                    class={`absolute top-4 right-4 bg-${color} p-3 border-4 border-black shadow-[4px_4px_0px_0px_#000000]`}
+                  >
+                    <Icon name={icon} class="w-8 h-8 text-black" />
+                  </div>
+                )}
+              </div>
+              <div class="theft-card-content">
+                <div class="theft-card-category">{category}</div>
+                <h3 class="group-hover:text-magenta transition-colors">{title}</h3>
+                <p class="theft-card-description">{description}</p>
+
+                {impact && (
+                  <div class="theft-card-impact">
+                    <strong class="flex items-center gap-2">
+                      <Icon name="mdi:hand-heart" class="w-5 h-5 text-magenta" />
+                      Impact:
+                    </strong>
+                    <p>{impact}</p>
+                  </div>
+                )}
+
+                {/* Share Quote Card */}
+                <div class="mt-4 pt-4 border-t-2 border-gray-200">
+                  <ShareQuoteCard
+                    quote={`${title} - ${description}`}
+                    attribution={
+                      isPolicy ? 'Fusion Victoria Policy' : 'Victorian Theft Report 2024'
+                    }
+                    category={category}
+                    policyUrl={link}
+                    color={color}
+                    compact={true}
+                  />
+                </div>
+
+                <a
+                  href={link}
+                  class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform mt-4"
+                >
+                  {linkText}
+                  <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+  </Section>
+
+  <!-- ELECTORATES -->
+  <Section
+    id="electorates"
+    bg="gray"
+    border={true}
+    borderPosition="bottom"
+    borderColor="magenta"
+    padding="xl"
+  >
+    <FloatingIcon
+      name="mdi:map-marker-star"
+      color="rgba(230, 230, 250, 0.05)"
+      size={224}
+      animation="spin"
+      position={{ top: '2.5rem', right: '5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:account-group"
+      color="rgba(255, 255, 0, 0.05)"
+      size={192}
+      animation="float"
+      position={{ bottom: '2.5rem', left: '5rem' }}
+      delay="2s"
+    />
+
+    <div class="text-center max-w-3xl mx-auto mb-16" style="transform: rotate(0.5deg);">
+      <div class="inline-block mb-4 animate-bounce-subtle">
+        <Icon name="mdi:map-search" class="w-16 h-16 text-magenta" />
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-magenta">
+        {homePageTyped.electoratesSection.heading}
+      </h2>
+      <p class="text-xl text-gray-700 font-bold">
+        {homePageTyped.electoratesSection.description}
+      </p>
+    </div>
+
+    <div class="electorate-grid">
+      {
+        electorates.map((electorate: any, index: number) => {
+          const isEven = index % 2 === 0
+          return (
+            <div
+              class={`electorate-card group hover:shadow-[12px_12px_0px_0px_#${isEven ? 'C926F2' : '5EFFD8'}] transition-all duration-200`}
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class={`p-3 ${isEven ? 'bg-magenta' : 'bg-mint'} border-4 border-black shadow-[4px_4px_0px_0px_#000000]`}
+                  >
+                    <Icon name="mdi:map-marker" class="w-6 h-6 text-black" />
+                  </div>
+                  <h3 class="group-hover:text-magenta transition-colors">{electorate.name}</h3>
+                </div>
+                <div class="animate-pulse-gentle">
+                  <Icon
+                    name="mdi:star"
+                    class={`w-8 h-8 ${isEven ? 'text-magenta' : 'text-mint'}`}
+                  />
+                </div>
+              </div>
+
+              {electorate.candidateImage && (
+                <div class="mb-4">
+                  <img
+                    src={urlFor(electorate.candidateImage).width(400).height(400).fit('crop').url()}
+                    alt={electorate.candidateName}
+                    class="w-full h-48 object-cover border-4 border-black shadow-[4px_4px_0px_0px_#000000]"
+                  />
+                </div>
+              )}
+
+              <div class="flex items-center gap-2 mb-4">
+                <Icon name="mdi:account-tie" class="w-5 h-5 text-magenta" />
+                <span class="candidate-name">{electorate.candidateName}</span>
+              </div>
+
+              {electorate.subtitle && <p class="mb-4">{electorate.subtitle}</p>}
+
+              <ul class="electorate-priorities">
+                {electorate.commitments.slice(0, 4).map((commitment: any) => (
+                  <li class="flex items-start gap-2">
+                    <Icon name="mdi:check-bold" class="w-5 h-5 text-magenta flex-shrink-0 mt-0.5" />
+                    <strong>{commitment.title}</strong>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`/electorates/${electorate.slug.current}`}
+                class="inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform"
+              >
+                Learn more
+                <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
+              </a>
+            </div>
+          )
+        })
+      }
+    </div>
+
+    <CTA variant="secondary" size="lg" shadow="lg" class="mt-12 max-w-2xl mx-auto">
+      <div class="inline-block mb-4 animate-wiggle-subtle">
+        <Icon name="mdi:bullhorn" class="w-12 h-12 text-magenta" />
+      </div>
+      <p class="text-xl font-semibold mb-3">
+        <strong>{homePageTyped.electoratesSection.callToAction.heading}</strong>
+      </p>
+      <p class="mb-6">
+        {homePageTyped.electoratesSection.callToAction.description}
+      </p>
+      <BrutalButton
+        href={homePageTyped.electoratesSection.callToAction.buttonLink}
+        variant="primary"
+        icon="mdi:email-fast"
+      >
+        {homePageTyped.electoratesSection.callToAction.buttonText}
+      </BrutalButton>
+    </CTA>
+  </Section>
+
+  <!-- MANIFESTO HIGHLIGHT -->
+  <Section
+    border={true}
+    borderPosition="both"
+    borderColor="mint"
+    padding="xl"
+    class="text-center relative overflow-hidden"
+    style="background-image: radial-gradient(#5EFFD8 1px, transparent 1px); background-size: 20px 20px;"
+  >
+    <div class="absolute inset-0 bg-white/90 z-0"></div>
+
+    <FloatingIcon
+      name="mdi:file-document-edit"
+      color="rgba(0, 255, 204, 0.1)"
+      size={256}
+      animation="float"
+      position={{ top: '50%', left: '2.5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:book-open-page-variant"
+      color="rgba(255, 51, 153, 0.1)"
+      size={192}
+      animation="spin"
+      position={{ top: '25%', right: '2.5rem' }}
+    />
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="inline-block mb-4 animate-pulse-gentle">
+        <Icon
+          name="mdi:scroll-text"
+          class="w-16 h-16 text-mint drop-shadow-[4px_4px_0_rgba(0,0,0,1)]"
+        />
+      </div>
+      <h2
+        class="text-4xl md:text-6xl font-black mb-6 uppercase text-black"
+        style="transform: rotate(-1deg); display: inline-block; text-shadow: 4px 4px 0 #5EFFD8;"
+      >
+        {homePageTyped.manifestoSection.heading}
+      </h2>
+      <p class="text-xl md:text-2xl mb-12 font-bold text-gray-800 max-w-3xl mx-auto">
+        {homePageTyped.manifestoSection.description}
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-16">
+        {
+          homePageTyped.manifestoSection.stats.map((stat: any, index: number) => {
+            const rotations = ['-1deg', '1deg', '-1.5deg', '1.5deg']
+            const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
+              '#C926F2',
+              '#FFED00',
+              '#5EFFD8',
+              '#C926F2',
+            ] // Magenta, Yellow, Mint
+            const color = colors[index % colors.length]
+            const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
+            const icon = icons[index % icons.length]
+            const textColor = color === '#FFED00' || color === '#5EFFD8' ? 'black' : 'white'
+
+            return (
+              <div class="relative group" style={`transform: rotate(${rotations[index % 4]});`}>
+                <div class="absolute inset-0 bg-black translate-x-2 translate-y-2 transition-transform group-hover:translate-x-3 group-hover:translate-y-3" />
+                <div class="relative bg-white border-4 border-black p-0 h-full flex flex-col transition-transform group-hover:-translate-y-1">
+                  {/* Card Header Strip */}
+                  <div class="h-4 border-b-4 border-black" style={`background-color: ${color};`} />
+
+                  <div class="p-6 flex-1 flex flex-col items-center justify-center">
+                    <div class="mb-4 p-3 rounded-full border-2 border-black bg-white shadow-[2px_2px_0_0_#000000]">
+                      <Icon name={icon} class="w-8 h-8 text-black" />
+                    </div>
+
+                    <span
+                      class="text-5xl lg:text-6xl font-black block mb-2 uppercase leading-none"
+                      style={`color: ${color === '#FFED00' ? '#D4C300' : color}; -webkit-text-stroke: 1.5px black; text-shadow: 3px 3px 0px rgba(0,0,0,0.1);`}
+                    >
+                      {stat.number}
+                    </span>
+                    <span class="text-sm md:text-base font-black uppercase text-black tracking-wide">
+                      {stat.label}
+                    </span>
+                  </div>
+
+                  {/* Card Footer Strip (for balance) */}
+                  <div class="h-2 border-t-4 border-black bg-gray-100" />
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+
+      <div class="cta-buttons flex flex-wrap gap-6 justify-center">
+        <BrutalButton href="/manifesto" variant="primary" icon="mdi:book-open">
+          READ FULL MANIFESTO
+        </BrutalButton>
+        <BrutalButton href="/policies" variant="white" icon="mdi:calculator">
+          SEE THE COSTINGS
+        </BrutalButton>
+      </div>
+    </div>
+  </Section>
+
+  <!-- TAKE ACTION -->
+  <section
+    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-8 border-t-4 border-yellow relative overflow-hidden"
+    style="border-right: 8px solid #FFED00;"
+  >
+    <FloatingIcon
+      name="mdi:hand-peace"
+      color="rgba(255, 255, 0, 0.1)"
+      size={256}
+      animation="spin"
+      position={{ top: '5rem', right: '5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:human-greeting-proximity"
+      color="rgba(0, 255, 204, 0.1)"
+      size={192}
+      animation="float"
+      position={{ bottom: '2.5rem', left: '2.5rem' }}
+    />
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="text-center">
+        <div class="inline-block mb-4 animate-pulse-gentle">
+          <Icon name="mdi:bullhorn-variant" class="w-16 h-16 text-yellow" />
+        </div>
+        <h2
+          class="text-4xl md:text-5xl font-black mb-6 uppercase"
+          style="transform: rotate(0.5deg); display: inline-block;"
+        >
+          {homePageTyped.joinSection.heading}
+        </h2>
+        <p class="text-xl mb-12 max-w-3xl mx-auto font-bold">
+          {homePageTyped.joinSection.description}
+        </p>
+      </div>
+
+      <Grid variant="3col" gap="lg">
+        {
+          homePageTyped.joinSection.cards.map((card: any, index: number) => {
+            const colSpan =
+              card.size === 'large'
+                ? 'md:col-span-3'
+                : card.size === 'medium'
+                  ? 'md:col-span-2'
+                  : 'md:col-span-1'
+            const rowSpan = card.size === 'small' ? 'md:row-span-2' : ''
+            const rotations = ['-0.5deg', '1deg', '0.5deg']
+            const translations = ['10px', '-15px', '-5px']
+
+            return (
+              <BrutalCard
+                hover={true}
+                shadow="lg"
+                padding="lg"
+                class={`${colSpan} ${rowSpan}`}
+                style={`transform: rotate(${rotations[index % 3]}) translateY(${translations[index % 3]});`}
+              >
+                {card.icon && card.icon.includes(':') && (
+                  <div class="mb-4 animate-wiggle-subtle">
+                    <Icon name={card.icon} class="w-16 h-16 text-magenta" />
+                  </div>
+                )}
+                <h3 class="text-2xl font-black mb-3 uppercase">{card.title}</h3>
+                <p class="mb-6 font-bold">{card.description}</p>
+                <BrutalButton
+                  href={card.buttonLink}
+                  variant={card.buttonStyle === 'primary' ? 'primary' : 'secondary'}
+                  icon="mdi:arrow-right-circle"
+                >
+                  {card.buttonText}
+                </BrutalButton>
+              </BrutalCard>
+            )
+          })
+        }
+      </Grid>
+    </div>
+  </section>
+
+  <MemberSignup
+    heading={homePageTyped.signupCTA?.heading}
+    description={homePageTyped.signupCTA?.description}
+    buttonText={homePageTyped.signupCTA?.buttonText}
+    footerText={homePageTyped.signupCTA?.footerText}
+  />
+
+  <Footer />
+</BaseLayout>

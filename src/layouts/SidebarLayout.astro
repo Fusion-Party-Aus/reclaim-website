@@ -1,0 +1,43 @@
+---
+// Sidebar Layout - Wraps content with optional sidebar
+import BaseLayout from './BaseLayout.astro'
+import DynamicSidebar from '../components/DynamicSidebar.astro'
+import type { PortableTextBlock } from '../lib/portableText'
+
+interface Props {
+  title: string
+  description?: string
+  content?: PortableTextBlock[]
+  sidebarPosition?: 'left' | 'right'
+}
+
+const { title, description, content, sidebarPosition = 'right' } = Astro.props
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div
+      class={`grid gap-8 ${content ? (sidebarPosition === 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]') : 'grid-cols-1'}`}
+    >
+      {
+        content && sidebarPosition === 'left' && (
+          <div class="order-2 lg:order-1">
+            <DynamicSidebar content={content} />
+          </div>
+        )
+      }
+
+      <main class={content && sidebarPosition === 'left' ? 'order-1 lg:order-2' : ''}>
+        <slot />
+      </main>
+
+      {
+        content && sidebarPosition === 'right' && (
+          <div>
+            <DynamicSidebar content={content} />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

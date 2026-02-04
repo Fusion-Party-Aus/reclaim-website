@@ -1,0 +1,284 @@
+---
+interface Metric {
+  label: string
+  current: number
+  goal: number
+  icon: string
+  color: 'magenta' | 'mint' | 'yellow'
+  suffix?: string
+  prefix?: string
+}
+
+interface Props {
+  metrics: Metric[]
+  showMotivation?: boolean
+  compact?: boolean
+}
+
+const { metrics, showMotivation = true, compact = false } = Astro.props
+
+// Calculate overall progress percentage
+const overallProgress = Math.round(
+  metrics.reduce((sum, m) => sum + (m.current / m.goal) * 100, 0) / metrics.length
+)
+---
+
+<div
+  class={`bg-black border-6 border-mint p-8 ${compact ? '' : 'lg:p-12'}`}
+  style="box-shadow: 12px 12px 0px 0px #FFED00, 24px 24px 0px 0px #C926F2;"
+>
+  <!-- Header -->
+  <div class="text-center mb-8">
+    <div
+      class="inline-block bg-magenta border-4 border-white px-6 py-3 mb-4 transform -rotate-2"
+      style="box-shadow: 4px 4px 0px 0px #FFED00;"
+    >
+      <p class="text-white font-black uppercase text-xl tracking-wide flex items-center gap-3">
+        <span class="text-3xl">🎯</span>
+        Building the Movement
+      </p>
+    </div>
+
+    {
+      !compact && (
+        <p class="text-mint text-lg font-bold mb-2">
+          Every number is a person who said <strong class="text-yellow">enough is enough.</strong>
+        </p>
+      )
+    }
+
+    <!-- Overall Progress -->
+    <div class="mt-6">
+      <div class="flex items-center justify-between text-white mb-2">
+        <span class="font-black uppercase text-sm">Overall Progress</span>
+        <span class="font-black text-yellow text-xl">{overallProgress}%</span>
+      </div>
+      <div class="h-4 bg-gray-800 border-4 border-white relative overflow-hidden">
+        <div
+          class="h-full bg-gradient-to-r from-magenta via-mint to-yellow transition-all duration-1000 ease-out relative"
+          style={`width: ${overallProgress}%;`}
+          data-progress-bar
+        >
+          <div
+            class="absolute inset-0 bg-white opacity-20"
+            style="animation: shimmer 2s infinite linear;"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metrics Grid -->
+  <div class={`grid ${compact ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'} gap-6`}>
+    {
+      metrics.map((metric, index) => {
+        const progress = Math.round((metric.current / metric.goal) * 100)
+        const colorClasses = {
+          magenta: 'bg-magenta border-magenta text-magenta',
+          mint: 'bg-mint border-mint text-mint',
+          yellow: 'bg-yellow border-yellow text-yellow',
+        }
+        const colors = colorClasses[metric.color]
+
+        return (
+          <div
+            class="bg-white border-4 border-white p-6 relative group hover:scale-105 transition-transform"
+            style="box-shadow: 6px 6px 0px 0px #000;"
+          >
+            {/* Icon Badge */}
+            <div
+              class={`absolute -top-4 -right-4 w-12 h-12 ${colors.split(' ')[0]} border-4 border-black flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform`}
+              style="box-shadow: 3px 3px 0px 0px #000;"
+            >
+              <span class="text-2xl">{metric.icon}</span>
+            </div>
+
+            {/* Label */}
+            <p class="text-xs font-black uppercase text-gray-600 mb-2">{metric.label}</p>
+
+            {/* Counter */}
+            <div class="mb-3">
+              <div class="flex items-baseline gap-2">
+                {metric.prefix && (
+                  <span class="text-2xl font-black text-black">{metric.prefix}</span>
+                )}
+                <span
+                  class={`text-4xl font-black ${colors.split(' ')[2]} counter`}
+                  data-target={metric.current}
+                  data-delay={index * 100}
+                >
+                  0
+                </span>
+                {metric.suffix && (
+                  <span class="text-lg font-black text-gray-500">{metric.suffix}</span>
+                )}
+              </div>
+              <p class="text-sm font-bold text-gray-500">
+                of {metric.prefix || ''}
+                {metric.goal.toLocaleString()}
+                {metric.suffix || ''} goal
+              </p>
+            </div>
+
+            {/* Progress Bar */}
+            <div class="relative">
+              <div class="h-3 bg-gray-200 border-2 border-black overflow-hidden">
+                <div
+                  class={`h-full ${colors.split(' ')[0]} transition-all duration-1000 ease-out progress-bar`}
+                  style="width: 0%;"
+                  data-progress={progress}
+                  data-delay={index * 100}
+                />
+              </div>
+              <span class="text-xs font-black text-gray-600 mt-1 block text-right">
+                {progress}%
+              </span>
+            </div>
+
+            {/* Milestone Badge */}
+            {progress >= 90 && (
+              <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                <div
+                  class="bg-yellow border-3 border-black px-3 py-1 text-xs font-black uppercase whitespace-nowrap"
+                  style="box-shadow: 2px 2px 0px 0px #000; animation: bounce 2s infinite;"
+                >
+                  🔥 Almost There!
+                </div>
+              </div>
+            )}
+          </div>
+        )
+      })
+    }
+  </div>
+
+  <!-- Motivation Message -->
+  {
+    showMotivation && (
+      <div class="mt-8 text-center">
+        <div
+          class="inline-block bg-yellow border-4 border-black px-6 py-4 transform rotate-1"
+          style="box-shadow: 4px 4px 0px 0px #000;"
+        >
+          <p class="text-black font-black text-sm md:text-base">
+            {overallProgress < 50 && '🌱 Every movement starts somewhere. Join us!'}
+            {overallProgress >= 50 &&
+              overallProgress < 75 &&
+              '📈 Momentum is building. Be part of it!'}
+            {overallProgress >= 75 &&
+              overallProgress < 90 &&
+              "🚀 We're gaining speed. Don't miss out!"}
+            {overallProgress >= 90 && '⚡ This is happening. History is being made!'}
+          </p>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  // Animated Counter
+  function animateCounter(element: HTMLElement, target: number, delay: number) {
+    setTimeout(() => {
+      const duration = 2000 // 2 seconds
+      const steps = 60
+      const increment = target / steps
+      let current = 0
+      const stepDuration = duration / steps
+
+      const timer = setInterval(() => {
+        current += increment
+        if (current >= target) {
+          element.textContent = Math.round(target).toLocaleString()
+          clearInterval(timer)
+        } else {
+          element.textContent = Math.round(current).toLocaleString()
+        }
+      }, stepDuration)
+    }, delay)
+  }
+
+  // Animated Progress Bar
+  function animateProgressBar(element: HTMLElement, progress: number, delay: number) {
+    setTimeout(() => {
+      element.style.width = `${progress}%`
+    }, delay)
+  }
+
+  // Initialize animations when element is in viewport
+  function initAnimations() {
+    const counters = document.querySelectorAll('.counter')
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute('data-target') || '0')
+      const delay = parseInt(counter.getAttribute('data-delay') || '0')
+      animateCounter(counter as HTMLElement, target, delay)
+    })
+
+    const progressBars = document.querySelectorAll('.progress-bar')
+    progressBars.forEach((bar) => {
+      const progress = parseInt(bar.getAttribute('data-progress') || '0')
+      const delay = parseInt(bar.getAttribute('data-delay') || '0')
+      animateProgressBar(bar as HTMLElement, progress, delay)
+    })
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations)
+  } else {
+    initAnimations()
+  }
+
+  // Intersection Observer for lazy animation (optional enhancement)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            initAnimations()
+            observer.disconnect()
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    const metricsWidget = document.querySelector('[data-progress-bar]')?.closest('div')
+    if (metricsWidget?.parentElement) {
+      observer.observe(metricsWidget.parentElement)
+    }
+  }
+</script>
+
+<style>
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Smooth number transitions */
+  .counter {
+    font-variant-numeric: tabular-nums;
+    transition: all 0.3s ease;
+  }
+
+  /* Progress bar animation */
+  .progress-bar {
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

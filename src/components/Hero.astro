@@ -1,0 +1,179 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  eyebrow?: string
+  title: string
+  subtitle?: string
+  stats?: Array<{ number: string; label: string }>
+  showCTA?: boolean
+}
+
+const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
+---
+
+<section
+  class="relative bg-black text-white py-24 md:py-32 px-4 md:px-8 overflow-hidden"
+  style="border: 6px solid #000000; border-left: 10px solid #5EFFD8; border-right: 10px solid #FFED00; box-shadow: 0 8px 0 0 #C926F2;"
+>
+  <!-- Enhanced geometric background -->
+  <div class="absolute inset-0 overflow-hidden opacity-15">
+    <!-- Bold diagonal stripes -->
+    <div
+      class="absolute -top-1/2 -right-1/4 w-1/2 h-[200%] bg-magenta transform rotate-15 animate-float-slow"
+    >
+    </div>
+    <div
+      class="absolute -bottom-1/2 -left-1/4 w-1/2 h-[200%] bg-mint transform -rotate-15 animate-float-gentle"
+    >
+    </div>
+
+    <!-- Corner accents with icons -->
+    <div
+      class="absolute top-0 right-0 w-64 h-64 border-8 border-mint animate-pulse-gentle"
+      style="transform: translate(30%, -30%) rotate(45deg);"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-64 h-64 border-8 border-yellow animate-wiggle-subtle"
+      style="transform: translate(-30%, 30%) rotate(45deg);"
+    >
+    </div>
+
+    <!-- Floating icon decorations -->
+    <div class="absolute top-10 right-20 text-mint/20 animate-spin-slow">
+      <Icon name="mdi:star-four-points" class="w-32 h-32" />
+    </div>
+    <div class="absolute bottom-20 left-16 text-yellow/20 animate-bounce-subtle">
+      <Icon name="mdi:hexagon" class="w-24 h-24" />
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto text-center">
+    {
+      eyebrow && (
+        <div class="inline-block mb-6 animate-pulse-gentle">
+          <div
+            class="text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2 border-4 border-mint bg-black flex items-center gap-2"
+            style="color: #5EFFD8; box-shadow: 6px 6px 0px 0px #5EFFD8;"
+          >
+            <Icon name="mdi:bullhorn" class="w-4 h-4" />
+            {eyebrow}
+          </div>
+        </div>
+      )
+    }
+
+    <h1
+      class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-none uppercase relative px-4"
+      style="font-family: 'Anton', 'Bebas Neue', 'Archivo Black', sans-serif; letter-spacing: -0.02em;"
+    >
+      <span class="relative inline-block">
+        <!-- Enhanced layered shadow effect -->
+        <span
+          class="absolute inset-0 text-magenta"
+          style="transform: translate(6px, 6px); opacity: 0.8;">{title}</span
+        >
+        <span
+          class="absolute inset-0 text-mint"
+          style="transform: translate(3px, 3px); opacity: 0.5;">{title}</span
+        >
+        <span class="relative z-10 text-white">{title}</span>
+      </span>
+    </h1>
+
+    {
+      subtitle && (
+        <div class="mb-8 md:mb-12">
+          <p
+            class="text-lg md:text-2xl lg:text-3xl max-w-4xl mx-auto font-black uppercase leading-tight px-6 py-4 inline-block group hover:shadow-[8px_8px_0px_0px_#FFED00] transition-all duration-200"
+            style="background: rgba(255,237,0,0.2); border-top: 4px solid #FFED00; border-bottom: 4px solid #FFED00;"
+          >
+            {subtitle}
+          </p>
+        </div>
+      )
+    }
+
+    {
+      stats && stats.length > 0 && (
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 my-12 md:my-16 max-w-5xl mx-auto px-4">
+          {stats.map((stat, index) => {
+            const colors = ['#C926F2', '#5EFFD8', '#FFED00']
+            const icons = ['mdi:trending-up', 'mdi:account-group', 'mdi:cash-multiple']
+            const bgColor = colors[index % 3]
+            const icon = icons[index % 3]
+            // Use black text for yellow and mint to ensure accessible contrast
+            const textColor = index % 3 === 0 ? bgColor : '#000000'
+
+            return (
+              <div
+                class="stat-card bg-white p-6 md:p-8 border-6 border-black transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#000000] group"
+                style={`box-shadow: 8px 8px 0px 0px ${bgColor}; border-width: 6px;`}
+              >
+                <div class="mb-3 animate-bounce-subtle" style={`animation-delay: ${index * 0.2}s;`}>
+                  <Icon name={icon} class="w-12 h-12 mx-auto" style={`color: ${bgColor};`} />
+                </div>
+                <div
+                  class="text-4xl md:text-5xl lg:text-6xl font-black mb-3 uppercase leading-none group-hover:scale-110 transition-transform"
+                  style={`color: ${textColor}; font-family: 'Archivo Black', sans-serif;`}
+                >
+                  {stat.number}
+                </div>
+                <div
+                  class="text-sm md:text-base font-black uppercase tracking-wide leading-tight"
+                  style="color: #000000;"
+                >
+                  {stat.label}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
+
+    {
+      showCTA && (
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8 md:mt-12 px-4">
+          <a
+            href="/get-involved"
+            class="btn btn-primary btn-lg w-full sm:w-auto text-center inline-flex items-center justify-center gap-3"
+          >
+            <Icon name="mdi:hand-heart" class="w-6 h-6" />
+            JOIN THE FIGHT
+          </a>
+          <a
+            href="/manifesto"
+            class="btn btn-secondary btn-lg w-full sm:w-auto text-center inline-flex items-center justify-center gap-3"
+          >
+            <Icon name="mdi:book-open" class="w-6 h-6" />
+            READ THE PLAN
+          </a>
+        </div>
+      )
+    }
+
+    <slot />
+  </div>
+</section>
+
+<style>
+  .stat-card {
+    transform-origin: center;
+  }
+
+  .stat-card:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 640px) {
+    .stat-card {
+      transform: none !important;
+    }
+
+    .stat-card:hover {
+      transform: scale(1.02) !important;
+    }
+  }
+</style>

@@ -1,0 +1,1550 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fusion Party Neo-Brutalist Design System | Reclaim</title>
+    <meta
+      name="description"
+      content="Complete neo-brutalist design system for the Fusion Party rebrand — hard-edged shadows, flat colors, chunky typography, and asymmetric layouts."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Archivo+Black&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        /* ===== NEO-BRUTALIST BRAND COLORS ===== */
+        /* High contrast, flat, NO GRADIENTS */
+        --magenta: #c926f2;
+        --magenta-dark: #a01ec8;
+        --magenta-darker: #8b1fa8;
+        --mint: #5effd8;
+        --mint-dark: #4de5c5;
+        --lavender: #9a94e7;
+        --lavender-light: #b5b0f2;
+
+        /* Neutrals */
+        --black: #000000;
+        --grey-dark: #1a1a1a;
+        --grey: #949494;
+        --grey-light: #e5e5e5;
+        --white: #ffffff;
+        --light-grey: #f5f5f5;
+
+        /* Neo-brutalist Accent */
+        --yellow: #ffed00; /* High-visibility yellow for accents */
+
+        /* Semantic Colors */
+        --success: #00d084;
+        --warning: #ffb020;
+        --error: #ff3b30;
+        --info: var(--lavender);
+
+        /* ===== NEO-BRUTALIST SHADOWS ===== */
+        /* CRITICAL: Zero blur, hard 2D offset only */
+        --shadow-brutal: 6px 6px 0px 0px #000000;
+        --shadow-brutal-sm: 3px 3px 0px 0px #000000;
+        --shadow-brutal-lg: 8px 8px 0px 0px #000000;
+        --shadow-brutal-xl: 12px 12px 0px 0px #000000;
+        --shadow-brutal-magenta: 6px 6px 0px 0px #c926f2;
+        --shadow-brutal-mint: 6px 6px 0px 0px #5effd8;
+        --shadow-brutal-yellow: 6px 6px 0px 0px #ffed00;
+
+        /* Spacing Scale */
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --space-2xl: 4rem;
+        --space-3xl: 5rem;
+        --space-4xl: 6rem;
+
+        /* Border Settings - THICK BORDERS for neo-brutalism */
+        --border-thin: 2px;
+        --border-medium: 3px;
+        --border-thick: 4px;
+        --border-heavy: 5px;
+
+        /* Typography */
+        --font-system:
+          'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial',
+          sans-serif;
+        --font-heading: 'Archivo Black', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: 'SF Mono', 'Monaco', 'Consolas', monospace;
+
+        /* Transitions - FAST for neo-brutalist snap */
+        --transition-fast: 0.1s ease;
+        --transition-base: 0.15s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-system);
+        background: var(--white);
+        color: var(--black);
+        line-height: 1.5;
+      }
+
+      /* Neo-brutalist selection */
+      ::selection {
+        background-color: var(--yellow);
+        color: var(--black);
+      }
+
+      /* Navigation */
+      .ds-nav {
+        background: var(--black);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-md);
+      }
+
+      .ds-nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ds-logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--magenta);
+        text-decoration: none;
+        letter-spacing: -0.5px;
+      }
+
+      .ds-nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .ds-nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color var(--transition-base);
+      }
+
+      .ds-nav-links a:hover {
+        color: var(--mint);
+      }
+
+      /* Hero Section */
+      .ds-hero {
+        background: var(--gradient-dark);
+        color: var(--white);
+        padding: var(--space-4xl) var(--space-lg);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ds-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(201,38,242,0.03)" width="50" height="50"/><rect fill="rgba(94,255,216,0.03)" x="50" y="50" width="50" height="50"/></svg>');
+        opacity: 0.3;
+      }
+
+      .ds-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .ds-hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        color: var(--magenta);
+        margin-bottom: var(--space-md);
+        text-transform: uppercase;
+        letter-spacing: -1px;
+      }
+
+      .ds-hero p {
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        color: var(--lavender);
+        margin-bottom: var(--space-xl);
+      }
+
+      /* Section Layouts */
+      .ds-section {
+        padding: var(--space-3xl) var(--space-lg);
+      }
+
+      .ds-section-alt {
+        background: var(--light-grey);
+      }
+
+      .ds-section-dark {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .ds-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .ds-section-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto var(--space-2xl);
+      }
+
+      .ds-section-header h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+        color: var(--magenta);
+        margin-bottom: var(--space-md);
+      }
+
+      .ds-section-dark .ds-section-header h2 {
+        color: var(--mint);
+      }
+
+      .ds-section-header p {
+        font-size: 1.2rem;
+        color: var(--grey);
+      }
+
+      .ds-section-dark .ds-section-header p {
+        color: var(--grey-light);
+      }
+
+      /* Color Swatches */
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+      }
+
+      .color-swatch {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+
+      .color-preview {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .color-info {
+        background: var(--white);
+        padding: var(--space-md);
+      }
+
+      .color-name {
+        font-weight: 700;
+        margin-bottom: var(--space-xs);
+        color: var(--black);
+      }
+
+      .color-value {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--grey);
+      }
+
+      /* Typography Scale */
+      .type-scale {
+        background: var(--white);
+        padding: var(--space-xl);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-lg);
+      }
+
+      .type-example {
+        margin-bottom: var(--space-xl);
+        padding-bottom: var(--space-lg);
+        border-bottom: 2px solid var(--light-grey);
+      }
+
+      .type-example:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .type-label {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--magenta);
+        margin-bottom: var(--space-sm);
+        font-weight: 600;
+      }
+
+      .display-1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+
+      .display-2 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .display-3 {
+        font-size: clamp(1.8rem, 3vw, 3rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .heading-1 {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .heading-2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      .body-large {
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+
+      .body-base {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .body-small {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      /* Button Styles */
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+      }
+
+      .button-example {
+        background: var(--white);
+        padding: var(--space-xl);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .ds-section-dark .button-example {
+        background: var(--grey-dark);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        text-align: center;
+        font-family: var(--font-system);
+      }
+
+      .btn-primary {
+        background: var(--magenta);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--magenta-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-magenta);
+      }
+
+      .btn-secondary {
+        background: var(--mint);
+        color: var(--black);
+      }
+
+      .btn-secondary:hover {
+        background: var(--mint-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-mint);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--mint);
+        border: 2px solid var(--mint);
+      }
+
+      .btn-outline:hover {
+        background: var(--mint);
+        color: var(--black);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--magenta);
+        border: 2px solid transparent;
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--magenta);
+      }
+
+      .btn-lg {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.2rem;
+      }
+
+      .btn-sm {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* Card Components */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-lg);
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        transition: all var(--transition-base);
+        border: 2px solid transparent;
+      }
+
+      .card:hover {
+        border-color: var(--magenta);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: var(--gradient-mint);
+      }
+
+      .card-content {
+        padding: var(--space-lg);
+      }
+
+      .card-category {
+        color: var(--lavender);
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: var(--space-xs);
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--magenta);
+        margin-bottom: var(--space-md);
+      }
+
+      .card p {
+        color: var(--black);
+        margin-bottom: var(--space-md);
+        line-height: 1.6;
+      }
+
+      .card-simple {
+        background: var(--light-grey);
+        padding: var(--space-lg);
+        border-left: 4px solid var(--mint);
+        border-radius: var(--radius-sm);
+      }
+
+      .card-simple:hover {
+        border-left-color: var(--magenta);
+      }
+
+      .card-highlight {
+        background: rgba(201, 38, 242, 0.1);
+        padding: var(--space-md);
+        border-radius: var(--radius-sm);
+        border-left: 4px solid var(--magenta);
+      }
+
+      /* Grid Layouts */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .grid-auto {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+      }
+
+      /* Stat Display */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+
+      .stat {
+        text-align: center;
+        padding: var(--space-lg);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        backdrop-filter: blur(10px);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--mint);
+        display: block;
+        margin-bottom: var(--space-xs);
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      /* Alert/Banner Components */
+      .alert {
+        padding: var(--space-md);
+        border-radius: var(--radius-sm);
+        margin-bottom: var(--space-md);
+        border-left: 4px solid;
+      }
+
+      .alert-info {
+        background: rgba(154, 148, 231, 0.1);
+        border-left-color: var(--lavender);
+        color: var(--black);
+      }
+
+      .alert-success {
+        background: rgba(0, 208, 132, 0.1);
+        border-left-color: var(--success);
+        color: var(--black);
+      }
+
+      .alert-warning {
+        background: rgba(255, 176, 32, 0.1);
+        border-left-color: var(--warning);
+        color: var(--black);
+      }
+
+      .alert-error {
+        background: rgba(255, 59, 48, 0.1);
+        border-left-color: var(--error);
+        color: var(--black);
+      }
+
+      .banner {
+        background: var(--gradient-magenta);
+        color: var(--white);
+        padding: var(--space-md) var(--space-lg);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .banner a {
+        color: var(--mint);
+        text-decoration: underline;
+      }
+
+      /* Icon Display */
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: var(--space-lg);
+      }
+
+      .icon-example {
+        text-align: center;
+        padding: var(--space-md);
+      }
+
+      .icon-circle {
+        width: 64px;
+        height: 64px;
+        background: var(--magenta);
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-sm);
+        font-size: 2rem;
+        transition: all var(--transition-base);
+      }
+
+      .icon-circle:hover {
+        background: var(--mint);
+        transform: scale(1.1);
+      }
+
+      /* Form Elements */
+      .form-group {
+        margin-bottom: var(--space-lg);
+      }
+
+      .form-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: var(--space-xs);
+        color: var(--black);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.875rem var(--space-md);
+        font-size: 1rem;
+        border: 2px solid var(--grey-light);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-system);
+        transition: border-color var(--transition-base);
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--magenta);
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Spacing Examples */
+      .spacing-example {
+        background: var(--light-grey);
+        margin-bottom: var(--space-md);
+        border-radius: var(--radius-sm);
+      }
+
+      .spacing-box {
+        background: var(--magenta);
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      /* Code Display */
+      .code-block {
+        background: var(--grey-dark);
+        color: var(--mint);
+        padding: var(--space-lg);
+        border-radius: var(--radius-md);
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: var(--space-md) 0;
+      }
+
+      .code-inline {
+        background: var(--light-grey);
+        color: var(--magenta);
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .ds-nav-links {
+          display: none;
+        }
+
+        .color-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .button-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Utility Classes */
+      .text-center {
+        text-align: center;
+      }
+      .text-magenta {
+        color: var(--magenta);
+      }
+      .text-mint {
+        color: var(--mint);
+      }
+      .text-lavender {
+        color: var(--lavender);
+      }
+      .bg-magenta {
+        background: var(--magenta);
+      }
+      .bg-mint {
+        background: var(--mint);
+      }
+      .bg-lavender {
+        background: var(--lavender);
+      }
+      .mb-sm {
+        margin-bottom: var(--space-sm);
+      }
+      .mb-md {
+        margin-bottom: var(--space-md);
+      }
+      .mb-lg {
+        margin-bottom: var(--space-lg);
+      }
+      .mb-xl {
+        margin-bottom: var(--space-xl);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <nav class="ds-nav">
+      <div class="ds-nav-content">
+        <a href="#" class="ds-logo">FUSION</a>
+        <div class="ds-nav-links">
+          <a href="#colors">Colors</a>
+          <a href="#typography">Typography</a>
+          <a href="#components">Components</a>
+          <a href="#layouts">Layouts</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="ds-hero">
+      <div class="ds-hero-content">
+        <h1>Fusion Design System</h1>
+        <p>Reclaim Brand — A bold, evidence-based design language for political change</p>
+      </div>
+    </section>
+
+    <!-- BRAND OVERVIEW -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Brand Principles</h2>
+          <p>
+            Our design system reflects our values: bold, transparent, and uncompromising in the
+            pursuit of evidence-based policy.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card-simple">
+            <h3 class="text-magenta">Bold & Unapologetic</h3>
+            <p>
+              High contrast colors and strong typography that demands attention and reflects our
+              commitment to truth.
+            </p>
+          </div>
+          <div class="card-simple">
+            <h3 class="text-magenta">Clear & Direct</h3>
+            <p>
+              No political doublespeak. Clean layouts and straightforward messaging that respects
+              intelligence.
+            </p>
+          </div>
+          <div class="card-simple">
+            <h3 class="text-magenta">Modern & Progressive</h3>
+            <p>
+              Forward-looking design that signals innovation, technology, and a break from
+              traditional politics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section id="colors" class="ds-section ds-section-alt">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Color System</h2>
+          <p>Our palette combines vibrant energy with professional credibility</p>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Primary Colors</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--magenta); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Magenta</div>
+              <div class="color-value">#C926F2</div>
+              <div class="color-value">--magenta</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--mint); color: var(--black)">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Mint</div>
+              <div class="color-value">#5EFFD8</div>
+              <div class="color-value">--mint</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--lavender); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Lavender</div>
+              <div class="color-value">#9A94E7</div>
+              <div class="color-value">--lavender</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg" style="margin-top: 3rem">Neutrals</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--black); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Black</div>
+              <div class="color-value">#010102</div>
+              <div class="color-value">--black</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--grey); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Grey</div>
+              <div class="color-value">#949494</div>
+              <div class="color-value">--grey</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--light-grey); color: var(--black)">
+              Aa
+            </div>
+            <div class="color-info">
+              <div class="color-name">Light Grey</div>
+              <div class="color-value">#F5F5F5</div>
+              <div class="color-value">--light-grey</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div
+              class="color-preview"
+              style="
+                background: var(--white);
+                color: var(--black);
+                border: 1px solid var(--grey-light);
+              "
+            >
+              Aa
+            </div>
+            <div class="color-info">
+              <div class="color-name">White</div>
+              <div class="color-value">#FFFFFF</div>
+              <div class="color-value">--white</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg" style="margin-top: 3rem">Semantic Colors</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--success); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Success</div>
+              <div class="color-value">#00D084</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--warning); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Warning</div>
+              <div class="color-value">#FFB020</div>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-preview" style="background: var(--error); color: white">Aa</div>
+            <div class="color-info">
+              <div class="color-name">Error</div>
+              <div class="color-value">#FF3B30</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Typography</h2>
+          <p>System font stack for optimal performance and native feel</p>
+        </div>
+
+        <div class="type-scale">
+          <div class="type-example">
+            <div class="type-label">Display 1 — Hero Headlines</div>
+            <h1 class="display-1 text-magenta">THEY STOLE YOUR FUTURE</h1>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Display 2 — Section Headers</div>
+            <h2 class="display-2">OUR SOLUTION</h2>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Display 3 — Subsection Headers</div>
+            <h2 class="display-3 text-magenta">Find Your State</h2>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Heading 1 — Card Titles</div>
+            <h3 class="heading-1">Victoria 2026</h3>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Heading 2 — Component Titles</div>
+            <h4 class="heading-2">Housing Crisis</h4>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Body Large — Lead Paragraphs</div>
+            <p class="body-large">
+              Politics driven by evidence, not ego. We're building a party that puts science,
+              reason, and human rights before political games.
+            </p>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Body Base — Standard Text</div>
+            <p class="body-base">
+              Fusion builds a free, fair, innovative society through science, evidence, and ethical
+              governance. Our focus: Civil liberties, climate action, and future-focused policies.
+            </p>
+          </div>
+
+          <div class="type-example">
+            <div class="type-label">Body Small — Secondary Text</div>
+            <p class="body-small">Published on November 4, 2025 • 5 min read</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="components" class="ds-section ds-section-dark">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Buttons</h2>
+          <p>Clear calls to action with strong visual hierarchy</p>
+        </div>
+
+        <div class="button-grid">
+          <div class="button-example">
+            <h4 class="heading-2 mb-md" style="color: var(--white)">Primary</h4>
+            <button class="btn btn-primary">Join Fusion</button>
+            <div class="code-block" style="margin-top: 1rem">
+              &lt;button class="btn btn-primary"&gt; Join Fusion &lt;/button&gt;
+            </div>
+          </div>
+
+          <div class="button-example">
+            <h4 class="heading-2 mb-md" style="color: var(--white)">Secondary</h4>
+            <button class="btn btn-secondary">Take Action</button>
+            <div class="code-block" style="margin-top: 1rem">
+              &lt;button class="btn btn-secondary"&gt; Take Action &lt;/button&gt;
+            </div>
+          </div>
+
+          <div class="button-example">
+            <h4 class="heading-2 mb-md" style="color: var(--white)">Outline</h4>
+            <button class="btn btn-outline">Learn More</button>
+            <div class="code-block" style="margin-top: 1rem">
+              &lt;button class="btn btn-outline"&gt; Learn More &lt;/button&gt;
+            </div>
+          </div>
+
+          <div class="button-example">
+            <h4 class="heading-2 mb-md" style="color: var(--white)">Ghost</h4>
+            <button class="btn btn-ghost">View Details</button>
+            <div class="code-block" style="margin-top: 1rem">
+              &lt;button class="btn btn-ghost"&gt; View Details &lt;/button&gt;
+            </div>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg" style="color: var(--white); margin-top: 3rem">Button Sizes</h3>
+        <div
+          style="
+            background: var(--grey-dark);
+            padding: var(--space-xl);
+            border-radius: var(--radius-md);
+            text-align: center;
+          "
+        >
+          <button class="btn btn-primary btn-lg" style="margin: 0.5rem">Large Button</button>
+          <button class="btn btn-primary" style="margin: 0.5rem">Default Button</button>
+          <button class="btn btn-primary btn-sm" style="margin: 0.5rem">Small Button</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Cards</h2>
+          <p>Flexible containers for content organization</p>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Standard Card</h3>
+        <div class="card-grid" style="margin-bottom: 3rem">
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-content">
+              <div class="card-category">Transport</div>
+              <h3>Melton Line in 4 Years</h3>
+              <p>
+                Stop the suburban rail loop waste. Build the train line Melbourne's West actually
+                needs.
+              </p>
+              <a href="#" class="btn btn-ghost btn-sm">Read More →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background: var(--gradient-magenta)"></div>
+            <div class="card-content">
+              <div class="card-category">Housing</div>
+              <h3>50,000 Public Homes</h3>
+              <p>
+                Real solutions to the housing crisis. State-built homes that people can actually
+                afford.
+              </p>
+              <a href="#" class="btn btn-ghost btn-sm">Read More →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div
+              class="card-image"
+              style="background: linear-gradient(135deg, var(--lavender) 0%, var(--magenta) 100%)"
+            ></div>
+            <div class="card-content">
+              <div class="card-category">Accountability</div>
+              <h3>Weekly Reporting</h3>
+              <p>
+                Every promise tracked. Every dollar accounted for. Real transparency in government.
+              </p>
+              <a href="#" class="btn btn-ghost btn-sm">Read More →</a>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Simple Cards</h3>
+        <div class="grid-3">
+          <div class="card-simple">
+            <h3 class="text-magenta">🗽 Personal Liberty</h3>
+            <p>
+              Maximum freedom for people to live their best lives, balanced against preventing
+              exploitation.
+            </p>
+          </div>
+          <div class="card-simple">
+            <h3 class="text-magenta">🚀 Advancement</h3>
+            <p>
+              Progress solves problems that stagnation can't. We raise minimum living standards
+              through innovation.
+            </p>
+          </div>
+          <div class="card-simple">
+            <h3 class="text-magenta">🌿 Ecological Harmony</h3>
+            <p>
+              Nature has value beyond human use. We drastically reduce our environmental footprint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALERTS & BANNERS -->
+    <section class="ds-section ds-section-alt">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Alerts & Banners</h2>
+          <p>Important messages and notifications</p>
+        </div>
+
+        <div class="banner mb-xl">
+          🗳️ Contesting Victoria's 2026 State Election | <a href="#">Find your electorate</a>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>Info:</strong> New candidates announced for Melbourne's West electorates.
+        </div>
+
+        <div class="alert alert-success">
+          <strong>Success:</strong> Your volunteer registration has been received!
+        </div>
+
+        <div class="alert alert-warning">
+          <strong>Warning:</strong> Event capacity is filling up quickly. Register soon.
+        </div>
+
+        <div class="alert alert-error">
+          <strong>Error:</strong> Please fill in all required fields before submitting.
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="ds-section ds-section-dark">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Statistics Display</h2>
+          <p>Highlighting key numbers and achievements</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-number">88</span>
+            <span class="stat-label">Candidates</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50,000</span>
+            <span class="stat-label">Public Homes</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">4 Years</span>
+            <span class="stat-label">Melton Line</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">$18B</span>
+            <span class="stat-label">Saved</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Icons</h2>
+          <p>Using emoji for quick recognition and emotional connection</p>
+        </div>
+
+        <div class="icon-grid">
+          <div class="icon-example">
+            <div class="icon-circle">🗽</div>
+            <div class="body-small">Liberty</div>
+          </div>
+          <div class="icon-example">
+            <div class="icon-circle">🚀</div>
+            <div class="body-small">Progress</div>
+          </div>
+          <div class="icon-example">
+            <div class="icon-circle">🌿</div>
+            <div class="body-small">Environment</div>
+          </div>
+          <div class="icon-example">
+            <div class="icon-circle">🛡️</div>
+            <div class="body-small">Safety</div>
+          </div>
+          <div class="icon-example">
+            <div class="icon-circle">⚖️</div>
+            <div class="body-small">Ethics</div>
+          </div>
+          <div class="icon-example">
+            <div class="icon-circle">🤝</div>
+            <div class="body-small">Equity</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="ds-section ds-section-alt">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Form Elements</h2>
+          <p>Clean, accessible input fields</p>
+        </div>
+
+        <div style="max-width: 600px; margin: 0 auto">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="your.email@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Jane Smith" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea
+              class="form-input form-textarea"
+              placeholder="Tell us why you want to join..."
+            ></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYOUTS -->
+    <section id="layouts" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Layout Patterns</h2>
+          <p>Responsive grid systems for flexible content organization</p>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Two Column</h3>
+        <div class="grid-2 mb-xl">
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-xl);
+              border-radius: var(--radius-md);
+            "
+          >
+            <h3 class="text-magenta">Content Area</h3>
+            <p>Perfect for image + text layouts, feature comparisons, or split content sections.</p>
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-xl);
+              border-radius: var(--radius-md);
+            "
+          >
+            <h3 class="text-magenta">Content Area</h3>
+            <p>Automatically stacks on mobile for optimal reading experience.</p>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Three Column</h3>
+        <div class="grid-3 mb-xl">
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+              text-align: center;
+            "
+          >
+            <div class="icon-circle" style="margin: 0 auto 1rem">🎯</div>
+            <h4 class="heading-2">Feature</h4>
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+              text-align: center;
+            "
+          >
+            <div class="icon-circle" style="margin: 0 auto 1rem">⚡</div>
+            <h4 class="heading-2">Feature</h4>
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+              text-align: center;
+            "
+          >
+            <div class="icon-circle" style="margin: 0 auto 1rem">🔥</div>
+            <h4 class="heading-2">Feature</h4>
+          </div>
+        </div>
+
+        <h3 class="heading-2 mb-lg">Auto Grid (Responsive)</h3>
+        <div class="grid-auto">
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+            "
+          >
+            Auto
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+            "
+          >
+            Auto
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+            "
+          >
+            Auto
+          </div>
+          <div
+            style="
+              background: var(--light-grey);
+              padding: var(--space-lg);
+              border-radius: var(--radius-md);
+            "
+          >
+            Auto
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section class="ds-section ds-section-alt">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Spacing Scale</h2>
+          <p>Consistent rhythm throughout the design</p>
+        </div>
+
+        <div class="spacing-example" style="padding-left: var(--space-xs)">
+          <div class="spacing-box">XS — 0.5rem / 8px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-sm)">
+          <div class="spacing-box">SM — 1rem / 16px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-md)">
+          <div class="spacing-box">MD — 1.5rem / 24px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-lg)">
+          <div class="spacing-box">LG — 2rem / 32px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-xl)">
+          <div class="spacing-box">XL — 3rem / 48px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-2xl)">
+          <div class="spacing-box">2XL — 4rem / 64px</div>
+        </div>
+        <div class="spacing-example" style="padding-left: var(--space-3xl)">
+          <div class="spacing-box">3XL — 5rem / 80px</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE GUIDELINES -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Usage Guidelines</h2>
+          <p>Best practices for implementing the design system</p>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <h3 class="heading-2 text-magenta mb-md">Do's</h3>
+            <ul style="line-height: 2">
+              <li>✅ Use high contrast color combinations for accessibility</li>
+              <li>✅ Maintain consistent spacing using the scale</li>
+              <li>✅ Use bold typography for emphasis and hierarchy</li>
+              <li>✅ Leverage gradients sparingly for visual interest</li>
+              <li>✅ Keep button labels action-oriented and clear</li>
+              <li>✅ Use emoji icons for personality and quick recognition</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="heading-2 text-error mb-md">Don'ts</h3>
+            <ul style="line-height: 2">
+              <li>❌ Don't use low-contrast color combinations</li>
+              <li>❌ Don't create custom spacing values</li>
+              <li>❌ Don't use more than 3 font sizes per section</li>
+              <li>❌ Don't overuse gradients or animations</li>
+              <li>❌ Don't use vague button labels like "Click here"</li>
+              <li>❌ Don't mix icon styles (stick to emoji)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTATION -->
+    <section class="ds-section ds-section-dark">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <h2>Implementation</h2>
+          <p>Quick start with CSS custom properties</p>
+        </div>
+
+        <div class="code-block">
+          /* Include in your stylesheet */ :root { --magenta: #C926F2; --mint: #5EFFD8; --lavender:
+          #9A94E7; --black: #010102; --white: #FFFFFF; --space-sm: 1rem; --space-md: 1.5rem;
+          --space-lg: 2rem; --space-xl: 3rem; --radius-sm: 4px; --radius-md: 8px; --transition-base:
+          0.3s ease; } /* Use in your components */ .button { background: var(--magenta); padding:
+          var(--space-md) var(--space-lg); border-radius: var(--radius-sm); transition: all
+          var(--transition-base); }
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      style="
+        background: var(--black);
+        color: var(--white);
+        padding: var(--space-2xl) var(--space-lg);
+        text-align: center;
+      "
+    >
+      <div style="max-width: 800px; margin: 0 auto">
+        <h3 class="heading-2 text-mint mb-md">Ready to Build?</h3>
+        <p class="body-large mb-lg">
+          Use this design system to create consistent, powerful experiences across all Fusion Party
+          digital properties.
+        </p>
+        <a href="#" class="btn btn-primary btn-lg">Download Assets</a>
+      </div>
+      <div
+        style="
+          margin-top: var(--space-2xl);
+          padding-top: var(--space-lg);
+          border-top: 1px solid var(--grey-dark);
+        "
+      >
+        <p class="body-small" style="color: var(--grey)">
+          © 2025 Fusion Party | Design System v1.0 | Last updated: November 4, 2025
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute('href'))
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        })
+      })
+
+      // Copy code blocks on click
+      document.querySelectorAll('.code-block').forEach((block) => {
+        block.style.cursor = 'pointer'
+        block.title = 'Click to copy'
+
+        block.addEventListener('click', () => {
+          navigator.clipboard.writeText(block.textContent.trim())
+
+          const originalBg = block.style.background
+          block.style.background = 'var(--success)'
+
+          setTimeout(() => {
+            block.style.background = originalBg
+          }, 200)
+        })
+      })
+
+      // Add fade-in animations on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1'
+            entry.target.style.transform = 'translateY(0)'
+          }
+        })
+      }, observerOptions)
+
+      document.querySelectorAll('.card, .button-example, .color-swatch').forEach((el) => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(20px)'
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
+        observer.observe(el)
+      })
+    </script>
+  </body>
+</html>

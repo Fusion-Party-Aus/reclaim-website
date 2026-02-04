@@ -1,0 +1,294 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+const offlineMessages = [
+  'Internet? Never heard of her',
+  "You're offline, but our values are always online",
+  'No signal, no problem (well, small problem)',
+  'Connection lost. Democracy still pending.',
+  'The internet is taking a break. So should you!',
+  'Offline mode: Activated. Major parties: Still corrupt.',
+]
+
+const randomMessage = offlineMessages[Math.floor(Math.random() * offlineMessages.length)]
+---
+
+<BaseLayout
+  title="Offline | Fusion Victoria"
+  description="You're offline, but we'll be here when you reconnect!"
+>
+  <Header />
+
+  <main
+    class="min-h-screen bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 relative overflow-hidden pt-28 pb-20"
+  >
+    <!-- Floating disconnected symbols -->
+    <div class="absolute inset-0 opacity-10">
+      <div
+        class="absolute top-20 left-10 text-9xl text-magenta"
+        style="animation: float 6s ease-in-out infinite;"
+      >
+        📵
+      </div>
+      <div
+        class="absolute top-40 right-20 text-7xl text-mint"
+        style="animation: float 8s ease-in-out infinite reverse;"
+      >
+        🔌
+      </div>
+      <div
+        class="absolute bottom-32 left-1/4 text-8xl text-yellow"
+        style="animation: float 7s ease-in-out infinite;"
+      >
+        ✈️
+      </div>
+      <div
+        class="absolute bottom-20 right-10 text-6xl text-magenta"
+        style="animation: float 5s ease-in-out infinite reverse;"
+      >
+        🌐
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 relative z-10">
+      <!-- Giant Offline Icon -->
+      <div class="text-center mb-12">
+        <div class="inline-block mb-8 relative">
+          <div class="absolute inset-0 bg-magenta blur-3xl opacity-50 animate-pulse"></div>
+          <div
+            class="relative w-48 h-48 mx-auto bg-black border-8 border-magenta rounded-full flex items-center justify-center"
+            style="box-shadow: 0 0 0 8px #000, 0 0 0 16px #5EFFD8, 0 0 60px #C926F2; animation: pulse 2s ease-in-out infinite;"
+          >
+            <Icon
+              name="mdi:wifi-off"
+              class="w-32 h-32 text-magenta"
+              style="animation: wiggle 3s ease-in-out infinite;"
+            />
+          </div>
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl font-black uppercase mb-6 text-white"
+          style="font-family: 'Anton', 'Archivo Black', sans-serif; text-shadow: 4px 4px 0px #C926F2, 8px 8px 0px #5EFFD8;"
+        >
+          YOU'RE OFFLINE
+        </h1>
+
+        <p
+          class="text-2xl md:text-3xl font-bold text-mint mb-4"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
+          {randomMessage}
+        </p>
+      </div>
+
+      <!-- Connection Status Card -->
+      <div class="max-w-2xl mx-auto mb-12">
+        <div
+          class="bg-black border-6 border-magenta p-8 transform -rotate-1"
+          style="box-shadow: 10px 10px 0px 0px #5EFFD8, 20px 20px 0px 0px #FFED00; border-width: 6px;"
+        >
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-16 h-16 bg-magenta border-5 border-white rounded-full flex items-center justify-center"
+                style="animation: pulse 1.5s ease-in-out infinite;"
+              >
+                <Icon name="mdi:access-point-network-off" class="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h2
+                  class="text-xl font-black uppercase text-white"
+                  style="font-family: 'Archivo Black', sans-serif;"
+                >
+                  Connection Status
+                </h2>
+                <p class="text-sm font-bold text-red-400">⚠️ Disconnected</p>
+              </div>
+            </div>
+            <button
+              onclick="window.location.reload()"
+              class="px-6 py-3 bg-mint border-4 border-white text-black font-black uppercase hover:bg-yellow transition-all"
+              style="box-shadow: 4px 4px 0px 0px #fff; font-family: 'Archivo Black', sans-serif;"
+            >
+              <Icon name="mdi:refresh" class="w-5 h-5 inline mr-2" />
+              Retry
+            </button>
+          </div>
+
+          <div class="border-t-4 border-magenta pt-6">
+            <h3
+              class="text-lg font-black text-mint mb-4 uppercase"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              While you wait:
+            </h3>
+            <ul class="space-y-3 text-white font-bold">
+              <li class="flex items-start gap-3">
+                <Icon name="mdi:check-circle" class="w-6 h-6 text-yellow flex-shrink-0 mt-1" />
+                <span>Check your WiFi or mobile data connection</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="mdi:check-circle" class="w-6 h-6 text-yellow flex-shrink-0 mt-1" />
+                <span>Try turning airplane mode off</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <Icon name="mdi:check-circle" class="w-6 h-6 text-yellow flex-shrink-0 mt-1" />
+                <span>Consider the structural issues in Australian democracy (optional)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cached Content Available -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div
+          class="bg-magenta border-6 border-black p-6 text-center"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <Icon name="mdi:home" class="w-16 h-16 mx-auto mb-4 text-white" />
+          <h3
+            class="text-xl font-black uppercase text-white mb-2"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Home
+          </h3>
+          <p class="text-sm font-bold text-white opacity-90 mb-4">Visit cached version</p>
+          <a
+            href="/"
+            class="block px-4 py-2 bg-white text-magenta border-3 border-black font-black uppercase text-sm hover:bg-yellow hover:text-black transition-all"
+          >
+            Go Home
+          </a>
+        </div>
+
+        <div
+          class="bg-mint border-6 border-black p-6 text-center"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <Icon name="mdi:file-document-multiple" class="w-16 h-16 mx-auto mb-4 text-black" />
+          <h3
+            class="text-xl font-black uppercase text-black mb-2"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Policies
+          </h3>
+          <p class="text-sm font-bold text-black opacity-90 mb-4">View offline policies</p>
+          <a
+            href="/policies"
+            class="block px-4 py-2 bg-black text-mint border-3 border-black font-black uppercase text-sm hover:bg-magenta hover:text-white transition-all"
+          >
+            View Policies
+          </a>
+        </div>
+
+        <div
+          class="bg-yellow border-6 border-black p-6 text-center"
+          style="box-shadow: 6px 6px 0px 0px #000;"
+        >
+          <Icon name="mdi:information" class="w-16 h-16 mx-auto mb-4 text-black" />
+          <h3
+            class="text-xl font-black uppercase text-black mb-2"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            About
+          </h3>
+          <p class="text-sm font-bold text-black opacity-90 mb-4">Learn about Fusion</p>
+          <a
+            href="/about"
+            class="block px-4 py-2 bg-black text-yellow border-3 border-black font-black uppercase text-sm hover:bg-magenta hover:text-white transition-all"
+          >
+            About Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Fun offline activity -->
+      <div class="max-w-2xl mx-auto">
+        <div
+          class="bg-white border-6 border-black p-8 transform rotate-1"
+          style="box-shadow: 8px 8px 0px 0px #C926F2;"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-yellow border-4 border-black flex items-center justify-center rotate-12"
+            >
+              <Icon name="mdi:lightbulb-on" class="w-8 h-8 text-black" />
+            </div>
+            <h3
+              class="text-2xl font-black uppercase"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Offline Thought:
+            </h3>
+          </div>
+          <blockquote
+            class="text-lg font-bold text-gray-800 leading-relaxed border-l-8 border-magenta pl-6 mb-6"
+          >
+            "Democracy doesn't need WiFi to work. But it does need active citizens. Use this time to
+            think about what kind of future you want to vote for."
+          </blockquote>
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-black uppercase text-gray-600">- Fusion Party</p>
+            <div class="flex gap-2">
+              <div
+                class="w-3 h-3 bg-magenta rounded-full"
+                style="animation: pulse 1s ease-in-out infinite;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-mint rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.2s;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-yellow rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.4s;"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+</style>

@@ -1,0 +1,1030 @@
+/* NationBuilder Theme SCSS - NeoBrutalist Fusion Party */
+
+// VARIABLES
+$font-sans:
+  'Inter',
+  system-ui,
+  -apple-system,
+  sans-serif;
+$font-heading: 'Archivo Black', 'Anton', Impact, sans-serif;
+
+$magenta: #c926f2;
+$magenta-dark: #a01ec8;
+$mint: #5effd8;
+$mint-dark: #4de5c5;
+$yellow: #ffed00;
+$yellow-bright: #ffeb3b;
+$black: #000000;
+$white: #ffffff;
+$grey-light: #f3f4f6;
+$grey-dark: #1f2937;
+
+// Shadows (from Astro config)
+$shadow-sm: 4px 4px 0px 0px $black;
+$shadow-md: 8px 8px 0px 0px $black;
+$shadow-lg: 12px 12px 0px 0px $black;
+$shadow-yellow: 0 4px 0 0 $yellow;
+
+$border-width: 4px;
+$header-border-width: 6px;
+
+// RESET & BASE
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $white;
+  color: $black;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 2.75rem;
+}
+h3 {
+  font-size: 2.25rem;
+}
+h4 {
+  font-size: 1.75rem;
+}
+
+a {
+  color: $black;
+  text-decoration: underline;
+  text-decoration-color: $mint;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 2px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $white;
+    background-color: $magenta;
+    text-decoration: none;
+    box-shadow: 2px 2px 0 0 $black;
+  }
+}
+
+// UTILITIES
+.container {
+  width: 100%;
+  max-width: 1280px; // max-w-7xl
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.font-black {
+  font-weight: 900;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+// COMPONENTS
+
+// Buttons (Brutal Style)
+.btn,
+.button,
+input[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-heading;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  background-color: $white;
+  color: $black;
+  border: $border-width solid $black;
+  box-shadow: $shadow-sm;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+  text-decoration: none;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: $shadow-md;
+    color: $black;
+    background-color: $mint;
+  }
+
+  &:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0px 0px $black;
+  }
+
+  &.btn-primary,
+  &.submit-button {
+    background-color: $magenta;
+    color: $white;
+
+    &:hover {
+      background-color: $yellow;
+      color: $black;
+    }
+  }
+}
+
+// Cards (Brutal Style)
+.card,
+.content-container {
+  background-color: $white;
+  border: $border-width solid $black;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: $shadow-md;
+
+  // Neo-brutalist distinct look
+  &.feature {
+    box-shadow: 12px 12px 0px 0px $magenta;
+  }
+}
+
+// Form Inputs (Brutal Style)
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+input[type='number'],
+textarea,
+select {
+  width: 100%;
+  padding: 1rem;
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 700;
+  border: $border-width solid $black;
+  background-color: $white;
+  box-shadow: $shadow-sm;
+  margin-bottom: 1.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 0; // Ensure sharp corners
+
+  &:focus {
+    box-shadow: $shadow-md;
+    border-color: $magenta;
+    outline: none;
+  }
+}
+
+label {
+  display: block;
+  font-family: $font-heading;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+// HEADER
+.site-header {
+  background-color: $black;
+  color: $white;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: $header-border-width solid $magenta;
+  box-shadow: $shadow-yellow;
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+
+    .logo-main {
+      font-family: $font-heading;
+      font-size: 1.6rem;
+      color: $magenta;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-sub {
+      font-family: $font-heading;
+      font-size: 0.875rem;
+      color: $mint;
+      letter-spacing: 0.12em;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: $font-heading;
+    font-size: 1rem;
+    color: $mint;
+    background-color: transparent;
+    border: 2px solid $mint;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    text-decoration: none;
+
+    i {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $mint;
+      color: $black;
+      i {
+        color: $black;
+      }
+    }
+  }
+
+  // Navigation (Removed for simple back link, kept for reference if needed)
+  /* nav {
+    #topnav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+
+      > li {
+        position: relative;
+
+        &.active > a {
+          color: $mint;
+          &::before {
+            transform: scaleX(1);
+          }
+        }
+
+        > a {
+          font-family: $font-heading;
+          font-size: 0.95rem;
+          color: $white;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          position: relative;
+          padding: 0.5rem 0;
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: $mint;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+          }
+
+          &:hover {
+            color: $mint;
+
+            &::before {
+              transform: scaleX(1);
+            }
+          }
+        }
+
+        // Dropdown Logic
+        .dropdown-wrapper {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          padding-top: 1rem; // Spacing to bridge hover
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: all 0.2s ease;
+          z-index: 100;
+        }
+
+        &:hover .dropdown-wrapper {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .dropdown {
+          background-color: $black;
+          border: $border-width solid $mint;
+          box-shadow: 6px 6px 0px 0px $magenta;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          min-width: 250px;
+          display: flex;
+          flex-direction: column; // Stack vertically
+          gap: 0; // Remove gap from parent ul
+
+          li {
+            border-bottom: 2px solid $magenta;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            a {
+              display: block;
+              padding: 1rem 1.5rem;
+              color: $white;
+              font-family: $font-heading; // Ensure consistent font
+              font-size: 0.85rem;
+              text-transform: uppercase; // Ensure consistent case
+              transition: all 0.2s ease;
+
+              &::before {
+                display: none;
+              } // Hide underline effect on dropdown items
+
+              &:hover {
+                background-color: $mint;
+                color: $black;
+                padding-left: 1.75rem; // Slight indent on hover
+              }
+            }
+          }
+        }
+      }
+    }
+  } */
+}
+
+// FORM LAYOUTS (Grid System Restoration)
+.row-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: 1rem;
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  [class*='span'] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+    width: 100%; // Default to full width on mobile
+
+    @media (min-width: 768px) {
+      &.span12 {
+        width: 100%;
+      }
+      &.span11 {
+        width: 91.66666667%;
+      }
+      &.span10 {
+        width: 83.33333333%;
+      }
+      &.span9 {
+        width: 75%;
+      }
+      &.span8 {
+        width: 66.66666667%;
+      }
+      &.span7 {
+        width: 58.33333333%;
+      }
+      &.span6 {
+        width: 50%;
+      }
+      &.span5 {
+        width: 41.66666667%;
+      }
+      &.span4 {
+        width: 33.33333333%;
+      }
+      &.span3 {
+        width: 25%;
+      }
+      &.span2 {
+        width: 16.66666667%;
+      }
+      &.span1 {
+        width: 8.33333333%;
+      }
+    }
+  }
+}
+
+// Specific Form Tweaks
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+// Make sure inputs inside columns fill their container
+.row-fluid input[type='text'],
+.row-fluid input[type='email'],
+.row-fluid input[type='tel'],
+.row-fluid input[type='number'],
+.row-fluid select {
+  width: 100%;
+  margin-bottom: 0; // Let row handle spacing
+}
+
+// Radio Buttons & Checkboxes (Neo-Brutalist Overhaul)
+.radio,
+.checkbox,
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  // Increase label text size for better readability
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none; // Allow mixed case for options
+}
+
+// Required Asterisks (User's Template uses .text-danger)
+.red,
+span.required,
+.required,
+.text-danger {
+  color: $magenta !important;
+  font-weight: 900;
+  margin-left: 0.25rem;
+}
+
+// User Template Specific Grid System (Bootstrap-like)
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+
+  > .col,
+  > [class*='col-'] {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.col-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+@media (min-width: 576px) {
+  // sm
+  .col-sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .col-sm-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+  .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-sm-5 {
+    flex: 0 0 41.666666%;
+    max-width: 41.666666%;
+  }
+  .col-sm-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 768px) {
+  // md
+  .col-md-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-md-5 {
+    flex: 0 0 41.666666%;
+    max-width: 41.666666%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .d-md-block {
+    display: block !important;
+  }
+}
+
+@media (min-width: 992px) {
+  // lg
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-lg-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .col-lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .d-lg-block {
+    display: block !important;
+  }
+}
+
+// Display Utilities
+.d-none {
+  display: none !important;
+}
+.d-block {
+  display: block !important;
+}
+.d-flex {
+  display: flex !important;
+}
+
+// DONATION SPECIFIC STYLES
+
+// Progress Bar
+.progress {
+  height: 2rem;
+  background-color: $white;
+  border: $border-width solid $black;
+  box-shadow: $shadow-sm;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: $magenta;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  font-weight: 900;
+  font-family: $font-heading;
+
+  &.bg-mint {
+    background-color: $mint;
+    color: $black;
+  }
+  &.bg-yellow {
+    background-color: $yellow;
+    color: $black;
+  }
+}
+
+// Donation Amount Buttons
+.donation-v2-amounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  // This wrapper usually contains radio+label pairs inside spans
+  span.radio {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    display: block; // Reset flex from generic .radio
+
+    input[type='radio'] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      // When input is checked, style the SIBLING label
+      &:checked + label {
+        background-color: $magenta;
+        color: $white;
+        box-shadow: $shadow-md;
+        transform: translate(-2px, -2px);
+      }
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.5rem;
+      min-width: 120px;
+      background-color: $white;
+      border: $border-width solid $black;
+      font-family: $font-heading;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: $black;
+      cursor: pointer;
+      transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: $shadow-sm;
+      margin: 0;
+
+      &:hover {
+        background-color: $mint;
+        box-shadow: $shadow-md;
+        transform: translate(-4px, -4px);
+        z-index: 10;
+      }
+    }
+
+    input[type='radio']:checked + label {
+      background-color: $magenta;
+      color: $white;
+      box-shadow: 0 0 0 0 $black;
+      transform: translate(4px, 4px);
+    }
+  }
+}
+
+// Donation Options (Frequency / Custom Amount)
+.donation-v2-options {
+  margin-top: 1.5rem;
+
+  .radio-inline {
+    margin-right: 1.5rem;
+
+    label {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Ensure inputs styled correctly
+.form-control {
+  // Inherit general input styles
+  width: 100%;
+  padding: 1rem;
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 700;
+  border: $border-width solid $black;
+  background-color: $white;
+  box-shadow: $shadow-sm;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 0 !important; // Force sharp corners
+  height: auto; // Override bootstrap height if present
+
+  &:focus {
+    box-shadow: $shadow-md;
+    border-color: $magenta;
+  }
+}
+
+// Overrides for Template Classes
+.rounded {
+  border-radius: 0 !important;
+}
+.bg-aquamarine-transparent {
+  background-color: transparent;
+}
+.card {
+  border-radius: 0;
+}
+
+// Headers in form
+h4.h-underline {
+  border-bottom: 4px solid $magenta;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-family: $font-heading;
+  text-transform: uppercase;
+}
+
+input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: $border-width solid $black;
+  border-radius: 50%;
+  background-color: $white;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Bouncy
+  flex-shrink: 0; // Prevent squashing
+  margin: 0; // Remove default margins
+
+  &:hover {
+    background-color: $grey-light;
+    transform: scale(1.1);
+  }
+
+  &:checked {
+    background-color: $magenta;
+    box-shadow: inset 0 0 0 4px $white; // Create "donut" effect
+    transform: scale(1.1);
+    border-color: $black;
+  }
+
+  &:focus {
+    box-shadow:
+      0 0 0 2px $white,
+      0 0 0 4px $magenta;
+  }
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: $border-width solid $black;
+  background-color: $white;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+  margin: 0;
+  position: relative;
+
+  &:hover {
+    background-color: $grey-light;
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px 0 0 $black;
+  }
+
+  &:checked {
+    background-color: $mint;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 $black;
+
+    // Checkmark SVG using data URI
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &:focus {
+    box-shadow:
+      0 0 0 2px $white,
+      0 0 0 4px $mint;
+  }
+}
+
+// Special case for Option lists (Radio groups) often used in donation amounts
+.radio-inline,
+.checkbox-inline {
+  display: inline-flex;
+  margin-right: 1.5rem;
+  align-items: center;
+
+  input {
+    margin-right: 0.5rem;
+  }
+}
+
+// FORM LAYOUT REFINEMENTS
+// Force row layout on desktop
+@media (min-width: 768px) {
+  .row-fluid {
+    display: flex !important;
+    gap: 1rem;
+
+    // Override strict percentage widths if they fail
+    // But maintain specific classes
+    .span4 {
+      flex: 0 0 32%;
+      max-width: 32%;
+    }
+    .span6 {
+      flex: 0 0 48%;
+      max-width: 48%;
+    }
+    .span12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    // Name fields group override (common pattern)
+    // If not using spans, try flex if they are adjacent divs
+    div:has(input#signup_first_name),
+    div:has(input#signup_last_name) {
+      flex: 1;
+    }
+  }
+}
+
+// FOOTER
+.site-footer {
+  background-color: $black;
+  color: $white;
+  padding: 4rem 0;
+  border-top: $border-width solid $yellow;
+  text-align: center;
+  margin-top: 4rem;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    font-family: $font-heading;
+    font-size: 1.5rem;
+    color: $white;
+    margin-bottom: 1rem;
+
+    span {
+      color: $magenta;
+    }
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+
+    a {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+
+      &:hover {
+        color: $mint;
+      }
+    }
+  }
+
+  .copyright {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    max-width: 600px;
+    line-height: 1.6;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+// NationBuilder Specific overrides
+.content-container {
+  padding: 4rem 0;
+  // Remove default NB container styling if present
+}
+
+// Errors & Flashes
+.flash-container {
+  margin-bottom: 2rem;
+
+  .flash-error,
+  .flash-notice,
+  .flash-success {
+    padding: 1rem;
+    font-weight: 700;
+    border: $border-width solid $black;
+    box-shadow: $shadow-sm;
+    margin-bottom: 1rem;
+  }
+
+  .flash-error {
+    background-color: $white;
+    color: #dc2626;
+    border-color: #dc2626;
+  }
+  .flash-success {
+    background-color: $mint;
+    color: $black;
+  }
+  .flash-notice {
+    background-color: $yellow;
+    color: $black;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+  .site-header {
+    .header-inner {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  .card,
+  .content-container {
+    padding: 1.5rem;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    border-top: $border-width solid $black;
+    border-bottom: $border-width solid $black;
+  }
+}

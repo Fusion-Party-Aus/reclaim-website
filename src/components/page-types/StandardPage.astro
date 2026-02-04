@@ -1,0 +1,220 @@
+---
+import DynamicSidebar from '../DynamicSidebar.astro'
+import type { Page } from '../../types/sanity'
+
+interface Props {
+  page: Page
+  segments: string[]
+}
+
+const { page, segments } = Astro.props
+
+// Determine if page has sidebar
+const hasSidebar = page.showSidebar && page.body && page.body.length > 0
+
+// Construct breadcrumbs
+const breadcrumbs = segments.map((seg, i) => {
+  const path = '/' + segments.slice(0, i + 1).join('/')
+  return {
+    label:
+      seg === page.slug.current
+        ? page.title
+        : seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+    path,
+  }
+})
+
+import { renderPortableText } from '../../lib/portableText'
+import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
+
+// Process the HTML to wrap sections in boxes
+const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
+---
+
+<div
+  class={`grid gap-8 ${hasSidebar ? (page.sidebarPosition === 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]') : 'grid-cols-1 max-w-5xl mx-auto'}`}
+>
+  {
+    hasSidebar && page.sidebarPosition === 'left' && page.body && (
+      <div class="order-2 lg:order-1">
+        <DynamicSidebar content={page.body} />
+      </div>
+    )
+  }
+
+  <div class={hasSidebar && page.sidebarPosition === 'left' ? 'order-1 lg:order-2' : ''}>
+    <!-- Breadcrumbs -->
+    <nav class="text-xs font-mono uppercase tracking-wide mb-8 flex items-center flex-wrap gap-2">
+      <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint transition-colors"
+        >Home</a
+      >
+      {
+        breadcrumbs.map((bc, i) => (
+          <>
+            <span class="opacity-60">/</span>
+            {i === breadcrumbs.length - 1 ? (
+              <span
+                class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
+                title={page.title}
+              >
+                {page.title}
+              </span>
+            ) : (
+              <a
+                href={bc.path}
+                class="px-2 py-1 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+              >
+                {bc.label}
+              </a>
+            )}
+          </>
+        ))
+      }
+    </nav>
+
+    <!-- Page Content -->
+    {
+      page.body ? (
+        <article class="prose prose-lg max-w-none">
+          <div set:html={pageHtml} />
+        </article>
+      ) : (
+        <div class="brutal-card brutal-card-magenta">
+          <p class="text-lg font-semibold">
+            This page has no content yet. Add content in Sanity Studio.
+          </p>
+        </div>
+      )
+    }
+
+    <!-- Call to Action -->
+    {
+      !hasSidebar && (
+        <section
+          class="mt-16 bg-white border-4 border-black p-8"
+          style="box-shadow: 8px 8px 0 0 #000;"
+        >
+          <div
+            class="bg-magenta p-6 border-4 border-black mb-6"
+            style="box-shadow: 4px 4px 0 0 #000;"
+          >
+            <h2 class="text-2xl md:text-3xl font-black text-white mb-2 uppercase">
+              Ready to Join the Movement?
+            </h2>
+          </div>
+          <p class="text-lg mb-6 font-semibold">
+            We don't take corporate donations. We answer to you, not donors.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/get-involved" class="btn btn-primary">
+              Get Involved
+            </a>
+            <a href="/electorates" class="btn btn-secondary">
+              Find Your Electorate
+            </a>
+            <a href="/policies" class="btn btn-secondary">
+              Read Our Policies
+            </a>
+          </div>
+        </section>
+      )
+    }
+  </div>
+
+  {
+    hasSidebar && page.sidebarPosition === 'right' && page.body && (
+      <div>
+        <DynamicSidebar content={page.body} />
+      </div>
+    )
+  }
+</div>
+
+<style is:global>
+  /* NEO-BRUTAL PROSE OVERRIDES - THE "WOW" FACTOR */
+  .prose {
+    color: #000;
+  }
+
+  /* Vibrant Highlights for Strong Tags */
+  .prose strong {
+    color: #000;
+    padding: 0.1em 0.3em;
+    background-color: #ffed00; /* Yellow highlight default */
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 0 #000;
+  }
+
+  .prose p:nth-of-type(3n) strong {
+    background-color: #5effd8; /* Mint highlight */
+  }
+
+  .prose p:nth-of-type(3n + 1) strong {
+    background-color: #c926f2; /* Magenta highlight */
+    color: #fff;
+  }
+
+  /* Sticker-style H3s */
+  .prose h3 {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    transform: rotate(-1deg);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    border: 3px solid #ffed00;
+    box-shadow: 6px 6px 0 0 #000;
+    text-transform: uppercase;
+    font-family: 'Archivo Black', sans-serif;
+  }
+
+  .prose h3:nth-of-type(2n) {
+    transform: rotate(1.5deg);
+    border-color: #c926f2;
+  }
+
+  /* Custom List Markers */
+  .prose ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .prose ul li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .prose ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: #ffed00;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    box-shadow: 3px 3px 0 0 #000;
+  }
+
+  /* Global Link Refinements */
+  .prose a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    border-bottom: 4px solid #c926f2;
+    transition: all 0.1s ease;
+  }
+
+  .prose a:hover {
+    background: #c926f2;
+    color: #fff;
+    border-bottom-color: #000;
+  }
+</style>

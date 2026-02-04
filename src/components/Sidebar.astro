@@ -1,0 +1,80 @@
+---
+interface Props {
+  sections: Array<{
+    id: string
+    title: string
+  }>
+  page: string
+}
+
+const { sections, page } = Astro.props
+---
+
+<aside class="sidebar hidden lg:block w-64 flex-shrink-0">
+  <div class="sticky top-24">
+    <div
+      class="bg-white border-6 border-black p-6"
+      style="box-shadow: 8px 8px 0px 0px #000000; border-width: 6px;"
+    >
+      <h3
+        class="text-2xl font-black text-magenta mb-6 uppercase border-b-4 border-magenta pb-2"
+        style="font-family: 'Archivo Black', sans-serif;"
+      >
+        Jump To
+      </h3>
+      <nav class="space-y-2">
+        {
+          sections.map((section) => (
+            <a
+              href={`#${section.id}`}
+              class="block py-3 px-4 font-black uppercase border-4 border-black bg-mint hover:bg-yellow hover:translate-x-1 transition-all text-sm"
+              style="box-shadow: 4px 4px 0px 0px #000000;"
+            >
+              {section.title}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="mt-8 pt-6 border-t-4 border-black">
+        <h4 class="text-lg font-black text-magenta mb-4 uppercase">Quick Links</h4>
+        <div class="space-y-2">
+          <a
+            href="/manifesto"
+            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-white hover:bg-mint hover:translate-x-1 transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+          >
+            📄 Full Manifesto
+          </a>
+          <a
+            href="/get-involved"
+            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-white hover:bg-magenta hover:text-white hover:translate-x-1 transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+          >
+            🚀 Get Involved
+          </a>
+          <a
+            href="https://fusionparty.org.au/donate"
+            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-yellow hover:bg-magenta hover:text-white hover:translate-x-1 transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+          >
+            💰 Donate
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="mt-6 p-4 border-5 border-magenta bg-magenta text-white"
+        style="box-shadow: 4px 4px 0px 0px #000000; border-width: 5px;"
+      >
+        <p class="font-black text-sm uppercase">No Corporate Donations. Ever.</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .sidebar a:hover {
+    transform: translateX(4px) !important;
+  }
+</style>

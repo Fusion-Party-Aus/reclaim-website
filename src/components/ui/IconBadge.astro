@@ -1,0 +1,111 @@
+---
+/**
+ * IconBadge - Icon with Badge Component
+ *
+ * Displays an icon with optional circular badge background.
+ * Used for category icons, feature icons, policy icons, etc.
+ *
+ * @param {string} name - MDI icon name (required)
+ * @param {string} variant - Style variant: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white' | 'black'
+ * @param {string} size - Size: 'sm' | 'md' | 'lg' | 'xl'
+ * @param {boolean} circular - Show circular background
+ * @param {boolean} border - Show border
+ * @param {string} animation - Animation: 'none' | 'bounce' | 'wiggle' | 'pulse' | 'float'
+ * @param {string} class - Additional CSS classes
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  name: string
+  variant?: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white' | 'black'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  circular?: boolean
+  border?: boolean
+  animation?: 'none' | 'bounce' | 'wiggle' | 'pulse' | 'float'
+  class?: string
+}
+
+const {
+  name,
+  variant = 'magenta',
+  size = 'md',
+  circular = true,
+  border = true,
+  animation = 'none',
+  class: className = '',
+} = Astro.props
+
+// Color variants
+const variants = {
+  magenta: 'bg-magenta text-white border-black',
+  mint: 'bg-mint text-black border-black',
+  yellow: 'bg-yellow text-black border-black',
+  lavender: 'bg-lavender text-black border-black',
+  white: 'bg-white text-black border-black',
+  black: 'bg-black text-white border-black',
+}
+
+// Sizes
+const sizes = {
+  sm: {
+    container: 'w-10 h-10 p-2',
+    icon: 'w-6 h-6',
+  },
+  md: {
+    container: 'w-14 h-14 p-3',
+    icon: 'w-8 h-8',
+  },
+  lg: {
+    container: 'w-20 h-20 p-4',
+    icon: 'w-12 h-12',
+  },
+  xl: {
+    container: 'w-28 h-28 p-6',
+    icon: 'w-16 h-16',
+  },
+}
+
+// Animations
+const animations = {
+  none: '',
+  bounce: 'animate-bounce-subtle',
+  wiggle: 'animate-wiggle-subtle',
+  pulse: 'animate-pulse-gentle',
+  float: 'animate-float-gentle',
+}
+
+const sizeClasses = sizes[size]
+const circularClass = circular ? 'rounded-full' : 'rounded-lg'
+const borderClass = border ? 'border-4' : ''
+---
+
+{
+  circular ? (
+    <div
+      class={`
+      ${variants[variant]}
+      ${sizeClasses.container}
+      ${circularClass}
+      ${borderClass}
+      ${animations[animation]}
+      flex items-center justify-center
+      shadow-[4px_4px_0px_0px_#000000]
+      transition-transform duration-200
+      hover:scale-110
+      ${className}
+    `}
+    >
+      <Icon name={name} class={sizeClasses.icon} />
+    </div>
+  ) : (
+    <Icon
+      name={name}
+      class={`
+      ${sizeClasses.icon}
+      ${animations[animation]}
+      ${className}
+    `}
+    />
+  )
+}

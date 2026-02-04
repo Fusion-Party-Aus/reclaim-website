@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Footer from '../components/Footer.astro'
+import StandardPage from '../components/page-types/StandardPage.astro'
+import BioPage from '../components/page-types/BioPage.astro'
+import { getPages } from '../lib/sanity'
+import type { Page } from '../types/sanity'
+import '../styles/global.css'
+
+export async function getStaticPaths() {
+  const pages = await getPages()
+
+  return (pages as Page[])
+    .filter((p) => p.slug?.current)
+    .map((p) => {
+      // Construct full path
+      const segments = [p.slug.current]
+      let currentParent = (p as any).parent
+      while (currentParent) {
+        segments.unshift(currentParent.slug.current)
+        currentParent = currentParent.parent
+      }
+      const fullPath = segments.join('/')
+
+      return {
+        params: { slug: fullPath },
+        props: { page: p, segments },
+      }
+    })
+}
+
+export interface Props {
+  page: Page
+  segments: string[]
+}
+
+const { page, segments } = Astro.props
+
+if (!page) {
+  return Astro.redirect('/404')
+}
+---
+
+<BaseLayout
+  title={`${page.title} | Fusion Victoria`}
+  description={page.metaDescription || page.subtitle}
+>
+  <Header />
+
+  {page.pageType !== 'bio' && <Hero title={page.title} subtitle={page.subtitle || ''} />}
+
+  <main class="bg-white py-8 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {
+        page.pageType === 'bio' ? (
+          <BioPage page={page} segments={segments} />
+        ) : (
+          <StandardPage page={page} segments={segments} />
+        )
+      }
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

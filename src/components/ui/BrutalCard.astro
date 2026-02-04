@@ -1,0 +1,104 @@
+---
+/**
+ * BrutalCard - Reusable Neo-Brutalist Card Component
+ *
+ * A consistent card component with brutal borders and shadows.
+ * Reduces code duplication and ensures design consistency.
+ *
+ * @param {string} variant - Color variant: 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
+ * @param {string} shadow - Shadow color (default: black)
+ * @param {string} borderWidth - Border thickness: 'sm' (4px) | 'md' (6px) | 'lg' (8px)
+ * @param {string} shadowSize - Shadow size: '4' | '6' | '8' | '10' | '12'
+ * @param {string} padding - Padding size: 'sm' | 'md' | 'lg'
+ * @param {number} rotation - Rotation in degrees (e.g., -0.5, 1, 2) or 0 for none
+ * @param {boolean} hover - Enable hover effect (lifts up and increases shadow)
+ * @param {string} class - Additional CSS classes
+ * @param {string} id - HTML id attribute
+ */
+
+interface Props {
+  variant?: 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
+  shadow?: string
+  borderWidth?: 'sm' | 'md' | 'lg'
+  shadowSize?: '4' | '6' | '8' | '10' | '12'
+  padding?: 'sm' | 'md' | 'lg' | 'xl'
+  rotation?: number
+  hover?: boolean
+  class?: string
+  id?: string
+}
+
+const {
+  variant = 'white',
+  shadow = '#000000',
+  borderWidth = 'md',
+  shadowSize = '8',
+  padding = 'md',
+  rotation = 0,
+  hover = true,
+  class: className = '',
+  id,
+} = Astro.props
+
+// Background colors
+const bgColors = {
+  white: 'bg-white text-black',
+  magenta: 'bg-magenta text-white',
+  mint: 'bg-mint text-black',
+  yellow: 'bg-yellow text-black',
+  lavender: 'bg-lavender text-black',
+  black: 'bg-black text-white',
+}
+
+// Border widths
+const borderSizes = {
+  sm: 'border-4',
+  md: 'border-6',
+  lg: 'border-8',
+}
+
+// Padding sizes
+const paddingSizes = {
+  sm: 'p-4',
+  md: 'p-6 md:p-8',
+  lg: 'p-8 md:p-10',
+  xl: 'p-10 md:p-12',
+}
+
+// Calculate shadow based on shadowSize
+const shadowOffset = `${shadowSize}px`
+const hoverShadowOffset = `${parseInt(shadowSize) + 4}px`
+
+// Calculate rotation style
+const rotationStyle = rotation !== 0 ? `rotate(${rotation}deg)` : 'rotate(0deg)'
+
+// Build inline styles
+const cardStyle = `
+  box-shadow: ${shadowOffset} ${shadowOffset} 0px 0px ${shadow};
+  transform: ${rotationStyle};
+`
+---
+
+<div
+  id={id}
+  class={`
+    ${bgColors[variant]}
+    ${borderSizes[borderWidth]}
+    ${paddingSizes[padding]}
+    border-black
+    transition-all duration-200
+    ${hover ? `hover:-translate-y-1 hover:shadow-[${hoverShadowOffset}_${hoverShadowOffset}_0px_0px_${shadow}]` : ''}
+    ${className}
+  `}
+  style={cardStyle}
+>
+  <slot />
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    div {
+      transition: none !important;
+    }
+  }
+</style>

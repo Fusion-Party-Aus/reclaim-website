@@ -1,0 +1,52 @@
+---
+/**
+ * Grid - Reusable Grid Layout Component
+ *
+ * Responsive grid layouts with various column configurations.
+ * Supports common patterns: theft-grid, policy-grid, electorate-grid, feature-grid.
+ *
+ * @param {string} variant - Grid pattern: 'theft' | 'policy' | 'electorate' | 'feature' | '2col' | '3col' | '4col'
+ * @param {string} gap - Gap between items: 'sm' | 'md' | 'lg'
+ * @param {string} class - Additional CSS classes
+ */
+
+interface Props {
+  variant?: 'theft' | 'policy' | 'electorate' | 'feature' | '2col' | '3col' | '4col' | 'auto'
+  gap?: 'sm' | 'md' | 'lg'
+  class?: string
+}
+
+const { variant = '3col', gap = 'md', class: className = '' } = Astro.props
+
+// Gap sizes
+const gaps = {
+  sm: 'gap-4',
+  md: 'gap-6',
+  lg: 'gap-8',
+}
+
+// Grid patterns
+const variants = {
+  // Asymmetric theft/feature grid
+  theft: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+
+  // Policy/electorate grid - equal columns
+  policy: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  electorate: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+
+  // Feature grid - 2 cols on mobile, 4 on desktop
+  feature: 'grid grid-cols-2 md:grid-cols-4',
+
+  // Simple column grids
+  '2col': 'grid grid-cols-1 md:grid-cols-2',
+  '3col': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  '4col': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+
+  // Auto-fit responsive
+  auto: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+}
+---
+
+<div class={`${variants[variant]} ${gaps[gap]} ${className}`}>
+  <slot />
+</div>

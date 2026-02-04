@@ -1,0 +1,401 @@
+---
+// Footer component - Neo-Brutalist Enhanced
+import { Icon } from 'astro-icon/components'
+import { getDocuments } from '../lib/sanity'
+
+interface SocialLink {
+  platform: string
+  icon: string
+  url: string
+  ariaLabel?: string
+}
+
+interface ResourceLink {
+  label: string
+  url: string
+}
+
+interface Footer {
+  logo: {
+    mainText: string
+    subText: string
+  }
+  socialLinks: SocialLink[]
+  resourceLinks: ResourceLink[]
+  banner: {
+    text: string
+    rotation: number
+  }
+  authorization: string
+  copyrightText?: string
+  networkBranding?: {
+    text: string
+    url: string
+  }
+}
+
+// Fetch footer from Sanity with fallback
+const footers = await getDocuments<Footer>('footer')
+const footer = footers?.[0]
+
+// Define fallback data
+const defaultFooter: Footer = {
+  logo: {
+    mainText: 'FUSION',
+    subText: 'VICTORIA',
+  },
+  socialLinks: [
+    {
+      platform: 'Instagram',
+      icon: 'mdi:instagram',
+      url: 'https://www.instagram.com/fusionpartyaus/',
+      ariaLabel: 'Instagram',
+    },
+    {
+      platform: 'Facebook',
+      icon: 'mdi:facebook',
+      url: 'https://www.facebook.com/FusionPartyAus/',
+      ariaLabel: 'Facebook',
+    },
+    {
+      platform: 'YouTube',
+      icon: 'mdi:youtube',
+      url: 'https://www.youtube.com/c/fusionpartyaus',
+      ariaLabel: 'YouTube',
+    },
+    {
+      platform: 'Bluesky',
+      icon: 'mdi:cloud',
+      url: 'https://bsky.app/profile/fusionparty.org.au',
+      ariaLabel: 'Bluesky',
+    },
+    {
+      platform: 'Twitter/X',
+      icon: 'mdi:twitter',
+      url: 'https://twitter.com/FusionPartyAus',
+      ariaLabel: 'Twitter/X',
+    },
+    {
+      platform: 'TikTok',
+      icon: 'mdi:music-note',
+      url: 'https://www.tiktok.com/@fusionpartyaus',
+      ariaLabel: 'TikTok',
+    },
+    {
+      platform: 'Mastodon',
+      icon: 'mdi:mastodon',
+      url: 'https://mastodon.au/@FusionPartyAus',
+      ariaLabel: 'Mastodon',
+    },
+    {
+      platform: 'Discord',
+      icon: 'mdi:discord',
+      url: 'https://www.fusionparty.org.au/discord',
+      ariaLabel: 'Discord',
+    },
+    {
+      platform: 'GitHub',
+      icon: 'mdi:github',
+      url: 'https://github.com/Fusion-Party-Aus',
+      ariaLabel: 'GitHub',
+    },
+  ],
+  resourceLinks: [
+    { label: 'Code of Conduct', url: 'https://www.fusionparty.org.au/code_of_conduct' },
+    { label: 'Constitution', url: 'https://www.fusionparty.org.au/constitution' },
+    { label: 'Privacy Policy', url: 'https://www.fusionparty.org.au/privacy_policy' },
+  ],
+  banner: {
+    text: '🚫 We Accept NO Corporate Donations',
+    rotation: -0.5,
+  },
+  authorization: 'Authorised by Drew Wolfendale, Fusion Party Victoria.',
+}
+
+const footerData = footer || defaultFooter
+
+// Social link colors cycling through brand colors
+const socialColors = [
+  { border: 'mint', bg: 'mint', shadow: '#5EFFD8' },
+  { border: 'yellow', bg: 'yellow', shadow: '#FFED00' },
+  { border: 'magenta', bg: 'magenta', shadow: '#C926F2' },
+  { border: 'lavender', bg: 'lavender', shadow: '#9A94E7' },
+]
+---
+
+<footer
+  class="bg-black text-white pt-16 pb-8 px-4 md:px-8 border-t-8 border-magenta relative overflow-hidden"
+>
+  <!-- Decorative elements -->
+  <div
+    class="absolute top-0 right-0 w-64 h-64 border-8 border-yellow opacity-20"
+    style="transform: translate(30%, -30%) rotate(45deg);"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-48 h-48 border-8 border-mint opacity-20"
+    style="transform: translate(-30%, 30%) rotate(-45deg);"
+  >
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <div
+          class="mb-6 inline-block p-4 bg-white border-4 border-black"
+          style="box-shadow: 6px 6px 0px 0px #C926F2;"
+        >
+          <img src="/solo-full-colour.svg" alt="Fusion Victoria" class="h-12 w-auto" />
+        </div>
+
+        <h3
+          class="text-xl md:text-2xl font-black mb-3 leading-tight"
+          style="color: #C926F2; font-family: 'Archivo Black', sans-serif;"
+        >
+          {footerData.logo.mainText}<br />{footerData.logo.subText}
+        </h3>
+        <p
+          class="font-black mb-4 text-base md:text-lg leading-tight"
+          style="color: #5EFFD8; text-transform: uppercase;"
+        >
+          TAKING BACK<br />WHAT THEY STOLE.
+        </p>
+        <p class="text-sm leading-relaxed font-semibold mb-6" style="color: #E5E5E5;">
+          Evidence-based policy. No corporate donations. Workers over exploiters.
+        </p>
+
+        <!-- Social Links -->
+        <div class="flex gap-2 flex-wrap">
+          {
+            footerData.socialLinks.map((social, index) => {
+              const colorScheme = socialColors[index % socialColors.length]
+              return (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener"
+                  class={`social-link p-2 border-4 border-${colorScheme.border} bg-black hover:bg-${colorScheme.bg} hover:text-black transition-all`}
+                  style={`box-shadow: 3px 3px 0px 0px ${colorScheme.shadow};`}
+                  aria-label={social.ariaLabel || social.platform}
+                >
+                  <Icon name={social.icon} class="w-5 h-5" />
+                </a>
+              )
+            })
+          }
+        </div>
+      </div>
+
+      <!-- Policy Areas -->
+      <div>
+        <h4
+          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
+          style="color: #5EFFD8; border-color: #5EFFD8;"
+        >
+          Policy
+        </h4>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="/policies"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ All Policies</a
+            >
+          </li>
+          <li>
+            <a
+              href="/manifesto"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Manifesto</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ About Us</a
+            >
+          </li>
+          <li>
+            <a
+              href="/faq"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ FAQ</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Electorates -->
+      <div>
+        <h4
+          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
+          style="color: #5EFFD8; border-color: #5EFFD8;"
+        >
+          Electorates
+        </h4>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="/electorates"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ All Electorates</a
+            >
+          </li>
+          <li>
+            <a
+              href="/electorates/melton"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Melton</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal & Governance -->
+      <div>
+        <h4
+          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
+          style="color: #5EFFD8; border-color: #5EFFD8;"
+        >
+          Governance
+        </h4>
+        <ul class="space-y-2">
+          {
+            footerData.resourceLinks.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+                  style="color: #E5E5E5;"
+                >
+                  → {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Get Involved -->
+      <div>
+        <h4
+          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
+          style="color: #5EFFD8; border-color: #5EFFD8;"
+        >
+          Take Action
+        </h4>
+        <ul class="space-y-2 mb-6">
+          <li>
+            <a
+              href="https://www.fusionparty.org.au/join"
+              target="_blank"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Join Fusion</a
+            >
+          </li>
+          <li>
+            <a
+              href="/get-involved"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Volunteer</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.fusionparty.org.au/donate"
+              target="_blank"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Donate</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.fusionparty.org.au/store"
+              target="_blank"
+              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
+              style="color: #E5E5E5;">→ Merch Store</a
+            >
+          </li>
+        </ul>
+
+        <!-- Donate Button -->
+        <a
+          href="https://www.fusionparty.org.au/donate"
+          target="_blank"
+          class="block text-center px-4 py-3 font-black uppercase text-sm border-4 border-yellow bg-magenta text-white hover:bg-yellow hover:text-black transition-all"
+          style="box-shadow: 4px 4px 0px 0px #FFED00; font-family: 'Archivo Black', sans-serif;"
+        >
+          💰 Donate Now
+        </a>
+      </div>
+    </div>
+
+    <!-- No Corporate Donations Banner -->
+    <div
+      class="mb-8 p-6 border-4 border-mint bg-magenta text-center"
+      style={`box-shadow: 8px 8px 0px 0px #5EFFD8; transform: rotate(${footerData.banner.rotation}deg);`}
+    >
+      <p class="text-base md:text-lg font-black uppercase tracking-wider" style="color: #FFFFFF;">
+        {footerData.banner.text}
+      </p>
+      <p class="text-sm font-bold mt-2" style="color: #FFED00;">
+        Funded by members and small donors only. That's why we answer to you.
+      </p>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t-4 border-mint text-center space-y-3">
+      <p class="text-sm font-black uppercase" style="color: #E5E5E5;">
+        &copy; {footerData.copyrightText || '2024-2025 Fusion Party Victoria. All rights reserved.'}
+      </p>
+      <p class="text-sm font-bold" style="color: #E5E5E5;">
+        {footerData.authorization}
+      </p>
+      <p class="text-xs mt-4" style="color: #9A94E7;">
+        Part of <a
+          href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
+          target="_blank"
+          class="underline hover:text-mint transition-colors"
+          >{
+            footerData.networkBranding?.text ||
+              'Fusion: Science, Pirate, Secular, Climate Emergency'
+          }</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    position: relative;
+  }
+
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 100%;
+    height: 2px;
+    background: #5effd8;
+    transition: right 0.3s ease;
+  }
+
+  .footer-link:hover::after {
+    right: 0;
+  }
+
+  .footer-link:hover {
+    color: #5effd8 !important;
+  }
+
+  .social-link:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 0px 0px !important;
+  }
+</style>

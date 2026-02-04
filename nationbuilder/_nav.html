@@ -1,0 +1,20 @@
+{% for child in site.root_nav_pages %}
+<li
+  class="nav-item {% if child.is_current or child.is_ancestor_of_current %}active{% endif %} {% if child.children.size > 0 %}has-dropdown{% endif %}"
+>
+  <a href="{{ child.url }}">{{ child.name }}</a>
+  {% if child.children.size > 0 %}
+  <div class="dropdown-wrapper">
+    <ul class="dropdown">
+      {% for grandchild in child.children %}
+      <li
+        class="{% if grandchild.is_current or grandchild.is_ancestor_of_current %}active{% endif %}"
+      >
+        <a href="{{ grandchild.url }}">{{ grandchild.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</li>
+{% endfor %}

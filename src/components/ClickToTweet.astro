@@ -1,0 +1,152 @@
+---
+/**
+ * Click-to-Tweet Component
+ * Makes any quote instantly tweetable with pre-filled text
+ * Viral mechanic: Frictionless sharing directly from reading
+ */
+
+interface Props {
+  text: string
+  via?: string
+  hashtags?: string[]
+  url?: string
+  compact?: boolean
+}
+
+const {
+  text,
+  via = 'FusionPartyAus',
+  hashtags = ['FusionParty', 'VicVotes2026'],
+  url,
+  compact = false,
+} = Astro.props
+
+const tweetUrl = new URL('https://twitter.com/intent/tweet')
+tweetUrl.searchParams.set('text', text)
+tweetUrl.searchParams.set('via', via)
+tweetUrl.searchParams.set('hashtags', hashtags.join(','))
+if (url) {
+  tweetUrl.searchParams.set('url', url)
+}
+---
+
+<div class={`click-to-tweet ${compact ? 'compact' : ''}`}>
+  <div class="tweet-content">
+    <div class="tweet-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+        <path
+          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+        ></path>
+      </svg>
+    </div>
+    <blockquote class="tweet-text">
+      <slot>{text}</slot>
+    </blockquote>
+  </div>
+  <a
+    href={tweetUrl.toString()}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="tweet-button"
+    aria-label="Share on Twitter"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      ></path>
+    </svg>
+    <span>Tweet this</span>
+  </a>
+</div>
+
+<style>
+  .click-to-tweet {
+    position: relative;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #e6e6fa 0%, #ffffff 100%);
+    border-left: 6px solid #c926f2;
+    border-top: 4px solid #000000;
+    border-right: 4px solid #000000;
+    border-bottom: 4px solid #000000;
+    margin: 2rem 0;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .click-to-tweet:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0px 0px #c926f2;
+  }
+
+  .click-to-tweet.compact {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .tweet-content {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .tweet-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 50%;
+  }
+
+  .compact .tweet-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .tweet-text {
+    flex: 1;
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  .compact .tweet-text {
+    font-size: 1rem;
+  }
+
+  .tweet-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 3px solid #000000;
+    transition: all 0.2s;
+  }
+
+  .tweet-button:hover {
+    background-color: #c926f2;
+    transform: translateX(4px);
+  }
+
+  .compact .tweet-button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  /* Click animation */
+  .click-to-tweet:active {
+    transform: translateY(0);
+    box-shadow: 4px 4px 0px 0px #c926f2;
+  }
+</style>

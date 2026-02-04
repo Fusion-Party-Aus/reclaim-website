@@ -1,0 +1,101 @@
+---
+/**
+ * StatCard - Statistic Display Component
+ *
+ * Displays key statistics with icon, value, and label.
+ * Used in hero sections and stat grids.
+ *
+ * @param {string} value - The statistic value (e.g., "85%", "500+", "$2.4B")
+ * @param {string} label - Description of the statistic
+ * @param {string} icon - MDI icon name (optional)
+ * @param {string} variant - Color variant: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white'
+ * @param {string} size - Size: 'sm' | 'md' | 'lg'
+ * @param {boolean} animated - Enable bounce animation on icon
+ * @param {string} class - Additional CSS classes
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  value: string
+  label: string
+  icon?: string
+  variant?: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white'
+  size?: 'sm' | 'md' | 'lg'
+  animated?: boolean
+  class?: string
+}
+
+const {
+  value,
+  label,
+  icon,
+  variant = 'magenta',
+  size = 'md',
+  animated = true,
+  class: className = '',
+} = Astro.props
+
+// Color variants
+const variants = {
+  magenta: 'bg-magenta border-black text-white',
+  mint: 'bg-mint border-black text-black',
+  yellow: 'bg-yellow border-black text-black',
+  lavender: 'bg-lavender border-black text-black',
+  white: 'bg-white border-black text-black',
+}
+
+// Sizes
+const sizes = {
+  sm: {
+    container: 'p-3',
+    value: 'text-2xl',
+    label: 'text-xs',
+    icon: 'w-6 h-6',
+  },
+  md: {
+    container: 'p-4',
+    value: 'text-3xl',
+    label: 'text-sm',
+    icon: 'w-8 h-8',
+  },
+  lg: {
+    container: 'p-6',
+    value: 'text-4xl',
+    label: 'text-base',
+    icon: 'w-10 h-10',
+  },
+}
+
+const sizeClasses = sizes[size]
+const animationClass = animated && icon ? 'animate-bounce-subtle' : ''
+---
+
+<div
+  class={`
+    ${variants[variant]}
+    ${sizeClasses.container}
+    border-4
+    shadow-[6px_6px_0px_0px_#000000]
+    transition-all duration-200
+    hover:shadow-[8px_8px_0px_0px_#000000]
+    hover:scale-105
+    ${className}
+  `}
+>
+  {
+    icon && (
+      <div class={`mb-2 ${animationClass}`}>
+        <Icon name={icon} class={sizeClasses.icon} />
+      </div>
+    )
+  }
+
+  <div class={`font-black ${sizeClasses.value}`}>
+    {value}
+  </div>
+
+  <div class={`font-bold ${sizeClasses.label} opacity-90`}>
+    {label}
+  </div>
+</div>

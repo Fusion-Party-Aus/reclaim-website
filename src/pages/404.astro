@@ -1,0 +1,559 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+const funnyMessages = [
+  'This page went to Canberra and never came back',
+  "Error 404: Democracy not found (but we're working on it)",
+  'This page is as missing as integrity in major parties',
+  'Lost in the political wilderness',
+  'This page got stuck in committee',
+  '404: Still more functional than the two-party system',
+  'Page.exe has stopped responding',
+  'This URL is on strike for better working conditions',
+  'Content not found. Try turning it off and on again?',
+  'This page eloped with a routing error',
+]
+
+const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)]
+
+const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK!', 'DANG!']
+---
+
+<BaseLayout
+  title="404 - Page Not Found | Fusion Victoria"
+  description="Oops! This page doesn't exist. Let's get you back on track."
+>
+  <Header />
+
+  <main class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
+    <!-- ABSOLUTE CHAOS Background Elements -->
+    <div class="absolute inset-0 opacity-20">
+      <div
+        class="absolute top-10 left-10 w-32 h-32 border-8 border-magenta rotate-12"
+        style="animation: float 6s ease-in-out infinite, spin 15s linear infinite;"
+      >
+      </div>
+      <div
+        class="absolute top-40 right-20 w-24 h-24 bg-yellow rotate-45"
+        style="animation: float 8s ease-in-out infinite reverse, wiggle 2s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute bottom-32 left-1/4 w-40 h-40 border-8 border-mint rounded-full"
+        style="animation: float 7s ease-in-out infinite, pulse 3s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute top-1/3 right-1/3 w-28 h-28 bg-magenta -rotate-12"
+        style="animation: spin 20s linear infinite, bounce 4s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute bottom-20 right-10 w-36 h-36 border-8 border-yellow rotate-90"
+        style="animation: float 5s ease-in-out infinite, shake 3s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-10 w-20 h-20 bg-mint rotate-45"
+        style="animation: spin 10s linear infinite reverse, float 4s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute top-20 right-1/3 w-16 h-16 border-6 border-magenta"
+        style="animation: shake 2s ease-in-out infinite, spin 25s linear infinite;"
+      >
+      </div>
+    </div>
+
+    <!-- Floating Chaos Words -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+      {
+        chaosMessages.map((msg, i) => (
+          <div
+            class="absolute text-6xl font-black text-yellow"
+            style={`
+            font-family: 'Anton', sans-serif;
+            top: ${Math.random() * 80 + 10}%;
+            left: ${Math.random() * 80 + 10}%;
+            animation: float ${4 + i}s ease-in-out infinite, spin ${20 + i * 5}s linear infinite;
+            transform: rotate(${Math.random() * 360}deg);
+          `}
+          >
+            {msg}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <!-- Giant 404 -->
+      <div class="text-center mb-12">
+        <h1
+          class="text-[12rem] md:text-[20rem] font-black leading-none mb-0 select-none"
+          style="
+            font-family: 'Anton', 'Archivo Black', sans-serif;
+            background: linear-gradient(45deg, #C926F2, #5EFFD8, #FFED00, #C926F2);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 8px 8px 0px rgba(255, 237, 0, 0.3);
+            animation: gradientShift 3s ease infinite;
+            transform: rotate(-2deg);
+          "
+        >
+          404
+        </h1>
+
+        <!-- Glitchy subtitle -->
+        <div class="relative inline-block mb-8">
+          <h2
+            class="text-4xl md:text-6xl font-black uppercase text-white relative z-10"
+            style="font-family: 'Archivo Black', sans-serif; animation: glitch 2s infinite;"
+          >
+            PAGE NOT FOUND
+          </h2>
+          <div
+            class="absolute top-0 left-0 text-4xl md:text-6xl font-black uppercase text-magenta opacity-70"
+            style="font-family: 'Archivo Black', sans-serif; animation: glitch-layer-1 2s infinite; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);"
+          >
+            PAGE NOT FOUND
+          </div>
+          <div
+            class="absolute top-0 left-0 text-4xl md:text-6xl font-black uppercase text-mint opacity-70"
+            style="font-family: 'Archivo Black', sans-serif; animation: glitch-layer-2 2s infinite; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);"
+          >
+            PAGE NOT FOUND
+          </div>
+        </div>
+      </div>
+
+      <!-- Funny Message Card with MAXIMUM CHAOS -->
+      <div class="max-w-3xl mx-auto mb-12 relative">
+        <!-- Extra chaos badges -->
+        <div
+          class="absolute -top-8 left-10 bg-magenta border-5 border-black px-4 py-2 font-black text-white uppercase text-sm rotate-12 z-20"
+          style="box-shadow: 4px 4px 0px 0px #000; animation: wiggle 2s ease-in-out infinite;"
+        >
+          ERROR!
+        </div>
+        <div
+          class="absolute -top-6 right-16 bg-mint border-5 border-black px-4 py-2 font-black text-black uppercase text-sm -rotate-6 z-20"
+          style="box-shadow: 4px 4px 0px 0px #000; animation: shake 3s ease-in-out infinite;"
+        >
+          OH NO!
+        </div>
+
+        <div
+          class="bg-yellow border-8 border-black p-8 md:p-12 relative transform -rotate-1 hover:rotate-1 transition-transform"
+          style="box-shadow: 12px 12px 0px 0px #C926F2, 24px 24px 0px 0px #5EFFD8; animation: pulse 4s ease-in-out infinite;"
+        >
+          <div
+            class="absolute -top-6 -right-6 w-20 h-20 bg-mint border-6 border-black rotate-12 flex items-center justify-center z-10"
+            style="animation: spin 4s linear infinite;"
+          >
+            <Icon name="mdi:alert-circle" class="w-12 h-12 text-black" />
+          </div>
+          <div
+            class="absolute -bottom-4 -left-4 w-16 h-16 bg-magenta border-6 border-black -rotate-12 flex items-center justify-center"
+            style="animation: bounce 2s ease-in-out infinite;"
+          >
+            <Icon name="mdi:help" class="w-10 h-10 text-white" />
+          </div>
+          <p
+            class="text-2xl md:text-4xl font-black uppercase text-center leading-tight relative z-10"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            {randomMessage}
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Cards Grid - MAXIMUM CHAOS -->
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+        <!-- Go Home -->
+        <a
+          href="/"
+          class="block bg-magenta border-8 border-black p-8 group transition-all hover:-translate-y-4 hover:rotate-3 relative overflow-hidden"
+          style="box-shadow: 8px 8px 0px 0px #FFED00, 16px 16px 0px 0px #5EFFD8; border-width: 8px;"
+        >
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-yellow opacity-30 rotate-45 -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white border-5 border-black rounded-full group-hover:rotate-180 transition-transform duration-500"
+              style="box-shadow: 4px 4px 0px 0px #000;"
+            >
+              <Icon name="mdi:home" class="w-12 h-12 text-magenta" />
+            </div>
+            <h3
+              class="text-3xl font-black uppercase mb-2 text-white text-center"
+              style="font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px #000;"
+            >
+              Go Home
+            </h3>
+            <p class="text-sm font-bold text-white text-center">Escape this madness!</p>
+          </div>
+        </a>
+
+        <!-- Explore Policies -->
+        <a
+          href="/policies"
+          class="block bg-mint border-8 border-black p-8 group transition-all hover:-translate-y-4 hover:-rotate-3 relative overflow-hidden"
+          style="box-shadow: 8px 8px 0px 0px #C926F2, 16px 16px 0px 0px #FFED00; border-width: 8px;"
+        >
+          <div
+            class="absolute bottom-0 left-0 w-24 h-24 bg-magenta opacity-30 -rotate-45 translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black border-5 border-white rounded-full group-hover:rotate-180 transition-transform duration-500"
+              style="box-shadow: 4px 4px 0px 0px #000;"
+            >
+              <Icon name="mdi:file-document-multiple" class="w-12 h-12 text-mint" />
+            </div>
+            <h3
+              class="text-3xl font-black uppercase mb-2 text-black text-center"
+              style="font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px rgba(255,255,255,0.5);"
+            >
+              Policies
+            </h3>
+            <p class="text-sm font-bold text-black text-center">Real solutions exist!</p>
+          </div>
+        </a>
+
+        <!-- Blog -->
+        <a
+          href="/blog"
+          class="block bg-yellow border-8 border-black p-8 group transition-all hover:-translate-y-4 hover:rotate-2 relative overflow-hidden"
+          style="box-shadow: 8px 8px 0px 0px #C926F2, 16px 16px 0px 0px #5EFFD8; border-width: 8px;"
+        >
+          <div
+            class="absolute top-0 left-0 w-32 h-32 bg-mint opacity-30 rotate-12 -translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-magenta border-5 border-black rounded-full group-hover:rotate-180 transition-transform duration-500"
+              style="box-shadow: 4px 4px 0px 0px #000;"
+            >
+              <Icon name="mdi:newspaper-variant" class="w-12 h-12 text-white" />
+            </div>
+            <h3
+              class="text-3xl font-black uppercase mb-2 text-magenta text-center"
+              style="font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);"
+            >
+              The Blog
+            </h3>
+            <p class="text-sm font-bold text-black text-center">News that matters!</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- WILD Search Box -->
+      <div class="max-w-2xl mx-auto relative">
+        <!-- Decorative chaos -->
+        <div
+          class="absolute -top-6 -left-6 w-12 h-12 bg-yellow border-5 border-black rotate-45"
+          style="animation: spin 3s linear infinite;"
+        >
+        </div>
+        <div
+          class="absolute -bottom-6 -right-6 w-16 h-16 bg-magenta border-5 border-black -rotate-12"
+          style="animation: bounce 2s ease-in-out infinite;"
+        >
+        </div>
+
+        <div
+          class="bg-black border-8 border-mint p-8 transform rotate-1 hover:-rotate-1 transition-transform relative"
+          style="box-shadow: 10px 10px 0px 0px #FFED00, 20px 20px 0px 0px #C926F2; border-width: 8px;"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-10 h-10 bg-mint border-4 border-white flex items-center justify-center rotate-12"
+              style="animation: wiggle 2s ease-in-out infinite;"
+            >
+              <Icon name="mdi:magnify" class="w-6 h-6 text-black" />
+            </div>
+            <label
+              class="block text-mint font-black uppercase text-lg"
+              style="font-family: 'Archivo Black', sans-serif; text-shadow: 2px 2px 0px #000;"
+            >
+              Find Your Way Back!
+            </label>
+          </div>
+          <form action="/search" method="get" class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              name="q"
+              placeholder="Type anything..."
+              class="flex-1 px-4 py-4 border-6 border-mint bg-white font-bold text-lg focus:outline-none focus:border-yellow focus:shadow-[0_0_0_4px_#FFED00] transition-all"
+              style="font-family: 'Space Grotesk', sans-serif; box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.1);"
+            />
+            <button
+              type="submit"
+              class="px-8 py-4 bg-magenta border-6 border-white text-white font-black uppercase hover:bg-yellow hover:text-black transition-all relative group overflow-hidden"
+              style="box-shadow: 4px 4px 0px 0px #fff; font-family: 'Archivo Black', sans-serif;"
+            >
+              <span class="relative z-10 flex items-center gap-2">
+                <Icon name="mdi:rocket-launch" class="w-5 h-5" />
+                GO!
+              </span>
+              <div
+                class="absolute inset-0 bg-mint transform translate-y-full group-hover:translate-y-0 transition-transform"
+              >
+              </div>
+            </button>
+          </form>
+          <div class="flex items-center justify-between mt-4">
+            <p class="text-mint text-xs font-bold opacity-75">Or just click around ↑</p>
+            <div class="flex gap-2">
+              <div
+                class="w-3 h-3 bg-magenta rounded-full"
+                style="animation: pulse 1s ease-in-out infinite;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-yellow rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.2s;"
+              >
+              </div>
+              <div
+                class="w-3 h-3 bg-mint rounded-full"
+                style="animation: pulse 1s ease-in-out infinite 0.4s;"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Random Quote with STYLE -->
+      <div class="max-w-2xl mx-auto mt-20 relative">
+        <div
+          class="bg-white border-6 border-black p-8 transform -rotate-2"
+          style="box-shadow: 8px 8px 0px 0px #5EFFD8;"
+        >
+          <div
+            class="absolute -top-4 left-8 bg-magenta border-5 border-black px-4 py-2 font-black text-white text-xs uppercase rotate-3"
+          >
+            Fun Fact
+          </div>
+          <Icon name="mdi:format-quote-open" class="w-12 h-12 text-magenta mb-4" />
+          <blockquote
+            class="text-black text-xl font-black mb-4 leading-tight"
+            style="font-family: 'Space Grotesk', sans-serif;"
+          >
+            "Not all who wander are lost... but this page definitely is. Unlike our policies, which
+            are crystal clear!"
+          </blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-1 bg-magenta"></div>
+            <p class="text-sm font-bold text-gray-600 uppercase">Ancient Internet Proverb</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bonus Chaos Section -->
+      <div class="max-w-5xl mx-auto mt-16 grid md:grid-cols-4 gap-4">
+        <a
+          href="/faq"
+          class="bg-mint border-5 border-black p-4 text-center font-black uppercase hover:bg-yellow transition-colors transform hover:scale-105"
+          style="box-shadow: 4px 4px 0px 0px #000;"
+        >
+          <Icon name="mdi:frequently-asked-questions" class="w-8 h-8 mx-auto mb-2" />
+          FAQ
+        </a>
+        <a
+          href="/about"
+          class="bg-magenta border-5 border-black p-4 text-center font-black uppercase text-white hover:bg-yellow hover:text-black transition-colors transform hover:scale-105"
+          style="box-shadow: 4px 4px 0px 0px #000;"
+        >
+          <Icon name="mdi:information" class="w-8 h-8 mx-auto mb-2" />
+          About
+        </a>
+        <a
+          href="/electorates"
+          class="bg-yellow border-5 border-black p-4 text-center font-black uppercase hover:bg-mint transition-colors transform hover:scale-105"
+          style="box-shadow: 4px 4px 0px 0px #000;"
+        >
+          <Icon name="mdi:map-marker-multiple" class="w-8 h-8 mx-auto mb-2" />
+          Electorates
+        </a>
+        <button
+          onclick="window.history.back()"
+          class="bg-white border-5 border-black p-4 text-center font-black uppercase hover:bg-mint transition-colors transform hover:scale-105"
+          style="box-shadow: 4px 4px 0px 0px #000;"
+        >
+          <Icon name="mdi:arrow-left-bold" class="w-8 h-8 mx-auto mb-2" />
+          Go Back
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-30px) rotate(10deg);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes glitch {
+    0%,
+    90%,
+    100% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(2px, -2px);
+    }
+    60% {
+      transform: translate(-2px, -2px);
+    }
+    80% {
+      transform: translate(2px, 2px);
+    }
+  }
+
+  @keyframes glitch-layer-1 {
+    0%,
+    90%,
+    100% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(-4px, -4px);
+    }
+    40% {
+      transform: translate(-2px, 2px);
+    }
+    60% {
+      transform: translate(4px, -2px);
+    }
+    80% {
+      transform: translate(-2px, 4px);
+    }
+  }
+
+  @keyframes glitch-layer-2 {
+    0%,
+    90%,
+    100% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(4px, 4px);
+    }
+    40% {
+      transform: translate(2px, -2px);
+    }
+    60% {
+      transform: translate(-4px, 2px);
+    }
+    80% {
+      transform: translate(2px, -4px);
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(5px);
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Prevent glitch text from being selectable */
+  h2[style*='animation: glitch'] + div {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Extra chaos for hover states */
+  a:active {
+    transform: scale(0.95) !important;
+  }
+
+  button:active {
+    transform: scale(0.95) !important;
+  }
+</style>

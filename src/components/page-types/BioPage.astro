@@ -1,0 +1,152 @@
+---
+import { urlFor } from '../../lib/sanity'
+import type { Page } from '../../types/sanity'
+import { renderPortableText } from '../../lib/portableText'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  page: Page
+  segments: string[]
+}
+
+const { page, segments } = Astro.props
+
+// Construct breadcrumbs
+const breadcrumbs = segments.map((seg, i) => {
+  const path = '/' + segments.slice(0, i + 1).join('/')
+  return {
+    label:
+      seg === page.slug.current
+        ? page.title
+        : seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+    path,
+  }
+})
+
+import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
+
+const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
+---
+
+<div class="max-w-6xl mx-auto">
+  <!-- Breadcrumbs -->
+  <nav class="text-xs font-mono uppercase tracking-wide mb-12 flex items-center flex-wrap gap-2">
+    <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint transition-colors"
+      >Home</a
+    >
+    {
+      breadcrumbs.map((bc, i) => (
+        <>
+          <span class="opacity-60">/</span>
+          {i === breadcrumbs.length - 1 ? (
+            <span
+              class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
+              title={page.title}
+            >
+              {page.title}
+            </span>
+          ) : (
+            <a
+              href={bc.path}
+              class="px-2 py-1 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+            >
+              {bc.label}
+            </a>
+          )}
+        </>
+      ))
+    }
+  </nav>
+
+  <div class="flex flex-col lg:flex-row gap-8 md:gap-12 items-start">
+    <!-- Left Column: Image & Status -->
+    <div class="w-full lg:w-[350px] space-y-8 shrink-0">
+      {
+        page.profileImage && (
+          <div
+            class="brutal-card p-0 overflow-hidden bg-black"
+            style="box-shadow: 12px 12px 0 0 #C926F2;"
+          >
+            <img
+              src={urlFor(page.profileImage).width(800).height(1000).url()}
+              alt={page.title}
+              class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-black"
+            />
+            <div class="p-6 bg-white">
+              <h1 class="text-3xl font-black uppercase leading-none mb-2">{page.title}</h1>
+              {page.role && (
+                <p class="text-magenta font-black uppercase tracking-wider text-sm">{page.role}</p>
+              )}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Social Links -->
+      {
+        page.socialLinks && page.socialLinks.length > 0 && (
+          <div class="brutal-card brutal-card-yellow p-6">
+            <h3 class="font-black uppercase text-sm mb-4 border-b-2 border-black pb-2">Connect</h3>
+            <div class="flex flex-col gap-3">
+              {page.socialLinks.map((link) => (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 font-bold hover:text-magenta transition-colors group"
+                >
+                  <div class="w-8 h-8 bg-black flex items-center justify-center text-white group-hover:bg-magenta transition-colors">
+                    <Icon
+                      name={`mdi:${link.platform === 'website' ? 'web' : link.platform}`}
+                      class="w-5 h-5"
+                    />
+                  </div>
+                  <span class="capitalize">{link.platform}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Quick Contact / Stats -->
+      <div class="brutal-card brutal-card-mint p-6">
+        <p class="text-sm font-bold uppercase mb-2 italic">
+          "Fighting for a fairer Victoria through common sense and tech-driven policy."
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column: Biography -->
+    <div class="flex-1 min-w-0 space-y-8">
+      <div class="brutal-card bg-white p-8 md:p-12" style="box-shadow: 12px 12px 0 0 #000;">
+        <div class="prose prose-lg max-w-none prose-headings:uppercase prose-headings:font-black">
+          {
+            page.body ? (
+              <div set:html={pageHtml} />
+            ) : (
+              <p class="italic opacity-60">Full biography coming soon...</p>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Action -->
+      <a
+        href="/get-involved"
+        class="btn btn-primary w-full text-center py-6 text-2xl shadow-[8px_8px_0_0_#000]"
+      >
+        Join the Movement
+      </a>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* Bio specific prose refinements */
+  .prose p:first-of-type {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+</style>

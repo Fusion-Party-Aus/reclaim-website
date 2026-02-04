@@ -1,0 +1,58 @@
+---
+/**
+ * Breadcrumb - Breadcrumb Navigation Component
+ *
+ * Displays page hierarchy for navigation.
+ *
+ * @param {Array} items - Breadcrumb items: [{ label: string, href?: string }]
+ * @param {string} separator - Separator icon: 'chevron' | 'slash' | 'arrow'
+ * @param {string} class - Additional CSS classes
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface BreadcrumbItem {
+  label: string
+  href?: string
+}
+
+interface Props {
+  items: BreadcrumbItem[]
+  separator?: 'chevron' | 'slash' | 'arrow'
+  class?: string
+}
+
+const { items, separator = 'chevron', class: className = '' } = Astro.props
+
+// Separator icons
+const separatorIcons = {
+  chevron: 'mdi:chevron-right',
+  slash: 'mdi:slash-forward',
+  arrow: 'mdi:arrow-right',
+}
+---
+
+<nav aria-label="Breadcrumb" class={`text-sm ${className}`}>
+  <ol class="flex flex-wrap items-center gap-2">
+    {
+      items.map((item, index) => (
+        <li class="flex items-center gap-2">
+          {item.href ? (
+            <a
+              href={item.href}
+              class="text-black hover:text-magenta transition-colors underline decoration-2 underline-offset-4 font-bold"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-gray-600 font-bold">{item.label}</span>
+          )}
+
+          {index < items.length - 1 && (
+            <Icon name={separatorIcons[separator]} class="w-4 h-4 text-gray-400" />
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

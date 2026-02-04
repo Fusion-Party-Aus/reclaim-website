@@ -1,0 +1,275 @@
+---
+export const prerender = false
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.astro'
+import Hero from '../../components/Hero.astro'
+import Footer from '../../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import { getDocuments, getElectoratesPage, urlFor } from '../../lib/sanity'
+import '../../styles/global.css'
+import { BrutalCard, BrutalButton, FloatingIcon, CTA } from '../../components/ui'
+
+interface CommitmentDetail {
+  detail: string
+}
+
+interface Commitment {
+  icon: string
+  title: string
+  highlight: string
+  details?: CommitmentDetail[]
+}
+
+interface Electorate {
+  _id: string
+  name: string
+  slug: { current: string }
+  subtitle?: string
+  candidateName: string
+  candidateImage?: {
+    asset: {
+      url: string
+    }
+  }
+  candidateBio?: string
+  commitments?: Commitment[]
+}
+
+const electorates = await getDocuments<Electorate>('electorate')
+const pageData = await getElectoratesPage()
+
+// Display Logic
+const title = pageData?.title || 'Electorates'
+const subtitle = pageData?.subtitle || "Where we're taking back what they stole"
+const introCard = pageData?.introCard || {
+  title: 'Target Seats',
+  body: "We're starting where the neglect has been the worst: growth corridors and outer suburbs that were promised infrastructure and delivered excuses.",
+  highlight:
+    "Each electorate page shows our candidate, local commitments, and exactly how we'll fund and deliver them.",
+}
+const ctaSection = pageData?.ctaSection || {
+  title: 'Not in these electorates?',
+  body: "We're building campaigns across Victoria. Help us bring real change to your area.",
+}
+---
+
+<BaseLayout
+  title={`${title} | Fusion Victoria`}
+  description="Where we're running, what we stand for, and how we'll fix decades of neglect in outer suburbs."
+>
+  <Header />
+
+  <Hero title={title} subtitle={subtitle} />
+
+  <main class="bg-white py-16 px-4 md:px-8 relative overflow-hidden">
+    <!-- Floating background elements -->
+    <FloatingIcon
+      name="mdi:map-marker-radius"
+      color="rgba(201, 38, 242, 0.03)"
+      size={384}
+      animation="float-slow"
+      position={{ top: '5rem', right: '2.5rem' }}
+    />
+    <FloatingIcon
+      name="mdi:town-hall"
+      color="rgba(94, 255, 216, 0.03)"
+      size={256}
+      animation="spin-slow"
+      position={{ bottom: '5rem', left: '2.5rem' }}
+    />
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <section class="mb-16">
+        <BrutalCard variant="white" hover={true} shadow="lg" rotation={-0.5} class="mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="animate-pulse-gentle">
+              <Icon name="mdi:map-marker-multiple" class="w-10 h-10 text-magenta" />
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-black uppercase text-magenta"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              {introCard.title}
+            </h2>
+          </div>
+          <p class="text-lg font-bold mb-3 leading-relaxed flex items-start gap-2">
+            <Icon name="mdi:alert-circle" class="w-6 h-6 text-magenta flex-shrink-0 mt-1" />
+            <span>{introCard.body}</span>
+          </p>
+          <p class="text-lg font-semibold leading-relaxed flex items-start gap-2">
+            <Icon name="mdi:information" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+            <span>{introCard.highlight}</span>
+          </p>
+        </BrutalCard>
+      </section>
+
+      {
+        electorates.length === 0 ? (
+          <BrutalCard variant="yellow" shadow="lg">
+            <div class="text-center">
+              <Icon name="mdi:alert" class="w-16 h-16 mx-auto mb-4 text-black" />
+              <p class="text-lg font-black uppercase">
+                No electorates published yet. Add some in Sanity to see them here.
+              </p>
+            </div>
+          </BrutalCard>
+        ) : (
+          <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {electorates.map((electorate, index) => {
+              const colors = ['#C926F2', '#5EFFD8', '#FFED00']
+              const rotations = [-1, 1, -0.5]
+              const color = colors[index % 3]
+              const rotation = rotations[index % 3]
+
+              return (
+                <BrutalCard
+                  variant="white"
+                  hover={true}
+                  shadow={color}
+                  shadowSize="8"
+                  rotation={rotation}
+                  id={electorate.slug.current}
+                >
+                  {electorate.candidateImage && (
+                    <div class="mb-4 -mx-6 -mt-6 overflow-hidden">
+                      <img
+                        src={urlFor(electorate.candidateImage)
+                          .width(400)
+                          .height(300)
+                          .fit('crop')
+                          .url()}
+                        alt={electorate.candidateName || `Candidate for ${electorate.name}`}
+                        class="w-full h-48 object-cover border-b-4 border-black group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+
+                  <header class="mb-4">
+                    <div
+                      class="inline-flex items-center gap-1 bg-black text-white px-3 py-1 text-xs font-black uppercase mb-3 animate-pulse-gentle"
+                      style={`box-shadow: 3px 3px 0px 0px ${color};`}
+                    >
+                      <Icon name="mdi:flag" class="w-3 h-3" />
+                      Electorate
+                    </div>
+                    <h2
+                      class="text-3xl md:text-4xl font-black mb-2 uppercase group-hover:text-black transition-colors"
+                      style={`color: ${color}; font-family: 'Archivo Black', sans-serif;`}
+                    >
+                      {electorate.name}
+                    </h2>
+                    {electorate.subtitle && (
+                      <p class="font-bold text-sm mb-3 uppercase" style="color: #1A1A1A;">
+                        {electorate.subtitle}
+                      </p>
+                    )}
+                    {electorate.candidateName && (
+                      <div
+                        class="flex items-center gap-2 px-3 py-2 bg-gray-50 border-2 border-black inline-block"
+                        style="box-shadow: 2px 2px 0px 0px #000000;"
+                      >
+                        <Icon
+                          name="mdi:account"
+                          class="w-5 h-5"
+                          style={`color: ${color};`}
+                          aria-hidden="true"
+                        />
+                        <span class="font-black text-sm uppercase">{electorate.candidateName}</span>
+                      </div>
+                    )}
+                  </header>
+
+                  {Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
+                    <ul class="space-y-3 mb-6">
+                      {electorate.commitments.slice(0, 3).map((commitment, idx) => (
+                        <li
+                          class="border-l-4 pl-3 py-2 hover:border-l-6 transition-all"
+                          style={`border-color: ${color};`}
+                        >
+                          <div class="flex items-start gap-2">
+                            <span
+                              class="text-2xl animate-bounce-subtle"
+                              style={`animation-delay: ${idx * 0.2}s;`}
+                              role="img"
+                              aria-label="commitment icon"
+                            >
+                              {commitment.icon}
+                            </span>
+                            <div>
+                              <div class="font-black text-sm uppercase leading-tight">
+                                {commitment.title}
+                              </div>
+                              <div class="text-xs mt-1 font-semibold">{commitment.highlight}</div>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <BrutalButton
+                    href={`/electorates/${electorate.slug.current}`}
+                    variant="white"
+                    size="lg"
+                    icon="mdi:eye"
+                    iconPosition="left"
+                  >
+                    View Plan for {electorate.name}
+                  </BrutalButton>
+                </BrutalCard>
+              )
+            })}
+          </section>
+        )
+      }
+
+      <!-- CTA Section -->
+      <CTA variant="magenta" shadow="lg" rotation={-1} class="mt-16">
+        <FloatingIcon
+          name="mdi:hand-wave"
+          color="rgba(255, 237, 0, 0.2)"
+          size={128}
+          animation="float-gentle"
+          position={{ top: '1rem', right: '1rem' }}
+        />
+
+        <div class="relative z-10">
+          <div class="inline-block mb-4 animate-wiggle-subtle">
+            <Icon name="mdi:map-search-outline" class="w-16 h-16 text-yellow" />
+          </div>
+          <h3
+            class="text-3xl md:text-4xl font-black mb-4 uppercase text-white"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            {ctaSection.title}
+          </h3>
+          <p class="text-lg md:text-xl font-bold mb-6 max-w-3xl mx-auto text-white">
+            {ctaSection.body}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <BrutalButton
+              href="/get-involved"
+              variant="yellow"
+              size="lg"
+              icon="mdi:hand-heart"
+              iconPosition="left"
+            >
+              Volunteer in Your Area
+            </BrutalButton>
+            <BrutalButton
+              href="/manifesto"
+              variant="white"
+              size="lg"
+              icon="mdi:book-open"
+              iconPosition="left"
+            >
+              Read the Manifesto
+            </BrutalButton>
+          </div>
+        </div>
+      </CTA>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

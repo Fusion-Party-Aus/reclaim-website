@@ -1,0 +1,67 @@
+---
+interface Props {
+  heading?: string
+  description?: string
+  buttonText?: string
+  footerText?: string
+}
+
+const {
+  heading = 'Join the movement',
+  description = 'We need people like you to help us reclaim our future. Join Fusion Party today and be part of the change.',
+  buttonText = 'Sign Up Now',
+  footerText = 'You will be redirected to our official membership portal.',
+} = Astro.props
+---
+
+<section
+  class="member-signup max-w-4xl mx-auto my-12 p-8 bg-white border-4 border-black shadow-[8px_8px_0px_0px_#C926F2] text-center"
+>
+  <div class="mb-6">
+    <div
+      class="inline-block p-4 bg-magenta border-4 border-black shadow-[4px_4px_0px_0px_#000000] mb-4"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-12 h-12 text-white"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path
+          d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15.22 17,16.8V19H23V16.8C23,14.17 18.27,13 16,13M8,13C5.68,13 1,14.17 1,16.8V19H15V16.8C15,14.17 10.32,13 8,13M8,11C10.66,11 12.84,8.88 12.84,6.25C12.84,3.62 10.66,1.5 8,1.5C5.34,1.5 3.16,3.62 3.16,6.25C3.16,8.88 5.34,11 8,11M16,11C18.66,11 20.84,8.88 20.84,6.25C20.84,3.62 18.66,1.5 16,1.5C15.71,1.5 15.42,1.5 15.14,1.6C16.29,2.82 17,4.45 17,6.25C17,8.05 16.29,9.68 15.14,10.9C15.42,11 15.71,11 16,11Z"
+        ></path>
+      </svg>
+    </div>
+    <h3
+      class="text-3xl md:text-4xl font-black uppercase mb-4"
+      style="font-family: 'Archivo Black', sans-serif;"
+    >
+      {heading}
+    </h3>
+    <p class="text-xl font-bold max-w-2xl mx-auto mb-8">
+      {description}
+    </p>
+
+    <a
+      href="https://www.fusionparty.org.au/join"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 bg-magenta text-white text-xl font-black uppercase px-8 py-4 border-4 border-black shadow-[4px_4px_0px_0px_#000000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200"
+    >
+      {buttonText}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path
+          d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+  <p class="text-sm text-gray-500 mt-4">
+    {footerText}
+  </p>
+</section>

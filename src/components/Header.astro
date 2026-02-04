@@ -1,0 +1,372 @@
+---
+import { getDocuments } from '../lib/sanity'
+
+const currentPath = Astro.url.pathname
+
+// Fetch navigation from Sanity
+interface DropdownItem {
+  label: string
+  href: string
+  description?: string
+}
+
+interface NavItem {
+  label: string
+  href?: string
+  order: number
+  highlight?: boolean
+  children?: DropdownItem[]
+}
+
+interface Navigation {
+  _id: string
+  title: string
+  mainNav: NavItem[]
+  ctaButton: {
+    label: string
+    href: string
+    style: string
+  }
+  logo: {
+    mainText: string
+    subText: string
+  }
+}
+
+const navigations = await getDocuments<Navigation>('navigation')
+const navigation = navigations[0] // Should only be one navigation document
+
+// Fallback to default nav if Sanity data not available
+const navItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
+  { href: '/', label: 'Home', order: 0 },
+  { href: '/about', label: 'About', order: 1 },
+  { href: '/policies', label: 'Policies', order: 2 },
+  { href: '/manifesto', label: 'Manifesto', order: 3 },
+  { href: '/faq', label: 'FAQ', order: 4 },
+]
+
+const ctaButton = navigation?.ctaButton || {
+  label: 'Get Involved',
+  href: '/get-involved',
+  style: 'primary',
+}
+
+const logo = navigation?.logo || {
+  mainText: 'FUSION',
+  subText: 'VICTORIA',
+}
+---
+
+<header
+  class="bg-black sticky top-0 z-50 border-b-6 border-magenta"
+  style="box-shadow: 0 4px 0 0 #FFED00; border-bottom-width: 6px;"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 text-2xl font-black no-underline group">
+        <div class="relative">
+          <img
+            src="/solo-full-colour.svg"
+            alt="Fusion Victoria"
+            class="h-11 w-auto transition-transform group-hover:scale-110"
+          />
+        </div>
+        <div class="flex flex-col leading-none">
+          <span
+            style="color: #C926F2; font-family: 'Archivo Black', sans-serif; font-size: 1.6rem; letter-spacing: -0.02em;"
+            >{logo.mainText}</span
+          >
+          <span
+            style="color: #5EFFD8; font-family: 'Archivo Black', sans-serif; font-size: 0.875rem; letter-spacing: 0.12em;"
+            >{logo.subText}</span
+          >
+        </div>
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        class="md:hidden text-white text-2xl px-4 py-2 border-5 border-mint bg-magenta hover:bg-mint hover:text-black cursor-pointer font-black uppercase transition-all"
+        style="box-shadow: 4px 4px 0px 0px #5EFFD8; border-width: 5px;"
+        aria-label="Toggle menu"
+        id="mobile-menu-toggle"
+      >
+        <span class="menu-icon">☰</span>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-6 lg:gap-8 items-center" id="main-nav">
+        {
+          navItems.map((item) => {
+            const hasDropdown = item.children && item.children.length > 0
+            const isActive =
+              item.href &&
+              (currentPath === item.href ||
+                (item.href !== '/' && currentPath.startsWith(item.href)))
+
+            if (hasDropdown) {
+              return (
+                <div class="nav-dropdown-wrapper relative group">
+                  <button
+                    class="nav-link text-white no-underline font-black transition-all text-sm uppercase tracking-wider relative px-2 py-1 flex items-center gap-1"
+                    style="font-family: 'Archivo Black', sans-serif; background: none; border: none; cursor: pointer;"
+                  >
+                    {item.label}
+                    <span class="text-xs">▼</span>
+                  </button>
+                  <div
+                    class="dropdown-menu absolute top-full left-0 pt-2 hidden group-hover:block"
+                    style="min-width: 250px;"
+                  >
+                    <div
+                      class="bg-black border-5 border-mint"
+                      style="box-shadow: 6px 6px 0px 0px #C926F2; border-width: 5px;"
+                    >
+                      {item.children?.map((child) => (
+                        <a
+                          href={child.href}
+                          class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b-2 border-magenta last:border-b-0"
+                        >
+                          <div
+                            class="font-black uppercase text-sm"
+                            style="font-family: 'Archivo Black', sans-serif;"
+                          >
+                            {child.label}
+                          </div>
+                          {child.description && (
+                            <div class="text-xs mt-1 opacity-80">{child.description}</div>
+                          )}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            return (
+              <a
+                href={item.href}
+                class="nav-link text-white no-underline font-black transition-all text-sm uppercase tracking-wider relative px-2 py-1"
+                style={`font-family: 'Archivo Black', sans-serif; ${isActive ? 'color: #5EFFD8;' : ''}`}
+              >
+                {item.label}
+                {isActive && (
+                  <span
+                    class="absolute bottom-0 left-0 right-0 h-1 bg-mint"
+                    style="box-shadow: 0 2px 0 0 #C926F2;"
+                  />
+                )}
+              </a>
+            )
+          })
+        }
+        <a
+          href={ctaButton.href}
+          class={`px-6 py-2 text-sm font-black uppercase border-5 border-white text-white hover:text-black hover:border-black transition-all ${
+            ctaButton.style === 'primary'
+              ? 'bg-magenta hover:bg-yellow'
+              : ctaButton.style === 'yellow'
+                ? 'bg-yellow text-black hover:bg-mint'
+                : 'bg-mint text-black hover:bg-yellow'
+          }`}
+          style={`box-shadow: 4px 4px 0px 0px ${
+            ctaButton.style === 'primary'
+              ? '#FFED00'
+              : ctaButton.style === 'yellow'
+                ? '#C926F2'
+                : '#C926F2'
+          }; font-family: 'Archivo Black', sans-serif; border-width: 5px;`}
+        >
+          {ctaButton.label}
+        </a>
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav hidden" id="mobile-nav">
+      <div class="flex flex-col gap-3 mt-6 pb-4">
+        {
+          navItems.map((item) => {
+            const hasDropdown = item.children && item.children.length > 0
+            const isActive =
+              item.href &&
+              (currentPath === item.href ||
+                (item.href !== '/' && currentPath.startsWith(item.href)))
+
+            if (hasDropdown) {
+              return (
+                <div class="mobile-dropdown">
+                  <button
+                    class="mobile-dropdown-toggle w-full text-left px-4 py-3 font-black uppercase text-sm border-4 bg-black text-white border-mint hover:bg-mint hover:text-black hover:border-black transition-all flex justify-between items-center"
+                    style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+                  >
+                    {item.label}
+                    <span class="text-xs">▼</span>
+                  </button>
+                  <div class="mobile-dropdown-content hidden mt-2 ml-4 space-y-2">
+                    {item.children?.map((child) => (
+                      <a
+                        href={child.href}
+                        class="block px-4 py-2 font-bold text-sm border-2 bg-black text-white border-yellow hover:bg-yellow hover:text-black transition-all"
+                        style="font-family: 'Archivo Black', sans-serif;"
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+
+            return (
+              <a
+                href={item.href}
+                class={`block px-4 py-3 font-black uppercase text-sm border-4 transition-all ${
+                  isActive
+                    ? 'bg-mint text-black border-black'
+                    : 'bg-black text-white border-mint hover:bg-mint hover:text-black hover:border-black'
+                }`}
+                style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+              >
+                {item.label}
+              </a>
+            )
+          })
+        }
+        <a
+          href={ctaButton.href}
+          class={`block px-4 py-3 text-center font-black uppercase text-sm border-4 border-white text-white hover:text-black hover:border-black transition-all ${
+            ctaButton.style === 'primary'
+              ? 'bg-magenta hover:bg-yellow'
+              : ctaButton.style === 'yellow'
+                ? 'bg-yellow text-black hover:bg-mint'
+                : 'bg-mint text-black hover:bg-yellow'
+          }`}
+          style={`box-shadow: 4px 4px 0px 0px ${
+            ctaButton.style === 'primary'
+              ? '#FFED00'
+              : ctaButton.style === 'yellow'
+                ? '#C926F2'
+                : '#C926F2'
+          }; font-family: 'Archivo Black', sans-serif;`}
+        >
+          {ctaButton.label}
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #5effd8;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::before {
+    transform: scaleX(1);
+  }
+
+  .nav-link:hover {
+    color: #5effd8 !important;
+    transform: translateY(-2px);
+  }
+
+  .mobile-nav {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #mobile-menu-toggle:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px 0px #5effd8 !important;
+  }
+
+  /* Dropdown Menu Styles */
+  .nav-dropdown-wrapper {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    z-index: 100;
+    animation: dropdownSlide 0.2s ease-out;
+  }
+
+  @keyframes dropdownSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-dropdown-content {
+    animation: slideDown 0.3s ease-out;
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle')
+  const mobileNav = document.getElementById('mobile-nav')
+
+  toggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('hidden')
+  })
+
+  // Close menu when clicking nav link
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileNav?.classList.add('hidden')
+    })
+  })
+
+  // Handle mobile dropdown toggles
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
+      const dropdown = button.nextElementSibling
+      dropdown?.classList.toggle('hidden')
+
+      // Rotate arrow icon
+      const arrow = button.querySelector('span')
+      if (arrow) {
+        arrow.style.transform = dropdown?.classList.contains('hidden')
+          ? 'rotate(0deg)'
+          : 'rotate(180deg)'
+        arrow.style.transition = 'transform 0.3s ease'
+      }
+    })
+  })
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileNav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
+      mobileNav?.classList.add('hidden')
+    }
+  })
+</script>
