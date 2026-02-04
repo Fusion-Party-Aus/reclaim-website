@@ -65,18 +65,36 @@ export interface SEOMetadata {
 /**
  * Policy Document
  */
+export interface PolicyKeyPoint {
+  _key?: string
+  point: string
+  description?: string
+}
+
 export interface Policy extends SanityDocument {
   _type: 'policy'
+  pillar?:
+    | 'RECLAIM OUR ECONOMY'
+    | 'SOLVE THE HOUSING CRISIS'
+    | 'FIX THE TAX EXPLOITS'
+    | 'RECLAIM OUR FUTURE'
+  category?: string
   title: string
   slug: SanitySlug
   icon?: string // MDI icon name (e.g., 'mdi:home')
   summary: string
-  keyPoints?: string[]
+  keyPoints?: PolicyKeyPoint[]
+  // Further Detail fields
+  designRationale?: string
+  systemInteraction?: string
+  economicLogic?: string
+  riskAndFailureModes?: string
+  evidenceAndPrecedent?: string
+  implementationOutline?: string
+  // Metadata
   cost?: string
   funding?: string
   body?: PortableTextBlock[]
-  category?: string
-  tags?: string[]
   publishedAt?: string
   seo?: SEOMetadata
 }
