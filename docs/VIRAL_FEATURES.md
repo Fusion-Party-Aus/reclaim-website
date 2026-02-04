@@ -17,6 +17,7 @@ The major parties spend millions on ad campaigns. We're building virality into t
 ### How It Works
 
 Real-time progress bars showing party growth:
+
 - **Registered Members**: 847 / 1,000 (85%)
 - **Active Volunteers**: 234 / 320 (73%)
 - **Candidates Ready**: 12 / 88 electorates (14%)
@@ -47,7 +48,7 @@ Real-time progress bars showing party growth:
 ### Implementation
 
 ```astro
-<MovementMetrics 
+<MovementMetrics
   metrics={[
     { label: 'Members', current: 847, goal: 1000, icon: '👥', color: 'magenta' },
     { label: 'Volunteers', current: 234, goal: 320, icon: '🙋', color: 'mint' },
@@ -78,6 +79,7 @@ Real-time progress bars showing party growth:
 Enter the classic Konami Code: **↑ ↑ ↓ ↓ ← → ← → B A**
 
 Triggers:
+
 1. **Confetti explosion** (150 particles in brand colors)
 2. **Hidden modal** with exclusive content
 3. **Annotated manifesto download** (with policy team notes)
@@ -119,6 +121,7 @@ Automatically listens for key sequence globally.
 ### Social Media Strategy
 
 When discovered:
+
 - Twitter: "Just found @FusionPartyAus's easter egg... these are my kind of politicians 🎮"
 - Reddit: "TIL the Fusion Party website has a Konami Code. Democracy just got fun."
 - Hacker News: "Australian political party's website has better UX than most startups"
@@ -202,7 +205,7 @@ When discovered:
 Add to any quote or stat:
 
 ```astro
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="Every Australian deserves a home they can afford"
   attribution="Housing Policy 2026"
   category="Housing"
@@ -212,6 +215,7 @@ Add to any quote or stat:
 ```
 
 Generates a branded card with:
+
 - The quote (large, bold)
 - Fusion branding (logo, colors)
 - Category badge
@@ -251,6 +255,7 @@ Generates a branded card with:
 ### Where to Place
 
 **High-Value Locations**:
+
 - Policy page key findings
 - "Victorian Theft" stats (shocking numbers)
 - Value propositions
@@ -267,7 +272,7 @@ Generates a branded card with:
   <p class="text-xl font-bold mb-4">
     Victoria's housing prices have increased 340% while wages grew only 80%.
   </p>
-  <ShareQuoteCard 
+  <ShareQuoteCard
     quote="Housing prices up 340%. Wages up 80%. This is theft."
     attribution="Housing Crisis Report 2024"
     category="Housing"
@@ -276,7 +281,7 @@ Generates a branded card with:
 </div>
 
 <!-- Victorian Theft Stats -->
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="$1,200/month goes to landlords instead of your savings"
   attribution="Victorian Theft Analysis"
   category="The Theft"
@@ -284,7 +289,7 @@ Generates a branded card with:
 />
 
 <!-- Manifesto Highlight -->
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="Democracy shouldn't be a spectator sport"
   attribution="Fusion Manifesto 2026"
   category="Values"
@@ -322,6 +327,7 @@ Generates a branded card with:
 6. **Facebook Parents Group** (Family values)
 
 Each template:
+
 - One-click copy to clipboard
 - Fully editable in textarea
 - Channel filtering (email/text/social/linkedin)
@@ -354,6 +360,7 @@ Each template:
 ### The Psychology
 
 **Why Template Are Powerful**:
+
 - Removes decision paralysis
 - Reduces emotional labor
 - Provides social proof ("others are doing this")
@@ -361,6 +368,7 @@ Each template:
 - Respects people's time
 
 **Why People Don't Share** (and how we fix it):
+
 - ❌ "I don't know what to say" → ✅ Pre-written templates
 - ❌ "It'll be awkward" → ✅ Casual, tested language
 - ❌ "I might say the wrong thing" → ✅ Vetted messaging
@@ -387,7 +395,7 @@ Each template:
 ❌ **Tracking Pixels**: Creepy, unethical, against our values  
 ❌ **Dark Patterns**: Manipulative, destroys trust  
 ❌ **Fake Urgency**: "Limited time!" lies  
-❌ **Clickbait**: Destroys credibility  
+❌ **Clickbait**: Destroys credibility
 
 ### What We DO
 
@@ -396,7 +404,7 @@ Each template:
 ✅ **Remove Friction**: One-click everything  
 ✅ **Show Real Numbers**: Transparency builds trust  
 ✅ **Respect Intelligence**: No dumbing down  
-✅ **Make It Fun**: Democracy doesn't have to be boring  
+✅ **Make It Fun**: Democracy doesn't have to be boring
 
 ---
 
@@ -405,12 +413,14 @@ Each template:
 ### Key Metrics
 
 **Awareness Metrics**:
+
 - Social media mentions (organic)
 - GitHub stars/forks
 - Hacker News/Reddit discussions
 - Developer community engagement
 
 **Engagement Metrics**:
+
 - Template copy rate
 - Quote card shares
 - Konami Code triggers
@@ -418,12 +428,14 @@ Each template:
 - Return visitor rate
 
 **Conversion Metrics**:
+
 - Member signups from shared links
 - Volunteer applications
 - Donation conversions
 - Event attendance
 
 **Viral Coefficient**:
+
 - Average shares per visitor
 - Network reach (how many people see shared content)
 - Secondary conversions (people reached via shares)
@@ -450,13 +462,15 @@ Each template:
 
 ### Success Criteria
 
-**Month 1**: 
+**Month 1**:
+
 - 100+ template copies
 - 50+ quote card shares
 - 10+ Konami Code triggers
 - 5+ developer contributions
 
 **Month 3**:
+
 - 1,000+ template copies
 - 500+ quote card shares
 - 100+ Konami Code triggers
@@ -464,6 +478,7 @@ Each template:
 - Viral coefficient > 1.0
 
 **Month 6**:
+
 - 10,000+ template copies
 - 5,000+ quote card shares
 - 1,000+ Konami Code triggers
@@ -476,6 +491,7 @@ Each template:
 ## 8. Implementation Checklist
 
 ### Movement Metrics
+
 - [x] Create component with animated counters
 - [x] Add progress bars with shimmer effect
 - [x] Add milestone badges
@@ -486,6 +502,7 @@ Each template:
 - [ ] Add share buttons for milestones
 
 ### Konami Code
+
 - [x] Create easter egg component
 - [x] Add confetti animation
 - [x] Add modal with exclusive content
@@ -495,6 +512,7 @@ Each template:
 - [ ] Add social sharing prompt
 
 ### Inspect Element Messages
+
 - [x] Add developer-friendly comments
 - [x] Add recruitment message
 - [x] Add zero tracking proof
@@ -504,6 +522,7 @@ Each template:
 - [ ] Add "secret" URLs in comments
 
 ### Share Quote Cards
+
 - [x] Create component
 - [x] Add canvas-based image generation
 - [x] Add social platform integrations
@@ -515,6 +534,7 @@ Each template:
 - [ ] Add analytics tracking
 
 ### Convince Your Friends
+
 - [x] Create page with 6 templates
 - [x] Add copy-to-clipboard functionality
 - [x] Add channel filtering
@@ -531,6 +551,7 @@ Each template:
 ### When Movement Metrics Hit Milestones
 
 **Template Tweet**:
+
 ```
 🎉 WE DID IT! Fusion Party just hit [MILESTONE]!
 
@@ -547,12 +568,14 @@ Join us: [URL]
 ```
 
 **Instagram Story**:
+
 - Screenshot of metrics widget
 - "Almost there!" badge visible
 - Swipe up to join
 - Use brand colors
 
 **LinkedIn Post**:
+
 ```
 Professional milestone: Fusion Party reaches [MILESTONE] registered members.
 
@@ -569,12 +592,14 @@ This is what democracy looks like in 2026.
 ### When Someone Finds Easter Egg
 
 **Encourage Sharing**:
+
 - Pin top finder posts
 - Retweet with "🎮 Achievement Unlocked"
 - Feature in newsletter
 - Add to "Community Wins" page
 
 **Example Response**:
+
 ```
 👀 @username just unlocked the secret!
 
@@ -589,12 +614,14 @@ We hide rewards.
 ### When Quote Cards Go Viral
 
 **Amplify**:
+
 - Reshare the best ones
 - Create thread with all variations
 - Turn into carousel post
 - Feature on homepage
 
 **Tracking**:
+
 - Monitor quote card hashtag
 - Thank sharers personally
 - Collect best testimonials
@@ -605,24 +632,28 @@ We hide rewards.
 ## 10. Long-Term Strategy
 
 ### Phase 1: Foundation (Months 1-3)
+
 - ✅ Build viral features
 - ✅ Test with early adopters
 - [ ] Iterate based on feedback
 - [ ] Establish baseline metrics
 
 ### Phase 2: Growth (Months 4-6)
+
 - [ ] Add viral features to all pages
 - [ ] Launch "share and win" campaigns
 - [ ] Partner with influencers/communities
 - [ ] Create viral challenge (#FusionChallenge)
 
 ### Phase 3: Scale (Months 7-12)
+
 - [ ] Automated milestone celebrations
 - [ ] User-generated content features
 - [ ] Leaderboards (top electorates)
 - [ ] Gamification system (badges, points)
 
 ### Phase 4: Sustain (Ongoing)
+
 - [ ] Monthly viral campaigns
 - [ ] Continuous A/B testing
 - [ ] Community-driven features

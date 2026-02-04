@@ -26,7 +26,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 **Use when**: You have a stat, quote, or fact worth sharing
 
 ```astro
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="Housing prices up 340%. Wages up 80%. This is theft."
   attribution="Victorian Theft Report 2024"
   category="Housing"
@@ -60,6 +60,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 ```
 
 **Props**:
+
 - `text` (required) - Tweet text
 - `hashtags` - Array of hashtags (no # symbol)
 - `via` - Twitter handle to mention (no @ symbol)
@@ -74,13 +75,11 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 
 ```astro
 <!-- Add once at top of page -->
-<ScrollProgress 
-  showMilestones={true}
-  color="magenta"
-/>
+<ScrollProgress showMilestones={true} color="magenta" />
 ```
 
 **Milestones**:
+
 - 25%: "📖 You're getting it!"
 - 50%: "💡 Halfway there!"
 - 75%: "🔥 Almost done!"
@@ -93,7 +92,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 **Use when**: You want persistent share options
 
 ```astro
-<FloatingShareButtons 
+<FloatingShareButtons
   title="Fusion Party - Real Democracy"
   url="/policies/housing"
   position="left"
@@ -102,6 +101,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 ```
 
 **Props**:
+
 - `title` - Meta title for shares
 - `url` - Override current URL
 - `position` - `left` | `right`
@@ -117,11 +117,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 
 ```astro
 <!-- For members -->
-<MemberBadge 
-  memberNumber={847}
-  showShareButtons={true}
-  variant="hero"
-/>
+<MemberBadge memberNumber={847} showShareButtons={true} variant="hero" />
 
 <!-- For non-members (shows signup CTA) -->
 <MemberBadge />
@@ -130,6 +126,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 **Variants**: `default` | `hero` | `compact`
 
 **Generates**:
+
 - Shareable badge image (1080x1080px)
 - Twitter/Facebook share buttons
 - Download button
@@ -147,6 +144,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 **Sequence**: `↑ ↑ ↓ ↓ ← → ← → B A`
 
 **Triggers**:
+
 - Confetti explosion
 - Modal with exclusive content
 - Annotated manifesto download
@@ -162,6 +160,7 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 ```
 
 **Console Output**:
+
 - ASCII art logo
 - Styled messages
 - Interactive commands
@@ -172,27 +171,24 @@ import DeveloperMessages from '../components/DeveloperMessages.astro'
 ## 📍 Where Each Is Currently Used
 
 ### Homepage (`/src/pages/index.astro`)
+
 ```astro
-✅ ScrollProgress
-✅ FloatingShareButtons
-✅ KonamiCode
-✅ DeveloperMessages
-✅ ShareQuoteCard (in Victorian Theft cards)
-✅ MovementMetrics
+✅ ScrollProgress ✅ FloatingShareButtons ✅ KonamiCode ✅ DeveloperMessages ✅ ShareQuoteCard (in
+Victorian Theft cards) ✅ MovementMetrics
 ```
 
 ### Global Components
+
 ```astro
-✅ KonamiCode (in all pages via BaseLayout potential)
-✅ DeveloperMessages (in all pages via BaseLayout potential)
+✅ KonamiCode (in all pages via BaseLayout potential) ✅ DeveloperMessages (in all pages via
+BaseLayout potential)
 ```
 
 ### Ready to Add
+
 ```astro
-📝 ClickToTweet - Add to policy pages
-📝 MemberBadge - Add to signup flow
-📝 ScrollProgress - Add to manifesto
-📝 FloatingShareButtons - Add to all pages
+📝 ClickToTweet - Add to policy pages 📝 MemberBadge - Add to signup flow 📝 ScrollProgress - Add to
+manifesto 📝 FloatingShareButtons - Add to all pages
 ```
 
 ---
@@ -213,26 +209,26 @@ import ClickToTweet from '../components/ClickToTweet.astro'
 <BaseLayout title="Housing Policy">
   <ScrollProgress color="magenta" />
   <FloatingShareButtons title="Fusion Housing Policy" />
-  
+
   <article>
     <h1>Housing Policy</h1>
-    
+
     <section>
       <h2>The Crisis</h2>
       <p>Victorian housing prices have increased 340%...</p>
-      
-      <ShareQuoteCard 
+
+      <ShareQuoteCard
         quote="Housing prices up 340%. Wages up 80%."
         attribution="Housing Crisis Report"
         category="Housing"
         color="magenta"
       />
     </section>
-    
+
     <section>
       <h2>Our Solution</h2>
       <p>Build 50,000 social housing units...</p>
-      
+
       <ClickToTweet
         text="50,000 new social housing units. This is what real policy looks like."
         hashtags={['FusionParty', 'Housing']}
@@ -255,17 +251,14 @@ const memberNumber = 847
 
 <div class="thank-you">
   <h1>Welcome to the Movement!</h1>
-  
-  <MemberBadge 
-    memberNumber={memberNumber}
-    variant="hero"
-  />
-  
+
+  <MemberBadge memberNumber={memberNumber} variant="hero" />
+
   <ClickToTweet
     text={`I just became founding member #${memberNumber} of @FusionPartyAus!`}
     hashtags={['FusionParty', `Member${memberNumber}`]}
   />
-  
+
   <p>Next steps: Download your badge and share it!</p>
 </div>
 ```
@@ -279,28 +272,18 @@ import FloatingShareButtons from '../components/FloatingShareButtons.astro'
 import ClickToTweet from '../components/ClickToTweet.astro'
 ---
 
-<ScrollProgress 
-  showMilestones={true}
-  color="mint"
-/>
+<ScrollProgress showMilestones={true} color="mint" />
 
-<FloatingShareButtons 
-  title="Fusion Party Manifesto 2026"
-  position="left"
-/>
+<FloatingShareButtons title="Fusion Party Manifesto 2026" position="left" />
 
 <article>
   <!-- Long-form manifesto content -->
-  
+
   <section>
     <h2>Core Values</h2>
-    <blockquote>
-      Democracy shouldn't be a spectator sport.
-    </blockquote>
-    
-    <ClickToTweet
-      text="Democracy shouldn't be a spectator sport. Join the movement."
-    />
+    <blockquote>Democracy shouldn't be a spectator sport.</blockquote>
+
+    <ClickToTweet text="Democracy shouldn't be a spectator sport. Join the movement." />
   </section>
 </article>
 ```
@@ -312,18 +295,21 @@ import ClickToTweet from '../components/ClickToTweet.astro'
 ### When to Use Each Color
 
 **Magenta (#C926F2)**:
+
 - Primary actions
 - Member badges
 - Urgent messages
 - Political content
 
 **Mint (#5EFFD8)**:
+
 - Community content
 - Environmental policies
 - Positive messages
 - Secondary actions
 
 **Yellow (#FFED00)**:
+
 - Highlights
 - Achievements
 - Milestones
@@ -338,13 +324,14 @@ All viral components automatically track events when available:
 ```javascript
 // Check if Plausible is available
 if (window.plausible) {
-  window.plausible('Event Name', { 
-    props: { key: 'value' } 
+  window.plausible('Event Name', {
+    props: { key: 'value' },
   })
 }
 ```
 
 **Events Tracked**:
+
 - `Share` - Platform, page URL
 - `Konami Code` - Activation
 - `Scroll Milestone` - Percentage
@@ -356,18 +343,22 @@ if (window.plausible) {
 ## 🐛 Common Issues
 
 ### "Module not found"
+
 **Problem**: Import path is wrong  
 **Fix**: Check if component is in `/src/components/` or `/src/components/ui/`
 
 ### Share buttons open popup blockers
+
 **Problem**: Browser blocking popups  
 **Fix**: This is expected - users need to allow popups or use "Open in new tab"
 
 ### Animations not triggering
+
 **Problem**: JavaScript not loaded  
 **Fix**: Check browser console for errors, ensure `<script>` tags are present
 
 ### Milestones not firing
+
 **Problem**: Page too short to scroll  
 **Fix**: ScrollProgress needs scrollable content (>2 viewport heights)
 
@@ -376,7 +367,9 @@ if (window.plausible) {
 ## 💡 Pro Tips
 
 ### 1. Stack Viral Mechanics
+
 Don't use just one - use multiple:
+
 ```astro
 <ScrollProgress />
 <FloatingShareButtons />
@@ -384,13 +377,16 @@ Don't use just one - use multiple:
 ```
 
 ### 2. Make Everything Shareable
+
 Add share button to:
+
 - Every stat
 - Every quote
 - Every achievement
 - Every milestone
 
 ### 3. Personalize When Possible
+
 ```astro
 <!-- Generic -->
 <ShareQuoteCard quote="Join the movement" />
@@ -400,13 +396,17 @@ Add share button to:
 ```
 
 ### 4. Test Mobile First
+
 All components are responsive, but test on real devices:
+
 - Share buttons: Horizontal on mobile
 - Member badge: Downloads work on mobile
 - Konami Code: Works with on-screen keyboards
 
 ### 5. Monitor and Iterate
+
 Track which mechanics work:
+
 - Most shared platform?
 - Most downloaded badges?
 - Highest scroll completion?
@@ -422,9 +422,9 @@ Then double down on what works.
 ```astro
 <section class="hero">
   <h1>Join the Movement</h1>
-  
+
   <MemberBadge memberNumber={847} variant="hero" />
-  
+
   <ClickToTweet
     text="I just joined @FusionPartyAus as founding member #847!"
     hashtags={['FusionParty', 'Member847']}
@@ -439,8 +439,8 @@ Then double down on what works.
   <div class="stat">
     <h3>$1,200/month</h3>
     <p>Goes to landlords instead of savings</p>
-    
-    <ShareQuoteCard 
+
+    <ShareQuoteCard
       quote="$1,200/month goes to landlords instead of your savings"
       category="Housing"
       color="magenta"
@@ -458,17 +458,14 @@ Then double down on what works.
 
 <article>
   <h1>Article Title</h1>
-  
+
   <p>Intro paragraph...</p>
-  
+
   <ClickToTweet text="Key quote from article" />
-  
+
   <p>More content...</p>
-  
-  <ShareQuoteCard 
-    quote="Important statistic"
-    attribution="Research Source"
-  />
+
+  <ShareQuoteCard quote="Important statistic" attribution="Research Source" />
 </article>
 ```
 

@@ -17,6 +17,7 @@ Visit: `http://localhost:4321`
 **Location**: Homepage, right after the hero section
 
 **What to Check**:
+
 - [ ] Counters animate from 0 to target numbers (2 seconds)
 - [ ] Progress bars fill with shimmer effect
 - [ ] "🔥 Almost There!" badge shows for metrics at 90%+
@@ -25,6 +26,7 @@ Visit: `http://localhost:4321`
 - [ ] Responsive on mobile (test by resizing browser)
 
 **Expected Data**:
+
 - Members: 847 / 1,000 (85%)
 - Volunteers: 234 / 320 (73%)
 - Candidates: 12 / 88 (14%)
@@ -37,6 +39,7 @@ Visit: `http://localhost:4321`
 ## 2️⃣ Konami Code Easter Egg
 
 **How to Trigger**:
+
 1. Go to any page on the site
 2. Make sure the page is focused (click anywhere)
 3. Type the Konami Code: **`↑ ↑ ↓ ↓ ← → ← → B A`**
@@ -45,6 +48,7 @@ Visit: `http://localhost:4321`
    - Then press `A` key
 
 **What Should Happen**:
+
 - [ ] Confetti explosion (150 particles in brand colors)
 - [ ] Modal appears with heading "You Found the Secret!"
 - [ ] Shows annotated manifesto offer
@@ -59,6 +63,7 @@ Visit: `http://localhost:4321`
 ## 3️⃣ Developer Console Messages
 
 **How to See**:
+
 1. Open browser DevTools
    - **Chrome/Edge**: Press `F12` or `Cmd+Option+I` (Mac) / `Ctrl+Shift+I` (Windows)
    - **Firefox**: Press `F12` or `Cmd+Option+K` (Mac) / `Ctrl+Shift+K` (Windows)
@@ -67,6 +72,7 @@ Visit: `http://localhost:4321`
 2. Click **"Console"** tab
 
 **What to Check**:
+
 - [ ] ASCII art Fusion logo appears
 - [ ] Styled welcome message with box drawing characters
 - [ ] Colored console messages (magenta, mint, yellow)
@@ -76,15 +82,17 @@ Visit: `http://localhost:4321`
 - [ ] Interactive commands listed
 
 **Interactive Commands to Try**:
+
 ```javascript
 // In console, type these:
-window.__FUSION__              // See site metadata
-window.fusionStats()           // View component stats table
-window.compareToPoliticians()  // Side-by-side comparison table
-window.democracy.build()       // Interactive democracy builder
+window.__FUSION__ // See site metadata
+window.fusionStats() // View component stats table
+window.compareToPoliticians() // Side-by-side comparison table
+window.democracy.build() // Interactive democracy builder
 ```
 
 **Expected Output**:
+
 - `__FUSION__` shows: version, framework, tracking status, stats
 - `fusionStats()` shows: Components (11), Tests (41), Coverage (91%)
 - `compareToPoliticians()` shows: Fusion vs Major Parties comparison
@@ -104,7 +112,7 @@ Currently a reusable component. Add to any page:
 import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 ---
 
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="Housing prices up 340%. Wages up 80%. This is theft."
   attribution="Housing Crisis Report 2024"
   category="Housing"
@@ -114,6 +122,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 ```
 
 **What to Check**:
+
 - [ ] "📤 Share" button appears
 - [ ] Click opens modal with preview
 - [ ] Canvas generates image (1200x630px)
@@ -125,8 +134,9 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 - [ ] Close modal works
 
 **Test Quote**:
+
 ```astro
-<ShareQuoteCard 
+<ShareQuoteCard
   quote="Every Australian deserves a home they can afford"
   attribution="Fusion Party Housing Policy"
   category="Housing"
@@ -141,6 +151,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 **Location**: `/convince-your-friends` page (already built)
 
 **What to Check**:
+
 - [ ] 6 templates visible
 - [ ] Each template has icon and audience label
 - [ ] Click to expand/collapse works
@@ -152,6 +163,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 - [ ] Tips section appears
 
 **Test Copy Function**:
+
 1. Click any template to expand
 2. Click "Copy to Clipboard" button
 3. Open a text editor
@@ -165,7 +177,8 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 ### Konami Code Not Working
 
 **Problem**: Nothing happens when I enter the code  
-**Solution**: 
+**Solution**:
+
 1. Make sure page is focused (click anywhere on page first)
 2. Use arrow keys, not WASD
 3. Type the full sequence: ↑ ↑ ↓ ↓ ← → ← → B A
@@ -176,6 +189,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 
 **Problem**: DevTools console is empty  
 **Solution**:
+
 1. Make sure you're on the Console tab (not Elements or Network)
 2. Refresh the page (`Cmd+R` or `Ctrl+R`)
 3. Check if console is filtered (remove any filters)
@@ -185,6 +199,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 
 **Problem**: Numbers appear but don't count up  
 **Solution**:
+
 1. Scroll the metrics widget into view (animation triggers on scroll)
 2. Refresh the page and scroll again
 3. Check browser console for errors
@@ -194,6 +209,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 
 **Problem**: Modal opens but preview is empty  
 **Solution**:
+
 1. Check browser console for Canvas errors
 2. Some browsers block Canvas API - try Chrome/Firefox
 3. Make sure all props are provided (quote, attribution, category)
@@ -239,26 +255,31 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 ## 🎯 What Makes This Viral
 
 ### Movement Metrics
+
 - **Psychology**: Tipping point urgency ("almost there!")
 - **Social Proof**: Real numbers, not vague claims
 - **Sharability**: Milestone achievements are inherently shareable
 
 ### Konami Code
+
 - **Nostalgia**: Gaming culture connection
 - **Discovery**: "Look what I found!" posts
 - **Exclusivity**: Rewards the curious
 
 ### Developer Messages
+
 - **Respect**: Treats devs as allies, not users
 - **Proof**: Zero tracking is verifiable
 - **Recruitment**: Turns inspectors into contributors
 
 ### Share Quote Cards
+
 - **Friction-Free**: One click to share
 - **Branded**: Every share is free advertising
 - **QR Code**: Brings traffic back to site
 
 ### Templates
+
 - **Removes Paralysis**: "What do I say?" → Pre-written
 - **Audience-Specific**: Different tones for different people
 - **Feedback Loop**: Success stories create case studies
@@ -270,6 +291,7 @@ import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 Print this out or keep it open while testing:
 
 ### Homepage
+
 - [ ] Movement Metrics section appears after hero
 - [ ] Counters animate on scroll
 - [ ] Progress bars fill with shimmer
@@ -277,6 +299,7 @@ Print this out or keep it open while testing:
 - [ ] Motivation message appears
 
 ### Global (All Pages)
+
 - [ ] Konami Code works (`↑ ↑ ↓ ↓ ← → ← → B A`)
 - [ ] Confetti explodes
 - [ ] Modal opens and closes
@@ -284,12 +307,14 @@ Print this out or keep it open while testing:
 - [ ] Interactive console commands work
 
 ### Components
+
 - [ ] ShareQuoteCard generates images
 - [ ] All social share buttons work
 - [ ] Download PNG works
 - [ ] Copy URL works
 
 ### Performance
+
 - [ ] Page loads under 2 seconds
 - [ ] Animations are smooth (60fps)
 - [ ] No console errors
