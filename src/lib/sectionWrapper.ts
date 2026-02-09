@@ -2,6 +2,13 @@
  * Post-process rendered HTML to wrap h2 sections in brutal boxes
  */
 export function wrapSectionsInBoxes(html: string): string {
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .replace(/<[^>]*>/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')
+
   // Split content by h2 tags, preserving attributes including IDs
   const h2Regex = /<h2([^>]*)>(.*?)<\/h2>/gi
   const parts: string[] = []
@@ -15,9 +22,14 @@ export function wrapSectionsInBoxes(html: string): string {
     parts.push(html.substring(lastIndex, match.index))
 
     // Store h2 attributes and content
+    const attrs = match[1] || ''
+    const content = match[2]
+    const hasId = /\sid\s*=\s*['"][^'"]+['"]/i.test(attrs)
+    const safeAttrs = hasId ? attrs : `${attrs} id="${slugify(content)}"`
+
     matches.push({
-      attrs: match[1],
-      content: match[2],
+      attrs: safeAttrs,
+      content,
     })
 
     lastIndex = match.index + match[0].length

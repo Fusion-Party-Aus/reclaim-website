@@ -254,18 +254,18 @@
   /* THEFT/PROBLEM CARDS - Clean brutalism with minimal decoration */
   .theft-card {
     background-color: #ffffff;
-    border: 6px solid #000000;
+    border: 5px solid #000000;
     overflow: hidden;
     transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
-    box-shadow: 8px 8px 0px 0px #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
     position: relative;
   }
 
   .theft-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px 0px #000000;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px 0px #000000;
   }
 
   .theft-card-image {
@@ -294,7 +294,7 @@
     display: inline-block;
     width: fit-content;
     border: 3px solid #000000;
-    box-shadow: 4px 4px 0px 0px #000000;
+    box-shadow: 3px 3px 0px 0px #000000;
   }
 
   .theft-card h3 {
