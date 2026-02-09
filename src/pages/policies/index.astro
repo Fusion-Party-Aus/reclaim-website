@@ -50,19 +50,7 @@ const ctaSection = pageData?.ctaSection || {
 }
 
 // Group Policies by Pillar -> Category
-const PILLAR_ORDER = [
-  'RECLAIM OUR ECONOMY',
-  'SOLVE THE HOUSING CRISIS',
-  'FIX THE TAX EXPLOITS',
-  'RECLAIM OUR FUTURE',
-]
-
 const groupedPolicies: Record<string, Record<string, Policy[]>> = {}
-
-// Initialize pillars
-PILLAR_ORDER.forEach((pillar) => {
-  groupedPolicies[pillar] = {}
-})
 
 policies.forEach((policy) => {
   const pillar = policy.pillar || 'Other'
@@ -79,13 +67,76 @@ policies.forEach((policy) => {
   groupedPolicies[pillar][category].push(policy)
 })
 
-// Generate sidebar sections from Pillars
+// Get pillars from actual data
+const PILLAR_ORDER = Object.keys(groupedPolicies).filter(
+  (pillar) => Object.keys(groupedPolicies[pillar]).length > 0
+)
+
+// Pillar configuration for icons and colors
+const pillarConfig: Record<
+  string,
+  { icon: string; color: string; shadowColor: string; textColor: string }
+> = {
+  'RECLAIM OUR ECONOMY': {
+    icon: 'mdi:cash-multiple',
+    color: '#C926F2',
+    shadowColor: '#FFED00',
+    textColor: 'white',
+  },
+  'SOLVE THE HOUSING CRISIS': {
+    icon: 'mdi:home-city',
+    color: '#5EFFD8',
+    shadowColor: '#C926F2',
+    textColor: 'black',
+  },
+  'FIX THE TAX EXPLOITS': {
+    icon: 'mdi:calculator',
+    color: '#FFED00',
+    shadowColor: '#5EFFD8',
+    textColor: 'black',
+  },
+  'RECLAIM OUR FUTURE': {
+    icon: 'mdi:solar-power',
+    color: '#C926F2',
+    shadowColor: '#5EFFD8',
+    textColor: 'white',
+  },
+}
+
+// Fallback config for any pillar not in the map
+const getConfigForPillar = (pillar: string) => {
+  return (
+    pillarConfig[pillar] || {
+      icon: 'mdi:file-document',
+      color: '#C926F2',
+      shadowColor: '#5EFFD8',
+      textColor: 'white',
+    }
+  )
+}
+
+const pillarRotations = ['2deg', '-2deg', '2deg', '-2deg']
+const cardShadowColors = ['#C926F2', '#5EFFD8', '#FFED00']
+const cardRotations = ['-0.5deg', '0.5deg', '-1deg', '1deg']
+
+const toIconName = (icon?: string) => {
+  if (!icon) return 'mdi:file-document'
+  if (icon.includes(':')) return icon
+  if (/^[a-z0-9-]+$/i.test(icon)) return `mdi:${icon}`
+  return 'mdi:file-document'
+}
+
+// Generate sidebar sections from Pillars with nested categories
 const applyHash = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 const sidebarSections = PILLAR_ORDER.filter(
   (pillar) => Object.keys(groupedPolicies[pillar] || {}).length > 0
 ).map((pillar) => ({
   id: applyHash(pillar),
   title: pillar,
+  children: Object.keys(groupedPolicies[pillar]).map((category) => ({
+    id: applyHash(`${pillar}-${category}`),
+    title: category,
+  })),
 }))
 ---
 
@@ -98,126 +149,142 @@ const sidebarSections = PILLAR_ORDER.filter(
   <!-- HERO -->
   <Hero title={title} subtitle={subtitle} />
 
-  <!-- POLICY OVERVIEW + MAIN CONTENT (from Sanity) -->
-  <div class="max-w-7xl mx-auto px-8 flex gap-8 relative">
-    <!-- Main Content Column -->
-    <div class="flex-1 relative">
-      <FloatingIcon
-        name="mdi:file-document-multiple"
-        color="rgba(255, 51, 153, 0.03)"
-        size={384}
-        animation="float-slow"
-        position={{ top: '0', right: '0' }}
-      />
-      <FloatingIcon
-        name="mdi:chart-line"
-        color="rgba(0, 255, 204, 0.03)"
-        size={256}
-        animation="spin-slow"
-        position={{ bottom: '5rem', left: '0' }}
-      />
-
-      <!-- Intro panel -->
-      <Section
-        border={true}
-        borderPosition="bottom"
-        borderColor="magenta"
-        padding="lg"
-        class="-mx-8 px-8"
+  <!-- INTRO PANEL - Full Width -->
+  <Section border={true} borderPosition="bottom" borderColor="magenta" padding="xl" bg="gray">
+    <div class="max-w-4xl mx-auto text-center">
+      <div
+        class="inline-block mb-6 p-5 bg-yellow border-6 border-black"
+        style="box-shadow: 8px 8px 0px 0px #C926F2; transform: rotate(-2deg);"
       >
-        <div class="max-w-5xl mx-auto">
-          <BrutalCard
-            variant="white"
-            borderWidth="lg"
-            shadow="lg"
-            shadowSize="8"
-            rotation={-0.5}
-            hover={true}
-            class="mb-12 text-center"
-          >
-            <div class="mb-4 animate-wiggle-subtle">
-              <Icon name="mdi:gavel" class="w-12 h-12 text-magenta mx-auto" />
-            </div>
-            <p class="text-2xl font-bold mb-4 uppercase">
-              {introCard.heading}
-            </p>
-            {introCard.description && <p class="text-lg mb-4">{introCard.description}</p>}
-            <p
-              class="text-3xl font-black text-magenta uppercase flex items-center justify-center gap-3"
-            >
-              <Icon name="mdi:hand-back-left" class="w-10 h-10" />
-              {introCard.punchline}
-              <Icon name="mdi:home" class="w-10 h-10" />
-            </p>
-          </BrutalCard>
-        </div>
-      </Section>
+        <Icon name="mdi:gavel" class="w-16 h-16 text-black" />
+      </div>
 
+      <div
+        class="bg-white border-8 border-black p-8 md:p-12"
+        style="box-shadow: 12px 12px 0px 0px #5EFFD8;"
+      >
+        <p class="text-xl md:text-2xl font-black mb-6 uppercase leading-tight">
+          {introCard.heading}
+        </p>
+        {
+          introCard.description && (
+            <p class="text-lg font-bold text-gray-700 mb-6">{introCard.description}</p>
+          )
+        }
+        <div class="border-t-4 border-black pt-6 mt-6">
+          <p
+            class="text-3xl md:text-4xl font-black text-magenta uppercase flex items-center justify-center gap-3"
+          >
+            <Icon name="mdi:hand-back-left" class="w-10 h-10" />
+            {introCard.punchline}
+            <Icon name="mdi:home" class="w-10 h-10" />
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- POLICY CONTENT + SIDEBAR -->
+  <div
+    class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10 lg:items-stretch"
+  >
+    <!-- Main Content Column -->
+    <div class="min-w-0">
       <!-- Pillars Sections -->
       {
-        PILLAR_ORDER.filter((pillar) => Object.keys(groupedPolicies[pillar] || {}).length > 0).map(
-          (pillar) => (
-            <Section id={applyHash(pillar)} class="mb-20">
-              <div class="mb-12 border-b-8 border-black pb-4">
-                <h2 class="text-5xl md:text-6xl font-black uppercase text-black mb-2 tracking-tighter">
-                  {pillar}
-                </h2>
+        PILLAR_ORDER.map((pillar, pillarIndex) => (
+          <section
+            id={applyHash(pillar)}
+            class="mb-12 bg-white border-4 border-black p-8 scroll-mt-28"
+            style={`box-shadow: 8px 8px 0px 0px ${cardShadowColors[pillarIndex % cardShadowColors.length]};`}
+          >
+            <div
+              class="h-3 border-b-4 border-black mb-8"
+              style={`background-color: ${getConfigForPillar(pillar).color};`}
+            />
+            <div class="text-center mb-16">
+              <div
+                class="inline-block mb-6 p-4 border-6 border-black"
+                style={`background-color: ${getConfigForPillar(pillar).color}; box-shadow: 6px 6px 0px 0px ${getConfigForPillar(pillar).shadowColor}; transform: rotate(${pillarRotations[pillarIndex % pillarRotations.length]});`}
+              >
+                <Icon
+                  name={getConfigForPillar(pillar).icon}
+                  class="w-12 h-12"
+                  style={`color: ${getConfigForPillar(pillar).textColor};`}
+                />
               </div>
+              <h2
+                class="text-3xl md:text-5xl font-black uppercase inline-block px-6 py-3 bg-white border-6 border-black"
+                style="transform: rotate(-1deg); box-shadow: 8px 8px 0px 0px #C926F2;"
+              >
+                {pillar}
+              </h2>
+            </div>
 
-              {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
-                <div class="mb-16 last:mb-0">
-                  <h3 class="text-3xl font-black uppercase text-magenta mb-8 flex items-center gap-3">
-                    <Icon name="mdi:chevron-right" class="w-8 h-8" />
+            {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
+              <div id={applyHash(`${pillar}-${category}`)} class="mb-16 last:mb-0 scroll-mt-24">
+                <div class="mb-8 pb-4 border-b-4 border-black">
+                  <h3 class="text-2xl md:text-3xl font-black uppercase text-black flex items-center gap-3">
+                    <div
+                      class="p-2 bg-magenta border-4 border-black"
+                      style="box-shadow: 4px 4px 0px 0px #000000;"
+                    >
+                      <Icon name="mdi:chevron-right" class="w-6 h-6 text-white" />
+                    </div>
                     {category}
                   </h3>
-
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {catPolicies.map((policy, index) => (
-                      <BrutalCard
-                        id={policy.slug.current}
-                        variant="white"
-                        shadow="sm"
-                        borderWidth="md"
-                        hover={true}
-                        padding="md"
-                        class="h-full flex flex-col group hover:shadow-[8px_8px_0_0_#000] hover:-translate-y-1 transition-all duration-200"
-                      >
-                        <div class="flex items-start justify-between gap-4 mb-3">
-                          <h4 class="text-xl font-black uppercase leading-tight group-hover:text-magenta transition-colors">
-                            {policy.title}
-                          </h4>
-                          {policy.icon && (
-                            <Icon
-                              name={policy.icon}
-                              class="w-8 h-8 text-gray-400 group-hover:text-magenta transition-colors flex-shrink-0"
-                            />
-                          )}
-                        </div>
-
-                        <p class="text-sm font-bold text-gray-700 mb-4 grow">{policy.summary}</p>
-
-                        <div class="mt-auto pt-4 border-t-2 border-gray-100 flex justify-between items-center">
-                          {policy.cost && (
-                            <span class="text-xs font-bold bg-yellow/20 px-2 py-1 rounded text-black flex items-center gap-1">
-                              <Icon name="mdi:currency-usd" class="w-3 h-3" />
-                              {policy.cost}
-                            </span>
-                          )}
-                          <a
-                            href={`/policies/${policy.slug.current}`}
-                            class="text-xs font-black uppercase text-magenta hover:underline flex items-center gap-1 ml-auto"
-                          >
-                            Read More <Icon name="mdi:arrow-right" class="w-3 h-3" />
-                          </a>
-                        </div>
-                      </BrutalCard>
-                    ))}
-                  </div>
                 </div>
-              ))}
-            </Section>
-          )
-        )
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {catPolicies.map((policy, index) => (
+                    <div
+                      id={policy.slug.current}
+                      class="bg-white border-6 border-black p-6 h-full flex flex-col group hover:-translate-y-2 hover:rotate-0 transition-all duration-200"
+                      style={`box-shadow: 6px 6px 0px 0px ${cardShadowColors[index % cardShadowColors.length]}; transform: rotate(${cardRotations[index % cardRotations.length]});`}
+                    >
+                      <div class="flex items-start justify-between gap-4 mb-4">
+                        <h4 class="text-lg md:text-xl font-black uppercase leading-tight group-hover:text-magenta transition-colors">
+                          {policy.title}
+                        </h4>
+                        <div
+                          class="p-2 border-3 border-black"
+                          style={`background-color: ${cardShadowColors[index % cardShadowColors.length]};`}
+                        >
+                          <Icon
+                            name={toIconName(policy.icon) as string}
+                            class="w-6 h-6 text-black flex-shrink-0"
+                          />
+                        </div>
+                      </div>
+
+                      <p class="text-sm font-bold text-gray-700 mb-4 grow leading-snug">
+                        {policy.summary}
+                      </p>
+
+                      <div class="mt-auto pt-4 border-t-4 border-black flex justify-between items-center">
+                        {policy.cost && (
+                          <span
+                            class="text-xs font-black bg-yellow border-2 border-black px-3 py-1 text-black flex items-center gap-1"
+                            style="box-shadow: 2px 2px 0px 0px #000000;"
+                          >
+                            <Icon name="mdi:currency-usd" class="w-3 h-3" />
+                            {policy.cost}
+                          </span>
+                        )}
+                        <a
+                          href={`/policies/${policy.slug.current}`}
+                          class="text-xs font-black uppercase text-magenta border-b-3 border-magenta pb-1 flex items-center gap-1 ml-auto group-hover:translate-x-1 transition-transform"
+                        >
+                          Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </section>
+        ))
       }
     </div>
 
@@ -226,24 +293,48 @@ const sidebarSections = PILLAR_ORDER.filter(
   </div>
 
   <!-- CTA -->
-  <Section padding="xl" class="bg-magenta-gradient text-white">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-black mb-6 text-white">{ctaSection.title}</h2>
-      <p class="text-xl mb-10 text-white">
+  <section
+    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-8 border-t-4 border-yellow relative overflow-hidden"
+  >
+    <FloatingIcon
+      name="mdi:vote"
+      color="rgba(255, 237, 0, 0.1)"
+      size={256}
+      animation="float"
+      position={{ top: '2.5rem', right: '5rem' }}
+    />
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div
+        class="inline-block mb-6 p-5 bg-yellow border-6 border-black"
+        style="box-shadow: 8px 8px 0px 0px #000000; transform: rotate(3deg);"
+      >
+        <Icon name="mdi:hand-heart" class="w-16 h-16 text-black" />
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-black mb-8 text-white uppercase">{ctaSection.title}</h2>
+      <p class="text-xl mb-12 text-white font-bold">
         {ctaSection.body}
       </p>
 
-      <div class="cta-buttons">
-        <BrutalButton href="/get-involved" variant="white" size="lg"> Get Involved </BrutalButton>
-        <BrutalButton href="/manifesto" variant="mint" size="lg">
+      <div class="flex flex-wrap gap-4 justify-center">
+        <BrutalButton href="/get-involved" variant="white" size="lg" icon="mdi:account-plus">
+          Get Involved
+        </BrutalButton>
+        <BrutalButton href="/manifesto" variant="mint" size="lg" icon="mdi:book-open">
           Read Full Manifesto
         </BrutalButton>
-        <BrutalButton href="https://fusionparty.org.au/costings" variant="mint" size="lg">
+        <BrutalButton
+          href="https://fusionparty.org.au/costings"
+          variant="yellow"
+          size="lg"
+          icon="mdi:calculator"
+        >
           View Costings
         </BrutalButton>
       </div>
     </div>
-  </Section>
+  </section>
 
   <Footer />
 </BaseLayout>
