@@ -63,71 +63,225 @@ Implementation is sequenced around legislative consolidation of baseline payment
 ---
 </details>
 
-### **Guarantee Fair Wages for All Workers**
+### **Build Fair and Stable Labour Markets**
 
-Reform industrial relations to ensure fair wages and safe working conditions. Support unions and the award system, with democratic secret ballots to give workers real negotiating power without employer intimidation.
+1. Labour market rules will be restructured by establishing sector-level bargaining councils, enabling binding multi-employer wage agreements, requiring democratic governance and representation thresholds for worker organisations (including unions), and expanding the authority of the Fair Work Commission to coordinate, extend, and enforce wage and condition standards across industries.
 
-### **Deliver Free Childcare for Families**
+   1. Wage outcomes will reflect productivity, skills, and conditions rather than desperation or fragmentation.
+   2. Employers will compete on efficiency, innovation, and job quality instead of labour undercutting.
+   3. Labour markets will become more stable as industry-wide standards reduce churn and arbitrage.
+   4. Collective bargaining will operate as a coordination mechanism rather than a survival tool.
+   5. The benefits of Universal Basic Income will flow to workers and communities rather than being captured through downward wage pressure.
 
-Provide free or affordable childcare on a sliding scale based on income, removing financial barriers so parents can work without sacrificing their children’s care and development.
+<details>
+<summary><strong>Further Detail</strong></summary>
 
-### **Bring Dental and Mental Health Into Medicare**
+---
 
-Expand universal healthcare to include dental and mental health services. Treat them as essential healthcare, not luxury services only the wealthy can afford.
+**Design rationale**
+With Universal Basic Income in place, workers are no longer compelled to accept poor pay or conditions to meet basic needs. Wage-setting institutions are therefore required to coordinate labour prices across sectors, not to protect workers from hardship.
 
-### **Fix Aged Care With Dignity**
+**System interaction**
+This reform operates alongside UBI by shaping wage outcomes in the labour market without substituting for income security. Unions and other worker organisations represent workers within sector-level bargaining councils, while the Fair Work Commission provides coordination, certification, and enforcement.
 
-Improve aged care standards and increase funding so every older Australian receives quality care with dignity—free from neglect and abuse.
+**Economic and institutional logic**
+In a voluntary labour market, coordination prevents a race to the bottom between employers and ensures that bargaining power translates into economy-wide outcomes rather than isolated wins or losses.
 
-### **Cut Welfare Red Tape**
+**Risk and failure modes**
+Risks include institutional capture, weak representation governance, or excessive rigidity across diverse sectors. Failure would appear as persistent wage suppression or instability despite strong labour demand.
 
-End Mutual Obligations and remove unnecessary red tape and tax traps in the welfare system. Streamline support through Universal Basic Income and end the punishing complexity that traps people in poverty.
+**Evidence and precedent**
+High-income economies with sector-level wage coordination show stronger middle-income growth, lower inequality, and more resilient labour markets when combined with robust income security.
+
+**Implementation outline**
+Implementation focuses on legislative recognition of sector-level bargaining councils, accreditation and governance standards for representative bodies, and expanded coordination powers for the Fair Work Commission, with detailed delivery handled through industrial relations legislation.
+
+---
+</details>
+
+### **Simplify Access to Supplementary Supports**
+
+1. Administrative processes for non-income supports such as disability, housing, and family assistance will be streamlined and standardised across agencies.
+   1. Access to additional support will become faster and more predictable.
+   2. Administrative duplication across government services will be reduced.
+   3. Errors and access barriers caused by fragmented systems will decline.
+   4. Support services will better reflect real-world needs and circumstances.
+
+<details> <summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+While UBI simplifies baseline income support, many Australians interact with multiple supplementary systems that remain fragmented, inconsistent, and administratively burdensome.
+
+**System interaction**
+This reform operates alongside UBI, explicitly excluding baseline income support and focusing on service-layer coordination across housing, disability, and family assistance.
+
+**Economic and institutional logic**
+Reducing administrative friction improves service effectiveness without increasing payment levels, delivering efficiency gains through coordination rather than conditionality.
+
+**Risk and failure modes**
+Risks include uneven agency adoption and data-sharing constraints. Underperformance would show up as continued duplication or delays despite reform.
+
+**Implementation outline**
+Cross-agency process review, standardisation of eligibility interfaces, and shared data infrastructure, with detailed execution handled through service delivery planning.
+
+---
+</details>
 
 ### **End Forced Indue Cards**
 
-Stop forcing welfare recipients to use the Indue Card—make it optional only. Respect people’s autonomy and dignity instead of treating them like children.
+1. Welfare payment recipients will no longer be required to use Indue cards, with the option remaining voluntary.
 
-### **Reform the NDIS**
+   1. Individual autonomy over financial decisions will increase.
+   2. Stigma associated with payment controls will decline.
+   3. Welfare delivery will better respect personal agency.
+   4. Support systems will become more flexible and humane.
 
-Remove profit-taking middlemen from the NDIS and strengthen disability support services so funding goes to people who need it, not corporate profits.
-
-### **Fund Prevention, Not Just Treatment**
-
-Make our health system cheaper and more effective by investing in prevention: mental health support, addiction services, and early-intervention programs that reduce long-term costs and save lives.
-
-### **Deliver Free Vaccines for All**
-
-Make vaccines free and accessible to everyone, with requirements only for caring professions where vulnerable people depend on protection. Public health should not depend on your bank balance—and prevention costs far less than treatment.
-
-### **Guarantee Quality Education for Every Child**
-
-Fund teachers and schools properly so they can deliver high-quality education for students of all backgrounds and abilities. Every Australian child deserves a great education regardless of postcode or disability.
-
-### **Defend Free Speech**
-
-Protect the freedom to criticise government and discuss the big issues in society. Maintain accountability for harmful speech; free expression is essential to democracy, but it does not mean freedom from consequences.
-
-### **Legalise Voluntary Assisted Dying With Dignity**
-
-Support voluntary assisted dying for terminally ill Australians, giving people control over their final days rather than forcing unnecessary suffering.
-
-### **Lower the Voting Age to 16**
-
-Introduce an optional voting age of 16 (with compulsory voting remaining at 18) and provide electoral education in high school so young Australians can participate in shaping their future.
-
-### **Introduce an Australian Bill of Rights**
-
-Create a Bill of Rights to protect fundamental freedoms in law, ensuring governments cannot erode basic rights without scrutiny.
-
-### **Recognise First Nations in the Constitution**
-
-Move forward as one united country. Recognise First Nations peoples in the Constitution and implement the Uluru Statement from the Heart in full.
-
-### **Guarantee Equal Rights for LGBTIQA+ Partnerships**
-
-Protect LGBTIQA+ rights and ensure equal legal standing for all partnerships and families. End discrimination in adoption, healthcare, and legal recognition.
+<details>
+<summary><strong>Further Detail</strong></summary>
 
 ---
+
+**Design rationale**
+Mandatory payment controls have not demonstrated systemic benefits proportional to their social and administrative costs.
+
+**System interaction**
+This alters payment delivery without changing eligibility or payment levels.
+
+**Economic and institutional logic**
+Removing coercive controls does not alter fiscal flows while improving user experience.
+
+**Risk and failure modes**
+Risks are limited to transitional administration. Monitoring focuses on voluntary uptake patterns.
+
+**Implementation outline**
+Regulatory change to payment conditions and provider communication.
+
+---
+</details>
+
+### **Bring Dental and Mental Health Into Medicare**
+
+1. Medicare coverage will be expanded to include basic dental care and comprehensive mental health services delivered through existing public health infrastructure.
+
+   1. Access to essential health services will become more equitable.
+   2. Preventative care will reduce long-term health system costs.
+   3. Treatment gaps caused by cost barriers will narrow.
+   4. Early intervention will improve health and productivity outcomes.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Excluding dental and mental health from universal healthcare creates avoidable disparities and downstream health costs.
+
+**System interaction**
+The expansion builds on existing Medicare billing, bulk-billing, and telehealth systems rather than creating parallel programs.
+
+**Economic and institutional logic**
+Preventative and early treatment reduces acute care demand and long-term system strain.
+
+**Risk and failure modes**
+Risks include provider capacity constraints and uneven uptake. Failure indicators include continued unmet care needs.
+
+**Evidence and precedent**
+Universal coverage models demonstrate reduced long-term costs and improved population health outcomes.
+
+**Implementation outline**
+Service inclusion staged by care type alongside provider incentive alignment.
+
+---
+</details>
+
+### **Fix Aged Care With Dignity**
+
+1. Aged care funding and regulation will be restructured to enforce quality standards, improve workforce conditions, and strengthen oversight and accountability.
+
+   1. Care quality for older Australians will improve consistently across providers.
+   2. Workforce stability will increase through better pay and conditions.
+   3. Transparency and accountability will reduce neglect and abuse.
+   4. Public confidence in aged care services will be restored.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Systemic failures in aged care reflect misaligned incentives, underfunding, and weak regulatory enforcement.
+
+**System interaction**
+This aligns aged care with health and social support systems to improve continuity and oversight.
+
+**Economic and institutional logic**
+Higher-quality care reduces acute health interventions and long-term public costs.
+
+**Risk and failure modes**
+Risks include workforce shortages and uneven compliance. Performance will be tracked through quality audits and outcomes.
+
+**Evidence and precedent**
+Findings from national inquiries consistently identify funding and accountability as decisive factors in care quality.
+
+**Implementation outline**
+Funding recalibration, regulatory strengthening, and staged compliance enforcement.
+
+---
+</details>
+
+### **Deliver Free or Affordable Childcare for Families**
+
+1. Childcare will be provided as a publicly funded universal service with income-adjusted fees, expanded capacity, strengthened workforce quality, higher staff-to-child ratios, and consistent national regulation and oversight.
+
+   1. Workforce participation will increase as childcare affordability and availability improve.
+   2. Children’s safety, development, and learning outcomes will improve through professional qualifications and better staff-to-child ratios.
+   3. Families will experience greater economic security and flexibility when childcare is reliable, affordable, and consistent.
+   4. Workforce stability and service quality will increase with better pay, career pathways, and conditions for early childhood educators.
+   5. Regulatory transparency and enforcement will improve public trust and safety across all services.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Australia’s childcare sector has structural failures spanning affordability, workforce sustainability, safety, and governance. Academics and experts have called for bold, coordinated reforms to rebuild trust and system quality as part of a national early childhood education strategy. These reforms must address both cost and the foundational capacity of the sector to deliver safe, high-quality care.
+
+**System interaction**
+This reform integrates with the National Quality Framework, aligning universal access with minimum qualifications for staff, educator-to-child ratios, national quality assessments, and stronger regulatory oversight through bodies such as the Australian Children’s Education & Care Quality Authority.
+
+**Workforce quality and pay**
+A critical component is lifting workforce conditions. Government programs that have funded wage increases have demonstrated a scalable model for improving compensation and retention.
+
+**Staff-to-child ratios and training**
+Experts recommend lowering ratios from 1:4 to 1:3 for children under two, ensuring a qualified teacher is present in every room and improving monitoring of ratio compliance. High staffing ratios support both safety and developmental outcomes, especially in community and early learning environments.
+
+**Safety, regulation, and oversight**
+Widespread incidents of regulatory non-compliance and safety failures, including cases of abuse and inadequate working-with-children checks, highlight the need for more frequent quality assessments (e.g., at least once every three years), stronger enforcement powers, and better-resourced regulators.
+
+**Economic and institutional logic**
+Universal childcare expands labour participation by reducing cost barriers, while workforce professionalisation and regulatory quality produce safer, more consistent services. When educator pay reflects the value and complexity of the work, retention improves and services spend less on turnover and recruitment.
+
+**Risk and failure modes**
+Without workforce reform, expanded access can strain an already fragile system. Risks include continued understaffing, burnout, inconsistent quality across regions and provider types, and safety lapses. Ongoing monitoring must include ratio compliance, quality ratings, educator qualifications, and safety incident metrics.
+
+**Evidence and precedent**
+Sector-wide expert plans advocate international best practice: universal access models with strong workforce pay and training structures, reliable quality metrics, and independent oversight. These models show improved outcomes for children, parents, and workers alike.
+
+**Implementation outline**
+Phased expansion includes:
+
+* Legislating universal service access with income-adjusted fees.
+* Establishing statutory minimum staff qualifications and professional pathways.
+* Setting stronger minima for staff-to-child ratios, particularly for early years.
+* Resourcing regulatory authorities for regular quality assessments, unannounced inspections, and enforcement capacity.
+* Coordinating wage improvement programs and retention incentives for educators.
+* Detailed delivery planning, including legislative sequencing and intergovernmental coordination, is contained in a separate implementation plan.
+
+---
+</details>
 
 # SOLVE THE HOUSING CRISIS
 
