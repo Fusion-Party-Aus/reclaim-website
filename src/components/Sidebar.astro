@@ -1,62 +1,81 @@
 ---
+interface SidebarChild {
+  id: string
+  title: string
+}
+
+interface SidebarSection {
+  id: string
+  title: string
+  children?: SidebarChild[]
+}
+
 interface Props {
-  sections: Array<{
-    id: string
-    title: string
-  }>
+  sections: SidebarSection[]
   page: string
 }
 
 const { sections, page } = Astro.props
 ---
 
-<aside class="sidebar hidden lg:block w-64 flex-shrink-0">
-  <div class="sticky top-24">
-    <div
-      class="bg-white border-6 border-black p-6"
-      style="box-shadow: 8px 8px 0px 0px #000000; border-width: 6px;"
-    >
-      <h3
-        class="text-2xl font-black text-magenta mb-6 uppercase border-b-4 border-magenta pb-2"
-        style="font-family: 'Archivo Black', sans-serif;"
-      >
-        Jump To
-      </h3>
-      <nav class="space-y-2">
+<aside class="sidebar hidden lg:block">
+  <div class="sticky-sidebar">
+    <div class="bg-white border-4 border-black p-5" style="box-shadow: 6px 6px 0px 0px #000000;">
+      <div class="mb-5 pb-3 border-b-4 border-black">
+        <h3 class="text-xl font-black text-magenta uppercase">Jump To</h3>
+      </div>
+
+      <nav class="space-y-3">
         {
           sections.map((section) => (
-            <a
-              href={`#${section.id}`}
-              class="block py-3 px-4 font-black uppercase border-4 border-black bg-mint hover:bg-yellow hover:translate-x-1 transition-all text-sm"
-              style="box-shadow: 4px 4px 0px 0px #000000;"
-            >
-              {section.title}
-            </a>
+            <div>
+              <a
+                href={`#${section.id}`}
+                data-nav={section.id}
+                class="block py-2 px-3 font-black uppercase border-3 border-black bg-mint hover:bg-yellow transition-all text-xs tracking-wide"
+                style="box-shadow: 3px 3px 0px 0px #000000;"
+              >
+                {section.title}
+              </a>
+              {section.children && section.children.length > 0 && (
+                <div class="ml-3 mt-1 space-y-1 border-l-3 border-magenta pl-2">
+                  {section.children.map((child) => (
+                    <a
+                      href={`#${child.id}`}
+                      data-nav={child.id}
+                      class="block py-1.5 px-2 font-bold text-[10px] uppercase tracking-wide text-gray-700 hover:text-magenta hover:bg-gray-100 transition-all"
+                    >
+                      {child.title}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))
         }
       </nav>
 
-      <div class="mt-8 pt-6 border-t-4 border-black">
-        <h4 class="text-lg font-black text-magenta mb-4 uppercase">Quick Links</h4>
+      <div class="mt-6 pt-5 border-t-4 border-black">
+        <h4 class="text-sm font-black text-magenta mb-3 uppercase tracking-wider">Quick Links</h4>
         <div class="space-y-2">
           <a
             href="/manifesto"
-            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-white hover:bg-mint hover:translate-x-1 transition-all"
-            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+            class="block py-2 px-3 font-bold text-xs border-3 border-black bg-white hover:bg-mint transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000;"
           >
             📄 Full Manifesto
           </a>
           <a
             href="/get-involved"
-            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-white hover:bg-magenta hover:text-white hover:translate-x-1 transition-all"
-            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+            class="block py-2 px-3 font-bold text-xs border-3 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000;"
           >
             🚀 Get Involved
           </a>
           <a
             href="https://fusionparty.org.au/donate"
-            class="block py-2 px-3 font-bold text-sm border-3 border-black bg-yellow hover:bg-magenta hover:text-white hover:translate-x-1 transition-all"
-            style="box-shadow: 3px 3px 0px 0px #000000; border-width: 3px;"
+            class="block py-2 px-3 font-bold text-xs border-3 border-black bg-yellow hover:bg-magenta hover:text-white transition-all"
+            style="box-shadow: 3px 3px 0px 0px #000000;"
           >
             💰 Donate
           </a>
@@ -64,17 +83,63 @@ const { sections, page } = Astro.props
       </div>
 
       <div
-        class="mt-6 p-4 border-5 border-magenta bg-magenta text-white"
-        style="box-shadow: 4px 4px 0px 0px #000000; border-width: 5px;"
+        class="mt-5 p-3 border-4 border-magenta bg-magenta text-white"
+        style="box-shadow: 3px 3px 0px 0px #000000;"
       >
-        <p class="font-black text-sm uppercase">No Corporate Donations. Ever.</p>
+        <p class="font-black text-xs uppercase">No Corporate Donations. Ever.</p>
       </div>
     </div>
   </div>
 </aside>
 
+<script>
+  const navLinks = Array.from(document.querySelectorAll('.sidebar [data-nav]'))
+  const sectionIds = navLinks.map((link) => link.getAttribute('data-nav')).filter(Boolean)
+  const sections = sectionIds.map((id) => document.getElementById(id)).filter((el) => el)
+
+  const setActive = (id) => {
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute('data-nav') === id
+      link.classList.toggle('is-active', isActive)
+    })
+  }
+
+  const getActiveSection = () => {
+    const offset = 120
+    let currentId = null
+    sections.forEach((section) => {
+      const top = section.getBoundingClientRect().top
+      if (top - offset <= 0) {
+        currentId = section.id
+      }
+    })
+    if (currentId) setActive(currentId)
+  }
+
+  const onScroll = () => window.requestAnimationFrame(getActiveSection)
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll)
+  window.addEventListener('load', onScroll)
+  getActiveSection()
+</script>
+
 <style>
   .sidebar a:hover {
-    transform: translateX(4px) !important;
+    transform: translateX(3px) !important;
+  }
+  .sticky-sidebar {
+    position: sticky;
+    top: 5rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+  .sidebar a.is-active {
+    background-color: #ffed00 !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+    box-shadow: 3px 3px 0px 0px #000000 !important;
+  }
+  .sidebar a.is-active[href^='#'] {
+    transform: translateX(2px) !important;
   }
 </style>

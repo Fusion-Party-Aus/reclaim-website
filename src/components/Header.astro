@@ -58,8 +58,8 @@ const logo = navigation?.logo || {
 ---
 
 <header
-  class="bg-black sticky top-0 z-50 border-b-6 border-magenta"
-  style="box-shadow: 0 4px 0 0 #FFED00; border-bottom-width: 6px;"
+  class="bg-black sticky top-0 z-50 border-b-4 border-magenta"
+  style="box-shadow: 0 3px 0 0 #FFED00; border-bottom-width: 4px;"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex justify-between items-center">
@@ -86,8 +86,8 @@ const logo = navigation?.logo || {
 
       <!-- Mobile Menu Toggle -->
       <button
-        class="md:hidden text-white text-2xl px-4 py-2 border-5 border-mint bg-magenta hover:bg-mint hover:text-black cursor-pointer font-black uppercase transition-all"
-        style="box-shadow: 4px 4px 0px 0px #5EFFD8; border-width: 5px;"
+        class="md:hidden text-white text-2xl px-4 py-2 border-4 border-mint bg-magenta hover:bg-mint hover:text-black cursor-pointer font-black uppercase transition-all"
+        style="box-shadow: 3px 3px 0px 0px #5EFFD8; border-width: 4px;"
         aria-label="Toggle menu"
         id="mobile-menu-toggle"
       >
@@ -119,8 +119,8 @@ const logo = navigation?.logo || {
                     style="min-width: 250px;"
                   >
                     <div
-                      class="bg-black border-5 border-mint"
-                      style="box-shadow: 6px 6px 0px 0px #C926F2; border-width: 5px;"
+                      class="bg-black border-4 border-mint"
+                      style="box-shadow: 4px 4px 0px 0px #C926F2; border-width: 4px;"
                     >
                       {item.children?.map((child) => (
                         <a
@@ -163,20 +163,20 @@ const logo = navigation?.logo || {
         }
         <a
           href={ctaButton.href}
-          class={`px-6 py-2 text-sm font-black uppercase border-5 border-white text-white hover:text-black hover:border-black transition-all ${
+          class={`px-6 py-2 text-sm font-black uppercase border-4 border-white text-white hover:text-black hover:border-black transition-all ${
             ctaButton.style === 'primary'
               ? 'bg-magenta hover:bg-yellow'
               : ctaButton.style === 'yellow'
                 ? 'bg-yellow text-black hover:bg-mint'
                 : 'bg-mint text-black hover:bg-yellow'
           }`}
-          style={`box-shadow: 4px 4px 0px 0px ${
+          style={`box-shadow: 3px 3px 0px 0px ${
             ctaButton.style === 'primary'
               ? '#FFED00'
               : ctaButton.style === 'yellow'
                 ? '#C926F2'
                 : '#C926F2'
-          }; font-family: 'Archivo Black', sans-serif; border-width: 5px;`}
+          }; font-family: 'Archivo Black', sans-serif; border-width: 4px;`}
         >
           {ctaButton.label}
         </a>

@@ -24,13 +24,13 @@ const overallProgress = Math.round(
 ---
 
 <div
-  class={`bg-black border-6 border-mint p-8 ${compact ? '' : 'lg:p-12'}`}
+  class={`bg-white border-8 border-black p-8 ${compact ? '' : 'lg:p-12'}`}
   style="box-shadow: 12px 12px 0px 0px #FFED00, 24px 24px 0px 0px #C926F2;"
 >
   <!-- Header -->
   <div class="text-center mb-8">
     <div
-      class="inline-block bg-magenta border-4 border-white px-6 py-3 mb-4 transform -rotate-2"
+      class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-4 transform -rotate-2"
       style="box-shadow: 4px 4px 0px 0px #FFED00;"
     >
       <p class="text-white font-black uppercase text-xl tracking-wide flex items-center gap-3">
@@ -41,19 +41,19 @@ const overallProgress = Math.round(
 
     {
       !compact && (
-        <p class="text-mint text-lg font-bold mb-2">
-          Every number is a person who said <strong class="text-yellow">enough is enough.</strong>
+        <p class="text-gray-800 text-lg font-bold mb-2">
+          Every number is a person who said <strong class="text-magenta">enough is enough.</strong>
         </p>
       )
     }
 
     <!-- Overall Progress -->
     <div class="mt-6">
-      <div class="flex items-center justify-between text-white mb-2">
+      <div class="flex items-center justify-between text-black mb-2">
         <span class="font-black uppercase text-sm">Overall Progress</span>
-        <span class="font-black text-yellow text-xl">{overallProgress}%</span>
+        <span class="font-black text-magenta text-xl">{overallProgress}%</span>
       </div>
-      <div class="h-4 bg-gray-800 border-4 border-white relative overflow-hidden">
+      <div class="h-4 bg-gray-200 border-4 border-black relative overflow-hidden">
         <div
           class="h-full bg-gradient-to-r from-magenta via-mint to-yellow transition-all duration-1000 ease-out relative"
           style={`width: ${overallProgress}%;`}
@@ -70,78 +70,137 @@ const overallProgress = Math.round(
   </div>
 
   <!-- Metrics Grid -->
-  <div class={`grid ${compact ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'} gap-6`}>
+  <div
+    class={`grid ${compact ? 'md:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'} gap-8 md:gap-10 lg:gap-8 px-4 md:px-0`}
+  >
     {
       metrics.map((metric, index) => {
         const progress = Math.round((metric.current / metric.goal) * 100)
-        const colorClasses = {
-          magenta: 'bg-magenta border-magenta text-magenta',
-          mint: 'bg-mint border-mint text-mint',
-          yellow: 'bg-yellow border-yellow text-yellow',
+        const colorConfigs = {
+          magenta: {
+            bg: '#C926F2',
+            shadow: '#FFED00',
+            text: '#FFFFFF',
+            iconBg: '#000000',
+            iconColor: '#FFFFFF',
+          },
+          mint: {
+            bg: '#5EFFD8',
+            shadow: '#C926F2',
+            text: '#000000',
+            iconBg: '#000000',
+            iconColor: '#5EFFD8',
+          },
+          yellow: {
+            bg: '#FFED00',
+            shadow: '#5EFFD8',
+            text: '#000000',
+            iconBg: '#000000',
+            iconColor: '#FFED00',
+          },
         }
-        const colors = colorClasses[metric.color]
+        const config = colorConfigs[metric.color]
+        const rotations = ['-1deg', '0.5deg', '-0.5deg', '1deg']
+        const rotation = rotations[index % 4]
 
         return (
           <div
-            class="bg-white border-4 border-white p-6 relative group hover:scale-105 transition-transform"
-            style="box-shadow: 6px 6px 0px 0px #000;"
+            class="p-6 border-8 border-black transition-all duration-200 hover:-translate-y-2 hover:rotate-0 group relative mx-auto w-full max-w-sm lg:max-w-none"
+            style={`background-color: ${config.bg}; box-shadow: 8px 8px 0px 0px ${config.shadow}; transform: rotate(${rotation});`}
           >
-            {/* Icon Badge */}
-            <div
-              class={`absolute -top-4 -right-4 w-12 h-12 ${colors.split(' ')[0]} border-4 border-black flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform`}
-              style="box-shadow: 3px 3px 0px 0px #000;"
-            >
-              <span class="text-2xl">{metric.icon}</span>
-            </div>
+            {/* Brutal corner stripe */}
+            <div class="absolute top-0 right-0 w-full h-3 bg-black" />
 
-            {/* Label */}
-            <p class="text-xs font-black uppercase text-gray-600 mb-2">{metric.label}</p>
-
-            {/* Counter */}
-            <div class="mb-3">
-              <div class="flex items-baseline gap-2">
-                {metric.prefix && (
-                  <span class="text-2xl font-black text-black">{metric.prefix}</span>
-                )}
+            <div class="relative z-10 mt-2">
+              {/* Icon Badge */}
+              <div
+                class="mb-4 inline-block p-3 border-6 border-black"
+                style={`background-color: ${config.iconBg}; box-shadow: 4px 4px 0px 0px ${config.shadow};`}
+              >
                 <span
-                  class={`text-4xl font-black ${colors.split(' ')[2]} counter`}
-                  data-target={metric.current}
-                  data-delay={index * 100}
+                  class="text-3xl md:text-4xl"
+                  style={`filter: drop-shadow(0 0 0 ${config.iconColor});`}
                 >
-                  0
+                  {metric.icon}
                 </span>
+              </div>
+
+              {/* Counter */}
+              <div class="mb-4">
+                <div class="flex items-baseline gap-1">
+                  {metric.prefix && (
+                    <span
+                      class="text-lg md:text-xl font-black"
+                      style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
+                    >
+                      {metric.prefix}
+                    </span>
+                  )}
+                  <span
+                    class="text-4xl md:text-5xl font-black counter leading-none"
+                    style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);`}
+                    data-target={metric.current}
+                    data-delay={index * 100}
+                  >
+                    0
+                  </span>
+                </div>
                 {metric.suffix && (
-                  <span class="text-lg font-black text-gray-500">{metric.suffix}</span>
+                  <span
+                    class="text-sm md:text-base font-black block mt-1"
+                    style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
+                  >
+                    {metric.suffix}
+                  </span>
                 )}
               </div>
-              <p class="text-sm font-bold text-gray-500">
-                of {metric.prefix || ''}
-                {metric.goal.toLocaleString()}
-                {metric.suffix || ''} goal
-              </p>
-            </div>
 
-            {/* Progress Bar */}
-            <div class="relative">
-              <div class="h-3 bg-gray-200 border-2 border-black overflow-hidden">
-                <div
-                  class={`h-full ${colors.split(' ')[0]} transition-all duration-1000 ease-out progress-bar`}
-                  style="width: 0%;"
-                  data-progress={progress}
-                  data-delay={index * 100}
-                />
+              {/* Label */}
+              <div class="border-t-4 border-black pt-3 mt-2">
+                <p
+                  class="text-xs md:text-sm font-black uppercase tracking-widest leading-tight mb-2 break-words"
+                  style={`color: ${config.text};`}
+                >
+                  {metric.label}
+                </p>
+                <p
+                  class="text-xs font-bold break-words"
+                  style={`color: ${config.text}; opacity: 0.8;`}
+                >
+                  Goal: {metric.prefix || ''}
+                  {metric.goal.toLocaleString()}
+                  {metric.suffix || ''}
+                </p>
               </div>
-              <span class="text-xs font-black text-gray-600 mt-1 block text-right">
-                {progress}%
-              </span>
+
+              {/* Progress Bar */}
+              <div class="relative mt-3">
+                <div
+                  class="h-2 bg-black border-2 border-black overflow-hidden"
+                  style="opacity: 0.3;"
+                >
+                  <div
+                    class="h-full transition-all duration-1000 ease-out progress-bar"
+                    style={`width: 0%; background-color: ${config.text};`}
+                    data-progress={progress}
+                    data-delay={index * 100}
+                  />
+                </div>
+                <span
+                  class="text-xs font-black mt-1 block text-right"
+                  style={`color: ${config.text};`}
+                >
+                  {progress}%
+                </span>
+              </div>
             </div>
 
             {/* Milestone Badge */}
             {progress >= 90 && (
-              <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+              <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
                 <div
-                  class="bg-yellow border-3 border-black px-3 py-1 text-xs font-black uppercase whitespace-nowrap"
-                  style="box-shadow: 2px 2px 0px 0px #000; animation: bounce 2s infinite;"
+                  class="bg-yellow border-4 border-black px-3 py-1 text-xs font-black uppercase whitespace-nowrap"
+                  style="box-shadow: 3px 3px 0px 0px #000; animation: bounce 2s infinite;"
                 >
                   🔥 Almost There!
                 </div>
