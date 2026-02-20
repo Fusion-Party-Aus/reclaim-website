@@ -123,15 +123,7 @@ export async function getHomePage(): Promise<HomePage | null> {
     ...,
     theftSection {
       ...,
-      featuredPolicies[]->{
-        title,
-        slug,
-        icon,
-        summary,
-        category,
-        cost,
-        impact
-      }
+      featuredPolicies[]->
     }
   }`
   return await client.fetch(query)

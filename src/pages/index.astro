@@ -31,20 +31,8 @@ if (!homePage) {
 // Fetch electorates for the electorates section
 const electorates = await getDocuments('electorate')
 
-// Fetch referenced policies if they exist in the home page
-let featuredPolicies: any[] = []
-if (homePage.theftSection?.featuredPolicies && homePage.theftSection.featuredPolicies.length > 0) {
-  // The references are already resolved by Sanity with proper query
-  // We need to fetch them with their full data
-  const policyIds = homePage.theftSection.featuredPolicies
-    .map((ref: any) => ref._ref)
-    .filter(Boolean)
-
-  if (policyIds.length > 0) {
-    const allPolicies = await getDocuments('policy')
-    featuredPolicies = allPolicies.filter((policy: any) => policyIds.includes(policy._id))
-  }
-}
+// The references are already resolved by Sanity via getHomePage() `->` projection
+const featuredPolicies: any[] = homePage.theftSection?.featuredPolicies || []
 
 interface HomePage {
   title: string
