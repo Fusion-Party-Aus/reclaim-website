@@ -96,6 +96,7 @@ Tier-1 must **not** include:
 * Justifications or explanations
 * Conditional language
 * Multi-part constructions
+* Bundled reform themes that imply multiple independent structural changes
 
 If a statement explains *why* or *how*, it belongs in a lower tier.
 
@@ -120,6 +121,7 @@ A Tier-1 statement is valid if:
 * A disengaged reader can understand it in under 3 seconds
 * It can be quoted without additional context
 * It answers *“What are you going to do?”* — nothing more
+* If splitting the sentence produces two valid stand-alone policies, it fails Tier-1.
 
 ---
 
@@ -166,6 +168,7 @@ Allowed:
 * Neutral descriptive language
 * Clear nouns and verbs
 * Simple sentence structure
+* Technical terminology which describes institutional structure rather than moral evaluation
 
 Avoid:
 

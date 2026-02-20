@@ -286,14 +286,176 @@ Phased expansion includes:
 # SOLVE THE HOUSING CRISIS
 
 ## Make Housing a Right, Not an Investment
+(Distortion → Correction → Production → Completion)
 
-### **Restructure the Housing Market**
+### **Make It Easier to Buy and Move Home**
 
-Treat housing as a fundamental right, not an investment vehicle for the wealthy. Restructure the housing market so most people own only one home (the one they live in) and end policies that reward speculation while families struggle to afford housing.
+1. Implement a nationally consistent Land Value Tax framework that applies by default, abolishes residential stamp duty, and requires a broad land-only tax base, while allowing states to displace the federal tax by adopting a structurally compliant system of their own.
 
-### **End Negative Gearing Exploits**
+    1. Housing mobility will increase as Australians can move without punitive upfront costs.
+    2. Entry costs for first-home buyers will fall as taxation shifts away from lump-sum purchase barriers.
+    3. Families will be able to right-size their homes more easily as financial penalties for moving decline.
+    4. State revenue will stabilise through recurring land-based collections rather than volatile transaction cycles.
+    5. Public infrastructure investment will translate into shared community benefit rather than private windfall gains.
+    6. Housing prices will align more closely with construction value and genuine demand rather than speculative scarcity.
+    7. Under-utilised and vacant land will return to productive use as land is put to work rather than held idle.
 
-Limit negative gearing to just one investment property per person or couple, stopping wealthy investors from building property empires on tax breaks. Close loopholes that let investors claim losses on multiple rental properties while pushing home ownership out of reach for ordinary Australians.
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Stamp duty functions as a transaction barrier that suppresses mobility and distorts land allocation. Replacing transfer-based taxation with recurring land taxation corrects the structural incentive to hold land passively while reducing movement penalties.
+
+**Structural framework**  
+The Commonwealth legislation establishes:
+- A mandatory land-only valuation base (excluding improvements).
+- Universal application across residential, commercial, industrial, and agricultural land categories.
+- Prohibition of residential transaction taxes once a compliant land tax is in place.
+
+The default federal rate applies nationally unless displaced by a compliant state regime.
+
+**Displacement mechanism**  
+A state may displace the federal tax only if:
+1. Residential stamp duty is fully abolished.
+2. The land tax applies to a broad base without structural exemptions.
+3. Valuation methodology excludes improvements.
+4. No state-imposed tax is levied on buildings, structures, or capital improvements.
+5. No substitute transaction tax is introduced under another name.
+
+Rate levels remain within state control. Structural design does not.
+
+**Transition treatment for households**  
+Stamp duty paid within the prior holding period is credited against future land value tax liabilities until exhausted, preventing double burden during transition.
+
+**Tax base guardrails**  
+- No principal-place-of-residence carve-out beyond defined transitional offsets.
+- No category-based structural exemptions.
+- No land banking exclusions.
+- Agricultural land remains included unless constitutionally constrained.
+
+**Economic logic**  
+Recurring land taxation reduces lock-in effects, applies consistent holding costs to vacancy, and aligns revenue collection with long-term land value rather than market turnover cycles.
+
+**Risk and failure modes**  
+System integrity depends on maintaining a broad base and resisting exemption creep. Dilution through carve-outs, rate arbitrage, or reintroduced transaction levies would undermine effectiveness.
+
+**Implementation outline**  
+Federal legislation establishes the default system and certification process. States may assume administration upon structural compliance. Intergovernmental coordination standardises land valuation practices across jurisdictions.
+
+---
+</details>
+
+### **Make Housing Tax Fair Across Generations**
+
+1. Replace the 50% Capital Gains Tax discount with inflation indexation of the cost base for newly acquired assets, and apply stricter CGT treatment to investment housing so gains reflect real value creation rather than a tax-favoured windfall.
+
+    1. Younger Australians will face a fairer market when competing with tax-advantaged capital gains strategies.
+    2. Investment returns will reflect real gains after inflation rather than an automatic discount.
+    3. Capital will flow more readily toward productive investment when housing is less tax-favoured as a wealth vehicle.
+    4. Public revenue will strengthen as large untaxed gains are reduced in the base.
+    5. Speculative “buy-and-hold for the discount” strategies will lose their edge as preferential treatment is removed.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Australia moved from CGT indexation to a flat discount model in 1999. Indexation targets the core fairness question—taxing real gains rather than inflation—without granting an automatic windfall discount unrelated to inflation.
+
+**Indexation precedent and current-law context**  
+For certain pre-1999 assets, Australian tax law still allows indexation as an alternative to the discount, demonstrating that indexation is an established concept in the system.
+
+**Structural limits**  
+1. For assets acquired after the start date, the CGT discount is not available; the cost base is indexed for inflation using a defined indexation factor.  
+2. Investment housing receives the tightened treatment first, reflecting its outsized role in speculation incentives.  
+3. Transitional treatment is defined by acquisition date (grandfathering rules) to avoid retroactive taxation shocks.  
+4. Integrity rules apply to prevent asset re-characterisation and wash-sale behaviour around the start date.
+
+**Evidence and live policy discussion**  
+Recent Parliamentary Budget Office costing work explicitly models replacing the CGT discount with cost-base indexation for non-property assets while removing the discount for investment properties under defined conditions, indicating indexation is being actively considered in contemporary reform design.
+
+**Risk and failure modes**  
+Risks include lock-in effects if poorly designed, or loopholes that preserve the discount’s effect through alternative concessions. Success depends on tight start-date rules and integrity provisions.
+
+**Implementation outline**  
+Implementation is delivered through amendments to CGT discount provisions, indexation factor definitions, transitional acquisition-date rules, and compliance guidance to support consistent application.
+
+---
+</details>
+
+### **Stop Housing Being a Speculation Game**
+
+1. Restrict negative gearing for housing so rental losses cannot be used to reduce tax on wages and salaries, with loss deductions quarantined to future rental income and capital gains within the housing portfolio.
+
+    1. First-home buyers will face less investor bid pressure when purchasing established homes.
+    2. Investment choices will shift toward rental performance and genuine housing demand rather than paper losses.
+    3. Household finances will become more resilient as the tax system rewards sustainable returns instead of leverage.
+    4. Government revenue will become more reliable as housing losses stop eroding the income tax base.
+    5. Tax-driven property accumulation strategies will become less attractive than productive investment elsewhere.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Negative gearing amplifies leveraged demand for existing dwellings by allowing losses to be offset against unrelated income. Quarantining losses keeps legitimate investment deductions available, while removing the incentive to run persistent losses primarily for tax advantage.
+
+**Displacement and interaction with other reforms**  
+This reform is designed to work alongside the Land Value Tax replacement of stamp duty and CGT reform. Together, they reduce speculative returns from holding existing dwellings and shift incentives toward productive use and new supply.
+
+**Structural limits**  
+1. Losses from residential rental property may not be deducted against wages and salaries.  
+2. Losses are quarantined and may be applied only against future rental income or realised capital gains from residential property.  
+3. The rule applies across individuals and pass-through entities commonly used for housing investment (trusts/partnership structures) to prevent simple routing avoidance.
+
+**Risk and failure modes**  
+Risks include avoidance via reclassification of expenses or restructuring of ownership. Integrity depends on clear definitions of deductible rental losses and consistent application across entity types.
+
+**Implementation outline**  
+Implementation proceeds through tax law amendments establishing quarantining, transitional rules for existing carried-forward losses, and integrity provisions for common avoidance structures.
+
+---
+</details>
+
+### **Shift Rezoning Gains to Benefit the Public**
+
+1. Apply a windfall gains tax to land value uplifts created by government rezoning decisions, capturing a share of rezoning-created value for public benefit rather than leaving it as an unearned private gain.
+
+    1. Infrastructure and services will be better funded as rezoning uplifts contribute to public value.
+    2. Communities will see a fairer return from public decisions that create sudden land value jumps.
+    3. Planning reform will become more credible when rezoning benefits are shared rather than concentrated.
+    4. Land banking will become less attractive as rezoning windfalls are no longer fully private.
+    5. Pure “wait for rezoning” strategies will lose payoff as unearned uplift is no longer fully private.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Rezoning can create a sudden uplift in land value that is driven by public decision-making rather than owner effort. A windfall gains tax captures part of that uplift and aligns rezoning with public benefit.
+
+**Existing Australian precedent**  
+Victoria already operates a windfall gains tax model that applies when rezoning increases land value above a threshold, with options to defer payment under specified conditions.
+
+**Structural limits**  
+1. Liability is calculated only on the uplift attributable to rezoning (the rezoning-driven increase in land value).
+2. A minimum uplift threshold applies before any tax is payable (threshold design follows the precedent model).
+3. Deferral is permitted under defined conditions with interest, to reduce cash-flow shock while preserving collection integrity.
+4. The value of the tax is calculated at rezoning decision points and indexed until final sale, so windfalls are captured even when land is held.
+
+**Risk and failure modes**  
+Risks include valuation disputes, gaming around rezoning boundaries, or political pressure for exemptions. Integrity depends on valuation transparency and consistent uplift attribution.
+
+**Implementation outline**  
+Implementation requires a valuation method for pre- and post-rezoning land values, uplift assessment notices, a structured deferral pathway, and a clear interaction rule with Land Value Tax so the two taxes do not duplicate the same base at the same event.
+
+---
+</details>
 
 ### **Supply Public Housing at Scale**
 
@@ -304,17 +466,11 @@ Purchase one floor in every residential tower for public housing, integrating re
 
 Regulate rental markets to protect tenants from unsafe conditions and no-grounds evictions. Raise and index rent assistance to 50% of actual rent paid so people are not trapped in poverty while landlords profit.
 
-### **Scrap Capital Gains Concessions for Investors**
-
-Remove the 50% capital gains tax discount on investment properties. This tax break rewards property speculators and encourages treating homes as get-rich-quick schemes instead of places for people to live. Replace it with a land value tax that makes hoarding empty properties expensive.
-
 ### **Build High-Speed Rail: Melbourne to Brisbane**
 
 Deliver high-speed rail with strategic regional stops to create new affordable residential options and vibrant economic corridors. Fast rail opens up regional areas, connects people to jobs, eases pressure on capital cities, and gives families real choices about where to live.
 
-### **Implement a Land Value Tax**
 
-Shift the tax burden away from work and productivity toward land value, ensuring unearned windfalls are returned to the public and speculative behaviour is discouraged.
 
 ---
 
