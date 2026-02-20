@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
-import type { Page } from '../types/sanity'
+import type { Page, Electorate } from '../types/sanity'
 import '../styles/global.css'
 
 const pages = await getPages()
@@ -19,16 +19,35 @@ const archivedBios = (pages as Page[])
     role: p.role || p.subtitle,
   }))
 
-const archivedElecs = archivedElectorates.map((e) => ({
+const archivedElecs = archivedElectorates.map((e: Electorate) => ({
   title: e.candidateName || `Candidate for ${e.name}`,
   slug: `electorates/${e.slug?.current}`,
   profileImage: e.candidateImage,
   role: e.subtitle || `Former Candidate - ${e.name}`,
+  electionGrouping: e.electionGrouping || 'Historical Archive',
 }))
 
 const allArchived = [...archivedBios, ...archivedElecs].sort((a, b) =>
   a.title.localeCompare(b.title)
 )
+
+// Group by election
+const groupedByElection = allArchived.reduce(
+  (acc, curr) => {
+    const group = curr.electionGrouping || 'Historical Archive'
+    if (!acc[group]) acc[group] = []
+    acc[group].push(curr)
+    return acc
+  },
+  {} as Record<string, typeof allArchived>
+)
+
+// Sort groups (e.g. 2026 before 2022, fallback Historical Archive at the end)
+const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
+  if (a === 'Historical Archive') return 1
+  if (b === 'Historical Archive') return -1
+  return b.localeCompare(a)
+})
 ---
 
 <BaseLayout
@@ -78,66 +97,83 @@ const allArchived = [...archivedBios, ...archivedElecs].sort((a, b) =>
   <main class="bg-light-grey py-16 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
-        allArchived.length > 0 ? (
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-            {allArchived.map((bio, index) => {
-              const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta', 'bg-white']
-              const colorClass = bgColors[index % bgColors.length]
-
-              const imageUrl = bio.profileImage
-                ? urlFor(bio.profileImage).width(400).height(400).fit('crop').url()
-                : null
-
-              const hoverTextClass = colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
-
-              return (
-                <a
-                  href={`/${bio.slug}`}
-                  class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass} grayscale hover:grayscale-0 overflow-hidden relative`}
-                  style="box-shadow: 6px 6px 0 0 #000;"
+        sortedGroups.length > 0 ? (
+          <div class="space-y-16">
+            {sortedGroups.map((group) => (
+              <section>
+                <h2
+                  class="text-3xl md:text-4xl font-black uppercase mb-8 border-b-6 border-black pb-4 text-black text-center"
+                  style="font-family: 'Archivo Black', sans-serif;"
                 >
-                  {/* Archival stamp */}
-                  <div
-                    class="absolute top-2 right-2 bg-black text-yellow text-[10px] font-black uppercase px-2 py-1 transform rotate-3 z-10 border-2 border-yellow"
-                    style="box-shadow: 2px 2px 0 0 #000;"
-                  >
-                    Archived
-                  </div>
+                  {group}
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {groupedByElection[group].map((bio: any, index: number) => {
+                    const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta', 'bg-white']
+                    const colorClass = bgColors[index % bgColors.length]
 
-                  <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        alt={bio.title}
-                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
-                      />
-                    ) : (
-                      <div class="w-full h-full flex items-center justify-center opacity-20">
-                        <svg class="w-20 h-20 text-black" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
+                    const imageUrl = bio.profileImage
+                      ? urlFor(bio.profileImage).width(400).height(400).fit('crop').url()
+                      : null
 
-                  <div class="p-4 flex-1 flex flex-col justify-center text-center">
-                    <h3
-                      class={`text-lg md:text-xl font-black uppercase text-black break-words ${hoverTextClass}`}
-                    >
-                      {bio.title}
-                    </h3>
+                    const hoverTextClass =
+                      colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
 
-                    {(bio.role || bio.subtitle) && (
-                      <p
-                        class={`mt-1 text-[10px] md:text-xs font-bold text-black opacity-80 uppercase tracking-widest ${hoverTextClass}`}
+                    return (
+                      <a
+                        href={`/${bio.slug}`}
+                        class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass} grayscale hover:grayscale-0 overflow-hidden relative`}
+                        style="box-shadow: 6px 6px 0 0 #000;"
                       >
-                        {bio.role || bio.subtitle}
-                      </p>
-                    )}
-                  </div>
-                </a>
-              )
-            })}
+                        {/* Archival stamp */}
+                        <div
+                          class="absolute top-2 right-2 bg-black text-yellow text-[10px] font-black uppercase px-2 py-1 transform rotate-3 z-10 border-2 border-yellow"
+                          style="box-shadow: 2px 2px 0 0 #000;"
+                        >
+                          Archived
+                        </div>
+
+                        <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
+                          {imageUrl ? (
+                            <img
+                              src={imageUrl}
+                              alt={bio.title}
+                              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                            />
+                          ) : (
+                            <div class="w-full h-full flex items-center justify-center opacity-20">
+                              <svg
+                                class="w-20 h-20 text-black"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                              >
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+
+                        <div class="p-4 flex-1 flex flex-col justify-center text-center">
+                          <h3
+                            class={`text-lg md:text-xl font-black uppercase text-black wrap-break-word ${hoverTextClass}`}
+                          >
+                            {bio.title}
+                          </h3>
+
+                          {(bio.role || bio.subtitle) && (
+                            <p
+                              class={`mt-1 text-[10px] md:text-xs font-bold text-black opacity-80 uppercase tracking-widest ${hoverTextClass}`}
+                            >
+                              {bio.role || bio.subtitle}
+                            </p>
+                          )}
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
+              </section>
+            ))}
           </div>
         ) : (
           <div class="brutal-card brutal-card-magenta text-center py-12">

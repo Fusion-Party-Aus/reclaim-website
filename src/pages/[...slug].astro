@@ -38,7 +38,16 @@ if (!pageMatch) {
   return Astro.redirect('/404')
 }
 
-const { page, segments } = pageMatch
+const { page, segments: originalSegments } = pageMatch
+
+// Intercept breadcrumbs if this page is an 'Archived' bio profile
+const isArchivedBio = page.pageType === 'bio' && (page as any).isArchived === true
+let segments = [...originalSegments]
+
+if (isArchivedBio) {
+  // Replace the structural hierarchy with the Archive pathway
+  segments = ['past-candidates', page.slug.current]
+}
 
 // Find all descendant bio pages to build the automatic Team Grid
 const childPages = allPages.filter(
