@@ -3,7 +3,6 @@ import { getDocuments } from '../lib/sanity'
 
 const currentPath = Astro.url.pathname
 
-// Fetch navigation from Sanity
 interface DropdownItem {
   label: string
   href: string
@@ -22,22 +21,18 @@ interface Navigation {
   _id: string
   title: string
   mainNav: NavItem[]
-  ctaButton: {
-    label: string
-    href: string
-    style: string
-  }
-  logo: {
-    mainText: string
-    subText: string
-  }
+  ctaButton: { label: string; href: string; style: string }
+  logo: { mainText: string; subText: string }
 }
 
 const navigations = await getDocuments<Navigation>('navigation')
-const navigation = navigations[0] // Should only be one navigation document
+const navigation = navigations[0]
 
-// Fallback to default nav if Sanity data not available
-const navItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
+// Ensure all hrefs are root-relative (protect against Sanity entries missing the leading slash)
+const ensureRootRelative = (href: string) =>
+  href && !href.startsWith('/') && !href.startsWith('http') ? `/${href}` : href
+
+const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
   { href: '/', label: 'Home', order: 0 },
   { href: '/about', label: 'About', order: 1 },
   { href: '/policies', label: 'Policies', order: 2 },
@@ -45,57 +40,64 @@ const navItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
   { href: '/faq', label: 'FAQ', order: 4 },
 ]
 
+const navItems = rawNavItems.map((item) => ({
+  ...item,
+  href: item.href ? ensureRootRelative(item.href) : item.href,
+  children: item.children?.map((child) => ({
+    ...child,
+    href: ensureRootRelative(child.href),
+  })),
+}))
+
 const ctaButton = navigation?.ctaButton || {
   label: 'Get Involved',
   href: '/get-involved',
   style: 'primary',
 }
-
-const logo = navigation?.logo || {
-  mainText: 'FUSION',
-  subText: 'VICTORIA',
-}
+const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
 ---
 
-<header
-  class="bg-black sticky top-0 z-50 border-b-4 border-magenta"
-  style="box-shadow: 0 3px 0 0 #FFED00; border-bottom-width: 4px;"
->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex justify-between items-center">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 text-2xl font-black no-underline group">
-        <div class="relative">
-          <img
-            src="/solo-full-colour.svg"
-            alt="Fusion Victoria"
-            class="h-11 w-auto transition-transform group-hover:scale-110"
-          />
+<header class="bg-black sticky top-0 z-50">
+  {/* Triple stripe — mirrors hero top edge */}
+  <div class="h-1 w-full bg-magenta"></div>
+  <div class="h-0.5 w-full bg-mint"></div>
+  <div class="h-px w-full bg-yellow"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      {/* ── Logo ── */}
+      <a href="/" class="flex items-center gap-3 no-underline group shrink-0">
+        <div
+          class="relative overflow-hidden border-2 border-transparent group-hover:border-mint transition-colors"
+        >
+          <img src="/solo-full-colour.svg" alt="Fusion Victoria" class="h-9 w-auto" />
         </div>
         <div class="flex flex-col leading-none">
           <span
-            style="color: #C926F2; font-family: 'Archivo Black', sans-serif; font-size: 1.6rem; letter-spacing: -0.02em;"
-            >{logo.mainText}</span
+            style="color: #C926F2; font-family: 'Archivo Black', sans-serif; font-size: 1.4rem; letter-spacing: 0.01em;"
           >
+            {logo.mainText}
+          </span>
           <span
-            style="color: #5EFFD8; font-family: 'Archivo Black', sans-serif; font-size: 0.875rem; letter-spacing: 0.12em;"
-            >{logo.subText}</span
+            style="color: #5EFFD8; font-family: 'Archivo Black', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;"
           >
+            {logo.subText}
+          </span>
         </div>
       </a>
 
-      <!-- Mobile Menu Toggle -->
+      {/* ── Mobile menu toggle ── */}
       <button
-        class="md:hidden text-white text-2xl px-4 py-2 border-4 border-mint bg-magenta hover:bg-mint hover:text-black cursor-pointer font-black uppercase transition-all"
-        style="box-shadow: 3px 3px 0px 0px #5EFFD8; border-width: 4px;"
+        class="md:hidden text-white px-3 py-2 border-4 border-mint bg-black hover:bg-mint hover:text-black cursor-pointer font-black uppercase text-sm transition-all"
+        style="box-shadow: 3px 3px 0px 0px #5EFFD8;"
         aria-label="Toggle menu"
         id="mobile-menu-toggle"
       >
-        <span class="menu-icon">☰</span>
+        <span class="menu-icon text-lg">☰</span>
       </button>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex gap-6 lg:gap-8 items-center" id="main-nav">
+      {/* ── Desktop nav ── */}
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2" id="main-nav">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -108,33 +110,36 @@ const logo = navigation?.logo || {
               return (
                 <div class="nav-dropdown-wrapper relative group">
                   <button
-                    class="nav-link text-white no-underline font-black transition-all text-sm uppercase tracking-wider relative px-2 py-1 flex items-center gap-1"
+                    class="nav-link px-3 py-2 text-white font-black text-sm uppercase tracking-wider flex items-center gap-1 hover:text-mint transition-colors"
                     style="font-family: 'Archivo Black', sans-serif; background: none; border: none; cursor: pointer;"
                   >
                     {item.label}
-                    <span class="text-xs">▼</span>
+                    <span class="text-xs dropdown-arrow transition-transform duration-200">▼</span>
                   </button>
+                  {/* Active underline */}
+                  {isActive && <div class="absolute bottom-0 left-0 right-0 h-1 bg-mint" />}
+                  {/* Dropdown */}
                   <div
-                    class="dropdown-menu absolute top-full left-0 pt-2 hidden group-hover:block"
-                    style="min-width: 250px;"
+                    class="dropdown-menu absolute top-full left-0 pt-1 hidden group-hover:block"
+                    style="min-width: 220px; z-index: 100;"
                   >
                     <div
                       class="bg-black border-4 border-mint"
-                      style="box-shadow: 4px 4px 0px 0px #C926F2; border-width: 4px;"
+                      style="box-shadow: 4px 4px 0px 0px #C926F2;"
                     >
+                      {/* Top accent stripe */}
+                      <div class="h-1 w-full bg-magenta" />
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
-                          class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b-2 border-magenta last:border-b-0"
+                          class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b-2 border-white/10 last:border-b-0 font-black uppercase text-sm"
+                          style="font-family: 'Archivo Black', sans-serif;"
                         >
-                          <div
-                            class="font-black uppercase text-sm"
-                            style="font-family: 'Archivo Black', sans-serif;"
-                          >
-                            {child.label}
-                          </div>
+                          {child.label}
                           {child.description && (
-                            <div class="text-xs mt-1 opacity-80">{child.description}</div>
+                            <div class="text-xs mt-0.5 opacity-60 font-normal normal-case">
+                              {child.description}
+                            </div>
                           )}
                         </a>
                       ))}
@@ -147,45 +152,31 @@ const logo = navigation?.logo || {
             return (
               <a
                 href={item.href}
-                class="nav-link text-white no-underline font-black transition-all text-sm uppercase tracking-wider relative px-2 py-1"
+                class="nav-link relative px-3 py-2 text-white font-black text-sm uppercase tracking-wider transition-colors hover:text-mint"
                 style={`font-family: 'Archivo Black', sans-serif; ${isActive ? 'color: #5EFFD8;' : ''}`}
               >
                 {item.label}
-                {isActive && (
-                  <span
-                    class="absolute bottom-0 left-0 right-0 h-1 bg-mint"
-                    style="box-shadow: 0 2px 0 0 #C926F2;"
-                  />
-                )}
+                {/* Active indicator — thick yellow underbar */}
+                {isActive && <span class="absolute bottom-0 left-0 right-0 h-1 bg-yellow" />}
               </a>
             )
           })
         }
+
+        {/* CTA Button — solid, high-contrast */}
         <a
           href={ctaButton.href}
-          class={`px-6 py-2 text-sm font-black uppercase border-4 border-white text-white hover:text-black hover:border-black transition-all ${
-            ctaButton.style === 'primary'
-              ? 'bg-magenta hover:bg-yellow'
-              : ctaButton.style === 'yellow'
-                ? 'bg-yellow text-black hover:bg-mint'
-                : 'bg-mint text-black hover:bg-yellow'
-          }`}
-          style={`box-shadow: 3px 3px 0px 0px ${
-            ctaButton.style === 'primary'
-              ? '#FFED00'
-              : ctaButton.style === 'yellow'
-                ? '#C926F2'
-                : '#C926F2'
-          }; font-family: 'Archivo Black', sans-serif; border-width: 4px;`}
+          class="ml-4 px-5 py-2 text-sm font-black uppercase border-4 border-black transition-all hover:-translate-y-0.5"
+          style={`font-family: 'Archivo Black', sans-serif; background: ${ctaButton.style === 'primary' ? '#C926F2' : ctaButton.style === 'yellow' ? '#FFED00' : '#5EFFD8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'}; box-shadow: 3px 3px 0px 0px ${ctaButton.style === 'primary' ? '#FFED00' : '#C926F2'};`}
         >
           {ctaButton.label}
         </a>
       </nav>
     </div>
 
-    <!-- Mobile Navigation -->
+    {/* ── Mobile navigation ── */}
     <nav class="mobile-nav hidden" id="mobile-nav">
-      <div class="flex flex-col gap-3 mt-6 pb-4">
+      <div class="flex flex-col gap-2 py-4 border-t-4 border-magenta mt-0">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -198,17 +189,17 @@ const logo = navigation?.logo || {
               return (
                 <div class="mobile-dropdown">
                   <button
-                    class="mobile-dropdown-toggle w-full text-left px-4 py-3 font-black uppercase text-sm border-4 bg-black text-white border-mint hover:bg-mint hover:text-black hover:border-black transition-all flex justify-between items-center"
-                    style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+                    class="mobile-dropdown-toggle w-full text-left px-4 py-3 font-black uppercase text-sm border-4 bg-black text-white border-mint hover:bg-mint hover:text-black transition-all flex justify-between items-center"
+                    style="box-shadow: 3px 3px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
                   >
                     {item.label}
-                    <span class="text-xs">▼</span>
+                    <span class="text-xs dropdown-arrow">▼</span>
                   </button>
-                  <div class="mobile-dropdown-content hidden mt-2 ml-4 space-y-2">
+                  <div class="mobile-dropdown-content hidden mt-1 ml-4 space-y-1">
                     {item.children?.map((child) => (
                       <a
                         href={child.href}
-                        class="block px-4 py-2 font-bold text-sm border-2 bg-black text-white border-yellow hover:bg-yellow hover:text-black transition-all"
+                        class="block px-4 py-2 font-bold text-sm border-l-4 border-mint bg-black text-white hover:bg-mint hover:text-black transition-all"
                         style="font-family: 'Archivo Black', sans-serif;"
                       >
                         {child.label}
@@ -224,10 +215,10 @@ const logo = navigation?.logo || {
                 href={item.href}
                 class={`block px-4 py-3 font-black uppercase text-sm border-4 transition-all ${
                   isActive
-                    ? 'bg-mint text-black border-black'
+                    ? 'bg-yellow text-black border-black'
                     : 'bg-black text-white border-mint hover:bg-mint hover:text-black hover:border-black'
                 }`}
-                style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+                style={`box-shadow: 3px 3px 0px 0px ${isActive ? '#C926F2' : '#5EFFD8'}; font-family: 'Archivo Black', sans-serif;`}
               >
                 {item.label}
               </a>
@@ -236,20 +227,8 @@ const logo = navigation?.logo || {
         }
         <a
           href={ctaButton.href}
-          class={`block px-4 py-3 text-center font-black uppercase text-sm border-4 border-white text-white hover:text-black hover:border-black transition-all ${
-            ctaButton.style === 'primary'
-              ? 'bg-magenta hover:bg-yellow'
-              : ctaButton.style === 'yellow'
-                ? 'bg-yellow text-black hover:bg-mint'
-                : 'bg-mint text-black hover:bg-yellow'
-          }`}
-          style={`box-shadow: 4px 4px 0px 0px ${
-            ctaButton.style === 'primary'
-              ? '#FFED00'
-              : ctaButton.style === 'yellow'
-                ? '#C926F2'
-                : '#C926F2'
-          }; font-family: 'Archivo Black', sans-serif;`}
+          class="block px-4 py-3 text-center font-black uppercase text-sm border-4 border-black transition-all"
+          style={`background: ${ctaButton.style === 'primary' ? '#C926F2' : '#FFED00'}; color: ${ctaButton.style === 'primary' ? '#fff' : '#000'}; box-shadow: 4px 4px 0px 0px #FFED00; font-family: 'Archivo Black', sans-serif;`}
         >
           {ctaButton.label}
         </a>
@@ -259,39 +238,18 @@ const logo = navigation?.logo || {
 </header>
 
 <style>
-  .nav-link {
-    position: relative;
-  }
-
-  .nav-link::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #5effd8;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  .nav-link:hover::before {
-    transform: scaleX(1);
-  }
-
   .nav-link:hover {
     color: #5effd8 !important;
-    transform: translateY(-2px);
   }
 
-  .mobile-nav {
-    animation: slideDown 0.3s ease-out;
+  .dropdown-menu {
+    animation: dropdownSlide 0.15s ease-out;
   }
 
-  @keyframes slideDown {
+  @keyframes dropdownSlide {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
     to {
       opacity: 1;
@@ -299,25 +257,14 @@ const logo = navigation?.logo || {
     }
   }
 
-  #mobile-menu-toggle:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0px 0px #5effd8 !important;
+  .mobile-nav {
+    animation: slideDown 0.25s ease-out;
   }
 
-  /* Dropdown Menu Styles */
-  .nav-dropdown-wrapper {
-    position: relative;
-  }
-
-  .dropdown-menu {
-    z-index: 100;
-    animation: dropdownSlide 0.2s ease-out;
-  }
-
-  @keyframes dropdownSlide {
+  @keyframes slideDown {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     to {
       opacity: 1;
@@ -326,7 +273,7 @@ const logo = navigation?.logo || {
   }
 
   .mobile-dropdown-content {
-    animation: slideDown 0.3s ease-out;
+    animation: slideDown 0.2s ease-out;
   }
 </style>
 
@@ -338,32 +285,27 @@ const logo = navigation?.logo || {
     mobileNav?.classList.toggle('hidden')
   })
 
-  // Close menu when clicking nav link
   mobileNav?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileNav?.classList.add('hidden')
     })
   })
 
-  // Handle mobile dropdown toggles
   document.querySelectorAll('.mobile-dropdown-toggle').forEach((button) => {
     button.addEventListener('click', (e) => {
       e.preventDefault()
       const dropdown = button.nextElementSibling
       dropdown?.classList.toggle('hidden')
-
-      // Rotate arrow icon
-      const arrow = button.querySelector('span')
+      const arrow = button.querySelector('.dropdown-arrow') as HTMLElement | null
       if (arrow) {
         arrow.style.transform = dropdown?.classList.contains('hidden')
           ? 'rotate(0deg)'
           : 'rotate(180deg)'
-        arrow.style.transition = 'transform 0.3s ease'
+        arrow.style.transition = 'transform 0.25s ease'
       }
     })
   })
 
-  // Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!mobileNav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
       mobileNav?.classList.add('hidden')
