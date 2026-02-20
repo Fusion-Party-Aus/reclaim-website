@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Hero from '../components/Hero.astro'
 import Footer from '../components/Footer.astro'
-import { getDocuments, getHomePage, urlFor } from '../lib/sanity'
+import { getElectorates, getHomePage, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 
@@ -29,7 +29,7 @@ if (!homePage) {
 }
 
 // Fetch electorates for the electorates section
-const electorates = await getDocuments('electorate')
+const electorates = await getElectorates()
 
 // The references are already resolved by Sanity via getHomePage() `->` projection
 const featuredPolicies: any[] = homePage.theftSection?.featuredPolicies || []
