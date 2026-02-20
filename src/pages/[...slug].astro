@@ -13,7 +13,7 @@ const pages = await getPages()
 
 const slug = Astro.params.slug || ''
 
-const pageMatch = (pages as Page[])
+const allPages = (pages as Page[])
   .filter((p) => p.slug?.current)
   .map((p) => {
     // Construct full path
@@ -31,13 +31,37 @@ const pageMatch = (pages as Page[])
       segments,
     }
   })
-  .find((m) => m.fullPath === slug)
+
+const pageMatch = allPages.find((m) => m.fullPath === slug)
 
 if (!pageMatch) {
   return Astro.redirect('/404')
 }
 
 const { page, segments } = pageMatch
+
+// Find all descendant bio pages to build the automatic Team Grid
+const childPages = allPages.filter(
+  (p) => p.fullPath.startsWith(slug + '/') && p.page.pageType === 'bio'
+)
+
+// Group them by their immediate parent
+const groupedBios: Record<string, { title: string; pages: typeof childPages }> = {}
+childPages.forEach((bio) => {
+  const parentPath = bio.segments.slice(0, -1).join('/')
+  const parentPageMatch = allPages.find((p) => p.fullPath === parentPath)
+  const groupTitle = parentPageMatch ? parentPageMatch.page.title : 'Team Members'
+
+  if (!groupedBios[groupTitle]) {
+    groupedBios[groupTitle] = {
+      title: groupTitle,
+      pages: [],
+    }
+  }
+  groupedBios[groupTitle].pages.push(bio)
+})
+
+const childGroups = Object.values(groupedBios)
 ---
 
 <BaseLayout
@@ -52,9 +76,9 @@ const { page, segments } = pageMatch
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         page.pageType === 'bio' ? (
-          <BioPage page={page} segments={segments} />
+          <BioPage page={page} segments={segments} childGroups={childGroups} />
         ) : (
-          <StandardPage page={page} segments={segments} />
+          <StandardPage page={page} segments={segments} childGroups={childGroups} />
         )
       }
     </div>

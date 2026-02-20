@@ -66,7 +66,7 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
         row.cells.forEach((cellText) => {
           if (rowIndex === 0) {
             // First row gets Header styling
-            html += `<th class="border-4 border-black bg-yellow p-4 font-black uppercase text-lg text-black bg-yellow-400">${cellText || ''}</th>`
+            html += `<th class="border-4 border-black bg-yellow p-4 font-black uppercase text-lg text-black">${cellText || ''}</th>`
           } else {
             // Regular cells
             html += `<td class="border-4 border-black p-4 bg-white text-black font-medium">${cellText || ''}</td>`

@@ -5,9 +5,10 @@ import type { Page } from '../../types/sanity'
 interface Props {
   page: Page
   segments: string[]
+  childGroups?: { title: string; pages: { fullPath: string; page: Page; segments: string[] }[] }[]
 }
 
-const { page, segments } = Astro.props
+const { page, segments, childGroups = [] } = Astro.props
 
 // Determine if page has sidebar
 const hasSidebar = page.showSidebar && page.body && page.body.length > 0
@@ -26,6 +27,7 @@ const breadcrumbs = segments.map((seg, i) => {
 
 import { renderPortableText } from '../../lib/portableText'
 import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
+import { urlFor } from '../../lib/sanity'
 
 // Process the HTML to wrap sections in boxes
 const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
@@ -83,6 +85,79 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
           <p class="text-lg font-semibold">
             This page has no content yet. Add content in Sanity Studio.
           </p>
+        </div>
+      )
+    }
+
+    {
+      childGroups.length > 0 && (
+        <div class="mt-16 space-y-16">
+          {childGroups.map((group) => (
+            <section>
+              <h2
+                class="text-3xl md:text-4xl font-black uppercase mb-8 border-b-6 border-black pb-4 text-black"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                {group.title}
+              </h2>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+                {group.pages.map((child, index) => {
+                  const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta']
+                  const colorClass = bgColors[index % bgColors.length]
+
+                  const imageUrl = child.page.profileImage
+                    ? urlFor(child.page.profileImage).width(400).height(400).fit('crop').url()
+                    : null
+
+                  const hoverTextClass = colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
+
+                  return (
+                    <a
+                      href={`/${child.fullPath}`}
+                      class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass}`}
+                      style="box-shadow: 8px 8px 0 0 #000;"
+                    >
+                      <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt={child.page.title}
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                          />
+                        ) : (
+                          <div class="w-full h-full flex items-center justify-center opacity-30">
+                            <svg
+                              class="w-24 h-24 text-black"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+
+                      <div class="p-4 md:p-6 flex-1 flex flex-col justify-center text-center">
+                        <h3
+                          class={`text-xl md:text-2xl font-black uppercase text-black break-words ${hoverTextClass}`}
+                        >
+                          {child.page.title}
+                        </h3>
+
+                        {(child.page.role || child.page.subtitle) && (
+                          <p
+                            class={`mt-1 md:mt-2 text-xs md:text-sm font-bold text-black opacity-90 uppercase tracking-widest ${hoverTextClass}`}
+                          >
+                            {child.page.role || child.page.subtitle}
+                          </p>
+                        )}
+                      </div>
+                    </a>
+                  )
+                })}
+              </div>
+            </section>
+          ))}
         </div>
       )
     }

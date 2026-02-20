@@ -96,6 +96,8 @@ export async function getFAQsByCategory(category: string): Promise<FAQ[]> {
 export async function getPages(): Promise<any[]> {
   const query = `*[_type == "page"] {
     ...,
+    profileImage,
+    role,
     "parent": parent->{
       slug,
       "parent": parent->{
