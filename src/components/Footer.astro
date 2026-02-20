@@ -1,7 +1,7 @@
 ---
-// Footer component - Neo-Brutalist Enhanced
+// Footer component — Neo-Brutalist
 import { Icon } from 'astro-icon/components'
-import { getDocuments } from '../lib/sanity'
+import { getDocuments, getElectorates } from '../lib/sanity'
 
 interface SocialLink {
   platform: string
@@ -16,34 +16,21 @@ interface ResourceLink {
 }
 
 interface Footer {
-  logo: {
-    mainText: string
-    subText: string
-  }
+  logo: { mainText: string; subText: string }
   socialLinks: SocialLink[]
   resourceLinks: ResourceLink[]
-  banner: {
-    text: string
-    rotation: number
-  }
+  banner: { text: string; rotation: number }
   authorization: string
   copyrightText?: string
-  networkBranding?: {
-    text: string
-    url: string
-  }
+  networkBranding?: { text: string; url: string }
 }
 
-// Fetch footer from Sanity with fallback
 const footers = await getDocuments<Footer>('footer')
+const electorates = await getElectorates()
 const footer = footers?.[0]
 
-// Define fallback data
 const defaultFooter: Footer = {
-  logo: {
-    mainText: 'FUSION',
-    subText: 'VICTORIA',
-  },
+  logo: { mainText: 'FUTURE', subText: 'PARTY' },
   socialLinks: [
     {
       platform: 'Instagram',
@@ -105,294 +92,289 @@ const defaultFooter: Footer = {
     { label: 'Constitution', url: 'https://www.fusionparty.org.au/constitution' },
     { label: 'Privacy Policy', url: 'https://www.fusionparty.org.au/privacy_policy' },
   ],
-  banner: {
-    text: '🚫 We Accept NO Corporate Donations',
-    rotation: -0.5,
-  },
+  banner: { text: '🚫 We Accept NO Corporate Donations', rotation: 0 },
   authorization: 'Authorised by Drew Wolfendale, Fusion Party Victoria.',
 }
 
 const footerData = footer || defaultFooter
-
-// Social link colors cycling through brand colors
-const socialColors = [
-  { border: 'mint', bg: 'mint', shadow: '#5EFFD8' },
-  { border: 'yellow', bg: 'yellow', shadow: '#FFED00' },
-  { border: 'magenta', bg: 'magenta', shadow: '#C926F2' },
-  { border: 'lavender', bg: 'lavender', shadow: '#9A94E7' },
-]
 ---
 
-<footer
-  class="bg-black text-white pt-16 pb-8 px-4 md:px-8 border-t-8 border-magenta relative overflow-hidden"
->
-  <!-- Decorative elements - hidden on mobile to prevent overflow -->
-  <div
-    class="absolute top-0 right-0 w-64 h-64 border-8 border-yellow opacity-20 hidden md:block"
-    style="transform: translate(30%, -30%) rotate(45deg);"
-  >
-  </div>
-  <div
-    class="absolute bottom-0 left-0 w-48 h-48 border-8 border-mint opacity-20 hidden md:block"
-    style="transform: translate(-30%, 30%) rotate(-45deg);"
-  >
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto">
-    <!-- Main Footer Content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
-      <!-- Brand Column -->
-      <div class="lg:col-span-1">
-        <div
-          class="mb-6 inline-block p-4 bg-white border-4 border-black"
-          style="box-shadow: 6px 6px 0px 0px #C926F2;"
-        >
-          <img src="/solo-full-colour.svg" alt="Fusion Victoria" class="h-12 w-auto" />
-        </div>
-
-        <h3
-          class="text-xl md:text-2xl font-black mb-3 leading-tight"
-          style="color: #C926F2; font-family: 'Archivo Black', sans-serif;"
-        >
-          {footerData.logo.mainText}<br />{footerData.logo.subText}
-        </h3>
-        <p
-          class="font-black mb-4 text-base md:text-lg leading-tight"
-          style="color: #5EFFD8; text-transform: uppercase;"
-        >
-          TAKING BACK<br />WHAT THEY STOLE.
-        </p>
-        <p class="text-sm leading-relaxed font-semibold mb-6" style="color: #E5E5E5;">
-          Evidence-based policy. No corporate donations. Workers over exploiters.
-        </p>
-
-        <!-- Social Links -->
-        <div class="flex gap-2 flex-wrap">
-          {
-            footerData.socialLinks.map((social, index) => {
-              const colorScheme = socialColors[index % socialColors.length]
-              return (
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener"
-                  class={`social-link p-2 border-4 border-${colorScheme.border} bg-black hover:bg-${colorScheme.bg} hover:text-black transition-all`}
-                  style={`box-shadow: 3px 3px 0px 0px ${colorScheme.shadow};`}
-                  aria-label={social.ariaLabel || social.platform}
-                >
-                  <Icon name={social.icon} class="w-5 h-5" />
-                </a>
-              )
-            })
-          }
-        </div>
-      </div>
-
-      <!-- Policy Areas -->
-      <div>
-        <h4
-          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
-          style="color: #5EFFD8; border-color: #5EFFD8;"
-        >
-          Policy
-        </h4>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="/policies"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ All Policies</a
-            >
-          </li>
-          <li>
-            <a
-              href="/manifesto"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Manifesto</a
-            >
-          </li>
-          <li>
-            <a
-              href="/about"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ About Us</a
-            >
-          </li>
-          <li>
-            <a
-              href="/faq"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ FAQ</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <!-- Electorates -->
-      <div>
-        <h4
-          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
-          style="color: #5EFFD8; border-color: #5EFFD8;"
-        >
-          Electorates
-        </h4>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="/electorates"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ All Electorates</a
-            >
-          </li>
-          <li>
-            <a
-              href="/electorates/melton"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Melton</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <!-- Legal & Governance -->
-      <div>
-        <h4
-          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
-          style="color: #5EFFD8; border-color: #5EFFD8;"
-        >
-          Governance
-        </h4>
-        <ul class="space-y-2">
-          {
-            footerData.resourceLinks.map((link) => (
-              <li>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-                  style="color: #E5E5E5;"
-                >
-                  → {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Get Involved -->
-      <div>
-        <h4
-          class="text-base md:text-lg font-black mb-4 uppercase pb-2 inline-block border-b-4"
-          style="color: #5EFFD8; border-color: #5EFFD8;"
-        >
-          Take Action
-        </h4>
-        <ul class="space-y-2 mb-6">
-          <li>
-            <a
-              href="https://www.fusionparty.org.au/join"
-              target="_blank"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Join Fusion</a
-            >
-          </li>
-          <li>
-            <a
-              href="/get-involved"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Volunteer</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.fusionparty.org.au/donate"
-              target="_blank"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Donate</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.fusionparty.org.au/store"
-              target="_blank"
-              class="footer-link font-bold uppercase text-sm hover:translate-x-2 inline-block transition-transform"
-              style="color: #E5E5E5;">→ Merch Store</a
-            >
-          </li>
-        </ul>
-
-        <!-- Donate Button -->
-        <a
-          href="https://www.fusionparty.org.au/donate"
-          target="_blank"
-          class="block text-center px-4 py-3 font-black uppercase text-sm border-4 border-yellow bg-magenta text-white hover:bg-yellow hover:text-black transition-all"
-          style="box-shadow: 4px 4px 0px 0px #FFED00; font-family: 'Archivo Black', sans-serif;"
-        >
-          💰 Donate Now
-        </a>
-      </div>
-    </div>
-
-    <!-- No Corporate Donations Banner -->
+<footer class="bg-black text-white relative overflow-hidden">
+  {/* ═══ NO CORPORATE DONATIONS — full-bleed banner ═══ */}
+  <div class="bg-magenta border-y-4 border-black py-5 px-4 relative overflow-hidden">
+    {/* Ghost text behind */}
     <div
-      class="mb-8 p-6 border-4 border-mint bg-magenta text-center"
-      style={`box-shadow: 8px 8px 0px 0px #5EFFD8; transform: rotate(${footerData.banner.rotation}deg);`}
+      class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
     >
-      <p class="text-base md:text-lg font-black uppercase tracking-wider" style="color: #FFFFFF;">
+      <span
+        class="text-[8rem] font-black uppercase leading-none select-none text-black opacity-10"
+        style="font-family: 'Anton', sans-serif;">NO DONORS</span
+      >
+    </div>
+    <div
+      class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10"
+    >
+      <p
+        class="text-xl md:text-2xl font-black uppercase text-white tracking-wider"
+        style="font-family: 'Archivo Black', sans-serif;"
+      >
         {footerData.banner.text}
       </p>
-      <p class="text-sm font-bold mt-2" style="color: #FFED00;">
-        Funded by members and small donors only. That's why we answer to you.
+      <p class="text-sm font-black uppercase text-yellow border-l-4 border-yellow pl-4 text-left">
+        Funded by members & small donors only.<br />That's why we answer to you.
       </p>
     </div>
+  </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t-4 border-mint text-center space-y-3">
-      <p class="text-sm font-black uppercase" style="color: #E5E5E5;">
-        &copy; {footerData.copyrightText || '2024-2025 Fusion Part. All rights reserved.'}
+  {/* ═══ MAIN FOOTER BODY ═══ */}
+  <div class="border-b-4 border-white/10 py-16 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
+        {/* Brand column */}
+        <div class="lg:col-span-1">
+          <div
+            class="inline-block p-3 bg-white border-4 border-black mb-5"
+            style="box-shadow: 5px 5px 0px 0px #C926F2;"
+          >
+            <img src="/solo-full-colour.svg" alt="Fusion Victoria" class="h-10 w-auto" />
+          </div>
+
+          <h3
+            class="text-2xl font-black mb-1 leading-tight"
+            style="color: #C926F2; font-family: 'Archivo Black', sans-serif;"
+          >
+            {footerData.logo.mainText}<br />{footerData.logo.subText}
+          </h3>
+          <p class="font-black text-sm uppercase mb-4 border-l-4 border-yellow pl-3 text-yellow">
+            Taking Back What They Stole.
+          </p>
+
+          {/* Social links — single horizontal row with uniform sizing */}
+          <div class="flex flex-wrap gap-2 mt-4">
+            {
+              footerData.socialLinks.map((social, index) => {
+                const accentColors = ['#5EFFD8', '#FFED00', '#C926F2']
+                const accent = accentColors[index % 3]
+                return (
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="social-icon p-2 bg-black border-2 border-white/20 hover:border-transparent transition-all hover:-translate-y-0.5"
+                    style={`hover:background: ${accent};`}
+                    aria-label={social.ariaLabel || social.platform}
+                    data-accent={accent}
+                  >
+                    <Icon name={social.icon} class="w-5 h-5 text-white" />
+                  </a>
+                )
+              })
+            }
+          </div>
+        </div>
+
+        {/* Policy links */}
+        <div>
+          <h4
+            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-mint inline-block px-3 py-1"
+          >
+            Policy
+          </h4>
+          <ul class="space-y-2">
+            {
+              [
+                { label: 'All Policies', href: '/policies' },
+                { label: 'Manifesto', href: '/manifesto' },
+                { label: 'About Us', href: '/about' },
+                { label: 'FAQ', href: '/faq' },
+                { label: 'Contact Us', href: '/contact' },
+              ].map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-mint transition-colors flex items-center gap-2"
+                  >
+                    <span class="text-mint">→</span> {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        {/* Electorates */}
+        <div>
+          <h4
+            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-yellow inline-block px-3 py-1"
+          >
+            Candidates
+          </h4>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/electorates"
+                class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
+              >
+                <span class="text-yellow">→</span> All Electorates
+              </a>
+            </li>
+            {
+              electorates.slice(0, 5).map((electorate) => (
+                <li>
+                  <a
+                    href={`/electorates/${electorate.slug.current}`}
+                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
+                  >
+                    <span class="text-yellow">→</span> {electorate.name}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a
+                href="/past-candidates"
+                class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
+              >
+                <span class="text-yellow">→</span> Past Candidates
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Governance */}
+        <div>
+          <h4
+            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-white/80 inline-block px-3 py-1"
+          >
+            Governance
+          </h4>
+          <ul class="space-y-2">
+            {
+              footerData.resourceLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+                  >
+                    <span class="text-white/60">→</span> {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        {/* Take Action */}
+        <div>
+          <h4
+            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-magenta inline-block px-3 py-1"
+          >
+            Take Action
+          </h4>
+          <ul class="space-y-2 mb-6">
+            {
+              [
+                {
+                  label: 'Join Fusion',
+                  href: 'https://www.fusionparty.org.au/join',
+                  external: true,
+                },
+                { label: 'Volunteer', href: '/get-involved', external: false },
+                { label: 'Donate', href: 'https://www.fusionparty.org.au/donate', external: true },
+                {
+                  label: 'Merch Store',
+                  href: 'https://www.fusionparty.org.au/store',
+                  external: true,
+                },
+              ].map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener' : undefined}
+                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-magenta transition-colors flex items-center gap-2"
+                  >
+                    <span class="text-magenta">→</span> {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+
+          {/* Donate CTA — high-contrast button */}
+          <a
+            href="https://www.fusionparty.org.au/donate"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-yellow text-black hover:-translate-y-0.5 transition-all"
+            style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+          >
+            <Icon name="mdi:currency-usd" class="w-5 h-5" />
+            Donate Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* ═══ BOTTOM BAR ═══ */}
+  <div class="px-4 md:px-8 py-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-xs font-black uppercase text-gray-500">
+        © {footerData.copyrightText || '2024–2025 Future Party Victoria. All rights reserved.'}
       </p>
-      <p class="text-sm font-bold" style="color: #E5E5E5;">
-        {footerData.authorization}
-      </p>
-      <p class="text-xs mt-4" style="color: #9A94E7;">
-        Part of <a
+      <p class="text-xs font-bold text-gray-600">{footerData.authorization}</p>
+      <p class="text-xs text-gray-600">
+        Part of{' '}
+        <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
           class="underline hover:text-mint transition-colors"
-          >{footerData.networkBranding?.text || 'Fusion'}</a
         >
+          {footerData.networkBranding?.text || 'Fusion'}
+        </a>
       </p>
     </div>
   </div>
+
+  {/* Bottom colour stripe — mirrors hero triple stripe */}
+  <div class="h-1 w-full bg-yellow"></div>
+  <div class="h-0.5 w-full bg-mint"></div>
+  <div class="h-px w-full bg-magenta"></div>
 </footer>
 
 <style>
-  .footer-link {
-    position: relative;
-  }
-
-  .footer-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 100%;
-    height: 2px;
-    background: #5effd8;
-    transition: right 0.3s ease;
-  }
-
-  .footer-link:hover::after {
-    right: 0;
-  }
-
   .footer-link:hover {
-    color: #5effd8 !important;
+    padding-left: 0.15rem;
+    transition:
+      padding-left 0.15s ease,
+      color 0.15s ease;
   }
 
-  .social-link:active {
-    transform: translateY(2px);
-    box-shadow: 1px 1px 0px 0px !important;
+  .social-icon:hover {
+    background: var(--accent, #5effd8) !important;
+  }
+
+  .social-icon:hover svg {
+    color: #000 !important;
   }
 </style>
+
+<script>
+  // Social icon accent colours on hover
+  document.querySelectorAll('.social-icon').forEach((el) => {
+    const accent = (el as HTMLElement).dataset.accent || '#5EFFD8'
+    el.addEventListener('mouseenter', () => {
+      ;(el as HTMLElement).style.backgroundColor = accent
+      ;(el as HTMLElement).style.borderColor = accent
+      const icon = el.querySelector('svg') as SVGElement | null
+      if (icon) icon.style.color = '#000'
+    })
+    el.addEventListener('mouseleave', () => {
+      ;(el as HTMLElement).style.backgroundColor = ''
+      ;(el as HTMLElement).style.borderColor = ''
+      const icon = el.querySelector('svg') as SVGElement | null
+      if (icon) icon.style.color = ''
+    })
+  })
+</script>

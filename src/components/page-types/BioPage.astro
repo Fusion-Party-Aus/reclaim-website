@@ -2,6 +2,7 @@
 import { urlFor } from '../../lib/sanity'
 import type { Page } from '../../types/sanity'
 import { renderPortableText } from '../../lib/portableText'
+import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
 import { Icon } from 'astro-icon/components'
 
 interface Props {
@@ -12,7 +13,6 @@ interface Props {
 
 const { page, segments, childGroups = [] } = Astro.props
 
-// Construct breadcrumbs
 const breadcrumbs = segments.map((seg, i) => {
   const path = '/' + segments.slice(0, i + 1).join('/')
   return {
@@ -24,24 +24,25 @@ const breadcrumbs = segments.map((seg, i) => {
   }
 })
 
-import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
-
 const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
 ---
 
 <div class="max-w-6xl mx-auto">
-  <!-- Breadcrumbs -->
-  <nav class="text-xs font-mono uppercase tracking-wide mb-12 flex items-center flex-wrap gap-2">
-    <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint transition-colors"
-      >Home</a
+  {/* ── Breadcrumbs ── */}
+  <nav class="flex items-center flex-wrap gap-1 mb-12 text-xs font-black uppercase tracking-widest">
+    <a
+      href="/"
+      class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
     >
+      Home
+    </a>
     {
       breadcrumbs.map((bc, i) => (
         <>
-          <span class="opacity-60">/</span>
+          <span class="text-black/30 font-black">›</span>
           {i === breadcrumbs.length - 1 ? (
             <span
-              class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
+              class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
               title={page.title}
             >
               {page.title}
@@ -49,7 +50,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
           ) : (
             <a
               href={bc.path}
-              class="px-2 py-1 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+              class="px-3 py-1.5 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
             >
               {bc.label}
             </a>
@@ -60,43 +61,85 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
   </nav>
 
   <div class="flex flex-col lg:flex-row gap-8 md:gap-12 items-start">
-    <!-- Left Column: Image & Status -->
-    <div class="w-full lg:w-[350px] space-y-8 shrink-0">
+    {/* ── Left column ── */}
+    <div class="w-full lg:w-[320px] space-y-6 shrink-0">
+      {/* Profile image + name card */}
       {
         page.profileImage && (
           <div
-            class="brutal-card p-0 overflow-hidden bg-black"
-            style="box-shadow: 12px 12px 0 0 #C926F2;"
+            class="border-4 border-black overflow-hidden bg-black"
+            style="box-shadow: 8px 8px 0 0 #C926F2;"
           >
-            <img
-              src={urlFor(page.profileImage).width(800).height(1000).url()}
-              alt={page.title}
-              class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-black"
-            />
-            <div class="p-6 bg-white">
-              <h1 class="text-3xl font-black uppercase leading-none mb-2">{page.title}</h1>
+            <div class="relative overflow-hidden">
+              <img
+                src={urlFor(page.profileImage).width(800).height(900).url()}
+                alt={page.title}
+                class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-black block"
+              />
+              {/* Mint corner triangle */}
+              <div
+                class="absolute top-0 left-0 w-16 h-16 bg-mint"
+                style="clip-path: polygon(0 0, 100% 0, 0 100%);"
+              />
+            </div>
+            <div class="p-6 bg-white border-t-4 border-black">
+              <h1
+                class="text-2xl font-black uppercase leading-tight mb-1"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                {page.title}
+              </h1>
               {page.role && (
-                <p class="text-magenta font-black uppercase tracking-wider text-sm">{page.role}</p>
+                <p class="text-xs font-black uppercase tracking-widest border-l-4 border-magenta pl-3 text-magenta">
+                  {page.role}
+                </p>
               )}
             </div>
           </div>
         )
       }
 
-      <!-- Social Links -->
+      {/* No image fallback — just name */}
+      {
+        !page.profileImage && (
+          <div
+            class="border-4 border-black p-6 bg-black text-white"
+            style="box-shadow: 8px 8px 0 0 #C926F2;"
+          >
+            <div class="w-24 h-24 border-4 border-white/20 bg-white/10 flex items-center justify-center mb-4">
+              <svg class="w-12 h-12 text-white/30" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+              </svg>
+            </div>
+            <h1
+              class="text-2xl font-black uppercase leading-tight mb-1"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              {page.title}
+            </h1>
+            {page.role && (
+              <p class="text-xs font-black uppercase tracking-wide text-mint">{page.role}</p>
+            )}
+          </div>
+        )
+      }
+
+      {/* Social links */}
       {
         page.socialLinks && page.socialLinks.length > 0 && (
-          <div class="brutal-card brutal-card-yellow p-6">
-            <h3 class="font-black uppercase text-sm mb-4 border-b-2 border-black pb-2">Connect</h3>
-            <div class="flex flex-col gap-3">
+          <div class="border-4 border-black bg-yellow p-5" style="box-shadow: 5px 5px 0 0 #000;">
+            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b-2 border-black pb-2">
+              Connect
+            </h3>
+            <div class="flex flex-col gap-2">
               {page.socialLinks.map((link) => (
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 font-bold hover:text-magenta transition-colors group"
+                  class="flex items-center gap-3 font-black text-sm uppercase border-2 border-black bg-white text-black hover:bg-magenta hover:text-white hover:border-magenta transition-all px-3 py-2"
                 >
-                  <div class="w-8 h-8 bg-black flex items-center justify-center text-white group-hover:bg-magenta transition-colors">
+                  <div class="w-6 h-6 flex items-center justify-center shrink-0">
                     <Icon
                       name={`mdi:${link.platform === 'website' ? 'web' : link.platform}`}
                       class="w-5 h-5"
@@ -110,67 +153,83 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
         )
       }
 
-      <!-- Quick Contact / Stats -->
-      <div class="brutal-card brutal-card-mint p-6">
-        <p class="text-sm font-bold uppercase mb-2 italic">
-          "Fighting for a fairer Victoria through common sense and tech-driven policy."
+      {/* Stand-out quote card */}
+      <div class="border-4 border-black bg-mint p-5" style="box-shadow: 5px 5px 0 0 #000;">
+        <p
+          class="font-black text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
+        >
+          {page.subtitle || '"Fighting for a fairer Victoria through evidence-based policy."'}
         </p>
       </div>
     </div>
 
-    <!-- Right Column: Biography -->
+    {/* ── Right column: biography ── */}
     <div class="flex-1 min-w-0 space-y-8">
-      <div class="brutal-card bg-white p-8 md:p-12" style="box-shadow: 12px 12px 0 0 #000;">
-        <div class="prose prose-lg max-w-none prose-headings:uppercase prose-headings:font-black">
+      <div class="border-4 border-black bg-white p-8 md:p-12" style="box-shadow: 8px 8px 0 0 #000;">
+        <div
+          class="prose prose-lg max-w-none
+          prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
+          prose-h2:text-2xl prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4 prose-h2:mt-10
+          prose-h3:text-lg prose-h3:border-l-4 prose-h3:border-mint prose-h3:pl-3
+          prose-a:text-magenta prose-a:font-black prose-a:no-underline hover:prose-a:underline
+          prose-strong:font-black
+          prose-p:first:text-xl prose-p:first:font-black"
+        >
           {
             page.body ? (
               <div set:html={pageHtml} />
             ) : (
-              <p class="italic opacity-60">Full biography coming soon...</p>
+              <p class="text-lg font-black uppercase text-black/40">
+                Full biography coming soon...
+              </p>
             )
           }
         </div>
       </div>
 
-      <!-- Action -->
+      {/* Action button */}
       <a
         href="/get-involved"
-        class="btn btn-primary w-full text-center py-6 text-2xl shadow-[8px_8px_0_0_#000]"
+        class="flex items-center justify-center gap-3 px-8 py-5 font-black uppercase text-xl border-4 border-black bg-magenta text-white hover:-translate-y-0.5 transition-all w-full"
+        style="box-shadow: 6px 6px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
       >
+        <Icon name="mdi:hand-wave" class="w-6 h-6" />
         Join the Movement
       </a>
     </div>
   </div>
 
+  {/* ── Child groups ── */}
   {
     childGroups.length > 0 && (
-      <div class="mt-16 space-y-16">
+      <div class="mt-20 space-y-16">
         {childGroups.map((group) => (
           <section>
-            <h2
-              class="text-3xl md:text-4xl font-black uppercase mb-8 border-b-6 border-black pb-4 text-black"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              {group.title}
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+            <div class="mb-8">
+              <h2
+                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                {group.title}
+              </h2>
+              <div class="h-2 w-24 bg-magenta mt-2" />
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {group.pages.map((child, index) => {
-                const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta']
-                const colorClass = bgColors[index % bgColors.length]
+                const accents = ['#5EFFD8', '#FFED00', '#C926F2']
+                const accent = accents[index % accents.length]
 
                 const imageUrl = child.page.profileImage
                   ? urlFor(child.page.profileImage).width(400).height(400).fit('crop').url()
                   : null
 
-                const hoverTextClass = colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
-
                 return (
                   <a
                     href={`/${child.fullPath}`}
-                    class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass}`}
-                    style="box-shadow: 8px 8px 0 0 #000;"
+                    class="group flex flex-col border-4 border-black bg-white hover:-translate-y-1 transition-transform"
+                    style={`box-shadow: 6px 6px 0 0 ${accent};`}
                   >
-                    <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
+                    <div class="aspect-square w-full border-b-4 border-black overflow-hidden relative">
                       {imageUrl ? (
                         <img
                           src={imageUrl}
@@ -178,24 +237,29 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                           class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
                         />
                       ) : (
-                        <div class="w-full h-full flex items-center justify-center opacity-30">
-                          <svg class="w-24 h-24 text-black" viewBox="0 0 24 24" fill="currentColor">
+                        <div class="w-full h-full flex items-center justify-center bg-black/5">
+                          <svg
+                            class="w-20 h-20 text-black/20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
                             <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                           </svg>
                         </div>
                       )}
+                      <div
+                        class="absolute bottom-0 right-0 w-8 h-8"
+                        style={`background: ${accent}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
+                      />
                     </div>
-
-                    <div class="p-4 md:p-6 flex-1 flex flex-col justify-center text-center">
-                      <h3
-                        class={`text-xl md:text-2xl font-black uppercase text-black break-words ${hoverTextClass}`}
-                      >
+                    <div class="p-4 flex flex-col gap-1">
+                      <h3 class="text-base md:text-lg font-black uppercase text-black leading-tight">
                         {child.page.title}
                       </h3>
-
                       {(child.page.role || child.page.subtitle) && (
                         <p
-                          class={`mt-1 md:mt-2 text-xs md:text-sm font-bold text-black opacity-90 uppercase tracking-widest ${hoverTextClass}`}
+                          class="text-xs font-black uppercase tracking-wide"
+                          style={`color: ${accent === '#C926F2' ? '#C926F2' : '#555'};`}
                         >
                           {child.page.role || child.page.subtitle}
                         </p>
@@ -213,10 +277,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
 </div>
 
 <style is:global>
-  /* Bio specific prose refinements */
   .prose p:first-of-type {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.65;
+    font-weight: 700;
   }
 </style>
