@@ -546,7 +546,6 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
             const color = colors[index % colors.length]
             const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
             const icon = icons[index % icons.length]
-            const textColor = color === '#FFED00' || color === '#5EFFD8' ? 'black' : 'white'
 
             return (
               <div class="relative group" style={`transform: rotate(${rotations[index % 4]});`}>
