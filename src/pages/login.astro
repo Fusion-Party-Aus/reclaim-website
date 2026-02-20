@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
+import '../styles/global.css'
+
+let errorMessage = ''
+const redirectUrl = Astro.url.searchParams.get('redirect') || '/'
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData()
+    const password = data.get('password')
+
+    // In a real app, use a secure password verification mechanism.
+    // Here we check against an environment variable or a fallback.
+    const expectedPassword = import.meta.env.SECRET_PASSPHRASE || 'reclaim'
+
+    if (password === expectedPassword) {
+      // Set a cookie that expires in 7 days
+      Astro.cookies.set('reclaim_auth', 'authenticated', {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7, // 7 days
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: import.meta.env.PROD,
+      })
+
+      return Astro.redirect(redirectUrl)
+    } else {
+      errorMessage = 'Incorrect passphrase. Access denied.'
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      errorMessage = error.message
+    }
+  }
+}
+---
+
+<BaseLayout title="Sign In | Reclaim" description="Sign in to access restricted areas.">
+  <Header />
+
+  <main
+    class="min-h-screen bg-linear-to-br from-magenta via-magenta-dark to-magenta-darker relative overflow-hidden pt-28 pb-20 flex items-center justify-center"
+  >
+    <div class="max-w-md w-full mx-auto px-4 relative z-10">
+      <div
+        class="bg-white border-8 border-black p-8 relative"
+        style="box-shadow: 12px 12px 0px 0px #FFED00;"
+      >
+        <div class="text-center mb-8">
+          <div class="inline-block bg-black p-4 rotate-3 mb-4">
+            <Icon name="mdi:lock" class="w-12 h-12 text-yellow" />
+          </div>
+          <h1
+            class="text-4xl font-black uppercase text-black"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            AUTHORISED ACCESS ONLY
+          </h1>
+          <p class="text-gray-600 mt-2 font-bold uppercase tracking-wider text-sm">
+            Please enter your passphrase
+          </p>
+        </div>
+
+        {
+          errorMessage && (
+            <div class="bg-red-600 border-4 border-black p-4 mb-6 text-white font-bold animate-pulse-gentle">
+              <Icon name="mdi:alert-circle" class="w-5 h-5 inline mr-2" />
+              {errorMessage}
+            </div>
+          )
+        }
+
+        <form method="POST" class="space-y-6">
+          <div>
+            <label for="password" class="block font-black uppercase text-sm mb-2 text-black">
+              Passphrase
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              class="w-full border-4 border-black p-4 font-mono focus:outline-none focus:ring-4 focus:ring-yellow transition-all bg-gray-50"
+              placeholder="Enter passphrase..."
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-mint text-black border-4 border-black p-4 font-black uppercase text-lg hover:bg-yellow transition-all"
+            style="box-shadow: 6px 6px 0px 0px #000;"
+          >
+            Verify Identity <Icon name="mdi:arrow-right" class="w-6 h-6 inline ml-2" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

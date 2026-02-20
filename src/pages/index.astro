@@ -1,11 +1,9 @@
 ---
-export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Hero from '../components/Hero.astro'
 import Footer from '../components/Footer.astro'
-import { getDocuments } from '../lib/sanity'
-import { urlFor } from '../lib/sanity'
+import { getDocuments, getHomePage, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 
@@ -24,8 +22,7 @@ import FloatingShareButtons from '../components/FloatingShareButtons.astro'
 import MemberSignup from '../components/MemberSignup.astro'
 
 // Fetch home page data from Sanity
-const homePages = await getDocuments('homePage')
-const homePage = homePages[0] // There should only be one home page
+const homePage = await getHomePage()
 
 if (!homePage) {
   throw new Error('Home page not found in Sanity')
@@ -222,8 +219,8 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
     </div>
   </Section>
 
-  <!-- THE THEFT - Victoria Specific -->
-  <Section border={true} borderPosition="top" padding="xl">
+  <!-- THE FAILURES WE'LL FIX - Victoria Specific -->
+  <Section border={true} borderPosition="bottom" padding="xl">
     <FloatingIcon
       name="mdi:hand-coin"
       color="rgba(255, 51, 153, 0.05)"
@@ -466,6 +463,15 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
                 </ul>
               )}
 
+              <ul class="electorate-priorities">
+                {electorate.commitments.slice(0, 4).map((commitment: any) => (
+                  <li class="flex items-start gap-2">
+                    <Icon name="mdi:check-bold" class="w-5 h-5 text-magenta shrink-0 mt-0.5" />
+                    <strong>{commitment.title}</strong>
+                  </li>
+                ))}
+              </ul>
+
               <BrutalButton
                 href={`/electorates/${electorate.slug.current}`}
                 variant="white"
@@ -548,12 +554,7 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
         {
           homePageTyped.manifestoSection.stats.map((stat: any, index: number) => {
             const rotations = ['-1deg', '1deg', '-1.5deg', '1.5deg']
-            const colors: ('magenta' | 'mint' | 'yellow' | 'lavender')[] = [
-              '#C926F2',
-              '#FFED00',
-              '#5EFFD8',
-              '#C926F2',
-            ] // Magenta, Yellow, Mint
+            const colors = ['#C926F2', '#FFED00', '#5EFFD8', '#C926F2'] // Magenta, Yellow, Mint
             const color = colors[index % colors.length]
             const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
             const icon = icons[index % icons.length]
@@ -604,8 +605,8 @@ const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
 
   <!-- TAKE ACTION -->
   <section
-    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-8 border-t-4 border-yellow relative overflow-hidden"
-    style="border-right: 8px solid #FFED00;"
+    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-4 md:px-8 border-t-4 border-yellow relative overflow-hidden"
+    style="border-right: 4px solid #FFED00;"
   >
     <FloatingIcon
       name="mdi:hand-peace"

@@ -1,6 +1,7 @@
 import {defineConfig, type ConfigContext} from 'sanity'
 import {structureTool, type StructureBuilder} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {table} from '@sanity/table'
 import {schemaTypes} from './schemaTypes'
 
 /**
@@ -77,6 +78,14 @@ export default defineConfig({
 
             S.divider(),
 
+            // 📝 LETTERHEAD
+            S.listItem()
+              .title('Letterhead Generator')
+              .icon(() => '📝')
+              .child(S.document().schemaType('letterhead').documentId('letterhead')),
+
+            S.divider(),
+
             // ✍️ EDITORIAL CONTENT
             S.listItem()
               .title('Editorial Content')
@@ -146,6 +155,7 @@ export default defineConfig({
           ]),
     }),
     visionTool(),
+    table(),
   ],
 
   schema: {

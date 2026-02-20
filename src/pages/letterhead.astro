@@ -1,0 +1,722 @@
+---
+import { getDocuments } from '../lib/sanity'
+import { renderPortableText } from '../lib/portableText'
+import type { PortableTextBlock } from '../lib/portableText'
+
+// Authenticate user
+const hasAccess =
+  Astro.cookies.has('reclaim_auth') && Astro.cookies.get('reclaim_auth')?.value === 'authenticated'
+if (!hasAccess) {
+  return Astro.redirect('/login?redirect=/letterhead')
+}
+
+// Fetch the letterhead singleton document
+const letterheads = await getDocuments('letterhead')
+const letterheadDoc = letterheads[0]
+
+interface Letterhead {
+  title: string
+  content?: PortableTextBlock[]
+}
+
+const letterhead = letterheadDoc as unknown as Letterhead
+
+// Format the date server-side (since we are using SSR, this is perfectly accurate for the request time)
+const currentDate = new Date().toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+
+// Custom AST Processor to wrap H2 sections in printable Tables
+// We use a table structure so that if a box spans multiple pages,
+// the browser print engine will automatically repeat the <thead > (the H2 Title) at the top of the new page!
+function wrapLetterheadSections(html: string): string {
+  const h2Regex = /<h2([^>]*)>(.*?)<\/h2>/gi
+  const parts: string[] = []
+  const matches: Array<{ attrs: string; content: string }> = []
+
+  let lastIndex = 0
+  let match
+
+  while ((match = h2Regex.exec(html)) !== null) {
+    parts.push(html.substring(lastIndex, match.index))
+    matches.push({ attrs: match[1], content: match[2] })
+    lastIndex = match.index + match[0].length
+  }
+
+  parts.push(html.substring(lastIndex))
+
+  let result = ''
+  if (parts[0].trim()) {
+    result += parts[0]
+  }
+
+  const sectionColors = ['bg-magenta', 'bg-mint', 'bg-yellow']
+
+  for (let i = 0; i < matches.length; i++) {
+    const h2Match = matches[i]
+    const sectionContent = parts[i + 1] || ''
+    const bgColor = sectionColors[i % sectionColors.length]
+    const nextH2Index = sectionContent.search(/<h2[^>]*>/i)
+    let thisSection = sectionContent
+
+    if (nextH2Index !== -1) {
+      thisSection = sectionContent.substring(0, nextH2Index)
+    }
+
+    result += `
+      <table class="brutal-section" style="width: 100%; border-collapse: collapse;">
+        <thead style="display: table-header-group;">
+          <tr>
+            <td class="brutal-section-header ${bgColor}"${h2Match.attrs}>
+              <h2 style="margin: 0; padding: 0; border: none; font-size: inherit; font-weight: inherit; text-transform: inherit; text-align: left;">${h2Match.content}</h2>
+            </td>
+          </tr>
+          <!-- Spacer row to act as top padding that gracefully repeats on page breaks -->
+          <tr>
+            <td style="height: 1.5rem; padding: 0; background: transparent; border: none;">
+              <div style="height: 1.5rem;"></div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="brutal-section-content" style="vertical-align: top;">
+              ${thisSection}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    `
+  }
+  return result
+}
+
+// Build out the content with styling wrappers and custom swatch processing
+let renderedContent = '<p>No content available.</p>'
+if (letterhead?.content) {
+  // First render the base HTML
+  let rawHtml = renderPortableText(letterhead.content)
+
+  // A more robust regex that ignores any HTML tags (like <strong>) inserted around the hex code or text
+  rawHtml = rawHtml.replace(
+    /<p>\s*(?:<[^>]+>)*#([A-Fa-f0-9]{6})(?:<\/[^>]+>)*\s*<\/p>\s*<p>(?:<[^>]+>)*([^<]+?)(?:<\/[^>]+>)*<\/p>\s*<p>(?:<[^>]+>)*([^<]+?)(?:<\/[^>]+>)*<\/p>/g,
+    `<div style="display: flex; border: 4px solid #000; box-shadow: 8px 8px 0 #000; margin-bottom: 2rem; background: #fff; break-inside: avoid;">
+      <div style="background-color: #$1; width: 120px; border-right: 4px solid #000; flex-shrink: 0;"></div>
+      <div style="padding: 1.5rem; flex-grow: 1;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">$2</div>
+        <div style="font-family: 'Space Mono', monospace; font-size: 1rem; color: #666; margin-bottom: 0.5rem;">#$1</div>
+        <div style="font-family: 'Inter', sans-serif; font-size: 1.1rem; margin-bottom: 0;">$3</div>
+      </div>
+    </div>`
+  )
+
+  // Wrap sections in printable tables
+  renderedContent = wrapLetterheadSections(rawHtml)
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{letterhead?.title || 'Reclaim - Letterhead'}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .font-display {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+
+      .font-mono {
+        font-family: 'Space Mono', monospace;
+      }
+
+      /* Colors */
+      .bg-fusion-violet {
+        background-color: #5b2eff;
+      }
+      .bg-fusion-magenta {
+        background-color: #c926f2;
+      }
+      .bg-fusion-mint {
+        background-color: #5effd8;
+      }
+      .bg-fusion-yellow {
+        background-color: #ffed00;
+      }
+      .bg-fusion-black {
+        background-color: #000000;
+      }
+      .bg-fusion-white {
+        background-color: #ffffff;
+      }
+
+      .text-fusion-violet {
+        color: #5b2eff;
+      }
+      .text-fusion-magenta {
+        color: #c926f2;
+      }
+      .text-fusion-mint {
+        color: #5effd8;
+      }
+      .text-fusion-yellow {
+        color: #ffed00;
+      }
+      .text-fusion-black {
+        color: #000000;
+      }
+      .text-fusion-white {
+        color: #ffffff;
+      }
+
+      /* Pattern */
+      .pattern-stripes {
+        background: repeating-linear-gradient(
+          45deg,
+          #000,
+          #000 10px,
+          transparent 10px,
+          transparent 20px
+        );
+      }
+
+      /* Shadows */
+      .shadow-brutal-xl {
+        box-shadow: 16px 16px 0px #000000;
+      }
+
+      /* Buttons */
+      .btn-brutal {
+        background: #5effd8;
+        color: #000000;
+        font-weight: 900;
+        padding: 16px 24px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border: 4px solid #000000;
+        box-shadow: 6px 6px 0px #000000;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        font-family: 'Space Grotesk', sans-serif;
+      }
+
+      .btn-brutal:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px #000000;
+      }
+
+      .btn-brutal-outline {
+        background: transparent;
+        color: #000000;
+        font-weight: 900;
+        padding: 16px 24px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border: 4px solid #000000;
+        box-shadow: 6px 6px 0px #000000;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        font-family: 'Space Grotesk', sans-serif;
+      }
+
+      .btn-brutal-outline:hover {
+        background: #000000;
+        color: #ffffff;
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px #000000;
+      }
+
+      /* Prose Styles for Sanity Portable Text */
+      .letterhead-container .prose {
+        color: #000000;
+        font-size: 1.05rem;
+      }
+      .letterhead-container .prose p {
+        margin-bottom: 1.25rem;
+        line-height: 1.45;
+      }
+      .letterhead-container .prose strong {
+        color: #000;
+        padding: 0.1em 0.3em;
+        background-color: #ffed00;
+        border: 2px solid #000;
+        box-shadow: 3px 3px 0 0 #000;
+      }
+      .letterhead-container .prose p:nth-of-type(3n) strong {
+        background-color: #5effd8;
+      }
+      .letterhead-container .prose p:nth-of-type(3n + 1) strong {
+        background-color: #c926f2;
+        color: #fff;
+      }
+      .letterhead-container .prose h1,
+      .letterhead-container .prose h2,
+      .letterhead-container .prose h3,
+      .letterhead-container .prose h4 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 800;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        color: #000000;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .letterhead-container .prose h1 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        border-bottom: 6px solid #000000;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .letterhead-container .prose h2 {
+        font-size: 1.7rem;
+      }
+      /* Refined Print-friendly H3s */
+      .letterhead-container .prose h3 {
+        display: block;
+        color: #000;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 4px solid #000;
+        text-transform: uppercase;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 900;
+      }
+      .letterhead-container .prose h3:nth-of-type(3n + 1) {
+        border-bottom-color: #c926f2;
+      }
+      .letterhead-container .prose h3:nth-of-type(3n + 2) {
+        border-bottom-color: #5effd8;
+      }
+      .letterhead-container .prose h3:nth-of-type(3n) {
+        border-bottom-color: #ffed00;
+      }
+      .letterhead-container .prose ul,
+      .letterhead-container .prose ol {
+        margin-left: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+      .letterhead-container .prose ul ul,
+      .letterhead-container .prose ol ol,
+      .letterhead-container .prose ul ol,
+      .letterhead-container .prose ol ul {
+        margin-left: 1.5rem;
+        margin-bottom: 0;
+        margin-top: 0.5rem;
+      }
+      .letterhead-container .prose ul {
+        list-style-type: square;
+      }
+      .letterhead-container .prose ul ul {
+        list-style-type: circle;
+      }
+      .letterhead-container .prose ul ul ul {
+        list-style-type: disc;
+      }
+      .letterhead-container .prose li {
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+      .letterhead-container .prose li::marker {
+        font-weight: 900;
+      }
+      .letterhead-container .prose a {
+        color: #000000;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: inset 0 -4px 0 #5effd8;
+        transition: all 0.1s;
+      }
+      .letterhead-container .prose a:hover {
+        background-color: #5effd8;
+        box-shadow: inset 0 -1em 0 #5effd8;
+      }
+      .letterhead-container .prose blockquote {
+        border: 4px solid #000000;
+        box-shadow: 8px 8px 0px #000000;
+        background: #ffed00;
+        font-style: normal;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.15rem;
+      }
+      .letterhead-container .prose img {
+        max-width: 100%;
+        height: auto;
+        border: 4px solid #000000;
+        box-shadow: 8px 8px 0px #000000;
+        margin: 2rem 0;
+      }
+      .letterhead-container .prose hr {
+        border: none;
+        border-top: 4px dashed #000000;
+        margin: 3rem 0;
+      }
+
+      /* Component overrides for wrapLetterheadSections Table Approach */
+      .letterhead-container .prose .brutal-section {
+        border: 4px solid #000;
+        margin-bottom: 3rem;
+        background: #fff;
+        box-shadow: 8px 8px 0px #000000;
+        /* CRITICAL: Allow page breaks inside the table so it flows naturally and repeats the header */
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+      .letterhead-container .prose .brutal-section-header {
+        margin: 0 !important;
+        padding: 1rem 1.5rem;
+        border-bottom: 4px solid #000;
+        font-size: 2.2rem;
+      }
+      /* Sync background colors with StandardPage */
+      .letterhead-container .prose .brutal-section-header.bg-magenta {
+        background-color: #c926f2;
+        color: #fff;
+      }
+      .letterhead-container .prose .brutal-section-header.bg-mint {
+        background-color: #5effd8;
+        color: #000;
+      }
+      .letterhead-container .prose .brutal-section-header.bg-yellow {
+        background-color: #ffed00;
+        color: #000;
+      }
+      .letterhead-container .prose .brutal-section-content {
+        padding: 0 1.5rem 0.5rem 1.5rem;
+      }
+
+      /* Print styles */
+      @media print {
+        .letterhead-container .prose .brutal-section {
+          box-shadow: none !important;
+          break-before: page !important;
+          page-break-before: always !important;
+        }
+        .letterhead-container .prose .brutal-section:first-child {
+          break-before: auto !important;
+          page-break-before: auto !important;
+        }
+        @page {
+          margin: 0;
+          size: A4 portrait;
+        }
+        body {
+          background: white !important;
+          padding: 0 !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        .page-wrapper {
+          padding: 0 !important;
+          background: white !important;
+          min-height: auto !important;
+        }
+        .letterhead-container {
+          box-shadow: none !important;
+          border: 8px solid black !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          width: 100% !important;
+          min-height: 100vh !important;
+          border-collapse: collapse !important;
+          height: 100vh !important;
+        }
+        html,
+        body {
+          height: 100% !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+        /* Prevent awkward breaks inside prose elements */
+        .prose h1,
+        .prose h2,
+        .prose h3,
+        .prose h4 {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+        .prose p,
+        .prose ul,
+        .prose ol,
+        .prose li,
+        .prose blockquote,
+        .prose img {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        .prose > div {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper" style="min-height: 100vh; background: #FFFFFF; padding: 32px;">
+      <!-- Letterhead Container - A4 proportions -->
+      <table
+        class="letterhead-container"
+        style="width: 100%; max-width: 210mm; min-height: 297mm; margin: 0 auto; background: #FFFFFF; border: 8px solid #000000; box-shadow: 16px 16px 0px #000000; border-collapse: collapse;"
+      >
+        <!-- Header Section -->
+        <thead style="display: table-header-group;">
+          <tr>
+            <td style="padding: 0;">
+              <header style="position: relative; border-bottom: 8px solid #000000;">
+                <!-- Top Pattern Bar -->
+                <div
+                  style="height: 24px; background: repeating-linear-gradient(45deg, #000, #000 10px, transparent 10px, transparent 20px); background-color: #C926F2; border-bottom: 4px solid #000000;"
+                >
+                </div>
+
+                <!-- Main Header Content -->
+                <div
+                  style="padding: 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px;"
+                >
+                  <!-- Logo Area -->
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Reclaim Logo -->
+                    <div
+                      style="position: relative; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;"
+                    >
+                      <img
+                        src="/solo-full-colour.svg"
+                        alt="Fusion Logo"
+                        style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                      />
+                    </div>
+                    <div>
+                      <h1
+                        style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 48px; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.9; color: #000000;"
+                      >
+                        FUSION
+                      </h1>
+                      <h2
+                        style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.9; color: #C926F2; -webkit-text-stroke: 2px #000;"
+                      >
+                        PARTY
+                      </h2>
+                      <!-- <p
+                  style="font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #000000; margin-top: 4px;"
+                >
+                  The Progressive Coalition
+                </p> -->
+                    </div>
+                  </div>
+
+                  <!-- Contact Info -->
+                  <div style="display: flex; flex-direction: column; gap: 8px; text-align: right;">
+                    <div
+                      style="background: #000000; color: #FFFFFF; padding: 8px 16px; border: 4px solid #000000; display: inline-flex; align-items: center; gap: 8px; align-self: flex-end;"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M2 12h20"></path>
+                        <path
+                          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                        ></path>
+                      </svg>
+                      <span
+                        style="font-family: 'Space Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;"
+                        >fusionparty.org.au</span
+                      >
+                    </div>
+                    <div
+                      style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#C926F2"
+                        stroke-width="3"
+                      >
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                      </svg>
+                      <span style="font-family: 'Space Mono', monospace; font-size: 14px;"
+                        >contact@fusionparty.org.au</span
+                      >
+                    </div>
+                    <div
+                      style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#5EFFD8"
+                        stroke-width="3"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                        ></path>
+                      </svg>
+                      <span style="font-family: 'Space Mono', monospace; font-size: 14px;"
+                        >+61 410 249 574</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Decorative Elements -->
+                <div
+                  style="position: absolute; top: 64px; right: 16px; width: 32px; height: 32px; background: #FFED00; border: 4px solid #000000; transform: rotate(12deg);"
+                >
+                </div>
+              </header>
+            </td>
+          </tr>
+        </thead>
+
+        <!-- Main Content Area -->
+        <tbody>
+          <tr>
+            <td style="padding: 0; vertical-align: top; height: 100%;">
+              <main style="padding: 40px; min-height: 600px;">
+                <!-- Date Line -->
+                <div
+                  style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;"
+                >
+                  <div style="background: #5EFFD8; padding: 8px 16px; border: 4px solid #000000;">
+                    <span
+                      style="font-family: 'Space Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold;"
+                      >{currentDate}</span
+                    >
+                  </div>
+                  <div style="width: 96px; height: 8px; background: #000000;"></div>
+                </div>
+
+                <!-- Letter Content -->
+                <div class="prose" set:html={renderedContent} />
+
+                <!-- Signature Area -->
+                <div style="margin-top: 64px; break-inside: avoid; page-break-inside: avoid;">
+                  <div style="width: 192px; height: 4px; background: #000000; margin-bottom: 8px;">
+                  </div>
+                  <p
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #000000; text-transform: uppercase; letter-spacing: -0.02em;"
+                  >
+                    Ethan Cornwill
+                  </p>
+                  <p
+                    style="font-family: 'Inter', sans-serif; color: rgba(0,0,0,0.7); font-size: 14px;"
+                  >
+                    National Secretary, Fusion Party
+                  </p>
+                </div>
+              </main>
+            </td>
+          </tr>
+        </tbody>
+
+        <!-- Footer Section -->
+        <tfoot style="display: table-footer-group;">
+          <tr>
+            <td style="padding: 0;">
+              <footer style="border-top: 8px solid #000000; background: #000000; color: #FFFFFF;">
+                <div
+                  style="padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;"
+                >
+                  <!-- Authorisation -->
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#C926F2"
+                      stroke-width="3"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <p
+                      style="font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;"
+                    >
+                      Authorised by K. Hunt, Fusion Party, Mansfield
+                    </p>
+                  </div>
+
+                  <!-- Reclaim Tags -->
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                    <span
+                      style="background: #C926F2; color: #FFFFFF; font-family: 'Space Mono', monospace; font-size: 12px; padding: 4px 8px; border: 2px solid #FFFFFF; text-transform: uppercase; letter-spacing: 0.1em;"
+                      >Reclaim Democracy</span
+                    >
+                    <span
+                      style="background: #5EFFD8; color: #000000; font-family: 'Space Mono', monospace; font-size: 12px; padding: 4px 8px; border: 2px solid #FFFFFF; text-transform: uppercase; letter-spacing: 0.1em;"
+                      >Reclaim Our Economy</span
+                    >
+                    <span
+                      style="background: #FFED00; color: #000000; font-family: 'Space Mono', monospace; font-size: 12px; padding: 4px 8px; border: 2px solid #FFFFFF; text-transform: uppercase; letter-spacing: 0.1em;"
+                      >Reclaim Our Future</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Bottom Pattern -->
+                <div
+                  style="height: 16px; background: repeating-linear-gradient(45deg, #000, #000 10px, transparent 10px, transparent 20px); background-color: #C926F2; border-top: 4px solid #000000;"
+                >
+                </div>
+              </footer>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- Print Button -->
+      <div
+        class="no-print"
+        style="max-width: 210mm; margin: 32px auto 0; display: flex; justify-content: center; gap: 16px;"
+      >
+        <button onclick="window.print()" class="btn-brutal"> Print Letterhead </button>
+        <button onclick="window.location.href='/'" class="btn-brutal-outline">
+          Back to Website
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

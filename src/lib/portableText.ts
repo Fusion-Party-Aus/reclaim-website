@@ -4,6 +4,7 @@ export interface PortableTextBlock {
   listItem?: string
   level?: number
   children?: Array<{ _type: string; text: string; marks?: string[] }>
+  rows?: Array<{ _type: string; cells: string[] }> // For @sanity/table blocks
 }
 
 /**
@@ -28,17 +29,55 @@ function renderSpan(child: { _type: string; text: string; marks?: string[] }): s
 }
 
 /**
- * Render Portable Text → HTML with support for marks and lists
+ * Render Portable Text → HTML with support for marks and nested lists
  */
 export function renderPortableText(blocks: PortableTextBlock[] | undefined | null): string {
   if (blocks == null || !Array.isArray(blocks)) return ''
 
   let html = ''
-  let inList = false
-  let currentListType: string | null = null
+  const currentListStack: { type: string; level: number }[] = []
+
+  const closeOpenListsToLevel = (targetLevel: number) => {
+    while (
+      currentListStack.length > 0 &&
+      currentListStack[currentListStack.length - 1].level >= targetLevel
+    ) {
+      const listToClose = currentListStack.pop()!
+      html += `</${listToClose.type}>`
+    }
+  }
+
+  const closeAllLists = () => {
+    closeOpenListsToLevel(1)
+  }
 
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i]
+
+    if (block._type === 'table' && block.rows) {
+      closeAllLists()
+
+      html += `<div class="table-wrapper" style="overflow-x: auto; margin-bottom: 2rem;">`
+      html += `<table class="w-full text-left border-collapse border-4 border-black" style="box-shadow: 8px 8px 0 0 #000; min-width: 600px;">`
+      html += `<tbody>`
+
+      block.rows.forEach((row, rowIndex) => {
+        html += `<tr>`
+        row.cells.forEach((cellText) => {
+          if (rowIndex === 0) {
+            // First row gets Header styling
+            html += `<th class="border-4 border-black bg-yellow p-4 font-black uppercase text-lg text-black bg-yellow-400">${cellText || ''}</th>`
+          } else {
+            // Regular cells
+            html += `<td class="border-4 border-black p-4 bg-white text-black font-medium">${cellText || ''}</td>`
+          }
+        })
+        html += `</tr>`
+      })
+
+      html += `</tbody></table></div>`
+      continue
+    }
 
     if (block._type !== 'block' || block.children == null) continue
 
@@ -48,37 +87,44 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
     // Handle list items
     if (block.listItem) {
       const listType = block.listItem === 'bullet' ? 'ul' : 'ol'
+      const level = block.level || 1
 
-      // Start a new list if needed
-      if (!inList || currentListType !== listType) {
-        if (inList) {
-          html += `</${currentListType}>`
+      // If we are at a lower level than current, close the deeper lists
+      if (
+        currentListStack.length > 0 &&
+        currentListStack[currentListStack.length - 1].level > level
+      ) {
+        closeOpenListsToLevel(level + 1)
+      }
+
+      // If we need to open a new list at this level
+      if (
+        currentListStack.length === 0 ||
+        currentListStack[currentListStack.length - 1].level < level ||
+        currentListStack[currentListStack.length - 1].type !== listType
+      ) {
+        // If we are changing list types at the SAME level, close the old one first
+        if (
+          currentListStack.length > 0 &&
+          currentListStack[currentListStack.length - 1].level === level &&
+          currentListStack[currentListStack.length - 1].type !== listType
+        ) {
+          const listToClose = currentListStack.pop()!
+          html += `</${listToClose.type}>`
         }
+
         html += `<${listType}>`
-        inList = true
-        currentListType = listType
+        currentListStack.push({ type: listType, level })
       }
 
       html += `<li>${text}</li>`
-
-      // Check if next block is not a list item, close the list
-      const nextBlock = blocks[i + 1]
-      if (!nextBlock || !nextBlock.listItem) {
-        html += `</${currentListType}>`
-        inList = false
-        currentListType = null
-      }
     } else {
       // Close any open list
-      if (inList) {
-        html += `</${currentListType}>`
-        inList = false
-        currentListType = null
-      }
+      closeAllLists()
 
       // Handle regular blocks
       const headingId =
-        block.style && ['h2', 'h3', 'h4'].includes(block.style)
+        block.style && ['h1', 'h2', 'h3', 'h4'].includes(block.style)
           ? text
               .toLowerCase()
               .replace(/[^a-z0-9]+/g, '-')
@@ -86,6 +132,9 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
           : ''
 
       switch (block.style) {
+        case 'h1':
+          html += `<h1 id="${headingId}">${text}</h1>`
+          break
         case 'h2':
           html += `<h2 id="${headingId}">${text}</h2>`
           break
@@ -104,10 +153,8 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
     }
   }
 
-  // Close any remaining list
-  if (inList && currentListType) {
-    html += `</${currentListType}>`
-  }
+  // Close any remaining lists
+  closeAllLists()
 
   return html
 }

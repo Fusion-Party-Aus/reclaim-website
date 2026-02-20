@@ -9,38 +9,35 @@ import { getPages } from '../lib/sanity'
 import type { Page } from '../types/sanity'
 import '../styles/global.css'
 
-export async function getStaticPaths() {
-  const pages = await getPages()
+const pages = await getPages()
 
-  return (pages as Page[])
-    .filter((p) => p.slug?.current)
-    .map((p) => {
-      // Construct full path
-      const segments = [p.slug.current]
-      let currentParent = (p as any).parent
-      while (currentParent) {
-        segments.unshift(currentParent.slug.current)
-        currentParent = currentParent.parent
-      }
-      const fullPath = segments.join('/')
+const slug = Astro.params.slug || ''
 
-      return {
-        params: { slug: fullPath },
-        props: { page: p, segments },
-      }
-    })
-}
+const pageMatch = (pages as Page[])
+  .filter((p) => p.slug?.current)
+  .map((p) => {
+    // Construct full path
+    const segments = [p.slug.current]
+    let currentParent = (p as any).parent
+    while (currentParent) {
+      segments.unshift(currentParent.slug.current)
+      currentParent = currentParent.parent
+    }
+    const fullPath = segments.join('/')
 
-export interface Props {
-  page: Page
-  segments: string[]
-}
+    return {
+      fullPath,
+      page: p,
+      segments,
+    }
+  })
+  .find((m) => m.fullPath === slug)
 
-const { page, segments } = Astro.props
-
-if (!page) {
+if (!pageMatch) {
   return Astro.redirect('/404')
 }
+
+const { page, segments } = pageMatch
 ---
 
 <BaseLayout
