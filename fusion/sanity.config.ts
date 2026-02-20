@@ -9,8 +9,8 @@ import {schemaTypes} from './schemaTypes'
  */
 const getPageStructure = (S: StructureBuilder, parentId?: string): any => {
   const filter = parentId
-    ? `_type == "page" && parent._ref == $parentId`
-    : `_type == "page" && !defined(parent)`
+    ? `_type == "page" && parent._ref == $parentId && coalesce(isArchived, false) != true`
+    : `_type == "page" && !defined(parent) && coalesce(isArchived, false) != true`
 
   const title = parentId ? 'Subpages' : 'Top Level Pages'
 
@@ -108,6 +108,14 @@ export default defineConfig({
                       .title('📱 Sidebars')
                       .icon(() => '📱')
                       .child(S.documentTypeList('sidebar').title('Sidebars')),
+                    S.listItem()
+                      .title('🗃️ Archived Pages')
+                      .icon(() => '🗃️')
+                      .child(
+                        S.documentTypeList('page')
+                          .title('Archived Pages')
+                          .filter('_type == "page" && isArchived == true'),
+                      ),
                   ]),
               ),
 
@@ -129,10 +137,19 @@ export default defineConfig({
                           .defaultOrdering([{field: 'publishedAt', direction: 'desc'}]),
                       ),
                     S.listItem()
-                      .title('🗳️ Electorates')
+                      .title('🗳️ Active Electorates')
                       .child(
                         S.documentTypeList('electorate')
-                          .title('Electorates')
+                          .title('Active Electorates')
+                          .filter('_type == "electorate" && coalesce(isArchived, false) != true')
+                          .defaultOrdering([{field: 'name', direction: 'asc'}]),
+                      ),
+                    S.listItem()
+                      .title('🗃️ Archived Electorates')
+                      .child(
+                        S.documentTypeList('electorate')
+                          .title('Archived Electorates')
+                          .filter('_type == "electorate" && isArchived == true')
                           .defaultOrdering([{field: 'name', direction: 'asc'}]),
                       ),
                     S.listItem()

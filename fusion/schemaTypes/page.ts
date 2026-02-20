@@ -66,6 +66,15 @@ export default defineType({
       group: 'settings',
     }),
     defineField({
+      name: 'isArchived',
+      title: 'Archive Page',
+      type: 'boolean',
+      description:
+        'Hide this page from public navigation and main lists (useful for past candidates)',
+      initialValue: false,
+      group: 'settings',
+    }),
+    defineField({
       name: 'sidebarPosition',
       title: 'Sidebar Position',
       type: 'string',

@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
+import type { Page } from '../types/sanity'
+import '../styles/global.css'
+
+const pages = await getPages()
+const archivedElectorates = await getArchivedElectorates()
+
+// Explicitly filter for historical / archived bios
+const archivedBios = (pages as Page[])
+  .filter((p) => p.pageType === 'bio' && p.isArchived === true)
+  .map((p) => ({
+    title: p.title,
+    slug: p.slug?.current,
+    profileImage: p.profileImage,
+    role: p.role || p.subtitle,
+  }))
+
+const archivedElecs = archivedElectorates.map((e) => ({
+  title: e.candidateName || `Candidate for ${e.name}`,
+  slug: `electorates/${e.slug?.current}`,
+  profileImage: e.candidateImage,
+  role: e.subtitle || `Former Candidate - ${e.name}`,
+}))
+
+const allArchived = [...archivedBios, ...archivedElecs].sort((a, b) =>
+  a.title.localeCompare(b.title)
+)
+---
+
+<BaseLayout
+  title="Past Candidates | Fusion Victoria"
+  description="Historical archive of past Fusion Party candidates."
+>
+  <Header />
+
+  <!-- ARCHIVE HEADER -->
+  <section
+    class="bg-black pt-32 pb-16 px-6 lg:px-8 relative overflow-hidden"
+    style="box-shadow: 0 12px 0 0 #C926F2;"
+  >
+    <div
+      class="absolute inset-0 opacity-10 pointer-events-none"
+      style="background-image: radial-gradient(#FFED00 2px, transparent 2px); background-size: 24px 24px;"
+    >
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row align-end justify-between items-end gap-6"
+    >
+      <div class="max-w-3xl">
+        <div
+          class="inline-block p-2 bg-yellow border-4 border-black mb-6 transform -rotate-2"
+          style="box-shadow: 4px 4px 0px 0px #5EFFD8;"
+        >
+          <span class="font-black text-black uppercase tracking-widest text-sm"
+            >Historical Archive</span
+          >
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-black text-white uppercase leading-none drop-shadow-md mb-4"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Past Candidates
+        </h1>
+        <p class="text-xl md:text-2xl font-bold text-gray-300 max-w-2xl">
+          A public record of former candidates and representatives who have stood for the Fusion
+          Party.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHIVE GRID -->
+  <main class="bg-light-grey py-16 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {
+        allArchived.length > 0 ? (
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {allArchived.map((bio, index) => {
+              const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta', 'bg-white']
+              const colorClass = bgColors[index % bgColors.length]
+
+              const imageUrl = bio.profileImage
+                ? urlFor(bio.profileImage).width(400).height(400).fit('crop').url()
+                : null
+
+              const hoverTextClass = colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
+
+              return (
+                <a
+                  href={`/${bio.slug}`}
+                  class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass} grayscale hover:grayscale-0 overflow-hidden relative`}
+                  style="box-shadow: 6px 6px 0 0 #000;"
+                >
+                  {/* Archival stamp */}
+                  <div
+                    class="absolute top-2 right-2 bg-black text-yellow text-[10px] font-black uppercase px-2 py-1 transform rotate-3 z-10 border-2 border-yellow"
+                    style="box-shadow: 2px 2px 0 0 #000;"
+                  >
+                    Archived
+                  </div>
+
+                  <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
+                    {imageUrl ? (
+                      <img
+                        src={imageUrl}
+                        alt={bio.title}
+                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                      />
+                    ) : (
+                      <div class="w-full h-full flex items-center justify-center opacity-20">
+                        <svg class="w-20 h-20 text-black" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+
+                  <div class="p-4 flex-1 flex flex-col justify-center text-center">
+                    <h3
+                      class={`text-lg md:text-xl font-black uppercase text-black break-words ${hoverTextClass}`}
+                    >
+                      {bio.title}
+                    </h3>
+
+                    {(bio.role || bio.subtitle) && (
+                      <p
+                        class={`mt-1 text-[10px] md:text-xs font-bold text-black opacity-80 uppercase tracking-widest ${hoverTextClass}`}
+                      >
+                        {bio.role || bio.subtitle}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              )
+            })}
+          </div>
+        ) : (
+          <div class="brutal-card brutal-card-magenta text-center py-12">
+            <h2 class="text-2xl font-black uppercase mb-2">No Archived Candidates</h2>
+            <p class="font-bold">
+              There are currently no historical candidate bios in the archive.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

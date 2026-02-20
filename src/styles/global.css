@@ -69,7 +69,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem; /* Account for sticky header */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: clip; /* Prevent horizontal scroll without breaking sticky */
   }
 
   body {
@@ -84,7 +84,7 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: clip; /* Prevent horizontal scroll without breaking sticky */
   }
 
   /* Neo-brutalist selection - high contrast yellow */

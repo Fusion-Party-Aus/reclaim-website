@@ -69,7 +69,12 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
 }
 
 export async function getElectorates(): Promise<Electorate[]> {
-  const query = `*[_type == "electorate"] | order(_createdAt desc)`
+  const query = `*[_type == "electorate" && coalesce(isArchived, false) != true] | order(_createdAt desc)`
+  return await client.fetch(query)
+}
+
+export async function getArchivedElectorates(): Promise<Electorate[]> {
+  const query = `*[_type == "electorate" && isArchived == true] | order(_createdAt desc)`
   return await client.fetch(query)
 }
 

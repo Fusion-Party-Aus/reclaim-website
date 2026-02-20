@@ -5,37 +5,11 @@ import Header from '../../components/Header.astro'
 import Hero from '../../components/Hero.astro'
 import Footer from '../../components/Footer.astro'
 import { Icon } from 'astro-icon/components'
-import { getDocuments, getElectoratesPage, urlFor } from '../../lib/sanity'
+import { getElectorates, getElectoratesPage, urlFor } from '../../lib/sanity'
 import '../../styles/global.css'
 import { BrutalCard, BrutalButton, FloatingIcon, CTA } from '../../components/ui'
 
-interface CommitmentDetail {
-  detail: string
-}
-
-interface Commitment {
-  icon: string
-  title: string
-  highlight: string
-  details?: CommitmentDetail[]
-}
-
-interface Electorate {
-  _id: string
-  name: string
-  slug: { current: string }
-  subtitle?: string
-  candidateName: string
-  candidateImage?: {
-    asset: {
-      url: string
-    }
-  }
-  candidateBio?: string
-  commitments?: Commitment[]
-}
-
-const electorates = await getDocuments<Electorate>('electorate')
+const electorates = await getElectorates()
 const pageData = await getElectoratesPage()
 
 // Display Logic

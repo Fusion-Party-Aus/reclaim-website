@@ -42,7 +42,8 @@ const { page, segments } = pageMatch
 
 // Find all descendant bio pages to build the automatic Team Grid
 const childPages = allPages.filter(
-  (p) => p.fullPath.startsWith(slug + '/') && p.page.pageType === 'bio'
+  (p) =>
+    p.fullPath.startsWith(slug + '/') && p.page.pageType === 'bio' && p.page.isArchived !== true
 )
 
 // Group them by their immediate parent
