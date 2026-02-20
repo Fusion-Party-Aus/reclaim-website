@@ -7,39 +7,23 @@ import { getElectorates, getHomePage, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 
-// Component Library
-import Section from '../components/ui/Section.astro'
-import Grid from '../components/ui/Grid.astro'
-import BrutalCard from '../components/ui/BrutalCard.astro'
-import BrutalButton from '../components/ui/BrutalButton.astro'
-import CTA from '../components/ui/CTA.astro'
-import FloatingIcon from '../components/ui/FloatingIcon.astro'
 import MovementMetrics from '../components/ui/MovementMetrics.astro'
 import DeveloperMessages from '../components/DeveloperMessages.astro'
-import ShareQuoteCard from '../components/ShareQuoteCard.astro'
 import ScrollProgress from '../components/ScrollProgress.astro'
-import FloatingShareButtons from '../components/FloatingShareButtons.astro'
 import MemberSignup from '../components/MemberSignup.astro'
 
-// Fetch home page data from Sanity
 const homePage = await getHomePage()
 
 if (!homePage) {
   throw new Error('Home page not found in Sanity')
 }
 
-// Fetch electorates for the electorates section
 const electorates = await getElectorates()
-
-// The references are already resolved by Sanity via getHomePage() `->` projection
 const featuredPolicies: any[] = homePage.theftSection?.featuredPolicies || []
 
 interface HomePage {
   title: string
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-  }
+  seo?: { metaTitle?: string; metaDescription?: string }
   hero: {
     eyebrow?: string
     title: string
@@ -68,52 +52,21 @@ interface HomePage {
     buttonText?: string
     footerText?: string
   }
-  theftSection: {
-    heading: string
-    description: string
-    cards: any[]
-    featuredPolicies?: any[]
-  }
+  theftSection: { heading: string; description: string; cards: any[]; featuredPolicies?: any[] }
   electoratesSection: {
     heading: string
     description: string
-    callToAction: {
-      heading: string
-      description: string
-      buttonText: string
-      buttonLink: string
-    }
+    callToAction: { heading: string; description: string; buttonText: string; buttonLink: string }
   }
-  manifestoSection: {
-    heading: string
-    description: string
-    stats: any[]
-  }
-  joinSection: {
-    heading: string
-    description: string
-    cards: any[]
-  }
+  manifestoSection: { heading: string; description: string; stats: any[] }
+  joinSection: { heading: string; description: string; cards: any[] }
 }
 
-const homePageTyped = homePage as unknown as HomePage
+const hp = homePage as unknown as HomePage
 
-// Merge Sanity metrics with defaults if Sanity data is missing or empty
 const defaultMetrics = [
-  {
-    label: 'Registered Members',
-    current: 847,
-    goal: 1000,
-    icon: '👥',
-    color: 'magenta' as const,
-  },
-  {
-    label: 'Active Volunteers',
-    current: 234,
-    goal: 320,
-    icon: '🙋',
-    color: 'mint' as const,
-  },
+  { label: 'Registered Members', current: 847, goal: 1000, icon: '👥', color: 'magenta' as const },
+  { label: 'Active Volunteers', current: 234, goal: 320, icon: '🙋', color: 'mint' as const },
   {
     label: 'Candidates Ready',
     current: 12,
@@ -131,577 +84,533 @@ const defaultMetrics = [
     prefix: '$',
   },
 ]
+const movementMetrics = hp.movementMetrics || defaultMetrics
 
-const movementMetrics = homePageTyped.movementMetrics || defaultMetrics
+const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSection.cards || []
 ---
 
-<BaseLayout
-  title={homePageTyped.seo?.metaTitle || homePageTyped.title}
-  description={homePageTyped.seo?.metaDescription || ''}
->
+<BaseLayout title={hp.seo?.metaTitle || hp.title} description={hp.seo?.metaDescription || ''}>
   <Header />
-
-  <!-- Developer Messages (injected via console, Astro strips HTML comments) -->
   <DeveloperMessages />
-
-  <!-- Scroll Progress with Milestones -->
   <ScrollProgress showMilestones={true} color="magenta" />
 
-  <!-- Floating Share Buttons -->
-  <FloatingShareButtons
-    title="Fusion Party - Democracy shouldn't be a spectator sport"
-    position="left"
-  />
-
-  <!-- ALERT BAR - Enhanced with icon -->
+  <!-- ALERT BAR -->
   {
-    homePageTyped.alertBar?.enabled !== false && (
-      <div
-        class="alert-bar relative overflow-hidden border-y-8 border-black"
-        style="box-shadow: inset 0 8px 0 0 rgba(255,237,0,0.3);"
-      >
-        <div class="absolute top-0 right-0 text-white/5 text-6xl">
-          <Icon name="mdi:vote" class="w-16 h-16" />
-        </div>
-        <div class="relative z-10">
-          <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
-          {homePageTyped.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
-          <a href={homePageTyped.alertBar?.linkUrl || '#electorates'}>
-            {homePageTyped.alertBar?.linkText || 'Find your electorate'}
-          </a>
-        </div>
+    hp.alertBar?.enabled !== false && (
+      <div class="alert-bar border-y-4 border-black">
+        <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
+        {hp.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
+        <a href={hp.alertBar?.linkUrl || '#electorates'}>
+          {hp.alertBar?.linkText || 'Find your electorate'}
+        </a>
       </div>
     )
   }
 
   <!-- HERO -->
   <Hero
-    eyebrow={homePageTyped.hero.eyebrow}
-    title={homePageTyped.hero.title}
-    subtitle={homePageTyped.hero.subtitle}
-    stats={homePageTyped.hero.stats}
-    showCTA={homePageTyped.hero.showCTA}
+    eyebrow={hp.hero.eyebrow}
+    title={hp.hero.title}
+    subtitle={hp.hero.subtitle}
+    stats={hp.hero.stats}
+    showCTA={hp.hero.showCTA}
   />
 
-  <!-- MOVEMENT METRICS - Gamified Progress Tracking -->
-  <Section padding="xl" border={true} borderPosition="top" borderColor="magenta" bg="white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <div
-          class="inline-block mb-4 p-4 bg-magenta border-6 border-black"
-          style="box-shadow: 6px 6px 0px 0px #FFED00; transform: rotate(-2deg);"
-        >
-          <Icon name="mdi:chart-line" class="w-12 h-12 text-white" />
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1: MOVEMENT METRICS — solid white, left-aligned header
+       ═══════════════════════════════════════════════════════ -->
+  <section class="bg-white border-b-8 border-black py-20 px-4 md:px-8 relative overflow-hidden">
+    {/* Watermark */}
+    <div class="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
+      <span
+        class="text-[16rem] font-black uppercase leading-none select-none"
+        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.03; transform: translateY(20%);"
+        >NOW</span
+      >
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <!-- Section header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <div
+            class="inline-block bg-magenta text-black px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+            style="box-shadow: 3px 3px 0px 0px #000;"
+          >
+            THE MOVEMENT
+          </div>
+          <h2
+            class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
+            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+          >
+            Movement<br /><span class="text-magenta">In Motion</span>
+          </h2>
         </div>
-        <h2
-          class="text-3xl md:text-5xl font-black mb-4 uppercase inline-block px-6 py-3 bg-white border-8 border-black"
-          style="transform: rotate(-1deg); box-shadow: 8px 8px 0px 0px #C926F2; color: #000000;"
-        >
-          Movement In Motion
-        </h2>
-        <p class="text-lg text-gray-700 font-black max-w-2xl mx-auto mt-6">
-          Real people. Real progress. Real democracy. Watch us grow in real-time.
+        <p class="text-lg font-black text-gray-700 max-w-xs border-l-4 border-magenta pl-4">
+          Real people. Real progress. Watch us grow in real-time.
         </p>
       </div>
+
       <MovementMetrics metrics={movementMetrics} />
     </div>
-  </Section>
+  </section>
 
-  <!-- THE FAILURES WE'LL FIX - Victoria Specific -->
-  <Section border={true} borderPosition="bottom" padding="xl">
-    <FloatingIcon
-      name="mdi:hand-coin"
-      color="rgba(255, 51, 153, 0.05)"
-      size={256}
-      animation="float"
-      position={{ top: '5rem', left: '2.5rem' }}
-    />
-    <FloatingIcon
-      name="mdi:cash-remove"
-      color="rgba(0, 255, 204, 0.05)"
-      size={192}
-      animation="float"
-      position={{ bottom: '5rem', right: '2.5rem' }}
-      delay="1s"
-    />
-
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div
-        class="inline-block mb-6 p-4 bg-magenta border-6 border-black"
-        style="box-shadow: 6px 6px 0px 0px #000000; transform: rotate(2deg);"
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2: FEATURED POLICIES — solid mint background
+       ═══════════════════════════════════════════════════════ -->
+  <section
+    id="policies"
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black"
+    style="background-color: #5EFFD8;"
+  >
+    {/* Watermark */}
+    <div
+      class="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden"
+    >
+      <span
+        class="text-[18rem] font-black uppercase leading-none select-none"
+        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.06; transform: rotate(-4deg) translateX(-5%);"
+        >FIX</span
       >
-        <Icon name="mdi:alert-decagram" class="w-16 h-16 text-yellow" />
-      </div>
-      <h2
-        class="text-4xl md:text-6xl font-black mb-6 uppercase inline-block px-8 py-4 bg-yellow border-8 border-black"
-        style="transform: rotate(-1.5deg); box-shadow: 10px 10px 0px 0px #000000;"
-      >
-        {homePageTyped.theftSection.heading}
-      </h2>
-      <p class="text-xl text-gray-700 font-black mt-8">
-        {homePageTyped.theftSection.description}
-      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      {
-        (featuredPolicies.length > 0
-          ? featuredPolicies
-          : homePageTyped.theftSection.cards || []
-        ).map((item: any, index: number) => {
-          const isPolicy = !!item.slug
+    {/* Corner accent */}
+    <div
+      class="absolute top-0 right-0 w-40 h-40 bg-black hidden md:block"
+      style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
+    >
+    </div>
 
-          // Handle image URLs for both policies and manual cards
-          const imageUrl = item.image
-            ? urlFor(item.image).width(600).height(400).url()
-            : item.imageUrl || null
+    <div class="max-w-7xl mx-auto relative z-10">
+      <!-- Section header -->
+      <div class="mb-16">
+        <div
+          class="inline-block bg-black text-mint px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+          style="box-shadow: 3px 3px 0px 0px #000;"
+        >
+          WHAT WE'LL FIX
+        </div>
+        <h2
+          class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+        >
+          {hp.theftSection.heading}
+        </h2>
+        <p class="text-xl font-black text-black mt-4 max-w-2xl border-l-8 border-black pl-4">
+          {hp.theftSection.description}
+        </p>
+      </div>
 
-          const shadowColors = ['#C926F2', '#5EFFD8', '#FFED00']
-          const shadowColor = shadowColors[index % 3]
-          const rotations = ['-1deg', '0.5deg', '-0.5deg', '1deg', '-1.5deg', '0.75deg']
-          const rotation = rotations[index % 6]
-
-          // Map fields appropriately
-          const title = isPolicy ? item.title : item.amount || item.title
-          const description = isPolicy ? item.summary : item.description
-          const category = item.category || (isPolicy ? item.pillar : 'Policy')
-          const icon = item.icon || 'mdi:file-document'
-          const link = isPolicy ? `/policies/${item.slug.current}` : item.link || '#'
-          const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
-
-          return (
-            <div
-              class="bg-white border-8 border-black transition-all duration-200 hover:-translate-y-2 hover:rotate-0 group"
-              style={`box-shadow: 8px 8px 0px 0px ${shadowColor}; transform: rotate(${rotation});`}
-            >
-              <div class="relative overflow-hidden">
+      <!-- Policy cards — clean grid, no rotation on cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          policyItems.map((item: any, index: number) => {
+            const isPolicy = !!item.slug
+            const imageUrl = item.image
+              ? urlFor(item.image).width(600).height(400).url()
+              : item.imageUrl || null
+            const shadowColors = ['#000000', '#C926F2', '#000000']
+            const shadowColor = shadowColors[index % 3]
+            const accentColors = ['#C926F2', '#FFED00', '#5EFFD8']
+            const accentColor = accentColors[index % 3]
+            const title = isPolicy ? item.title : item.amount || item.title
+            const description = isPolicy ? item.summary : item.description
+            const category = item.category || (isPolicy ? item.pillar : 'Policy')
+            const icon = item.icon || 'mdi:file-document'
+            const link = isPolicy ? `/policies/${item.slug.current}` : item.link || '#'
+            const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
+            return (
+              <a
+                href={link}
+                class="group block bg-white border-4 border-black transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1"
+                style={`box-shadow: 6px 6px 0px 0px ${shadowColor};`}
+              >
                 {imageUrl ? (
                   <img
                     src={imageUrl}
                     alt={category}
-                    class="w-full h-56 object-cover border-b-6 border-black group-hover:scale-105 transition-transform duration-300"
+                    class="w-full h-48 object-cover border-b-4 border-black group-hover:brightness-90 transition-all"
                   />
                 ) : (
                   <div
-                    class="w-full h-56 border-b-6 border-black flex items-center justify-center"
-                    style={`background: repeating-linear-gradient(45deg, ${shadowColor}, ${shadowColor} 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);`}
+                    class="w-full h-48 border-b-4 border-black flex items-center justify-center"
+                    style={`background-color: ${accentColor};`}
                   >
-                    <Icon name={icon} class="w-24 h-24 text-black opacity-30" />
+                    <Icon name={icon} class="w-20 h-20 text-black opacity-40" />
                   </div>
                 )}
-                <div
-                  class="absolute top-4 right-4 p-3 bg-black border-4 border-white"
-                  style={`box-shadow: 4px 4px 0px 0px ${shadowColor};`}
-                >
-                  <Icon name={icon} class="w-8 h-8" style={`color: ${shadowColor};`} />
-                </div>
-                <div class="absolute top-4 left-4 px-3 py-1 bg-black border-3 border-white text-white text-xs font-black uppercase tracking-wider">
-                  {category}
-                </div>
-              </div>
-
-              <div class="p-6">
-                <h3
-                  class="text-2xl font-black mb-3 uppercase leading-tight group-hover:text-magenta transition-colors"
-                  style="font-family: 'Archivo Black', sans-serif;"
-                >
-                  {title}
-                </h3>
-                <p class="text-base font-bold text-gray-700 mb-4 leading-snug">{description}</p>
-
-                <div class="border-t-4 border-black pt-4 mt-4">
-                  <a
-                    href={link}
-                    class="inline-flex items-center gap-2 font-black uppercase text-sm transition-all group-hover:translate-x-2 border-b-4 border-magenta pb-1"
-                    style="color: #C926F2;"
-                  >
-                    {linkText}
-                    <Icon name="mdi:arrow-right-bold" class="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          )
-        })
-      }
-    </div>
-  </Section>
-
-  <!-- ELECTORATES -->
-  <Section
-    id="electorates"
-    bg="gray"
-    border={true}
-    borderPosition="top"
-    borderColor="mint"
-    padding="xl"
-  >
-    <FloatingIcon
-      name="mdi:map-marker-star"
-      color="rgba(230, 230, 250, 0.05)"
-      size={224}
-      animation="spin"
-      position={{ top: '2.5rem', right: '5rem' }}
-    />
-    <FloatingIcon
-      name="mdi:account-group"
-      color="rgba(255, 255, 0, 0.05)"
-      size={192}
-      animation="float"
-      position={{ bottom: '2.5rem', left: '5rem' }}
-      delay="2s"
-    />
-
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div
-        class="inline-block mb-6 p-4 bg-mint border-6 border-black"
-        style="box-shadow: 6px 6px 0px 0px #C926F2; transform: rotate(-2deg);"
-      >
-        <Icon name="mdi:map-search" class="w-16 h-16 text-black" />
-      </div>
-      <h2
-        class="text-4xl md:text-6xl font-black mb-6 uppercase inline-block px-8 py-4 bg-white border-8 border-black"
-        style="transform: rotate(1deg); box-shadow: 10px 10px 0px 0px #5EFFD8;"
-      >
-        {homePageTyped.electoratesSection.heading}
-      </h2>
-      <p class="text-xl text-gray-700 font-black mt-8">
-        {homePageTyped.electoratesSection.description}
-      </p>
-    </div>
-
-    <div
-      class={`max-w-7xl mx-auto grid gap-8 ${electorates.length === 1 ? 'grid-cols-1 max-w-xl mx-auto' : electorates.length === 0 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}
-    >
-      {
-        electorates.length === 0 ? (
-          <div class="col-span-1">
-            <BrutalCard
-              variant="yellow"
-              shadow="lg"
-              class="max-w-2xl mx-auto text-center py-8"
-              rotation={-1}
-            >
-              <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-black" />
-              <h3 class="text-2xl font-black uppercase mb-3">Campaigns Incoming</h3>
-              <p class="text-lg font-bold mb-8">
-                We are currently finalising our candidates and electorates for the upcoming
-                election. Stay tuned for announcements!
-              </p>
-              <BrutalButton href="/past-candidates" variant="white" icon="mdi:archive">
-                View Past Candidates Archive
-              </BrutalButton>
-            </BrutalCard>
-          </div>
-        ) : (
-          electorates.map((electorate: any, index: number) => {
-            const colors = ['#C926F2', '#5EFFD8', '#FFED00']
-            const rotations = [-1, 1, -0.5]
-            const color = colors[index % 3]
-            const rotation = rotations[index % 3]
-
-            return (
-              <BrutalCard
-                variant="white"
-                hover={true}
-                shadow={color}
-                shadowSize="8"
-                rotation={rotation}
-              >
-                {electorate.candidateImage && (
-                  <div class="mb-4 -mx-6 -mt-6 overflow-hidden">
-                    <img
-                      src={urlFor(electorate.candidateImage)
-                        .width(400)
-                        .height(300)
-                        .fit('crop')
-                        .url()}
-                      alt={electorate.candidateName || `Candidate for ${electorate.name}`}
-                      class="w-full h-48 object-cover border-b-4 border-black group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-
-                <header class="mb-4">
+                <div class="p-6">
                   <div
-                    class="inline-flex items-center gap-1 bg-black text-white px-3 py-1 text-xs font-black uppercase mb-3"
-                    style={`box-shadow: 3px 3px 0px 0px ${color};`}
+                    class="inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider border-2 border-black mb-3"
+                    style={`background: ${accentColor}; color: #000;`}
                   >
-                    <Icon name="mdi:flag" class="w-3 h-3" />
-                    Electorate
+                    {category}
                   </div>
                   <h3
-                    class="text-3xl md:text-4xl font-black mb-2 uppercase group-hover:text-black transition-colors"
-                    style={`color: ${color}; font-family: 'Archivo Black', sans-serif;`}
+                    class="text-xl font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors"
+                    style="font-family: 'Archivo Black', sans-serif;"
                   >
-                    {electorate.name}
+                    {title}
                   </h3>
-                  {electorate.subtitle && (
-                    <p class="font-bold text-sm mb-3 uppercase" style="color: #1A1A1A;">
-                      {electorate.subtitle}
-                    </p>
-                  )}
-                  {electorate.candidateName && (
-                    <div
-                      class="flex items-center gap-2 px-3 py-2 bg-gray-50 border-2 border-black inline-block"
-                      style="box-shadow: 2px 2px 0px 0px #000000;"
-                    >
-                      <Icon name="mdi:account" class="w-5 h-5" style={`color: ${color};`} />
-                      <span class="font-black text-sm uppercase">{electorate.candidateName}</span>
-                    </div>
-                  )}
-                </header>
-
-                {Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
-                  <ul class="space-y-3 mb-6">
-                    {electorate.commitments.slice(0, 3).map((commitment: any, idx: number) => (
-                      <li
-                        class="border-l-4 pl-3 py-2 hover:border-l-6 transition-all"
-                        style={`border-color: ${color};`}
-                      >
-                        <div class="flex items-start gap-2">
-                          <span class="text-2xl" style={`animation-delay: ${idx * 0.2}s;`}>
-                            {commitment.icon}
-                          </span>
-                          <div>
-                            <div class="font-black text-sm uppercase leading-tight">
-                              {commitment.title}
-                            </div>
-                            <div class="text-xs mt-1 font-semibold">{commitment.highlight}</div>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <ul class="electorate-priorities">
-                  {electorate.commitments.slice(0, 4).map((commitment: any) => (
-                    <li class="flex items-start gap-2">
-                      <Icon name="mdi:check-bold" class="w-5 h-5 text-magenta shrink-0 mt-0.5" />
-                      <strong>{commitment.title}</strong>
-                    </li>
-                  ))}
-                </ul>
-
-                <BrutalButton
-                  href={`/electorates/${electorate.slug.current}`}
-                  variant="white"
-                  size="lg"
-                  icon="mdi:eye"
-                  iconPosition="left"
-                >
-                  View Plan for {electorate.name}
-                </BrutalButton>
-              </BrutalCard>
-            )
-          })
-        )
-      }
-    </div>
-
-    <CTA variant="secondary" size="lg" shadow="lg" class="mt-12 max-w-2xl mx-auto">
-      <div class="inline-block mb-4 animate-wiggle-subtle">
-        <Icon name="mdi:bullhorn" class="w-12 h-12 text-magenta" />
-      </div>
-      <p class="text-xl font-semibold mb-3">
-        <strong>{homePageTyped.electoratesSection.callToAction.heading}</strong>
-      </p>
-      <p class="mb-6">
-        {homePageTyped.electoratesSection.callToAction.description}
-      </p>
-      <BrutalButton
-        href={homePageTyped.electoratesSection.callToAction.buttonLink}
-        variant="primary"
-        icon="mdi:email-fast"
-      >
-        {homePageTyped.electoratesSection.callToAction.buttonText}
-      </BrutalButton>
-    </CTA>
-  </Section>
-
-  <!-- MANIFESTO HIGHLIGHT -->
-  <Section
-    border={true}
-    borderPosition="top"
-    borderColor="mint"
-    padding="xl"
-    class="text-center relative overflow-hidden"
-    style="background-image: radial-gradient(#5EFFD8 1px, transparent 1px); background-size: 20px 20px;"
-  >
-    <div class="absolute inset-0 bg-white/90 z-0"></div>
-
-    <FloatingIcon
-      name="mdi:file-document-edit"
-      color="rgba(0, 255, 204, 0.1)"
-      size={256}
-      animation="float"
-      position={{ top: '50%', left: '2.5rem' }}
-    />
-    <FloatingIcon
-      name="mdi:book-open-page-variant"
-      color="rgba(255, 51, 153, 0.1)"
-      size={192}
-      animation="spin"
-      position={{ top: '25%', right: '2.5rem' }}
-    />
-
-    <div class="max-w-6xl mx-auto relative z-10">
-      <div
-        class="inline-block mb-6 p-5 bg-mint border-6 border-black"
-        style="box-shadow: 8px 8px 0px 0px #000000; transform: rotate(-3deg);"
-      >
-        <Icon name="mdi:scroll-text" class="w-16 h-16 text-black" />
-      </div>
-      <h2
-        class="text-4xl md:text-7xl font-black mb-6 uppercase inline-block px-10 py-5 bg-white border-10 border-black"
-        style="transform: rotate(1.5deg); box-shadow: 12px 12px 0px 0px #5EFFD8; color: #000000; border-width: 10px;"
-      >
-        {homePageTyped.manifestoSection.heading}
-      </h2>
-      <p class="text-xl md:text-2xl mb-12 font-black text-gray-800 max-w-3xl mx-auto mt-8">
-        {homePageTyped.manifestoSection.description}
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-16">
-        {
-          homePageTyped.manifestoSection.stats.map((stat: any, index: number) => {
-            const rotations = ['-1deg', '1deg', '-1.5deg', '1.5deg']
-            const colors = ['#C926F2', '#FFED00', '#5EFFD8', '#C926F2'] // Magenta, Yellow, Mint
-            const color = colors[index % colors.length]
-            const icons = ['mdi:account-group', 'mdi:cash-multiple', 'mdi:town-hall', 'mdi:poll']
-            const icon = icons[index % icons.length]
-
-            return (
-              <div class="relative group" style={`transform: rotate(${rotations[index % 4]});`}>
-                <div class="absolute inset-0 bg-black translate-x-2 translate-y-2 transition-transform group-hover:translate-x-3 group-hover:translate-y-3" />
-                <div class="relative bg-white border-4 border-black p-0 h-full flex flex-col transition-transform group-hover:-translate-y-1">
-                  {/* Card Header Strip */}
-                  <div class="h-4 border-b-4 border-black" style={`background-color: ${color};`} />
-
-                  <div class="p-6 flex-1 flex flex-col items-center justify-center">
-                    <div class="mb-4 p-3 rounded-full border-2 border-black bg-white shadow-[2px_2px_0_0_#000000]">
-                      <Icon name={icon} class="w-8 h-8 text-black" />
-                    </div>
-
-                    <span
-                      class="text-5xl lg:text-6xl font-black block mb-2 uppercase leading-none"
-                      style={`color: ${color === '#FFED00' ? '#D4C300' : color}; -webkit-text-stroke: 1.5px black; text-shadow: 3px 3px 0px rgba(0,0,0,0.1);`}
-                    >
-                      {stat.number}
-                    </span>
-                    <span class="text-sm md:text-base font-black uppercase text-black tracking-wide">
-                      {stat.label}
-                    </span>
-                  </div>
-
-                  {/* Card Footer Strip (for balance) */}
-                  <div class="h-2 border-t-4 border-black bg-gray-100" />
+                  <p class="text-sm font-bold text-gray-700 leading-snug mb-4">{description}</p>
+                  <span class="inline-flex items-center gap-2 font-black uppercase text-sm text-black border-b-2 border-black">
+                    {linkText} <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                  </span>
                 </div>
-              </div>
+              </a>
             )
           })
         }
       </div>
 
-      <div class="cta-buttons flex flex-wrap gap-6 justify-center">
-        <BrutalButton href="/manifesto" variant="primary" icon="mdi:book-open">
-          READ FULL MANIFESTO
-        </BrutalButton>
-        <BrutalButton href="/policies" variant="white" icon="mdi:calculator">
-          SEE THE COSTINGS
-        </BrutalButton>
-      </div>
-    </div>
-  </Section>
-
-  <!-- TAKE ACTION -->
-  <section
-    class="bg-gradient-to-br from-magenta via-magenta-dark to-magenta-darker text-white py-20 px-4 md:px-8 border-t-4 border-yellow relative overflow-hidden"
-    style="border-right: 4px solid #FFED00;"
-  >
-    <FloatingIcon
-      name="mdi:hand-peace"
-      color="rgba(255, 255, 0, 0.1)"
-      size={256}
-      animation="spin"
-      position={{ top: '5rem', right: '5rem' }}
-    />
-    <FloatingIcon
-      name="mdi:human-greeting-proximity"
-      color="rgba(0, 255, 204, 0.1)"
-      size={192}
-      animation="float"
-      position={{ bottom: '2.5rem', left: '2.5rem' }}
-    />
-
-    <div class="max-w-5xl mx-auto relative z-10">
-      <div class="text-center">
-        <div
-          class="inline-block mb-6 p-5 bg-yellow border-6 border-black"
-          style="box-shadow: 8px 8px 0px 0px #000000; transform: rotate(3deg);"
+      <div class="mt-10">
+        <a
+          href="/policies"
+          class="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-black uppercase text-lg border-4 border-black hover:-translate-y-1 hover:-translate-x-1 transition-all"
+          style="box-shadow: 6px 6px 0px 0px #FFED00;"
         >
-          <Icon name="mdi:bullhorn-variant" class="w-16 h-16 text-black" />
-        </div>
-        <h2
-          class="text-4xl md:text-6xl font-black mb-6 uppercase inline-block px-10 py-5 bg-white border-8 border-black text-black"
-          style="transform: rotate(-1.5deg); box-shadow: 10px 10px 0px 0px #FFED00;"
-        >
-          {homePageTyped.joinSection.heading}
-        </h2>
-        <p class="text-xl mb-12 max-w-3xl mx-auto font-black">
-          {homePageTyped.joinSection.description}
-        </p>
+          <Icon name="mdi:file-document-multiple" class="w-6 h-6" />
+          See All Policies
+        </a>
       </div>
-
-      <Grid variant="3col" gap="lg">
-        {
-          homePageTyped.joinSection.cards.map((card: any, index: number) => {
-            const colSpan =
-              card.size === 'large'
-                ? 'md:col-span-3'
-                : card.size === 'medium'
-                  ? 'md:col-span-2'
-                  : 'md:col-span-1'
-            const rowSpan = card.size === 'small' ? 'md:row-span-2' : ''
-            const rotations = ['-0.5deg', '1deg', '0.5deg']
-            const translations = ['10px', '-15px', '-5px']
-
-            return (
-              <BrutalCard
-                hover={true}
-                shadow="lg"
-                padding="lg"
-                class={`${colSpan} ${rowSpan}`}
-                style={`transform: rotate(${rotations[index % 3]}) translateY(${translations[index % 3]});`}
-              >
-                {card.icon && card.icon.includes(':') && (
-                  <div class="mb-4 animate-wiggle-subtle">
-                    <Icon name={card.icon} class="w-16 h-16 text-magenta" />
-                  </div>
-                )}
-                <h3 class="text-2xl font-black mb-3 uppercase">{card.title}</h3>
-                <p class="mb-6 font-bold">{card.description}</p>
-                <BrutalButton
-                  href={card.buttonLink}
-                  variant={card.buttonStyle === 'primary' ? 'primary' : 'secondary'}
-                  icon="mdi:arrow-right-circle"
-                >
-                  {card.buttonText}
-                </BrutalButton>
-              </BrutalCard>
-            )
-          })
-        }
-      </Grid>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3: ELECTORATES — solid black background
+       ═══════════════════════════════════════════════════════ -->
+  <section
+    id="electorates"
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-mint bg-black"
+  >
+    {/* Watermark */}
+    <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
+      <span
+        class="text-[14rem] font-black uppercase leading-none select-none"
+        style="font-family: 'Anton', sans-serif; color: #fff; opacity: 0.03; transform: rotate(8deg) translateX(10%);"
+        >VOTE</span
+      >
+    </div>
+
+    {/* Corner accent — mint */}
+    <div
+      class="absolute bottom-0 left-0 w-48 h-48 bg-mint hidden md:block"
+      style="clip-path: polygon(0 100%, 100% 100%, 0 0);"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <!-- Section header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <div
+            class="inline-block bg-mint text-black px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-mint"
+            style="box-shadow: 3px 3px 0px 0px #5EFFD8;"
+          >
+            CANDIDATES
+          </div>
+          <h2
+            class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
+            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+          >
+            {hp.electoratesSection.heading}
+          </h2>
+        </div>
+        <p class="text-lg font-black text-mint max-w-xs border-l-4 border-mint pl-4">
+          {hp.electoratesSection.description}
+        </p>
+      </div>
+
+      <!-- Electorate cards -->
+      <div
+        class={`grid gap-6 ${electorates.length === 1 ? 'grid-cols-1 max-w-xl' : electorates.length === 0 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}
+      >
+        {
+          electorates.length === 0 ? (
+            <div
+              class="bg-yellow border-4 border-black p-10 text-center col-span-full max-w-2xl mx-auto"
+              style="box-shadow: 8px 8px 0px 0px #5EFFD8;"
+            >
+              <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-black" />
+              <h3 class="text-3xl font-black uppercase mb-3">Campaigns Incoming</h3>
+              <p class="text-lg font-bold mb-8">
+                We are currently finalising our candidates for the upcoming election. Stay tuned!
+              </p>
+              <a
+                href="/past-candidates"
+                class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-transform"
+                style="box-shadow: 4px 4px 0px 0px #000;"
+              >
+                <Icon name="mdi:archive" class="w-5 h-5" /> View Past Candidates
+              </a>
+            </div>
+          ) : (
+            electorates.map((electorate: any, index: number) => {
+              const accentColors = ['#5EFFD8', '#FFED00', '#C926F2']
+              const accent = accentColors[index % 3]
+              return (
+                <a
+                  href={`/electorates/${electorate.slug.current}`}
+                  class="group bg-white border-4 border-black block transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1"
+                  style={`box-shadow: 6px 6px 0px 0px ${accent};`}
+                >
+                  {electorate.candidateImage && (
+                    <img
+                      src={urlFor(electorate.candidateImage)
+                        .width(400)
+                        .height(280)
+                        .fit('crop')
+                        .url()}
+                      alt={electorate.candidateName || electorate.name}
+                      class="w-full h-52 object-cover border-b-4 border-black group-hover:brightness-90 transition-all"
+                    />
+                  )}
+                  <div class="p-6">
+                    <div
+                      class="inline-block px-2 py-0.5 text-xs font-black uppercase border-2 border-black mb-3"
+                      style={`background: ${accent}; color: #000;`}
+                    >
+                      Electorate
+                    </div>
+                    <h3
+                      class="text-3xl font-black uppercase leading-tight mb-1"
+                      style={`font-family: 'Archivo Black', sans-serif; color: ${accent === '#FFED00' ? '#000' : accent};`}
+                    >
+                      {electorate.name}
+                    </h3>
+                    {electorate.candidateName && (
+                      <div class="flex items-center gap-2 mt-2 mb-4">
+                        <Icon name="mdi:account" class="w-4 h-4 text-gray-500" />
+                        <span class="font-black text-sm uppercase text-gray-700">
+                          {electorate.candidateName}
+                        </span>
+                      </div>
+                    )}
+                    {Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
+                      <ul class="space-y-2 mb-4">
+                        {electorate.commitments.slice(0, 3).map((c: any) => (
+                          <li
+                            class="flex items-start gap-2 text-sm font-bold border-l-4 pl-3 py-1"
+                            style={`border-color: ${accent};`}
+                          >
+                            <span>{c.icon}</span>
+                            <span>{c.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <span class="inline-flex items-center gap-2 font-black uppercase text-sm border-b-2 border-black">
+                      View Full Plan <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                    </span>
+                  </div>
+                </a>
+              )
+            })
+          )
+        }
+      </div>
+
+      <!-- CTA -->
+      <div
+        class="mt-12 bg-mint border-4 border-black p-8 max-w-2xl"
+        style="box-shadow: 8px 8px 0px 0px #FFED00;"
+      >
+        <h3 class="text-2xl font-black uppercase mb-2">
+          {hp.electoratesSection.callToAction.heading}
+        </h3>
+        <p class="font-bold mb-6 text-gray-800">{hp.electoratesSection.callToAction.description}</p>
+        <a
+          href={hp.electoratesSection.callToAction.buttonLink}
+          class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-transform"
+          style="box-shadow: 4px 4px 0px 0px #C926F2;"
+        >
+          <Icon name="mdi:email-fast" class="w-5 h-5" />
+          {hp.electoratesSection.callToAction.buttonText}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 4: MANIFESTO — split black/yellow layout
+       ═══════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black bg-yellow">
+    {/* Watermark */}
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+    >
+      <span
+        class="text-[18rem] font-black uppercase leading-none select-none"
+        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.05; transform: rotate(-3deg);"
+        >PLAN</span
+      >
+    </div>
+    {/* Corner — black triangle top-left */}
+    <div
+      class="absolute top-0 left-0 w-40 h-40 bg-black hidden md:block"
+      style="clip-path: polygon(0 0, 100% 0, 0 100%);"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <!-- Left: header -->
+        <div>
+          <div
+            class="inline-block bg-black text-yellow px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+            style="box-shadow: 3px 3px 0px 0px #000;"
+          >
+            THE PLAN
+          </div>
+          <h2
+            class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9] mb-6"
+            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+          >
+            {hp.manifestoSection.heading}
+          </h2>
+          <p class="text-xl font-black text-gray-900 border-l-8 border-black pl-4 mb-8">
+            {hp.manifestoSection.description}
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="/manifesto"
+              class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-all"
+              style="box-shadow: 5px 5px 0px 0px #C926F2;"
+            >
+              <Icon name="mdi:book-open" class="w-5 h-5" /> Read Full Manifesto
+            </a>
+            <a
+              href="/policies"
+              class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-all"
+              style="box-shadow: 5px 5px 0px 0px #000;"
+            >
+              <Icon name="mdi:calculator" class="w-5 h-5" /> See the Costings
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: stat cards -->
+        <div class="grid grid-cols-2 gap-4">
+          {
+            hp.manifestoSection.stats.map((stat: any, index: number) => {
+              const accentColors = ['#C926F2', '#5EFFD8', '#FFED00', '#C926F2']
+              const accent = accentColors[index % 4]
+              return (
+                <div
+                  class="bg-black border-4 border-black p-6 flex flex-col items-start"
+                  style={`box-shadow: 6px 6px 0px 0px ${accent};`}
+                >
+                  <div class="w-full h-2 mb-4" style={`background: ${accent};`} />
+                  <span
+                    class="text-4xl lg:text-5xl font-black block mb-1 uppercase"
+                    style={`font-family: 'Archivo Black', sans-serif; color: ${accent};`}
+                  >
+                    {stat.number}
+                  </span>
+                  <span class="text-xs font-black uppercase tracking-wide text-white">
+                    {stat.label}
+                  </span>
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 5: JOIN / TAKE ACTION — solid magenta
+       ═══════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black bg-magenta">
+    {/* Watermark */}
+    <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
+      <span
+        class="text-[16rem] font-black uppercase leading-none select-none"
+        style="font-family: 'Anton', sans-serif; color: #fff; opacity: 0.07; transform: rotate(5deg) translateX(15%);"
+        >JOIN</span
+      >
+    </div>
+    {/* Corner accent — yellow top-right */}
+    <div
+      class="absolute top-0 right-0 w-48 h-48 bg-yellow hidden md:block"
+      style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="mb-16">
+        <div
+          class="inline-block bg-black text-magenta px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+          style="box-shadow: 3px 3px 0px 0px #FFED00;"
+        >
+          GET INVOLVED
+        </div>
+        <h2
+          class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+        >
+          {hp.joinSection.heading}
+        </h2>
+        <p class="text-xl font-black text-white mt-4 max-w-xl border-l-4 border-white pl-4">
+          {hp.joinSection.description}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          hp.joinSection.cards.map((card: any, index: number) => {
+            const bgColors = ['#FFED00', '#000000', '#5EFFD8']
+            const textColors = ['#000000', '#ffffff', '#000000']
+            const shadowColors = ['#000000', '#FFED00', '#000000']
+            const bg = bgColors[index % 3]
+            const text = textColors[index % 3]
+            const shadow = shadowColors[index % 3]
+            const ctaBg = bg === '#000000' ? '#FFED00' : '#000000'
+            const ctaText = bg === '#000000' ? '#000000' : '#ffffff'
+            return (
+              <div
+                class="border-4 border-black p-8 flex flex-col group hover:-translate-y-1 transition-transform"
+                style={`background: ${bg}; color: ${text}; box-shadow: 6px 6px 0px 0px ${shadow};`}
+              >
+                {card.icon && card.icon.includes(':') && (
+                  <div class="mb-4">
+                    <Icon
+                      name={card.icon}
+                      class="w-12 h-12"
+                      style={`color: ${text === '#000000' ? '#C926F2' : '#5EFFD8'};`}
+                    />
+                  </div>
+                )}
+                <h3
+                  class="text-2xl font-black uppercase mb-3"
+                  style={`color: ${text}; font-family: 'Archivo Black', sans-serif;`}
+                >
+                  {card.title}
+                </h3>
+                <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
+                <a
+                  href={card.buttonLink}
+                  class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase border-4 border-black w-fit hover:opacity-90 transition-opacity"
+                  style={`background: ${ctaBg}; color: ${ctaText}; box-shadow: 4px 4px 0px 0px ${ctaText === '#000000' ? '#000' : '#fff'};`}
+                >
+                  <Icon name="mdi:arrow-right-circle" class="w-5 h-5" />
+                  {card.buttonText}
+                </a>
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER SIGNUP -->
   <MemberSignup
-    heading={homePageTyped.signupCTA?.heading}
-    description={homePageTyped.signupCTA?.description}
-    buttonText={homePageTyped.signupCTA?.buttonText}
-    footerText={homePageTyped.signupCTA?.footerText}
+    heading={hp.signupCTA?.heading}
+    description={hp.signupCTA?.description}
+    buttonText={hp.signupCTA?.buttonText}
+    footerText={hp.signupCTA?.footerText}
   />
 
   <Footer />

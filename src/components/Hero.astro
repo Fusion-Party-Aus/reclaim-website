@@ -13,43 +13,43 @@ const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
 ---
 
 <section
-  class="relative bg-black text-white py-24 md:py-32 px-4 md:px-8 overflow-hidden"
-  style="border: 4px solid #000000; border-left: 6px solid #5EFFD8; border-right: 6px solid #FFED00; box-shadow: 0 6px 0 0 #C926F2;"
+  class="relative bg-black text-white overflow-hidden"
+  style="padding-top: calc(6rem + 48px); padding-bottom: 5rem; border-bottom: 8px solid #5EFFD8;"
 >
-  <!-- Enhanced geometric background - hidden on mobile to prevent overflow -->
-  <div class="absolute inset-0 overflow-hidden opacity-15 hidden md:block">
-    <!-- Bold diagonal stripes -->
-    <div
-      class="absolute -top-1/2 -right-1/4 w-1/2 h-[200%] bg-magenta transform rotate-15 animate-float-slow"
-    >
-    </div>
-    <div
-      class="absolute -bottom-1/2 -left-1/4 w-1/2 h-[200%] bg-mint transform -rotate-15 animate-float-gentle"
-    >
-    </div>
+  {/* ===== Triple colour stripe top edge ===== */}
+  <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20"></div>
+  <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20"></div>
+  <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20"></div>
 
-    <!-- Corner accents with icons -->
-    <div
-      class="absolute top-0 right-0 w-64 h-64 border-8 border-mint animate-pulse-gentle"
-      style="transform: translate(30%, -30%) rotate(45deg);"
-    >
-    </div>
-    <div
-      class="absolute bottom-0 left-0 w-64 h-64 border-8 border-yellow animate-wiggle-subtle"
-      style="transform: translate(-30%, 30%) rotate(45deg);"
-    >
-    </div>
-
-    <!-- Floating icon decorations -->
-    <div class="absolute top-10 right-20 text-mint/20 animate-spin-slow">
-      <Icon name="mdi:star-four-points" class="w-32 h-32" />
-    </div>
-    <div class="absolute bottom-20 left-16 text-yellow/20 animate-bounce-subtle">
-      <Icon name="mdi:hexagon" class="w-24 h-24" />
-    </div>
+  {/* ===== Geometric corner accents ===== */}
+  <div
+    class="absolute bottom-0 right-0 w-72 h-72 bg-magenta border-t-8 border-l-8 border-black hidden md:block"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+  >
+  </div>
+  <div
+    class="absolute top-16 right-16 w-28 h-28 border-8 border-mint hidden md:block"
+    style="transform: rotate(22deg);"
+  >
+  </div>
+  <div
+    class="absolute top-24 left-12 w-16 h-16 border-6 border-yellow hidden lg:block"
+    style="transform: rotate(-12deg);"
+  >
   </div>
 
-  <div class="relative z-10 max-w-6xl mx-auto text-center">
+  {/* ===== Big background watermark letter ===== */}
+  <div
+    class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+  >
+    <span
+      class="text-[22rem] font-black uppercase leading-none text-white"
+      style="font-family: 'Anton', sans-serif; opacity: 0.03; transform: rotate(-6deg);"
+      >{title.charAt(0)}</span
+    >
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto text-center px-4 md:px-8">
     {
       eyebrow && (
         <div class="inline-block mb-6">
@@ -65,14 +65,14 @@ const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
     }
 
     <h1
-      class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-none uppercase relative px-4"
-      style="font-family: 'Anton', 'Bebas Neue', 'Archivo Black', sans-serif; letter-spacing: -0.02em;"
+      class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-[0.9] uppercase relative px-4"
+      style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
     >
       <span class="relative inline-block">
-        <!-- Simplified layered shadow effect -->
+        <!-- Offset shadow tuned for Archivo Black's wide letterforms -->
         <span
           class="absolute inset-0 text-magenta"
-          style="transform: translate(4px, 4px); opacity: 0.6;">{title}</span
+          style="transform: translate(5px, 5px); opacity: 0.7;">{title}</span
         >
         <span class="relative z-10 text-white">{title}</span>
       </span>
@@ -80,11 +80,8 @@ const { eyebrow, title, subtitle, stats, showCTA = false } = Astro.props
 
     {
       subtitle && (
-        <div class="mb-8 md:mb-12">
-          <p
-            class="text-lg md:text-2xl lg:text-3xl max-w-4xl mx-auto font-black uppercase leading-tight px-6 py-4 inline-block transition-all duration-200"
-            style="background: rgba(255,237,0,0.15); border-top: 4px solid #FFED00; border-bottom: 4px solid #FFED00;"
-          >
+        <div class="mb-8 md:mb-12 max-w-3xl mx-auto">
+          <p class="text-lg md:text-2xl font-black uppercase leading-tight px-6 py-1 text-left border-l-8 border-yellow text-yellow">
             {subtitle}
           </p>
         </div>
