@@ -73,6 +73,9 @@ export default defineConfig({
                     S.listItem()
                       .title('⚙️ Site Configuration')
                       .child(S.document().schemaType('siteConfig').documentId('siteConfig')),
+                    S.listItem()
+                      .title('📬 Contact Page')
+                      .child(S.document().schemaType('contactPage').documentId('contactPage')),
                   ]),
               ),
 

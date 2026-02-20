@@ -13,6 +13,7 @@ import electoratesPage from './electoratesPage'
 import blogPage from './blogPage'
 import siteConfig from './siteConfig'
 import letterhead from './letterhead'
+import contactPage from './contactPage'
 
 export const schemaTypes = [
   page,
@@ -30,4 +31,5 @@ export const schemaTypes = [
   blogPage,
   siteConfig,
   letterhead,
+  contactPage,
 ]
