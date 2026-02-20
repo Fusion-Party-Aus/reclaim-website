@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import ShareIcon from '../../components/ShareIcon.astro'
+import { Icon } from 'astro-icon/components'
 import { getDocuments } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
@@ -17,7 +18,6 @@ interface FAQ {
 
 export async function getStaticPaths() {
   const faqs = await getDocuments<FAQ>('faq')
-
   return faqs
     .filter((faq) => faq.slug?.current)
     .map((faq) => ({
@@ -29,117 +29,170 @@ export async function getStaticPaths() {
 export interface Props {
   faq: FAQ
 }
-
 const { faq } = Astro.props
+
+const categoryLabels: Record<string, string> = {
+  debt: 'Debt & Fiscal Policy',
+  'left-attacks': 'From the Left',
+  'right-attacks': 'From the Right',
+  general: 'About Fusion',
+  electoral: 'Electoral Strategy',
+  policy: 'Policy Details',
+}
+const categoryLabel = categoryLabels[faq.category] || faq.category
 ---
 
-<BaseLayout title={`${faq.question} | Fusion Victoria FAQ`}>
+<BaseLayout title={`${faq.question} | Future Party FAQ`}>
   <Header />
 
-  <main class="bg-off-white min-h-screen pt-28 pb-24">
-    <div class="max-w-6xl mx-auto px-4">
-      <!-- Breadcrumbs -->
-      <nav class="text-xs font-mono uppercase tracking-wide mb-6 flex items-center gap-2">
-        <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint">Home</a>
-        <span class="opacity-60">/</span>
-        <a href="/faq" class="px-2 py-1 border-2 border-black bg-white hover:bg-mint">FAQ</a>
-        <span class="opacity-60">/</span>
-        <span
-          class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
-          title={faq.question}
+  <main class="bg-white min-h-screen pb-24">
+    {/* Black hero bar */}
+    <div class="bg-black border-b-8 border-mint pt-6 pb-10 px-4 md:px-8">
+      <div class="h-3 bg-magenta mb-0.5"></div>
+      <div class="h-2 bg-mint mb-0.5"></div>
+      <div class="h-1 bg-yellow mb-6"></div>
+      <div class="max-w-4xl mx-auto">
+        <div
+          class="inline-block bg-mint text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+        >
+          {categoryLabel}
+        </div>
+        <h1
+          class="text-3xl md:text-5xl font-black uppercase text-white leading-tight"
+          style="font-family: 'Archivo Black', sans-serif;"
         >
           {faq.question}
-        </span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 pt-10">
+      {/* Breadcrumbs */}
+      <nav
+        class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest"
+      >
+        <a
+          href="/"
+          class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+          >Home</a
+        >
+        <span class="text-black/30">›</span>
+        <a
+          href="/faq"
+          class="px-3 py-1.5 border-2 border-black bg-white text-black hover:bg-mint transition-colors"
+          >FAQ</a
+        >
+        <span class="text-black/30">›</span>
+        <span
+          class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+          title={faq.question}>{faq.question}</span
+        >
       </nav>
 
-      <!-- Main card -->
-      <article class="bg-white border-4 border-black shadow-[6px_6px_0_0_#000] p-8 md:p-10">
-        <div class="flex items-start justify-between gap-4 mb-6">
-          <h1 class="text-3xl md:text-4xl font-black text-magenta leading-tight">
-            {faq.question}
-          </h1>
+      {/* Answer card */}
+      <article class="border-4 border-black bg-white" style="box-shadow: 8px 8px 0 0 #5EFFD8;">
+        {/* Top stripe */}
+        <div class="h-2 w-full bg-magenta border-b-4 border-black"></div>
 
-          <div class="flex flex-col items-end gap-2">
-            <span
-              class="inline-flex items-center gap-1 px-3 py-1 border-2 border-black bg-mint text-xs font-black uppercase tracking-wide"
+        <div class="p-8 md:p-10">
+          {/* Share row */}
+          <div class="flex items-center justify-end gap-2 mb-8 pb-4 border-b-4 border-black">
+            <span class="text-xs font-black uppercase text-black/40 mr-auto">Answer</span>
+            <button
+              id="copy-link-button"
+              type="button"
+              class="inline-flex items-center gap-1 text-xs uppercase font-black border-2 border-black px-3 py-1.5 bg-yellow hover:bg-mint transition-colors"
             >
-              <span class="w-2 h-2 bg-black rounded-full"></span>
-              {faq.category}
-            </span>
-            <div class="flex items-center gap-2">
-              <button
-                id="copy-link-button"
-                type="button"
-                class="inline-flex items-center gap-1 text-[10px] uppercase font-black border-2 border-black px-2 py-1 bg-yellow hover:bg-mint"
-              >
-                <ShareIcon />
-                <span>Copy link</span>
-              </button>
-              <button
-                id="open-share-dialog"
-                type="button"
-                class="text-[10px] uppercase font-black border-2 border-black px-2 py-1 bg-white hover:bg-mint"
-              >
-                More options
-              </button>
-            </div>
+              <ShareIcon />
+              Copy link
+            </button>
+            <button
+              id="open-share-dialog"
+              type="button"
+              class="text-xs uppercase font-black border-2 border-black px-3 py-1.5 bg-white hover:bg-mint transition-colors"
+            >
+              Share
+            </button>
+          </div>
+
+          <div class="faq-answer">
+            <div set:html={renderPortableText(faq.answer)} />
           </div>
         </div>
-
-        <div class="prose prose-lg max-w-none" set:html={renderPortableText(faq.answer)} />
       </article>
-    </div>
 
-    <!-- Copy toast -->
-    <div
-      id="copy-toast"
-      class="fixed bottom-6 right-6 z-50 px-4 py-2 bg-black text-white text-xs font-black uppercase tracking-wide border-2 border-white shadow-[4px_4px_0_0_#fff] hidden"
-    >
-      Link copied
-    </div>
-
-    <!-- Share dialog -->
-    <div
-      id="share-dialog"
-      class="fixed inset-0 z-40 flex items-center justify-center bg-black/40 hidden"
-    >
-      <div
-        class="bg-white border-4 border-black shadow-[6px_6px_0_0_#000] p-6 max-w-sm w-full mx-4"
-      >
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-sm font-black uppercase tracking-wide text-magenta">Share this answer</h2>
-          <button
-            id="close-share-dialog"
-            type="button"
-            class="text-xs font-black px-2 py-1 border-2 border-black bg-light-grey hover:bg-mint"
-          >
-            Close
-          </button>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <a
-            id="share-twitter"
-            class="px-3 py-2 border-2 border-black bg-black text-white text-xs font-black uppercase tracking-wide hover:bg-gray-900"
-          >
-            Share on X / Twitter
-          </a>
-          <a
-            id="share-facebook"
-            class="px-3 py-2 border-2 border-black bg-[#1877F2] text-white text-xs font-black uppercase tracking-wide hover:bg-[#0f5dc0]"
-          >
-            Share on Facebook
-          </a>
-          <a
-            id="share-email"
-            class="px-3 py-2 border-2 border-black bg-yellow text-black text-xs font-black uppercase tracking-wide hover:bg-mint"
-          >
-            Share via Email
-          </a>
-        </div>
+      {/* Back link */}
+      <div class="mt-8 flex gap-3">
+        <a
+          href="/faq"
+          class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-black text-white hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0 0 #C926F2; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:arrow-left" class="w-4 h-4" />
+          Back to FAQ
+        </a>
+        <a
+          href="/get-involved"
+          class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-magenta text-white hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:hand-heart" class="w-4 h-4" />
+          Get Involved
+        </a>
       </div>
     </div>
   </main>
+
+  {/* Copy toast */}
+  <div
+    id="copy-toast"
+    class="fixed bottom-6 right-6 z-50 px-4 py-2 bg-black text-white text-xs font-black uppercase tracking-wide border-2 border-mint shadow-[4px_4px_0_0_#5EFFD8] hidden"
+  >
+    Link copied ✓
+  </div>
+
+  {/* Share dialog */}
+  <div
+    id="share-dialog"
+    class="fixed inset-0 z-40 flex items-center justify-center bg-black/50 hidden"
+  >
+    <div
+      class="bg-white border-4 border-black p-6 max-w-sm w-full mx-4"
+      style="box-shadow: 8px 8px 0 0 #000;"
+    >
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-sm font-black uppercase tracking-wide">Share this answer</h2>
+        <button
+          id="close-share-dialog"
+          type="button"
+          class="text-xs font-black px-3 py-1.5 border-2 border-black bg-yellow hover:bg-mint transition-colors"
+        >
+          Close ✕
+        </button>
+      </div>
+      <div class="flex flex-col gap-2">
+        <a
+          id="share-twitter"
+          class="px-4 py-3 border-2 border-black bg-black text-white text-xs font-black uppercase tracking-wide hover:-translate-y-0.5 transition-all"
+        >
+          Share on X / Twitter
+        </a>
+        <a
+          id="share-facebook"
+          class="px-4 py-3 border-2 border-black text-white text-xs font-black uppercase tracking-wide hover:-translate-y-0.5 transition-all"
+          style="background: #1877F2;"
+        >
+          Share on Facebook
+        </a>
+        <a
+          id="share-email"
+          class="px-4 py-3 border-2 border-black bg-yellow text-black text-xs font-black uppercase tracking-wide hover:-translate-y-0.5 transition-all"
+        >
+          Share via Email
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script>
     const copyBtn = document.getElementById('copy-link-button')
@@ -156,42 +209,38 @@ const { faq } = Astro.props
     const email = document.getElementById('share-email')
 
     if (twitter) {
-      twitter.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
-      twitter.target = '_blank'
-      twitter.rel = 'noopener noreferrer'
+      ;(twitter as HTMLAnchorElement).href =
+        `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+      twitter.setAttribute('target', '_blank')
+      twitter.setAttribute('rel', 'noopener noreferrer')
     }
-
     if (facebook) {
-      facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`
-      facebook.target = '_blank'
-      facebook.rel = 'noopener noreferrer'
+      ;(facebook as HTMLAnchorElement).href = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+      facebook.setAttribute('target', '_blank')
+      facebook.setAttribute('rel', 'noopener noreferrer')
     }
-
     if (email) {
-      email.href = `mailto:?subject=${text}&body=${url}`
+      ;(email as HTMLAnchorElement).href = `mailto:?subject=${text}&body=${url}`
     }
 
     if (copyBtn && toast) {
       copyBtn.addEventListener('click', async () => {
         const urlRaw = window.location.href
-        const title = document.title
-
         if (navigator.share) {
           try {
-            await navigator.share({ title, text: title, url: urlRaw })
+            await navigator.share({ title: document.title, url: urlRaw })
             return
-          } catch (err) {
-            // fall through to clipboard
+          } catch (_e) {
+            // navigator.share cancelled or unsupported — fall through to clipboard
           }
         }
-
         if (navigator.clipboard) {
           try {
             await navigator.clipboard.writeText(urlRaw)
             toast.classList.remove('hidden')
             setTimeout(() => toast.classList.add('hidden'), 2000)
-          } catch (err) {
-            // ignore
+          } catch (_e) {
+            // clipboard write failed — silently ignore
           }
         }
       })
