@@ -2,347 +2,1143 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 ---
 
 <BaseLayout
-  title="Fusion Design System | Reclaim"
-  description="Complete neo-brutalist design system for the Fusion Party rebrand."
+  title="Design System | Fusion Party"
+  description="The neo-brutalist design system for the Future Party brand — colours, typography, components, and patterns."
 >
   <Header />
 
-  <div class="alert-bar">
-    📚 Complete Neo-Brutalist Design System | <a href="#colors">Explore the chaos</a>
+  <!-- Alert bar -->
+  <div class="alert-bar border-y-4 border-black">
+    📐 Design System | <a href="#colours">Browse Components</a>
   </div>
 
+  <!-- ═══ HERO ═══ -->
   <section
-    class="bg-black text-white py-20 px-8 text-center border-b-8 border-magenta relative overflow-hidden"
-    style="border-left: 12px solid #5EFFD8; border-right: 12px solid #FFED00;"
+    class="relative bg-black text-white overflow-hidden border-b-8 border-mint"
+    style="padding-top: calc(5rem + 6px); padding-bottom: 4rem;"
   >
-    <!-- Background geometric chaos -->
-    <div class="absolute inset-0 opacity-20">
-      <div
-        class="absolute top-0 right-0 w-64 h-64 border-8 border-mint transform rotate-45 translate-x-20 -translate-y-20"
+    {/* Triple stripe */}
+    <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20"></div>
+    <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20"></div>
+    <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20"></div>
+    {/* Geometric accents */}
+    <div
+      class="absolute bottom-0 right-0 w-56 h-56 bg-yellow hidden md:block"
+      style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+    >
+    </div>
+    <div
+      class="absolute top-20 right-20 w-24 h-24 border-8 border-mint hidden md:block"
+      style="transform: rotate(18deg);"
+    >
+    </div>
+    {/* Ghost watermark */}
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+    >
+      <span
+        class="text-[20rem] font-black uppercase leading-none text-white select-none"
+        style="font-family: 'Anton', sans-serif; opacity: 0.03; transform: rotate(-5deg);">DS</span
       >
-      </div>
-      <div
-        class="absolute bottom-0 left-0 w-56 h-56 bg-yellow transform -rotate-30 -translate-x-16 translate-y-16"
-      >
-      </div>
-      <div class="absolute top-1/3 left-1/4 w-40 h-40 border-6 border-red transform rotate-12">
-      </div>
     </div>
 
-    <div class="max-w-5xl mx-auto relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div
+        class="inline-block bg-mint text-black px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+        style="box-shadow: 3px 3px 0px 0px #000;"
+      >
+        INTERNAL
+      </div>
       <h1
-        class="text-5xl md:text-8xl font-black mb-6 uppercase relative inline-block"
-        style="color: #C926F2; font-family: 'Anton', 'Archivo Black', sans-serif; letter-spacing: -0.03em;"
+        class="text-5xl md:text-8xl font-black uppercase leading-[0.9] mb-6"
+        style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
       >
-        <span class="absolute inset-0 text-yellow" style="transform: translate(4px, 4px);"
-          >FUSION DESIGN SYSTEM</span
-        >
-        <span class="relative z-10" style="text-shadow: 6px 6px 0 #000;">FUSION DESIGN SYSTEM</span>
+        Design<br /><span class="text-magenta">System</span>
       </h1>
-      <p
-        class="text-2xl font-bold px-6 py-4 inline-block border-t-6 border-b-6 border-lavender"
-        style="color: #9A94E7; border-top-width: 6px; border-bottom-width: 6px;"
-      >
-        Reclaim Brand — Maximum brutalism for political revolution
+      <p class="text-lg font-black uppercase border-l-8 border-yellow pl-4 text-yellow max-w-lg">
+        Neo-brutal brand architecture — colours, type, shadows, components, and patterns.
       </p>
     </div>
   </section>
 
-  <section class="bg-white py-20 px-8 border-b-8 border-black">
+  <!-- ═══ QUICK NAV ═══ -->
+  <nav class="bg-white border-b-4 border-black sticky top-[67px] z-40 px-4 md:px-8 overflow-x-auto">
+    <div class="max-w-7xl mx-auto flex items-center gap-0">
+      {
+        [
+          { href: '#principles', label: 'Principles' },
+          { href: '#colours', label: 'Colours' },
+          { href: '#colour-rules', label: 'Colour Rules' },
+          { href: '#typography', label: 'Typography' },
+          { href: '#shadows', label: 'Shadows' },
+          { href: '#components', label: 'Components' },
+          { href: '#patterns', label: 'Patterns' },
+          { href: '#dark-mode', label: 'Dark Mode' },
+        ].map((item) => (
+          <a
+            href={item.href}
+            class="px-5 py-3 font-black uppercase text-xs tracking-widest text-black border-r-2 border-black hover:bg-magenta hover:text-white transition-colors whitespace-nowrap"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <!-- ═══ SECTION 1: PRINCIPLES — white bg ═══ -->
+  <section id="principles" class="bg-white py-20 px-4 md:px-8 border-b-8 border-black">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2
-          id="principles"
-          class="text-4xl md:text-5xl font-black mb-4 uppercase inline-block relative"
-          style="color: #c926f2; font-family: 'Anton', 'Archivo Black', sans-serif; transform: rotate(-1deg);"
+      <div class="mb-12">
+        <div
+          class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
         >
-          BRAND PRINCIPLES
-          <span class="absolute -bottom-2 left-0 w-32 h-2 bg-magenta"></span>
+          01
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Brand Principles
         </h2>
-        <p class="text-xl text-gray-700 font-bold mt-8">
-          Our design system embodies our values: bold, transparent, unapologetic, and maximally
-          impactful.
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          [
+            {
+              label: 'Bold & Unapologetic',
+              bg: '#5EFFD8',
+              text: '#000',
+              accent: '#C926F2',
+              body: 'Maximum contrast, aggressive shadows, typography that screams for attention.',
+            },
+            {
+              label: 'Clear & Direct',
+              bg: '#C926F2',
+              text: '#fff',
+              accent: '#FFED00',
+              body: 'No political BS. Geometric clarity and straightforward messaging.',
+            },
+            {
+              label: 'Modern & Aggressive',
+              bg: '#FFED00',
+              text: '#000',
+              accent: '#000',
+              body: 'Forward-looking design that breaks conventions. Asymmetry and controlled chaos.',
+            },
+          ].map((p) => (
+            <div
+              class="border-4 border-black p-8"
+              style={`background: ${p.bg}; color: ${p.text}; box-shadow: 6px 6px 0px 0px ${p.accent};`}
+            >
+              <div class="w-full h-2 mb-6" style={`background: ${p.accent};`} />
+              <h3
+                class="text-2xl font-black uppercase mb-3"
+                style={`font-family: 'Archivo Black', sans-serif; color: ${p.text};`}
+              >
+                {p.label}
+              </h3>
+              <p
+                class="font-bold text-sm leading-relaxed"
+                style={`color: ${p.text}; opacity: 0.85;`}
+              >
+                {p.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: COLOURS — mint bg ═══ -->
+  <section
+    id="colours"
+    class="py-20 px-4 md:px-8 border-b-8 border-black"
+    style="background: #5EFFD8;"
+  >
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <div
+          class="inline-block bg-black text-mint px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          02
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Colour System
+        </h2>
+        <p class="mt-3 text-base font-black border-l-8 border-black pl-4 text-black/70 max-w-lg">
+          High-contrast palette. Every colour has a deliberate role — none are decorative accidents.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="brutal-card brutal-card-mint relative">
-          <div
-            class="absolute -top-4 -left-4 w-8 h-8 bg-magenta border-4 border-black transform rotate-45"
-          >
-          </div>
-          <h3
-            class="text-magenta text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Bold & Unapologetic
-          </h3>
-          <p class="font-semibold text-lg">
-            Maximum contrast colors, aggressive shadows, and typography that screams for attention.
-          </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {
+          [
+            { name: 'Magenta', hex: '#C926F2', css: '--magenta', rgb: '201, 38, 242', dark: false },
+            { name: 'Mint', hex: '#5EFFD8', css: '--mint', rgb: '94, 255, 216', dark: true },
+            { name: 'Yellow', hex: '#FFED00', css: '--yellow', rgb: '255, 237, 0', dark: true },
+            {
+              name: 'Lavender',
+              hex: '#9A94E7',
+              css: '--lavender',
+              rgb: '154, 148, 231',
+              dark: false,
+            },
+            { name: 'Black', hex: '#010102', css: '--black', rgb: '1, 1, 2', dark: false },
+          ].map((c) => (
+            <div class="border-4 border-black bg-white" style="box-shadow: 4px 4px 0px 0px #000;">
+              <div
+                class="h-32 border-b-4 border-black flex items-end p-3"
+                style={`background: ${c.hex};`}
+              >
+                <span class="font-black text-2xl" style={`color: ${c.dark ? '#000' : '#fff'};`}>
+                  Aa
+                </span>
+              </div>
+              <div class="p-4">
+                <div class="font-black text-sm uppercase mb-1">{c.name}</div>
+                <div class="font-mono text-xs text-gray-500 mb-2">{c.hex}</div>
+                <div class="font-mono text-xs text-gray-400 mb-3">{c.rgb}</div>
+                <code class="text-xs bg-black text-mint px-2 py-0.5 font-mono">{c.css}</code>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2b: COLOUR DECISION RULES — white bg ═══ -->
+  <section id="colour-rules" class="py-20 px-4 md:px-8 border-b-8 border-black bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <div
+          class="inline-block bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          02b
         </div>
-        <div class="brutal-card brutal-card-magenta relative">
-          <div class="absolute -top-4 -left-4 w-8 h-8 bg-yellow border-4 border-black"></div>
-          <h3
-            class="text-white text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Clear & Direct
-          </h3>
-          <p class="font-semibold text-white text-lg">
-            No political BS. Geometric clarity and straightforward messaging that cuts through the
-            noise.
-          </p>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Colour Decision Rules
+        </h2>
+        <p class="mt-3 text-base font-black border-l-8 border-magenta pl-4 text-black/70 max-w-xl">
+          When do you use magenta vs mint vs yellow? These rules have one answer for every
+          situation. Ambiguity causes drift.
+        </p>
+      </div>
+
+      <!-- Decision table -->
+      <div class="border-4 border-black mb-6" style="box-shadow: 8px 8px 0px 0px #C926F2;">
+        <div class="bg-black text-white px-6 py-3 font-black text-xs uppercase tracking-widest">
+          CTA HIERARCHY
         </div>
-        <div class="brutal-card brutal-card-yellow relative">
-          <div
-            class="absolute -top-4 -left-4 w-8 h-8 bg-mint border-4 border-black transform -rotate-12"
-          >
+        <div class="divide-y-4 divide-black">
+          {
+            [
+              {
+                situation: 'Primary CTA',
+                examples: 'Join, Volunteer, Donate',
+                colour: '#C926F2',
+                textCol: '#fff',
+                name: 'Magenta',
+                why: 'Primary Fusion brand colour. Highest-attention action gets highest-attention colour.',
+              },
+              {
+                situation: 'Secondary CTA',
+                examples: 'Learn More, Read Policy, Share',
+                colour: '#5EFFD8',
+                textCol: '#000',
+                name: 'Mint',
+                why: 'Secondary brand colour. Signals "proceed" without competing with magenta.',
+              },
+              {
+                situation: 'Warning / Alert / Financial',
+                examples: 'Policy costs, deadlines, urgent notices',
+                colour: '#FFED00',
+                textCol: '#000',
+                name: 'Yellow',
+                why: 'Functional only. Reads as "pay attention" without alarm. No brand association.',
+              },
+            ].map((row) => (
+              <div class="grid grid-cols-1 md:grid-cols-[200px_1fr_180px] gap-0 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
+                <div class="p-5 font-black uppercase text-sm flex flex-col justify-center gap-1">
+                  <span>{row.situation}</span>
+                  <span class="font-normal text-xs text-gray-500 normal-case">{row.examples}</span>
+                </div>
+                <div class="p-5 text-sm font-bold text-gray-700 flex items-center">{row.why}</div>
+                <div
+                  class="p-5 flex flex-col items-start justify-center gap-2"
+                  style={`background: ${row.colour};`}
+                >
+                  <span class="font-black text-sm uppercase" style={`color: ${row.textCol};`}>
+                    {row.name}
+                  </span>
+                  <code class="text-xs font-mono" style={`color: ${row.textCol}; opacity: 0.75;`}>
+                    {row.colour}
+                  </code>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Badge / label rules -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="border-4 border-black p-6" style="box-shadow: 6px 6px 0px 0px #5EFFD8;">
+          <p class="font-black uppercase text-sm mb-4 border-l-4 border-mint pl-3">
+            Category Badges
+          </p>
+          <div class="space-y-3">
+            {
+              [
+                {
+                  label: 'Default',
+                  bg: '#5EFFD8',
+                  text: '#000',
+                  rule: 'Mint — always the default badge colour',
+                },
+                {
+                  label: 'Primary anchor',
+                  bg: '#C926F2',
+                  text: '#fff',
+                  rule: 'Magenta — only if the badge is the primary visual anchor of the card',
+                },
+                {
+                  label: 'New / Urgent',
+                  bg: '#FFED00',
+                  text: '#000',
+                  rule: 'Yellow — time-sensitive status only, not decoration',
+                },
+              ].map((b) => (
+                <div class="flex items-center gap-4">
+                  <span
+                    class="px-3 py-1 text-xs font-black uppercase border-2 border-black tracking-widest shrink-0"
+                    style={`background: ${b.bg}; color: ${b.text}; box-shadow: 2px 2px 0 0 #000;`}
+                  >
+                    {b.label}
+                  </span>
+                  <span class="text-xs font-bold text-gray-600">{b.rule}</span>
+                </div>
+              ))
+            }
           </div>
-          <h3
-            class="text-black text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
+        </div>
+
+        <div class="border-4 border-black p-6" style="box-shadow: 6px 6px 0px 0px #FFED00;">
+          <p class="font-black uppercase text-sm mb-4 border-l-4 border-yellow pl-3">
+            Hover States
+          </p>
+          <div
+            class="bg-white border-4 border-black p-5 text-sm font-bold"
+            style="box-shadow: 4px 4px 0 0 #000;"
           >
-            Modern & Aggressive
-          </h3>
-          <p class="font-semibold text-lg">
-            Forward-looking design that breaks conventions. Asymmetry, collision, and controlled
-            chaos.
+            Hover = <code class="font-mono text-magenta">translate(4px, 4px)</code> + reduced shadow.
+            <br /><br />
+            <strong class="font-black">Never</strong> introduce a new colour in a hover state that isn't
+            already present on the page. Colour changes on hover should be minimal (border-bottom swap
+            maximum).
+          </div>
+        </div>
+      </div>
+
+      <!-- Anti-rules -->
+      <div
+        class="bg-black text-white border-4 border-black p-8"
+        style="box-shadow: 8px 8px 0px 0px #FFED00;"
+      >
+        <p class="font-black uppercase text-sm mb-5 text-yellow border-l-4 border-yellow pl-3">
+          Yellow is NOT for
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {
+            [
+              'Hero section backgrounds',
+              'Primary headlines',
+              'Large background blocks (>300px tall)',
+              'Formal / policy document framing',
+            ].map((item) => (
+              <div class="border-2 border-white/30 p-4 text-sm font-bold text-white/70">
+                <span class="text-red-400 font-black mr-2">✕</span>
+                {item}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: TYPOGRAPHY — black bg ═══ -->
+  <section id="typography" class="py-20 px-4 md:px-8 border-b-8 border-mint bg-black text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <div
+          class="inline-block bg-mint text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-mint"
+        >
+          03
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-white leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Typography
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Archivo Black -->
+        <div
+          class="bg-white border-4 border-black text-black p-8"
+          style="box-shadow: 6px 6px 0px 0px #5EFFD8;"
+        >
+          <div
+            class="inline-block bg-mint text-black px-2 py-0.5 text-xs font-black uppercase mb-4 border border-black"
+          >
+            HEADINGS
+          </div>
+          <div
+            class="text-5xl font-black uppercase mb-2"
+            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+          >
+            Archivo Black
+          </div>
+          <div class="text-sm font-bold text-gray-500 font-mono mb-6">
+            font-family: 'Archivo Black', sans-serif<br />letter-spacing: 0.01em | line-height: 0.9
+          </div>
+          <div class="space-y-1 border-t-4 border-black pt-4">
+            {
+              [
+                {
+                  size: 'text-8xl',
+                  label: 'Hero',
+                  rem: '6rem',
+                  px: '96px',
+                  lh: '0.85',
+                  use: 'Full-bleed hero display',
+                },
+                {
+                  size: 'text-7xl',
+                  label: 'Display 7xl',
+                  rem: '4.5rem',
+                  px: '72px',
+                  lh: '0.9',
+                  use: 'Page hero H1',
+                },
+                {
+                  size: 'text-5xl',
+                  label: 'Section 5xl',
+                  rem: '3rem',
+                  px: '48px',
+                  lh: '1.0',
+                  use: 'Section title H2',
+                },
+                {
+                  size: 'text-3xl',
+                  label: 'Card title 3xl',
+                  rem: '1.875rem',
+                  px: '30px',
+                  lh: '1.1',
+                  use: 'Card H3, feature heads',
+                },
+                {
+                  size: 'text-2xl',
+                  label: 'Subhead 2xl',
+                  rem: '1.5rem',
+                  px: '24px',
+                  lh: '1.2',
+                  use: 'H4, component subheads',
+                },
+                {
+                  size: 'text-xl',
+                  label: 'Lead xl',
+                  rem: '1.25rem',
+                  px: '20px',
+                  lh: '1.5',
+                  use: 'Lead paragraphs, large labels',
+                },
+              ].map((t) => (
+                <div class="flex items-baseline gap-4 border-b border-black/10 pb-2">
+                  <span
+                    class={`${t.size} font-black uppercase leading-none shrink-0`}
+                    style="font-family: 'Archivo Black', sans-serif;"
+                  >
+                    Aa
+                  </span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-mono text-gray-500">
+                      {t.label} — {t.rem} / {t.px}
+                    </span>
+                    <span class="text-xs text-gray-400">{t.use}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <!-- Body scale -->
+          <div class="mt-6 border-t-4 border-black pt-4">
+            <p class="text-xs font-black uppercase mb-3 tracking-widest text-gray-500">
+              Body scale
+            </p>
+            <div class="space-y-2">
+              {
+                [
+                  {
+                    size: 'text-base',
+                    label: 'Base',
+                    rem: '1rem',
+                    px: '16px',
+                    use: 'All paragraph body copy — never go smaller',
+                  },
+                  {
+                    size: 'text-sm',
+                    label: 'Small',
+                    rem: '0.875rem',
+                    px: '14px',
+                    use: 'Metadata, captions, breadcrumbs',
+                  },
+                  {
+                    size: 'text-xs',
+                    label: 'Micro',
+                    rem: '0.75rem',
+                    px: '12px',
+                    use: 'Badges, legal small print only',
+                  },
+                ].map((t) => (
+                  <div class="flex items-baseline gap-3">
+                    <span
+                      class={`${t.size} font-bold shrink-0`}
+                      style="font-family: 'Inter', sans-serif;"
+                    >
+                      Aa
+                    </span>
+                    <span class="text-xs font-mono text-gray-400">
+                      {t.label} {t.rem} / {t.px} — {t.use}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Body / UI fonts -->
+        <div class="flex flex-col gap-4">
+          <div
+            class="bg-white border-4 border-black text-black p-6 flex-1"
+            style="box-shadow: 6px 6px 0px 0px #C926F2;"
+          >
+            <div
+              class="inline-block bg-magenta text-white px-2 py-0.5 text-xs font-black uppercase mb-3 border border-black"
+            >
+              BODY
+            </div>
+            <div class="text-3xl font-black mb-1" style="font-family: 'Inter', sans-serif;">
+              Inter
+            </div>
+            <p class="text-sm font-bold text-gray-600 font-mono mb-3">
+              font-family: 'Inter', sans-serif
+            </p>
+            <p class="text-base leading-relaxed text-gray-700">
+              The quick brown fox jumps over the lazy dog. Evidence-based policy for all Victorians.
+            </p>
+          </div>
+          <div
+            class="bg-white border-4 border-black text-black p-6 flex-1"
+            style="box-shadow: 6px 6px 0px 0px #FFED00;"
+          >
+            <div
+              class="inline-block bg-yellow text-black px-2 py-0.5 text-xs font-black uppercase mb-3 border border-black"
+            >
+              MONO / CODE
+            </div>
+            <div class="text-3xl font-black mb-1" style="font-family: 'Chakra Petch', monospace;">
+              Chakra Petch
+            </div>
+            <p class="text-sm font-bold text-gray-600 font-mono mb-3">
+              font-family: 'Chakra Petch', monospace
+            </p>
+            <code class="text-base font-mono text-gray-700">const policy = "evidence-based"</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative watermark text note -->
+      <div class="mt-6 bg-white/10 border-4 border-white/20 p-6 text-white">
+        <div
+          class="inline-block bg-yellow text-black px-2 py-0.5 text-xs font-black uppercase mb-3 border border-black"
+        >
+          WATERMARK / GHOST TEXT
+        </div>
+        <p class="font-black uppercase mb-2" style="font-family: 'Anton', sans-serif;">
+          Anton — decorative only
+        </p>
+        <p class="text-sm font-bold text-white/60 mb-4">
+          Used at very large sizes (≥12rem) as ghost background watermarks. Opacity: 0.03–0.08.
+          Rotation: -3° to -8°. Never used for readable headings.
+        </p>
+        <div class="border-2 border-white/20 p-4">
+          <p class="text-xs font-black uppercase text-yellow mb-2">When NOT to use</p>
+          <ul class="text-xs font-bold text-white/50 space-y-1">
+            {
+              [
+                'Section shorter than ~300px',
+                'High typographic density — it reads as clutter',
+                'Non-white / non-black / non-magenta backgrounds',
+                'Two adjacent sections — only one side of a divider gets it',
+                'Decorative use where the word has no relation to section content',
+              ].map((rule) => <li>✕ {rule}</li>)
+            }
+          </ul>
+          <p class="text-xs font-bold text-white/40 mt-3 border-t border-white/10 pt-3">
+            Default assumption: <strong class="text-white/60">no watermark</strong>. Add
+            intentionally; never as filler.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="colors" class="bg-light-grey py-20 px-8 border-b-4 border-mint">
+  <!-- ═══ SECTION 4: SHADOWS — yellow bg ═══ -->
+  <section id="shadows" class="py-20 px-4 md:px-8 border-b-8 border-black bg-yellow">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
-          COLOR SYSTEM
+      <div class="mb-12">
+        <div
+          class="inline-block bg-black text-yellow px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          04
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Shadows & Borders
         </h2>
-        <p class="text-xl text-gray-700 font-bold">
-          Our palette combines vibrant energy with professional credibility
+        <p class="mt-3 text-base font-black border-l-8 border-black pl-4 text-black/70 max-w-lg">
+          All shadows are hard-offset (no blur). Border-width is always 4px minimum.
         </p>
       </div>
 
-      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Primary Colors</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-magenta text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Magenta</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#C926F2</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {
+          [
+            {
+              label: 'Magenta Shadow',
+              bg: '#fff',
+              border: '#000',
+              shadow: '6px 6px 0px 0px #C926F2',
+              code: 'box-shadow: 6px 6px 0 0 #C926F2',
+            },
+            {
+              label: 'Mint Shadow',
+              bg: '#fff',
+              border: '#000',
+              shadow: '6px 6px 0px 0px #5EFFD8',
+              code: 'box-shadow: 6px 6px 0 0 #5EFFD8',
+            },
+            {
+              label: 'Yellow Shadow',
+              bg: '#fff',
+              border: '#000',
+              shadow: '6px 6px 0px 0px #FFED00',
+              code: 'box-shadow: 6px 6px 0 0 #FFED00',
+            },
+            {
+              label: 'Black Shadow',
+              bg: '#C926F2',
+              border: '#000',
+              shadow: '6px 6px 0px 0px #000',
+              code: 'box-shadow: 6px 6px 0 0 #000',
+            },
+          ].map((s) => (
+            <div>
+              <div
+                class="border-4 border-black p-6 mb-3 h-24 flex items-center justify-center"
+                style={`background: ${s.bg}; box-shadow: ${s.shadow};`}
+              >
+                <span class="font-black text-sm uppercase">{s.label}</span>
               </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>201, 38, 242</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>288°, 89%, 55%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>17, 84, 0, 5</span>
-              </div>
+              <code class="text-xs font-mono bg-black text-mint px-2 py-1 block">{s.code}</code>
             </div>
-            <div class="brutal-badge brutal-badge-magenta font-mono text-xs">--fusion-magenta</div>
-          </div>
-        </div>
-
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-mint text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Mint</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#5EFFD8</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>94, 255, 216</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>165°, 100%, 68%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>63, 0, 15, 0</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-mint</div>
-          </div>
-        </div>
-
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-lavender text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Lavender</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#9A94E7</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>154, 148, 231</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>244°, 62%, 74%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>33, 36, 0, 9</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-lavender</div>
-          </div>
-        </div>
+          ))
+        }
       </div>
 
-      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Secondary Colors</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-yellow text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Yellow</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#FFED00</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>255, 237, 0</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>56°, 100%, 50%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>0, 7, 100, 0</span>
-              </div>
-            </div>
-            <div class="brutal-badge brutal-badge-yellow font-mono text-xs">--fusion-yellow</div>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <p class="font-black uppercase text-sm mb-3 border-l-4 border-black pl-3">
+            BORDER WIDTHS
+          </p>
+          <div class="space-y-3">
+            {
+              [2, 4, 6, 8].map((w) => (
+                <div class="flex items-center gap-4">
+                  <div class="flex-1 h-4 bg-black" style={`border: ${w}px solid #000;`} />
+                  <code class="text-xs font-mono bg-black text-white px-2 py-0.5">{w}px</code>
+                </div>
+              ))
+            }
           </div>
         </div>
-
-        <div class="brutal-card">
-          <div
-            class="bg-black text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
+        <div>
+          <p class="font-black uppercase text-sm mb-3 border-l-4 border-black pl-3">HOVER RULE</p>
+          <p
+            class="text-sm font-bold bg-white border-4 border-black p-4"
+            style="box-shadow: 4px 4px 0 0 #000;"
           >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Black</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#010102</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>1, 1, 2</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>240°, 33%, 1%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>50, 50, 0, 99</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-black</div>
+            On hover: use <code class="font-mono text-magenta">translate(-1px, -1px)</code>. The
+            shadow stays fixed, creating the "lift" effect. Never use scale or opacity for hover
+            states.
+          </p>
+        </div>
+        <div>
+          <p class="font-black uppercase text-sm mb-3 border-l-4 border-black pl-3">
+            ACCENT STRIPES
+          </p>
+          <div class="border-4 border-black bg-white p-4 space-y-2">
+            <div class="h-3 w-full bg-magenta"></div>
+            <div class="h-2 w-full bg-mint"></div>
+            <div class="h-1 w-full bg-yellow"></div>
+            <p class="text-xs font-black uppercase mt-2">Triple stripe: 12px / 8px / 4px</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="buttons" class="bg-white py-20 px-8 border-b-4 border-black">
+  <!-- ═══ SECTION 5: COMPONENTS — magenta bg ═══ -->
+  <section id="components" class="py-20 px-4 md:px-8 border-b-8 border-black bg-magenta">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
-          COMPONENTS
+      <div class="mb-12">
+        <div
+          class="inline-block bg-black text-magenta px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          05
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-white leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Components
         </h2>
       </div>
 
-      <div class="brutal-card mb-12">
-        <h3 class="text-3xl font-black mb-6 uppercase">Buttons</h3>
-        <div class="flex flex-wrap gap-4">
+      <!-- Buttons -->
+      <div
+        class="bg-white border-4 border-black p-8 mb-6"
+        style="box-shadow: 6px 6px 0px 0px #000;"
+      >
+        <h3
+          class="text-2xl font-black uppercase mb-6"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Buttons
+        </h3>
+        <div class="flex flex-wrap gap-4 mb-4">
           <button class="btn btn-primary">Primary Button</button>
           <button class="btn btn-secondary">Secondary Button</button>
-          <button class="btn btn-primary btn-lg">Large Button</button>
-          <button class="btn btn-primary btn-sm">Small Button</button>
+          <button class="btn btn-primary btn-lg">Large Primary</button>
+          <button class="btn btn-primary btn-sm">Small</button>
         </div>
-      </div>
-
-      <div class="brutal-card mb-12">
-        <h3 class="text-3xl font-black mb-6 uppercase">Cards</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="brutal-card brutal-card-magenta">
-            <h5 class="text-fusion-magenta font-black text-lg mb-2 uppercase">Magenta Card</h5>
-            <p class="font-semibold">Card with magenta accent border</p>
-          </div>
-          <div class="brutal-card brutal-card-mint">
-            <h5 class="text-fusion-mint font-black text-lg mb-2 uppercase">Mint Card</h5>
-            <p class="font-semibold">Card with mint accent border</p>
-          </div>
-          <div class="brutal-card brutal-card-yellow">
-            <h5 class="text-black font-black text-lg mb-2 uppercase">Yellow Card</h5>
-            <p class="font-semibold">Card with yellow background</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="brutal-card">
-        <h3 class="text-3xl font-black mb-6 uppercase">Badges</h3>
         <div class="flex flex-wrap gap-4">
-          <span class="brutal-badge">Default Badge</span>
-          <span class="brutal-badge brutal-badge-magenta">Magenta Badge</span>
-          <span class="brutal-badge brutal-badge-yellow">Yellow Badge</span>
+          {
+            [
+              { bg: '#C926F2', text: '#fff', shadow: '#FFED00', label: 'Magenta CTA' },
+              { bg: '#FFED00', text: '#000', shadow: '#000', label: 'Yellow CTA' },
+              { bg: '#5EFFD8', text: '#000', shadow: '#C926F2', label: 'Mint CTA' },
+              { bg: '#000', text: '#fff', shadow: '#5EFFD8', label: 'Black CTA' },
+            ].map((b) => (
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black hover:-translate-y-0.5 transition-transform"
+                style={`background: ${b.bg}; color: ${b.text}; box-shadow: 4px 4px 0px 0px ${b.shadow}; font-family: 'Archivo Black', sans-serif;`}
+              >
+                {b.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div
+        class="bg-white border-4 border-black p-8 mb-6"
+        style="box-shadow: 6px 6px 0px 0px #000;"
+      >
+        <h3
+          class="text-2xl font-black uppercase mb-6"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Cards
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            [
+              {
+                bg: '#fff',
+                shadow: '#C926F2',
+                stripe: '#C926F2',
+                headingColor: '#C926F2',
+                label: 'Magenta Card',
+                text: '#000',
+              },
+              {
+                bg: '#fff',
+                shadow: '#5EFFD8',
+                stripe: '#5EFFD8',
+                // Mint is too light for text on white — use black heading
+                headingColor: '#000',
+                label: 'Mint Card',
+                text: '#000',
+              },
+              {
+                bg: '#000',
+                shadow: '#FFED00',
+                stripe: '#FFED00',
+                headingColor: '#FFED00',
+                label: 'Black Card',
+                text: '#fff',
+              },
+            ].map((c) => (
+              <div
+                class="border-4 border-black p-6 hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform cursor-pointer"
+                style={`background: ${c.bg}; color: ${c.text}; box-shadow: 5px 5px 0px 0px ${c.shadow};`}
+              >
+                <div class="h-2 w-full mb-4" style={`background: ${c.stripe};`} />
+                <h4
+                  class="text-xl font-black uppercase mb-2"
+                  style={`color: ${c.headingColor}; font-family: 'Archivo Black', sans-serif;`}
+                >
+                  {c.label}
+                </h4>
+                <p class="text-sm font-bold" style={`color: ${c.text}; opacity: 0.7;`}>
+                  Card body text. Strong borders, hard shadow, no blur radius.
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Badges & Labels -->
+      <div class="bg-white border-4 border-black p-8" style="box-shadow: 6px 6px 0px 0px #000;">
+        <h3
+          class="text-2xl font-black uppercase mb-6"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Badges & Labels
+        </h3>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <span class="brutal-badge">Default</span>
+          <span class="brutal-badge brutal-badge-magenta">Magenta</span>
+          <span class="brutal-badge brutal-badge-yellow">Yellow</span>
+          {
+            [
+              { bg: '#5EFFD8', text: '#000', label: 'Mint' },
+              { bg: '#000', text: '#5EFFD8', label: 'Black/Mint' },
+              { bg: '#FFED00', text: '#000', label: 'Signal' },
+            ].map((b) => (
+              <span
+                class="px-3 py-1 text-xs font-black uppercase border-2 border-black tracking-widest"
+                style={`background: ${b.bg}; color: ${b.text}; box-shadow: 2px 2px 0 0 #000;`}
+              >
+                {b.label}
+              </span>
+            ))
+          }
+        </div>
+        <p class="text-sm font-bold text-gray-600">
+          Section header labels always use <code class="font-mono bg-gray-100 px-1"
+            >bg-[accent] text-black px-4 py-1 border-2 border-black text-xs font-black uppercase
+            tracking-widest</code
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: PATTERNS — white bg ═══ -->
+  <section id="patterns" class="py-20 px-4 md:px-8 border-b-8 border-magenta bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <div
+          class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          06
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-black leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Layout Patterns
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Section header pattern -->
+        <div class="border-4 border-black p-8" style="box-shadow: 6px 6px 0px 0px #5EFFD8;">
+          <div
+            class="inline-block bg-mint text-black px-2 py-0.5 text-xs font-black uppercase mb-2 border border-black"
+          >
+            SECTION HEADER PATTERN
+          </div>
+          <div class="mt-4 border-4 border-dashed border-gray-300 p-6">
+            <div
+              class="inline-block bg-mint text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+              style="box-shadow: 2px 2px 0 0 #000;"
+            >
+              SECTION TAG
+            </div>
+            <h2
+              class="text-4xl font-black uppercase text-black leading-[0.9]"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Section Heading<br /><span class="text-magenta">Second Line</span>
+            </h2>
+            <p class="mt-3 text-sm font-black border-l-4 border-magenta pl-3 text-gray-600">
+              Supporting text — left-bar, font-black, uppercase.
+            </p>
+          </div>
+        </div>
+
+        <!-- Geometric corners -->
+        <div class="border-4 border-black p-8" style="box-shadow: 6px 6px 0px 0px #C926F2;">
+          <div
+            class="inline-block bg-magenta text-white px-2 py-0.5 text-xs font-black uppercase mb-2 border border-black"
+          >
+            GEOMETRIC CORNER ACCENTS
+          </div>
+          <div
+            class="mt-4 border-4 border-dashed border-gray-300 p-6 relative h-40 overflow-hidden"
+          >
+            <div
+              class="absolute bottom-0 right-0 w-24 h-24 bg-magenta"
+              style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+            >
+            </div>
+            <div
+              class="absolute top-0 left-0 w-24 h-24 bg-mint"
+              style="clip-path: polygon(0 0, 100% 0, 0 100%);"
+            >
+            </div>
+            <p class="font-black text-xs uppercase text-center mt-8">Triangle corner fills</p>
+          </div>
+        </div>
+
+        <!-- Alert bar -->
+        <div class="border-4 border-black p-8" style="box-shadow: 6px 6px 0px 0px #FFED00;">
+          <div
+            class="inline-block bg-yellow text-black px-2 py-0.5 text-xs font-black uppercase mb-2 border border-black"
+          >
+            ALERT BAR
+          </div>
+          <div class="mt-4 alert-bar border-y-4 border-black text-sm">
+            📢 Alert Bar Example | <a href="#">Action Link</a>
+          </div>
+          <p class="mt-3 text-xs font-bold text-gray-500 font-mono">
+            class="alert-bar border-y-4 border-black"
+          </p>
+        </div>
+
+        <!-- Watermark text -->
+        <div
+          class="border-4 border-black p-8 relative overflow-hidden bg-black"
+          style="box-shadow: 6px 6px 0px 0px #5EFFD8;"
+        >
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span
+              class="text-[10rem] font-black uppercase leading-none text-white select-none"
+              style="font-family: 'Anton', sans-serif; opacity: 0.07;">BG</span
+            >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="inline-block bg-mint text-black px-2 py-0.5 text-xs font-black uppercase mb-2 border border-black"
+            >
+              GHOST WATERMARK
+            </div>
+            <p class="text-white font-black text-sm mt-3 mb-4">
+              Large Anton ghost text at 0.03–0.08 opacity, rotated -3° to -8°. Used as background
+              texture behind section content.
+            </p>
+            <div class="border-2 border-white/20 p-3">
+              <p class="text-xs font-black uppercase text-yellow mb-2">When NOT to use</p>
+              <ul class="text-xs text-white/50 font-bold space-y-1">
+                <li>✕ Section &lt; ~300px tall</li>
+                <li>✕ High text density sections</li>
+                <li>✕ Coloured backgrounds (non-white / non-black / non-magenta)</li>
+                <li>✕ Two adjacent sections simultaneously</li>
+                <li>✕ Word unrelated to section content</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-magenta-gradient text-white py-20 px-8 border-t-4 border-yellow">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-black mb-6 uppercase">READY TO BUILD?</h2>
-      <p class="text-xl mb-12 max-w-3xl mx-auto font-bold">
-        Use this design system to create consistent, powerful experiences.
+  <!-- ═══ SECTION 7: DARK MODE ═══ -->
+  <section id="dark-mode" class="py-20 px-4 md:px-8 border-b-8 border-yellow bg-black text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <div
+          class="inline-block bg-yellow text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black"
+        >
+          07
+        </div>
+        <h2
+          class="text-4xl md:text-6xl font-black uppercase text-white leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif;"
+        >
+          Dark Mode
+        </h2>
+        <p class="mt-3 text-base font-black border-l-8 border-yellow pl-4 text-white/70 max-w-xl">
+          Not currently implemented. Requires a separate palette spec — do not improvise.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Why it's deferred -->
+        <div class="border-4 border-white/20 p-8" style="box-shadow: 6px 6px 0px 0px #FFED00;">
+          <p class="font-black uppercase text-sm mb-5 text-yellow border-l-4 border-yellow pl-3">
+            Why the light palette breaks in dark mode
+          </p>
+          <div class="space-y-4">
+            {
+              [
+                {
+                  colour: '#C926F2',
+                  name: 'Magenta',
+                  problem: 'Contrast drops on dark grey. Still survives — keep at full saturation.',
+                  verdict: 'keep',
+                },
+                {
+                  colour: '#5EFFD8',
+                  name: 'Mint',
+                  problem:
+                    'Eye-strain at full brightness on dark bg. Needs ~70% lightness reduction.',
+                  verdict: 'adjust',
+                },
+                {
+                  colour: '#FFED00',
+                  name: 'Yellow',
+                  problem:
+                    'Poor contrast on dark backgrounds. Remove from functional use entirely.',
+                  verdict: 'remove',
+                },
+                {
+                  colour: '#010102',
+                  name: 'Black shadows',
+                  problem: 'Shadow disappears on dark canvas. Replace with #FFF or #9A94E7.',
+                  verdict: 'replace',
+                },
+              ].map((row) => (
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-10 h-10 shrink-0 border-2 border-white/30"
+                    style={`background: ${row.colour};`}
+                  />
+                  <div>
+                    <p class="font-black text-sm uppercase mb-1">
+                      {row.name} —
+                      <span
+                        class={`ml-1 text-xs px-2 py-0.5 border border-current ${
+                          row.verdict === 'keep'
+                            ? 'text-mint'
+                            : row.verdict === 'adjust'
+                              ? 'text-yellow'
+                              : row.verdict === 'replace'
+                                ? 'text-yellow'
+                                : 'text-red-400'
+                        }`}
+                      >
+                        {row.verdict}
+                      </span>
+                    </p>
+                    <p class="text-xs text-white/50 font-bold">{row.problem}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- What to do when you add it -->
+        <div class="border-4 border-white/20 p-8" style="box-shadow: 6px 6px 0px 0px #9A94E7;">
+          <p
+            class="font-black uppercase text-sm mb-5 text-lavender border-l-4 border-lavender pl-3"
+          >
+            If dark mode is ever added
+          </p>
+          <div class="space-y-3 text-sm font-bold text-white/70">
+            <div class="border-l-2 border-white/20 pl-4">
+              Dark canvas: <code class="font-mono text-mint">#0D0D0D</code> — near-black, not pure black
+            </div>
+            <div class="border-l-2 border-white/20 pl-4">
+              All shadows: replace black with <code class="font-mono text-mint">#FFFFFF</code> or <code
+                class="font-mono text-lavender">#9A94E7</code
+              >
+            </div>
+            <div class="border-l-2 border-white/20 pl-4">
+              Implement via <code class="font-mono text-yellow"
+                >@media (prefers-color-scheme: dark)</code
+              > block in <code class="font-mono text-yellow">global.css</code>
+            </div>
+            <div class="border-l-2 border-white/20 pl-4">
+              Do not add <code class="font-mono text-yellow">prefers-color-scheme</code> overrides to
+              individual components before the full palette is specced — they will be inconsistent
+            </div>
+          </div>
+          <div class="mt-6 border-4 border-white/20 p-4 bg-white/5">
+            <p class="text-xs font-black uppercase text-white/40 mb-2">Do not improvise</p>
+            <p class="text-xs text-white/40 font-bold">
+              Until dark mode is properly specced, the default assumption is light-mode only. Treat
+              any dark-mode CSS added without a full spec as a bug.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BOTTOM ═══ -->
+  <section class="py-16 px-4 md:px-8 bg-black border-b-8 border-yellow text-white text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2
+        class="text-4xl md:text-5xl font-black uppercase mb-6 text-yellow"
+        style="font-family: 'Archivo Black', sans-serif;"
+      >
+        Ready to Build?
+      </h2>
+      <p class="text-lg font-bold text-white/70 mb-8">
+        Apply this system consistently. Every deviation costs brand equity.
       </p>
-      <div class="cta-buttons">
-        <a href="/" class="btn btn-secondary">BACK TO HOME</a>
-        <a href="/policies" class="btn btn-secondary">VIEW POLICIES</a>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 font-black uppercase border-4 border-black bg-mint text-black hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:home" class="w-5 h-5" /> Back to Home
+        </a>
+        <a
+          href="/policies"
+          class="inline-flex items-center gap-2 px-6 py-3 font-black uppercase border-4 border-black bg-yellow text-black hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0px 0px #5EFFD8; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:file-document" class="w-5 h-5" /> View Policies
+        </a>
       </div>
     </div>
   </section>
