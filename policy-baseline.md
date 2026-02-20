@@ -31,11 +31,11 @@
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
 1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
-    1. A reliable income foundation will support stability through job changes, illness, and economic transition.
-    2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
-    3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
-    4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
-    5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
+   1. A reliable income foundation will support stability through job changes, illness, and economic transition.
+   2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
+   3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
+   4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
+   5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -286,19 +286,19 @@ Phased expansion includes:
 # SOLVE THE HOUSING CRISIS
 
 ## Make Housing a Right, Not an Investment
-(Distortion → Correction → Production → Completion)
+(Distortion → Production → Completion)
 
 ### **Make It Easier to Buy and Move Home**
 
 1. Implement a nationally consistent Land Value Tax framework that applies by default, abolishes residential stamp duty, and requires a broad land-only tax base, while allowing states to displace the federal tax by adopting a structurally compliant system of their own.
 
-    1. Housing mobility will increase as Australians can move without punitive upfront costs.
-    2. Entry costs for first-home buyers will fall as taxation shifts away from lump-sum purchase barriers.
-    3. Families will be able to right-size their homes more easily as financial penalties for moving decline.
-    4. State revenue will stabilise through recurring land-based collections rather than volatile transaction cycles.
-    5. Public infrastructure investment will translate into shared community benefit rather than private windfall gains.
-    6. Housing prices will align more closely with construction value and genuine demand rather than speculative scarcity.
-    7. Under-utilised and vacant land will return to productive use as land is put to work rather than held idle.
+   1. Housing mobility will increase as Australians can move without punitive upfront costs.
+   2. Entry costs for first-home buyers will fall as taxation shifts away from lump-sum purchase barriers.
+   3. Families will be able to right-size their homes more easily as financial penalties for moving decline.
+   4. State revenue will stabilise through recurring land-based collections rather than volatile transaction cycles.
+   5. Public infrastructure investment will translate into shared community benefit rather than private windfall gains.
+   6. Housing prices will align more closely with construction value and genuine demand rather than speculative scarcity.
+   7. Under-utilised and vacant land will return to productive use as land is put to work rather than held idle.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -351,11 +351,11 @@ Federal legislation establishes the default system and certification process. St
 
 1. Replace the 50% Capital Gains Tax discount with inflation indexation of the cost base for newly acquired assets, and apply stricter CGT treatment to investment housing so gains reflect real value creation rather than a tax-favoured windfall.
 
-    1. Younger Australians will face a fairer market when competing with tax-advantaged capital gains strategies.
-    2. Investment returns will reflect real gains after inflation rather than an automatic discount.
-    3. Capital will flow more readily toward productive investment when housing is less tax-favoured as a wealth vehicle.
-    4. Public revenue will strengthen as large untaxed gains are reduced in the base.
-    5. Speculative “buy-and-hold for the discount” strategies will lose their edge as preferential treatment is removed.
+   1. Younger Australians will face a fairer market when competing with tax-advantaged capital gains strategies.
+   2. Investment returns will reflect real gains after inflation rather than an automatic discount.
+   3. Capital will flow more readily toward productive investment when housing is less tax-favoured as a wealth vehicle.
+   4. Public revenue will strengthen as large untaxed gains are reduced in the base.
+   5. Speculative “buy-and-hold for the discount” strategies will lose their edge as preferential treatment is removed.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -390,11 +390,11 @@ Implementation is delivered through amendments to CGT discount provisions, index
 
 1. Restrict negative gearing for housing so rental losses cannot be used to reduce tax on wages and salaries, with loss deductions quarantined to future rental income and capital gains within the housing portfolio.
 
-    1. First-home buyers will face less investor bid pressure when purchasing established homes.
-    2. Investment choices will shift toward rental performance and genuine housing demand rather than paper losses.
-    3. Household finances will become more resilient as the tax system rewards sustainable returns instead of leverage.
-    4. Government revenue will become more reliable as housing losses stop eroding the income tax base.
-    5. Tax-driven property accumulation strategies will become less attractive than productive investment elsewhere.
+   1. First-home buyers will face less investor bid pressure when purchasing established homes.
+   2. Investment choices will shift toward rental performance and genuine housing demand rather than paper losses.
+   3. Household finances will become more resilient as the tax system rewards sustainable returns instead of leverage.
+   4. Government revenue will become more reliable as housing losses stop eroding the income tax base.
+   5. Tax-driven property accumulation strategies will become less attractive than productive investment elsewhere.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -425,11 +425,11 @@ Implementation proceeds through tax law amendments establishing quarantining, tr
 
 1. Apply a windfall gains tax to land value uplifts created by government rezoning decisions, capturing a share of rezoning-created value for public benefit rather than leaving it as an unearned private gain.
 
-    1. Infrastructure and services will be better funded as rezoning uplifts contribute to public value.
-    2. Communities will see a fairer return from public decisions that create sudden land value jumps.
-    3. Planning reform will become more credible when rezoning benefits are shared rather than concentrated.
-    4. Land banking will become less attractive as rezoning windfalls are no longer fully private.
-    5. Pure “wait for rezoning” strategies will lose payoff as unearned uplift is no longer fully private.
+   1. Infrastructure and services will be better funded as rezoning uplifts contribute to public value.
+   2. Communities will see a fairer return from public decisions that create sudden land value jumps.
+   3. Planning reform will become more credible when rezoning benefits are shared rather than concentrated.
+   4. Land banking will become less attractive as rezoning windfalls are no longer fully private.
+   5. Pure “wait for rezoning” strategies will lose payoff as unearned uplift is no longer fully private.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -453,6 +453,183 @@ Risks include valuation disputes, gaming around rezoning boundaries, or politica
 
 **Implementation outline**  
 Implementation requires a valuation method for pre- and post-rezoning land values, uplift assessment notices, a structured deferral pathway, and a clear interaction rule with Land Value Tax so the two taxes do not duplicate the same base at the same event.
+
+---
+</details>
+
+### **Stop Wasting Our Best Land**
+
+1. Establish National Minimum Housing Permissions that require states to ensure as-of-right housing capacity in defined priority locations, including activity centres, rail station catchments, and frequent public transport corridors, with planning schemes updated to reflect those minimum permissions.
+
+   1. More homes will become possible in the places Australians already rely on for work, study, and services.
+   2. Families will gain more realistic housing choices in established communities.
+   3. Commutes will shorten as growth concentrates around existing infrastructure and service networks.
+   4. Local businesses and main streets will strengthen as more people can live near centres and corridors.
+   5. Infrastructure we have already built will support more people instead of sitting under-used.
+   6. Housing supply will respond more predictably to demand when minimum permissions are consistent and predictable.
+   7. Productive farmland will be better protected as growth shifts toward well-serviced urban land rather than outward sprawl.
+   8. Public investment in transport and services will deliver stronger long-term returns through better land use.
+   9. Scarcity pricing driven by artificial land constraints will weaken as more well-located homes become feasible.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Australia’s major cities contain substantial amounts of well-located, well-serviced land where housing remains legally constrained despite proximity to transport, employment, and infrastructure. When growth is restricted in these areas, development shifts outward into fringe locations, increasing infrastructure cost and consuming productive agricultural land. Establishing a minimum permission standard changes the legal baseline so housing can occur where demand and infrastructure already exist without compromising design quality or safety requirements.
+
+**Urban efficiency and farmland protection**  
+1. Expanding housing capacity in well-serviced urban areas reduces pressure for fringe expansion.  
+2. Reduced fringe expansion preserves high-value agricultural land surrounding metropolitan regions.  
+3. More efficient land use lowers long-term public expenditure on new outer-suburban roads, utilities, and services.  
+4. National food production capacity is indirectly supported when sprawl pressure is reduced.
+
+**Structural framework**  
+The Commonwealth requires states to embed minimum as-of-right permissions within defined priority geographies, ensuring that housing growth can occur where infrastructure already exists.
+
+**Minimum permission geographies (baseline requirements)**  
+1. Rail station catchments within a defined walkable radius.  
+2. Designated activity centres in metropolitan and regional cities.  
+3. Frequent public transport corridors meeting defined service thresholds.  
+4. Existing main streets, shopping centres, and mixed-use commercial zones.
+
+**Minimum allowable outcomes (baseline)**  
+Within the priority geographies, planning schemes must permit, at minimum:
+1. Medium density housing (terraces, townhouses, walk-ups).  
+2. Mid-rise apartments in station and centre zones.  
+3. Mixed-use buildings along main streets and centre cores (housing above retail/commerce).  
+4. Lot consolidation and subdivision rules that enable feasible redevelopment.
+
+**Integrity limits**  
+1. Permissions must be genuinely as-of-right and not neutralised by blanket discretionary overlays.  
+2. Environmental, heritage, and hazard constraints must be mapped and evidence-based.  
+3. Agricultural land policy remains distinct; this reform does not rezone rural land for urban expansion.  
+4. States may exceed minimum permissions but may not reduce them below the standard.
+
+**Interaction with other reforms**  
+Land Value Tax establishes a recurring incentive for efficient land use; minimum permissions ensure that incentive can translate into housing delivery where infrastructure exists.
+
+**Risk and failure modes**  
+Risks include token compliance (permissions that are technically legal but practically infeasible), substitution through discretionary overlays, or uneven application across councils. Failure would appear as continued exclusionary zoning in the defined geographies despite the standard.
+
+**Implementation outline**  
+Commonwealth legislation defines priority geographies and compliance certification. States incorporate minimum permissions into planning schemes, subject to federal funding linkage where applicable.
+
+---
+</details>
+
+### **Create a Housing Approval Fast-Track**
+
+1. Require a binding code-complying approval pathway for standard housing types so developments that meet published design and safety codes receive streamlined approval within fixed time limits, with councils limited to objective compliance checks rather than discretionary refusal.
+
+   1. Home building will become more predictable as approvals follow clear rules rather than politics.
+   2. Construction timelines will shorten as routine housing types move through faster assessment pathways.
+   3. Smaller builders will gain fairer access as approval certainty reduces financing and holding-cost barriers.
+   4. Neighbourhood change will become more orderly as standard forms are assessed against consistent criteria.
+   5. Housing quality will improve as developers compete to meet clear, published standards rather than lobbying for exceptions.
+   6. Costs will fall as risk premiums decline across design, finance, and approvals.
+   7. Speculative land holding will become less attractive as redevelopment becomes a practical, bankable option for more sites.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Even where zoning permits housing, discretionary assessment and unpredictable delays raise risk premiums and suppress delivery. A code-complying pathway converts routine housing proposals into a rules-based process, improving certainty without lowering safety or design requirements.
+
+**Structural framework**  
+The Commonwealth requires states to implement a code-complying pathway covering common redevelopment typologies. The pathway specifies objective standards, fixed decision timeframes, and limited refusal grounds.
+
+**Covered typologies (baseline)**  
+States must provide code pathways for, at minimum:
+1. Terraces and townhouses.  
+2. Low-rise walk-ups.  
+3. Mid-rise apartments and mixed-use buildings in centre and corridor zones.  
+4. Small-lot subdivision where services are available.
+
+**Decision limits**  
+1. Assessments are limited to objective compliance against published codes.  
+2. Councils may refuse only for demonstrable non-compliance with the code, mapped hazard constraints, or safety-critical issues.  
+3. Objections may inform compliance checks but cannot create discretionary veto power where the proposal complies.
+
+**Time limits**  
+1. Fixed statutory decision clocks apply by typology.  
+2. Failure to decide within the clock triggers an automatic escalation pathway to a state assessment body.  
+3. Final determination must occur within a fixed maximum timeframe.
+
+**Integrity limits**  
+1. The code pathway must not be neutralised through blanket overlays that reintroduce discretion for compliant forms.  
+2. States must publish measurable compliance criteria and a transparent audit trail for refusals.
+
+**Risk and failure modes**  
+Risks include code capture, weak enforcement, or “shadow discretion” through informal practices. Failure would appear as persistent delay despite nominal code pathways.
+
+**Implementation outline**  
+Implementation is delivered through state planning law amendments establishing code standards, statutory clocks, and an escalation pathway, with compliance reporting and public metrics.
+
+---
+</details>
+
+### **Reward Communities That Build Quality Homes**
+
+1. Establish a Commonwealth Housing Delivery Accelerator that pays councils lump-sum bonuses for completed homes delivered in priority catchments under the minimum permission standard and code-complying pathway, with payments triggered only on verified completion.
+
+   1. Councils will gain a direct financial incentive to approve housing that meets clear standards.
+   2. Local services and infrastructure will improve as housing growth generates dedicated funding streams.
+   3. Community confidence will rise as growth is paired with visible upgrades rather than unfunded strain.
+   4. Housing delivery will accelerate as council decision-making is aligned with measurable outcomes.
+   5. Councils will be better equipped to invest in planning capability, compliance, and enforcement.
+   6. State planning reforms will become harder to quietly undermine as delivery outcomes are publicly measured and rewarded.
+   7. Land hoarding will lose leverage as the system rewards actual delivery rather than delay and scarcity.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**  
+Councils are resource-constrained while carrying responsibility for approvals, local infrastructure interfaces, and enforcement. A completion-triggered Housing Delivery Accelerator aligns council incentives with actual delivery rather than approvals or intentions, while providing funding that scales predictably with growth. Payments are structured around measurable housing outcomes and objective standards, encouraging durable, well-located, and broadly usable housing types without introducing aesthetic discretion or subjective design judgement.
+
+**Base payment structure**  
+1. A fixed base payment applies per verified completed dwelling.  
+2. Payment is triggered only upon issuance of an occupancy certificate or equivalent completion certification.  
+3. Payments are indexed to construction cost inflation to preserve incentive strength over time.
+
+**Quality uplift tiers (objective criteria only)**  
+Additional uplifts apply where a completed dwelling meets published, measurable standards:
+
+1. **Family-capable dwelling uplift** — applied to dwellings meeting defined bedroom and minimum internal area thresholds (e.g. 2+ bedrooms with specified floor area).  
+2. **Transport-priority uplift** — applied to dwellings delivered within defined rail station catchments, activity centres, or frequent public transport corridors.  
+3. **Durability uplift** — applied to buildings meeting defined structural durability and energy efficiency classifications.  
+4. **Mixed-use integration uplift** — applied where residential dwellings are delivered above active ground-floor commercial or community uses within designated centre zones.
+
+All uplift thresholds must be numeric, published, and compliance-verifiable. Discretionary qualitative assessments are not permitted.
+
+**Anti-distortion safeguards**  
+1. Uplifts must not exceed a defined proportion of the base payment to avoid discouraging smaller or entry-level dwellings.  
+2. Micro-dwellings below defined minimum habitable standards do not qualify for uplift tiers.  
+3. Artificial subdivision of large dwellings to multiply base payments is excluded through minimum size standards.  
+4. Councils may not impose additional approval barriers to favour uplift-eligible projects.
+
+**Equity and geographic balance**  
+1. Payment rates may vary by regional cost band to reflect construction cost differences across Australia.  
+2. Regional and metropolitan jurisdictions are eligible under the same structural criteria.
+
+**Audit and compliance**  
+1. All payments are tied to geospatial and certification data.  
+2. Public reporting discloses council-level completions, uplift category breakdowns, and total accelerator payments.  
+3. Misclassification or manipulation triggers repayment and temporary disqualification.
+
+**Interaction with other reforms**  
+Minimum Housing Permissions expand legal capacity; the Fast-Track reduces approval risk; the Accelerator aligns council incentives with actual completed housing outcomes.
+
+**Risk and failure modes**  
+Risks include over-concentration in specific dwelling types, gaming of bedroom classifications, or uplift capture without genuine livability gains. Periodic review of objective criteria ensures incentives remain aligned with housing system performance.
+
+**Implementation outline**  
+Commonwealth legislation defines payment amounts, uplift criteria, indexing method, and reporting requirements. States and councils participate through automatic eligibility upon compliance with minimum permission and fast-track reforms.
 
 ---
 </details>
