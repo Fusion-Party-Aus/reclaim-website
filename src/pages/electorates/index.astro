@@ -82,10 +82,13 @@ const ctaSection = pageData?.ctaSection || {
           <BrutalCard variant="yellow" shadow="lg">
             <div class="text-center">
               <Icon name="mdi:alert" class="w-16 h-16 mx-auto mb-4 text-black" />
-              <p class="text-lg font-black uppercase">
+              <p class="text-lg font-black uppercase mb-6">
                 We are currently finalizing our candidates for upcoming elections. Check back soon
                 for updates!
               </p>
+              <BrutalButton href="/past-candidates" variant="white" icon="mdi:archive">
+                View Past Candidates
+              </BrutalButton>
             </div>
           </BrutalCard>
         ) : (
@@ -243,6 +246,21 @@ const ctaSection = pageData?.ctaSection || {
           </div>
         </div>
       </CTA>
+
+      <!-- Archive Link for when electorates ARE present -->
+      {
+        electorates.length > 0 && (
+          <div class="mt-16 text-center animate-fade-in">
+            <a
+              href="/past-candidates"
+              class="inline-flex items-center gap-2 font-black uppercase text-sm border-b-2 border-black hover:text-magenta hover:border-magenta transition-colors px-2 py-1"
+            >
+              <Icon name="mdi:archive-search-outline" class="w-5 h-5" />
+              View Past Candidates Archive
+            </a>
+          </div>
+        )
+      }
     </div>
   </main>
 
