@@ -38,7 +38,7 @@ interface Electorate {
   electionGrouping?: string
   house?: 'lower' | 'upper'
   candidateName?: string
-  candidateImage?: any
+  candidateImage?: unknown
   candidateBio?: string
   commitments?: Commitment[]
   htv?: HTVCandidate[]
@@ -57,12 +57,11 @@ if (!electorate) {
   return Astro.redirect('/404')
 }
 
-// HTV Sorting Logic
+// HTV Sorting
 const hasHTV = Array.isArray(electorate.htv) && electorate.htv.length > 0
 const htvArray = electorate.htv || []
 const sortedHTV = hasHTV
   ? [...htvArray].sort((a, b) => {
-      // Sort by explicit ballot order if available, otherwise fallback to name
       if (a.ballotOrder && b.ballotOrder) return a.ballotOrder - b.ballotOrder
       if (a.ballotOrder) return -1
       if (b.ballotOrder) return 1
@@ -70,22 +69,49 @@ const sortedHTV = hasHTV
     })
   : []
 
-const tierColors: Record<'magenta' | 'green' | 'orange' | 'red', string> = {
-  magenta: 'border-fuchsia-600 bg-fuchsia-50',
-  green: 'border-green-500 bg-green-50',
-  orange: 'border-orange-500 bg-orange-50',
-  red: 'border-red-500 bg-red-50 text-gray-500',
-}
-
-const tierBadges: Record<'magenta' | 'green' | 'orange' | 'red', string> = {
-  magenta: 'bg-magenta text-white',
-  green: 'bg-green-500 text-white',
-  orange: 'bg-orange-500 text-white',
-  red: 'bg-red-500 text-white',
+// Design-system-aligned tier colours — no generic Tailwind green/orange/red
+const tierConfig: Record<
+  'magenta' | 'green' | 'orange' | 'red',
+  {
+    border: string
+    bg: string
+    badgeBg: string
+    badgeText: string
+    label: string
+  }
+> = {
+  magenta: {
+    border: '#C926F2',
+    bg: '#FAF0FF',
+    badgeBg: '#C926F2',
+    badgeText: '#fff',
+    label: 'Vote 1',
+  },
+  green: {
+    border: '#00B37A',
+    bg: '#EDFFF7',
+    badgeBg: '#00B37A',
+    badgeText: '#fff',
+    label: 'Vote High',
+  },
+  orange: {
+    border: '#E07A00',
+    bg: '#FFF8ED',
+    badgeBg: '#E07A00',
+    badgeText: '#fff',
+    label: 'Middle',
+  },
+  red: {
+    border: '#D32F2F',
+    bg: '#FFF3F3',
+    badgeBg: '#D32F2F',
+    badgeText: '#fff',
+    label: 'Vote Last',
+  },
 }
 ---
 
-<BaseLayout title={`${electorate.name} | Fusion Victoria`}>
+<BaseLayout title={`${electorate.name} | Future Party`}>
   <Header />
 
   <Hero
@@ -93,270 +119,312 @@ const tierBadges: Record<'magenta' | 'green' | 'orange' | 'red', string> = {
     subtitle={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
   />
 
-  <main class="bg-white pt-10 pb-24">
-    <div class="max-w-6xl mx-auto px-4 md:px-8">
-      <!-- Breadcrumbs -->
-      <nav class="text-xs font-mono uppercase tracking-wide mb-6 flex items-center flex-wrap gap-2">
-        <a href="/" class="px-2 py-1 border-2 border-black bg-yellow hover:bg-mint">Home</a>
-        <span class="opacity-60">/</span>
-        <a href="/electorates" class="px-2 py-1 border-2 border-black bg-white hover:bg-mint"
+  <main class="bg-white pb-24">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10">
+      {/* ── Breadcrumbs ── */}
+      <nav
+        class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest"
+      >
+        <a
+          href="/"
+          class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+          >Home</a
+        >
+        <span class="text-black/30">›</span>
+        <a
+          href="/electorates"
+          class="px-3 py-1.5 border-2 border-black bg-white text-black hover:bg-mint transition-colors"
           >Electorates</a
         >
         {
           electorate.isArchived && (
             <>
-              <span class="opacity-60">/</span>
+              <span class="text-black/30">›</span>
               <a
                 href="/past-candidates"
-                class="px-2 py-1 border-2 border-black bg-white hover:bg-mint text-magenta"
+                class="px-3 py-1.5 border-2 border-black bg-white text-magenta hover:bg-magenta hover:text-white transition-all"
               >
                 Past Candidates
               </a>
             </>
           )
         }
-        <span class="opacity-60">/</span>
-        <span
-          class="px-2 py-1 border-2 border-black bg-light-grey max-w-xs truncate"
-          title={electorate.name}
+        <span class="text-black/30">›</span>
+        <span class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+          >{electorate.name}</span
         >
-          {electorate.name}
-        </span>
       </nav>
 
-      <!-- Candidate + summary -->
+      {/* ── Candidate + body ── */}
       <section class="mb-16 grid grid-cols-1 md:grid-cols-[2fr_1.2fr] gap-8 items-start">
-        <article class="brutal-card brutal-card-magenta">
-          <h2 class="text-2xl md:text-3xl font-black text-magenta mb-4 uppercase">
-            What we're fighting for here
-          </h2>
-          {
-            electorate.body ? (
-              <div
-                class="prose prose-lg max-w-none"
-                set:html={renderPortableText(electorate.body)}
-              />
-            ) : (
-              <p class="text-lg font-semibold">
-                This electorate has a candidate and commitments but no long-form body yet. Add more
-                detail in Sanity to flesh out this section.
-              </p>
-            )
-          }
+        {/* Body / what we're fighting for */}
+        <article
+          class="border-4 border-black bg-white p-8 relative overflow-hidden"
+          style="box-shadow: 6px 6px 0 0 #5EFFD8;"
+        >
+          {/* Mint corner accent */}
+          <div
+            class="absolute top-0 left-0 w-20 h-20 bg-mint"
+            style="clip-path: polygon(0 0, 100% 0, 0 100%);"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="inline-block bg-mint text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+            >
+              What We're Fighting For
+            </div>
+            <h2
+              class="text-2xl md:text-3xl font-black uppercase mb-4 leading-tight"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Our Plan for {electorate.name}
+            </h2>
+            {
+              electorate.body ? (
+                <div
+                  class="prose prose-lg max-w-none
+                prose-headings:font-black prose-headings:uppercase
+                prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4
+                prose-a:text-magenta prose-a:font-black
+                prose-strong:font-black"
+                  set:html={renderPortableText(electorate.body)}
+                />
+              ) : (
+                <p class="text-base font-bold text-gray-500">
+                  This electorate has a candidate and commitments — full detail coming soon.
+                </p>
+              )
+            }
+          </div>
         </article>
 
-        <aside class="brutal-card brutal-card-mint">
-          <h2 class="text-xl font-black mb-4 uppercase flex items-center gap-2">
-            <Icon name="mdi:account" class="w-5 h-5" aria-hidden="true" />
-            Candidate
-          </h2>
+        {/* Candidate sidebar */}
+        <aside
+          class="border-4 border-black bg-black text-white relative overflow-hidden"
+          style="box-shadow: 6px 6px 0 0 #C926F2;"
+        >
+          {/* Yellow corner */}
+          <div
+            class="absolute bottom-0 right-0 w-20 h-20 bg-yellow"
+            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+          >
+          </div>
 
           {
-            electorate.candidateName ? (
-              <>
-                {electorate.candidateImage && (
-                  <img
-                    src={urlFor(electorate.candidateImage).width(400).height(400).fit('crop').url()}
-                    alt={electorate.candidateName}
-                    class="w-full h-auto mb-4 border-4 border-black"
-                    style="box-shadow: 4px 4px 0 0 #000;"
-                  />
-                )}
-                <p class="text-lg font-bold mb-2">{electorate.candidateName}</p>
-                {electorate.candidateBio && (
-                  <p class="text-sm leading-relaxed mb-4">{electorate.candidateBio}</p>
-                )}
-              </>
-            ) : (
-              <p class="text-sm font-semibold">
-                Candidate not yet announced. If you're from {electorate.name} and want to run, email{' '}
-                <a href="mailto:preselection@fusionparty.org.au" class="brutal-link">
-                  preselection@fusionparty.org.au
-                </a>
-                .
-              </p>
+            electorate.candidateImage && (
+              <div class="border-b-4 border-black overflow-hidden">
+                <img
+                  src={urlFor(electorate.candidateImage as Parameters<typeof urlFor>[0])
+                    .width(600)
+                    .height(600)
+                    .fit('crop')
+                    .url()}
+                  alt={electorate.candidateName || 'Candidate'}
+                  class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
             )
           }
+
+          <div class="p-6 relative z-10">
+            <div
+              class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white"
+            >
+              Candidate
+            </div>
+
+            {
+              electorate.candidateName ? (
+                <>
+                  <h2
+                    class="text-xl font-black uppercase leading-tight mb-2"
+                    style="font-family: 'Archivo Black', sans-serif;"
+                  >
+                    {electorate.candidateName}
+                  </h2>
+                  {electorate.candidateBio && (
+                    <p class="text-sm leading-relaxed text-white/75 border-l-4 border-mint pl-3">
+                      {electorate.candidateBio}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <div>
+                  <p class="text-base font-black uppercase text-white/60 mb-3">Candidate TBA</p>
+                  <p class="text-sm text-white/50 leading-relaxed">
+                    From {electorate.name}? Interested in running?{' '}
+                    <a
+                      href="mailto:preselection@fusionparty.org.au"
+                      class="text-mint font-black underline hover:no-underline"
+                    >
+                      preselection@fusionparty.org.au
+                    </a>
+                  </p>
+                </div>
+              )
+            }
+          </div>
         </aside>
       </section>
 
-      <!-- How To Vote (HTV) Section -->
+      {/* ── How To Vote ── */}
       {
         hasHTV && (
           <section class="mb-16">
-            <h2 class="text-2xl md:text-3xl font-black text-black mb-8 uppercase flex items-center gap-3">
-              <Icon name="mdi:ticket-confirmation" class="w-8 h-8 text-magenta" />
-              How to Vote
-            </h2>
-
-            {/* HTV Legend */}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <div
-                class="border-4 border-fuchsia-600 p-4 bg-fuchsia-50"
-                style="box-shadow: 4px 4px 0 0 #c026d3;"
-              >
-                <h4 class="font-black uppercase text-fuchsia-800 flex items-center gap-2 mb-2">
-                  <span>🟣</span> Vote 1
-                </h4>
-                <p class="text-sm font-semibold">
-                  Your Fusion Party Candidate. Start here by numbering 1.
-                </p>
+            {/* Section header */}
+            <div class="mb-8">
+              <div class="inline-block bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black">
+                How to Vote
               </div>
-              <div
-                class="border-4 border-green-500 p-4 bg-green-50"
-                style="box-shadow: 4px 4px 0 0 #22c55e;"
+              <h2
+                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
+                style="font-family: 'Archivo Black', sans-serif;"
               >
-                <h4 class="font-black uppercase text-green-700 flex items-center gap-2 mb-2">
-                  <span>🟢</span> Green Light
-                </h4>
-                <p class="text-sm font-semibold">
-                  Closest allies. Parties/candidates who genuinely share core values.
-                </p>
-              </div>
-              <div
-                class="border-4 border-orange-500 p-4 bg-orange-50"
-                style="box-shadow: 4px 4px 0 0 #f97316;"
-              >
-                <h4 class="font-black uppercase text-orange-700 flex items-center gap-2 mb-2">
-                  <span>🟠</span> Orange Light
-                </h4>
-                <p class="text-sm font-semibold">
-                  Proceed with caution. Specific overlaps exist, but serious differences remain.
-                </p>
-              </div>
-              <div
-                class="border-4 border-red-500 p-4 bg-red-50"
-                style="box-shadow: 4px 4px 0 0 #ef4444;"
-              >
-                <h4 class="font-black uppercase text-red-700 flex items-center gap-2 mb-2">
-                  <span>🔴</span> Red Light
-                </h4>
-                <p class="text-sm font-semibold">
-                  Major clashes on core principles. Put these last.
-                </p>
-              </div>
+                <span class="text-magenta">Ballot</span> Guide
+              </h2>
             </div>
 
-            {/* HTV Ticket */}
+            {/* Legend */}
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {(
+                Object.entries(tierConfig) as [
+                  keyof typeof tierConfig,
+                  (typeof tierConfig)[keyof typeof tierConfig],
+                ][]
+              ).map(([tier, cfg]) => (
+                <div
+                  class="border-4 border-black p-4"
+                  style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
+                >
+                  <div
+                    class="inline-block px-2 py-0.5 text-xs font-black uppercase mb-2 border-2 border-black"
+                    style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
+                  >
+                    {cfg.label}
+                  </div>
+                  <p class="text-xs font-bold text-black/70 leading-snug">
+                    {tier === 'magenta' && 'Your Fusion Party candidate. Number them 1.'}
+                    {tier === 'green' && 'Close allies sharing core values.'}
+                    {tier === 'orange' && 'Some overlap, but meaningful differences.'}
+                    {tier === 'red' && 'Major clashes with our principles. Vote last.'}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Ticket */}
             <div
               class="bg-white border-4 border-black p-6 md:p-8"
               style="box-shadow: 8px 8px 0 0 #000;"
             >
-              <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
-                <div class="text-left md:text-center flex-1">
-                  <h3 class="text-xl font-black uppercase tracking-widest bg-black text-white inline-block px-4 py-2 transform -rotate-1">
-                    Ballot Paper Guide
-                  </h3>
-                  <p class="mt-4 font-bold uppercase text-magenta">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                  <span
+                    class="inline-block bg-black text-white px-4 py-2 font-black uppercase tracking-wider text-sm"
+                    style="font-family: 'Archivo Black', sans-serif;"
+                  >
+                    Ballot Paper — {electorate.name}
+                  </span>
+                  <p class="mt-2 font-black uppercase text-xs text-magenta">
                     Number every box on your ballot paper.
                   </p>
                 </div>
 
                 {sortedHTV.some((c) => c.suggestedVote) && (
                   <label
-                    class="flex items-center cursor-pointer bg-light-grey px-4 py-2 border-4 border-black hover:bg-yellow transition-colors shrink-0"
-                    style="box-shadow: 4px 4px 0 0 #000;"
+                    class="flex items-center gap-3 cursor-pointer border-4 border-black bg-white px-4 py-2 hover:bg-yellow transition-colors"
+                    style="box-shadow: 3px 3px 0 0 #000;"
                   >
-                    <span class="mr-3 font-black uppercase text-sm">Suggested Preferences</span>
+                    <span class="font-black uppercase text-xs">Show Preferences</span>
                     <div class="relative">
                       <input type="checkbox" id="toggle-preferences" class="sr-only" />
-                      <div class="block bg-white w-12 h-6 border-2 border-black htv-toggle-bg transition-colors" />
-                      <div class="dot absolute left-1 top-1 bg-magenta w-4 h-4 transition-transform border-2 border-black htv-toggle-dot" />
+                      <div class="block bg-white w-10 h-5 border-2 border-black htv-toggle-bg transition-colors" />
+                      <div class="dot absolute left-0.5 top-0.5 bg-magenta w-4 h-4 transition-transform border-2 border-black htv-toggle-dot" />
                     </div>
                   </label>
                 )}
               </div>
 
               {electorate.house === 'upper' ? (
-                <div class="flex flex-wrap justify-center gap-4 pb-4">
-                  {sortedHTV.map((candidate) => (
-                    <div
-                      class={`flex-none w-40 md:w-48 flex flex-col items-center gap-4 p-4 md:p-6 border-4 text-center transition-transform hover:-translate-y-1 ${tierColors[candidate.candidateTier]}`}
-                    >
-                      {/* Checkbox proxy */}
+                <div class="flex flex-wrap gap-4 justify-center">
+                  {sortedHTV.map((candidate) => {
+                    const cfg = tierConfig[candidate.candidateTier]
+                    return (
                       <div
-                        class="w-16 h-16 border-4 border-black bg-white flex items-center justify-center shrink-0 font-black text-3xl"
-                        style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
+                        class="flex-none w-36 md:w-44 flex flex-col items-center gap-3 p-4 border-4 border-black text-center hover:-translate-y-0.5 transition-transform"
+                        style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
                       >
-                        {candidate.candidateTier === 'magenta' ? (
-                          '1'
-                        ) : (
-                          <span class="suggested-vote hidden">{candidate.suggestedVote || ''}</span>
-                        )}
-                      </div>
-
-                      <div class="h-1.5 w-full bg-black my-2" />
-
-                      <div class="flex-1 flex flex-col items-center w-full">
+                        <div
+                          class="w-14 h-14 border-4 border-black bg-white flex items-center justify-center font-black text-2xl"
+                          style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
+                        >
+                          {candidate.candidateTier === 'magenta' ? (
+                            '1'
+                          ) : (
+                            <span class="suggested-vote hidden text-lg">
+                              {candidate.suggestedVote || ''}
+                            </span>
+                          )}
+                        </div>
+                        <div class="h-1 w-full bg-black" />
                         <p
-                          class={`font-black text-base md:text-lg uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through decoration-red-500 decoration-4 opacity-70' : ''}`}
+                          class={`font-black text-sm uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through opacity-50' : ''}`}
                         >
                           {candidate.candidateParty}
                         </p>
-
-                        <div class="mt-auto pt-4">
-                          <div
-                            class={`px-3 py-1 text-[10px] md:text-xs font-black uppercase shrink-0 border-2 border-black transform -rotate-2 ${tierBadges[candidate.candidateTier as 'magenta' | 'green' | 'orange' | 'red']}`}
-                            style="box-shadow: 2px 2px 0 0 #000;"
-                          >
-                            {candidate.candidateTier === 'magenta'
-                              ? 'Vote 1'
-                              : candidate.candidateTier === 'green'
-                                ? 'Vote High'
-                                : candidate.candidateTier === 'orange'
-                                  ? 'Middle'
-                                  : 'Vote Last'}
-                          </div>
-                        </div>
+                        <span
+                          class="px-2 py-0.5 text-xs font-black uppercase border-2 border-black"
+                          style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
+                        >
+                          {cfg.label}
+                        </span>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               ) : (
-                <div class="space-y-4 max-w-2xl mx-auto">
-                  {sortedHTV.map((candidate) => (
-                    <div
-                      class={`flex items-center gap-4 p-4 border-4 transition-transform hover:-translate-x-1 ${tierColors[candidate.candidateTier]}`}
-                    >
-                      {/* Checkbox proxy */}
+                <div class="space-y-3 max-w-2xl mx-auto">
+                  {sortedHTV.map((candidate) => {
+                    const cfg = tierConfig[candidate.candidateTier]
+                    return (
                       <div
-                        class="w-12 h-12 border-4 border-black bg-white flex items-center justify-center shrink-0 font-black text-2xl"
-                        style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
+                        class="flex items-center gap-4 p-4 border-4 border-black hover:-translate-x-0.5 transition-transform"
+                        style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
                       >
-                        {candidate.candidateTier === 'magenta' ? (
-                          '1'
-                        ) : (
-                          <span class="suggested-vote hidden">{candidate.suggestedVote || ''}</span>
-                        )}
-                      </div>
-
-                      <div class="flex-1">
-                        <p
-                          class={`font-black text-lg md:text-xl uppercase leading-none ${candidate.candidateTier === 'red' ? 'line-through decoration-red-500 decoration-4 opacity-70' : ''}`}
+                        <div
+                          class="w-12 h-12 border-4 border-black bg-white flex items-center justify-center shrink-0 font-black text-xl"
+                          style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
                         >
-                          {candidate.candidateName}
-                        </p>
-                        <p
-                          class={`font-bold text-sm uppercase mt-1 ${candidate.candidateTier === 'red' ? 'line-through decoration-red-500 decoration-2 opacity-50' : 'opacity-80'}`}
+                          {candidate.candidateTier === 'magenta' ? (
+                            '1'
+                          ) : (
+                            <span class="suggested-vote hidden">
+                              {candidate.suggestedVote || ''}
+                            </span>
+                          )}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                          <p
+                            class={`font-black text-base md:text-lg uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through opacity-50' : ''}`}
+                          >
+                            {candidate.candidateName}
+                          </p>
+                          <p
+                            class={`font-bold text-xs uppercase mt-0.5 ${candidate.candidateTier === 'red' ? 'line-through opacity-40' : 'opacity-70'}`}
+                          >
+                            {candidate.candidateParty}
+                          </p>
+                        </div>
+                        <span
+                          class="px-3 py-1 text-xs font-black uppercase shrink-0 border-2 border-black"
+                          style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
                         >
-                          {candidate.candidateParty}
-                        </p>
+                          {cfg.label}
+                        </span>
                       </div>
-
-                      <div
-                        class={`px-3 py-1 text-xs font-black uppercase shrink-0 border-2 border-black transform rotate-2 ${tierBadges[candidate.candidateTier as 'magenta' | 'green' | 'orange' | 'red']}`}
-                        style="box-shadow: 2px 2px 0 0 #000;"
-                      >
-                        {candidate.candidateTier === 'magenta'
-                          ? 'Vote 1'
-                          : candidate.candidateTier === 'green'
-                            ? 'Vote High'
-                            : candidate.candidateTier === 'orange'
-                              ? 'Middle'
-                              : 'Vote Last'}
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -364,59 +432,123 @@ const tierBadges: Record<'magenta' | 'green' | 'orange' | 'red', string> = {
         )
       }
 
-      <!-- Commitments -->
+      {/* ── Commitments ── */}
       {
         Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
           <section class="mb-16">
-            <h2 class="text-2xl md:text-3xl font-black text-magenta mb-8 uppercase">
-              Our commitments to {electorate.name}
-            </h2>
+            <div class="mb-8">
+              <div class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black">
+                Our Commitments
+              </div>
+              <h2
+                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                What We'll Do for
+                <>
+                  <br />
+                  <span class="text-magenta">{electorate.name}</span>
+                </>
+              </h2>
+            </div>
 
-            <div class="grid gap-6 md:grid-cols-2">
-              {electorate.commitments.map((commitment) => (
-                <article
-                  class="bg-white border-4 border-black p-6"
-                  style="box-shadow: 6px 6px 0 0 #000;"
-                >
-                  <div class="flex items-start gap-4 mb-4">
-                    <span class="text-4xl" role="img" aria-label="commitment icon">
-                      {commitment.icon}
-                    </span>
-                    <div class="flex-1">
-                      <h3 class="text-xl font-black text-magenta mb-2">{commitment.title}</h3>
-                      <p class="font-semibold text-gray-800">{commitment.highlight}</p>
+            <div class="grid gap-5 md:grid-cols-2">
+              {electorate.commitments.map((commitment, index) => {
+                const accents = ['#5EFFD8', '#FFED00', '#C926F2']
+                const accent = accents[index % accents.length]
+                return (
+                  <article
+                    class="border-4 border-black bg-white p-6 hover:-translate-y-0.5 transition-transform"
+                    style={`box-shadow: 5px 5px 0 0 ${accent};`}
+                  >
+                    <div class="h-1.5 w-full mb-5" style={`background: ${accent};`} />
+                    <div class="flex items-start gap-4 mb-3">
+                      <span
+                        class="text-3xl shrink-0 border-2 border-black p-2 bg-white"
+                        role="img"
+                        aria-label="commitment icon"
+                      >
+                        {commitment.icon}
+                      </span>
+                      <div>
+                        <h3
+                          class="text-lg font-black uppercase mb-1"
+                          style="font-family: 'Archivo Black', sans-serif;"
+                        >
+                          {commitment.title}
+                        </h3>
+                        <p class="font-bold text-sm text-gray-700">{commitment.highlight}</p>
+                      </div>
                     </div>
-                  </div>
-                  {commitment.details && commitment.details.length > 0 && (
-                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 ml-14">
-                      {commitment.details.map((item) => (
-                        <li>{item.detail}</li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              ))}
+                    {commitment.details && commitment.details.length > 0 && (
+                      <ul class="mt-3 space-y-1 border-t-2 border-black/10 pt-3">
+                        {commitment.details.map((item) => (
+                          <li class="flex items-start gap-2 text-sm text-gray-600 font-semibold">
+                            <span class="font-black text-black shrink-0">→</span>
+                            {item.detail}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </article>
+                )
+              })}
             </div>
           </section>
         )
       }
 
-      <!-- CTA -->
+      {/* ── CTA ── */}
       <section
-        class="bg-magenta-light border-4 border-magenta p-8 mt-12"
-        style="box-shadow: 8px 8px 0 0 #000;"
+        class="bg-black text-white border-4 border-black relative overflow-hidden mt-4"
+        style="box-shadow: 8px 8px 0 0 #5EFFD8;"
       >
-        <h2 class="text-2xl md:text-3xl font-black text-magenta mb-4 uppercase">
-          Help us win {electorate.name}
-        </h2>
-        <p class="text-lg mb-4">
-          We don't take developer or corporate money. We win by people power: volunteers,
-          conversations, and small donations.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/get-involved" class="btn btn-primary">Volunteer</a>
-          <a href="/manifesto" class="btn btn-secondary">Read the Manifesto</a>
-          <a href="/policies" class="btn btn-secondary">See All Policies</a>
+        {/* Yellow corner */}
+        <div
+          class="absolute bottom-0 right-0 w-40 h-40 bg-yellow"
+          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+        >
+        </div>
+        <div class="px-8 py-12 relative z-10">
+          <div
+            class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white"
+          >
+            Help Us Win
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-black uppercase mb-3 leading-tight"
+            style="font-family: 'Archivo Black', sans-serif;"
+          >
+            Help Us Win<br /><span class="text-mint">{electorate.name}</span>
+          </h2>
+          <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+            We don't take developer or corporate money. We win by people power — volunteers,
+            conversations, and small donations.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="/get-involved"
+              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-magenta text-white hover:-translate-y-0.5 transition-all"
+              style="box-shadow: 3px 3px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
+            >
+              <Icon name="mdi:hand-wave" class="w-5 h-5" />
+              Volunteer
+            </a>
+            <a
+              href="/manifesto"
+              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Read the Manifesto
+            </a>
+            <a
+              href="/policies"
+              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              All Policies
+            </a>
+          </div>
         </div>
       </section>
     </div>
@@ -447,11 +579,11 @@ const tierBadges: Record<'magenta' | 'green' | 'orange' | 'red', string> = {
         if (isChecked) {
           bg.classList.replace('bg-white', 'bg-magenta')
           dot.classList.replace('bg-magenta', 'bg-white')
-          dot.classList.add('translate-x-6')
+          dot.classList.add('translate-x-5')
         } else {
           bg.classList.replace('bg-magenta', 'bg-white')
           dot.classList.replace('bg-white', 'bg-magenta')
-          dot.classList.remove('translate-x-6')
+          dot.classList.remove('translate-x-5')
         }
       }
     })
