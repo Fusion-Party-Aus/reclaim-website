@@ -1,0 +1,1504 @@
+---
+// No auth needed for quick access during meeting
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fusion Party — Reclaim Strategy Session // 21 February 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --magenta: #c926f2;
+        --mint: #5effd8;
+        --yellow: #ffed00;
+        --black: #010102;
+        --white: #ffffff;
+        --archivo: 'Archivo Black', sans-serif;
+        --grotesk: 'Space Grotesk', sans-serif;
+        --inter: 'Inter', sans-serif;
+        --mono: 'JetBrains Mono', monospace;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #111;
+        overflow: hidden;
+        font-family: var(--inter);
+      }
+
+      /* ── SLIDE SHELL ── */
+      .deck {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .slide.active {
+        display: flex;
+      }
+
+      /* ── TRIPLE STRIPE ── */
+      .stripe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .stripe-1 {
+        height: 12px;
+        background: var(--magenta);
+      }
+      .stripe-2 {
+        height: 8px;
+        background: var(--mint);
+        margin-top: 12px;
+      }
+      .stripe-3 {
+        height: 4px;
+        background: var(--yellow);
+        margin-top: 20px;
+      }
+
+      /* ── SLIDE BACKGROUNDS ── */
+      .bg-white {
+        background: var(--white);
+        color: var(--black);
+      }
+      .bg-black {
+        background: var(--black);
+        color: var(--white);
+      }
+      .bg-magenta {
+        background: var(--magenta);
+        color: var(--white);
+      }
+      .bg-mint {
+        background: var(--mint);
+        color: var(--black);
+      }
+      .bg-yellow {
+        background: var(--yellow);
+        color: var(--black);
+      }
+
+      /* ── CONTENT AREA ── */
+      .content {
+        padding: 80px 80px 60px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+      }
+      .content.pt-stripe {
+        padding-top: 80px;
+      }
+
+      /* ── TYPE ── */
+      .label {
+        font-family: var(--mono);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 700;
+        display: inline-block;
+        border: 3px solid currentColor;
+        padding: 4px 12px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-family: var(--archivo);
+        font-size: clamp(56px, 9vw, 140px);
+        line-height: 0.88;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-family: var(--archivo);
+        font-size: clamp(40px, 6vw, 96px);
+        line-height: 0.9;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+      h3 {
+        font-family: var(--archivo);
+        font-size: clamp(24px, 3.5vw, 52px);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .accent {
+        color: var(--magenta);
+      }
+      .accent-mint {
+        color: var(--mint);
+      }
+      .accent-yellow {
+        color: var(--yellow);
+      }
+
+      .lead {
+        font-size: clamp(18px, 2.2vw, 32px);
+        font-weight: 700;
+        line-height: 1.4;
+        max-width: 900px;
+        margin-top: 24px;
+      }
+
+      .stat-big {
+        font-family: var(--archivo);
+        font-size: clamp(72px, 12vw, 180px);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+      }
+
+      /* ── BRUTAL BORDER ── */
+      .brutal-box {
+        border: 5px solid var(--black);
+        box-shadow: 8px 8px 0 var(--black);
+        background: var(--white);
+        color: var(--black);
+        padding: 24px 32px;
+      }
+      .brutal-box.shadow-magenta {
+        box-shadow: 8px 8px 0 var(--magenta);
+      }
+      .brutal-box.shadow-mint {
+        box-shadow: 8px 8px 0 var(--mint);
+      }
+      .brutal-box.shadow-yellow {
+        box-shadow: 8px 8px 0 var(--yellow);
+      }
+
+      /* ── GRIDS ── */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 32px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+        margin-top: 32px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        margin-top: 32px;
+      }
+
+      /* ── PILL TAG ── */
+      .tag {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 6px 16px;
+        border: 3px solid var(--black);
+      }
+
+      /* ── LEFT BORDER CALLOUT ── */
+      .callout {
+        border-left: 10px solid var(--magenta);
+        padding-left: 24px;
+        margin-top: 24px;
+      }
+
+      /* ── LIST ── */
+      .blist {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .blist li {
+        font-size: clamp(16px, 1.8vw, 26px);
+        font-weight: 700;
+        padding-left: 20px;
+        position: relative;
+      }
+      .blist li::before {
+        content: '▶';
+        position: absolute;
+        left: 0;
+        color: var(--magenta);
+        font-size: 0.75em;
+      }
+
+      /* ── SLIDE COUNTER ── */
+      #counter {
+        position: fixed;
+        bottom: 20px;
+        right: 28px;
+        font-family: var(--mono);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        z-index: 100;
+        letter-spacing: 0.08em;
+      }
+
+      /* ── NAV HINT ── */
+      #hint {
+        position: fixed;
+        bottom: 20px;
+        left: 28px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.35);
+        z-index: 100;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── GEOMETRIC ACCENT ── */
+      .geo-tr {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 220px;
+        height: 220px;
+        clip-path: polygon(100% 0, 100% 100%, 0 0);
+      }
+      .geo-br {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 220px;
+        height: 220px;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      }
+
+      /* ── WATERMARK ── */
+      .watermark {
+        position: absolute;
+        font-family: var(--archivo);
+        font-size: 40vw;
+        font-weight: 900;
+        text-transform: uppercase;
+        opacity: 0.04;
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+        left: -5%;
+        top: 50%;
+        transform: translateY(-50%) rotate(-8deg);
+      }
+
+      /* ── FLOW STEP ── */
+      .flow-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .flow-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        border: 4px solid var(--black);
+        background: var(--white);
+        color: var(--black);
+        padding: 14px 20px;
+      }
+      .flow-num {
+        font-family: var(--archivo);
+        font-size: 28px;
+        line-height: 1;
+        color: var(--magenta);
+        min-width: 36px;
+      }
+      .flow-text {
+        font-weight: 700;
+        font-size: clamp(14px, 1.4vw, 20px);
+        line-height: 1.3;
+      }
+
+      /* ROADMAP */
+      .phase {
+        border: 5px solid var(--black);
+        padding: 20px 24px;
+      }
+      .phase-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .phase h4 {
+        font-family: var(--archivo);
+        font-size: clamp(18px, 2vw, 28px);
+        text-transform: uppercase;
+      }
+      .phase ul {
+        list-style: square;
+        margin-left: 20px;
+        margin-top: 8px;
+        font-size: clamp(12px, 1.2vw, 16px);
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      /* COLOUR SWATCH */
+      .swatch {
+        border: 4px solid var(--black);
+        overflow: hidden;
+      }
+      .swatch-block {
+        height: 80px;
+      }
+      .swatch-info {
+        padding: 12px;
+        background: white;
+        color: black;
+      }
+      .swatch-name {
+        font-family: var(--archivo);
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      .swatch-hex {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #555;
+      }
+
+      @media print {
+        #counter,
+        #hint {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <!-- ═══════════════════════════════════════════
+         SLIDE 1 — COVER
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black active" id="slide-1">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:#fff">F</div>
+        <div class="geo-br" style="background:var(--magenta)"></div>
+        <div class="content" style="padding-top:100px; justify-content:space-between;">
+          <!-- Logo row -->
+          <div style="display:flex;align-items:center;gap:24px;">
+            <img src="/solo-full-colour.svg" alt="Fusion Logo" style="height:72px;" />
+            <div>
+              <div
+                style="font-family:var(--archivo);font-size:42px;line-height:0.9;text-transform:uppercase;color:white;"
+              >
+                FUSION
+              </div>
+              <div
+                style="font-family:var(--archivo);font-size:21px;text-transform:uppercase;color:var(--magenta);"
+              >
+                PARTY
+              </div>
+            </div>
+          </div>
+
+          <!-- Main title -->
+          <div>
+            <div
+              class="label"
+              style="border-color:var(--mint);color:var(--mint);margin-bottom:20px;"
+            >
+              Strategy Session // 21 February 2026
+            </div>
+            <h1 style="color:white;font-size:clamp(48px,7vw,110px);">
+              BUILDING<br />
+              <span style="color:var(--magenta);">THE</span><br />
+              ENGINE
+            </h1>
+          </div>
+
+          <!-- Contact footer -->
+          <div
+            style="display:flex;gap:32px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;"
+          >
+            <span>fusionparty.org.au</span>
+            <span>contact@fusionparty.org.au</span>
+            <span>+61 410 249 574</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 2 — AGENDA
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-2">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            Agenda
+          </div>
+          <div class="grid-2" style="gap:20px;align-items:start;">
+            <div>
+              <h2 style="font-size:clamp(36px,5vw,72px);">
+                TODAY'S<br /><span class="accent">SESSION</span>
+              </h2>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              {
+                [
+                  ['01', 'The Political Landscape', 'Why we must act now'],
+                  ['02', 'Organizational Innovation', 'Proposed transformative frameworks'],
+                  ['03', 'Teams', 'Distributed execution model'],
+                  ['04', 'Decision Protocol', 'Streamlined operations'],
+                  ['05', 'Documentation', 'Transparency through records'],
+                  ['06', 'Visual Identity', 'Bold brand expression'],
+                ].map(([n, title, sub]) => (
+                  <div style="display:flex;gap:16px;padding:14px 0;border-bottom:3px solid #000;align-items:center;">
+                    <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--magenta);min-width:28px;">
+                      {n}
+                    </span>
+                    <div>
+                      <div style="font-family:var(--archivo);font-size:clamp(14px,1.6vw,22px);text-transform:uppercase;">
+                        {title}
+                      </div>
+                      <div style="font-size:13px;color:#555;font-weight:600;margin-top:2px;">
+                        {sub}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 3 — POLITICAL LANDSCAPE
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black" id="slide-3">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:white;">US</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="border-color:var(--magenta);color:var(--magenta);">
+            01 — The Political Landscape
+          </div>
+          <h2 style="color:white;">
+            WHY WE MUST<br /><span style="color:var(--magenta);">ACT NOW</span>
+          </h2>
+          <div class="grid-2" style="margin-top:36px;gap:28px;">
+            <div class="brutal-box shadow-magenta">
+              <div
+                style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--magenta);margin-bottom:8px;"
+              >
+                The Timeline
+              </div>
+              <p style="font-size:clamp(16px,1.6vw,22px);font-weight:700;line-height:1.4;">
+                Australia is on the same timeline as the US. <span
+                  style="background:var(--yellow);padding:0 4px;">Just 3 years behind.</span
+                >
+              </p>
+            </div>
+            <div class="brutal-box shadow-yellow">
+              <div
+                style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a00;margin-bottom:8px;"
+              >
+                One Nation Polling
+              </div>
+              <div
+                style="font-family:var(--archivo);font-size:clamp(48px,6vw,80px);line-height:1;color:#000;"
+              >
+                22.5<span style="font-size:0.5em;">%</span>
+              </div>
+              <p style="font-weight:700;font-size:15px;margin-top:4px;">
+                Our own version of this future is already here.
+              </p>
+            </div>
+          </div>
+          <div class="callout" style="border-color:var(--mint);margin-top:28px;">
+            <p style="color:var(--mint);font-size:clamp(16px,1.8vw,24px);font-weight:700;">
+              The adults in the room are realising their institutions won't save them.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 4 — RECLAIM STRATEGY
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-magenta" id="slide-4">
+        <div class="stripe">
+          <div class="stripe-1" style="background:var(--black)"></div><div
+            class="stripe-2"
+            style="background:var(--mint)"
+          >
+          </div><div class="stripe-3" style="background:var(--yellow)"></div>
+        </div>
+        <div class="watermark" style="color:white;">R</div>
+        <div class="geo-br" style="background:var(--yellow)"></div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="border-color:white;color:white;">The Reclaim Strategy</div>
+          <h2 style="color:white;line-height:0.85;">
+            WE MUST BE THE PARTY<br />OF <span
+              style="color:var(--yellow);-webkit-text-stroke:2px #000;"
+              >AGGRESSIVE<br />COMPETENCE</span
+            >
+          </h2>
+          <div class="grid-4" style="margin-top:40px;">
+            {
+              ['Simple Slogans', 'Combative Energy', 'Goal-Orientation', 'Idealistic Vision'].map(
+                (v) => (
+                  <div style="background:white;color:black;border:4px solid black;padding:20px 16px;text-align:center;">
+                    <div style="font-family:var(--archivo);font-size:clamp(14px,1.4vw,20px);text-transform:uppercase;line-height:1.1;">
+                      {v}
+                    </div>
+                  </div>
+                )
+              )
+            }
+          </div>
+          <div class="callout" style="border-color:var(--yellow);margin-top:32px;">
+            <p style="color:white;font-size:clamp(15px,1.6vw,22px);font-weight:700;">
+              Fix the problems — cost of living, housing, infrastructure — that drive people to One
+              Nation. Do it with a ruthlessness that Labor lacks.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 5 — SURVEY RESULTS
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-mint" id="slide-5">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2" style="background:var(--yellow)">
+          </div><div class="stripe-3" style="background:var(--magenta)"></div>
+        </div>
+        <div
+          class="content"
+          style="padding-top:80px;justify-content:center;align-items:center;text-align:center;"
+        >
+          <div class="label" style="border-color:black;color:black;">Member Survey — n=16</div>
+          <div
+            style="font-family:var(--archivo);font-size:clamp(100px,20vw,240px);line-height:0.8;color:var(--black);"
+          >
+            62.5<span style="font-size:0.35em;">%</span>
+          </div>
+          <div
+            style="font-family:var(--archivo);font-size:clamp(24px,3.5vw,52px);text-transform:uppercase;color:var(--black);margin-top:16px;"
+          >
+            STRONGLY SUPPORT
+          </div>
+          <div style="display:flex;gap:16px;margin-top:40px;justify-content:center;flex-wrap:wrap;">
+            <div
+              style="background:var(--black);color:white;border:4px solid black;padding:14px 28px;text-align:center;"
+            >
+              <div style="font-family:var(--archivo);font-size:28px;">25%</div>
+              <div
+                style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;margin-top:4px;"
+              >
+                Support w/ Reservations
+              </div>
+            </div>
+            <div
+              style="background:white;color:black;border:4px solid black;padding:14px 28px;text-align:center;box-shadow:6px 6px 0 black;"
+            >
+              <div style="font-family:var(--archivo);font-size:28px;">12.5%</div>
+              <div
+                style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;margin-top:4px;"
+              >
+                Disagree
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 6 — THE QUESTION
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black" id="slide-6">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:white;">?</div>
+        <div
+          class="content"
+          style="padding-top:80px;justify-content:center;align-items:center;text-align:center;"
+        >
+          <div class="label" style="border-color:var(--yellow);color:var(--yellow);">
+            The Question
+          </div>
+          <h2
+            style="color:white;margin-top:24px;font-size:clamp(32px,4.5vw,68px);max-width:900px;margin-left:auto;margin-right:auto;"
+          >
+            Are we building the engine to<br />
+            <span style="color:var(--magenta);">stop this future</span><br />
+            from happening here?
+          </h2>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 7 — ORGANIZATIONAL VELOCITY
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-7">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            Organizational Velocity
+          </div>
+          <h2>THE <span class="accent">REALITY</span><br />CHECK</h2>
+          <div class="grid-3" style="margin-top:32px;align-items:start;">
+            <div class="brutal-box shadow-magenta" style="height:100%;">
+              <div style="font-size:40px;margin-bottom:8px;">📰</div>
+              <div
+                style="font-family:var(--archivo);font-size:18px;text-transform:uppercase;margin-bottom:8px;"
+              >
+                News Cycles
+              </div>
+              <p style="font-weight:700;font-size:15px;">
+                Move in <span style="color:var(--magenta);font-family:var(--archivo);">hours</span>
+              </p>
+            </div>
+            <div class="brutal-box shadow-yellow" style="height:100%;">
+              <div style="font-size:40px;margin-bottom:8px;">🕐</div>
+              <div
+                style="font-family:var(--archivo);font-size:18px;text-transform:uppercase;margin-bottom:8px;"
+              >
+                Our Timeline
+              </div>
+              <p style="font-weight:700;font-size:15px;">
+                Currently <span style="color:#a00;font-family:var(--archivo);">days</span>
+              </p>
+            </div>
+            <div class="brutal-box shadow-mint" style="height:100%;">
+              <div style="font-size:40px;margin-bottom:8px;">🎯</div>
+              <div
+                style="font-family:var(--archivo);font-size:18px;text-transform:uppercase;margin-bottom:8px;"
+              >
+                The Gap
+              </div>
+              <p style="font-weight:700;font-size:15px;">
+                By the time we decide, <span style="background:var(--yellow);padding:0 2px;"
+                  >the moment has passed</span
+                >
+              </p>
+            </div>
+          </div>
+          <ul class="blist" style="margin-top:28px;">
+            <li>Current approval process creates delays for time-sensitive opportunities</li>
+            <li>Information silos reduce cross-functional coordination</li>
+            <li>Decisions not consistently recorded — accountability and discoverability issues</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 8 — THE FRAMEWORK OVERVIEW
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black" id="slide-8">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:white;">FW</div>
+        <div class="geo-br" style="background:var(--magenta)"></div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="border-color:var(--mint);color:var(--mint);">The Framework</div>
+          <h2 style="color:white;">
+            FOUR PILLARS.<br /><span style="color:var(--magenta);">ONE SYSTEM.</span>
+          </h2>
+          <div class="grid-4" style="margin-top:36px;">
+            {
+              [
+                [
+                  'Teams',
+                  'Distributed operational units with delegated authority',
+                  'var(--mint)',
+                  '#000',
+                ],
+                ['Decision Protocol', '4hrs → 2hrs. Days → hours.', 'var(--magenta)', '#fff'],
+                [
+                  'Documentation',
+                  '"If it\'s not documented, it doesn\'t exist"',
+                  'var(--yellow)',
+                  '#000',
+                ],
+                [
+                  'Visual Identity',
+                  'Neo-brutalist brand expressing Aggressive Competence',
+                  'white',
+                  '#000',
+                ],
+              ].map(([title, body, bg, col]) => (
+                <div
+                  style={`background:${bg};color:${col};border:4px solid ${col === '#000' ? '#000' : 'white'};padding:24px 20px;`}
+                >
+                  <div style="font-family:var(--archivo);font-size:clamp(16px,1.6vw,22px);text-transform:uppercase;margin-bottom:12px;line-height:1.1;">
+                    {title}
+                  </div>
+                  <p style="font-size:14px;font-weight:700;line-height:1.4;opacity:0.85;">{body}</p>
+                </div>
+              ))
+            }
+          </div>
+          <div style="margin-top:28px;border-left:8px solid var(--yellow);padding-left:20px;">
+            <p
+              style="color:rgba(255,255,255,0.7);font-size:clamp(14px,1.4vw,18px);font-weight:700;"
+            >
+              All four operate within Fusion's existing constitutional framework. <span
+                style="color:var(--yellow);">No amendments required.</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 9 — TEAMS
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-9">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark">TEAMS</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--mint);color:black;border-color:black;">
+            03 — Teams
+          </div>
+          <div class="grid-2" style="margin-top:0;gap:40px;align-items:start;">
+            <div>
+              <h2>DISTRIBUTED<br /><span class="accent">EXECUTION</span></h2>
+              <p class="lead" style="font-size:clamp(15px,1.5vw,20px);margin-top:16px;">
+                Autonomous operational units established by the Committee to execute specific
+                functions with delegated authority.
+              </p>
+              <div style="margin-top:24px;">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;color:#555;"
+                >
+                  Active Teams
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                  {
+                    ['Communications', 'Policy', 'Campaigns', 'Membership', 'Technology'].map(
+                      (t) => (
+                        <span class="tag" style="background:var(--mint);border-color:black;">
+                          {t}
+                        </span>
+                      )
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="brutal-box shadow-mint">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;color:var(--magenta);margin-bottom:8px;"
+                >
+                  Composition
+                </div>
+                <ul
+                  style="list-style:square;margin-left:20px;font-weight:700;font-size:clamp(13px,1.3vw,17px);line-height:1.6;"
+                >
+                  <li>1+ Committee Member</li>
+                  <li>3–10 General Members</li>
+                  <li>Open to all financial members</li>
+                </ul>
+              </div>
+              <div class="brutal-box shadow-magenta">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;color:var(--magenta);margin-bottom:8px;"
+                >
+                  Delegated to Teams
+                </div>
+                <ul
+                  style="list-style:square;margin-left:20px;font-weight:700;font-size:clamp(13px,1.3vw,17px);line-height:1.6;"
+                >
+                  <li>Routine operational decisions</li>
+                  <li>Public communications</li>
+                  <li>Campaign activities</li>
+                  <li>Expenditures (up to limits)</li>
+                </ul>
+              </div>
+              <div class="brutal-box">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;color:#555;margin-bottom:8px;"
+                >
+                  Reserved for Committee
+                </div>
+                <p style="font-weight:700;font-size:clamp(13px,1.3vw,17px);">
+                  Constitutional matters · Member discipline · High-value expenditures
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 9b — TEAM BRIEF
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-mint" id="slide-9b">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2" style="background:var(--black)">
+          </div><div class="stripe-3" style="background:var(--yellow)"></div>
+        </div>
+        <div class="watermark">BRIEF</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            Teams — The Team Brief
+          </div>
+          <div class="grid-2" style="gap:40px;align-items:start;">
+            <div>
+              <h2 style="font-size:clamp(32px,4.5vw,64px);">
+                EVERY TEAM<br />NEEDS A<br /><span class="accent">BRIEF</span>
+              </h2>
+              <p class="lead" style="font-size:clamp(14px,1.4vw,19px);margin-top:16px;">
+                A Team Brief is a Committee-approved charter that defines what the team can and
+                cannot do. It's the contract between the team and the party.
+              </p>
+              <div style="margin-top:20px;border-left:8px solid var(--black);padding-left:16px;">
+                <p style="font-weight:700;font-size:clamp(14px,1.3vw,17px);">
+                  We already loosely work under this structure in everything but name and defined
+                  scope.
+                </p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              {
+                [
+                  ['Scope', 'Specific functions and activities the team is responsible for'],
+                  ['Authority Limits', 'Spending cap, contract limits, decision thresholds'],
+                  ['Composition', 'Director name, member list, Committee liaison'],
+                  ['Reporting', 'Monthly report cadence, escalation triggers'],
+                  ['Duration', 'Ongoing or time-limited with renewal process'],
+                ].map(([field, desc]) => (
+                  <div style="display:flex;gap:0;border:4px solid var(--black);background:white;">
+                    <div style="background:var(--black);color:white;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;writing-mode:horizontal-tb;padding:12px 14px;display:flex;align-items:center;min-width:140px;">
+                      {field}
+                    </div>
+                    <div style="padding:12px 14px;font-weight:700;font-size:clamp(12px,1.2vw,15px);line-height:1.3;">
+                      {desc}
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 10 — DECISION PROTOCOL
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-yellow" id="slide-10">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2" style="background:var(--black)">
+          </div><div class="stripe-3" style="background:var(--magenta)"></div>
+        </div>
+        <div class="watermark">4HR</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:black;color:white;border-color:black;">
+            04 — Decision Protocol
+          </div>
+          <div class="grid-2" style="gap:40px;align-items:start;">
+            <div>
+              <h2 style="font-size:clamp(36px,5vw,72px);">
+                DAYS <span style="color:#555;text-decoration:line-through;">→</span><br /><span
+                  style="color:var(--magenta);">HOURS</span
+                >
+              </h2>
+              <div style="margin-top:20px;">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;"
+                >
+                  Timers
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                  {
+                    [
+                      ['Standard', '4 hrs'],
+                      ['Urgent', '2 hrs'],
+                      ['Complex', '6–8 hrs'],
+                    ].map(([l, v]) => (
+                      <div style="border:4px solid black;background:white;padding:12px 20px;text-align:center;">
+                        <div style="font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;">
+                          {l}
+                        </div>
+                        <div style="font-family:var(--archivo);font-size:clamp(18px,2.5vw,36px);">
+                          {v}
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="flow-steps">
+              {
+                [
+                  ['PROPOSE', 'Submit via governance channel'],
+                  ['TIMER', 'Countdown starts immediately'],
+                  ['REVIEW', 'Approve halves timer; objection pauses & triggers hearing'],
+                  [
+                    'AUTHORISE',
+                    'Tier 1: partial consent · Tier 2: silence = approval · Tier 3: explicit',
+                  ],
+                  ['DOCUMENT', 'All activity logged permanently'],
+                ].map(([step, desc], i) => (
+                  <div class="flow-step">
+                    <div class="flow-num">{String(i + 1).padStart(2, '0')}</div>
+                    <div>
+                      <div style="font-family:var(--archivo);font-size:clamp(14px,1.3vw,18px);text-transform:uppercase;">
+                        {step}
+                      </div>
+                      <div
+                        class="flow-text"
+                        style="font-size:clamp(12px,1.1vw,15px);color:#444;margin-top:2px;"
+                      >
+                        {desc}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 11 — TRUST TIERS
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-11">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            Decision Protocol — Trust Tiers
+          </div>
+          <h2 style="margin-bottom:8px;">TRUST <span class="accent">TIERS</span></h2>
+          <p style="font-weight:700;color:#555;font-size:clamp(14px,1.4vw,18px);">
+            Spending default: $10/proposal · $100/month cumulative
+          </p>
+          <div class="grid-3" style="margin-top:24px;">
+            <div
+              style="border:5px solid black;background:white;box-shadow:6px 6px 0 var(--mint);padding:24px;"
+            >
+              <div
+                style="background:var(--mint);color:black;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;display:inline-block;padding:3px 10px;border:2px solid black;margin-bottom:12px;"
+              >
+                Tier 1 — General
+              </div>
+              <div
+                style="font-family:var(--archivo);font-size:clamp(14px,1.5vw,20px);text-transform:uppercase;margin-bottom:8px;"
+              >
+                Partial Consent
+              </div>
+              <p style="font-weight:700;font-size:clamp(13px,1.2vw,16px);">
+                Minimum 1 approval required. Prevents auto-approval with zero review.
+              </p>
+            </div>
+            <div
+              style="border:5px solid black;background:white;box-shadow:6px 6px 0 var(--magenta);padding:24px;"
+            >
+              <div
+                style="background:var(--magenta);color:white;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;display:inline-block;padding:3px 10px;border:2px solid black;margin-bottom:12px;"
+              >
+                Tier 2 — Directors
+              </div>
+              <div
+                style="font-family:var(--archivo);font-size:clamp(14px,1.5vw,20px);text-transform:uppercase;margin-bottom:8px;"
+              >
+                Negative Consent
+              </div>
+              <p style="font-weight:700;font-size:clamp(13px,1.2vw,16px);">
+                Silence = approval. Earned via Committee vote. Revocable.
+              </p>
+            </div>
+            <div
+              style="border:5px solid black;background:black;color:white;box-shadow:6px 6px 0 var(--yellow);padding:24px;"
+            >
+              <div
+                style="background:var(--yellow);color:black;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;display:inline-block;padding:3px 10px;border:2px solid black;margin-bottom:12px;"
+              >
+                Tier 3 — High Risk
+              </div>
+              <div
+                style="font-family:var(--archivo);font-size:clamp(14px,1.5vw,20px);text-transform:uppercase;margin-bottom:8px;"
+              >
+                Explicit Consent
+              </div>
+              <p
+                style="font-weight:700;font-size:clamp(13px,1.2vw,16px);color:rgba(255,255,255,0.85);"
+              >
+                All required parties must explicitly approve. Major expenditures, constitutional
+                matters.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 12 — DOCUMENTATION
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black" id="slide-12">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:white;">DOC</div>
+        <div class="content" style="padding-top:80px;justify-content:center;">
+          <div class="label" style="border-color:var(--mint);color:var(--mint);">
+            05 — Documentation
+          </div>
+          <h2 style="color:white;font-size:clamp(28px,4vw,60px);">
+            "IF IT'S NOT DOCUMENTED,<br /><span style="color:var(--magenta);"
+              >IT DOESN'T EXIST"</span
+            >
+          </h2>
+          <div class="grid-4" style="margin-top:36px;">
+            {
+              [
+                [
+                  'Accountability',
+                  'Clear record of who decided what and when',
+                  'var(--mint)',
+                  '#000',
+                ],
+                [
+                  'Transparency',
+                  'Members can review decisions and understand rationale',
+                  'var(--magenta)',
+                  '#fff',
+                ],
+                [
+                  'Institutional Memory',
+                  'Knowledge persists beyond individual tenure',
+                  'var(--yellow)',
+                  '#000',
+                ],
+                [
+                  'Legal Protection',
+                  'Documented decisions demonstrate due process',
+                  'white',
+                  '#000',
+                ],
+              ].map(([title, body, bg, col]) => (
+                <div
+                  style={`background:${bg};color:${col};border:4px solid ${col === '#000' ? '#000' : 'rgba(255,255,255,0.3)'};padding:20px 16px;`}
+                >
+                  <div style="font-family:var(--archivo);font-size:clamp(14px,1.4vw,18px);text-transform:uppercase;margin-bottom:8px;line-height:1.1;">
+                    {title}
+                  </div>
+                  <p style="font-size:13px;font-weight:700;line-height:1.4;opacity:0.85;">{body}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 12b — WHAT MUST BE DOCUMENTED
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-12b">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark">REC</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            Documentation — What Gets Recorded
+          </div>
+          <h2 style="margin-bottom:24px;">
+            WHAT MUST BE<br /><span class="accent">DOCUMENTED</span>
+          </h2>
+          <div class="grid-3" style="gap:16px;margin-top:0;">
+            {
+              [
+                [
+                  'Committee Decisions',
+                  'Every motion, vote, and outcome — with date and attendees recorded',
+                  'var(--magenta)',
+                  '#fff',
+                ],
+                [
+                  'Working Group Activities',
+                  'Team briefs, Director appointments, monthly reports',
+                  'var(--mint)',
+                  '#000',
+                ],
+                [
+                  'Financial Transactions',
+                  'All expenditures, invoices, and approvals with bot-generated trail',
+                  'var(--yellow)',
+                  '#000',
+                ],
+                [
+                  'Membership Actions',
+                  'Joins, disciplinary actions, and status changes',
+                  '#000',
+                  '#fff',
+                ],
+                [
+                  'Policy Development',
+                  'Drafts, feedback rounds, version history, final approval',
+                  'white',
+                  '#000',
+                ],
+                [
+                  'Electoral Activities',
+                  'Candidate selections, scrutineering records, campaign spend',
+                  'white',
+                  '#000',
+                ],
+              ].map(([title, body, bg, col]) => (
+                <div
+                  style={`background:${bg};color:${col};border:4px solid #000;padding:20px 18px;box-shadow:5px 5px 0 #000;`}
+                >
+                  <div style="font-family:var(--archivo);font-size:clamp(13px,1.4vw,18px);text-transform:uppercase;margin-bottom:8px;line-height:1.1;">
+                    {title}
+                  </div>
+                  <p style="font-size:13px;font-weight:700;line-height:1.4;opacity:0.8;">{body}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 13 — VISUAL IDENTITY / DESIGN SYSTEM
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-13">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="content" style="padding-top:80px;">
+          <div
+            class="label"
+            style="background:var(--magenta);color:white;border-color:var(--black);"
+          >
+            06 — Visual Identity
+          </div>
+          <div class="grid-2" style="gap:40px;align-items:start;">
+            <div>
+              <h2>NEO-<span class="accent">BRUTALIST</span><br />BRAND</h2>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+                {
+                  [
+                    ['Breaks Convention', 'Differentiates from typical political aesthetics'],
+                    ['Signals Strength', 'Communicates competence and determination'],
+                    ['Demands Attention', 'High contrast creates visual impact'],
+                    ['Architectural Rigor', 'Disciplined structure reflects clarity'],
+                  ].map(([title, body]) => (
+                    <div style="display:flex;gap:12px;align-items:flex-start;">
+                      <div style="min-width:8px;height:8px;background:var(--magenta);margin-top:7px;flex-shrink:0;" />
+                      <div>
+                        <span style="font-family:var(--archivo);font-size:clamp(14px,1.4vw,18px);text-transform:uppercase;">
+                          {title}
+                        </span>
+                        <span style="font-size:13px;color:#555;font-weight:600;margin-left:6px;">
+                          — {body}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                {
+                  [
+                    ['#1A1D21', 'Deep Charcoal', '#fff', 'Background'],
+                    ['#C926F2', 'Magenta', '#fff', 'Primary'],
+                    ['#5EFFD8', 'Mint', '#000', 'Secondary'],
+                    ['#FFED00', 'Yellow', '#000', 'Accent'],
+                  ].map(([hex, name, text, role]) => (
+                    <div class="swatch">
+                      <div class="swatch-block" style={`background:${hex};`} />
+                      <div class="swatch-info" style="border-top:3px solid black;">
+                        <div class="swatch-name" style="font-size:13px;">
+                          {name}
+                        </div>
+                        <div class="swatch-hex">
+                          {hex} — {role}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="brutal-box" style="padding:16px 20px;">
+                <div
+                  style="font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;color:#555;margin-bottom:8px;"
+                >
+                  Typography
+                </div>
+                <div style="font-family:'Archivo Black';font-size:18px;text-transform:uppercase;">
+                  Archivo Black — Headlines
+                </div>
+                <div
+                  style="font-family:'Space Grotesk';font-weight:700;font-size:16px;margin-top:4px;"
+                >
+                  Space Grotesk — Subheadings
+                </div>
+                <div style="font-family:'JetBrains Mono';font-size:14px;margin-top:4px;">
+                  JetBrains Mono — Technical
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 14 — ROADMAP
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-white" id="slide-14">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark">90</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            90-Day Execution Plan
+          </div>
+          <h2 style="margin-bottom:24px;">ROAD<span class="accent">MAP</span></h2>
+          <div class="grid-3" style="gap:20px;margin-top:0;">
+            <div
+              class="phase"
+              style="border-color:var(--magenta);box-shadow:6px 6px 0 var(--magenta);"
+            >
+              <div class="phase-label" style="color:var(--magenta);">Phase 1 — 0–30 Days</div>
+              <h4>Foundation</h4>
+              <ul>
+                <li>Committee approval (Day 1)</li>
+                <li>Website launch (Days 1–3)</li>
+                <li>Bot deployment (Days 2–5)</li>
+                <li>Director appointments</li>
+                <li>5 Team Briefs approved</li>
+              </ul>
+            </div>
+            <div class="phase" style="border-color:var(--mint);box-shadow:6px 6px 0 var(--mint);">
+              <div class="phase-label" style="color:#0a8">Phase 2 — 30–60 Days</div>
+              <h4>Operational Rollout</h4>
+              <ul>
+                <li>All Teams fully operational</li>
+                <li>Decision Protocol standard practice</li>
+                <li>Documentation standards live</li>
+                <li>10+ decisions/week through bot</li>
+                <li>3+ Directors with negative consent</li>
+              </ul>
+            </div>
+            <div
+              class="phase"
+              style="border-color:var(--yellow);box-shadow:6px 6px 0 var(--yellow);"
+            >
+              <div class="phase-label" style="color:#a07000;">Phase 3 — 60–90 Days</div>
+              <h4>Optimisation</h4>
+              <ul>
+                <li>Full operational capacity</li>
+                <li>Protocol refinements</li>
+                <li>3× velocity increase</li>
+                <li>50%+ active member engagement</li>
+                <li>All Teams self-managing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 14b — SUCCESS METRICS
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-yellow" id="slide-14b">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2" style="background:var(--black)">
+          </div><div class="stripe-3" style="background:var(--magenta)"></div>
+        </div>
+        <div class="watermark">WIN</div>
+        <div class="content" style="padding-top:80px;">
+          <div class="label" style="background:var(--black);color:white;border-color:var(--black);">
+            What Success Looks Like at 90 Days
+          </div>
+          <h2 style="font-size:clamp(36px,5vw,72px);margin-bottom:32px;">
+            THE NUMBERS<br />THAT <span class="accent">MATTER</span>
+          </h2>
+          <div class="grid-4" style="margin-top:0;">
+            {
+              [
+                ['3×', 'Velocity increase — days to hours', 'var(--magenta)', '#fff'],
+                ['10+', 'Decisions processed per week via bot', '#000', '#fff'],
+                ['5', 'Team Briefs approved within 30 days', 'white', '#000'],
+                ['50%+', 'Active member engagement across all teams', 'white', '#000'],
+              ].map(([stat, label, bg, col]) => (
+                <div
+                  style={`background:${bg};color:${col};border:5px solid #000;box-shadow:6px 6px 0 #000;padding:24px 20px;`}
+                >
+                  <div style="font-family:var(--archivo);font-size:clamp(48px,6vw,80px);line-height:0.9;margin-bottom:12px;">
+                    {stat}
+                  </div>
+                  <p style="font-family:var(--mono);font-size:clamp(11px,1.1vw,14px);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;line-height:1.4;opacity:0.85;">
+                    {label}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap;">
+            {
+              [
+                'Website live & metrics tracking',
+                'Bot operational',
+                'Directors appointed',
+                'Zero compliance issues',
+                'All Teams self-managing',
+              ].map((item) => (
+                <div style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">
+                  <span style="width:10px;height:10px;background:var(--black);display:inline-block;flex-shrink:0;" />
+                  {item}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+         SLIDE 15 — CLOSE
+    ════════════════════════════════════════════ -->
+      <div class="slide bg-black" id="slide-15">
+        <div class="stripe">
+          <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
+        </div>
+        <div class="watermark" style="color:white;">NOW</div>
+        <div class="geo-br" style="background:var(--magenta)"></div>
+        <div class="geo-tr" style="background:var(--mint);"></div>
+        <div class="content" style="padding-top:100px;justify-content:space-between;">
+          <div>
+            <div
+              class="label"
+              style="border-color:var(--mint);color:var(--mint);margin-bottom:28px;"
+            >
+              The Decision Before Us — Today
+            </div>
+            <h1 style="color:white;font-size:clamp(56px,9vw,140px);line-height:0.85;">
+              THE ENGINE<br />
+              <span style="color:var(--magenta);">STARTS</span><br />
+              TODAY
+            </h1>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div style="border-left:8px solid var(--yellow);padding-left:20px;">
+              <p
+                style="color:rgba(255,255,255,0.85);font-size:clamp(15px,1.6vw,22px);font-weight:700;"
+              >
+                Are we building the engine to stop this future? <span style="color:var(--yellow);"
+                  >The answer is in this room.</span
+                >
+              </p>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              {
+                [
+                  ['Approve the Framework', 'var(--magenta)', '#fff'],
+                  ['Appoint Directors', 'var(--mint)', '#000'],
+                  ['Launch the Bot', 'var(--yellow)', '#000'],
+                ].map(([label, bg, col]) => (
+                  <div
+                    style={`background:${bg};color:${col};font-family:var(--archivo);font-size:clamp(14px,1.4vw,20px);text-transform:uppercase;padding:12px 20px;border:4px solid #000;`}
+                  >
+                    {label}
+                  </div>
+                ))
+              }
+            </div>
+            <div
+              style="font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;"
+            >
+              Ethan Cornwill — National Secretary, Fusion Party &nbsp;·&nbsp; Authorised by K. Hunt,
+              Fusion Party, Mansfield
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /deck -->
+
+    <div id="counter">1 / 18</div>
+    <div id="hint">← → arrow keys or click to navigate</div>
+
+    <script>
+      const slides = document.querySelectorAll('.slide')
+      let current = 0
+      const counter = document.getElementById('counter')
+
+      function go(n) {
+        slides[current].classList.remove('active')
+        current = (n + slides.length) % slides.length
+        slides[current].classList.add('active')
+        counter.textContent = `${current + 1} / ${slides.length}`
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault()
+          go(current + 1)
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault()
+          go(current - 1)
+        }
+      })
+
+      // Click anywhere on right half = next, left half = prev
+      document.getElementById('deck').addEventListener('click', (e) => {
+        if (e.clientX > window.innerWidth / 2) go(current + 1)
+        else go(current - 1)
+      })
+    </script>
+  </body>
+</html>
