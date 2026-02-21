@@ -43,8 +43,14 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S: StructureBuilder, _context: ConfigContext) =>
-        S.list()
+      structure: async (S: StructureBuilder, context: ConfigContext) => {
+        // Dynamically fetch distinct election groupings from archived electorates
+        const sanityClient = context.getClient({apiVersion: '2024-01-29'})
+        const elections: string[] = await sanityClient.fetch(
+          `array::unique(*[_type == "electorate" && isArchived == true && defined(electionGrouping)].electionGrouping) | order(@ desc)`,
+        )
+
+        return S.list()
           .title('Website Management')
           .items([
             // 🌐 SITE BACKBONE
@@ -97,7 +103,6 @@ export default defineConfig({
                 S.list()
                   .title('Editorial Content')
                   .items([
-                    // Recursive Hierarchical Pages
                     S.listItem().title('📄 Pages').child(getPageStructure(S)),
                     S.listItem()
                       .title('📰 Blog Posts')
@@ -150,10 +155,35 @@ export default defineConfig({
                     S.listItem()
                       .title('🗃️ Archived Electorates')
                       .child(
-                        S.documentTypeList('electorate')
-                          .title('Archived Electorates')
-                          .filter('_type == "electorate" && isArchived == true')
-                          .defaultOrdering([{field: 'name', direction: 'asc'}]),
+                        S.list()
+                          .title('Archived by Election')
+                          .items([
+                            // Dynamically built from data — no code change needed per election
+                            ...elections.map((election) =>
+                              S.listItem()
+                                .title(election)
+                                .child(
+                                  S.documentList()
+                                    .title(election)
+                                    .filter(
+                                      '_type == "electorate" && isArchived == true && electionGrouping == $election',
+                                    )
+                                    .params({election})
+                                    .defaultOrdering([{field: 'candidateName', direction: 'asc'}]),
+                                ),
+                            ),
+                            // Always include catch-all for ungrouped archived electorates
+                            S.listItem()
+                              .title('Historical')
+                              .child(
+                                S.documentList()
+                                  .title('Historical')
+                                  .filter(
+                                    '_type == "electorate" && isArchived == true && !defined(electionGrouping)',
+                                  )
+                                  .defaultOrdering([{field: 'candidateName', direction: 'asc'}]),
+                              ),
+                          ]),
                       ),
                     S.listItem()
                       .title('❓ FAQ')
@@ -172,7 +202,8 @@ export default defineConfig({
                       ),
                   ]),
               ),
-          ]),
+          ])
+      },
     }),
     visionTool(),
     table(),

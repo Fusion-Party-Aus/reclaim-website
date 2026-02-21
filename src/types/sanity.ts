@@ -128,6 +128,7 @@ export interface Electorate extends SanityDocument {
   isArchived?: boolean
   electionGrouping?: string
   house?: 'lower' | 'upper'
+  state?: string
   subtitle?: string
   candidateName?: string
   candidateImage?: SanityImageAsset

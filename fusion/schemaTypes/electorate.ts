@@ -35,6 +35,7 @@ export default defineType({
       type: 'string',
       description:
         'e.g. "2026 Victoria State Election" - Used to group archived candidates together. If left blank, it defaults to "Historical".',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'house',
@@ -48,6 +49,24 @@ export default defineType({
       },
       initialValue: 'lower',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'state',
+      title: 'State / Territory',
+      type: 'string',
+      description: 'Required for federal elections to group candidates by jurisdiction.',
+      options: {
+        list: [
+          {title: 'Australian Capital Territory (ACT)', value: 'ACT'},
+          {title: 'New South Wales (NSW)', value: 'NSW'},
+          {title: 'Northern Territory (NT)', value: 'NT'},
+          {title: 'Queensland (QLD)', value: 'QLD'},
+          {title: 'South Australia (SA)', value: 'SA'},
+          {title: 'Tasmania (TAS)', value: 'TAS'},
+          {title: 'Victoria (VIC)', value: 'VIC'},
+          {title: 'Western Australia (WA)', value: 'WA'},
+        ],
+      },
     }),
     defineField({
       name: 'subtitle',
@@ -251,15 +270,18 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'name',
+      name: 'name',
       candidate: 'candidateName',
+      election: 'electionGrouping',
+      archived: 'isArchived',
       media: 'candidateImage',
     },
     prepare(selection) {
-      const {title, candidate, media} = selection
+      const {name, candidate, election, archived, media} = selection
+      const archivePrefix = archived ? '📁 ' : '🗳️ '
       return {
-        title,
-        subtitle: candidate,
+        title: `${archivePrefix}${candidate || 'Unnamed candidate'}`,
+        subtitle: election ? `${election} · ${name}` : name,
         media,
       }
     },
