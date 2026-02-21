@@ -28,11 +28,6 @@ const pageData = await getPoliciesPage()
 
 const title = pageData?.title || 'Our Policies'
 const subtitle = pageData?.subtitle || 'Evidence-based solutions. Real costings. No bullshit.'
-const introCard = pageData?.introCard || {
-  heading:
-    'The major parties waste billions on poorly planned projects while telling you there\'s "no money" for housing, healthcare, or transport.',
-  punchline: "We're taking it back.",
-}
 const ctaSection = pageData?.ctaSection || {
   title: 'These Policies Can Win',
   body: "But only if we build a movement that can't be ignored. Join us.",
@@ -118,11 +113,11 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
   <Header />
   <Hero title={title} subtitle={subtitle} />
 
-  {/* ── Intro panel ── */}
+  {/* ── Manifesto Intro ── */}
   <section
     class="bg-black text-white border-b-8 border-mint py-16 px-4 md:px-8 relative overflow-hidden"
   >
-    {/* Yellow corner triangle */}
+    {/* Corner triangle accent */}
     <div
       class="absolute bottom-0 right-0 w-48 h-48 bg-yellow"
       style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
@@ -130,21 +125,68 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     </div>
     <div class="max-w-4xl mx-auto relative z-10">
       <div
-        class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-5 border-2 border-white"
+        class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-6 border-2 border-white"
       >
-        The Problem
+        Our Mission
       </div>
-      <p
-        class="text-xl md:text-2xl font-black uppercase leading-tight mb-6 border-l-8 border-magenta pl-6"
-      >
-        {introCard.heading}
-      </p>
-      <p
-        class="text-3xl md:text-4xl font-black uppercase text-mint"
+      <h2
+        class="text-3xl md:text-5xl font-black uppercase text-white mb-8 leading-tight"
         style="font-family: 'Archivo Black', sans-serif;"
       >
-        {introCard.punchline}
-      </p>
+        Fix Our Systems,<br /><span class="text-mint">Fix Our Country</span>
+      </h2>
+
+      <div class="space-y-5 border-l-8 border-magenta pl-6">
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          Our country became prosperous because we developed systems that incentivised{' '}
+          <span class="underline decoration-mint not-italic font-black text-white">long-term</span>{
+            ' '
+          }
+          economic growth. Over the past 50 years, those systems have been steadily dismantled and replaced
+          with ones that incentivise{' '}
+          <span class="underline decoration-yellow not-italic font-black text-white"
+            >short-term</span
+          >{' '}
+          gains instead.
+        </p>
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          Growth continued for a while — not because the systems were good, but because of the
+          cultural legacy which shaped our expectations and decisions.
+        </p>
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          But cultural legacy is temporary. It evolves from generation to generation, and changes as
+          we adapt to the world around us. Now that legacy has been diluted to the point that
+          long-term growth is no longer an outcome of our systems.
+        </p>
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          This is not the fault of the youth, nor the immigrant, nor the retiree.
+        </p>
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          It is the fault of an ultra-wealthy minority who used their influence over government to
+          bend our systems to their own advantage.
+        </p>
+        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
+          And we cannot just go backwards. The systems of the past will not work again in the
+          present — the world has changed too much.
+        </p>
+        <p class="text-lg md:text-xl font-black text-mint uppercase leading-snug not-italic">
+          We must rebuild systems that generate long-term growth from first principles.<br />
+          We must Reclaim our economy for the benefit of our future generations.
+        </p>
+        <p class="text-lg md:text-xl font-black text-white uppercase italic leading-snug">
+          Fix our systems, fix our country. It is the only way.
+        </p>
+      </div>
+
+      <div
+        class="mt-8 bg-magenta border-4 border-white px-6 py-5"
+        style="box-shadow: 6px 6px 0 0 #FFED00;"
+      >
+        <p class="text-lg md:text-xl font-black text-white uppercase leading-snug">
+          Australia will not secure its future until we fix the systems that reward short-term gain
+          at the expense of long-term prosperity.
+        </p>
+      </div>
     </div>
   </section>
 

@@ -9,15 +9,25 @@ import { getDocumentBySlug } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
 import type { PortableTextBlock } from '../../lib/portableText'
+import type { PolicyKeyPoint } from '../../types/sanity'
 import '../../styles/global.css'
 
 interface Policy {
   _id: string
   title: string
   slug: { current: string }
+  pillar?: string
   icon?: string
   summary: string
-  keyPoints?: string[]
+  keyPoints?: PolicyKeyPoint[]
+  // Further Detail fields
+  designRationale?: string
+  systemInteraction?: string
+  economicLogic?: string
+  riskAndFailureModes?: string
+  evidenceAndPrecedent?: string
+  implementationOutline?: string
+  // Metadata
   cost?: string
   funding?: string
   body?: PortableTextBlock[]
@@ -52,294 +62,298 @@ const getPolicyIcon = (icon?: string) => {
 }
 
 const headingBlocks =
-  policy.body?.filter((block: any) => block?._type === 'block' && block?.style === 'h2') || []
+  policy.body?.filter(
+    (block: PortableTextBlock) =>
+      (block as { _type?: string; style?: string })._type === 'block' &&
+      (block as { _type?: string; style?: string }).style === 'h2'
+  ) || []
 
 const contentSections = headingBlocks
-  .map((block: any) => {
-    const title = (block.children || [])
-      .map((child: any) => child.text)
+  .map((block: PortableTextBlock) => {
+    const b = block as { children?: { text?: string }[] }
+    const title = (b.children || [])
+      .map((child) => child.text || '')
       .join(' ')
       .trim()
     return title ? { id: applyHash(title), title } : null
   })
   .filter(Boolean)
 
+// Determine pillar colour for hero accent
+const pillarConfig: Record<string, { bg: string; shadow: string; textColor: string }> = {
+  'RECLAIM OUR ECONOMY': { bg: '#C926F2', shadow: '#FFED00', textColor: '#fff' },
+  'SOLVE THE HOUSING CRISIS': { bg: '#5EFFD8', shadow: '#C926F2', textColor: '#000' },
+  'FIX THE TAX EXPLOITS': { bg: '#FFED00', shadow: '#5EFFD8', textColor: '#000' },
+  'RECLAIM OUR FUTURE': { bg: '#C926F2', shadow: '#5EFFD8', textColor: '#fff' },
+}
+const pillarCfg = (policy.pillar && pillarConfig[policy.pillar]) || {
+  bg: '#C926F2',
+  shadow: '#5EFFD8',
+  textColor: '#fff',
+}
+
+// Detail field sections — only render populated ones
+const detailSections = [
+  { id: 'design-rationale', title: 'Design Rationale', content: policy.designRationale },
+  { id: 'system-interaction', title: 'System Interaction', content: policy.systemInteraction },
+  { id: 'economic-logic', title: 'Economic & Institutional Logic', content: policy.economicLogic },
+  { id: 'risks', title: 'Risk & Failure Modes', content: policy.riskAndFailureModes },
+  { id: 'evidence', title: 'Evidence & Precedent', content: policy.evidenceAndPrecedent },
+  { id: 'implementation', title: 'Implementation Outline', content: policy.implementationOutline },
+].filter((s) => !!s.content)
+
 const sidebarSections = [
   { id: 'top', title: policy.title },
   ...(policy.keyPoints && policy.keyPoints.length > 0
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
+  ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
   ...contentSections,
 ]
 ---
 
-<BaseLayout title={`${policy.title} | Fusion Victoria Policy`} description={policy.summary}>
+<BaseLayout title={`${policy.title} | Fusion Party Policy`} description={policy.summary}>
   <Header />
 
+  {/* ── HERO ── */}
+  <div
+    class="bg-black border-b-8 border-mint relative overflow-hidden"
+    style="padding-top: calc(5rem + 6px); padding-bottom: 3rem;"
+  >
+    {/* Triple stripe */}
+    <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20"></div>
+    <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20"></div>
+    <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20"></div>
+
+    {/* Corner accent */}
+    <div
+      class="absolute bottom-0 right-0 w-48 h-48 hidden md:block"
+      style={`background: ${pillarCfg.bg}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      {/* Pillar badge */}
+      {
+        policy.pillar && (
+          <div
+            class="inline-block px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
+            style={`background: ${pillarCfg.bg}; color: ${pillarCfg.textColor}; box-shadow: 3px 3px 0 0 #000;`}
+          >
+            {policy.pillar}
+          </div>
+        )
+      }
+
+      {/* Icon + Title */}
+      <div class="flex items-start gap-5 mb-5">
+        {
+          getPolicyIcon(policy.icon)?.type === 'icon' && (
+            <div
+              class="hidden md:flex items-center justify-center w-20 h-20 border-4 border-black shrink-0"
+              style={`background: ${pillarCfg.bg}; box-shadow: 5px 5px 0 0 #000;`}
+            >
+              <Icon
+                name={getPolicyIcon(policy.icon)?.value as string}
+                class="w-10 h-10"
+                style={`color: ${pillarCfg.textColor};`}
+              />
+            </div>
+          )
+        }
+        {
+          getPolicyIcon(policy.icon)?.type === 'emoji' && (
+            <span class="hidden md:block text-6xl shrink-0">
+              {getPolicyIcon(policy.icon)?.value}
+            </span>
+          )
+        }
+        <h1
+          class="text-4xl md:text-7xl font-black uppercase text-white leading-[0.9]"
+          style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+        >
+          {policy.title}
+        </h1>
+      </div>
+
+      {/* Summary */}
+      <p
+        class="text-xl md:text-2xl font-black text-white/80 border-l-8 pl-5 max-w-3xl leading-snug"
+        style={`border-color: ${pillarCfg.bg};`}
+      >
+        {policy.summary}
+      </p>
+    </div>
+  </div>
+
   <main
-    class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10 lg:items-stretch"
+    class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10 lg:items-start"
   >
     <div class="min-w-0">
+      {/* ── Breadcrumbs ── */}
       <nav
-        class="mb-6 text-xs md:text-sm font-black uppercase flex items-center gap-2 tracking-[0.12em]"
+        class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest"
       >
         <a
           href="/"
-          class="px-2 py-1 bg-black text-yellow border-2 border-yellow"
-          style="box-shadow: 3px 3px 0px 0px #000000;">Home</a
+          class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+          >Home</a
         >
-        <span class="text-gray-500">/</span>
+        <span class="text-black/30">›</span>
         <a
           href="/policies"
-          class="px-2 py-1 bg-magenta text-white border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #000000;">Policies</a
+          class="px-3 py-1.5 border-2 border-black bg-white text-black hover:bg-mint transition-colors"
+          >Policies</a
         >
-        <span class="text-gray-500">/</span>
+        <span class="text-black/30">›</span>
         <span
-          class="px-2 py-1 bg-white border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #000000;">{policy.title}</span
+          class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+          title={policy.title}>{policy.title}</span
         >
       </nav>
 
-      <section
-        id="top"
-        class="bg-white border-4 border-black px-5 md:px-10 py-8 md:py-10 relative overflow-visible"
-        style="box-shadow: 10px 10px 0px 0px #000000;"
-      >
-        <div
-          class="absolute -top-4 left-6 bg-black text-yellow px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] border-2 border-white"
-          style="box-shadow: 4px 4px 0px 0px #000000;"
-        >
-          Policy Detail
-        </div>
-
-        <header class="mb-8 mt-4">
-          <h1
-            class="text-3xl md:text-5xl font-black text-magenta mb-4 uppercase flex items-center gap-3 tracking-tight"
+      {/* ── Costing block ── */}
+      {
+        (policy.cost || policy.funding) && (
+          <div
+            id="top"
+            class="bg-yellow border-4 border-black px-6 py-5 mb-8 scroll-mt-28"
+            style="box-shadow: 6px 6px 0 0 #000;"
           >
-            {
-              getPolicyIcon(policy.icon)?.type === 'icon' && (
-                <span
-                  class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-yellow border-4 border-black"
-                  style="box-shadow: 4px 4px 0px 0px #000000;"
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="mdi:currency-usd" class="w-5 h-5 text-black" />
+              <span class="text-xs font-black uppercase tracking-widest text-black/60">
+                Costing
+              </span>
+            </div>
+            {policy.cost && (
+              <p class="font-black text-2xl text-black leading-tight">Cost: {policy.cost}</p>
+            )}
+            {policy.funding && (
+              <p class="text-sm font-bold text-black/70 mt-1 border-l-4 border-black pl-3">
+                Funded by: {policy.funding}
+              </p>
+            )}
+          </div>
+        )
+      }
+
+      {/* ── Key Points ── */}
+      {
+        policy.keyPoints && policy.keyPoints.length > 0 && (
+          <section
+            id="key-points"
+            class="border-4 border-black bg-white mb-8 scroll-mt-28"
+            style="box-shadow: 6px 6px 0 0 #C926F2;"
+          >
+            <div class="bg-magenta border-b-4 border-black px-6 py-4">
+              <h2
+                class="text-xl font-black uppercase text-white tracking-tight"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                Key Points
+              </h2>
+            </div>
+            <ul class="divide-y-4 divide-black">
+              {policy.keyPoints.map((kp) => (
+                <li class="px-6 py-5 flex items-start gap-4">
+                  <span
+                    class="shrink-0 w-7 h-7 bg-mint border-2 border-black flex items-center justify-center font-black text-black text-sm mt-0.5"
+                    style="box-shadow: 2px 2px 0 0 #000;"
+                  >
+                    ✓
+                  </span>
+                  <div>
+                    <p class="font-black text-base uppercase leading-tight text-black mb-1">
+                      {kp.point}
+                    </p>
+                    {kp.description && (
+                      <p class="text-sm font-semibold text-gray-600 leading-snug">
+                        {kp.description}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {/* ── Further Detail ── */}
+      {
+        detailSections.length > 0 && (
+          <section id="further-detail" class="mb-8 scroll-mt-28">
+            <div class="border-4 border-black mb-0" style="box-shadow: 6px 6px 0 0 #5EFFD8;">
+              <div class="bg-black border-b-4 border-black px-6 py-4 flex items-center gap-3">
+                <Icon name="mdi:book-open-variant" class="w-6 h-6 text-mint" />
+                <h2
+                  class="text-xl font-black uppercase text-white"
+                  style="font-family: 'Archivo Black', sans-serif;"
                 >
-                  <Icon
-                    name={getPolicyIcon(policy.icon)?.value as string}
-                    class="w-7 h-7 md:w-9 md:h-9 text-black"
-                  />
-                </span>
-              )
-            }
-            {
-              getPolicyIcon(policy.icon)?.type === 'emoji' && (
-                <span class="text-4xl md:text-6xl">{getPolicyIcon(policy.icon)?.value}</span>
-              )
-            }
-            <span class="leading-tight">{policy.title}</span>
-          </h1>
-          <p class="text-lg md:text-2xl font-bold mb-5 leading-snug max-w-3xl">{policy.summary}</p>
-
-          {
-            (policy.cost || policy.funding) && (
-              <div
-                class="inline-block bg-yellow border-4 border-black px-4 py-3 mb-6 max-w-md"
-                style="box-shadow: 6px 6px 0px 0px #000000; transform: rotate(-1.5deg);"
-              >
-                <p class="text-[0.7rem] font-black uppercase tracking-[0.16em] text-black/70 mb-1">
-                  Costing
-                </p>
-                {policy.cost && <p class="font-black text-lg leading-snug">Cost: {policy.cost}</p>}
-                {policy.funding && (
-                  <p class="text-xs mt-2 font-semibold leading-snug">Funded by: {policy.funding}</p>
-                )}
-              </div>
-            )
-          }
-
-          {
-            policy.keyPoints && policy.keyPoints.length > 0 && (
-              <div
-                id="key-points"
-                class="bg-light-grey border-4 border-black p-5 md:p-6 mb-6"
-                style="box-shadow: 6px 6px 0px 0px #000000; transform: rotate(0.8deg);"
-              >
-                <h2 class="text-xl md:text-2xl font-black text-magenta mb-4 uppercase tracking-tight">
-                  Key Points
+                  Further Detail
                 </h2>
-                <ul class="space-y-2">
-                  {policy.keyPoints.map((point) => (
-                    <li class="flex items-start">
-                      <span class="text-mint mr-2 font-black text-2xl leading-none mt-[2px]">
-                        ✓
-                      </span>
-                      <span class="font-semibold text-sm md:text-base leading-snug">{point}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            )
-          }
-        </header>
+              <div class="bg-white divide-y-4 divide-black">
+                {detailSections.map((section, idx) => {
+                  const accentColors = ['#C926F2', '#5EFFD8', '#FFED00']
+                  const accent = accentColors[idx % 3]
+                  return (
+                    <details class="group">
+                      <summary class="px-6 py-4 flex items-center justify-between gap-4 cursor-pointer select-none hover:bg-gray-50 transition-colors list-none">
+                        <div class="flex items-center gap-3">
+                          <div class="w-2 h-6 shrink-0" style={`background: ${accent};`} />
+                          <span class="font-black uppercase text-sm tracking-wide text-black">
+                            {section.title}
+                          </span>
+                        </div>
+                        <Icon
+                          name="mdi:chevron-down"
+                          class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180 shrink-0"
+                        />
+                      </summary>
+                      <div class="px-6 pb-6 pt-2 border-t-4 border-black/10">
+                        <p class="text-base font-semibold text-gray-700 leading-relaxed whitespace-pre-wrap">
+                          {section.content}
+                        </p>
+                      </div>
+                    </details>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+        )
+      }
 
-        <article class="prose prose-lg max-w-none">
-          <style is:global>
-            /* Neo-Brutal Section Boxes - Using Fusion Brand Colors */
-            .brutal-section {
-              margin-bottom: 2.5rem;
-            }
+      {/* ── Body (portable text) ── */}
+      {
+        bodyHtml && (
+          <article class="prose prose-lg max-w-none">
+            <div set:html={bodyHtml} />
+          </article>
+        )
+      }
 
-            .brutal-section-header {
-              font-size: 2.5rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #ffffff;
-              background: #c926f2;
-              margin: 0;
-              padding: 1.5rem;
-              line-height: 1.1;
-              letter-spacing: -0.02em;
-              border: 4px solid #000000;
-              box-shadow: 8px 8px 0 0 #000000;
-              scroll-margin-top: 7rem;
-            }
-
-            .brutal-section-content {
-              background: #ffffff;
-              border: 4px solid #000000;
-              border-top: none;
-              padding: 2rem;
-              box-shadow: 8px 8px 0 0 #000000;
-            }
-
-            .prose h3 {
-              font-size: 1.75rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #000000;
-              margin: 2rem -2rem 1.5rem -2rem;
-              padding: 1rem 2rem;
-              line-height: 1.2;
-              background: #ffed00;
-              border-top: 4px solid #000000;
-              border-bottom: 4px solid #000000;
-            }
-
-            .brutal-section-content > h3:first-child {
-              margin-top: -2rem;
-            }
-
-            .prose h4 {
-              font-size: 1.25rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #c926f2;
-              margin-top: 1.5rem;
-              margin-bottom: 0.75rem;
-            }
-
-            .prose p {
-              font-size: 1.125rem;
-              line-height: 1.75;
-              margin-bottom: 1.25rem;
-              color: #1a1a1a;
-            }
-
-            .prose strong {
-              font-weight: 900;
-              color: #000000;
-              background: #ffed00;
-              padding: 0 0.25rem;
-            }
-
-            .prose em {
-              font-style: italic;
-              color: #1a1a1a;
-            }
-
-            .prose ul {
-              list-style: none;
-              padding-left: 0;
-              margin: 1.5rem 0;
-            }
-
-            .prose ol {
-              list-style: none;
-              counter-reset: item;
-              padding-left: 0;
-              margin: 1.5rem 0;
-            }
-
-            .prose li {
-              position: relative;
-              margin-bottom: 1rem;
-              background: #e5e5e5;
-              border: 3px solid #000000;
-              padding: 1rem 1rem 1rem 2.5rem;
-              box-shadow: 4px 4px 0 0 #000000;
-            }
-
-            .prose ul > li::before {
-              content: '▸';
-              position: absolute;
-              left: 1rem;
-              top: 1rem;
-              font-weight: 900;
-              color: #c926f2;
-              font-size: 1.25rem;
-            }
-
-            .prose ol > li {
-              counter-increment: item;
-            }
-
-            .prose ol > li::before {
-              content: counter(item) '.';
-              position: absolute;
-              left: 1rem;
-              top: 1rem;
-              font-weight: 900;
-              color: #c926f2;
-              font-size: 1rem;
-            }
-
-            .prose a {
-              color: #c926f2;
-              text-decoration: none;
-              font-weight: 700;
-              border-bottom: 3px solid #c926f2;
-              transition: all 0.2s;
-            }
-
-            .prose a:hover {
-              background: #c926f2;
-              color: #ffffff;
-              border-bottom-color: #c926f2;
-            }
-
-            .prose blockquote {
-              border: 4px solid #000000;
-              background: #5effd8;
-              padding: 1.5rem;
-              margin: 2rem -2rem;
-              font-weight: 700;
-              font-size: 1.25rem;
-              box-shadow: 6px 6px 0 0 #000000;
-              border-left: 8px solid #c926f2;
-              color: #000000;
-            }
-
-            .prose code {
-              background: #000000;
-              color: #5effd8;
-              padding: 0.25rem 0.5rem;
-              border-radius: 0;
-              font-family: 'Courier New', monospace;
-              font-weight: 700;
-            }
-          </style>
-          <div set:html={bodyHtml} />
-        </article>
-      </section>
+      {/* ── Back / CTA row ── */}
+      <div class="mt-10 flex flex-wrap gap-3 border-t-4 border-black pt-8">
+        <a
+          href="/policies"
+          class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-black text-white hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0 0 #5EFFD8; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:arrow-left" class="w-4 h-4" />
+          All Policies
+        </a>
+        <a
+          href="/get-involved"
+          class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-magenta text-white hover:-translate-y-0.5 transition-all"
+          style="box-shadow: 4px 4px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
+        >
+          <Icon name="mdi:hand-heart" class="w-4 h-4" />
+          Get Involved
+        </a>
+      </div>
     </div>
 
     <Sidebar sections={sidebarSections} page="policy" />
@@ -347,3 +361,164 @@ const sidebarSections = [
 
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  /* Neo-Brutal Section Boxes - Using Fusion Brand Colors */
+  .brutal-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .brutal-section-header {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #c926f2;
+    margin: 0;
+    padding: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    border: 4px solid #000000;
+    box-shadow: 8px 8px 0 0 #000000;
+    scroll-margin-top: 7rem;
+  }
+
+  .brutal-section-content {
+    background: #ffffff;
+    border: 4px solid #000000;
+    border-top: none;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 0 #000000;
+  }
+
+  .prose h3 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000000;
+    margin: 2rem -2rem 1.5rem -2rem;
+    padding: 1rem 2rem;
+    line-height: 1.2;
+    background: #ffed00;
+    border-top: 4px solid #000000;
+    border-bottom: 4px solid #000000;
+  }
+
+  .brutal-section-content > h3:first-child {
+    margin-top: -2rem;
+  }
+
+  .prose h4 {
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #c926f2;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    color: #1a1a1a;
+  }
+
+  .prose strong {
+    font-weight: 900;
+    color: #000000;
+    background: #ffed00;
+    padding: 0 0.25rem;
+  }
+
+  .prose em {
+    font-style: italic;
+    color: #1a1a1a;
+  }
+
+  .prose ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+  }
+
+  .prose ol {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 0;
+    margin: 1.5rem 0;
+  }
+
+  .prose li {
+    position: relative;
+    margin-bottom: 1rem;
+    background: #e5e5e5;
+    border: 3px solid #000000;
+    padding: 1rem 1rem 1rem 2.5rem;
+    box-shadow: 4px 4px 0 0 #000000;
+  }
+
+  .prose ul > li::before {
+    content: '▸';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-weight: 900;
+    color: #c926f2;
+    font-size: 1.25rem;
+  }
+
+  .prose ol > li {
+    counter-increment: item;
+  }
+
+  .prose ol > li::before {
+    content: counter(item) '.';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-weight: 900;
+    color: #c926f2;
+    font-size: 1rem;
+  }
+
+  .prose a {
+    color: #c926f2;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 3px solid #c926f2;
+    transition: all 0.2s;
+  }
+
+  .prose a:hover {
+    background: #c926f2;
+    color: #ffffff;
+    border-bottom-color: #c926f2;
+  }
+
+  .prose blockquote {
+    border: 4px solid #000000;
+    background: #5effd8;
+    padding: 1.5rem;
+    margin: 2rem -2rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    box-shadow: 6px 6px 0 0 #000000;
+    border-left: 8px solid #c926f2;
+    color: #000000;
+  }
+
+  .prose code {
+    background: #000000;
+    color: #5effd8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+  }
+
+  /* Details/summary chevron animation */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

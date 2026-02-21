@@ -50,6 +50,21 @@ export default defineConfig({
           `array::unique(*[_type == "electorate" && isArchived == true && defined(electionGrouping)].electionGrouping) | order(@ desc)`,
         )
 
+        // Fetch distinct pillar + category combos for policy grouping
+        type PolicyGroup = {pillar: string; categories: string[]}
+        const pillars: string[] = await sanityClient.fetch(
+          `array::unique(*[_type == "policy" && defined(pillar)].pillar)`,
+        )
+        const policyGroups: PolicyGroup[] = await Promise.all(
+          pillars.map(async (pillar) => {
+            const categories: string[] = await sanityClient.fetch(
+              `array::unique(*[_type == "policy" && pillar == $pillar && defined(category)].category)`,
+              {pillar},
+            )
+            return {pillar, categories}
+          }),
+        )
+
         return S.list()
           .title('Website Management')
           .items([
@@ -140,9 +155,62 @@ export default defineConfig({
                     S.listItem()
                       .title('📋 Policies')
                       .child(
-                        S.documentTypeList('policy')
-                          .title('Policies')
-                          .defaultOrdering([{field: 'publishedAt', direction: 'desc'}]),
+                        S.list()
+                          .title('Policies by Pillar')
+                          .items([
+                            // Dynamic pillar → category → policy tree
+                            ...policyGroups.map(({pillar, categories}) =>
+                              S.listItem()
+                                .title(pillar)
+                                .icon(() => '📋')
+                                .child(
+                                  S.list()
+                                    .title(pillar)
+                                    .items([
+                                      // Per-category sub-lists
+                                      ...categories.map((category) =>
+                                        S.listItem()
+                                          .title(category)
+                                          .icon(() => '📁')
+                                          .child(
+                                            S.documentList()
+                                              .title(category)
+                                              .filter(
+                                                '_type == "policy" && pillar == $pillar && category == $category',
+                                              )
+                                              .params({pillar, category})
+                                              .defaultOrdering([
+                                                {field: 'title', direction: 'asc'},
+                                              ]),
+                                          ),
+                                      ),
+                                      // Catch-all for policies without a category
+                                      S.listItem()
+                                        .title('Uncategorised')
+                                        .icon(() => '📄')
+                                        .child(
+                                          S.documentList()
+                                            .title('Uncategorised')
+                                            .filter(
+                                              '_type == "policy" && pillar == $pillar && !defined(category)',
+                                            )
+                                            .params({pillar})
+                                            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+                                        ),
+                                    ]),
+                                ),
+                            ),
+                            // Flat "All Policies" shortcut
+                            S.divider(),
+                            S.listItem()
+                              .title('All Policies (Flat List)')
+                              .icon(() => '📝')
+                              .child(
+                                S.documentTypeList('policy')
+                                  .title('All Policies')
+                                  .defaultOrdering([{field: 'title', direction: 'asc'}]),
+                              ),
+                          ]),
                       ),
                     S.listItem()
                       .title('🗳️ Active Electorates')
