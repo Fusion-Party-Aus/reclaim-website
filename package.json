@@ -28,6 +28,7 @@
     "import:faq": "node scripts/migration/import-faq.js",
     "import:pages": "node scripts/migration/import-pages.js",
     "import:manifesto": "node scripts/migration/import-manifesto.js",
+    "import:previous-candidates": "node scripts/migration/import-previous-candidates.js",
     "import:home": "node scripts/migration/import-home.js",
     "import:navigation": "node scripts/migration/import-navigation.js",
     "import:footer": "node scripts/migration/import-footer.js",
