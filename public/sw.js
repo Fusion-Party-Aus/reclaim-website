@@ -1,23 +1,24 @@
-const CACHE_NAME = 'fusion-vic-v1';
+const CACHE_NAME = 'fusion-vic-v2';
 const OFFLINE_URL = '/offline';
 
 // Assets to cache immediately
 const PRECACHE_ASSETS = [
   '/',
   '/offline',
-  '/styles/global.css',
   '/solo-full-colour.svg',
 ];
 
 // Install event - precache assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
-      return cache.addAll(PRECACHE_ASSETS);
-    })
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Opened cache');
+        return cache.addAll(PRECACHE_ASSETS);
+      })
+      .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
 // Activate event - clean up old caches
@@ -73,7 +74,18 @@ self.addEventListener('fetch', (event) => {
 
           // If it's a navigation request, show offline page
           if (event.request.mode === 'navigate') {
-            return caches.match(OFFLINE_URL);
+            return caches.match(OFFLINE_URL).then((offlineResponse) => {
+              return (
+                offlineResponse ||
+                new Response(
+                  '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline</title></head><body><h1>Offline</h1><p>Please check your connection.</p></body></html>',
+                  {
+                    status: 200,
+                    headers: new Headers({ 'Content-Type': 'text/html; charset=utf-8' }),
+                  }
+                )
+              );
+            });
           }
 
           // Otherwise return a basic offline response
