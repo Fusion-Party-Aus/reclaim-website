@@ -795,6 +795,39 @@ Commonwealth-led corridor development with staged construction, priority routing
 
 ## Fix the Tax Exploits
 
+### **Expose Political Donations**
+
+1. Introduce real-time donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure source or timing.
+
+
+### **Reform the National Anti-Corruption Commission**
+
+1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, increase resourcing, and mandate structured public reporting of enforcement activity.
+
+
+### **Stop Corporate Tax Avoidance**
+
+1. Strengthen anti-base erosion and profit shifting rules, restrict artificial debt loading and concession stacking, expand corporate tax transparency obligations, and increase enforcement resources for large and multinational entities.
+
+
+### **Stop Ultra-Wealthy Tax Avoidance**
+
+1. Reform high-balance superannuation concessions, tighten discretionary trust income distribution rules, and introduce a minimum effective tax framework applicable to ultra-high-net-worth individuals.
+
+
+### **End Fossil Fuel Subsidies**
+
+1. Repeal statutory concessions, fuel tax credits, and budgetary programs that directly or indirectly reduce the cost of fossil fuel production or consumption.
+
+
+### **Price Carbon Pollution**
+
+1. Establish an economy-wide carbon pricing mechanism that applies a per-tonne emissions liability across covered sectors, with defined compliance and reporting requirements.
+
+---
+
+
+
 * Make the wealthy pay their fair share
 * End fossil fuel subsidies
 * Price carbon pollution

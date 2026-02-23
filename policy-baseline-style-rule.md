@@ -113,6 +113,31 @@ Avoid:
 * Abstract nouns
 * Bureaucratic phrasing
 * Compound commitments
+* Verbs that imply incremental adjustment (e.g. “strengthen”, “tighten”)
+
+### Tier-1 Outcome Framing (Precision Rule)
+
+Tier-1 may embed a broad civic outcome implicitly within the action statement (e.g. *“Make Housing Tax Fair Across Generations”*), but only where it improves structural precision. This implicit outcome framing is **preferred** when it increases clarity of reform direction without expanding scope.
+
+**Use implicit outcome framing only if ALL are true:**
+
+* ☐ The outcome framing clarifies the structural direction of the reform and adds precision rather than emphasis.
+* ☐ The outcome wording narrows interpretation rather than broadens it.
+* ☐ The instrument name alone would be unclear to a disengaged reader without directional framing.
+* ☐ The action still maps cleanly to a single legislative or institutional reform.
+
+If these conditions are met, outcome framing is preferred over purely procedural wording.
+
+**Do NOT use implicit outcome framing if ANY are true:**
+
+* ☐ The instrument name already defines the reform boundary with sufficient precision.
+* ☐ The action is already clearly understandable to a disengaged reader without added framing.
+* ☐ The outcome wording expands, abstracts, or obscures the specific reform described in Tier-2.
+* ☐ The phrasing adds rhetorical weight without adding structural clarity.
+* ☐ The wording implies benefit, success, or moral judgement rather than defining reform direction.
+
+> If implicit outcome framing increases directional precision, use it.
+> If it adds rhetoric instead of precision, do not use it.
 
 ## T1 Acceptance Test
 
@@ -526,6 +551,7 @@ If Tier-4 content fails:
 * ☐ Removing Tier-3 does not alter how Tier-2 functions
 * ☐ Removing Tier-2 does not alter why Tier-3 exists
 * ☐ Tier-1 still makes sense on its own
+* ☐ Tier-1 scope must not be broader than the legislative or institutional domain defined in Tier-2
 
 **AUTO-FAIL if ANY are present:**
 
