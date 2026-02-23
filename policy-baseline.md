@@ -27,6 +27,22 @@
 # RECLAIM OUR ECONOMY
 
 ## Restore the Fair Go
+## Solve the Housing Crisis
+## Fix the Tax Exploits
+## Build up Small Businesses
+
+# RECLAIM OUR FUTURE
+
+## Rebuild Our Communities
+## Update Our Schools
+## Transform Our Industries
+## Repair Our Environment
+
+---
+
+# RECLAIM OUR ECONOMY
+
+## Restore the Fair Go
 Making Australia a country where your effort secures a stable income, essential services work when you need them, and prosperity is not reserved for those who were already born lucky.
 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
@@ -633,17 +649,12 @@ Commonwealth legislation defines payment amounts, uplift criteria, indexing meth
 ---
 </details>
 
-### **Supply Public Housing at Scale**
+### **Supply Integrated Public Housing at Scale**
 
-Deliver public and affordable housing at the scale the crisis demands—tens of thousands of homes, not token gestures.
-Purchase one floor in every residential tower for public housing, integrating residents into city centres with access to jobs, transport, and services. This approach builds mixed communities, reduces isolation, and solves maintenance and security issues automatically through existing building services. It's an efficient way to increase public housing stock by 1-2% while ensuring people aren't isolated in housing ghettos far from opportunity.
+1. Establish a Public Housing Acquisition Program that has enduring first right of purchase for a one defined floor of dwellings within new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
 
-### **Integrate Public Housing Into Growing Communities**
-
-1. Establish a Public Housing Acquisition Program that purchases a defined proportion of dwellings within new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
-
-   1. Public housing residents will live alongside private owners and renters in established buildings rather than in segregated estates.
-   2. Access to transport, services, and employment will improve when public housing is located in well-serviced centres.
+   1. Access to and usage of transport, services, and employment will improve when public housing is located in well-serviced centres.
+   2. Public housing residents will not be isolated in service deserts where they have extra costs for living that maintain poverty traps.
    3. Mixed-tenure buildings will support social stability and reduce concentrated disadvantage.
    4. Public housing stock will grow automatically as cities grow.
    5. Maintenance standards will improve when dwellings operate within standard strata and building management structures.
@@ -735,7 +746,7 @@ Commonwealth legislation establishes funding-linked national tenancy benchmarks 
 ---
 </details>
 
-### **Connect Regions to Unlock New Housing Capacity**
+### **Connect Regions with High Speed Rail**
 
 1. Deliver high-speed regional rail corridors between major cities with strategically located regional stops to create new affordable residential options and vibrant economic corridors.
 
