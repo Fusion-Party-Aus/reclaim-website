@@ -22,8 +22,10 @@
 
 **Australia will not secure its future until we fix the systems that reward short-term gain at the expense of long-term prosperity.**
 
----
+<details>
+<summary><strong>Title Breakdown</strong></summary>
 
+```
 # RECLAIM OUR ECONOMY
 
 ## Restore the Fair Go
@@ -37,7 +39,8 @@
 ## Update Our Schools
 ## Transform Our Industries
 ## Repair Our Environment
-
+```
+</details>
 ---
 
 # RECLAIM OUR ECONOMY
