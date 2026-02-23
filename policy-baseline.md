@@ -27,6 +27,7 @@
 # RECLAIM OUR ECONOMY
 
 ## Restore the Fair Go
+Making Australia a country where your effort secures a stable income, essential services work when you need them, and prosperity is not reserved for those who were already born lucky.
 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
@@ -283,10 +284,8 @@ Phased expansion includes:
 ---
 </details>
 
-# SOLVE THE HOUSING CRISIS
-
-## Make Housing a Right, Not an Investment
-(Distortion → Production → Completion)
+## Solve the Housing Crisis
+Making Australia a country where housing is a right, not an investment. Where ordinary Australians can find a secure, well-located home without being locked out by speculation, scarcity, or postcode privilege.
 
 ### **Make It Easier to Buy and Move Home**
 
@@ -639,19 +638,148 @@ Commonwealth legislation defines payment amounts, uplift criteria, indexing meth
 Deliver public and affordable housing at the scale the crisis demands—tens of thousands of homes, not token gestures.
 Purchase one floor in every residential tower for public housing, integrating residents into city centres with access to jobs, transport, and services. This approach builds mixed communities, reduces isolation, and solves maintenance and security issues automatically through existing building services. It's an efficient way to increase public housing stock by 1-2% while ensuring people aren't isolated in housing ghettos far from opportunity.
 
-### **Stop Exploitation by Landlords**
+### **Integrate Public Housing Into Growing Communities**
 
-Regulate rental markets to protect tenants from unsafe conditions and no-grounds evictions. Raise and index rent assistance to 50% of actual rent paid so people are not trapped in poverty while landlords profit.
+1. Establish a Public Housing Acquisition Program that purchases a defined proportion of dwellings within new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
 
-### **Build High-Speed Rail: Melbourne to Brisbane**
+   1. Public housing residents will live alongside private owners and renters in established buildings rather than in segregated estates.
+   2. Access to transport, services, and employment will improve when public housing is located in well-serviced centres.
+   3. Mixed-tenure buildings will support social stability and reduce concentrated disadvantage.
+   4. Public housing stock will grow automatically as cities grow.
+   5. Maintenance standards will improve when dwellings operate within standard strata and building management structures.
+   6. Long-term asset quality will strengthen when public housing is embedded in durable, privately delivered developments.
+   7. Public land banking pressures will reduce as housing is acquired within existing development pipelines.
 
-Deliver high-speed rail with strategic regional stops to create new affordable residential options and vibrant economic corridors. Fast rail opens up regional areas, connects people to jobs, eases pressure on capital cities, and gives families real choices about where to live.
-
-
+<details>
+<summary><strong>Further Detail</strong></summary>
 
 ---
 
-# FIX THE TAX EXPLOITS
+**Design rationale**
+Traditional estate-style public housing concentrates disadvantage, isolates residents from employment nodes, and creates high long-term management costs. Integrating public housing within standard residential buildings embeds social inclusion structurally rather than attempting to repair it after segregation occurs.
+
+**Acquisition structure**
+
+1. A defined percentage of total dwellings within eligible multi-storey developments is acquired at market price upon completion.
+2. Acquisition prioritises rail catchments, activity centres, and transport corridors defined in the Production phase.
+3. Dwellings are purchased rather than mandated as in-kind developer contributions, preserving construction viability.
+4. Ownership is consolidated under a public housing authority rather than distributed through third-party social housing entities.
+
+**Scale expectation**
+If applied consistently to medium and high-density developments in priority geographies, stock growth of approximately 1–2% of new metropolitan dwelling completions per year is achievable without direct state-led construction programs.
+
+**Governance framework**
+
+1. Public housing remains publicly owned.
+2. Mixed-tenure buildings operate under standard strata governance arrangements.
+3. Tenancy management is centralised under public authorities with national quality standards.
+
+**Interaction with Production reforms**
+Minimum Housing Permissions and the Housing Delivery Accelerator increase eligible development volume in transit-connected areas, expanding acquisition opportunity without requiring additional rezoning.
+
+**Risk and failure modes**
+Risks include over-concentration within specific developments, acquisition pricing disputes, or reduction in developer pipeline participation if poorly calibrated. Integrity depends on predictable acquisition rules and avoidance of discretionary negotiation.
+
+**Implementation outline**
+Federal legislation establishes funding authority, eligibility criteria, acquisition proportion, and reporting standards. States retain tenancy administration consistent with national public housing benchmarks.
+
+---
+</details>
+
+### **Guarantee Secure and Safe Renting**
+
+1. Establish National Rental Security Standards that prohibit no-grounds evictions, require minimum property safety standards, and reform Commonwealth Rent Assistance to reflect a defined proportion of actual rent paid.
+
+   1. Renters will gain greater housing stability when tenancy cannot be terminated without defined cause.
+   2. Unsafe and substandard rental conditions will decline under enforceable national minimum standards.
+   3. Households will experience less sudden displacement during tight market conditions.
+   4. Rental assistance will better reflect real housing costs when indexed to a defined share of rent rather than a flat schedule.
+   5. Income volatility and poverty traps associated with rental stress will reduce.
+   6. Responsible landlords will compete on property quality and service rather than tenant turnover leverage.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Supply reform addresses structural scarcity over time, but renters require immediate stability. National standards set a consistent baseline for tenancy security and property safety across jurisdictions, reducing regulatory fragmentation while preserving state administration.
+
+**Security of tenure framework**
+
+1. Tenancies may only be terminated for defined causes, including breach, owner occupation, or lawful redevelopment.
+2. Notice periods are standardised nationally.
+3. Retaliatory or strategic eviction practices are subject to defined penalties.
+
+**Minimum rental standards**
+
+1. Properties must meet published safety and habitability criteria prior to lease commencement.
+2. Essential repairs are subject to mandatory response timeframes.
+3. Independent certification or compliance reporting may be required in defined categories.
+
+**Commonwealth Rent Assistance reform**
+
+1. Rent Assistance is recalibrated toward a defined share target of actual rent paid, up to a capped maximum.
+2. Payment levels are indexed to rental market data rather than CPI alone.
+3. Reform integrates with existing welfare systems without creating parallel programs.
+
+**Interaction with other reforms**
+Land Value Tax and negative gearing reform moderate speculative pressure; production reforms expand supply; rental standards stabilise households during system transition.
+
+**Risk and failure modes**
+Excessive regulatory burden could discourage rental supply if poorly calibrated. Integrity depends on clear definitions, enforceable standards, and coordination with state tenancy frameworks.
+
+**Implementation outline**
+Commonwealth legislation establishes funding-linked national tenancy benchmarks and Rent Assistance reforms. States retain tribunal administration subject to baseline standards.
+
+---
+</details>
+
+### **Connect Regions to Unlock New Housing Capacity**
+
+1. Deliver high-speed regional rail corridors between major cities with strategically located regional stops to create new affordable residential options and vibrant economic corridors.
+
+   1. Families will gain access to new affordable housing options within practical commuting range of major employment centres.
+   2. Housing demand pressure on capital cities will diffuse as commuting distances shrink in time rather than geography.
+   3. Regional centres will become more viable long-term residential alternatives.
+   4. Economic opportunity will spread more evenly across connected corridors.
+   5. Infrastructure investment will support both housing expansion and regional productivity.
+   6. Land values in established capitals will face reduced scarcity pressure as alternative markets become realistically accessible.
+   7. Existing regional towns will grow in a more planned and infrastructure-supported manner rather than through ad hoc sprawl.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Housing scarcity in major cities reflects concentrated employment and limited commuting range. High-speed rail alters the effective housing catchment of employment centres by reducing travel time, enabling residential choice across wider geographic areas without requiring relocation away from metropolitan labour markets.
+
+**Housing-system interaction**
+
+1. Regional rail nodes become natural growth centres under the same Minimum Housing Permission framework used in metropolitan areas.
+2. Fast-tracked approval pathways operate at designated corridor stops.
+3. Land-value and rezoning-capture mechanisms apply same as anywhere to limit speculative profiteering.
+
+**Structural framework**
+
+1. Corridors connect major capitals with defined regional centres.
+2. Stop selection is limited to locations capable of absorbing planned housing growth.
+3. Housing capacity obligations apply to designated station catchments.
+
+**Economic logic**
+Travel-time compression expands the functional labour market radius, increasing the effective housing supply available to metropolitan economies without increasing urban congestion or fringe sprawl.
+
+**Risk and failure modes**
+Risks include under-utilised stations, speculative land inflation prior to delivery, or disconnect between transport delivery and housing permission reform. Integrity requires simultaneous application of zoning and tax mechanisms at corridor designation.
+
+**Implementation outline**
+Commonwealth-led corridor development with staged construction, priority routing, and binding housing capacity conditions at designated stops.
+
+---
+</details>
+
+## Fix the Tax Exploits
 
 * Make the wealthy pay their fair share
 * End fossil fuel subsidies
@@ -659,7 +787,9 @@ Deliver high-speed rail with strategic regional stops to create new affordable r
 * Close tax loopholes
 * Build a federal ICAC with teeth
 * Expose political donations
-* Build up small business
+
+# Build up Small Businesses
+
 * Break up media monopolies
 * End payroll tax
 * Take back your privacy from Big Tech
