@@ -1019,7 +1019,7 @@ If credits do not represent real and lasting emissions reductions, compliance be
 4. Methods that issue credits beyond what can be supported by evidence are excluded from compliance use.
 5. Credit issuance rules must prevent the creation of credits that are not backed by real and lasting emissions reductions.
 
-### **Quarterly liability and shortfall mechanism**
+**Quarterly liability and shortfall mechanism**
 
 1. Liable entities must surrender sufficient credits at the end of each quarter.
 2. Any uncovered emissions at quarter-end trigger a shortfall charge equal to twice the official benchmark market price of a credit, subject to an indexed ceiling of $1000 per tonne.
@@ -1029,19 +1029,19 @@ If credits do not represent real and lasting emissions reductions, compliance be
 
 This creates compounding cost pressure for non-compliance while preserving the integrity of the one-for-one liability rule.
 
-### **Protecting system discipline**
+**Protecting system discipline**
 
 1. Credit issuance must align with verified emissions reductions and cannot expand independently of real abatement outcomes.
 2. Credit origin, ownership history, and surrender use must be publicly disclosed each quarter.
 3. The shortfall charge is not tax-deductible.
 
-### **System effect**
+**System effect**
 
 Because every tonne must be matched with a credit, firms face a continuous incentive to either reduce emissions directly or acquire scarce high-integrity credits. If credits are genuinely limited and cannot be self-generated within liability groups, rising prices drive real industrial change.
 
 Quarterly reporting and carry-forward obligations prevent strategic delay while keeping the mechanism simple and predictable.
 
-### **Implementation outline**
+**Implementation outline**
 
 Amend safeguard and carbon credit legislation to:
 
