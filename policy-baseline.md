@@ -8,12 +8,13 @@
 *It evolves from generation to generation, and changes as we adapt to the world around us.*
 *Now that legacy has been diluted to the point that long-term growth is no longer an outcome of our systems.*
 
-*This is not the fault of the youth, nor the immigrant, nor the retiree.*
+*This is not the fault of the working person, nor the youth, nor the immigrant, nor the retiree.*
 
 *It is the fault of an ultra-wealthy minority who used their influence over government to bend our systems to their own advantage.*
 
 *And we cannot just go backwards. The systems of the past will not work again in the present, the world has changed too much.*
 
+*We must Restore the opportunity of a fair go for all Australians.*
 *We must Rebuild systems that generate long-term growth from first principles.*
 *We must Reclaim our economy for the benefit of our future generations.*
 
@@ -51,11 +52,11 @@ Making Australia a country where your effort secures a stable income, essential 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
 1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
-   1. A reliable income foundation will support stability through job changes, illness, and economic transition.
-   2. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
-   3. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
-   4. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
-   5. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
+   1. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
+   2. A reliable income foundation will support stability through job changes, illness, and economic transition.
+   3. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
+   4. Administrative simplicity and clarity will be achieved by consolidating fragmented welfare programs into a single universal payment.
+   5. Broader participation in Australia’s economic prosperity will result from universal access to a baseline level of support.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -216,7 +217,7 @@ Service inclusion staged by care type alongside provider incentive alignment.
 ---
 </details>
 
-### **Fix Aged Care With Dignity**
+### **Rebuild Aged Care Standards**
 
 1. Aged care funding and regulation will be restructured to enforce quality standards, improve workforce conditions, and strengthen oversight and accountability.
 
@@ -404,7 +405,7 @@ Implementation is delivered through amendments to CGT discount provisions, index
 ---
 </details>
 
-### **Stop Housing Being a Speculation Game**
+### **End Housing Speculation Incentives**
 
 1. Restrict negative gearing for housing so rental losses cannot be used to reduce tax on wages and salaries, with loss deductions quarantined to future rental income and capital gains within the housing portfolio.
 
@@ -795,45 +796,364 @@ Commonwealth-led corridor development with staged construction, priority routing
 
 ## Fix the Tax Exploits
 
-### **Expose Political Donations**
+### **Turn Resource Wealth into Sovereign Wealth**
 
-1. Introduce real-time donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure source or timing.
+1. Reform Commonwealth resource taxation and royalty frameworks to ensure economic rent from the extraction of publicly owned natural resources is properly captured and a defined share is directed into a national sovereign wealth fund.
 
+   1. Public revenue will better reflect the true value of finite national resources when extraction includes full economic rent capture.
+   2. Long-term fiscal stability will strengthen when commodity windfalls are converted into diversified financial assets rather than consumed in-year.
+   3. Intergenerational equity will improve when depletion of non-renewable assets produces enduring public wealth.
+   4. Budget volatility will decline when resource revenue cycles are partially stabilised through rule-based savings.
+   5. National wealth will compound over time when resource rents generate investment returns beyond the life of the asset.
 
-### **Reform the National Anti-Corruption Commission**
-
-1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, increase resourcing, and mandate structured public reporting of enforcement activity.
-
-
-### **Stop Corporate Tax Avoidance**
-
-1. Strengthen anti-base erosion and profit shifting rules, restrict artificial debt loading and concession stacking, expand corporate tax transparency obligations, and increase enforcement resources for large and multinational entities.
-
-
-### **Stop Ultra-Wealthy Tax Avoidance**
-
-1. Reform high-balance superannuation concessions, tighten discretionary trust income distribution rules, and introduce a minimum effective tax framework applicable to ultra-high-net-worth individuals.
-
-
-### **End Fossil Fuel Subsidies**
-
-1. Repeal statutory concessions, fuel tax credits, and budgetary programs that directly or indirectly reduce the cost of fossil fuel production or consumption.
-
-
-### **Price Carbon Pollution**
-
-1. Establish an economy-wide carbon pricing mechanism that applies a per-tonne emissions liability across covered sectors, with defined compliance and reporting requirements.
+<details>
+<summary><strong>Further Detail</strong></summary>
 
 ---
 
+**Design rationale**
+Australia’s natural resources are publicly owned. When royalty systems or taxation frameworks fail to capture economic rent during periods of sustained high commodity prices or supernormal profits, public value is transferred to private interests without structural justification. A sovereign wealth framework converts finite underground assets into diversified financial capital, preserving value beyond the depletion cycle.
 
+**Structural framework**
 
-* Make the wealthy pay their fair share
-* End fossil fuel subsidies
-* Price carbon pollution
-* Close tax loopholes
-* Build a federal ICAC with teeth
-* Expose political donations
+1. Resource tax settings distinguish between normal returns on capital and economic rent arising from scarcity, geological advantage, or commodity price shocks.
+2. Royalty and profit-based mechanisms adjust automatically in response to sustained price movements using rule-defined triggers.
+3. Integrity provisions limit base erosion through transfer pricing, related-party financing, or artificial cost inflation.
+4. Interaction with state royalty regimes is defined to minimise duplication and compliance ambiguity.
+
+**Sovereign wealth structure**
+
+1. A defined share of Commonwealth-captured resource rent is credited to a legislated sovereign wealth fund.
+2. Fund capital is invested in diversified global assets under independent governance arrangements.
+3. Withdrawal rules are rule-based and linked to long-term sustainable earnings rather than commodity revenue in-year.
+4. Capital drawdown is restricted to defined fiscal conditions to prevent routine budget substitution.
+
+**Governance safeguards**
+
+1. Investment management is operationally independent from executive direction.
+2. Transparent reporting includes fund inflows, returns, withdrawals, and long-term performance benchmarks.
+3. Governance rules are statutory to prevent discretionary alteration without legislative amendment.
+
+**Interaction with tax integrity reforms**
+Corporate tax integrity measures protect the resource rent base, while removal of fossil fuel subsidies prevents offsetting distortions that undermine capture.
+
+**Risk and failure modes**
+Risks include rate miscalibration that suppresses marginal projects, political pressure for early fund withdrawals, or weak integrity rules that allow continued base erosion. Underperformance would appear as sustained high commodity prices without corresponding public asset accumulation.
+
+**Implementation outline**
+Legislation amends resource profit taxation provisions, establishes rent adjustment triggers, creates the sovereign wealth fund structure with defined governance rules, and specifies deposit and withdrawal mechanisms consistent with long-term capital preservation.
+
+---
+</details>
+
+### **Stop Corporate Tax Avoidance**
+
+1. Strengthen anti-profit shifting rules for large and multinational firms by tightening transfer pricing and anti-hybrid settings, restricting artificial debt loading and concession stacking, expanding public tax transparency, and resourcing the ATO for sustained large-case enforcement.
+
+   1. Company tax paid in Australia will better reflect real economic activity when shifting profits offshore is harder and less rewarding.
+   2. Investment incentives will shift toward productive operations rather than aggressive tax engineering when avoidance pathways are structurally constrained.
+   3. Competition will become fairer when businesses that pay tax are not undercut by firms that minimise tax through cross-border structuring.
+   4. Public revenue will become more stable when large-company tax bases are less exposed to artificial erosion.
+   5. Tax compliance norms will strengthen when enforcement is visible and avoidance strategies face consistent scrutiny.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Corporate tax avoidance persists because the expected return from complex structuring exceeds the expected cost of detection and enforcement. Reform focuses on reducing the payoff from base erosion, increasing transparency, and raising the probability and cost of non-compliance for high-risk entities.
+
+**Structural framework**
+
+1. Transfer pricing rules and enforcement are strengthened to better align taxable profits with real functions, assets, and risks located in Australia.
+2. Anti-hybrid and anti-treaty shopping rules are tightened to reduce mismatches, double non-taxation outcomes, and artificial routing through low-tax jurisdictions.
+3. Thin capitalisation and related-party financing limits are strengthened to restrict artificial debt loading used to shift profits via interest deductions.
+4. Deduction integrity rules are tightened to reduce concession stacking and arrangements that convert Australian income into lightly taxed forms through contrived characterisation.
+5. Anti-avoidance rules apply consistently across corporate groups and common structuring vehicles to prevent simple entity-routing workarounds.
+
+**Transparency and reporting**
+
+1. Public tax transparency obligations are expanded for large corporate groups, including standardised disclosure of Australian income, tax paid, related-party dealings, and effective tax rates.
+2. Reporting formats are machine-readable and comparable year-to-year to enable independent scrutiny and reduce selective disclosure.
+
+**Enforcement and compliance**
+
+1. A sustained large-case enforcement capability is maintained through dedicated ATO resourcing focused on multinationals and large corporate groups.
+2. Penalty and interest settings are calibrated to reduce the attractiveness of “audit as finance” behaviour.
+3. Repeat or deliberate avoidance patterns trigger escalation pathways, including higher penalties and stronger disclosure obligations.
+
+**Interaction with ultra-wealthy avoidance reforms**
+Corporate avoidance reforms target cross-border profit shifting and large-group structuring. Ultra-wealthy avoidance reforms target individual and private-vehicle income conversion and distribution strategies, avoiding duplication of mechanisms.
+
+**Risk and failure modes**
+Risks include avoidance migrating into new structures, excessive complexity that increases compliance burden without reducing avoidance, and insufficient enforcement capacity. Underperformance would appear as persistent profit misalignment indicators, low effective tax rates in high-margin sectors without economic justification, or increased reliance on opaque related-party arrangements.
+
+**Evidence and precedent**
+Australia already maintains a dedicated tax avoidance enforcement focus within the ATO, demonstrating the institutional precedent for sustained large-case compliance programs which have been celebrated by peak international bodies like CICTAR (Centre for International Corporate Tax Accountability and Research).
+
+**Implementation outline**
+Amendments to corporate tax integrity provisions strengthen transfer pricing, anti-hybrid, thin capitalisation, and deduction integrity rules, expand public reporting standards, and establish sustained enforcement resourcing settings through budget and administrative design.
+
+---
+</details>
+
+### **Stop Ultra-Wealthy Tax Avoidance**
+
+1. Reduce high-net-worth tax minimisation by reforming discretionary trust distribution rules, tightening private-vehicle income conversion pathways, strengthening large-balance superannuation concession limits, and applying a minimum effective tax framework to ultra-high-net-worth individuals.
+
+   1. Effective tax rates among the wealthiest will better reflect their economic capacity when income conversion and distribution strategies lose their structural advantage.
+   2. Public confidence will improve when the tax system is harder to bypass through private legal structures that are not available to ordinary earners.
+   3. Investment decisions will become less distorted when tax minimisation strategies are less profitable than productive deployment of capital.
+   4. Intergenerational inequality will weaken when wealth accumulation relies less on preferential tax treatment and more on genuine value creation.
+   5. Revenue will become more resilient when the personal tax base is less exposed to structural leakage at the top end.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Ultra-wealthy tax avoidance often operates through legally available structures that convert personal income into lightly taxed forms, defer recognition, or distribute taxable income to low-rate recipients. Reform focuses on closing the highest-payoff pathways while preserving legitimate business and retirement functions.
+
+**Structural framework**
+
+1. Discretionary trust rules are tightened to reduce income-splitting and distribution patterns that disconnect taxable income from real economic control and benefit.
+2. Integrity rules limit conversion of personal exertion income into business or investment income through contrived service entities, artificial invoices, or circular arrangements.
+3. Large-balance superannuation concession settings are restructured so concessional treatment is more tightly linked to retirement provision rather than wealth warehousing, while protecting ordinary retirement savings.
+4. A minimum effective tax framework applies to ultra-high-net-worth individuals, using a defined base that aggregates relevant taxable income and recognised concession-driven reductions, with clear thresholds and integrity rules.
+5. Anti-deferral and anti-avoidance settings apply to common private investment vehicles used by the ultra-wealthy to delay or re-characterise income recognition.
+
+**Scope discipline**
+
+1. The minimum effective tax framework applies only above a defined ultra-high-net-worth threshold to avoid creating broad new compliance burden.
+2. Ordinary family and small-business arrangements remain outside scope unless structured to replicate ultra-wealth avoidance patterns at scale.
+
+**Transparency and enforcement**
+
+1. Enhanced disclosure obligations apply to high-risk private structures above defined thresholds, including distributions, beneficiaries, and controlling interests.
+2. Targeted enforcement capability is maintained for high-wealth individuals and complex private structures, with audit selection informed by structured reporting.
+
+**Interaction with corporate avoidance reforms**
+Ultra-wealthy reforms focus on personal and private-structure pathways (trusts, superannuation, private investment vehicles). Corporate avoidance reforms focus on multinational and large-group profit shifting, ensuring the two items address different leakage channels.
+
+**Risk and failure modes**
+Risks include migration into new avoidance vehicles, excessive complexity in trust rules that creates administrative friction without meaningful integrity gains, and partial reform that leaves substitution pathways open. Underperformance would appear as continued concentration of concession benefits at the top end, persistent effective tax rate gaps for high-wealth cohorts, or increased reliance on opaque private structures.
+
+**Evidence and precedent**
+Trust structures are a recognised pathway for tax minimisation and income splitting in Australia, and reform options are widely discussed in public policy analysis. Superannuation concessions and their distributional impacts are also an active policy focus across Australian parties and institutions.
+
+**Implementation outline**
+Legislation reforms discretionary trust distribution integrity rules, strengthens personal-services and income-conversion integrity provisions, adjusts large-balance superannuation concession settings, and establishes a minimum effective tax framework for ultra-high-net-worth individuals with clear thresholds, definitions, and anti-avoidance provisions.
+
+---
+</details>
+
+### **End Fossil Fuel Subsidies**
+
+1. Repeal Commonwealth tax expenditures, budgetary programs, and concessional treatment that directly or indirectly reduce the cost of fossil fuel exploration, production, or consumption.
+
+   1. Energy markets will reflect more accurate price signals when public subsidies no longer cushion fossil fuel production and use.
+   2. Public expenditure will better align with long-term decarbonisation commitments when support is not directed toward high-emissions activities.
+   3. Investment will shift toward lower-emissions energy and industrial pathways when structural fossil fuel advantages are removed.
+   4. Budget discipline will strengthen when concession-driven revenue leakage is reduced.
+   5. Policy coherence will improve when climate commitments and fiscal settings no longer operate at cross-purposes.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Subsidies and concessional tax treatments reduce the effective cost of fossil fuel extraction and use, distorting market signals and slowing capital reallocation toward lower-emissions alternatives. Removing concessions restores price discipline rather than imposing new regulatory control.
+
+**Scope of reform**
+
+1. Fuel tax credits and input concessions that reduce effective fossil fuel costs are reassessed and repealed where they function as production or consumption subsidies.
+2. Accelerated depreciation, uplift arrangements, or exploration write-offs that disproportionately advantage fossil extraction are removed or restructured.
+3. Direct budgetary programs that support fossil fuel infrastructure or expansion are discontinued where inconsistent with decarbonisation objectives.
+
+**Transition considerations**
+
+1. Reform sequencing recognises existing contractual arrangements and defined notice periods.
+2. Adjustment support mechanisms for affected workers and regions are addressed in industry transformation sections, not embedded here.
+
+**Interaction with climate pricing reform**
+Subsidy removal restores neutral price signals; carbon pricing introduces emissions liability. These mechanisms operate together to align market incentives with decarbonisation goals.
+
+**Risk and failure modes**
+Risks include incomplete subsidy identification, substitution through new concession categories, or short-term regional disruption without coordinated transition support. Underperformance would appear as persistent effective fossil fuel price advantages despite repeal.
+
+**Implementation outline**
+Budget legislation and tax law amendments identify, catalogue, and repeal defined fossil fuel concessions, with structured phase-out schedules where required.
+
+---
+</details>
+
+### **Make Carbon Compliance Real**
+
+1. Require large polluters to buy and surrender one high-integrity carbon credit for every tonne of emissions, and prohibit rules that allow weak, over-issued, or self-generated credits to dilute the system and avoid real emissions costs.
+
+   1. Every tonne of pollution will carry a real and unavoidable cost.
+   2. Only credits backed by genuine, measurable, and lasting emissions reductions will count for compliance.
+   3. Companies will not be able to create credits within their own corporate group and use them to cancel out their own pollution.
+   4. The total number of credits issued will be tightly controlled so supply reflects real emissions cuts.
+   5. The carbon market will reward real decarbonisation instead of accounting workarounds.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia already requires major facilities to account for emissions but there are weaknesses and liability is not total. In a proper full-liability system, every tonne emitted must be matched with a credit. The strength of the system depends entirely on the integrity and scarcity of those credits.
+
+If credits do not represent real and lasting emissions reductions, compliance becomes cheap without pollution falling. This reform protects the integrity and discipline of the credit supply.
+
+**Core integrity rules**
+
+1. One tonne emitted requires surrender of one eligible Australian credit each quarter, with no discount pathways.
+2. Only credits that meet strict standards for additionality, permanence, and independent verification are eligible.
+3. Credits generated by projects under common ownership, control, or financial interest with the liable entity cannot be used to meet that entity’s own obligation.
+4. Methods that issue credits beyond what can be supported by evidence are excluded from compliance use.
+5. Credit issuance rules must prevent the creation of credits that are not backed by real and lasting emissions reductions.
+
+### **Quarterly liability and shortfall mechanism**
+
+1. Liable entities must surrender sufficient credits at the end of each quarter.
+2. Any uncovered emissions at quarter-end trigger a shortfall charge equal to twice the official benchmark market price of a credit, subject to an indexed ceiling of $1000 per tonne.
+3. Payment of the shortfall charge does **not** extinguish the liability.
+4. Each uncovered tonne becomes a mandatory carry-forward surrender obligation that is added to the next quarter’s liability.
+5. If a shortfall persists into the next reporting period, it is again subject to the shortfall charge at that period’s benchmark price.
+
+This creates compounding cost pressure for non-compliance while preserving the integrity of the one-for-one liability rule.
+
+### **Protecting system discipline**
+
+1. Credit issuance must align with verified emissions reductions and cannot expand independently of real abatement outcomes.
+2. Credit origin, ownership history, and surrender use must be publicly disclosed each quarter.
+3. The shortfall charge is not tax-deductible.
+
+### **System effect**
+
+Because every tonne must be matched with a credit, firms face a continuous incentive to either reduce emissions directly or acquire scarce high-integrity credits. If credits are genuinely limited and cannot be self-generated within liability groups, rising prices drive real industrial change.
+
+Quarterly reporting and carry-forward obligations prevent strategic delay while keeping the mechanism simple and predictable.
+
+### **Implementation outline**
+
+Amend safeguard and carbon credit legislation to:
+
+* Enforce quarterly one-for-one liability.
+* Restrict eligibility to high-integrity Australian credits.
+* Prohibit related-party credit surrender.
+* Establish quarterly benchmark price publication.
+* Define the 2× benchmark shortfall charge with indexed cap.
+* Codify mandatory carry-forward of unsurrendered tonnes.
+
+---
+</details>
+
+### **Expose Political Donations**
+
+1. Introduce real-time political donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure the true source, amount, or timing of contributions.
+
+   1. Voters will be able to see who is funding political actors in close to real time rather than long after elections are decided.
+   2. Large donations will become more transparent as artificial splitting and associated-entity routing lose their effectiveness.
+   3. Public trust in the political system will improve when funding flows are visible and searchable.
+   4. Media, regulators, and civil society will be better equipped to scrutinise patterns of influence using structured public data.
+   5. Campaign finance reporting will become more consistent and comparable across parties and election cycles.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+Australia’s current disclosure regime relies on high reporting thresholds, delayed publication, and fragmented reporting structures that reduce transparency during the times when voters are making decisions. Real-time disclosure shifts transparency into the electoral decision window and closes avenues used to fragment donations.
+
+**Structural framework**
+
+1. All political donations above a defined low threshold must be reported within a fixed short timeframe.
+2. Disclosure applies to parties, associated entities, candidates, and significant third-party campaigners.
+3. Donations must be attributed to the ultimate source, including where funds are channelled through intermediaries or fundraising bodies.
+4. Aggregation of multiple donations from a common source within a reporting period is required for threshold calculation.
+5. All disclosure data must be published in a central, publicly accessible, machine-readable format. (The AEC may be required to provide a basic service to support this.)
+
+**Data and reporting standards**
+
+1. Unique donor identifiers are required to prevent artificial donation splitting.
+2. Standardised reporting fields apply nationally to ensure comparability.
+3. Amendments and corrections are time-stamped and version-tracked.
+
+**Enforcement and compliance**
+
+1. Civil penalties apply for late, incomplete, or misleading disclosure.
+2. Regulators are granted audit authority over associated entities and third-party campaigners.
+3. Repeated or deliberate concealment triggers escalating sanctions.
+
+**Interaction with integrity reforms**
+Enhanced disclosure operates alongside reforms to the National Anti-Corruption Commission by increasing the visibility of financial relationships that may warrant scrutiny.
+
+**Risk and failure modes**
+Risks include compliance burden for small campaigns, attempts to re-route funds through opaque entities, and data overload without effective search tools. System performance depends on low thresholds, attribution integrity, and structured open-data publication.
+
+**Implementation outline**
+Amendments to federal electoral law establish reporting timeframes, aggregation rules, digital reporting infrastructure, and regulator enforcement powers, with phased transition to real-time reporting standards.
+
+---
+</details>
+
+### **Reform the National Anti-Corruption Commission**
+
+1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, establish statutory capability-linked funding safeguards, and mandate structured public reporting of enforcement activity.
+
+   1. Serious corruption risks within the Commonwealth will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
+   2. Corruption investigations will progress more effectively when the Commission has stronger investigative tools and clear pathways to prosecution.
+   3. Public confidence will improve when enforcement activity is visible through consistent, structured reporting rather than opaque discretion.
+   4. Deterrence will strengthen when corrupt conduct is more likely to be investigated and referred for action.
+   5. Integrity oversight will operate more consistently when statutory capability requirements are aligned with transparent resourcing.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+An effective federal anti-corruption body requires clarity of jurisdiction, robust investigative authority, and financial insulation sufficient to prevent quiet operational erosion. Reform focuses on coverage, capability, referral pathways, reporting discipline, and structural funding safeguards.
+
+**Structural framework**
+
+1. Jurisdiction is extended to additional categories of public office holders, ministerial staff, contractors, consultants, and outsourced service providers performing Commonwealth functions.
+2. The Commission’s investigative toolkit is clarified and strengthened within appropriate legal safeguards.
+3. Referral authority and pathways to prosecution are defined to reduce procedural bottlenecks.
+4. Structured periodic public reporting requirements are legislated, including standardised publication of investigation counts, status categories, referral volumes, and outcomes within confidentiality constraints.
+
+**Statutory capability-linked funding safeguard**
+
+1. The Act defines core investigative capability requirements consistent with the Commission’s statutory mandate.
+2. An independent authority conducts annual assessments of whether appropriated funding is sufficient to meet those requirements.
+3. If funding is assessed as insufficient, a mandatory public report is tabled outlining the shortfall and its operational impact, including quantified backlog or case-capacity constraints.
+4. NACC appropriations must appear as a stand-alone budget line item to prevent administrative dilution.
+
+**Oversight and integrity safeguards**
+
+1. Review mechanisms apply to coercive powers to prevent misuse.
+2. Clear thresholds are defined for public hearings and disclosure decisions.
+3. Conflict-of-interest controls apply to commissioners, staff, and contracted investigators.
+
+**Interaction with electoral transparency reforms**
+Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the Commonwealth’s investigative response capacity.
+
+**Risk and failure modes**
+Risks include jurisdictional carve-outs, procedural complexity that slows referrals, insufficient funding relative to mandate, or reporting rules that obscure operational constraint. Underperformance would appear as sustained backlog growth, declining investigative throughput, or public shortfall declarations without remedial response.
+
+**Implementation outline**
+Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
+
+---
+</details>
 
 # Build up Small Businesses
 

@@ -353,6 +353,16 @@ Tier-4 **must not include**:
 * Tier-4 must not introduce additional tiers or headings
 * Use bold labels (not markdown headings) for internal section names
 
+## T4 Supporting Elements Rule
+
+Where minor enabling mechanisms are necessary for completeness but are not core to the reform, they may be included in concise parenthetical form.
+
+* Such elements must be clearly subordinate to the primary structural point.
+* They must not introduce new commitments or expand scope.
+* They must remain brief and non-operational.
+
+Parenthetical support notes must clarify implementation context without elevating ancillary detail to policy status.
+
 ## T4 Language Rules
 
 Allowed:
