@@ -52,6 +52,7 @@ Making Australia a country where your effort secures a stable income, essential 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
 1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
+
    1. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
    2. A reliable income foundation will support stability through job changes, illness, and economic transition.
    3. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
@@ -123,6 +124,7 @@ Implementation focuses on legislative recognition of sector-level bargaining cou
 ### **Simplify Access to Supplementary Supports**
 
 1. Administrative processes for non-income supports such as disability, housing, and family assistance will be streamlined and standardised across agencies.
+
    1. Access to additional support will become faster and more predictable.
    2. Administrative duplication across government services will be reduced.
    3. Errors and access barriers caused by fragmented systems will decline.
@@ -1155,15 +1157,49 @@ Amendments to the National Anti-Corruption Commission Act establish expanded jur
 ---
 </details>
 
-# Build up Small Businesses
+## Build Up Small Businesses
 
-* Break up media monopolies
-* End payroll tax
-* Take back your privacy from Big Tech
-* Guarantee net neutrality
-* Reform copyright for creators
-* Build a green hydrogen industry
-* Build a circular economy
+### **Ease the Squeeze on Small Business**
+
+1. Large corporations will pay an increased company tax rate equal to the gap between the national inflation rate and the upper bound of the Reserve Bank target band, with the rate returning to its baseline once inflation moves back within the target range.
+
+### **Enforce Prompt Payment of Small Businesses**
+
+1. Large corporations above a defined revenue threshold will be required to pay small business suppliers within a fixed maximum payment period, with automatic financial penalties applying for late payment.
+
+### **Give Small Business a Fair Shot**
+
+1. Corporations above an indexed revenue threshold will pay an increased company tax rate in proportion to the extent that their market share exceeds an ACCC-defined competitive threshold within their sector.
+
+### **Break Up Media Monopolies**
+
+1. Amend competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional market concentration thresholds.
+
+### **Guarantee Net Neutrality**
+
+1. Prohibit internet service providers from blocking, throttling, prioritising, or discriminating against lawful content, applications, or services based on payment, ownership, or affiliation.
+
+### **Protect Your Privacy from Big Tech**
+
+1. Prohibit the collection, retention, or commercial use of personal data beyond what is strictly necessary to deliver a requested service, and establish enforceable rights to data access, correction, portability, and deletion.
+
+### **Simplify Unfair Contract Disputes for Small Business**
+
+1. Small businesses will have access to a streamlined statutory dispute process to challenge unfair contract terms through a dedicated small-business tribunal or ombuds pathway with capped costs and defined resolution timelines.
+
+### **Support Small Businesses to Stay Compliant**
+
+1. The ACCC and state small business commissioners will provide standardised contract templates, plain-language compliance guidance, and low-cost pre-execution contract review services for small businesses entering standard form agreements.
+
+### **Stop IP Abuse Against Small Business**
+
+1. Intellectual property law will be amended to shorten protection duration, restrict patent claims to specific disclosed implementations, require active use prior to enforcement, limit perpetual exclusive licensing, expand fair-use rights, and establish capped-cost dispute procedures for small and medium enterprises.
+
+---
+
+### **Build a Circular Economy** <-Relocate?
+
+1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
 
 ---
 

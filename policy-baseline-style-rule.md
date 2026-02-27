@@ -74,7 +74,7 @@ Tier-1 exists to **capture attention** and **signal intent** to people with mini
 
 ## What Tier-1 Is
 
-Tier-1 consists of **single-line action statements** that:
+Tier-1 consists of **single sentence or clause action statements** that:
 
 * Are immediately intelligible
 * Directly relate to everyday concerns
@@ -139,6 +139,16 @@ If these conditions are met, outcome framing is preferred over purely procedural
 > If implicit outcome framing increases directional precision, use it.
 > If it adds rhetoric instead of precision, do not use it.
 
+#### Identity-Anchored Outcome Framing
+
+In sections explicitly anchored to a voter identity group (e.g. small business owners, families, renters), outcome framing may adopt plain or sharp language that reflects how the group experiences the issue, provided:
+
+* The phrasing still maps cleanly to a single structural reform.
+* The wording does not expand scope beyond the Tier-2 mechanism.
+* Structural meaning is preserved over rhetorical emphasis.
+
+Identity resonance is permitted only where structural precision and Tier-2 containment remain intact.
+
 ## T1 Acceptance Test
 
 A Tier-1 statement is valid if:
@@ -194,6 +204,7 @@ Allowed:
 * Clear nouns and verbs
 * Simple sentence structure
 * Technical terminology which describes institutional structure rather than moral evaluation
+* Where possible, lead with the affected entity or institutional subject before describing the mechanism applied to it
 
 Avoid:
 
