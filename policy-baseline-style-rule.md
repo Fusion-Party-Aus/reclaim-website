@@ -66,6 +66,47 @@ A Tier-0 phrase is valid if:
 
 ---
 
+# Platform Architecture — Tier-0 to Tier-1 Interface
+
+These rules govern how Tier-1 reforms are introduced within Tier-0 sections.
+
+## Platform Architecture Rule — Reform Surface Discipline
+
+Each Tier-1 reform should target a single primary institutional surface.
+
+Tier-0 sections organise reforms by **system lever**, not by policy theme.
+
+* An institutional surface is the system component being modified (e.g. a tax mechanism, regulatory obligation, compliance system, market rule, or legal right).
+* Multiple reforms should not independently modify the same institutional surface unless they clearly produce distinct structural outcomes.
+* Where several proposed measures affect the same institutional surface, they should normally be consolidated into a single reform item with supporting mechanisms described at lower tiers.
+* This prevents platform expansion through incremental fragmentation and ensures that each Tier-1 reform represents a distinct structural intervention.
+
+### Surface-First Placement Rule
+
+Tier-1 reforms must be placed in the Tier-0 section that corresponds to the **institutional surface being modified**, not the broader policy topic the reform relates to.
+
+* Reforms should be grouped according to the system mechanism they change (e.g. taxation, regulatory enforcement, market structure, public service provision), rather than the policy domain they affect.
+* A reform should appear in a Tier-0 section if that section contains the **primary institutional lever being modified**.
+* Where a reform has effects across multiple policy domains, it should still be placed according to the system component it directly changes.
+
+### Surface Placement Test
+
+It is placed correctly if the Tier-0 section name still makes sense when read as: *“What structural part of the system is being changed?”*
+
+If the section instead answers: *“What issue does this policy relate to?”* the reform may be placed under the wrong Tier-0 category.
+
+### Surface Duplication Test
+
+A new Tier-1 proposal should be merged with an existing reform if:
+
+* it modifies the same institutional rule set,
+* it targets the same regulatory authority or compliance mechanism, and
+* it would produce largely overlapping Tier-3 outcomes.
+
+If these conditions apply, the proposal should normally be incorporated into the existing reform rather than introduced as a separate item.
+
+---
+
 # Tier-1 Style Rule — Hook Statements (Action Claims)
 
 ## T1 Purpose
@@ -115,7 +156,15 @@ Avoid:
 * Compound commitments
 * Verbs that imply incremental adjustment (e.g. “strengthen”, “tighten”)
 
-### Tier-1 Outcome Framing (Precision Rule)
+### T1 Bureaucratic Verb Test
+
+Tier-1 statements should use verbs that describe a **clear, observable action** rather than administrative intent.
+
+* A Tier-1 verb is likely bureaucratic if it could plausibly appear in a departmental strategy document without implying a concrete change.
+* Verbs such as “support”, “facilitate”, “promote”, “encourage”, “enhance”, or “strengthen” should normally be avoided unless they clearly correspond to a specific structural intervention described in Tier-2.
+* If the action could occur without any law, rule, or institutional change being made, the Tier-1 verb is likely too bureaucratic.
+
+### T1 Outcome Framing (Precision Rule)
 
 Tier-1 may embed a broad civic outcome implicitly within the action statement (e.g. *“Make Housing Tax Fair Across Generations”*), but only where it improves structural precision. This implicit outcome framing is **preferred** when it increases clarity of reform direction without expanding scope.
 
@@ -158,6 +207,14 @@ A Tier-1 statement is valid if:
 * It answers *“What are you going to do?”* — nothing more
 * If splitting the sentence produces two valid stand-alone policies, it fails Tier-1.
 
+### T1 Section Cadence Check
+
+Within a Tier-0 section, Tier-1 statements should generally follow a similar grammatical pattern and rhetorical strength.
+
+* Where possible, statements should maintain comparable action framing (e.g. “Make…”, “Stop…”, “Break…”, “Guarantee…”, “Protect…”).
+* If one item reads like an administrative program description while others read like direct actions, it should normally be rewritten to match the section’s action cadence.
+* This rule exists to maintain clarity and memorability across sections with many reforms.
+
 ---
 
 # Tier-2 Style Rule — Mechanistic “How” Statements
@@ -176,6 +233,47 @@ It describes:
 * Flows
 * Replacements
 * Scope
+
+## T2 Structural Containment
+
+### T2 Structural Cohesion Rule
+
+Tier-2 normally describes a single structural mechanism.
+
+It may include multiple mechanisms when they are necessary components of the same reform. This commonly occurs when one mechanism establishes the rule and additional mechanisms make that rule enforceable, measurable, or operable.
+
+Bundling is appropriate when the mechanisms:
+
+* operate on the same regulatory subject,
+* serve the same policy objective described in Tier-1, and
+* are required for the reform to function as intended.
+
+Mechanisms should be separated if they introduce independent regulatory objectives or could operate as standalone reforms.
+
+### T2 Mechanism Separation Test
+
+A Tier-2 sentence should be split if removing one clause would leave a complete reform with its own independent policy objective.
+
+Mechanisms may remain bundled when the additional clauses only make the primary reform enforceable, measurable, or operational.
+
+### T2 Outcome Cohesion Rule
+
+Tier-2 mechanisms should not be separated into multiple reforms if doing so would produce substantially overlapping Tier-3 outcomes.
+
+Where two mechanisms operate on the same institutional subject and generate the same real-world effects, they should normally remain bundled within a single reform.
+
+Artificially splitting such mechanisms increases platform length without improving policy clarity and can create duplicated Tier-3 outcome statements.
+
+Separate reforms are appropriate only when the mechanisms:
+
+* target different institutional subjects, or
+* produce materially different Tier-3 outcomes.
+
+### T2 Tier-3 Overlap Test
+
+If two proposed reforms would require largely the same Tier-3 outcome statements, they are likely components of the same structural reform and should normally remain bundled in Tier-2.
+
+Distinct reforms should produce clearly distinguishable Tier-3 outcome sets.
 
 ## T2 Mandatory Structure
 
@@ -277,11 +375,77 @@ Avoid:
 * Negative framing (“prevent”, “stop”, “avoid”)
 * Adjectives that signal persuasion rather than explanation
 
+### T3 Actor Anchoring
+
+Tier-3 outcomes should identify the primary actor experiencing the change whenever possible.
+
+* Prefer outcomes that begin with the affected entity (e.g. “small businesses”, “voters”, “suppliers”, “consumers”) rather than abstract system states.
+* Actor-anchored outcomes improve clarity and causal traceability.
+* Avoid outcomes that describe system-level changes without identifying who experiences them.
+
+Weak example:
+* “Market stability will improve.”
+
+Stronger example:
+* “Small businesses will experience fewer margin squeezes caused by rapid cost increases.”
+
+### T3 Actor Repetition Control
+
+When multiple outcomes involve the same primary actor, avoid repeating the actor at the start of every bullet.
+
+* The actor should normally appear in the first outcome, with subsequent outcomes shifting to the next causal subject (e.g. decision-making behaviour, market interactions, or system effects).
+* This helps the outcome list reflect a cascading chain of consequences rather than repeating the same actor experiencing the same change.
+
 ## T3 Atomicity Rule
 
 Each dotpoint must express **one outcome only**.
 
 If two outcomes appear in the same sentence, the dotpoint must be split.
+
+## T3 Outcome Ordering (Causal Cascade Rule)
+
+Tier-3 outcomes must be ordered to reflect the causal progression of effects produced by the reform.
+
+The list should move from **closest operational impact** to **widest systemic impact**.
+
+This ordering helps readers understand how the reform produces downstream consequences.
+
+When multiple outcomes are present, apply the following sequence wherever applicable:
+
+1. **Direct operational effects**
+   - Immediate changes experienced by the primary affected actor.
+   - Examples: costs, obligations, inputs, capacity, or constraints.
+
+2. **Behavioural or planning effects**
+   - How the reform changes decision-making or planning behaviour.
+   - Examples: pricing decisions, investment decisions, business planning reliability.
+
+3. **Market or interaction effects**
+   - Changes in relationships between actors in the system.
+   - Examples: supplier negotiations, customer behaviour, competitive dynamics.
+
+4. **System-level effects**
+   - Higher-level institutional or societal consequences.
+   - Examples: transparency, market stability, regulatory effectiveness, public trust.
+
+If some categories do not apply to a policy item, omit them rather than forcing them.
+
+However, outcomes must **never be presented in reverse order** (e.g. systemic effects before operational effects).
+
+Tier-3 should read as a **cascade of consequences**, where each item plausibly follows from the previous one.
+
+Avoid:
+- Beginning with abstract or institutional outcomes.
+- Jumping between levels of impact.
+- Listing outcomes without a discernible causal relationship.
+
+## T3 Distinct Outcome Rule
+
+Each Tier-3 bullet must describe a **distinct causal consequence** of the reform.
+
+* Do not restate the same effect at different levels of abstraction or with synonymous wording.
+* Outcomes should advance the causal chain rather than repeat the previous outcome in broader or more general terms.
+* If two outcomes could reasonably be combined into a single statement without losing meaning, they are likely describing the same effect and should not appear as separate bullets.
 
 ## T3 Acceptance Test
 
@@ -291,20 +455,20 @@ A Tier-3 dotpoint is valid if:
 * It does not require another dotpoint to make sense
 * It does not persuade by emotion alone
 * Removing the sentence does not affect the operational meaning of Tier-2
+* The first outcome must describe a direct effect on the primary affected actor.
+* Each outcome must represent a new causal step rather than a restatement of the previous outcome.
+* Apply the **Reverse Test**:
+  Ask whether the first outcome could plausibly occur before the reform has affected individual actors.  
+  If the answer is yes, the list likely begins too far downstream and should be reordered.
 
 If a reader can ask *“But how?”* and the sentence already answers, it is **not Tier-3**.
-
----
-
-Here is the **cleaned, final Tier-4 style rule**, written to match the tone, precision, and enforceability of the Tier-0–Tier-3 rules already in your reference guide.
-
-This is ready to be inserted verbatim.
 
 ---
 
 # Tier-4 Style Rule — Further Detail
 
 ## T4 Purpose
+
 Tier-4 exists to provide **optional depth** for readers who want to understand a policy in more detail without interrupting or complicating the primary message.
 
 Tier-4 must support scrutiny and understanding, not persuasion.
@@ -314,6 +478,11 @@ Tier-4 must support scrutiny and understanding, not persuasion.
 Tier-4 is a **collapsible, supplementary layer** containing contextual and analytical information that expands on a policy for discerning readers.
 
 It is **non-essential** to understanding the policy at higher tiers.
+
+## Tier-4 Boundary Rule
+
+> **Tier-4 exists to satisfy scrutiny, not to strengthen the message.
+> If it persuades, it has failed.**
 
 ## T4 Mandatory Format
 
@@ -337,6 +506,16 @@ Tier-4 **must** be implemented using a native HTML disclosure block:
 * Users must explicitly opt in by expanding the block
 * Removing Tier-4 must not affect comprehension of Tier-0 through Tier-3 content
 
+## T4 Structural Rules
+
+* Tier-4 must appear **after Tier-3 dotpoints and before the next Tier-1 header**
+* Tier-4 must not be nested inside lists
+* Tier-4 must not introduce additional tiers or headings
+* Each internal label introduces a discrete analytical topic.
+* Each internal label should correspond to a single analytical topic or design question. Avoid compound labels that merge multiple topics (e.g. “Compliance and Market Effects”). If two distinct issues need explanation, they should appear under separate labels.
+* Use as few internal labels as possible while remaining clear under scrutiny; prefer no more than 6 labels unless necessary for clarity, and group related numbered items under broader topical labels rather than creating a label for each micro-issue.
+* Internal section names must be formatted as a single bolded label on its own line (e.g. **Design rationale**), followed immediately by plain paragraph text or a numbered list; do not use markdown headings (e.g. #, ##, ###) for internal structure. Within paragraphs and numbered lists, bold must not be used except for the exact name of a Named Category or Mechanism that functions as a label in the form **Label** — description or **Label**: description; bold must not be used for emphasis.
+
 ## T4 Content Rules
 
 Tier-4 **may include**:
@@ -357,12 +536,49 @@ Tier-4 **must not include**:
 * Emotional or persuasive language
 * Step-by-step detail such as operational runbooks, internal procedural steps, or volatile delivery minutiae
 
-## T4 Structural Rules
+### T4 Scrutiny Rule
 
-* Tier-4 must appear **after Tier-3 dotpoints and before the next Tier-1 header**
-* Tier-4 must not be nested inside lists
-* Tier-4 must not introduce additional tiers or headings
-* Use bold labels (not markdown headings) for internal section names
+Tier-4 exists to support scrutiny rather than persuasion.
+
+* Its purpose is to explain how the policy operates, what assumptions it relies upon, and how risks or edge cases are handled.
+* It should prioritise structural explanation, institutional interactions, enforcement considerations, and potential failure modes where relevant.
+* It must not introduce persuasive or normative arguments for the reform.
+* It may describe the structural problem the reform addresses, but should focus on institutional design, implementation constraints, and system behaviour rather than advocacy.
+
+### T4 Scope Control
+
+Tier-4 should describe institutional design rather than engineering implementation.
+
+* Explain the obligations, authorities, constraints, and enforcement structures created by the reform.
+* Avoid specifying technical architecture, administrative procedures, or operational system design that would normally be determined by regulators or implementing agencies.
+
+### T4 Addressing Failure Modes
+
+Where relevant, Tier-4 should explain how the reform could be undermined, misused, or circumvented.
+
+* Policies that identify potential failure modes and describe how the design mitigates them are significantly more robust under scrutiny.
+* This analysis should normally be expressed through topical headings (e.g. “Integrity Safeguards”, “Compliance Risks”, “System Discipline”) rather than a repeated generic heading such as “Risk and Failure Modes”.
+
+### T4 Analytical Lenses
+
+Tier-4 headings should remain topical and specific to the policy being explained.
+
+* Except for **Design Rationale**, the lens names listed below should normally be treated as analytical prompts rather than default headings.
+* Headings should describe the specific institutional or system topic being explained (e.g. “Disclosure Data Standards”, “Credit Integrity Rules”, “Enforcement Authority”) rather than generic labels such as “Enforcement and Compliance” or “Risk and Failure Modes”.
+* Where helpful for reader comprehension, risk analysis may be grouped by what primarily constrains the risk or what the risk primarily affects, provided each label remains a single analytical topic and the grouping does not become rhetorical.
+
+When drafting Tier-4, authors should consider the following analytical lenses to ensure the reform can withstand scrutiny:
+
+1. **Design rationale** — the structural problem the reform addresses.
+2. **Structural framework** — the institutional obligations and authorities created.
+3. **Enforcement and compliance** — how the rules are monitored and enforced.
+4. **Risk and failure modes** — how the system could be undermined or misused.
+5. **System effects** — how the reform interacts with broader institutional or market systems.
+6. **Implementation outline** — how the reform would be introduced into the existing legal framework.
+
+These lenses guide analysis but should normally be expressed through **policy-specific topical headings rather than repeated verbatim lens names**. Not every policy item will require all of these sections. Authors should include only those necessary to explain the policy clearly and withstand scrutiny.
+
+When multiple analytical lenses are used, authors should normally introduce them in an order that moves from core system design to enforcement and integrity safeguards before addressing broader system effects and implementation context.
 
 ## T4 Supporting Elements Rule
 
@@ -395,6 +611,7 @@ A Tier-4 block is valid if:
 * It can be removed without weakening the argument or structure of higher tiers
 * It improves confidence without attempting persuasion
 * It satisfies scrutiny rather than winning agreement
+* It does not introduce new mechanisms or commitments beyond Tier-2
 
 ## T4 Canonical Label
 
@@ -403,11 +620,6 @@ All Tier-4 blocks must use the summary label:
 **“Further Detail”**
 
 No alternatives are permitted.
-
-## Tier-4 Boundary Rule
-
-> **Tier-4 exists to satisfy scrutiny, not to strengthen the message.
-> If it persuades, it has failed.**
 
 ---
 ---

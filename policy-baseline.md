@@ -64,22 +64,28 @@ Making Australia a country where your effort secures a stable income, essential 
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 A Universal Basic Income was selected over expanded conditional welfare and negative income tax models because it establishes a clear, permanent income floor without eligibility churn, behavioural conditions, or ongoing recalibration. Conditional and targeted systems were assessed as structurally complex, exclusion-prone, and poorly suited to labour-market volatility. The design intent is to provide a stable baseline that does not require frequent policy intervention as economic conditions change.
 
-**System interaction**  
+**System interaction**
+
 The Citizens Dividend replaces baseline income-support payments that provide subsistence-level income, while leaving supplementary and needs-based supports intact. Payments related to disability, caring responsibilities, housing assistance, or additional costs remain layered above the baseline. Interaction with the tax system occurs through ordinary income taxation rather than withdrawal rules, avoiding sharp cliffs and preserving universality.
 
-**Economic and institutional logic**  
+**Economic and institutional logic**
+
 The policy alters incentive structures by separating basic income security from continuous employment. This reduces effective marginal tax rates created by benefit withdrawal, increases flexibility around part-time work, retraining, caregiving, and entrepreneurship, and improves worker bargaining position without relying on compliance enforcement. The design assumes that labour participation is primarily driven by income above subsistence levels, job quality, and social participation rather than coercive welfare conditionality.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Key risks include fiscal miscalibration if the baseline level is poorly set, political pressure to reintroduce conditionality that erodes universality, inflationary pressure if introduced without complementary supply-side reforms, and partial implementation that preserves complexity while losing coherence. Indicators of underperformance would include persistent poverty despite rollout, re-emergence of multiple overlapping income tests, or labour-market responses that significantly deviate from modelling assumptions.
 
-**Evidence and precedent**  
+**Evidence and precedent**
+
 Relevant evidence includes international income-floor pilots, negative income tax experiments, Australian basic-income modelling, and long-standing universal payment frameworks such as pensions and family benefits. Results consistently show strong poverty-reduction effects and administrative simplification, with labour-market impacts varying by design scale, interaction with taxation, and surrounding economic conditions. No single trial is treated as decisive; the policy draws on converging findings across multiple approaches.
 
-**Implementation outline**  
+**Implementation outline**
+
 Implementation is sequenced around legislative consolidation of baseline payments, integration with existing tax and reporting systems, and a managed transition period to prevent duplication or income gaps. Dependencies include accurate income data flows, agency coordination, and clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
 
 ---
@@ -101,21 +107,27 @@ Implementation is sequenced around legislative consolidation of baseline payment
 ---
 
 **Design rationale**
+
 With Universal Basic Income in place, workers are no longer compelled to accept poor pay or conditions to meet basic needs. Wage-setting institutions are therefore required to coordinate labour prices across sectors, not to protect workers from hardship.
 
 **System interaction**
+
 This reform operates alongside UBI by shaping wage outcomes in the labour market without substituting for income security. Unions and other worker organisations represent workers within sector-level bargaining councils, while the Fair Work Commission provides coordination, certification, and enforcement.
 
 **Economic and institutional logic**
+
 In a voluntary labour market, coordination prevents a race to the bottom between employers and ensures that bargaining power translates into economy-wide outcomes rather than isolated wins or losses.
 
 **Risk and failure modes**
+
 Risks include institutional capture, weak representation governance, or excessive rigidity across diverse sectors. Failure would appear as persistent wage suppression or instability despite strong labour demand.
 
 **Evidence and precedent**
+
 High-income economies with sector-level wage coordination show stronger middle-income growth, lower inequality, and more resilient labour markets when combined with robust income security.
 
 **Implementation outline**
+
 Implementation focuses on legislative recognition of sector-level bargaining councils, accreditation and governance standards for representative bodies, and expanded coordination powers for the Fair Work Commission, with detailed delivery handled through industrial relations legislation.
 
 ---
@@ -135,18 +147,23 @@ Implementation focuses on legislative recognition of sector-level bargaining cou
 ---
 
 **Design rationale**
+
 While UBI simplifies baseline income support, many Australians interact with multiple supplementary systems that remain fragmented, inconsistent, and administratively burdensome.
 
 **System interaction**
+
 This reform operates alongside UBI, explicitly excluding baseline income support and focusing on service-layer coordination across housing, disability, and family assistance.
 
 **Economic and institutional logic**
+
 Reducing administrative friction improves service effectiveness without increasing payment levels, delivering efficiency gains through coordination rather than conditionality.
 
 **Risk and failure modes**
+
 Risks include uneven agency adoption and data-sharing constraints. Underperformance would show up as continued duplication or delays despite reform.
 
 **Implementation outline**
+
 Cross-agency process review, standardisation of eligibility interfaces, and shared data infrastructure, with detailed execution handled through service delivery planning.
 
 ---
@@ -167,18 +184,23 @@ Cross-agency process review, standardisation of eligibility interfaces, and shar
 ---
 
 **Design rationale**
+
 Mandatory payment controls have not demonstrated systemic benefits proportional to their social and administrative costs.
 
 **System interaction**
+
 This alters payment delivery without changing eligibility or payment levels.
 
 **Economic and institutional logic**
+
 Removing coercive controls does not alter fiscal flows while improving user experience.
 
 **Risk and failure modes**
+
 Risks are limited to transitional administration. Monitoring focuses on voluntary uptake patterns.
 
 **Implementation outline**
+
 Regulatory change to payment conditions and provider communication.
 
 ---
@@ -199,21 +221,27 @@ Regulatory change to payment conditions and provider communication.
 ---
 
 **Design rationale**
+
 Excluding dental and mental health from universal healthcare creates avoidable disparities and downstream health costs.
 
 **System interaction**
+
 The expansion builds on existing Medicare billing, bulk-billing, and telehealth systems rather than creating parallel programs.
 
 **Economic and institutional logic**
+
 Preventative and early treatment reduces acute care demand and long-term system strain.
 
 **Risk and failure modes**
+
 Risks include provider capacity constraints and uneven uptake. Failure indicators include continued unmet care needs.
 
 **Evidence and precedent**
+
 Universal coverage models demonstrate reduced long-term costs and improved population health outcomes.
 
 **Implementation outline**
+
 Service inclusion staged by care type alongside provider incentive alignment.
 
 ---
@@ -234,21 +262,27 @@ Service inclusion staged by care type alongside provider incentive alignment.
 ---
 
 **Design rationale**
+
 Systemic failures in aged care reflect misaligned incentives, underfunding, and weak regulatory enforcement.
 
 **System interaction**
+
 This aligns aged care with health and social support systems to improve continuity and oversight.
 
 **Economic and institutional logic**
+
 Higher-quality care reduces acute health interventions and long-term public costs.
 
 **Risk and failure modes**
+
 Risks include workforce shortages and uneven compliance. Performance will be tracked through quality audits and outcomes.
 
 **Evidence and precedent**
+
 Findings from national inquiries consistently identify funding and accountability as decisive factors in care quality.
 
 **Implementation outline**
+
 Funding recalibration, regulatory strengthening, and staged compliance enforcement.
 
 ---
@@ -270,30 +304,39 @@ Funding recalibration, regulatory strengthening, and staged compliance enforceme
 ---
 
 **Design rationale**
+
 Australia’s childcare sector has structural failures spanning affordability, workforce sustainability, safety, and governance. Academics and experts have called for bold, coordinated reforms to rebuild trust and system quality as part of a national early childhood education strategy. These reforms must address both cost and the foundational capacity of the sector to deliver safe, high-quality care.
 
 **System interaction**
+
 This reform integrates with the National Quality Framework, aligning universal access with minimum qualifications for staff, educator-to-child ratios, national quality assessments, and stronger regulatory oversight through bodies such as the Australian Children’s Education & Care Quality Authority.
 
 **Workforce quality and pay**
+
 A critical component is lifting workforce conditions. Government programs that have funded wage increases have demonstrated a scalable model for improving compensation and retention.
 
 **Staff-to-child ratios and training**
+
 Experts recommend lowering ratios from 1:4 to 1:3 for children under two, ensuring a qualified teacher is present in every room and improving monitoring of ratio compliance. High staffing ratios support both safety and developmental outcomes, especially in community and early learning environments.
 
 **Safety, regulation, and oversight**
+
 Widespread incidents of regulatory non-compliance and safety failures, including cases of abuse and inadequate working-with-children checks, highlight the need for more frequent quality assessments (e.g., at least once every three years), stronger enforcement powers, and better-resourced regulators.
 
 **Economic and institutional logic**
+
 Universal childcare expands labour participation by reducing cost barriers, while workforce professionalisation and regulatory quality produce safer, more consistent services. When educator pay reflects the value and complexity of the work, retention improves and services spend less on turnover and recruitment.
 
 **Risk and failure modes**
+
 Without workforce reform, expanded access can strain an already fragile system. Risks include continued understaffing, burnout, inconsistent quality across regions and provider types, and safety lapses. Ongoing monitoring must include ratio compliance, quality ratings, educator qualifications, and safety incident metrics.
 
 **Evidence and precedent**
+
 Sector-wide expert plans advocate international best practice: universal access models with strong workforce pay and training structures, reliable quality metrics, and independent oversight. These models show improved outcomes for children, parents, and workers alike.
 
 **Implementation outline**
+
 Phased expansion includes:
 
 * Legislating universal service access with income-adjusted fees.
@@ -326,10 +369,12 @@ Making Australia a country where housing is a right, not an investment. Where or
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Stamp duty functions as a transaction barrier that suppresses mobility and distorts land allocation. Replacing transfer-based taxation with recurring land taxation corrects the structural incentive to hold land passively while reducing movement penalties.
 
-**Structural framework**  
+**Structural framework**
+
 The Commonwealth legislation establishes:
 - A mandatory land-only valuation base (excluding improvements).
 - Universal application across residential, commercial, industrial, and agricultural land categories.
@@ -337,7 +382,8 @@ The Commonwealth legislation establishes:
 
 The default federal rate applies nationally unless displaced by a compliant state regime.
 
-**Displacement mechanism**  
+**Displacement mechanism**
+
 A state may displace the federal tax only if:
 1. Residential stamp duty is fully abolished.
 2. The land tax applies to a broad base without structural exemptions.
@@ -347,22 +393,27 @@ A state may displace the federal tax only if:
 
 Rate levels remain within state control. Structural design does not.
 
-**Transition treatment for households**  
+**Transition treatment for households**
+
 Stamp duty paid within the prior holding period is credited against future land value tax liabilities until exhausted, preventing double burden during transition.
 
-**Tax base guardrails**  
+**Tax base guardrails**
+
 - No principal-place-of-residence carve-out beyond defined transitional offsets.
 - No category-based structural exemptions.
 - No land banking exclusions.
 - Agricultural land remains included unless constitutionally constrained.
 
-**Economic logic**  
+**Economic logic**
+
 Recurring land taxation reduces lock-in effects, applies consistent holding costs to vacancy, and aligns revenue collection with long-term land value rather than market turnover cycles.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 System integrity depends on maintaining a broad base and resisting exemption creep. Dilution through carve-outs, rate arbitrage, or reintroduced transaction levies would undermine effectiveness.
 
-**Implementation outline**  
+**Implementation outline**
+
 Federal legislation establishes the default system and certification process. States may assume administration upon structural compliance. Intergovernmental coordination standardises land valuation practices across jurisdictions.
 
 ---
@@ -383,25 +434,31 @@ Federal legislation establishes the default system and certification process. St
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Australia moved from CGT indexation to a flat discount model in 1999. Indexation targets the core fairness question—taxing real gains rather than inflation—without granting an automatic windfall discount unrelated to inflation.
 
-**Indexation precedent and current-law context**  
+**Indexation precedent and current-law context**
+
 For certain pre-1999 assets, Australian tax law still allows indexation as an alternative to the discount, demonstrating that indexation is an established concept in the system.
 
-**Structural limits**  
-1. For assets acquired after the start date, the CGT discount is not available; the cost base is indexed for inflation using a defined indexation factor.  
-2. Investment housing receives the tightened treatment first, reflecting its outsized role in speculation incentives.  
-3. Transitional treatment is defined by acquisition date (grandfathering rules) to avoid retroactive taxation shocks.  
+**Structural limits**
+
+1. For assets acquired after the start date, the CGT discount is not available; the cost base is indexed for inflation using a defined indexation factor.
+2. Investment housing receives the tightened treatment first, reflecting its outsized role in speculation incentives.
+3. Transitional treatment is defined by acquisition date (grandfathering rules) to avoid retroactive taxation shocks.
 4. Integrity rules apply to prevent asset re-characterisation and wash-sale behaviour around the start date.
 
-**Evidence and live policy discussion**  
+**Evidence and live policy discussion**
+
 Recent Parliamentary Budget Office costing work explicitly models replacing the CGT discount with cost-base indexation for non-property assets while removing the discount for investment properties under defined conditions, indicating indexation is being actively considered in contemporary reform design.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include lock-in effects if poorly designed, or loopholes that preserve the discount’s effect through alternative concessions. Success depends on tight start-date rules and integrity provisions.
 
-**Implementation outline**  
+**Implementation outline**
+
 Implementation is delivered through amendments to CGT discount provisions, indexation factor definitions, transitional acquisition-date rules, and compliance guidance to support consistent application.
 
 ---
@@ -422,21 +479,26 @@ Implementation is delivered through amendments to CGT discount provisions, index
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Negative gearing amplifies leveraged demand for existing dwellings by allowing losses to be offset against unrelated income. Quarantining losses keeps legitimate investment deductions available, while removing the incentive to run persistent losses primarily for tax advantage.
 
-**Displacement and interaction with other reforms**  
+**Displacement and interaction with other reforms**
+
 This reform is designed to work alongside the Land Value Tax replacement of stamp duty and CGT reform. Together, they reduce speculative returns from holding existing dwellings and shift incentives toward productive use and new supply.
 
-**Structural limits**  
-1. Losses from residential rental property may not be deducted against wages and salaries.  
-2. Losses are quarantined and may be applied only against future rental income or realised capital gains from residential property.  
+**Structural limits**
+
+1. Losses from residential rental property may not be deducted against wages and salaries.
+2. Losses are quarantined and may be applied only against future rental income or realised capital gains from residential property.
 3. The rule applies across individuals and pass-through entities commonly used for housing investment (trusts/partnership structures) to prevent simple routing avoidance.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include avoidance via reclassification of expenses or restructuring of ownership. Integrity depends on clear definitions of deductible rental losses and consistent application across entity types.
 
-**Implementation outline**  
+**Implementation outline**
+
 Implementation proceeds through tax law amendments establishing quarantining, transitional rules for existing carried-forward losses, and integrity provisions for common avoidance structures.
 
 ---
@@ -457,22 +519,27 @@ Implementation proceeds through tax law amendments establishing quarantining, tr
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Rezoning can create a sudden uplift in land value that is driven by public decision-making rather than owner effort. A windfall gains tax captures part of that uplift and aligns rezoning with public benefit.
 
-**Existing Australian precedent**  
+**Existing Australian precedent**
+
 Victoria already operates a windfall gains tax model that applies when rezoning increases land value above a threshold, with options to defer payment under specified conditions.
 
-**Structural limits**  
+**Structural limits**
+
 1. Liability is calculated only on the uplift attributable to rezoning (the rezoning-driven increase in land value).
 2. A minimum uplift threshold applies before any tax is payable (threshold design follows the precedent model).
 3. Deferral is permitted under defined conditions with interest, to reduce cash-flow shock while preserving collection integrity.
 4. The value of the tax is calculated at rezoning decision points and indexed until final sale, so windfalls are captured even when land is held.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include valuation disputes, gaming around rezoning boundaries, or political pressure for exemptions. Integrity depends on valuation transparency and consistent uplift attribution.
 
-**Implementation outline**  
+**Implementation outline**
+
 Implementation requires a valuation method for pre- and post-rezoning land values, uplift assessment notices, a structured deferral pathway, and a clear interaction rule with Land Value Tax so the two taxes do not duplicate the same base at the same event.
 
 ---
@@ -497,44 +564,53 @@ Implementation requires a valuation method for pre- and post-rezoning land value
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Australia’s major cities contain substantial amounts of well-located, well-serviced land where housing remains legally constrained despite proximity to transport, employment, and infrastructure. When growth is restricted in these areas, development shifts outward into fringe locations, increasing infrastructure cost and consuming productive agricultural land. Establishing a minimum permission standard changes the legal baseline so housing can occur where demand and infrastructure already exist without compromising design quality or safety requirements.
 
-**Urban efficiency and farmland protection**  
-1. Expanding housing capacity in well-serviced urban areas reduces pressure for fringe expansion.  
-2. Reduced fringe expansion preserves high-value agricultural land surrounding metropolitan regions.  
-3. More efficient land use lowers long-term public expenditure on new outer-suburban roads, utilities, and services.  
+**Urban efficiency and farmland protection**
+
+1. Expanding housing capacity in well-serviced urban areas reduces pressure for fringe expansion.
+2. Reduced fringe expansion preserves high-value agricultural land surrounding metropolitan regions.
+3. More efficient land use lowers long-term public expenditure on new outer-suburban roads, utilities, and services.
 4. National food production capacity is indirectly supported when sprawl pressure is reduced.
 
-**Structural framework**  
+**Structural framework**
+
 The Commonwealth requires states to embed minimum as-of-right permissions within defined priority geographies, ensuring that housing growth can occur where infrastructure already exists.
 
-**Minimum permission geographies (baseline requirements)**  
-1. Rail station catchments within a defined walkable radius.  
-2. Designated activity centres in metropolitan and regional cities.  
-3. Frequent public transport corridors meeting defined service thresholds.  
+**Minimum permission geographies (baseline requirements)**
+
+1. Rail station catchments within a defined walkable radius.
+2. Designated activity centres in metropolitan and regional cities.
+3. Frequent public transport corridors meeting defined service thresholds.
 4. Existing main streets, shopping centres, and mixed-use commercial zones.
 
-**Minimum allowable outcomes (baseline)**  
+**Minimum allowable outcomes (baseline)**
+
 Within the priority geographies, planning schemes must permit, at minimum:
-1. Medium density housing (terraces, townhouses, walk-ups).  
-2. Mid-rise apartments in station and centre zones.  
-3. Mixed-use buildings along main streets and centre cores (housing above retail/commerce).  
+1. Medium density housing (terraces, townhouses, walk-ups).
+2. Mid-rise apartments in station and centre zones.
+3. Mixed-use buildings along main streets and centre cores (housing above retail/commerce).
 4. Lot consolidation and subdivision rules that enable feasible redevelopment.
 
-**Integrity limits**  
-1. Permissions must be genuinely as-of-right and not neutralised by blanket discretionary overlays.  
-2. Environmental, heritage, and hazard constraints must be mapped and evidence-based.  
-3. Agricultural land policy remains distinct; this reform does not rezone rural land for urban expansion.  
+**Integrity limits**
+
+1. Permissions must be genuinely as-of-right and not neutralised by blanket discretionary overlays.
+2. Environmental, heritage, and hazard constraints must be mapped and evidence-based.
+3. Agricultural land policy remains distinct; this reform does not rezone rural land for urban expansion.
 4. States may exceed minimum permissions but may not reduce them below the standard.
 
-**Interaction with other reforms**  
+**Interaction with other reforms**
+
 Land Value Tax establishes a recurring incentive for efficient land use; minimum permissions ensure that incentive can translate into housing delivery where infrastructure exists.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include token compliance (permissions that are technically legal but practically infeasible), substitution through discretionary overlays, or uneven application across councils. Failure would appear as continued exclusionary zoning in the defined geographies despite the standard.
 
-**Implementation outline**  
+**Implementation outline**
+
 Commonwealth legislation defines priority geographies and compliance certification. States incorporate minimum permissions into planning schemes, subject to federal funding linkage where applicable.
 
 ---
@@ -557,37 +633,45 @@ Commonwealth legislation defines priority geographies and compliance certificati
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Even where zoning permits housing, discretionary assessment and unpredictable delays raise risk premiums and suppress delivery. A code-complying pathway converts routine housing proposals into a rules-based process, improving certainty without lowering safety or design requirements.
 
-**Structural framework**  
+**Structural framework**
+
 The Commonwealth requires states to implement a code-complying pathway covering common redevelopment typologies. The pathway specifies objective standards, fixed decision timeframes, and limited refusal grounds.
 
-**Covered typologies (baseline)**  
+**Covered typologies (baseline)**
+
 States must provide code pathways for, at minimum:
-1. Terraces and townhouses.  
-2. Low-rise walk-ups.  
-3. Mid-rise apartments and mixed-use buildings in centre and corridor zones.  
+1. Terraces and townhouses.
+2. Low-rise walk-ups.
+3. Mid-rise apartments and mixed-use buildings in centre and corridor zones.
 4. Small-lot subdivision where services are available.
 
-**Decision limits**  
-1. Assessments are limited to objective compliance against published codes.  
-2. Councils may refuse only for demonstrable non-compliance with the code, mapped hazard constraints, or safety-critical issues.  
+**Decision limits**
+
+1. Assessments are limited to objective compliance against published codes.
+2. Councils may refuse only for demonstrable non-compliance with the code, mapped hazard constraints, or safety-critical issues.
 3. Objections may inform compliance checks but cannot create discretionary veto power where the proposal complies.
 
-**Time limits**  
-1. Fixed statutory decision clocks apply by typology.  
-2. Failure to decide within the clock triggers an automatic escalation pathway to a state assessment body.  
+**Time limits**
+
+1. Fixed statutory decision clocks apply by typology.
+2. Failure to decide within the clock triggers an automatic escalation pathway to a state assessment body.
 3. Final determination must occur within a fixed maximum timeframe.
 
-**Integrity limits**  
-1. The code pathway must not be neutralised through blanket overlays that reintroduce discretion for compliant forms.  
+**Integrity limits**
+
+1. The code pathway must not be neutralised through blanket overlays that reintroduce discretion for compliant forms.
 2. States must publish measurable compliance criteria and a transparent audit trail for refusals.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include code capture, weak enforcement, or “shadow discretion” through informal practices. Failure would appear as persistent delay despite nominal code pathways.
 
-**Implementation outline**  
+**Implementation outline**
+
 Implementation is delivered through state planning law amendments establishing code standards, statutory clocks, and an escalation pathway, with compliance reporting and public metrics.
 
 ---
@@ -610,46 +694,55 @@ Implementation is delivered through state planning law amendments establishing c
 
 ---
 
-**Design rationale**  
+**Design rationale**
+
 Councils are resource-constrained while carrying responsibility for approvals, local infrastructure interfaces, and enforcement. A completion-triggered Housing Delivery Accelerator aligns council incentives with actual delivery rather than approvals or intentions, while providing funding that scales predictably with growth. Payments are structured around measurable housing outcomes and objective standards, encouraging durable, well-located, and broadly usable housing types without introducing aesthetic discretion or subjective design judgement.
 
-**Base payment structure**  
-1. A fixed base payment applies per verified completed dwelling.  
-2. Payment is triggered only upon issuance of an occupancy certificate or equivalent completion certification.  
+**Base payment structure**
+
+1. A fixed base payment applies per verified completed dwelling.
+2. Payment is triggered only upon issuance of an occupancy certificate or equivalent completion certification.
 3. Payments are indexed to construction cost inflation to preserve incentive strength over time.
 
-**Quality uplift tiers (objective criteria only)**  
+**Quality uplift tiers (objective criteria only)**
+
 Additional uplifts apply where a completed dwelling meets published, measurable standards:
 
-1. **Family-capable dwelling uplift** — applied to dwellings meeting defined bedroom and minimum internal area thresholds (e.g. 2+ bedrooms with specified floor area).  
-2. **Transport-priority uplift** — applied to dwellings delivered within defined rail station catchments, activity centres, or frequent public transport corridors.  
-3. **Durability uplift** — applied to buildings meeting defined structural durability and energy efficiency classifications.  
+1. **Family-capable dwelling uplift** — applied to dwellings meeting defined bedroom and minimum internal area thresholds (e.g. 2+ bedrooms with specified floor area).
+2. **Transport-priority uplift** — applied to dwellings delivered within defined rail station catchments, activity centres, or frequent public transport corridors.
+3. **Durability uplift** — applied to buildings meeting defined structural durability and energy efficiency classifications.
 4. **Mixed-use integration uplift** — applied where residential dwellings are delivered above active ground-floor commercial or community uses within designated centre zones.
 
 All uplift thresholds must be numeric, published, and compliance-verifiable. Discretionary qualitative assessments are not permitted.
 
-**Anti-distortion safeguards**  
-1. Uplifts must not exceed a defined proportion of the base payment to avoid discouraging smaller or entry-level dwellings.  
-2. Micro-dwellings below defined minimum habitable standards do not qualify for uplift tiers.  
-3. Artificial subdivision of large dwellings to multiply base payments is excluded through minimum size standards.  
+**Anti-distortion safeguards**
+
+1. Uplifts must not exceed a defined proportion of the base payment to avoid discouraging smaller or entry-level dwellings.
+2. Micro-dwellings below defined minimum habitable standards do not qualify for uplift tiers.
+3. Artificial subdivision of large dwellings to multiply base payments is excluded through minimum size standards.
 4. Councils may not impose additional approval barriers to favour uplift-eligible projects.
 
-**Equity and geographic balance**  
-1. Payment rates may vary by regional cost band to reflect construction cost differences across Australia.  
+**Equity and geographic balance**
+
+1. Payment rates may vary by regional cost band to reflect construction cost differences across Australia.
 2. Regional and metropolitan jurisdictions are eligible under the same structural criteria.
 
-**Audit and compliance**  
-1. All payments are tied to geospatial and certification data.  
-2. Public reporting discloses council-level completions, uplift category breakdowns, and total accelerator payments.  
+**Audit and compliance**
+
+1. All payments are tied to geospatial and certification data.
+2. Public reporting discloses council-level completions, uplift category breakdowns, and total accelerator payments.
 3. Misclassification or manipulation triggers repayment and temporary disqualification.
 
-**Interaction with other reforms**  
+**Interaction with other reforms**
+
 Minimum Housing Permissions expand legal capacity; the Fast-Track reduces approval risk; the Accelerator aligns council incentives with actual completed housing outcomes.
 
-**Risk and failure modes**  
+**Risk and failure modes**
+
 Risks include over-concentration in specific dwelling types, gaming of bedroom classifications, or uplift capture without genuine livability gains. Periodic review of objective criteria ensures incentives remain aligned with housing system performance.
 
-**Implementation outline**  
+**Implementation outline**
+
 Commonwealth legislation defines payment amounts, uplift criteria, indexing method, and reporting requirements. States and councils participate through automatic eligibility upon compliance with minimum permission and fast-track reforms.
 
 ---
@@ -673,6 +766,7 @@ Commonwealth legislation defines payment amounts, uplift criteria, indexing meth
 ---
 
 **Design rationale**
+
 Traditional estate-style public housing concentrates disadvantage, isolates residents from employment nodes, and creates high long-term management costs. Integrating public housing within standard residential buildings embeds social inclusion structurally rather than attempting to repair it after segregation occurs.
 
 **Acquisition structure**
@@ -692,12 +786,15 @@ If applied consistently to medium and high-density developments in priority geog
 3. Tenancy management is centralised under public authorities with national quality standards.
 
 **Interaction with Production reforms**
+
 Minimum Housing Permissions and the Housing Delivery Accelerator increase eligible development volume in transit-connected areas, expanding acquisition opportunity without requiring additional rezoning.
 
 **Risk and failure modes**
+
 Risks include over-concentration within specific developments, acquisition pricing disputes, or reduction in developer pipeline participation if poorly calibrated. Integrity depends on predictable acquisition rules and avoidance of discretionary negotiation.
 
 **Implementation outline**
+
 Federal legislation establishes funding authority, eligibility criteria, acquisition proportion, and reporting standards. States retain tenancy administration consistent with national public housing benchmarks.
 
 ---
@@ -720,6 +817,7 @@ Federal legislation establishes funding authority, eligibility criteria, acquisi
 ---
 
 **Design rationale**
+
 Supply reform addresses structural scarcity over time, but renters require immediate stability. National standards set a consistent baseline for tenancy security and property safety across jurisdictions, reducing regulatory fragmentation while preserving state administration.
 
 **Security of tenure framework**
@@ -741,12 +839,15 @@ Supply reform addresses structural scarcity over time, but renters require immed
 3. Reform integrates with existing welfare systems without creating parallel programs.
 
 **Interaction with other reforms**
+
 Land Value Tax and negative gearing reform moderate speculative pressure; production reforms expand supply; rental standards stabilise households during system transition.
 
 **Risk and failure modes**
+
 Excessive regulatory burden could discourage rental supply if poorly calibrated. Integrity depends on clear definitions, enforceable standards, and coordination with state tenancy frameworks.
 
 **Implementation outline**
+
 Commonwealth legislation establishes funding-linked national tenancy benchmarks and Rent Assistance reforms. States retain tribunal administration subject to baseline standards.
 
 ---
@@ -770,6 +871,7 @@ Commonwealth legislation establishes funding-linked national tenancy benchmarks 
 ---
 
 **Design rationale**
+
 Housing scarcity in major cities reflects concentrated employment and limited commuting range. High-speed rail alters the effective housing catchment of employment centres by reducing travel time, enabling residential choice across wider geographic areas without requiring relocation away from metropolitan labour markets.
 
 **Housing-system interaction**
@@ -785,12 +887,15 @@ Housing scarcity in major cities reflects concentrated employment and limited co
 3. Housing capacity obligations apply to designated station catchments.
 
 **Economic logic**
+
 Travel-time compression expands the functional labour market radius, increasing the effective housing supply available to metropolitan economies without increasing urban congestion or fringe sprawl.
 
 **Risk and failure modes**
+
 Risks include under-utilised stations, speculative land inflation prior to delivery, or disconnect between transport delivery and housing permission reform. Integrity requires simultaneous application of zoning and tax mechanisms at corridor designation.
 
 **Implementation outline**
+
 Commonwealth-led corridor development with staged construction, priority routing, and binding housing capacity conditions at designated stops.
 
 ---
@@ -814,6 +919,7 @@ Commonwealth-led corridor development with staged construction, priority routing
 ---
 
 **Design rationale**
+
 Australia’s natural resources are publicly owned. When royalty systems or taxation frameworks fail to capture economic rent during periods of sustained high commodity prices or supernormal profits, public value is transferred to private interests without structural justification. A sovereign wealth framework converts finite underground assets into diversified financial capital, preserving value beyond the depletion cycle.
 
 **Structural framework**
@@ -837,12 +943,15 @@ Australia’s natural resources are publicly owned. When royalty systems or taxa
 3. Governance rules are statutory to prevent discretionary alteration without legislative amendment.
 
 **Interaction with tax integrity reforms**
+
 Corporate tax integrity measures protect the resource rent base, while removal of fossil fuel subsidies prevents offsetting distortions that undermine capture.
 
 **Risk and failure modes**
+
 Risks include rate miscalibration that suppresses marginal projects, political pressure for early fund withdrawals, or weak integrity rules that allow continued base erosion. Underperformance would appear as sustained high commodity prices without corresponding public asset accumulation.
 
 **Implementation outline**
+
 Legislation amends resource profit taxation provisions, establishes rent adjustment triggers, creates the sovereign wealth fund structure with defined governance rules, and specifies deposit and withdrawal mechanisms consistent with long-term capital preservation.
 
 ---
@@ -864,6 +973,7 @@ Legislation amends resource profit taxation provisions, establishes rent adjustm
 ---
 
 **Design rationale**
+
 Corporate tax avoidance persists because the expected return from complex structuring exceeds the expected cost of detection and enforcement. Reform focuses on reducing the payoff from base erosion, increasing transparency, and raising the probability and cost of non-compliance for high-risk entities.
 
 **Structural framework**
@@ -886,15 +996,19 @@ Corporate tax avoidance persists because the expected return from complex struct
 3. Repeat or deliberate avoidance patterns trigger escalation pathways, including higher penalties and stronger disclosure obligations.
 
 **Interaction with ultra-wealthy avoidance reforms**
+
 Corporate avoidance reforms target cross-border profit shifting and large-group structuring. Ultra-wealthy avoidance reforms target individual and private-vehicle income conversion and distribution strategies, avoiding duplication of mechanisms.
 
 **Risk and failure modes**
+
 Risks include avoidance migrating into new structures, excessive complexity that increases compliance burden without reducing avoidance, and insufficient enforcement capacity. Underperformance would appear as persistent profit misalignment indicators, low effective tax rates in high-margin sectors without economic justification, or increased reliance on opaque related-party arrangements.
 
 **Evidence and precedent**
+
 Australia already maintains a dedicated tax avoidance enforcement focus within the ATO, demonstrating the institutional precedent for sustained large-case compliance programs which have been celebrated by peak international bodies like CICTAR (Centre for International Corporate Tax Accountability and Research).
 
 **Implementation outline**
+
 Amendments to corporate tax integrity provisions strengthen transfer pricing, anti-hybrid, thin capitalisation, and deduction integrity rules, expand public reporting standards, and establish sustained enforcement resourcing settings through budget and administrative design.
 
 ---
@@ -916,6 +1030,7 @@ Amendments to corporate tax integrity provisions strengthen transfer pricing, an
 ---
 
 **Design rationale**
+
 Ultra-wealthy tax avoidance often operates through legally available structures that convert personal income into lightly taxed forms, defer recognition, or distribute taxable income to low-rate recipients. Reform focuses on closing the highest-payoff pathways while preserving legitimate business and retirement functions.
 
 **Structural framework**
@@ -937,15 +1052,19 @@ Ultra-wealthy tax avoidance often operates through legally available structures 
 2. Targeted enforcement capability is maintained for high-wealth individuals and complex private structures, with audit selection informed by structured reporting.
 
 **Interaction with corporate avoidance reforms**
+
 Ultra-wealthy reforms focus on personal and private-structure pathways (trusts, superannuation, private investment vehicles). Corporate avoidance reforms focus on multinational and large-group profit shifting, ensuring the two items address different leakage channels.
 
 **Risk and failure modes**
+
 Risks include migration into new avoidance vehicles, excessive complexity in trust rules that creates administrative friction without meaningful integrity gains, and partial reform that leaves substitution pathways open. Underperformance would appear as continued concentration of concession benefits at the top end, persistent effective tax rate gaps for high-wealth cohorts, or increased reliance on opaque private structures.
 
 **Evidence and precedent**
+
 Trust structures are a recognised pathway for tax minimisation and income splitting in Australia, and reform options are widely discussed in public policy analysis. Superannuation concessions and their distributional impacts are also an active policy focus across Australian parties and institutions.
 
 **Implementation outline**
+
 Legislation reforms discretionary trust distribution integrity rules, strengthens personal-services and income-conversion integrity provisions, adjusts large-balance superannuation concession settings, and establishes a minimum effective tax framework for ultra-high-net-worth individuals with clear thresholds, definitions, and anti-avoidance provisions.
 
 ---
@@ -967,6 +1086,7 @@ Legislation reforms discretionary trust distribution integrity rules, strengthen
 ---
 
 **Design rationale**
+
 Subsidies and concessional tax treatments reduce the effective cost of fossil fuel extraction and use, distorting market signals and slowing capital reallocation toward lower-emissions alternatives. Removing concessions restores price discipline rather than imposing new regulatory control.
 
 **Scope of reform**
@@ -981,12 +1101,15 @@ Subsidies and concessional tax treatments reduce the effective cost of fossil fu
 2. Adjustment support mechanisms for affected workers and regions are addressed in industry transformation sections, not embedded here.
 
 **Interaction with climate pricing reform**
+
 Subsidy removal restores neutral price signals; carbon pricing introduces emissions liability. These mechanisms operate together to align market incentives with decarbonisation goals.
 
 **Risk and failure modes**
+
 Risks include incomplete subsidy identification, substitution through new concession categories, or short-term regional disruption without coordinated transition support. Underperformance would appear as persistent effective fossil fuel price advantages despite repeal.
 
 **Implementation outline**
+
 Budget legislation and tax law amendments identify, catalogue, and repeal defined fossil fuel concessions, with structured phase-out schedules where required.
 
 ---
@@ -1073,6 +1196,7 @@ Amend safeguard and carbon credit legislation to:
 ---
 
 **Design rationale**
+
 Australia’s current disclosure regime relies on high reporting thresholds, delayed publication, and fragmented reporting structures that reduce transparency during the times when voters are making decisions. Real-time disclosure shifts transparency into the electoral decision window and closes avenues used to fragment donations.
 
 **Structural framework**
@@ -1096,12 +1220,15 @@ Australia’s current disclosure regime relies on high reporting thresholds, del
 3. Repeated or deliberate concealment triggers escalating sanctions.
 
 **Interaction with integrity reforms**
+
 Enhanced disclosure operates alongside reforms to the National Anti-Corruption Commission by increasing the visibility of financial relationships that may warrant scrutiny.
 
 **Risk and failure modes**
+
 Risks include compliance burden for small campaigns, attempts to re-route funds through opaque entities, and data overload without effective search tools. System performance depends on low thresholds, attribution integrity, and structured open-data publication.
 
 **Implementation outline**
+
 Amendments to federal electoral law establish reporting timeframes, aggregation rules, digital reporting infrastructure, and regulator enforcement powers, with phased transition to real-time reporting standards.
 
 ---
@@ -1123,6 +1250,7 @@ Amendments to federal electoral law establish reporting timeframes, aggregation 
 ---
 
 **Design rationale**
+
 An effective federal anti-corruption body requires clarity of jurisdiction, robust investigative authority, and financial insulation sufficient to prevent quiet operational erosion. Reform focuses on coverage, capability, referral pathways, reporting discipline, and structural funding safeguards.
 
 **Structural framework**
@@ -1146,12 +1274,15 @@ An effective federal anti-corruption body requires clarity of jurisdiction, robu
 3. Conflict-of-interest controls apply to commissioners, staff, and contracted investigators.
 
 **Interaction with electoral transparency reforms**
+
 Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the Commonwealth’s investigative response capacity.
 
 **Risk and failure modes**
+
 Risks include jurisdictional carve-outs, procedural complexity that slows referrals, insufficient funding relative to mandate, or reporting rules that obscure operational constraint. Underperformance would appear as sustained backlog growth, declining investigative throughput, or public shortfall declarations without remedial response.
 
 **Implementation outline**
+
 Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
 
 ---
@@ -1163,6 +1294,54 @@ Amendments to the National Anti-Corruption Commission Act establish expanded jur
 
 1. Large corporations will pay an increased company tax rate equal to the gap between the national inflation rate and the upper bound of the Reserve Bank target band, with the rate returning to its baseline once inflation moves back within the target range.
 
+   1. Small businesses will face less volatile input prices, making it easier to set prices and manage cashflow.
+   2. Small businesses will experience fewer margin squeezes caused by fast-moving cost increases that outpace their ability to reprice.
+   3. Fewer abrupt cost spikes will reduce the frequency of emergency price rises that risk losing customers.
+   4. Large firms will be less likely to lift prices ahead of actual cost increases during inflation scares.
+   5. Business planning will become more reliable as inflation expectations stabilise earlier.
+   6. Supplier negotiations will become less disruptive when rapid price escalation is less common.
+   7. Consumer spending patterns will become more predictable as essential costs stabilise sooner.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Small businesses typically have limited pricing power, limited access to hedging, and limited capacity to absorb rapid cost increases. This reform is intended as a temporary counter-cyclical stabiliser that increases fiscal pressure on large firms when inflation is above the target band, with the aim of reducing inflation persistence and volatility that disproportionately disrupts small business operations.
+
+**Key design questions for scrutiny**
+
+1. Scope definition matters because corporate groups can be structured in ways that shift where profits are recorded across related entities.
+2. Choice of inflation measure affects timing and responsiveness, because published inflation data is periodic and may not track sector-specific price pressures.
+
+**Structurally controlled risks**
+
+1. A “large corporation” definition can create boundary behaviour, including incentives to shape headcount reporting, group structure, or timing at year-end to avoid being classified as large, particularly where a business sits close to multiple thresholds at once. Yet because the Corporations Act test requires meeting at least two of three criteria (employees plus either revenue or assets), simple single-metric gaming is constrained and many near-boundary manoeuvres need to be sustained across more than one dimension, while consolidated-group treatment reduces the scope to split entities purely to stay below the line.
+
+**Market-controlled risks**
+
+1. Large firms may be expected to try to preserve after-tax margins and respond by lifting prices during uplift periods, particularly in concentrated markets where customers have fewer alternatives. But since more influential businesses would be raising their own tax more by raising prices, the uplift is levied on aggregate profits rather than on each sale, it unwinds automatically when inflation returns to band, and any attempt to embed it into prices remains constrained by competitive pressure and demand response once the uplift switches off, there are multiple incentives not to respond in this way.
+2. A temporary uplift could be expected to reduce after-tax returns enough to defer discretionary investment, particularly where projects have short payback horizons and boards are already cautious in volatile conditions. Yet because the uplift is conditional and self-reversing, and because the same high-inflation environment that activates it typically drives financing costs and demand uncertainty that overwhelm marginal tax differences, investment decisions are less likely to pivot on the uplift itself, especially for long-horizon capital allocation.
+3. A lagged inflation statistic could be expected to produce mistiming, with the uplift switching on after inflation momentum has already turned or lingering after conditions have eased, creating a risk of policy “after-effects” that don’t match the live economy. Even so, a public and rule-based trigger makes the regime predictable in advance, sustained above-band inflation is visible in real-world pricing trends before official releases, and the automatic unwind limits persistence once inflation returns to band, which together reduces the scope for prolonged mismatch driven by discretionary delay.
+4. Inflation episodes can be expected to vary in responsiveness, because genuine supply shocks can force price rises regardless of tax settings and a profits-based uplift has limited leverage over the underlying cost driver. Still, where inflation persistence is being amplified by price-setting behaviour — including premature price rises based on expected shocks rather than realised input costs — the uplift creates a counter-incentive for captured firms to move early, since lifting prices ahead of costs can contribute to above-band inflation that raises their own tax burden during the activation period, while the temporary and condition-bound design contains the downside in supply-shock episodes to the duration of above-band inflation rather than embedding a permanent setting.
+
+**Enforcement-controlled risks**
+
+1. A conditional uplift could be expected to intensify avoidance and timing behaviour, including profit shifting, intra-group reclassification, and income or expense timing around anticipated activation periods, particularly among firms with sophisticated tax planning capacity. In this case, the same predictability that improves transparency also enables forward planning before published inflation prints, so the structure does little to self-limit the incentive to minimise exposure and the practical constraint comes primarily from the reach and enforceability of existing integrity settings rather than from the uplift design.
+
+**Interaction with other reforms**
+
+This measure interacts most strongly with competition policy and corporate tax integrity settings, because market power and avoidance capacity affect whether stabilisation pressure is absorbed, passed through, or minimised.
+
+**Implementation outline**
+
+Legislation would need clear definitions for corporate coverage (including group structures), the reference inflation statistic, the baseline company rate, and the method for applying and unwinding the temporary uplift, supported by integrity alignment with existing anti-avoidance frameworks.
+
+---
+</details>
+
 ### **Enforce Prompt Payment of Small Businesses**
 
 1. Large corporations above a defined revenue threshold will be required to pay small business suppliers within a fixed maximum payment period, with automatic financial penalties applying for late payment.
@@ -1173,7 +1352,7 @@ Amendments to the National Anti-Corruption Commission Act establish expanded jur
 
 ### **Break Up Media Monopolies**
 
-1. Amend competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional market concentration thresholds.
+1. Amend competition law to require media corporations that exceed concentration thresholds to divest assets and report ownership structures to the ACCC to verify compliance.
 
 ### **Guarantee Net Neutrality**
 
