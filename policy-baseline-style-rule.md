@@ -5,6 +5,14 @@
 
 If a sentence could sit comfortably in another tier, it does **not** belong where it is.
 
+# Platform Calibration Rule
+
+When drafting a new policy item within an existing platform, the drafter must calibrate against the surrounding platform corpus rather than relying on the most recently drafted item alone.
+
+* New entries should match the established level of Tier-3 density, Tier-4 depth, and analytical cadence already present in comparable sections of the platform.
+* Structural compliance with the tier rules is necessary but not sufficient; a draft also fails if it is formally compliant but stylistically or analytically out of character with the surrounding platform.
+* Where the platform already shows a stable pattern for similar reforms, that pattern should be treated as the default unless there is a clear reason to depart from it.
+
 ---
 
 # Tier-0 Style Rule — Categories & Slogans
@@ -551,6 +559,7 @@ Tier-4 should describe institutional design rather than engineering implementati
 
 * Explain the obligations, authorities, constraints, and enforcement structures created by the reform.
 * Avoid specifying technical architecture, administrative procedures, or operational system design that would normally be determined by regulators or implementing agencies.
+* Simpler reforms should normally have lighter treatment; do not add analytical substructure beyond what is needed to explain the core institutional logic, key edge cases, and implementation dependencies under scrutiny.
 
 ### T4 Addressing Failure Modes
 
@@ -804,3 +813,37 @@ Policy entries that fail:
 * Are revised downward (remove detail), or
 * Revised upward (move content to the correct tier), or
 * Rejected outright
+
+## Calbration Examples
+
+Boundaries:
+
+Treat Reward Communities That Build Quality Homes as the “heavy Tier-4 benchmark”, and End Forced Indue Cards as the “light Tier-4 benchmark”.
+
+Starter pack:
+
+* Reward Communities That Build Quality Homes
+* Make It Easier to Buy and Move Home
+* Stop Corporate Tax Avoidance
+* Guarantee Secure and Safe Renting
+* Enforce Prompt Payment of Small Businesses
+
+For enforcement-heavy / integrity-heavy reforms - These are good when scrutiny should focus on loopholes, enforcement, and system discipline:
+
+* Stop Corporate Tax Avoidance
+* Expose Political Donations
+* Reform the National Anti-Corruption Commission
+* Make Carbon Compliance Real
+
+For supply / planning / regulatory-capacity reforms - These are good when the policy changes permissions, approval pathways, or institutional incentives:
+
+* Stop Wasting Our Best Land
+* Create a Housing Approval Fast-Track
+* Reward Communities That Build Quality Homes
+
+For bundled but still coherent Tier-2 design - These are useful when Tier-2 contains multiple mechanisms that still belong together:
+
+* Build Fair and Stable Labour Markets
+* Deliver Free or Affordable Childcare for Families
+* Stop Corporate Tax Avoidance
+* Make Carbon Compliance Real

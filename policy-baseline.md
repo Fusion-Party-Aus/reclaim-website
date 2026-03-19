@@ -777,6 +777,7 @@ Traditional estate-style public housing concentrates disadvantage, isolates resi
 4. Ownership is consolidated under a public housing authority rather than distributed through third-party social housing entities.
 
 **Scale expectation**
+
 If applied consistently to medium and high-density developments in priority geographies, stock growth of approximately 1–2% of new metropolitan dwelling completions per year is achievable without direct state-led construction programs.
 
 **Governance framework**
@@ -1346,13 +1347,191 @@ Legislation would need clear definitions for corporate coverage (including group
 
 1. Large corporations above a defined revenue threshold will be required to pay small business suppliers within a fixed maximum payment period, with automatic financial penalties applying for late payment.
 
+   1. Small businesses will receive revenue sooner, making cashflow less fragile between invoicing and payment.
+   2. Small businesses will face fewer financing gaps caused by large customers delaying payment after work has already been completed.
+   3. Pricing decisions will become more sustainable when suppliers no longer need to build long payment delays into their margins.
+   4. Business planning will become more reliable when payment timing is clear and less discretionary.
+   5. Supplier relationships will become less one-sided when large customers cannot use delayed payment as a source of working capital without consequence.
+   6. Competition will shift away from which supplier can tolerate the longest delay and back toward price, quality, and reliability.
+   7. More small businesses will be able to expand with larger customers without carrying financing burdens those customers are better placed to absorb.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Small businesses often deliver labour, goods, or services well before they are paid, while larger customers can use delayed payment as a de facto source of working capital. This reform shifts financing responsibility back onto the party with greater balance-sheet capacity by making payment timing a binding obligation rather than a discretionary commercial practice.
+
+**Payment discipline framework**
+
+1. The rule requires payment within a fixed statutory maximum period, so delayed payment cannot be treated as a routine commercial bargaining tool.
+2. Automatic penalties matter because the obligation is only likely to change behaviour if paying late becomes materially less attractive than paying on time.
+3. The rule depends on clear trigger events for when the payment clock starts, because large customers will otherwise have incentives to shift delay into invoice acceptance, approval staging, or procedural review.
+
+**Commercial power asymmetry**
+
+1. Large customers may be expected to treat delayed payment as a low-visibility way to push financing pressure onto smaller suppliers that have less bargaining power and less access to working capital. A binding maximum payment period changes that relationship by limiting the extent to which payment timing can be dictated by the stronger party after the work has already been done.
+2. Some large customers may be expected to respond by pressing harder on price or favouring suppliers with stronger balance sheets. But where prompt payment discipline applies across major buyers, delayed payment becomes less available as a hidden commercial advantage and suppliers are less likely to compete by informally financing their customers through tolerance of long payment periods.
+
+**Risk and failure modes**
+
+1. Large customers may be expected to look for ways to convert late payment into procedural delay by stretching invoice approval processes, disputing invoices more aggressively, or redefining when payment is treated as due. The rule is less vulnerable to this where the payment clock is tied to clear statutory trigger points and where genuine invoice disputes are distinguished from ordinary delay.
+2. Avoidance pressure may also arise through procurement intermediaries, related entities, or contract structures designed to keep the substantive commercial relationship while shifting formal liability. Integrity depends on whether the rule follows the real purchasing relationship rather than narrow contractual form.
+3. The rule can also underperform if small suppliers must individually pursue every breach against repeat customers with much greater leverage. In practice, the deterrent effect depends heavily on automatic penalty accrual, accessible complaint pathways, and credible regulator-backed enforcement, because formal rights alone are often weak where suppliers fear retaliation or loss of future work.
+
+**System interaction**
+
+This measure interacts with unfair contract term rules, procurement standards, and small business dispute pathways, because payment discipline is easier to sustain where large customers cannot contract around invoice timing or use dispute processes as a cover for delay.
+
+**Implementation outline**
+
+Legislation would need to define the covered large-customer class, the protected small-business supplier class, the maximum payment period, the event that starts the payment clock, the treatment of disputed invoices and staged contracts, and the form of automatic penalties, supported by complaint and enforcement powers that do not rely entirely on supplier-initiated litigation.
+
+---
+</details>
+
 ### **Give Small Business a Fair Shot**
 
 1. Corporations above an indexed revenue threshold will pay an increased company tax rate in proportion to the extent that their market share exceeds an ACCC-defined competitive threshold within their sector.
 
+   1. Small businesses will face less pressure from dominant firms that can rely on scale and market control instead of better performance.
+   2. More growing firms will be able to compete on quality, price, and service without being crowded out by entrenched market power.
+   3. Dominant firms will have stronger incentives to improve productivity and business performance instead of relying on further market concentration to lift profits.
+   4. Consumers will see markets respond more closely to real competitive pressure rather than the pricing power of a few large incumbents.
+   5. New entry and expansion will become more viable in concentrated sectors when dominance carries an increasing tax cost.
+   6. Market competition will become more dynamic as firms have greater reason to innovate, specialise, or divest underperforming assets rather than simply absorb more share.
+   7. Regulatory pressure on merger control and repeated competition intervention will ease where firms are pushed to compete through performance rather than concentration.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+In concentrated consumer-facing markets, large firms can often increase profits through market control more easily than through better products, lower costs, or improved service. This reform is designed to alter that incentive by making excess market dominance progressively less attractive as a profit strategy, so returns are more closely tied to innovation and competitive performance rather than scale alone.
+
+**Market share discipline**
+
+1. The reform works by linking additional company tax liability to the extent that a firm exceeds a competitive market share threshold within its sector, rather than applying a flat penalty once a threshold is crossed. This matters because it creates a graduated incentive to avoid further concentration without treating every firm above the line as if it posed the same competitive risk.
+2. ACCC-defined sector thresholds matter because competitive market structure varies across industries, and a single universal share cap would not reflect the same level of concentration risk in every market. The rule therefore depends on whether sector boundaries and competitive thresholds are defined consistently enough to avoid arbitrary treatment across comparable firms.
+
+**Innovation and competitive behaviour**
+
+1. Dominant firms may be expected to respond by seeking higher margins through internal productivity gains, service improvements, or more efficient operations rather than simply expanding market share further. That change in incentive is the central purpose of the reform, because profits become easier to grow through better business performance than through continued concentration once the additional tax rate begins to scale upward.
+2. The reform can also create pressure for large firms to shed underperforming assets or avoid acquisitions that add scale without improving productivity, because growth that pushes further past the competitive threshold carries a rising tax cost. Where that occurs, market space opens more readily for smaller competitors and new entrants without requiring constant case-by-case intervention to produce the same effect.
+
+**System interaction**
+
+This measure interacts closely with merger control, misuse of market power rules, and ACCC market definition practice, because its practical effect depends on how sector boundaries are drawn and how concentration is assessed alongside existing competition law.
+
+**Risk and failure modes**
+
+1. Firms may be expected to challenge sector definitions, restructure across related entities, or diversify across adjacent markets in ways that reduce their measured exposure without materially changing underlying market power. Integrity depends on whether the rule follows substantive economic control and market position rather than narrow corporate form or convenient classification.
+2. The reform can also underperform if competitive thresholds are set too high to change behaviour, too low to distinguish genuine dominance from ordinary scale, or too inconsistently across sectors to sustain confidence in the system. In practice, the discipline of the tax depends less on the headline mechanism than on credible threshold-setting and review processes.
+
+**Implementation outline**
+
+Legislation would need to define the covered corporate class, require sector allocation and competitive threshold determination, specify how market share is measured for tax purposes, and establish integrity treatment for corporate groups, related entities, and multi-sector firms, with ACCC and tax administration roles clearly separated but operationally aligned.
+
+---
+</details>
+
 ### **Break Up Media Monopolies**
 
-1. Amend competition law to require media corporations that exceed concentration thresholds to divest assets and report ownership structures to the ACCC to verify compliance.
+1. Amend media ownership and competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional concentration thresholds across news and information markets.
+
+   1. Audiences will have access to a wider range of news sources, editorial priorities, and local reporting voices.
+   2. Journalists and editors will face fewer structural pressures to align with the political or commercial priorities of a single dominant owner.
+   3. Local communities will be less likely to lose coverage when concentrated ownership treats regional reporting as expendable.
+   4. Independent and smaller publishers will have a fairer chance to survive where access to audiences is no longer dominated by a narrow group of incumbent owners.
+   5. Public debate will become less vulnerable to coordinated agenda-setting by corporations with outsized control over information channels.
+   6. Media markets will compete more on trust, quality, and relevance when ownership concentration can no longer substitute for genuine audience support.
+   7. Democratic accountability will strengthen when political actors face scrutiny from a broader and less concentrated press environment.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Media concentration carries political and cultural power beyond ordinary commercial scale because control over information channels shapes what audiences see, what issues remain visible, and which voices can reach the public at all. This reform is intended to stop ownership concentration itself from becoming a durable source of influence regardless of journalistic quality or public trust.
+
+**Ownership control framework**
+
+1. The reform depends on defined national and regional concentration thresholds because media influence can accumulate differently across broadcast, print, and digital news markets, and because dominance in a regional market can be as significant as broad national reach.
+2. Divestiture and structural separation matter because the underlying problem is concentrated ownership and coordinated control, not merely isolated anti-competitive conduct. Once concentration exceeds the permitted level, the market structure itself must change rather than being managed only through ongoing behavioural conditions.
+
+**Pluralism and democratic resilience**
+
+1. A highly concentrated media environment can allow a small number of owners to shape issue salience, political narratives, and public attention across large parts of the country even where audiences retain formal choice between outlets. Structural separation reduces the ability of a single corporate group to exercise that level of coordinated influence across multiple channels at once.
+2. More dispersed ownership does not guarantee high-quality journalism on its own, but it does reduce the risk that editorial direction, local coverage decisions, and access to audiences are controlled by a narrow set of commercial interests. That wider distribution of control creates more space for independent editorial judgement, new entrants, and regional diversity.
+
+**Risk and failure modes**
+
+1. Media groups may be expected to use cross-holdings, affiliates, licensing arrangements, or platform partnerships to preserve effective control while appearing to comply formally with ownership limits. Integrity depends on whether the rule follows substantive control and influence rather than narrow legal ownership alone.
+2. The reform can also underperform if concentration thresholds are set too loosely, if digital news distribution is excluded from meaningful assessment, or if divested assets are transferred into nominally separate entities that remain commercially dependent on the original group. Effective structural separation depends on strong control tests and credible post-separation independence requirements.
+
+**System interaction**
+
+This measure interacts with general competition law, media ownership rules, and platform regulation, because concentration in news and information markets is shaped not only by formal ownership structures but also by distribution access, advertising markets, and cross-platform audience control.
+
+**Implementation outline**
+
+Legislation would need to define the covered media classes, the concentration metrics used for national and regional assessment, the control tests that trigger divestiture or structural separation, and the conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
+
+---
+</details>
+
+### **Open Up Access to Australian News**
+
+1. Establish a national media token payment system that requires Australian news publishers offering paid digital content to accept ACMA-issued tokens for subscriptions and individual article access, with tokens redeemable at a fixed one-to-one value with Australian cents.
+
+   1. Readers will be able to access individual articles across multiple outlets without repeated account creation, payment entry, or full-subscription lock-in.
+   2. Smaller and independent publishers will gain fairer access to occasional readers who would not otherwise commit to a full recurring subscription.
+   3. News audiences will be more able to compare reporting across outlets when cross-publication access carries less friction and lower commitment.
+   4. Media businesses will still be paid at publisher-set prices while relying less on captive subscription funnels to monetise digital readership.
+   5. Public debate will become less siloed when people can move more easily between different news sources instead of remaining inside one paid ecosystem.
+   6. Competition between publishers will shift more toward the value of particular reporting, analysis, and journalism rather than the strength of payment lock-in.
+   7. Australian news consumers will have a simpler and more privacy-preserving way to pay for journalism without distributing payment details across many separate media companies.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Digital news markets now combine two separate problems: concentrated ownership in some parts of the sector and high access friction across the rest of it. Readers who want to compare reporting across multiple outlets often face repeated paywalls, repeated payment entry, and subscription structures designed to convert occasional reading into ongoing lock-in. This reform is intended to create a common payment rail for journalism so paid access remains commercially viable without requiring each outlet to trap readers inside its own closed billing system.
+
+**Common payment rail**
+
+1. Tokens are issued and redeemed at a fixed one-to-one value with Australian cents, so the system standardises payment access without regulating publisher pricing. Publishers still decide how many tokens to charge for subscriptions, bundles, or individual articles.
+2. Mandatory token acceptance matters because the system only lowers friction if readers can rely on one payment method across the market rather than checking outlet by outlet whether common access is available.
+
+**Reader access and publisher incentives**
+
+1. The reform allows publishers to keep charging for journalism while making occasional cross-outlet reading easier, which is particularly important where readers want to compare reporting or access one article without entering a recurring payment relationship.
+2. Smaller publishers stand to benefit where article-level access becomes easier, because they can reach readers who are unwilling to take out another full subscription but are willing to pay for individual reporting when the transaction cost is low.
+
+**Risk and failure modes**
+
+1. Large publishers may be expected to preserve subscription lock-in through pricing structures, token-unfriendly design, delayed token access, or premium features reserved for direct subscribers. The reform is therefore only effective if token access is functionally equivalent for ordinary paid content rather than being nominally available but commercially marginalised.
+2. The system can also underperform if token purchasing, redemption, or article unlocking is cumbersome enough that readers continue to default to existing subscription silos. In practice, the value of the payment rail depends on whether it is simpler than current fragmented payment pathways rather than merely more standardised on paper.
+
+**System interaction**
+
+This measure interacts with media competition, consumer payment systems, and privacy settings, because access friction affects which publishers can realistically reach readers and how easily audiences can move across competing news sources.
+
+**Implementation outline**
+
+Legislation would need to define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
+
+---
+</details>
 
 ### **Guarantee Net Neutrality**
 
