@@ -42,6 +42,8 @@
 ## Repair Our Environment
 ```
 </details>
+
+---
 ---
 
 # RECLAIM OUR ECONOMY
@@ -1537,28 +1539,241 @@ Legislation would need to define the covered Australian news publisher class, re
 
 1. Prohibit internet service providers from blocking, throttling, prioritising, or discriminating against lawful content, applications, or services based on payment, ownership, or affiliation.
 
+   1. Small online businesses will have a fairer chance to reach customers when internet access cannot be skewed toward larger firms that can pay for preferential treatment.
+   2. Consumers will be able to access lawful online content and services without hidden interference from their internet provider.
+   3. New digital services will be able to compete on quality and usefulness rather than on their ability to buy privileged network access.
+   4. Internet access will function more consistently as a general-purpose service rather than a gatekeeping tool shaped by commercial deals.
+   5. Market entry will become more viable for smaller platforms, creators, and service providers when distribution cannot be degraded by dominant network owners.
+   6. Competition between digital businesses will shift more toward performance and relevance rather than paid access advantages embedded in the network itself.
+   7. Public confidence in the neutrality of essential communications infrastructure will strengthen when providers cannot favour their own services or commercial partners.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia has largely maintained de facto net neutrality through market incentives, existing telecommunications settings, and commercial expectations of open internet access rather than through a dedicated statutory guarantee. That has helped keep providers from overtly discriminating between lawful services in practice, but it leaves neutrality dependent on conditions that can change as markets consolidate, vertically integrate, or develop stronger incentives to monetise network control. This reform is intended to turn a market norm into an enforceable baseline so internet access remains a general-purpose service rather than a gatekeeping tool shaped by commercial preference.
+
+**Network neutrality framework**
+
+1. The core obligation is that lawful content, applications, and services must not be blocked, degraded, or privileged based on payment, ownership, or affiliation. This matters because the harm arises when infrastructure operators can influence downstream markets without having to outperform rivals in those markets themselves.
+2. The rule depends on distinguishing legitimate technical network management from commercial discrimination, because providers still need to manage congestion, security threats, and service reliability. The framework is only workable if those operational exceptions are narrow, objective, and not easily repurposed as a cover for preferential treatment.
+
+**Platform access and competitive discipline**
+
+1. Without neutrality rules, large digital businesses can gain an advantage not only through scale or product quality but through arrangements that make competing services slower, harder to access, or more expensive in practice. A neutrality rule limits that pathway by keeping the network layer from becoming a paid filter over downstream competition.
+2. Smaller online firms, creators, and publishers are more exposed to discriminatory carriage because they cannot easily negotiate favourable treatment or absorb degraded access. Preserving equal transmission conditions makes competition more dependent on the service itself rather than the bargaining power of the provider behind it.
+
+**Risk and failure modes**
+
+The reform can underperform if it assumes today’s relatively neutral market behaviour will continue without recognising that current restraint is not grounded in a clear legislative framework. Internet providers may still be expected to shift discriminatory behaviour into technical classifications, interconnection arrangements, zero-rating structures, or quality-of-service categories that preserve commercial preference without obvious blocking or throttling. Integrity therefore depends on whether the rule follows practical effect rather than only overt forms of discrimination, and whether exceptions for congestion, safety, or specialised services are kept narrow enough that future incentives cannot erode neutrality through indirect means.
+
+**System interaction**
+
+This measure interacts with telecommunications regulation, competition law, and digital platform markets, because discriminatory network treatment can alter competition conditions even where downstream services are formally open to entry.
+
+**Implementation outline**
+
+Legislation would need to define prohibited discriminatory treatment, set narrow technical-management exceptions, establish transparency requirements for traffic management and service quality, and give regulators power to investigate practical discrimination across retail, wholesale, and affiliated service arrangements.
+
+---
+</details>
+
 ### **Protect Your Privacy from Big Tech**
 
 1. Prohibit the collection, retention, or commercial use of personal data beyond what is strictly necessary to deliver a requested service, and establish enforceable rights to data access, correction, portability, and deletion.
+
+   1. Australians will have more control over how their personal information is collected, used, and retained online.
+   2. Small businesses and independent digital services will face less pressure to imitate surveillance-heavy platform models in order to compete.
+   3. Consumers will be less exposed to opaque profiling, manipulation, and behavioural targeting built on excessive data extraction.
+   4. Digital competition will rely less on who can accumulate the largest hidden data advantage and more on service quality, trust, and user value.
+   5. Users will be able to move more easily between services when access, portability, and deletion rights are enforceable in practice.
+   6. Market power built on locked-in personal data and accumulated behavioural profiles will become harder for large platforms to defend.
+   7. Public confidence in digital services will strengthen when personal data is treated as a constrained input rather than an open-ended commercial asset.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Large digital platforms derive structural advantage from collecting and retaining far more personal information than is needed to provide the service the user actually requested. This reform is intended to shift digital markets away from surveillance-based competition by limiting excess data extraction and giving users enforceable control over the information platforms hold about them.
+
+**Data minimisation framework**
+
+1. The central rule is that collection, retention, and commercial use of personal data must be limited to what is strictly necessary to deliver the requested service. This matters because many current platform advantages are built not on better core services but on the ability to convert broad user monitoring into advertising, profiling, and behavioural leverage.
+2. User rights to access, correction, portability, and deletion matter because limiting data extraction alone is not enough where large platforms already hold extensive information and can use retention or lock-in to preserve advantage. The reform therefore combines forward limits on data use with rights that let users contest and reduce existing informational asymmetries.
+
+**Platform power and competitive effects**
+
+1. Excessive data collection can function as a barrier to competition because large platforms accumulate behavioural insights, targeting capability, and switching friction that smaller firms cannot match without adopting the same extraction model. Constraining that advantage changes the basis of competition from data capture toward service performance and user trust.
+2. Strong portability and deletion rights can reduce lock-in where users would otherwise remain tied to dominant platforms because their history, contacts, preferences, or stored content are difficult to move or meaningfully erase. Those rights are only effective, however, if they are usable in practice rather than nominal rights buried behind slow, opaque, or selective processes.
+
+**Risk and failure modes**
+
+1. Large platforms may be expected to reclassify optional data collection as “necessary”, rely on bundled consent, or fragment services so surveillance functions appear operationally indispensable. Integrity depends on whether necessity is defined objectively and enforced against the real function of the service rather than the platform’s preferred business model.
+2. The reform can also underperform if access, portability, correction, or deletion rights exist formally but are slowed, obscured, or made technically incomplete in practice. Effective privacy reform therefore depends on enforceable standards for response time, data format, scope, and regulator-backed remedies rather than rights that users must negotiate alone.
+
+**System interaction**
+
+This measure interacts with competition policy, consumer protection, and digital platform regulation, because personal data operates both as a privacy issue and as a structural input that can entrench platform dominance.
+
+**Implementation outline**
+
+Legislation would need to define necessity-based collection limits, regulate retention and commercial use standards, establish enforceable user rights over personal data, set practical compliance standards for portability and deletion, and provide regulator powers to audit data practices and penalise evasive service design.
+
+---
+</details>
 
 ### **Simplify Unfair Contract Disputes for Small Business**
 
 1. Small businesses will have access to a streamlined statutory dispute process to challenge unfair contract terms through a dedicated small-business tribunal or ombuds pathway with capped costs and defined resolution timelines.
 
+   1. Small businesses will be more able to challenge unfair contract terms without risking ruinous legal costs.
+   2. Fewer dominant customers will be able to rely on expensive and slow dispute processes to enforce one-sided standard form contracts.
+   3. Business planning will become more reliable when unfair terms can be tested through a predictable and accessible pathway.
+   4. Commercial relationships will become less coercive when stronger parties cannot assume that weaker suppliers will give up rather than contest abusive terms.
+   5. More small businesses will be able to negotiate with confidence when there is a credible low-cost route to challenge terms that overreach.
+   6. Competition will become fairer when standard form contract advantages are less dependent on which party can absorb the highest legal burden.
+   7. The practical effect of unfair contract law will strengthen when enforcement no longer depends mainly on whether a small business can afford to fight.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Small businesses are often protected on paper from unfair contract terms, but those protections can be weak in practice where challenging a term requires legal costs, delay, and procedural effort far beyond what a smaller firm can safely absorb. This reform is intended to make unfair contract protections usable in real commercial relationships by creating a faster and lower-cost pathway that matches the scale of the businesses affected. This direction is consistent with ASBFEO’s access-to-justice work, which identified the absence of a cost-effective and timely binding pathway as a major weakness in small business enforcement.
+
+**Dispute access framework**
+
+1. A dedicated pathway is needed because ordinary court processes are often too slow, expensive, and procedurally burdensome to provide meaningful protection against standard form contract abuse in lower-value commercial disputes.
+2. Capped costs and defined resolution timelines matter because the main advantage held by the stronger party is often not the legal strength of the term itself, but the ability to drag out the dispute until challenge becomes commercially irrational.
+
+This approach aligns with ASBFEO’s recommendation that small businesses need a more practical route to enforce unfair contract term protections where mediation does not resolve the dispute.
+
+**Commercial discipline and bargaining effects**
+
+1. A credible low-cost dispute pathway can alter behaviour before disputes even arise, because large firms become less able to assume that one-sided terms will go unchallenged simply because the supplier cannot afford to contest them.
+2. The reform is not intended to turn every contract disagreement into a formal proceeding, but to create a realistic enforcement backstop that improves bargaining discipline around standard form agreements and repeat supplier relationships.
+
+**Risk and failure modes**
+
+1. The pathway can underperform if cost caps are too high, procedures become too legalistic, or resolution timelines stretch far enough that the stronger party still gains leverage through delay. The effectiveness of the reform depends on whether the process remains genuinely simpler and faster than ordinary litigation in practice rather than only in formal description.
+2. Larger counterparties may also be expected to shift pressure into pre-contract negotiation, contract classification, jurisdiction clauses, or procedural objections designed to keep disputes out of the simplified pathway. Integrity therefore depends on whether access is determined by the substantive commercial reality of the contract rather than narrow drafting tactics.
+
+**System interaction**
+
+This measure interacts with unfair contract term law, small business commissioner functions, and ombuds or tribunal jurisdiction settings, because the value of a streamlined pathway depends on whether existing legal rights can actually be enforced through it.
+
+**Implementation outline**
+
+Legislation would need to define the covered small-business class, the types of contract disputes eligible for the pathway, the scope of available remedies, the applicable cost caps and time limits, and the institutional body responsible for hearing disputes, supported by simple filing processes and enforceable outcomes.
+
+---
+</details>
+
 ### **Support Small Businesses to Stay Compliant**
 
 1. The ACCC and state small business commissioners will provide standardised contract templates, plain-language compliance guidance, and low-cost pre-execution contract review services for small businesses entering standard form agreements.
+
+   1. Small businesses will be better able to identify unfair or high-risk contract terms before becoming locked into them.
+   2. Compliance decisions will become easier and less intimidating when guidance is standardised, practical, and written for ordinary operators rather than specialist lawyers.
+   3. More small businesses will be able to sign routine agreements with confidence when low-cost review support is available before disputes arise.
+   4. Contracting practices will become more consistent when smaller firms have access to common reference points and model terms.
+   5. Fewer small businesses will be pushed into avoidable disputes caused by unclear obligations or terms they did not meaningfully understand at the time of signing.
+   6. Time and money spent reacting to contract problems after the fact will decline when more issues are picked up at the entry stage.
+   7. The practical value of small-business protections will improve when compliance support is available before harm occurs rather than only after a dispute has already escalated.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Many small businesses enter standard form agreements without affordable legal support, even where the contract governs critical issues such as payment timing, liability allocation, termination rights, or dispute pathways. This reform is intended to reduce preventable contract harm by making basic compliance support available before businesses commit themselves to terms they may not fully understand or be well placed to resist. It builds on the existing preventive logic already reflected in ACCC small-business contract guidance and ASBFEO’s advice that businesses should seek help early rather than only after problems escalate.
+
+**Preventive compliance framework**
+
+1. Standardised templates and plain-language guidance matter because many small businesses need practical support at the point of signing rather than abstract legal protections after a dispute has already emerged.
+2. Low-cost pre-execution review matters because the most efficient contract dispute is the one that never needs to happen, and many harmful terms are easiest to address before the agreement is executed and commercial dependence deepens.
+
+**Commercial capability and market effects**
+
+1. Preventive support can improve bargaining outcomes even where the small business does not have equal negotiating power, because the stronger party is less able to rely on confusion, time pressure, or legal opacity as a substitute for fair dealing.
+2. The reform also helps smaller firms participate more confidently in routine commercial contracting without requiring every agreement to be escalated to full private legal advice, which is often unaffordable relative to the value of the contract.
+
+**Risk and failure modes**
+
+1. The reform can underperform if templates become outdated, guidance remains too generic, or review services are too slow, too narrow, or too oversubscribed to be useful at real commercial speed. In practice, the value of preventive compliance support depends on whether it is current, accessible, and responsive enough to match business decision timelines.
+2. It can also underperform if stronger counterparties treat regulator-issued templates as optional while continuing to impose take-it-or-leave-it agreements built around terms that small suppliers still cannot realistically refuse. The reform therefore works best as a complement to dispute rights and unfair contract enforcement rather than as a substitute for them.
+
+**System interaction**
+
+This measure interacts with unfair contract protections, dispute pathways, and procurement standards, because pre-signing compliance support is most useful where small businesses also have credible options if unfair terms are later contested.
+
+**Implementation outline**
+
+Legislation or intergovernmental agreements would need to define agency responsibilities for templates, guidance, and review services, set minimum service standards for review accessibility and turnaround, and establish processes for updating standard materials to reflect changing law and market practice.
+
+---
+</details>
 
 ### **Stop IP Abuse Against Small Business**
 
 1. Intellectual property law will be amended to shorten protection duration, restrict patent claims to specific disclosed implementations, require active use prior to enforcement, limit perpetual exclusive licensing, expand fair-use rights, and establish capped-cost dispute procedures for small and medium enterprises.
 
+   1. Small businesses will face fewer legal and financial barriers when developing products, services, or creative work near the edge of existing intellectual property claims.
+   2. Fewer dominant rights-holders will be able to rely on broad or inactive claims to block smaller competitors without actually using the protected asset themselves.
+   3. Innovation will become more practical for smaller firms when enforceable rights are tied more closely to genuine disclosure and active application rather than defensive stockpiling.
+   4. Creative and commercial experimentation will have more room to proceed where fair-use protections are broader and easier to rely on.
+   5. Market entry will become more viable when smaller businesses can contest overreach without facing prohibitive litigation costs.
+   6. Competition will rely less on who controls the broadest paper rights and more on who can deliver useful products, services, and ideas.
+   7. Intellectual property protection will remain available for real innovation while becoming less useful as a tool of passive exclusion against smaller market participants.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
 ---
 
-### **Build a Circular Economy** <-Relocate?
+**Design rationale**
 
-1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
+Intellectual property law is intended to reward innovation and disclosure, but it can also be used to entrench market power where rights are too broad, too long, too detached from active use, or too expensive to challenge. This reform is intended to narrow the gap between the formal purpose of intellectual property and the way it is sometimes used in practice against smaller firms that lack the resources to contest overreach. Part of this direction is consistent with existing Australian policy work, including the Productivity Commission’s recommendation that Australia adopt a fair use exception.
 
+**Innovation and disclosure discipline**
+
+1. Restricting patent claims to specific disclosed implementations matters because rights become less legitimate as an innovation incentive when they extend far beyond what the applicant has actually taught the public how to do.
+2. Requiring active use prior to enforcement matters because exclusion is harder to justify where the rights-holder is not commercialising, licensing, or otherwise genuinely deploying the protected asset and is instead relying on the right primarily as a blocking tool.
+
+**Access, experimentation, and market entry**
+
+1. Broader fair-use rights matter because smaller firms, creators, and researchers often face disproportionate chill effects where ordinary experimentation, commentary, interoperability, or incidental use carries legal uncertainty.
+2. Capped-cost dispute procedures matter because even well-founded defences are often commercially useless if the cost of asserting them exceeds what a smaller business can bear.
+
+The fair-use component is consistent with prior Productivity Commission advice that Australia modernise its copyright exceptions framework through adoption of fair use.
+
+**Risk and failure modes**
+
+1. The reform can underperform if rights are narrowed unevenly across different forms of intellectual property, leaving broad exclusionary leverage intact through adjacent regimes, licensing structures, or portfolio-based enforcement strategies. Its practical effect therefore depends on whether the package operates coherently across patents, copyright, and related commercial control mechanisms.
+2. It can also underperform if active-use requirements, fair-use protections, or capped-cost procedures are drafted narrowly enough that sophisticated rights-holders can comply formally while preserving most of the same strategic advantage in practice. The discipline of the reform depends on whether the law targets functional overreach rather than only the most explicit forms of abuse.
+
+**System interaction**
+
+This measure interacts with competition law, small business dispute processes, and innovation policy, because intellectual property rules affect not only creative reward but also who can enter markets, challenge incumbents, and build on existing ideas.
+
+**Implementation outline**
+
+Legislation would need to define revised protection periods, tighten claim-scope rules, establish active-use conditions for enforcement, regulate long-duration exclusive licensing, broaden fair-use exceptions, and create capped-cost procedures for smaller firms, with judicial and administrative guidance aligned to the new standards.
+
+---
+</details>
+
+---
 ---
 
 # RECLAIM OUR FUTURE
@@ -1600,6 +1815,12 @@ Legislation would need to define the covered Australian news publisher class, re
 * Modernise agriculture with precision fermentation
 * Build closed-loop manufacturing
 * Invest in fusion energy research
+
+### **Build a Circular Economy** <-Relocate here?
+
+1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
+
+---
 
 ## Repair Our Environment
 
