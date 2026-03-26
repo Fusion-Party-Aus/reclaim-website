@@ -905,6 +905,7 @@ Commonwealth-led corridor development with staged construction, priority routing
 </details>
 
 ## Fix the Tax Exploits
+Making Australia a country where wealth is earned by creating value, not by gaming the rules, shifting burdens onto everyone else, or extracting unearned gains from public systems and natural assets.
 
 ### **Turn Resource Wealth into Sovereign Wealth**
 
@@ -1183,115 +1184,8 @@ Amend safeguard and carbon credit legislation to:
 ---
 </details>
 
-### **Expose Political Donations**
-
-1. Introduce real-time political donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure the true source, amount, or timing of contributions.
-
-   1. Voters will be able to see who is funding political actors in close to real time rather than long after elections are decided.
-   2. Large donations will become more transparent as artificial splitting and associated-entity routing lose their effectiveness.
-   3. Public trust in the political system will improve when funding flows are visible and searchable.
-   4. Media, regulators, and civil society will be better equipped to scrutinise patterns of influence using structured public data.
-   5. Campaign finance reporting will become more consistent and comparable across parties and election cycles.
-
-<details>
-<summary><strong>Further Detail</strong></summary>
-
----
-
-**Design rationale**
-
-Australia’s current disclosure regime relies on high reporting thresholds, delayed publication, and fragmented reporting structures that reduce transparency during the times when voters are making decisions. Real-time disclosure shifts transparency into the electoral decision window and closes avenues used to fragment donations.
-
-**Structural framework**
-
-1. All political donations above a defined low threshold must be reported within a fixed short timeframe.
-2. Disclosure applies to parties, associated entities, candidates, and significant third-party campaigners.
-3. Donations must be attributed to the ultimate source, including where funds are channelled through intermediaries or fundraising bodies.
-4. Aggregation of multiple donations from a common source within a reporting period is required for threshold calculation.
-5. All disclosure data must be published in a central, publicly accessible, machine-readable format. (The AEC may be required to provide a basic service to support this.)
-
-**Data and reporting standards**
-
-1. Unique donor identifiers are required to prevent artificial donation splitting.
-2. Standardised reporting fields apply nationally to ensure comparability.
-3. Amendments and corrections are time-stamped and version-tracked.
-
-**Enforcement and compliance**
-
-1. Civil penalties apply for late, incomplete, or misleading disclosure.
-2. Regulators are granted audit authority over associated entities and third-party campaigners.
-3. Repeated or deliberate concealment triggers escalating sanctions.
-
-**Interaction with integrity reforms**
-
-Enhanced disclosure operates alongside reforms to the National Anti-Corruption Commission by increasing the visibility of financial relationships that may warrant scrutiny.
-
-**Risk and failure modes**
-
-Risks include compliance burden for small campaigns, attempts to re-route funds through opaque entities, and data overload without effective search tools. System performance depends on low thresholds, attribution integrity, and structured open-data publication.
-
-**Implementation outline**
-
-Amendments to federal electoral law establish reporting timeframes, aggregation rules, digital reporting infrastructure, and regulator enforcement powers, with phased transition to real-time reporting standards.
-
----
-</details>
-
-### **Reform the National Anti-Corruption Commission**
-
-1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, establish statutory capability-linked funding safeguards, and mandate structured public reporting of enforcement activity.
-
-   1. Serious corruption risks within the Commonwealth will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
-   2. Corruption investigations will progress more effectively when the Commission has stronger investigative tools and clear pathways to prosecution.
-   3. Public confidence will improve when enforcement activity is visible through consistent, structured reporting rather than opaque discretion.
-   4. Deterrence will strengthen when corrupt conduct is more likely to be investigated and referred for action.
-   5. Integrity oversight will operate more consistently when statutory capability requirements are aligned with transparent resourcing.
-
-<details>
-<summary><strong>Further Detail</strong></summary>
-
----
-
-**Design rationale**
-
-An effective federal anti-corruption body requires clarity of jurisdiction, robust investigative authority, and financial insulation sufficient to prevent quiet operational erosion. Reform focuses on coverage, capability, referral pathways, reporting discipline, and structural funding safeguards.
-
-**Structural framework**
-
-1. Jurisdiction is extended to additional categories of public office holders, ministerial staff, contractors, consultants, and outsourced service providers performing Commonwealth functions.
-2. The Commission’s investigative toolkit is clarified and strengthened within appropriate legal safeguards.
-3. Referral authority and pathways to prosecution are defined to reduce procedural bottlenecks.
-4. Structured periodic public reporting requirements are legislated, including standardised publication of investigation counts, status categories, referral volumes, and outcomes within confidentiality constraints.
-
-**Statutory capability-linked funding safeguard**
-
-1. The Act defines core investigative capability requirements consistent with the Commission’s statutory mandate.
-2. An independent authority conducts annual assessments of whether appropriated funding is sufficient to meet those requirements.
-3. If funding is assessed as insufficient, a mandatory public report is tabled outlining the shortfall and its operational impact, including quantified backlog or case-capacity constraints.
-4. NACC appropriations must appear as a stand-alone budget line item to prevent administrative dilution.
-
-**Oversight and integrity safeguards**
-
-1. Review mechanisms apply to coercive powers to prevent misuse.
-2. Clear thresholds are defined for public hearings and disclosure decisions.
-3. Conflict-of-interest controls apply to commissioners, staff, and contracted investigators.
-
-**Interaction with electoral transparency reforms**
-
-Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the Commonwealth’s investigative response capacity.
-
-**Risk and failure modes**
-
-Risks include jurisdictional carve-outs, procedural complexity that slows referrals, insufficient funding relative to mandate, or reporting rules that obscure operational constraint. Underperformance would appear as sustained backlog growth, declining investigative throughput, or public shortfall declarations without remedial response.
-
-**Implementation outline**
-
-Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
-
----
-</details>
-
 ## Build Up Small Businesses
+Making Australia a country where small businesses can compete, grow, and innovate on fair terms, without being squeezed out by concentrated market power, delayed payments, exploitative contracts, or structural disadvantage.
 
 ### **Ease the Squeeze on Small Business**
 
@@ -1437,100 +1331,6 @@ This measure interacts closely with merger control, misuse of market power rules
 **Implementation outline**
 
 Legislation would need to define the covered corporate class, require sector allocation and competitive threshold determination, specify how market share is measured for tax purposes, and establish integrity treatment for corporate groups, related entities, and multi-sector firms, with ACCC and tax administration roles clearly separated but operationally aligned.
-
----
-</details>
-
-### **Break Up Media Monopolies**
-
-1. Amend media ownership and competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional concentration thresholds across news and information markets.
-
-   1. Audiences will have access to a wider range of news sources, editorial priorities, and local reporting voices.
-   2. Journalists and editors will face fewer structural pressures to align with the political or commercial priorities of a single dominant owner.
-   3. Local communities will be less likely to lose coverage when concentrated ownership treats regional reporting as expendable.
-   4. Independent and smaller publishers will have a fairer chance to survive where access to audiences is no longer dominated by a narrow group of incumbent owners.
-   5. Public debate will become less vulnerable to coordinated agenda-setting by corporations with outsized control over information channels.
-   6. Media markets will compete more on trust, quality, and relevance when ownership concentration can no longer substitute for genuine audience support.
-   7. Democratic accountability will strengthen when political actors face scrutiny from a broader and less concentrated press environment.
-
-<details>
-<summary><strong>Further Detail</strong></summary>
-
----
-
-**Design rationale**
-
-Media concentration carries political and cultural power beyond ordinary commercial scale because control over information channels shapes what audiences see, what issues remain visible, and which voices can reach the public at all. This reform is intended to stop ownership concentration itself from becoming a durable source of influence regardless of journalistic quality or public trust.
-
-**Ownership control framework**
-
-1. The reform depends on defined national and regional concentration thresholds because media influence can accumulate differently across broadcast, print, and digital news markets, and because dominance in a regional market can be as significant as broad national reach.
-2. Divestiture and structural separation matter because the underlying problem is concentrated ownership and coordinated control, not merely isolated anti-competitive conduct. Once concentration exceeds the permitted level, the market structure itself must change rather than being managed only through ongoing behavioural conditions.
-
-**Pluralism and democratic resilience**
-
-1. A highly concentrated media environment can allow a small number of owners to shape issue salience, political narratives, and public attention across large parts of the country even where audiences retain formal choice between outlets. Structural separation reduces the ability of a single corporate group to exercise that level of coordinated influence across multiple channels at once.
-2. More dispersed ownership does not guarantee high-quality journalism on its own, but it does reduce the risk that editorial direction, local coverage decisions, and access to audiences are controlled by a narrow set of commercial interests. That wider distribution of control creates more space for independent editorial judgement, new entrants, and regional diversity.
-
-**Risk and failure modes**
-
-1. Media groups may be expected to use cross-holdings, affiliates, licensing arrangements, or platform partnerships to preserve effective control while appearing to comply formally with ownership limits. Integrity depends on whether the rule follows substantive control and influence rather than narrow legal ownership alone.
-2. The reform can also underperform if concentration thresholds are set too loosely, if digital news distribution is excluded from meaningful assessment, or if divested assets are transferred into nominally separate entities that remain commercially dependent on the original group. Effective structural separation depends on strong control tests and credible post-separation independence requirements.
-
-**System interaction**
-
-This measure interacts with general competition law, media ownership rules, and platform regulation, because concentration in news and information markets is shaped not only by formal ownership structures but also by distribution access, advertising markets, and cross-platform audience control.
-
-**Implementation outline**
-
-Legislation would need to define the covered media classes, the concentration metrics used for national and regional assessment, the control tests that trigger divestiture or structural separation, and the conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
-
----
-</details>
-
-### **Open Up Access to Australian News**
-
-1. Establish a national media token payment system that requires Australian news publishers offering paid digital content to accept ACMA-issued tokens for subscriptions and individual article access, with tokens redeemable at a fixed one-to-one value with Australian cents.
-
-   1. Readers will be able to access individual articles across multiple outlets without repeated account creation, payment entry, or full-subscription lock-in.
-   2. Smaller and independent publishers will gain fairer access to occasional readers who would not otherwise commit to a full recurring subscription.
-   3. News audiences will be more able to compare reporting across outlets when cross-publication access carries less friction and lower commitment.
-   4. Media businesses will still be paid at publisher-set prices while relying less on captive subscription funnels to monetise digital readership.
-   5. Public debate will become less siloed when people can move more easily between different news sources instead of remaining inside one paid ecosystem.
-   6. Competition between publishers will shift more toward the value of particular reporting, analysis, and journalism rather than the strength of payment lock-in.
-   7. Australian news consumers will have a simpler and more privacy-preserving way to pay for journalism without distributing payment details across many separate media companies.
-
-<details>
-<summary><strong>Further Detail</strong></summary>
-
----
-
-**Design rationale**
-
-Digital news markets now combine two separate problems: concentrated ownership in some parts of the sector and high access friction across the rest of it. Readers who want to compare reporting across multiple outlets often face repeated paywalls, repeated payment entry, and subscription structures designed to convert occasional reading into ongoing lock-in. This reform is intended to create a common payment rail for journalism so paid access remains commercially viable without requiring each outlet to trap readers inside its own closed billing system.
-
-**Common payment rail**
-
-1. Tokens are issued and redeemed at a fixed one-to-one value with Australian cents, so the system standardises payment access without regulating publisher pricing. Publishers still decide how many tokens to charge for subscriptions, bundles, or individual articles.
-2. Mandatory token acceptance matters because the system only lowers friction if readers can rely on one payment method across the market rather than checking outlet by outlet whether common access is available.
-
-**Reader access and publisher incentives**
-
-1. The reform allows publishers to keep charging for journalism while making occasional cross-outlet reading easier, which is particularly important where readers want to compare reporting or access one article without entering a recurring payment relationship.
-2. Smaller publishers stand to benefit where article-level access becomes easier, because they can reach readers who are unwilling to take out another full subscription but are willing to pay for individual reporting when the transaction cost is low.
-
-**Risk and failure modes**
-
-1. Large publishers may be expected to preserve subscription lock-in through pricing structures, token-unfriendly design, delayed token access, or premium features reserved for direct subscribers. The reform is therefore only effective if token access is functionally equivalent for ordinary paid content rather than being nominally available but commercially marginalised.
-2. The system can also underperform if token purchasing, redemption, or article unlocking is cumbersome enough that readers continue to default to existing subscription silos. In practice, the value of the payment rail depends on whether it is simpler than current fragmented payment pathways rather than merely more standardised on paper.
-
-**System interaction**
-
-This measure interacts with media competition, consumer payment systems, and privacy settings, because access friction affects which publishers can realistically reach readers and how easily audiences can move across competing news sources.
-
-**Implementation outline**
-
-Legislation would need to define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
 
 ---
 </details>
@@ -1778,6 +1578,266 @@ Legislation would need to define revised protection periods, tighten claim-scope
 
 # RECLAIM OUR FUTURE
 
+## Renew Our Democracy
+Making Australia a country where public power answers to the public, representation reflects the people, and democratic institutions cannot be bent by concentrated wealth, opaque influence, or captured information.
+
+### **Build a Parliament That Reflects the People**
+
+1. Reform the House of Representatives to be elected under the Wolfendale System, replacing single-member electorates with five-member electorates, using preferential voting for candidate blocks, allocating seats locally within each electorate, and assigning additional seats at the national level if needed to reduce under-representation and improve overall fairness of representation.
+
+   1. More Australians will see their vote contribute to representation instead of being lost in winner-take-all contests.
+   2. Voters will be able to support parties or candidates closer to their actual views without feeling pushed into tactical choices to avoid wasting their vote.
+   3. Local communities will retain identifiable representatives while gaining broader and more politically diverse representation.
+   4. Smaller parties and new political movements will have a fairer path into Parliament when meaningful support is no longer filtered out by single-seat electorates.
+   5. Parliament will better reflect the breadth of public opinion when seat outcomes are less distorted by geography and vote splitting.
+   6. Major parties will face stronger incentives to win support through persuasion and coalition-building rather than relying on artificial seat bonuses.
+   7. Governments will be formed from a Parliament that more closely resembles the electorate the country actually produced.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia’s House of Representatives currently combines preferential voting with single-member electorates, which preserves local seats but filters broad public support through winner-take-all contests. That structure rewards broad-church aggregation, leaves many votes without direct representation, and turns geographically efficient support into a stronger pathway to parliamentary power than broadly distributed support. The Wolfendale System is designed to preserve constituency representation while reducing those distortions, so Parliament more closely reflects the people who elect it without abandoning the benefits of preferential voting.
+
+**Representation framework**
+
+1. Five-member electorates matter because they create space for meaningful local pluralism without dissolving representation into a purely national list system. The reform is intended to keep representation anchored to recognisable communities while allowing more than one political view to win representation from the same electorate.
+2. Candidate-block voting matters because it allows parties and independents to present coherent electoral offerings while still using preferential voting to express ranking between alternatives. This preserves the Australian preference for ranked choice while avoiding the sharper vote-wasting pressures created by single-seat contests.
+3. National corrective seats matter because local multi-member contests alone can still leave meaningful support under-represented when it is broad but unevenly distributed. The second stage exists to reduce that residual distortion rather than to replace the local basis of representation.
+
+**Local representation and national fairness**
+
+1. A common objection to more proportional systems is that they weaken the link between a community and its representatives. This design responds by making local allocation the first step rather than an afterthought, so electorates still return identifiable representatives while no longer forcing all local political diversity into a single winner.
+2. A common objection to single-member systems is that they manufacture parliamentary majorities from fragmented local victories that do not reflect the broader electorate. The national corrective stage responds to that problem by reducing under-representation where local results alone would otherwise leave substantial support without a fair parliamentary presence.
+
+**Risk and failure modes**
+
+1. A system like this can underperform if electorate boundaries are drawn too broadly for communities to recognise their representatives, or too narrowly for the system to generate meaningful pluralism within seats. Its practical success therefore depends on electorate design that balances community identity, population equality, and sufficient district magnitude. This policy recommends electorates be drawn such that a single member of parliament does not represent more than 100,000 voters.
+2. It can also underperform if the national corrective stage is too weak to meaningfully reduce under-representation or so expansive that it overrides the local character of the system and turns representation into a detached national list in all but name. The corrective stage therefore needs to remain limited to clear under-representation rather than becoming a general top-up mechanism. Under the Wolfendale System, additional representatives are assigned only while a party remains under-represented by more than one whole representative’s worth of the national primary vote, and that broader correction step is switched off if every elected party would receive one corrective representative before any party receives a second.
+3. Grouped candidacies can raise concerns about whether party insiders will shape representation through internal ordering decisions rather than open voter choice between individual candidates. In this system, that risk is controlled by requiring the internal order of each candidate block to be fixed and published at nomination, while the order of blocks on the ballot remains subject to existing public ballot processes. If voters object to how a party orders its block, that becomes a matter of electoral accountability because parties are easier to reward or punish under this system.
+
+**System interaction**
+
+This reform interacts with redistribution rules, party nomination processes, campaign incentives, and confidence formation in Parliament, because changes to seat structure alter not only how votes convert into representation but also how parties organise, compete, and negotiate after elections.
+
+**Implementation outline**
+
+Implementation would require legislation redefining House electorates, district magnitude, ballot structure, local allocation rules, the national under-representation correction process, nomination requirements for candidate blocks and independents, and the transition arrangements for moving from the current single-member structure to the Wolfendale System.
+
+**Reference**
+
+[Wolfendale System](https://wolfofauspol.me/electoral-reform)
+
+---
+</details>
+
+### **Expose Political Donations**
+
+1. Introduce real-time political donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure the true source, amount, or timing of contributions.
+
+   1. Voters will be able to see who is funding political actors in close to real time rather than long after elections are decided.
+   2. Large donations will become more transparent as artificial splitting and associated-entity routing lose their effectiveness.
+   3. Public trust in the political system will improve when funding flows are visible and searchable.
+   4. Media, regulators, and civil society will be better equipped to scrutinise patterns of influence using structured public data.
+   5. Campaign finance reporting will become more consistent and comparable across parties and election cycles.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia’s current disclosure regime relies on high reporting thresholds, delayed publication, and fragmented reporting structures that reduce transparency during the times when voters are making decisions. Real-time disclosure shifts transparency into the electoral decision window and closes avenues used to fragment donations.
+
+**Structural framework**
+
+1. All political donations above a defined low threshold must be reported within a fixed short timeframe.
+2. Disclosure applies to parties, associated entities, candidates, and significant third-party campaigners.
+3. Donations must be attributed to the ultimate source, including where funds are channelled through intermediaries or fundraising bodies.
+4. Aggregation of multiple donations from a common source within a reporting period is required for threshold calculation.
+5. All disclosure data must be published in a central, publicly accessible, machine-readable format. (The AEC may be required to provide a basic service to support this.)
+
+**Data and reporting standards**
+
+1. Unique donor identifiers are required to prevent artificial donation splitting.
+2. Standardised reporting fields apply nationally to ensure comparability.
+3. Amendments and corrections are time-stamped and version-tracked.
+
+**Enforcement and compliance**
+
+1. Civil penalties apply for late, incomplete, or misleading disclosure.
+2. Regulators are granted audit authority over associated entities and third-party campaigners.
+3. Repeated or deliberate concealment triggers escalating sanctions.
+
+**Interaction with integrity reforms**
+
+Enhanced disclosure operates alongside reforms to the National Anti-Corruption Commission by increasing the visibility of financial relationships that may warrant scrutiny.
+
+**Risk and failure modes**
+
+Risks include compliance burden for small campaigns, attempts to re-route funds through opaque entities, and data overload without effective search tools. System performance depends on low thresholds, attribution integrity, and structured open-data publication.
+
+**Implementation outline**
+
+Amendments to federal electoral law establish reporting timeframes, aggregation rules, digital reporting infrastructure, and regulator enforcement powers, with phased transition to real-time reporting standards.
+
+---
+</details>
+
+### **Truth in Political Advertising** (Add here?)
+
+### **Reform the National Anti-Corruption Commission**
+
+1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, establish statutory capability-linked funding safeguards, and mandate structured public reporting of enforcement activity.
+
+   1. Serious corruption risks within the Commonwealth will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
+   2. Corruption investigations will progress more effectively when the Commission has stronger investigative tools and clear pathways to prosecution.
+   3. Public confidence will improve when enforcement activity is visible through consistent, structured reporting rather than opaque discretion.
+   4. Deterrence will strengthen when corrupt conduct is more likely to be investigated and referred for action.
+   5. Integrity oversight will operate more consistently when statutory capability requirements are aligned with transparent resourcing.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+An effective federal anti-corruption body requires clarity of jurisdiction, robust investigative authority, and financial insulation sufficient to prevent quiet operational erosion. Reform focuses on coverage, capability, referral pathways, reporting discipline, and structural funding safeguards.
+
+**Structural framework**
+
+1. Jurisdiction is extended to additional categories of public office holders, ministerial staff, contractors, consultants, and outsourced service providers performing Commonwealth functions.
+2. The Commission’s investigative toolkit is clarified and strengthened within appropriate legal safeguards.
+3. Referral authority and pathways to prosecution are defined to reduce procedural bottlenecks.
+4. Structured periodic public reporting requirements are legislated, including standardised publication of investigation counts, status categories, referral volumes, and outcomes within confidentiality constraints.
+
+**Statutory capability-linked funding safeguard**
+
+1. The Act defines core investigative capability requirements consistent with the Commission’s statutory mandate.
+2. An independent authority conducts annual assessments of whether appropriated funding is sufficient to meet those requirements.
+3. If funding is assessed as insufficient, a mandatory public report is tabled outlining the shortfall and its operational impact, including quantified backlog or case-capacity constraints.
+4. NACC appropriations must appear as a stand-alone budget line item to prevent administrative dilution.
+
+**Oversight and integrity safeguards**
+
+1. Review mechanisms apply to coercive powers to prevent misuse.
+2. Clear thresholds are defined for public hearings and disclosure decisions.
+3. Conflict-of-interest controls apply to commissioners, staff, and contracted investigators.
+
+**Interaction with electoral transparency reforms**
+
+Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the Commonwealth’s investigative response capacity.
+
+**Risk and failure modes**
+
+Risks include jurisdictional carve-outs, procedural complexity that slows referrals, insufficient funding relative to mandate, or reporting rules that obscure operational constraint. Underperformance would appear as sustained backlog growth, declining investigative throughput, or public shortfall declarations without remedial response.
+
+**Implementation outline**
+
+Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
+
+---
+</details>
+
+### **Break Up Media Monopolies**
+
+1. Amend media ownership and competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional concentration thresholds across news and information markets.
+
+   1. Audiences will have access to a wider range of news sources, editorial priorities, and local reporting voices.
+   2. Journalists and editors will face fewer structural pressures to align with the political or commercial priorities of a single dominant owner.
+   3. Local communities will be less likely to lose coverage when concentrated ownership treats regional reporting as expendable.
+   4. Independent and smaller publishers will have a fairer chance to survive where access to audiences is no longer dominated by a narrow group of incumbent owners.
+   5. Public debate will become less vulnerable to coordinated agenda-setting by corporations with outsized control over information channels.
+   6. Media markets will compete more on trust, quality, and relevance when ownership concentration can no longer substitute for genuine audience support.
+   7. Democratic accountability will strengthen when political actors face scrutiny from a broader and less concentrated press environment.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Media concentration carries political and cultural power beyond ordinary commercial scale because control over information channels shapes what audiences see, what issues remain visible, and which voices can reach the public at all. This reform is intended to stop ownership concentration itself from becoming a durable source of influence regardless of journalistic quality or public trust.
+
+**Ownership control framework**
+
+1. The reform depends on defined national and regional concentration thresholds because media influence can accumulate differently across broadcast, print, and digital news markets, and because dominance in a regional market can be as significant as broad national reach.
+2. Divestiture and structural separation matter because the underlying problem is concentrated ownership and coordinated control, not merely isolated anti-competitive conduct. Once concentration exceeds the permitted level, the market structure itself must change rather than being managed only through ongoing behavioural conditions.
+
+**Pluralism and democratic resilience**
+
+1. A highly concentrated media environment can allow a small number of owners to shape issue salience, political narratives, and public attention across large parts of the country even where audiences retain formal choice between outlets. Structural separation reduces the ability of a single corporate group to exercise that level of coordinated influence across multiple channels at once.
+2. More dispersed ownership does not guarantee high-quality journalism on its own, but it does reduce the risk that editorial direction, local coverage decisions, and access to audiences are controlled by a narrow set of commercial interests. That wider distribution of control creates more space for independent editorial judgement, new entrants, and regional diversity.
+
+**Risk and failure modes**
+
+1. Media groups may be expected to use cross-holdings, affiliates, licensing arrangements, or platform partnerships to preserve effective control while appearing to comply formally with ownership limits. Integrity depends on whether the rule follows substantive control and influence rather than narrow legal ownership alone.
+2. The reform can also underperform if concentration thresholds are set too loosely, if digital news distribution is excluded from meaningful assessment, or if divested assets are transferred into nominally separate entities that remain commercially dependent on the original group. Effective structural separation depends on strong control tests and credible post-separation independence requirements.
+
+**System interaction**
+
+This measure interacts with general competition law, media ownership rules, and platform regulation, because concentration in news and information markets is shaped not only by formal ownership structures but also by distribution access, advertising markets, and cross-platform audience control.
+
+**Implementation outline**
+
+Legislation would need to define the covered media classes, the concentration metrics used for national and regional assessment, the control tests that trigger divestiture or structural separation, and the conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
+
+---
+</details>
+
+### **Open Up Access to Australian News**
+
+1. Establish a national media token payment system that requires Australian news publishers offering paid digital content to accept ACMA-issued tokens for subscriptions and individual article access, with tokens redeemable at a fixed one-to-one value with Australian cents.
+
+   1. Readers will be able to access individual articles across multiple outlets without repeated account creation, payment entry, or full-subscription lock-in.
+   2. Smaller and independent publishers will gain fairer access to occasional readers who would not otherwise commit to a full recurring subscription.
+   3. News audiences will be more able to compare reporting across outlets when cross-publication access carries less friction and lower commitment.
+   4. Media businesses will still be paid at publisher-set prices while relying less on captive subscription funnels to monetise digital readership.
+   5. Public debate will become less siloed when people can move more easily between different news sources instead of remaining inside one paid ecosystem.
+   6. Competition between publishers will shift more toward the value of particular reporting, analysis, and journalism rather than the strength of payment lock-in.
+   7. Australian news consumers will have a simpler and more privacy-preserving way to pay for journalism without distributing payment details across many separate media companies.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Digital news markets now combine two separate problems: concentrated ownership in some parts of the sector and high access friction across the rest of it. Readers who want to compare reporting across multiple outlets often face repeated paywalls, repeated payment entry, and subscription structures designed to convert occasional reading into ongoing lock-in. This reform is intended to create a common payment rail for journalism so paid access remains commercially viable without requiring each outlet to trap readers inside its own closed billing system.
+
+**Common payment rail**
+
+1. Tokens are issued and redeemed at a fixed one-to-one value with Australian cents, so the system standardises payment access without regulating publisher pricing. Publishers still decide how many tokens to charge for subscriptions, bundles, or individual articles.
+2. Mandatory token acceptance matters because the system only lowers friction if readers can rely on one payment method across the market rather than checking outlet by outlet whether common access is available.
+
+**Reader access and publisher incentives**
+
+1. The reform allows publishers to keep charging for journalism while making occasional cross-outlet reading easier, which is particularly important where readers want to compare reporting or access one article without entering a recurring payment relationship.
+2. Smaller publishers stand to benefit where article-level access becomes easier, because they can reach readers who are unwilling to take out another full subscription but are willing to pay for individual reporting when the transaction cost is low.
+
+**Risk and failure modes**
+
+1. Large publishers may be expected to preserve subscription lock-in through pricing structures, token-unfriendly design, delayed token access, or premium features reserved for direct subscribers. The reform is therefore only effective if token access is functionally equivalent for ordinary paid content rather than being nominally available but commercially marginalised.
+2. The system can also underperform if token purchasing, redemption, or article unlocking is cumbersome enough that readers continue to default to existing subscription silos. In practice, the value of the payment rail depends on whether it is simpler than current fragmented payment pathways rather than merely more standardised on paper.
+
+**System interaction**
+
+This measure interacts with media competition, consumer payment systems, and privacy settings, because access friction affects which publishers can realistically reach readers and how easily audiences can move across competing news sources.
+
+**Implementation outline**
+
+Legislation would need to define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
+
+---
+</details>
+
 ## Rebuild Our Communities
 
 * Restore ABC and SBS funding
@@ -1830,3 +1890,15 @@ Legislation would need to define revised protection periods, tighten claim-scope
 * Restore wetlands and ocean ecosystems
 * Promote regenerative agriculture
 * Invest in immediate cooling research
+
+
+---
+---
+
+Policy items that are "New" and need voting on:
+- Reward Communities That Build Quality Homes
+- Supply Integrated Public Housing at Scale
+- Simplify Unfair Contract Disputes for Small Business
+- Support Small Businesses to Stay Compliant
+- Build a Parliament That Reflects the People
+- Open Up Access to Australian News
