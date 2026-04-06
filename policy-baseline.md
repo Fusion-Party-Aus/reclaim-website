@@ -1688,7 +1688,55 @@ Amendments to federal electoral law establish reporting timeframes, aggregation 
 ---
 </details>
 
-### **Truth in Political Advertising** (Add here?)
+### **End Lies in Political Advertising**
+
+1. Adopt a federal truth-in-political-advertising law based on South Australia’s successful model, prohibiting electoral advertisements that contain statements of fact that are inaccurate and misleading to a material extent, and empowering the Electoral Commissioner and courts to require withdrawal, correction, and penalties for breaches.
+
+   1. Voters will be better able to make political choices based on real information rather than deliberate factual deception.
+   2. Election campaigns will rely less on false factual claims designed to manipulate confusion or outrage at speed.
+   3. Political actors will face stronger incentives to attack opponents on opinion, values, and record rather than on fabricated or materially distorted “facts”.
+   4. Public debate will become less vulnerable to campaigns that gain advantage by circulating factual falsehoods faster than they can be corrected.
+   5. Honest candidates and parties will compete on fairer terms when deliberate false advertising is no longer a low-risk tactic.
+   6. Trust in election campaigns will strengthen when there is a clear legal line between political argument and materially misleading factual claims.
+   7. Democratic accountability will improve when regulators can require misleading political advertising to be withdrawn or corrected before it does lasting electoral damage.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+South Australia already uses a workable truth-in-political-advertising model that does not attempt to ban political persuasion as such. Instead, it targets electoral advertisements containing purported statements of fact that are inaccurate and misleading to a material extent, and gives the Electoral Commissioner and courts power to seek withdrawal or correction. That model is narrower, clearer, and more practical than trying to regulate all political exaggeration or opinion.
+
+**Truth in advertising framework**
+
+1. The key distinction is between political opinion and purported statements of fact. The South Australian provision applies where an electoral advertisement contains a statement purporting to be a statement of fact that is inaccurate and misleading to a material extent, rather than simply being harsh, exaggerated, or controversial.
+2. That threshold matters because political campaigns will always involve interpretation, argument, and value judgement. A truth-in-advertising rule is more durable where it targets materially misleading factual claims without trying to referee ordinary partisan disagreement.
+
+**Correction and enforcement**
+
+1. The South Australian model allows the Electoral Commissioner to request that an advertiser withdraw the advertisement or publish a retraction in specified terms, and allows the Supreme Court to order withdrawal or corrective publication where the standard is met. That combination matters because the rule is only useful if misleading material can be addressed while the campaign is still live rather than only punished after the fact.
+2. The same model also attaches penalties, with higher maximum penalties for bodies corporate than for natural persons. This is vital because deliberate electoral falsehoods are often strategic and well-resourced, so a truth rule needs consequences that are more than symbolic.
+
+**Residual risks and limits**
+
+The main practical vulnerability in a truth-in-political-advertising scheme is speed. South Australia’s experience shows that complaint volume can rise sharply during a live campaign, and the value of the law depends on whether misleading material can be assessed, withdrawn, or corrected before it has already done most of its electoral work. A federal scheme therefore depends on fast complaint triage, dedicated legal support, and campaign-period processes that can keep pace with live advertising.
+
+**System interaction**
+
+This reform interacts with electoral authorisation rules, campaign disclosure, media regulation, and platform moderation, because truthful political advertising is easier to enforce where responsibility for publication is identifiable and misleading content can be traced quickly to the person or entity behind it. South Australia’s broader electoral advertising framework also requires published political material to identify the responsible person.
+
+**Implementation outline**
+
+Legislation should align to the system already shown to work effectively in South Australia by defining the prohibited class of materially misleading factual claims in electoral advertising, empowering the Electoral Commissioner to seek withdrawal or corrective publication, providing court-backed enforcement and penalties, and aligning the scheme with authorisation requirements and fast campaign-period complaint handling.
+
+**Reference**
+
+[South Australian Legislation](https://www.legislation.sa.gov.au/_legislation-documents/lz/c/a/electoral-act-1985/current/1985.77.auth.pdf)
+
+---
+</details>
 
 ### **Reform the National Anti-Corruption Commission**
 
@@ -1740,6 +1788,68 @@ Risks include jurisdictional carve-outs, procedural complexity that slows referr
 **Implementation outline**
 
 Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
+
+---
+</details>
+
+### **Reward Whistleblowers For Exposing Corruption**
+
+1. Establish a unified national whistleblower protection system covering the public, private, and not-for-profit sectors, with protected-disclosure immunities, reversed burden of proof in retaliation cases, enforceable duties on organisations to prevent harm, an independent Whistleblower Protection Authority, practical legal, financial, and psychological support, and reward schemes tied to significant public-interest recoveries or penalties.
+
+   1. More people will be able to expose corruption and serious wrongdoing because the personal cost of speaking up will no longer fall so heavily on the whistleblower alone.
+   2. Whistleblowers will have clearer legal protection when disclosures and preparatory acts are made in the public interest across government, business, and non-profit settings.
+   3. People who are forced out, blacklisted, or otherwise harmed for speaking up will be better able to rebuild their lives when legal, financial, and psychological support is built into the system.
+   4. Serious wrongdoing will be surfaced earlier and pursued more reliably when protected reporting channels are independent and high-value disclosures are met with practical backing rather than personal ruin.
+   5. Organisations will face stronger incentives to prevent retaliation and address disclosures properly instead of relying on pressure, delay, or procedural games to silence the person raising the alarm.
+   6. Markets will function more fairly when corruption and serious misconduct are harder to hide behind secrecy and retaliation.
+   7. Public and private institutions will operate more effectively when hidden wrongdoing is exposed earlier and costly failures are harder to entrench.
+   8. Public trust will strengthen when exposing corruption and unlawful conduct is treated as a protected civic contribution that the system actively backs and values.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Whistleblowers are often the point at which hidden corruption, unlawful conduct, or serious institutional failure becomes visible at all. In practice, however, the personal cost of disclosure is frequently so severe that silence becomes the safer option even where wrongdoing is substantial. This reform is intended to change that calculation by making whistleblowing legally clearer, materially survivable, and institutionally supported across the whole economy rather than treating protection as a narrow or fragmented exception.
+
+**Unified protection framework**
+
+1. The policy depends on a single national framework because fragmented protections create uncertainty about who is covered, what qualifies as a protected disclosure, and when immunity applies. A unified system matters most where public, private, and not-for-profit wrongdoing can produce similar public harm but currently sits under inconsistent legal treatment.
+2. Clear immunity settings are critical because uncertainty around preparatory acts, disclosure scope, and exposure to prosecution can deter reporting before any retaliatory conduct even begins.
+3. Reversing the burden of proof in retaliation cases is necessary because organisations usually control the records, processes, and internal explanations used to disguise retaliatory conduct as ordinary management action. Broadening the recognised forms of detriment also matters because retaliation is not limited to dismissal or formal discipline, but can include reputational damage, financial harm, privacy breaches, psychological injury, and obstruction of care.
+
+**Dedicated oversight and practical support**
+
+1. Legal protection alone is often too weak where whistleblowers lose income, face blacklisting, or come under sustained psychological pressure after disclosure. The system therefore depends on practical legal, financial, and psychological support so that speaking up remains materially survivable even where retaliation still occurs.
+2. A dedicated Whistleblower Protection Authority matters because ordinary complaint pathways are often too dispersed, reactive, or institutionally entangled to provide reliable protection. A specialised authority can maintain secure reporting channels, investigate retaliation, coordinate support, prosecute in court, oversee alternative dispute resolution, and provide a single point of system accountability.
+3. Reward schemes are vital because some disclosures expose wrongdoing that produces major public recoveries while imposing extraordinary personal cost on the person who speaks up. Tying rewards to significant recoveries or penalties helps ensure that high-value disclosures do not leave whistleblowers carrying disproportionate financial loss for acting in the public interest, including through qui tam-style pathways where appropriate.
+4. Funding design is part of the authority’s independence. Allowing the Whistleblower Protection Authority to use fines and penalties from court prosecutions as a source of income reduces its exposure to quiet budget pressure and supports penalties being set at a scale that cannot be treated as a routine cost of silencing disclosures.
+
+**Organisational responsibility and system discipline**
+
+1. Many institutions have strong incentives to contain reputational damage, manage legal exposure, and push whistleblowers out rather than resolve the underlying issue. Positive duties on organisations to protect whistleblowers matter because protection is weakest where employers can remain passive while retaliatory environments develop around the disclosure.
+2. Training, accreditation, and clear internal reporting mechanisms matter because whistleblower protection is not only a matter of formal legal rights, but of whether managers and organisations are structurally prepared to respond without escalating harm.
+3. The broader purpose of these duties is to remove plausible deniability from systems that currently rely on HR process, internal opacity, and reputational risk management to bury the real nature of retaliation and institutional failure.
+
+**Transparency and public accountability**
+
+1. Strengthened FOI and follow-through obligations matter because whistleblower protection is weaker where disclosures disappear into secrecy, indefinite delay, or internal handling that produces no visible consequence.
+2. Timely response, clearer reporting, and narrower secrecy exemptions help ensure that disclosures can lead to meaningful action rather than simply being received and contained.
+3. The policy also treats the ability to expose corruption and unlawful conduct as important enough to justify stronger legal entrenchment, including potential constitutional or rights-based protection, because ordinary statutory protections have too often left truth-tellers exposed when the wrongdoing being reported is politically or institutionally sensitive.
+
+**System interaction**
+
+This reform interacts with anti-corruption oversight, workplace health and safety, corporate governance, public-sector integrity systems, and freedom of information settings, because whistleblower protection is most effective where disclosures can be acted on, retaliatory harm can be recognised early, and institutions cannot bury misconduct behind procedural opacity.
+
+**Implementation outline**
+
+Implementation would require consolidating existing protections into a single national framework, defining protected disclosures and immunities consistently across sectors, establishing the Whistleblower Protection Authority and its powers, creating support and reward mechanisms, imposing positive duties on organisations, and aligning enforcement settings with existing integrity, workplace, and regulatory systems.
+
+**Reference**
+
+[Whistleblower Policy](https://www.fusionparty.org.au/whistleblower_policy)
 
 ---
 </details>

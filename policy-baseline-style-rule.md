@@ -563,10 +563,15 @@ Tier-4 should describe institutional design rather than engineering implementati
 
 ### T4 Addressing Failure Modes
 
-Where relevant, Tier-4 should explain how the reform could be undermined, misused, or circumvented.
+If relevant, Tier-4 should explain how the reform could be undermined, misused, or circumvented.
 
-* Policies that identify potential failure modes and describe how the design mitigates them are significantly more robust under scrutiny.
 * This analysis should normally be expressed through topical headings (e.g. “Integrity Safeguards”, “Compliance Risks”, “System Discipline”) rather than a repeated generic heading such as “Risk and Failure Modes”.
+* Policies are more robust under scrutiny when Tier-4 distinguishes clearly between:
+  * vulnerabilities that are already controlled by the design, and
+  * genuinely residual risks that remain live after those safeguards are taken into account.
+* Do not include a point as a residual risk or failure mode if the policy already materially resolves that issue through an earlier design feature, safeguard, or institutional mechanism; explain that control under the relevant design heading instead.
+* A Risk and Failure Modes section should include only genuinely residual vulnerabilities, design trade-offs, or edge cases that remain live after the policy’s built-in safeguards are taken into account.
+* If a risk would arise only because a core institution in the policy is too weak to fulfil its stated function, do not list that as a separate risk unless the design itself leaves a meaningful gap in that institution’s powers, scope, independence, or resources.
 
 ### T4 Analytical Lenses
 
