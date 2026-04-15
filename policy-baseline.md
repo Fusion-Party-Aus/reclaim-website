@@ -1,7 +1,7 @@
 # Fix Our Systems, Fix Our Country
 
 *Our country became prosperous because we developed systems that incentivised <u>long-term</u> economic growth.*
-*Over the past 50 years, those systems have been steadily dismantled dismantled and replaced with ones that incentivise <u>short-term</u> gains instead.*
+*Over the past 50 years, those systems have been steadily dismantled and replaced with ones that incentivise <u>short-term</u> gains instead.*
 *Growth continued for a while - not because the systems were good, but because of the cultural legacy which shaped our expectations and decisions.*
 
 *But cultural legacy is temporary.*
