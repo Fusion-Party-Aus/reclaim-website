@@ -206,12 +206,23 @@ In sections explicitly anchored to a voter identity group (e.g. small business o
 
 Identity resonance is permitted only where structural precision and Tier-2 containment remain intact.
 
+### T1 Dual-Use Rule
+
+Tier-1 should function both as a policy hook and as a campaign line.
+Memorable, forceful, and emotionally resonant phrasing is preferred where it still maps cleanly to a single reform surface and remains structurally contained by Tier-2.
+A Tier-1 does not fail merely because it sounds like a slogan. It fails only if:
+
+* the broad reform direction is not reasonably inferable,
+* the phrasing could point to multiple distinct reforms,
+* or the rhetorical force obscures the actual institutional change.
+
 ## T1 Acceptance Test
 
 A Tier-1 statement is valid if:
 
 * A disengaged reader can understand it in under 3 seconds
 * It can be quoted without additional context
+* It should be quotable in a campaign context without losing its link to a single coherent reform surface
 * It answers *“What are you going to do?”* — nothing more
 * If splitting the sentence produces two valid stand-alone policies, it fails Tier-1.
 
@@ -310,13 +321,53 @@ Allowed:
 * Clear nouns and verbs
 * Simple sentence structure
 * Technical terminology which describes institutional structure rather than moral evaluation
-* Where possible, lead with the affected entity or institutional subject before describing the mechanism applied to it
 
 Avoid:
 
 * Adjectives that imply goodness or fairness
 * Normative claims
 * Forecasts or promises
+
+### T2 Opening Rule
+
+A Tier-2 sentence should open with the element that most clearly identifies and best orients the reader to the reform boundary.
+
+Choose the opening using this order of preference:
+
+1. **Open with the affected subject or institutional surface** when the reform is best understood as changing how a person, service, institution, market actor, or system surface is treated.
+2. **Open with an action verb plus a named instrument** when the reform is best understood as introducing, replacing, abolishing, or rebuilding a specific legal, tax, funding, or regulatory rule-set.
+3. **Do not open with a delivery vehicle, administering body, funding channel, or implementation mechanism** unless that body or mechanism is itself the primary thing being structurally changed.
+
+A verb-led opening is valid only if the first meaningful noun phrase after the verb is the primary reform surface.
+
+**Good subject-led openings**
+
+* Online wagering providers and related services will be regulated through…
+* Medicare coverage will be expanded to include basic dental care and…
+* Labour market rules will be restructured by establishing sector-level bargaining councils…
+
+**Good instrument-led openings**
+
+* Rebuild federal visa settings so…
+* Replace the 50% Capital Gains Tax discount with…
+* Implement a nationally consistent Land Value Tax framework…
+
+**Bad openings**
+
+* Require federally supported settlement programs to…
+* Use Commonwealth funding to…
+* Establish a body to…
+
+These are bad openings when they lead with a secondary delivery mechanism instead of the main thing being changed.
+
+### T2 Opening Test
+
+A Tier-2 sentence should be rewritten if:
+
+* the opening element does not make the reform boundary clearer;
+* the sentence opens with a program, provider, regulator, funding source, or implementation channel that is only carrying the reform rather than defining it;
+* the opening verb does not immediately introduce the primary reform surface;
+* or the sentence would become clearer by opening with either the affected subject or the named instrument instead.
 
 ## T2 Acceptance Test
 
@@ -325,6 +376,7 @@ A Tier-2 statement is valid if:
 * It can be followed up with “Why?” without already answering
 * It reads like system wiring, not advocacy
 * Removing it would make the policy unclear, not unconvincing
+* Its opening element clearly identifies the reform boundary
 
 ---
 
@@ -569,9 +621,32 @@ If relevant, Tier-4 should explain how the reform could be undermined, misused, 
 * Policies are more robust under scrutiny when Tier-4 distinguishes clearly between:
   * vulnerabilities that are already controlled by the design, and
   * genuinely residual risks that remain live after those safeguards are taken into account.
-* Do not include a point as a residual risk or failure mode if the policy already materially resolves that issue through an earlier design feature, safeguard, or institutional mechanism; explain that control under the relevant design heading instead.
 * A Risk and Failure Modes section should include only genuinely residual vulnerabilities, design trade-offs, or edge cases that remain live after the policy’s built-in safeguards are taken into account.
 * If a risk would arise only because a core institution in the policy is too weak to fulfil its stated function, do not list that as a separate risk unless the design itself leaves a meaningful gap in that institution’s powers, scope, independence, or resources.
+
+**Perfect-function test**
+
+A point may be included as a residual risk, failure mode, or trade-off only if it remains live when the policy’s architecture is functioning as designed.
+Do **not** include:
+
+* risks already controlled or structurally contained by the policy’s own design, safeguards, or institutions, because these belong under the relevant design heading and are not genuine residual risks,
+* risks that exist only under a counterfactual where the policy’s core institution is assumed to fail despite the design not leaving a meaningful gap in its powers, scope, independence, or resources,
+* generic implementation difficulty that does not identify a policy-specific residual vulnerability,
+* temporary enforcement gaps, regulator catch-up problems, or short-term non-compliance by actors the policy is designed to detect and address, unless the design leaves a distinct structural reason those breaches would persist, scale, or evade ordinary enforcement,
+* political communications problems, public misunderstanding, or salesmanship challenges that do not alter the policy’s institutional function,
+* risks that arise only because another level of government controls a separate institutional surface that the policy does not attempt to change,
+* or market responses that advance rather than undermine the policy objective.
+
+If no genuine residual risks remain after this test, omit the section entirely. Do not replace it with another heading unless the policy itself creates a distinct ancillary concern that still requires scrutiny and is not already covered under an earlier design heading.
+
+A point fails this test unless the drafter can state in one sentence why it still exists even when all built-in safeguards are operating as intended.
+
+Points that usually pass this test are limited to:
+
+* genuine edge cases,
+* irreducible trade-offs,
+* exposure created by interaction with an external system the policy does not control, or
+* vulnerabilities that remain live even when all built-in safeguards operate as intended.
 
 ### T4 Analytical Lenses
 

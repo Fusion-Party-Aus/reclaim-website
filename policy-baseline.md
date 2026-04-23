@@ -36,6 +36,7 @@
 
 # RECLAIM OUR FUTURE
 
+## Renew Our Democracy
 ## Rebuild Our Communities
 ## Update Our Schools
 ## Transform Our Industries
@@ -1948,20 +1949,325 @@ Legislation would need to define the covered Australian news publisher class, re
 ---
 </details>
 
+### Restore ABC and SBS funding <- Add new in this section somewhere
+
 ## Rebuild Our Communities
 
-* Restore ABC and SBS funding
-* Keep essential services public
-* Legalise cannabis
-* Launch a Royal Commission into media
-* Hold media accountable for misinformation
-* Build high-speed rail connecting regions
-* Make electric vehicles affordable for families
-* Roll out EV chargers everywhere
-* Take back privatised assets
-* Teach ethics in schools
-* Separate church and state
-* Strengthen animal welfare laws
+### **Rein In Online Gambling Harm**
+
+1. Online wagering providers, gambling advertisers, digital platforms, payment intermediaries, and related services will be regulated through National Online Gambling Harm Rules that ban inducements and phase in a complete ban on online gambling advertising, require identity verification before gambling begins, impose a customer duty of care, strengthen BetStop and external complaint pathways, establish a national online gambling regulator and ombudsman, block illegal offshore operators and prohibited transaction pathways, and ban online keno and similar rapid-cycle online gambling products.
+
+   1. Children and young people will be far better shielded from gambling promotion in sport, streaming, and everyday online media.
+   2. People showing signs of gambling harm will face earlier intervention and clearer exit pathways before losses compound into crisis.
+   3. Families will experience fewer gambling-driven financial shocks as online wagering becomes harder to market aggressively and harder to push during vulnerable moments.
+   4. Online gambling users will have clearer protections and more reliable access to redress when harm occurs.
+   5. Australians will be less exposed to unregulated online gambling services that profit from weaker safeguards.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Online gambling is designed to reach people constantly, push repeated betting, and make harm easier to scale. Advertising normalises betting across sport and everyday media, inducements are used to draw people in or keep them gambling, and digital delivery removes many of the natural barriers that once limited frequency and reach. When that system is left mostly to operator incentives, harm is not treated as a side effect to be managed but as part of the business model. A federal response is needed because online wagering, digital advertising, payment pathways, and offshore access all operate across borders and cannot be effectively controlled through fragmented state-by-state rules alone.
+
+**Federal scope**
+
+This reform focuses on the parts of the gambling system that operate nationally rather than venue by venue. Online wagering services, digital advertising, self-exclusion systems, payment pathways, and offshore access all cross state borders as a matter of course. That makes them a Commonwealth problem. A national framework can set one set of rules for how online gambling is marketed, how operators must treat customers, how self-exclusion works, how harmful products are restricted, and how illegal offshore services are blocked.
+
+**Advertising and inducements**
+
+Advertising and inducements do different jobs for the same business model. Advertising makes betting feel normal, familiar, and constantly present in sport and everyday media. Inducements such as bonus bets, deposit matches, odds boosts, and similar offers are used to push people into starting, returning, or chasing losses. A partial ad regime still leaves room for gambling to stay culturally present and commercially aggressive. That is why this reform bans both: the wider promotion that normalises betting, and the direct offers that are designed to trigger more of it.
+
+**Consumer protection architecture**
+
+The Murphy framework points toward a stronger national protection model for online gambling. Operators should be required to verify identity before gambling begins, owe a duty of care to customers, support a working self-exclusion system, and be subject to an independent complaints pathway. The aim is to replace a system that relies mostly on warnings and self-control with one that imposes clear legal duties on gambling businesses.
+
+**Enforcement and accountability**
+
+The main enforcement model should be a national regulator with strong monitoring powers, serious penalties, and an ombudsman for complaints and redress. That is the most efficient way to supervise a national online market and deal with most breaches at scale. But a duty of care should also carry real legal consequences when operators seriously or repeatedly ignore clear signs of harm. A regulator-led system should therefore be backed by statutory civil liability for major breaches, so gambling businesses cannot treat the duty as a box-ticking obligation or an acceptable compliance risk.
+
+**Residual trade-offs**
+
+Even with the system working as intended, some gambling harm will still occur because this reform reduces and interrupts harm rather than prohibiting online wagering altogether. A second residual trade-off is privacy: identity checks, behaviour monitoring, self-exclusion, and complaints handling all require strong safeguards around sensitive personal data. These are the remaining trade-offs of a regulated market, not failures of the enforcement architecture.
+
+**Implementation outline**
+
+Implementation can be staged through amendments to the Interactive Gambling Act and related communications and payments law, with the advertising ban phased in over a defined transition period and the consumer-protection architecture commencing on a fixed national timetable. The legislative sequence would usually begin with inducements, identity verification, and regulator powers, then move to the full advertising prohibition and product bans, with data reporting and enforcement obligations applied across licensed operators from the start date. This sequencing mirrors the way the Murphy framework separates immediate restrictions from broader structural reform.
+
+**Reference**
+
+[Murphy Framework Recommendations](https://www.aph.gov.au/Parliamentary_Business/Committees/House/Social_Policy_and_Legal_Affairs/Onlinegamblingimpacts/Report/List_of_recommendations)
+
+---
+</details>
+
+### **Set National Animal Welfare Standards**
+
+1. Establish a statutory National Office of Animal Welfare to develop, coordinate, monitor, and publicly report on national animal welfare standards, advise on Commonwealth laws and trade-exposed animal industries, and drive consistent welfare benchmarks across jurisdictions and sectors through a renewed national animal welfare framework.
+
+   1. Australians will see a clearer and more consistent baseline of animal welfare across the country.
+   2. Consumers will have stronger confidence that products sold nationwide are subject to the same minimum welfare expectations.
+   3. Communities will be better able to see when cruelty and neglect are being ignored.
+   4. Public pressure for better treatment of animals will translate more reliably into national action.
+   5. Responsible producers will face less pressure to compete against weaker welfare practices.
+   6. Australia’s treatment of animals will better match the humane standards the public now expects.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Animal welfare rules in Australia are fragmented across jurisdictions, industries, and regulatory settings. That makes standards harder to compare, weaker outcomes harder to spot, and reform easier to delay. A national office gives the system a standing institution whose job is to keep animal welfare visible, measurable, and harder to ignore.
+
+**National consistency**
+
+The office would not replace every existing animal welfare law. Its role is to create a clearer national baseline by coordinating standards, tracking outcomes, and reducing the current mix of uneven rules and patchy reporting. That matters most where welfare expectations should not change sharply from one border to another or from one sector to the next without a clear reason.
+
+**Commonwealth role**
+
+The Commonwealth already makes decisions that affect animal welfare through trade, exports, national industry settings, procurement, and other federal laws. A national office gives those decisions a dedicated source of welfare advice and scrutiny. It also creates a clearer national point of coordination where animal welfare issues cut across more than one jurisdiction or industry.
+
+**Transparency and scrutiny**
+
+A major weakness in a fragmented system is that poor outcomes can be obscured by inconsistent reporting or weak public visibility. The office should publish regular national reporting on standards, compliance trends, and welfare outcomes across sectors. That does not replace enforcement by itself, but it makes it harder for governments or industries to claim progress without evidence.
+
+**Industry effects**
+
+A clearer national framework reduces the advantage held by operators relying on weaker welfare settings. It also gives responsible producers a more stable benchmark to work to, instead of facing a system where expectations shift across borders or are applied unevenly. That matters for both domestic confidence and trade-exposed industries that face growing scrutiny over welfare standards.
+
+**Implementation outline**
+
+The office would be created by Commonwealth law with defined functions in standard-setting coordination, monitoring, reporting, and advice. Its reporting duties should be mandatory and public. Its advisory role should apply across relevant Commonwealth decisions, especially where trade, exports, or federally regulated animal uses are involved. Detailed enforcement would remain with the institutions that already hold those powers unless changed by later reform.
+
+---
+</details>
+
+### **Take Religious Advantage Out of Public Services**
+
+1. Require Commonwealth institutions, publicly funded service providers exercising public functions, and federally regulated public-facing services to operate on secular and non-discriminatory terms by removing official religious prayers, rituals, and bias from public institutional practice and documentation, narrowing religious exemptions where services are delivered to the public or public functions are carried out with public funding, and reforming philanthropy law so tax-deductible status does not apply to activities solely for advancing religion.
+
+   1. Australians of all beliefs and none will meet public institutions on more equal civic terms.
+   2. People using publicly funded services will have stronger confidence that access and treatment do not depend on someone else’s religious doctrine.
+   3. Non-religious Australians and minority-faith communities will face fewer signals that public life is built around a preferred belief system.
+   4. Public subsidy through the tax system will be directed more clearly toward broad community benefit rather than sectarian worship.
+   5. Faith-based charities providing genuine public-benefit services will continue to compete for support on the basis of those services rather than on religious privilege.
+   6. Public institutions will more clearly reflect common citizenship rather than sectarian tradition.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Public services should work on the same terms for everyone. When government institutions, publicly funded services, or other bodies performing public functions give formal preference to religion, the system stops operating on equal civic terms. The problem is not that people hold religious beliefs. The problem is that public-facing institutions can carry those beliefs into access rules, official practice, and public subsidy in ways that give one set of convictions an advantage over others.
+
+**Institutional boundary**
+
+This does not regulate private belief, private worship, or the internal life of voluntary religious communities acting in a private capacity. It applies where institutions are exercising public authority, delivering services to the public, or receiving public support while carrying out public-facing functions. The relevant question is not whether an organisation is religious. It is whether it is acting in a public role where equal treatment should apply.
+
+**Public service neutrality**
+
+Public institutions should not present a preferred faith position as part of how public authority is exercised. Removing official prayers, rituals, and formal religious bias from institutional practice helps ensure that people meet public services on common civic terms rather than through someone else’s religious framework.
+
+**Public funding and exemptions**
+
+A service delivered with public funding should not be able to rely on religious privilege to limit equal access or shape treatment on sectarian grounds when it is performing a public function. Narrowing exemptions in these settings brings public service obligations into line with the expectation that public money should support public access on equal terms.
+
+**Philanthropy and tax treatment**
+
+Tax-deductible status should follow public benefit, not worship alone. Reforming philanthropy law on this basis does not exclude religious organisations from deductible support where they are carrying out genuine charitable work. The key question is what the tax-advantaged support is being granted for. Where support is tied to genuine community service or other public-benefit activity, eligibility can continue on the same basis as for any other provider. What changes is that worship or religious advancement on its own would no longer qualify for special tax treatment. The standard is shared public benefit, not the internal identity of the organisation.
+
+**Implementation outline**
+
+Implementation would require Commonwealth law to define the public settings in which secular and non-discriminatory rules apply, identify which exemptions are narrowed in publicly funded or public-function contexts, and amend philanthropy law in line with Recommendation 6.1 from the "Future foundations for giving" Inquiry report, so tax-deductible status no longer applies to activities solely for advancing religion. Guidance and reporting rules would then need to make the boundaries clear for Commonwealth institutions, funded providers, and mixed-purpose organisations.
+
+**Reference**
+
+[Inquiry report: Future foundations for giving](https://assets.pc.gov.au/inquiries/completed/philanthropy/report/philanthropy.pdf)
+
+---
+</details>
+
+### **Finally End the War on Drugs**
+
+1. Establish National Drug Harm Reduction Standards that legalise and regulate cannabis, replace criminal penalties for personal drug possession and use with health-led diversion pathways, expunge Commonwealth records for historical personal-use cannabis offences, and use federal law, national agreements, and tied funding to drive aligned harm-minimisation settings across Australia.
+
+   1. People with drug use challenges will be more likely to encounter health care and diversion than a criminal record for personal use.
+   2. People using cannabis will face fewer life-changing penalties for conduct that can be regulated more openly and safely.
+   3. Families will have clearer pathways into treatment and harm reduction before drug use escalates into crisis.
+   4. Communities will see more of the cannabis market brought into regulated channels with clearer product standards and less room for criminal exploitation.
+   5. Drug policy will create fewer avoidable barriers to work, housing, and recovery after low-level offending.
+   6. Australia’s drug laws will better reflect harm reduction and public health rather than symbolic, ineffective, and expensive punishment.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Punishing personal drug use often adds criminal records, fear of police, and long-term social damage to an already difficult health problem. It can also push supply, quality, and harm further outside the reach of regulation. A health-led system does not pretend drug use is harmless. It recognises that criminal punishment is often a poor tool for reducing the harms tied to personal use.
+
+**National coordination**
+
+Drug policy is split across jurisdictions, but the Commonwealth still sets national direction through strategy, funding, controlled substances law, health policy, and intergovernmental agreements. A national framework matters because people should not face completely different treatment for the same low-level conduct depending on which border they cross. The aim is to set one health-first direction and use Commonwealth leverage to pull the rest of the system into line.
+
+**Cannabis regulation**
+
+Cannabis is the clearest place to move from prohibition to regulation. A legal market allows age rules, product standards, licensing, and tax settings to replace an unregulated criminal market. It also allows public health controls to be built in from the start, rather than treating cannabis as both widely used and legally untouchable at the same time.
+
+**Health-led response**
+
+Personal possession and use should trigger diversion, assessment, and treatment pathways rather than routine criminal punishment. That does not remove accountability for harmful conduct. It changes the first response to low-level personal use from prosecution to harm reduction and care. The point is to move the system away from symbolic punishment and toward earlier intervention.
+
+**Criminal records**
+
+Historical personal-use cannabis records continue to block work, housing, and ordinary life long after the conduct itself has ended. Expungement is part of shifting from punishment to regulation. Without it, the law changes going forward but keeps old penalties alive in practice.
+
+**Implementation outline**
+
+Implementation would require Commonwealth law to create the national cannabis framework, remove relevant Commonwealth criminal penalties for personal possession and use, establish expungement pathways for historical Commonwealth cannabis offences, and negotiate national agreements that tie federal funding and reform incentives to aligned harm-minimisation settings in state and territory systems.
+
+---
+</details>
+
+### **Crack Down on Coercive Control and Sexual Violence**
+
+1. Require the federal family law system, national online safety regime, and Commonwealth-funded domestic and sexual violence responses to recognise coercive control and sexual violence as patterns of serious abuse by adopting coercive-control-aware and trauma-informed standards, strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and aligning federal migration law so non-citizens convicted of serious sexual violence are presumed to lose the right to remain in Australia, subject only to narrow exceptions required by law and fundamental human-rights obligations.
+
+   1. Victim-survivors will face fewer federal systems that treat coercive control and sexual violence as isolated incidents instead of patterns of abuse.
+   2. People leaving abusive relationships will encounter safer court processes and stronger protection against abuse carried through digital tools and online platforms.
+   3. Family law decisions will better reflect the safety, economic, and parenting impacts of family violence, coercive control, and sexual abuse.
+   4. Commonwealth-funded services will be more consistent in putting victim-survivor safety ahead of fragmented case handling or procedural blind spots.
+   5. Federal responses will better match the lived reality that coercive control and sexual violence often overlap and continue after separation.
+   6. Victim-survivors and the wider community will have stronger confidence that serious sexual violence by non-citizens is treated as grounds to lose the privilege of staying in Australia.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Coercive control and sexual violence are often not one-off events. They are patterns of abuse that build over time, continue after separation, and can move across courts, digital tools, and support systems. When institutions look only for isolated incidents, visible injuries, or single pieces of evidence, they often miss the real shape of the abuse. A safer system has to recognise the pattern, not just the latest episode.
+
+**Federal scope**
+
+This reform is aimed at the parts of the system the Commonwealth actually controls. It does not pretend Canberra can rewrite every state criminal offence. It focuses on family law, federal court practice, online safety regulation, migration consequences for non-citizens convicted of serious sexual violence, and the standards attached to Commonwealth-funded services. Those are all places where the federal government can make victim-survivor safety more real or more fragile.
+
+**Family law and courts**
+
+Family law decisions can shape housing, finances, parenting arrangements, and everyday safety after separation. If the court system misses coercive control or sexual violence, the abuse can continue through process, proximity, or economic pressure. A coercive-control-aware and trauma-informed court system is therefore not an optional extra. It is part of making the law safer for the people it is meant to protect.
+
+**Technology-facilitated abuse**
+
+Digital tools now carry a large part of abuse. Tracking, harassment, image-based abuse, stalking, and post-separation intimidation can all be extended through phones, apps, platforms, and connected devices. A serious federal response has to treat online abuse as part of coercive control and sexual violence where that is what it is, not as a separate inconvenience.
+
+**Victim-survivor safety standards**
+
+Commonwealth-funded services should be judged against whether they improve safety, recognise patterns of abuse, and reduce opportunities for systems abuse. That means clearer expectations around trauma-informed practice, perpetrator-pattern awareness, coordination, and safe referral pathways. A funded service should not be able to satisfy formal requirements while still missing the reality of the abuse it is supposed to respond to.
+
+**Migration consequences**
+
+Where a non-citizen has been convicted of serious sexual violence, the Commonwealth should treat that as grounds for mandatory visa cancellation unless a narrow exception required by law applies. This would bring serious sexual violence into closer line with the existing mandatory-cancellation treatment of other serious offending under section 501, instead of leaving it to a weaker discretionary pathway when the sentence falls below the ordinary 12-month threshold. To do that, migration law should specify serious sexual violence as a mandatory-cancellation trigger rather than relying only on sentence length. The same approach should apply to defined serious family-violence and coercive-control convictions where those offences are specified in migration law. The point is not to invent a new punishment. It is to make clear that serious abuse of this kind is incompatible with the privilege of staying in Australia.
+
+**Implementation outline**
+
+Implementation would require amendments to Commonwealth legislation, federal court rules, online safety regulation, migration settings, and funding agreements so the federal system applies a consistent victim-survivor safety standard across family law, digital abuse, service delivery, and migration consequences for serious sexual violence.
+
+---
+</details>
+
+### **Put Essential Services Back in Public Hands**
+
+1. Require the Commonwealth to retain, restore, or create public ownership and public-delivery control over essential services, major public data systems holding sensitive personal data, and natural monopoly infrastructure where universal access, privacy, affordability, or system integrity would otherwise be weakened by privatisation, outsourcing, or fragmented private control.
+
+   1. Australians will have stronger confidence that essential services are being run for access and reliability rather than private extraction.
+   2. Households relying on core services will face fewer pressures to treat basic needs as user-pays market opportunities.
+   3. People using major government service platforms will have stronger confidence that sensitive personal data is handled inside public accountability structures.
+   4. National systems that work as natural monopolies or critical backbones will be easier to coordinate in the long-term public interest.
+   5. Governments will be better able to fix failures quickly when control is not buried in outsourcing chains and fragmented ownership.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Not every service should be publicly owned. But some systems work badly when profit, outsourcing, or fragmented private control are allowed to override universal access, privacy, affordability, or whole-of-system coordination. Where a service is essential, where the government holds highly sensitive personal data, or where the infrastructure functions as a monopoly backbone, public control is often the cleaner and more accountable option.
+
+**Where public ownership matters**
+
+This reform is aimed at specific classes of system, not at blanket nationalisation. The clearest cases are services that should be available to all, major government data systems that hold sensitive personal information, and monopoly infrastructure where duplication is unrealistic and fragmentation makes the whole system harder to govern. The question is not whether the private sector has any role at all. The question is whether the public interest is better served by direct public control.
+
+**Public data and accountability**
+
+Where government service delivery depends on sensitive personal data, outsourcing and private system control create extra risks around accountability, privacy, blame-shifting, and vendor lock-in. A public system does not remove the need for strong safeguards. It does mean the core accountability chain remains inside public institutions rather than being spread across contractors whose incentives are not the same as the public’s.
+
+**Natural monopolies and system integrity**
+
+Some infrastructure does not behave like a normal competitive market. Monopoly energy networks are already regulated as monopoly infrastructure because consumers cannot simply build a second grid. In systems like that, the case for public control becomes stronger where long-term planning, affordability, and whole-of-system integrity matter more than ownership churn or fragmented profit incentives.
+
+**Shared public ownership**
+
+Where an essential asset serves both national and state-level public functions, public ownership may be structured jointly between the Commonwealth and participating states to make privatisation harder and preserve multi-level public control. Co-ownership should not be treated as a safeguard on its own, so it should be backed by statutory sale restraints, high approval thresholds, or both. This is most useful for monopoly infrastructure and shared backbone systems where long-term public control matters more than ownership churn.
+
+**Delivery discipline**
+
+Public ownership should be tied to a clear test. If the service should be universal, if public data trust is central to its operation, or if the system functions as a natural monopoly or critical backbone, the Commonwealth should default toward public ownership or direct public delivery. If those conditions are not met, the case for public control is weaker and should be argued separately.
+
+**Implementation outline**
+
+Implementation would require the Commonwealth to build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
+
+---
+</details>
+
+### **Provide Civic Orientation to New Migrants**
+
+1. New migrants entering long-term or permanent settlement pathways will be required to complete mandatory civic orientation and practical support programs so they can understand Australian law, institutions, services, work, and community life.
+
+   1. New migrants will have a clearer understanding of Australian law, institutions, rights, and responsibilities from the start.
+   2. Families settling permanently will face fewer problems caused by confusion about services, schools, workplaces, and everyday legal expectations.
+   3. Communities will face fewer avoidable tensions caused by poor settlement support and weaker civic understanding.
+   4. Public confidence in migration will strengthen when settlement is treated as part of the system rather than left to chance.
+   5. Multiculturalism will be strengthened when people are supported to join Australian civic life without being asked to abandon private identity or belief.
+
+### **Match Migration to What Australia Can Support**
+
+1. Set annual migration planning and intake settings through a published absorptive-capacity framework that ties migration levels to housing supply, service capacity, infrastructure readiness, labour market conditions, and settlement capability, with regular review and transparent triggers for adjustment.
+
+   1. Australians and new arrivals will face less pressure from migration settings that outrun housing, services, and infrastructure.
+   2. Population growth will be planned against real capacity rather than used as a shortcut for headline GDP growth.
+   3. Communities will have stronger confidence that migration levels are being set on practical grounds rather than on pressure for unlimited labour supply.
+   4. New arrivals will be more likely to arrive into systems that can actually support them well.
+   5. Migration debates will be less vulnerable to scapegoating when intake settings are tied to transparent capacity tests.
+
+### **Expand Refugee Intake Through Prepared Communities**
+
+1. Increase Australia’s humanitarian intake and direct new settlement growth through nominated communities where housing, health, education, English, trauma support, and settlement services are ready or funded together, using regional partnerships and community-led settlement models where they improve capacity and reduce avoidable overheads.
+
+   1. More people fleeing persecution, war, and severe danger will have a safe and orderly path to protection.
+   2. New arrivals will be more likely to settle in places that are prepared to support them well from the start.
+   3. Communities taking part will be better able to absorb new arrivals without fragmented service pressure.
+   4. Humanitarian expansion will be easier to scale when settlement support is organised around prepared local capacity rather than ad hoc placements.
+   5. Public confidence in a larger humanitarian program will strengthen when intake growth is matched to visible local readiness.
+
+### **Make Every Visa Fit Its Purpose**
+
+1. Rebuild federal visa settings so student, work, holiday, business, humanitarian, and family pathways are clearly defined, enforceable, and protected against routine misuse as substitutes for other migration categories, with visa conditions, integrity checks, and pathway rules aligned to each visa’s stated purpose.
+
+   1. Visa holders will face a clearer and more honest migration system, with fewer backdoor pathways and fewer false expectations.
+   2. Communities will have stronger confidence that migration rules mean what they say.
+   3. Genuine students, visitors, workers, and families will be less crowded out by misuse of pathways designed for something else.
+   4. Migration planning will become more reliable when visa numbers better reflect their actual purpose.
+   5. Public debate will be less distorted by large opaque inflows sitting outside the government’s intended migration settings.
 
 ## Update Our Schools
 
