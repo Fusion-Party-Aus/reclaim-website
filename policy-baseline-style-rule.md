@@ -335,7 +335,7 @@ A Tier-2 sentence should open with the element that most clearly identifies and 
 Choose the opening using this order of preference:
 
 1. **Open with the affected subject or institutional surface** when the reform is best understood as changing how a person, service, institution, market actor, or system surface is treated.
-2. **Open with an action verb plus a named instrument** when the reform is best understood as introducing, replacing, abolishing, or rebuilding a specific legal, tax, funding, or regulatory rule-set.
+2. **Open with an action verb plus a named instrument or instrument-family anchor** when the reform is best understood as introducing, replacing, abolishing, or rebuilding a specific legal, tax, funding, or regulatory rule-set.
 3. **Do not open with a delivery vehicle, administering body, funding channel, or implementation mechanism** unless that body or mechanism is itself the primary thing being structurally changed.
 
 A verb-led opening is valid only if the first meaningful noun phrase after the verb is the primary reform surface.
@@ -667,7 +667,7 @@ When drafting Tier-4, authors should consider the following analytical lenses to
 
 These lenses guide analysis but should normally be expressed through **policy-specific topical headings rather than repeated verbatim lens names**. Not every policy item will require all of these sections. Authors should include only those necessary to explain the policy clearly and withstand scrutiny.
 
-When multiple analytical lenses are used, authors should normally introduce them in an order that moves from core system design to enforcement and integrity safeguards before addressing broader system effects and implementation context.
+When multiple analytical lenses are used, authors should normally introduce them in an order that moves from core system design to enforcement and integrity safeguards, and then to residual risks and failure modes, before addressing broader system effects and implementation context.
 
 ## T4 Supporting Elements Rule
 

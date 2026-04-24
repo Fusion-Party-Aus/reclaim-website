@@ -1021,7 +1021,7 @@ Amendments to corporate tax integrity provisions strengthen transfer pricing, an
 
 ### **Stop Ultra-Wealthy Tax Avoidance**
 
-1. Reduce high-net-worth tax minimisation by reforming discretionary trust distribution rules, tightening private-vehicle income conversion pathways, strengthening large-balance superannuation concession limits, and applying a minimum effective tax framework to ultra-high-net-worth individuals.
+1. Rebuild private-wealth tax integrity rules by reforming discretionary trust distribution rules, restricting income-conversion pathways through private vehicles, strengthening large-balance superannuation concession limits, and applying a minimum effective tax framework to ultra-high-net-worth individuals.
 
    1. Effective tax rates among the wealthiest will better reflect their economic capacity when income conversion and distribution strategies lose their structural advantage.
    2. Public confidence will improve when the tax system is harder to bypass through private legal structures that are not available to ordinary earners.
@@ -1480,7 +1480,7 @@ Legislation would need to define the covered small-business class, the types of 
 
 ### **Support Small Businesses to Stay Compliant**
 
-1. The ACCC and state small business commissioners will provide standardised contract templates, plain-language compliance guidance, and low-cost pre-execution contract review services for small businesses entering standard form agreements.
+1. Small businesses entering standard form agreements will have access to standardised contract templates, plain-language compliance guidance, and low-cost pre-execution contract review services delivered through the ACCC and state small business commissioners.
 
    1. Small businesses will be better able to identify unfair or high-risk contract terms before becoming locked into them.
    2. Compliance decisions will become easier and less intimidating when guidance is standardised, practical, and written for ordinary operators rather than specialist lawyers.
@@ -2048,7 +2048,7 @@ The office would be created by Commonwealth law with defined functions in standa
 
 ### **Take Religious Advantage Out of Public Services**
 
-1. Require Commonwealth institutions, publicly funded service providers exercising public functions, and federally regulated public-facing services to operate on secular and non-discriminatory terms by removing official religious prayers, rituals, and bias from public institutional practice and documentation, narrowing religious exemptions where services are delivered to the public or public functions are carried out with public funding, and reforming philanthropy law so tax-deductible status does not apply to activities solely for advancing religion.
+1. Commonwealth institutions, publicly funded service providers, and federally regulated public-facing services will be required to operate on secular and non-discriminatory terms by removing official religious prayers, rituals, and bias from public institutional practice and documentation, narrowing religious exemptions where services are delivered to the public or public functions are carried out with public funding, and reforming philanthropy law so tax-deductible status does not apply to activities solely for advancing religion.
 
    1. Australians of all beliefs and none will meet public institutions on more equal civic terms.
    2. People using publicly funded services will have stronger confidence that access and treatment do not depend on someone else’s religious doctrine.
@@ -2138,7 +2138,7 @@ Implementation would require Commonwealth law to create the national cannabis fr
 
 ### **Crack Down on Coercive Control and Sexual Violence**
 
-1. Require the federal family law system, national online safety regime, and Commonwealth-funded domestic and sexual violence responses to recognise coercive control and sexual violence as patterns of serious abuse by adopting coercive-control-aware and trauma-informed standards, strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and aligning federal migration law so non-citizens convicted of serious sexual violence are presumed to lose the right to remain in Australia, subject only to narrow exceptions required by law and fundamental human-rights obligations.
+1. Federal family law, national online safety regulation, Commonwealth-funded domestic and sexual violence responses, and migration consequences for non-citizens convicted of serious sexual violence will be aligned around coercive-control-aware and trauma-informed victim-survivor safety standards by strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and creating mandatory visa cancellation consequences for specified serious sexual violence and defined serious family-violence and coercive-control convictions where required by migration law.
 
    1. Victim-survivors will face fewer federal systems that treat coercive control and sexual violence as isolated incidents instead of patterns of abuse.
    2. People leaving abusive relationships will encounter safer court processes and stronger protection against abuse carried through digital tools and online platforms.
@@ -2185,7 +2185,7 @@ Implementation would require amendments to Commonwealth legislation, federal cou
 
 ### **Put Essential Services Back in Public Hands**
 
-1. Require the Commonwealth to retain, restore, or create public ownership and public-delivery control over essential services, major public data systems holding sensitive personal data, and natural monopoly infrastructure where universal access, privacy, affordability, or system integrity would otherwise be weakened by privatisation, outsourcing, or fragmented private control.
+1. Essential services, including major public data systems holding sensitive personal data and natural monopoly infrastructure, will remain, return to, or be placed under public ownership and public-delivery control where universal access, privacy, affordability, or system integrity would otherwise be weakened by privatisation, outsourcing, or fragmented private control.
 
    1. Australians will have stronger confidence that essential services are being run for access and reliability rather than private extraction.
    2. Households relying on core services will face fewer pressures to treat basic needs as user-pays market opportunities.
@@ -2231,7 +2231,7 @@ Implementation would require the Commonwealth to build a public-interest test in
 
 ### **Provide Civic Orientation to New Migrants**
 
-1. New migrants entering long-term or permanent settlement pathways will be required to complete mandatory civic orientation and practical support programs so they can understand Australian law, institutions, services, work, and community life.
+1. New migrants entering long-term or permanent settlement pathways will be required to complete mandatory civic orientation and practical support programs covering Australian law, institutions, services, work, and community life.
 
    1. New migrants will have a clearer understanding of Australian law, institutions, rights, and responsibilities from the start.
    2. Families settling permanently will face fewer problems caused by confusion about services, schools, workplaces, and everyday legal expectations.
@@ -2239,35 +2239,171 @@ Implementation would require the Commonwealth to build a public-interest test in
    4. Public confidence in migration will strengthen when settlement is treated as part of the system rather than left to chance.
    5. Multiculturalism will be strengthened when people are supported to join Australian civic life without being asked to abandon private identity or belief.
 
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Long-term settlement works better when migrants are given a clear introduction to the legal and civic environment they are entering, rather than being left to learn it through mistakes, informal advice, or crisis. A structured orientation reduces confusion about how public institutions work, what rights people hold, what obligations apply, and where practical help can be found.
+
+**Institutional boundary**
+
+This reform applies to migrants entering long-term or permanent settlement pathways. It is not aimed at short-stay visitors. It is also not a cultural conformity test. The purpose is to explain the public rules and institutions of Australian life, not to police private identity, language, religion, or belief.
+
+**Civic scope**
+
+The program should focus on the practical civic foundations people need to live and participate here: Australian law, public institutions, work and workplace rights, schools, health and social services, equal treatment under the law, and the ordinary expectations that govern public life. The aim is to make those basics explicit early, rather than assuming that new migrants will pick them up evenly on their own.
+
+**Settlement interaction**
+
+Making orientation mandatory matters because optional programs are most often missed by the people who need them most. Folding civic orientation into the normal settlement process makes it part of how Australia receives new long-term migrants, rather than an add-on left to chance.
+
+**Implementation outline**
+
+Implementation would require the Commonwealth to define which settlement pathways are covered, set minimum civic-orientation content, fund delivery and practical support, and link completion to relevant settlement or visa milestones. Delivery should be flexible enough to work across different languages, family situations, and local contexts without changing the core civic standard.
+
+**Reference**
+
+[Migration Policy](https://www.fusionparty.org.au/migration_policy)
+
+---
+</details>
+
 ### **Match Migration to What Australia Can Support**
 
-1. Set annual migration planning and intake settings through a published absorptive-capacity framework that ties migration levels to housing supply, service capacity, infrastructure readiness, labour market conditions, and settlement capability, with regular review and transparent triggers for adjustment.
+1. Establish a published absorptive-capacity framework that determines annual migration planning and intake settings against housing supply, service capacity, infrastructure readiness, labour market conditions, and settlement capability, with regular review and transparent adjustment triggers.
 
-   1. Australians and new arrivals will face less pressure from migration settings that outrun housing, services, and infrastructure.
+   1. Australians and migrants will both face less pressure from migration settings that outrun housing, services, and infrastructure.
    2. Population growth will be planned against real capacity rather than used as a shortcut for headline GDP growth.
    3. Communities will have stronger confidence that migration levels are being set on practical grounds rather than on pressure for unlimited labour supply.
    4. New arrivals will be more likely to arrive into systems that can actually support them well.
    5. Migration debates will be less vulnerable to scapegoating when intake settings are tied to transparent capacity tests.
 
-### **Expand Refugee Intake Through Prepared Communities**
+<details>
+<summary><strong>Further Detail</strong></summary>
 
-1. Increase Australia’s humanitarian intake and direct new settlement growth through nominated communities where housing, health, education, English, trauma support, and settlement services are ready or funded together, using regional partnerships and community-led settlement models where they improve capacity and reduce avoidable overheads.
+---
+
+**Design rationale**
+
+Migration planning should not be set by headline GDP goals, short-term labour demand, or political instinct alone. If intake settings are disconnected from housing, services, infrastructure, and settlement capacity, pressure builds faster than governments can respond and migration becomes an easy target for public frustration. A published absorptive-capacity framework gives the system a visible planning basis instead of leaving those trade-offs hidden.
+
+**Framework design**
+
+The framework should be built around a defined set of capacity measures that can be reviewed regularly and understood publicly. It should be broad enough to reflect how migration pressure is actually experienced, rather than relying on a single proxy such as employer demand or aggregate growth. Its purpose is to discipline annual intake planning, not to replace all judgement with a mechanical formula.
+
+**National coordination**
+
+The Commonwealth controls migration settings, but many of the systems that absorb population growth are planned or delivered with the states, territories, and local communities. A workable framework therefore needs shared data, clear responsibilities, and regular review so migration planning is tied to real delivery conditions rather than to assumptions made in Canberra alone.
+
+**Planning discipline**
+
+A published framework matters because it changes the burden of proof. It requires governments to show that intake settings match real capacity, rather than assuming that capacity will somehow catch up later. That makes it harder to use migration as a shortcut for growth while leaving housing, transport, health, and settlement systems to absorb the consequences.
+
+**Residual risks**
+
+Even with a well-designed framework, intake settings will still involve judgement. Capacity does not move evenly across housing, services, labour markets, and settlement support, and humanitarian obligations may at times pull in a different direction from domestic capacity pressures. The framework reduces hidden trade-offs; it does not eliminate them.
+
+**Implementation outline**
+
+Implementation would require the Commonwealth to establish the framework in law or formal planning rules, define the indicators it uses, publish the methodology, and require annual migration settings to be justified against it. The review cycle should include transparent adjustment triggers so changes in capacity are reflected in planning before pressure becomes acute.
+
+**Reference**
+
+[Migration Policy](https://www.fusionparty.org.au/migration_policy)
+
+---
+</details>
+
+### **Coordinate Refugee Support Through Local Communities**
+
+1. Humanitarian settlement placements and support will be coordinated through designated local communities where housing, health, education, English, trauma support, and settlement services are assessed and funded together, building on existing settlement locations, regional partnerships, and community-led models to improve capacity and reduce avoidable overheads.
 
    1. More people fleeing persecution, war, and severe danger will have a safe and orderly path to protection.
-   2. New arrivals will be more likely to settle in places that are prepared to support them well from the start.
-   3. Communities taking part will be better able to absorb new arrivals without fragmented service pressure.
-   4. Humanitarian expansion will be easier to scale when settlement support is organised around prepared local capacity rather than ad hoc placements.
-   5. Public confidence in a larger humanitarian program will strengthen when intake growth is matched to visible local readiness.
+   2. New arrivals will begin settlement in communities where the support they need is already in place.
+   3. Communities taking part will absorb new arrivals with less fragmented service pressure and less avoidable strain on local systems.
+   4. Humanitarian expansion will scale more reliably when local capacity is planned and funded together.
+   5. Public confidence in the humanitarian program will strengthen when settlement is matched to visible local readiness.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Humanitarian settlement works best when support is organised locally and early, rather than assembled piecemeal after arrival. Where housing, health, education, English, trauma support, and settlement services are poorly aligned, the burden falls on new arrivals, frontline workers, and local communities at the same time. A community-based coordination model is meant to reduce that fragmentation, not to create separate enclaves or leave settlement to chance.
+
+**Settlement model**
+
+This reform builds on the fact that Australia already settles humanitarian entrants through recognised locations and community-linked models. The change is to make local readiness more deliberate, more visible, and more coordinated, so placements are tied to places where the main support systems are actually able to work together.
+
+**Local readiness**
+
+Designated communities should be identified by practical readiness, not by symbolic enthusiasm alone. The real test is whether the place can absorb settlement well: whether housing, schools, health care, English support, trauma services, transport, and local coordination are in place or funded together. A location should not be treated as settlement-ready if it is missing the basic systems needed for humane and stable support.
+
+**Community coordination**
+
+Local coordination should reduce duplicated effort and avoidable overheads by treating settlement as a shared local function rather than a series of disconnected referrals. Regional partnerships and community-led models are useful where they strengthen that coordination, but they should support a common settlement standard rather than replace it with uneven local improvisation.
+
+**Residual risks**
+
+Even with strong local coordination, settlement choices will still involve trade-offs between service readiness, housing availability, family or community connections, and the preferences of new arrivals themselves. A coordinated model can manage those tensions better, but it cannot make every settlement factor line up perfectly in every case.
+
+**Implementation outline**
+
+Implementation would require the Commonwealth to designate settlement-ready communities against published criteria, align settlement funding and placements to those communities, and use existing settlement locations, regional partnerships, and community-led models as the base for expansion. Funding and placement decisions should be linked so local support capacity grows with the settlement task rather than trailing behind it.
+
+**Reference**
+
+[Migration Policy](https://www.fusionparty.org.au/migration_policy)
+
+---
+</details>
 
 ### **Make Every Visa Fit Its Purpose**
 
-1. Rebuild federal visa settings so student, work, holiday, business, humanitarian, and family pathways are clearly defined, enforceable, and protected against routine misuse as substitutes for other migration categories, with visa conditions, integrity checks, and pathway rules aligned to each visa’s stated purpose.
+1. Rebuild federal visa settings so student, work, holiday, business, humanitarian, and family pathways are clearly defined, enforceable, and protected against routine misuse as substitutes for other migration categories, with visa conditions, integrity checks, and pathway rules aligned to each pathway’s stated purpose.
 
    1. Visa holders will face a clearer and more honest migration system, with fewer backdoor pathways and fewer false expectations.
    2. Communities will have stronger confidence that migration rules mean what they say.
    3. Genuine students, visitors, workers, and families will be less crowded out by misuse of pathways designed for something else.
    4. Migration planning will become more reliable when visa numbers better reflect their actual purpose.
    5. Public debate will be less distorted by large opaque inflows sitting outside the government’s intended migration settings.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+A visa system loses credibility when people are routinely using one pathway as a substitute for another. That weakens planning, creates false expectations, and makes it harder to tell what migration numbers actually mean. Clear pathway design matters because different visa streams exist for different reasons, and the system stops making sense when those reasons are blurred in practice.
+
+**Pathway integrity**
+
+Student, work, holiday, business, humanitarian, and family pathways should each have a clear function, and the rules attached to them should reflect that function. The aim is not to remove all lawful movement between categories. It is to stop routine substitution from becoming an unofficial operating model.
+
+**System clarity**
+
+A clearer visa system improves more than enforcement. It also makes the migration system easier for applicants, institutions, employers, and the public to understand. When categories are blurred, honest users face more uncertainty and bad actors find more room to exploit the gaps.
+
+**Flexibility and limits**
+
+A well-designed system still needs lawful ways to deal with genuine changes in circumstance. The point is not to make every pathway rigid. It is to make sure flexibility operates as an exception within a coherent system, not as a backdoor replacement for proper pathway design.
+
+**Implementation outline**
+
+Implementation would require the Commonwealth to review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
+
+**Reference**
+
+[Migration Policy](https://www.fusionparty.org.au/migration_policy)
+
+---
+</details>
 
 ## Update Our Schools
 
