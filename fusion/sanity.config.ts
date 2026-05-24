@@ -36,7 +36,7 @@ const getPageStructure = (S: StructureBuilder, parentId?: string): any => {
 
 export default defineConfig({
   name: 'default',
-  title: 'Reclaim Website',
+  title: 'Reignite Democracy Website',
 
   projectId: 'qwl3f8jb',
   dataset: 'production',

@@ -411,7 +411,7 @@ export default defineType({
           title: 'Description',
           type: 'text',
           initialValue:
-            'We need people like you to help us reclaim our future. Join Fusion Party today and be part of the change.',
+            'We need people like you to help us reclaim our future. Join Reignite Democracy today and be part of the change.',
         },
         {name: 'buttonText', title: 'Button Text', type: 'string', initialValue: 'Sign Up Now'},
         {

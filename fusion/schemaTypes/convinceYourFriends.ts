@@ -126,7 +126,7 @@ export default defineType({
         }),
         defineField({
           name: 'fusionWay',
-          title: 'Fusion Party Way',
+          title: 'Reignite Democracy Way',
           type: 'object',
           fields: [
             defineField({name: 'title', type: 'string'}),

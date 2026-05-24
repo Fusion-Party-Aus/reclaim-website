@@ -79,7 +79,7 @@ export default defineType({
       name: 'resourceLinks',
       title: 'Resource Links',
       type: 'array',
-      description: 'Links to national Fusion resources',
+      description: 'Links to Reignite Democracy resources',
       of: [
         {
           type: 'object',
@@ -136,8 +136,8 @@ export default defineType({
       name: 'copyrightText',
       title: 'Copyright Text',
       type: 'string',
-      description: 'e.g. "2024-2025 Fusion Party Victoria. All rights reserved."',
-      initialValue: '2024-2026 Fusion Party. All rights reserved.',
+      description: 'e.g. "2024-2026 Fusion Party Victoria - Reignite Democracy. All rights reserved."',
+      initialValue: '2024-2026 Fusion Party Victoria - Reignite Democracy. All rights reserved.',
     }),
     defineField({
       name: 'networkBranding',
