@@ -1,9 +1,9 @@
 /* ============================================
-    FUSION PARTY - NEO-BRUTALIST DESIGN SYSTEM
+    REIGNITE DEMOCRACY - NEO-BRUTALIST DESIGN SYSTEM
     ============================================ */
 
-/* Import Google Fonts - EVEN MORE EXPERIMENTAL, GRAPHIC, DISPLAY FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Chakra+Petch:wght@400;600;700&family=Bebas+Neue&family=Anton&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Archivo+Black&family=Anton&display=swap');
 
 @import 'tailwindcss';
 
@@ -24,38 +24,37 @@
   --color-grey-light: #e5e5e5;
   --color-yellow: #ffed00;
   --color-yellow-bright: #ffeb3b;
-  --color-black: #010102;
-  --color-white: #ffffff;
+  --color-black: #0c0b11;
+  --color-white: #fcfbfe;
   --color-red: #ff3b30;
   --color-orange: #ff9500;
   --color-blue: #007aff;
   --color-green: #34c759;
 
-  /* EXPERIMENTAL FONTS - Aggressive, Display-Heavy Typography */
-  --default-font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-heading: 'Archivo Black', 'Anton', 'Impact', sans-serif;
-  --font-display: 'Space Grotesk', 'Bebas Neue', 'Archivo Black', sans-serif;
-  --font-accent: 'Chakra Petch', 'Inter', sans-serif;
-  --font-ultra: 'Anton', 'Bebas Neue', 'Impact', sans-serif;
+  /* Typography system */
+  --default-font-family: 'Barlow', system-ui, sans-serif;
+  --font-sans: 'Barlow', system-ui, sans-serif;
+  --font-heading: 'Archivo Black', sans-serif;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-ultra: 'Anton', sans-serif;
 
   /* NEO-BRUTALIST SHADOWS - AGGRESSIVE, ASYMMETRIC, VARIED */
-  --shadow-brutal: 10px 10px 0px 0px #000000;
-  --shadow-brutal-sm: 5px 5px 0px 0px #000000;
-  --shadow-brutal-lg: 15px 15px 0px 0px #000000;
-  --shadow-brutal-xl: 20px 20px 0px 0px #000000;
+  --shadow-brutal: 10px 10px 0px 0px #0c0b11;
+  --shadow-brutal-sm: 5px 5px 0px 0px #0c0b11;
+  --shadow-brutal-lg: 15px 15px 0px 0px #0c0b11;
+  --shadow-brutal-xl: 20px 20px 0px 0px #0c0b11;
   --shadow-brutal-magenta: 10px 10px 0px 0px #c926f2;
   --shadow-brutal-mint: 10px 10px 0px 0px #5effd8;
   --shadow-brutal-yellow: 10px 10px 0px 0px #ffed00;
   --shadow-brutal-red: 10px 10px 0px 0px #ff3b30;
   --shadow-brutal-orange: 10px 10px 0px 0px #ff9500;
-  --shadow-brutal-asymmetric-1: 8px 12px 0px 0px #000000;
-  --shadow-brutal-asymmetric-2: 12px 8px 0px 0px #000000;
-  --shadow-brutal-asymmetric-3: 6px 14px 0px 0px #000000;
-  --shadow-brutal-inverted: -6px -6px 0px 0px #000000;
-  --shadow-brutal-double: 5px 5px 0px 0px #5effd8, 10px 10px 0px 0px #000000;
+  --shadow-brutal-asymmetric-1: 8px 12px 0px 0px #0c0b11;
+  --shadow-brutal-asymmetric-2: 12px 8px 0px 0px #0c0b11;
+  --shadow-brutal-asymmetric-3: 6px 14px 0px 0px #0c0b11;
+  --shadow-brutal-inverted: -6px -6px 0px 0px #0c0b11;
+  --shadow-brutal-double: 5px 5px 0px 0px #5effd8, 10px 10px 0px 0px #0c0b11;
   --shadow-brutal-triple:
-    4px 4px 0px 0px #ffed00, 8px 8px 0px 0px #c926f2, 12px 12px 0px 0px #000000;
+    4px 4px 0px 0px #ffed00, 8px 8px 0px 0px #c926f2, 12px 12px 0px 0px #0c0b11;
 }
 
 /* Base layer customizations */
@@ -73,15 +72,10 @@
   }
 
   body {
-    font-family:
-      'Inter',
-      -apple-system,
-      BlinkMacSystemFont,
-      system-ui,
-      sans-serif;
+    font-family: 'Barlow', system-ui, sans-serif;
     background-color: #ffffff;
     color: #000000;
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip; /* Prevent horizontal scroll without breaking sticky */
@@ -93,42 +87,41 @@
     color: #000000;
   }
 
-  /* LOUD, GRAPHIC, EXPERIMENTAL HEADINGS - Pure Neo-Brutalism */
+  /* Headings */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Archivo Black', 'Anton', 'Impact', sans-serif;
+    font-family: 'Archivo Black', sans-serif;
     font-weight: 900;
-    line-height: 0.85; /* Even tighter line-height for maximum impact */
-    letter-spacing: -0.03em; /* Tighter tracking for condensed look */
     text-transform: uppercase;
   }
 
-  /* H1: Ultra-bold display headlines */
+  /* Display: hero-level, tight as a poster */
   h1 {
-    font-family: 'Anton', 'Bebas Neue', 'Archivo Black', sans-serif;
-    font-weight: 400; /* Anton is already ultra-bold */
+    line-height: 0.88;
     letter-spacing: -0.02em;
-    line-height: 0.9;
   }
 
-  /* H2: Strong display with Space Grotesk */
+  /* Section titles: tight but not colliding */
   h2 {
-    font-family: 'Space Grotesk', 'Archivo Black', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
   }
 
-  /* H3+: Archivo Black for consistency */
+  /* Card / sub-section titles: legible at smaller sizes */
   h3,
-  h4,
+  h4 {
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+
   h5,
   h6 {
-    font-family: 'Archivo Black', sans-serif;
-    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 0;
   }
 }
 
@@ -386,14 +379,13 @@
     }
   }
 
-  /* ELECTORATE CARDS - Clean with asymmetric border */
+  /* ELECTORATE CARDS */
   .electorate-card {
     background-color: #ffffff;
     border: 5px solid #000000;
     padding: 2rem;
     transition: all 0.2s ease;
     box-shadow: 8px 8px 0px 0px #5effd8;
-    border-left: 12px solid #5effd8;
   }
 
   .electorate-card:hover {
@@ -444,7 +436,6 @@
     margin-bottom: 0.75rem;
     background-color: #f5f5f5;
     border: 3px solid #000000;
-    border-left: 6px solid #c926f2;
     color: #000000;
     line-height: 1.5;
     font-weight: 600;
@@ -527,7 +518,7 @@
   }
 
   .brutal-card-magenta {
-    border-left: 12px solid #c926f2;
+    border-color: #c926f2;
     box-shadow: 8px 8px 0px 0px #c926f2;
   }
 
@@ -536,7 +527,7 @@
   }
 
   .brutal-card-mint {
-    border-left: 12px solid #5effd8;
+    border-color: #5effd8;
     box-shadow: 8px 8px 0px 0px #5effd8;
   }
 
@@ -584,7 +575,7 @@
     text-decoration: none;
     border-bottom: 5px solid #c926f2;
     padding-bottom: 0.125rem;
-    transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -676,6 +667,7 @@
   .prose li {
     line-height: 2;
     margin-bottom: 2rem;
+    max-width: 70ch;
   }
 
   .prose p:last-child {
@@ -907,7 +899,7 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
   }
 
@@ -964,5 +956,25 @@
 
   .animate-glow-pulse {
     animation: glow-pulse 2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-gentle,
+  .animate-float-slow,
+  .animate-wiggle-subtle,
+  .animate-pulse-gentle,
+  .animate-spin-slow,
+  .animate-bounce-subtle,
+  .animate-glow-pulse {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
