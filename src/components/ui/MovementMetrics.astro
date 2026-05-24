@@ -13,239 +13,295 @@ interface Props {
   metrics: Metric[]
   showMotivation?: boolean
   compact?: boolean
+  bare?: boolean
 }
 
-const { metrics, showMotivation = true, compact = false } = Astro.props
+const { metrics, showMotivation = true, compact = false, bare = false } = Astro.props
 
-// Calculate overall progress percentage
 const overallProgress = Math.round(
   metrics.reduce((sum, m) => sum + (m.current / m.goal) * 100, 0) / metrics.length
 )
 ---
 
-<div
-  class={`bg-white border-8 border-black p-8 ${compact ? '' : 'lg:p-12'}`}
-  style="box-shadow: 12px 12px 0px 0px #FFED00, 24px 24px 0px 0px #C926F2;"
->
-  <!-- Header -->
-  <div class="text-center mb-8">
-    <div
-      class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-4 transform -rotate-2"
-      style="box-shadow: 4px 4px 0px 0px #FFED00;"
-    >
-      <p class="text-white font-black uppercase text-xl tracking-wide flex items-center gap-3">
-        <span class="text-3xl">🎯</span>
-        Building the Movement
-      </p>
-    </div>
-
-    {
-      !compact && (
-        <p class="text-gray-800 text-lg font-bold mb-2">
-          Every number is a person who said <strong class="text-magenta">enough is enough.</strong>
-        </p>
-      )
-    }
-
-    <!-- Overall Progress -->
-    <div class="mt-6">
-      <div class="flex items-center justify-between text-black mb-2">
-        <span class="font-black uppercase text-sm">Overall Progress</span>
-        <span class="font-black text-magenta text-xl">{overallProgress}%</span>
-      </div>
-      <div class="h-4 bg-gray-200 border-4 border-black relative overflow-hidden">
+{bare ? (
+  /* ─── Bare mode: numbers as structural elements, no card chrome ─── */
+  <div style="background: #000000;">
+    <div class="grid grid-cols-2 lg:grid-cols-4" style="gap: 4px;">
+    {metrics.map((metric, index) => {
+      const progress = Math.round((metric.current / metric.goal) * 100)
+      return (
         <div
-          class="h-full bg-gradient-to-r from-magenta via-mint to-yellow transition-all duration-1000 ease-out relative"
-          style={`width: ${overallProgress}%;`}
-          data-progress-bar
+          class="flex flex-col gap-3 px-6 py-8"
+          style="background: #FFED00;"
         >
-          <div
-            class="absolute inset-0 bg-white opacity-20"
-            style="animation: shimmer 2s infinite linear;"
-          >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Metrics Grid -->
-  <div
-    class={`grid ${compact ? 'md:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'} gap-8 md:gap-10 lg:gap-8 px-4 md:px-0`}
-  >
-    {
-      metrics.map((metric, index) => {
-        const progress = Math.round((metric.current / metric.goal) * 100)
-        const colorConfigs = {
-          magenta: {
-            bg: '#C926F2',
-            shadow: '#FFED00',
-            text: '#FFFFFF',
-            iconBg: '#000000',
-            iconColor: '#FFFFFF',
-          },
-          mint: {
-            bg: '#5EFFD8',
-            shadow: '#C926F2',
-            text: '#000000',
-            iconBg: '#000000',
-            iconColor: '#5EFFD8',
-          },
-          yellow: {
-            bg: '#FFED00',
-            shadow: '#5EFFD8',
-            text: '#000000',
-            iconBg: '#000000',
-            iconColor: '#FFED00',
-          },
-        }
-        const config = colorConfigs[metric.color]
-        const rotations = ['-1deg', '0.5deg', '-0.5deg', '1deg']
-        const rotation = rotations[index % 4]
-
-        return (
-          <div
-            class="p-6 border-8 border-black transition-all duration-200 hover:-translate-y-2 hover:rotate-0 group relative mx-auto w-full max-w-sm lg:max-w-none"
-            style={`background-color: ${config.bg}; box-shadow: 8px 8px 0px 0px ${config.shadow}; transform: rotate(${rotation});`}
-          >
-            {/* Brutal corner stripe */}
-            <div class="absolute top-0 right-0 w-full h-3 bg-black" />
-
-            <div class="relative z-10 mt-2">
-              {/* Icon Badge */}
-              <div
-                class="mb-4 inline-block p-3 border-6 border-black"
-                style={`background-color: ${config.iconBg}; box-shadow: 4px 4px 0px 0px ${config.shadow};`}
-              >
-                <span
-                  class="text-3xl md:text-4xl"
-                  style={`filter: drop-shadow(0 0 0 ${config.iconColor});`}
-                >
-                  {metric.icon}
-                </span>
-              </div>
-
-              {/* Counter */}
-              <div class="mb-4">
-                <div class="flex items-baseline gap-1">
-                  {metric.prefix && (
-                    <span
-                      class="text-lg md:text-xl font-black"
-                      style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
-                    >
-                      {metric.prefix}
-                    </span>
-                  )}
-                  <span
-                    class="text-4xl md:text-5xl font-black counter leading-none"
-                    style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);`}
-                    data-target={metric.current}
-                    data-delay={index * 100}
-                  >
-                    0
-                  </span>
-                </div>
-                {metric.suffix && (
-                  <span
-                    class="text-sm md:text-base font-black block mt-1"
-                    style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
-                  >
-                    {metric.suffix}
-                  </span>
-                )}
-              </div>
-
-              {/* Label */}
-              <div class="border-t-4 border-black pt-3 mt-2">
-                <p
-                  class="text-xs md:text-sm font-black uppercase tracking-widest leading-tight mb-2 break-words"
-                  style={`color: ${config.text};`}
-                >
-                  {metric.label}
-                </p>
-                <p
-                  class="text-xs font-bold break-words"
-                  style={`color: ${config.text}; opacity: 0.8;`}
-                >
-                  Goal: {metric.prefix || ''}
-                  {metric.goal.toLocaleString()}
-                  {metric.suffix || ''}
-                </p>
-              </div>
-
-              {/* Progress Bar */}
-              <div class="relative mt-3">
-                <div
-                  class="h-2 bg-black border-2 border-black overflow-hidden"
-                  style="opacity: 0.3;"
-                >
-                  <div
-                    class="h-full transition-all duration-1000 ease-out progress-bar"
-                    style={`width: 0%; background-color: ${config.text};`}
-                    data-progress={progress}
-                    data-delay={index * 100}
-                  />
-                </div>
-                <span
-                  class="text-xs font-black mt-1 block text-right"
-                  style={`color: ${config.text};`}
-                >
-                  {progress}%
-                </span>
-              </div>
-            </div>
-
-            {/* Milestone Badge */}
-            {progress >= 90 && (
-              <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
-                <div
-                  class="bg-yellow border-4 border-black px-3 py-1 text-xs font-black uppercase whitespace-nowrap"
-                  style="box-shadow: 3px 3px 0px 0px #000; animation: bounce 2s infinite;"
-                >
-                  🔥 Almost There!
-                </div>
-              </div>
+          <div style="display: flex; align-items: baseline; gap: 0.2rem; flex-wrap: wrap;">
+            {metric.prefix && (
+              <span
+                class="font-black text-black"
+                style="font-family: 'Archivo Black', sans-serif; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1;"
+              >{metric.prefix}</span>
+            )}
+            <span
+              class="font-black leading-none counter"
+              style={`font-family: 'Archivo Black', sans-serif; font-size: clamp(3rem, 4.5vw + 0.5rem, 5.5rem); color: #000;`}
+              data-target={metric.current}
+              data-delay={index * 80}
+            >0</span>
+            {metric.suffix && (
+              <span
+                class="font-black text-black/50"
+                style="font-size: clamp(0.875rem, 1.5vw, 1.125rem); line-height: 1; align-self: flex-end; padding-bottom: 0.2rem;"
+              >{metric.suffix}</span>
             )}
           </div>
-        )
-      })
-    }
-  </div>
 
-  <!-- Motivation Message -->
-  {
-    showMotivation && (
-      <div class="mt-8 text-center">
-        <div
-          class="inline-block bg-yellow border-4 border-black px-6 py-4 transform rotate-1"
-          style="box-shadow: 4px 4px 0px 0px #000;"
-        >
-          <p class="text-black font-black text-sm md:text-base">
-            {overallProgress < 50 && '🌱 Every movement starts somewhere. Join us!'}
-            {overallProgress >= 50 &&
-              overallProgress < 75 &&
-              '📈 Momentum is building. Be part of it!'}
-            {overallProgress >= 75 &&
-              overallProgress < 90 &&
-              "🚀 We're gaining speed. Don't miss out!"}
-            {overallProgress >= 90 && '⚡ This is happening. History is being made!'}
+          <p
+            class="font-black uppercase text-black/60"
+            style="font-size: 0.625rem; letter-spacing: 0.1em;"
+          >{metric.label}</p>
+
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem;">
+            <div style="height: 3px; background: rgba(0,0,0,0.15);">
+              <div
+                class="progress-bar"
+                style="height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #000;"
+                data-progress={progress}
+                data-delay={index * 80}
+              />
+            </div>
+            <span
+              class="font-black text-black/40"
+              style="font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;"
+            >{progress}% of goal</span>
+          </div>
+        </div>
+      )
+    })}
+    </div>
+  </div>
+) : (
+  /* ─── Card mode: existing layout, no rotations ─── */
+  <div
+    class={`bg-transparent p-0 ${compact ? '' : 'lg:py-6'}`}
+  >
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div
+        class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-4"
+        style="box-shadow: 4px 4px 0px 0px #FFED00;"
+      >
+        <p class="text-black font-black uppercase text-xl tracking-wide flex items-center gap-3">
+          <span class="text-3xl" aria-hidden="true">🎯</span>
+          Building the Movement
+        </p>
+      </div>
+
+      {
+        !compact && (
+          <p class="text-black/80 text-lg font-bold mb-2">
+            Every number is a person who said <strong class="text-magenta">enough is enough.</strong>
           </p>
+        )
+      }
+
+      <div class="mt-6">
+        <div class="flex items-center justify-between text-black mb-2">
+          <span class="font-black uppercase text-sm">Overall Progress</span>
+          <span class="font-black text-magenta text-xl">{overallProgress}%</span>
+        </div>
+        <div class="h-4 bg-black/10 border-4 border-black relative overflow-hidden">
+          <div
+            class="h-full bg-yellow transition-transform duration-700 ease-out origin-left"
+            style={`width: 100%; transform: scaleX(${overallProgress / 100});`}
+            data-progress-bar
+          >
+          </div>
         </div>
       </div>
-    )
-  }
-</div>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div
+      class={`grid ${compact ? 'md:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'} gap-8 md:gap-10 lg:gap-8 px-4 md:px-0`}
+    >
+      {
+        metrics.map((metric, index) => {
+          const progress = Math.round((metric.current / metric.goal) * 100)
+          const colorConfigs = {
+            magenta: {
+              bg: '#C926F2',
+              shadow: '#FFED00',
+              text: '#0c0b11',
+              iconBg: '#000000',
+              iconColor: '#FFFFFF',
+            },
+            mint: {
+              bg: '#5EFFD8',
+              shadow: '#C926F2',
+              text: '#000000',
+              iconBg: '#000000',
+              iconColor: '#5EFFD8',
+            },
+            yellow: {
+              bg: '#FFED00',
+              shadow: '#5EFFD8',
+              text: '#000000',
+              iconBg: '#000000',
+              iconColor: '#FFED00',
+            },
+          }
+          const config = colorConfigs[metric.color]
+
+          return (
+            <div
+              class="p-6 border-8 border-black transition-all duration-200 hover:-translate-y-2 group relative mx-auto w-full max-w-sm lg:max-w-none"
+              style={`background-color: ${config.bg}; box-shadow: 8px 8px 0px 0px ${config.shadow};`}
+            >
+              {/* Corner stripe */}
+              <div class="absolute top-0 right-0 w-full h-3 bg-black" />
+
+              <div class="relative z-10 mt-2">
+                {/* Icon Badge */}
+                <div
+                  class="mb-4 inline-block p-3 border-6 border-black"
+                  style={`background-color: ${config.iconBg}; box-shadow: 4px 4px 0px 0px ${config.shadow};`}
+                >
+                  <span
+                    class="text-3xl md:text-4xl"
+                    aria-hidden="true"
+                  >
+                    {metric.icon}
+                  </span>
+                </div>
+
+                {/* Counter */}
+                <div class="mb-4">
+                  <div class="flex items-baseline gap-1">
+                    {metric.prefix && (
+                      <span
+                        class="text-lg md:text-xl font-black"
+                        style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
+                      >
+                        {metric.prefix}
+                      </span>
+                    )}
+                    <span
+                      class="text-4xl md:text-5xl font-black counter leading-none"
+                      style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);`}
+                      data-target={metric.current}
+                      data-delay={index * 100}
+                    >
+                      0
+                    </span>
+                  </div>
+                  {metric.suffix && (
+                    <span
+                      class="text-sm md:text-base font-black block mt-1"
+                      style={`color: ${config.text}; font-family: 'Archivo Black', sans-serif;`}
+                    >
+                      {metric.suffix}
+                    </span>
+                  )}
+                </div>
+
+                {/* Label */}
+                <div class="border-t-4 border-black pt-3 mt-2">
+                  <p
+                    class="text-xs md:text-sm font-black uppercase tracking-widest leading-tight mb-2 break-words"
+                    style={`color: ${config.text};`}
+                  >
+                    {metric.label}
+                  </p>
+                  <p
+                    class="text-xs font-bold break-words"
+                    style={`color: ${config.text}; opacity: 0.8;`}
+                  >
+                    Goal: {metric.prefix || ''}
+                    {metric.goal.toLocaleString()}
+                    {metric.suffix || ''}
+                  </p>
+                </div>
+
+                {/* Progress Bar */}
+                <div class="relative mt-3">
+                  <div
+                    class="h-2 bg-black border-2 border-black overflow-hidden"
+                    style="opacity: 0.3;"
+                  >
+                    <div
+                      class="h-full progress-bar"
+                      style={`width: 100%; transform: scaleX(0); transform-origin: left; background-color: ${config.text};`}
+                      data-progress={progress}
+                      data-delay={index * 100}
+                    />
+                  </div>
+                  <span
+                    class="text-xs font-black mt-1 block text-right"
+                    style={`color: ${config.text};`}
+                  >
+                    {progress}%
+                  </span>
+                </div>
+              </div>
+
+              {progress >= 90 && (
+                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+                  <div
+                    class="bg-yellow border-4 border-black px-3 py-1 text-xs font-black uppercase whitespace-nowrap"
+                    style="box-shadow: 3px 3px 0px 0px #000;"
+                  >
+                    Almost There!
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        })
+      }
+    </div>
+
+    {
+      showMotivation && (
+        <div class="mt-8 text-center">
+          <div
+            class="inline-block bg-yellow border-4 border-black px-6 py-4 transform rotate-1"
+            style="box-shadow: 4px 4px 0px 0px #000;"
+          >
+            <p class="text-black font-black text-sm md:text-base">
+              {overallProgress < 50 && '🌱 Every movement starts somewhere. Join us!'}
+              {overallProgress >= 50 &&
+                overallProgress < 75 &&
+                '📈 Momentum is building. Be part of it!'}
+              {overallProgress >= 75 &&
+                overallProgress < 90 &&
+                "🚀 We're gaining speed. Don't miss out!"}
+              {overallProgress >= 90 && '⚡ This is happening. History is being made!'}
+            </p>
+          </div>
+        </div>
+      )
+    }
+  </div>
+)}
 
 <script>
-  // Animated Counter
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  function setCounterFinal(element: HTMLElement, target: number) {
+    element.textContent = Math.round(target).toLocaleString()
+  }
+
   function animateCounter(element: HTMLElement, target: number, delay: number) {
+    if (prefersReducedMotion) {
+      setCounterFinal(element, target)
+      return
+    }
     setTimeout(() => {
-      const duration = 2000 // 2 seconds
-      const steps = 60
+      const duration = 1400
+      const steps = 50
       const increment = target / steps
       let current = 0
       const stepDuration = duration / steps
-
       const timer = setInterval(() => {
         current += increment
         if (current >= target) {
@@ -258,38 +314,33 @@ const overallProgress = Math.round(
     }, delay)
   }
 
-  // Animated Progress Bar
   function animateProgressBar(element: HTMLElement, progress: number, delay: number) {
+    if (prefersReducedMotion) {
+      element.style.transform = `scaleX(${progress / 100})`
+      return
+    }
     setTimeout(() => {
-      element.style.width = `${progress}%`
+      element.style.transform = `scaleX(${progress / 100})`
     }, delay)
   }
 
-  // Initialize animations when element is in viewport
+  let hasAnimated = false
+
   function initAnimations() {
-    const counters = document.querySelectorAll('.counter')
-    counters.forEach((counter) => {
+    if (hasAnimated) return
+    hasAnimated = true
+    document.querySelectorAll('.counter').forEach((counter) => {
       const target = parseInt(counter.getAttribute('data-target') || '0')
       const delay = parseInt(counter.getAttribute('data-delay') || '0')
       animateCounter(counter as HTMLElement, target, delay)
     })
-
-    const progressBars = document.querySelectorAll('.progress-bar')
-    progressBars.forEach((bar) => {
+    document.querySelectorAll('.progress-bar').forEach((bar) => {
       const progress = parseInt(bar.getAttribute('data-progress') || '0')
       const delay = parseInt(bar.getAttribute('data-delay') || '0')
       animateProgressBar(bar as HTMLElement, progress, delay)
     })
   }
 
-  // Run on page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAnimations)
-  } else {
-    initAnimations()
-  }
-
-  // Intersection Observer for lazy animation (optional enhancement)
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -300,44 +351,22 @@ const overallProgress = Math.round(
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
-
-    const metricsWidget = document.querySelector('[data-progress-bar]')?.closest('div')
-    if (metricsWidget?.parentElement) {
-      observer.observe(metricsWidget.parentElement)
-    }
+    const target = document.querySelector('.counter')?.closest('section') ||
+                   document.querySelector('[data-progress-bar]')?.closest('div')
+    if (target) observer.observe(target)
+  } else {
+    initAnimations()
   }
 </script>
 
 <style>
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  /* Smooth number transitions */
   .counter {
     font-variant-numeric: tabular-nums;
-    transition: all 0.3s ease;
   }
-
-  /* Progress bar animation */
   .progress-bar {
-    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left;
   }
 </style>
