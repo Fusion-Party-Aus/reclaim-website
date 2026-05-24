@@ -5,9 +5,10 @@ import type { PortableTextBlock } from '../lib/portableText';
 interface Props {
   content?: PortableTextBlock[];
   title?: string;
+  childGroups?: Array<{ title: string }>;
 }
 
-const { content, title = 'On This Page' } = Astro.props;
+const { content, title = 'On This Page', childGroups = [] } = Astro.props;
 
 // Extract headings from portable text content
 const headings: Array<{ text: string; level: number; id: string }> = [];
@@ -32,6 +33,25 @@ if (content) {
           id
         });
       }
+    }
+  });
+}
+
+// Extract headings from child groups (such as Team Sections)
+if (childGroups) {
+  childGroups.forEach((group) => {
+    const text = group.title;
+    if (text) {
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+      
+      headings.push({
+        text,
+        level: 2,
+        id
+      });
     }
   });
 }

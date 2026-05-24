@@ -45,7 +45,7 @@ const colorMap = {
       class="fixed inset-0 z-[9998] pointer-events-none flex items-center justify-center opacity-0 transition-opacity duration-500"
     >
       <div class="text-center">
-        <div id="milestone-emoji" class="text-9xl mb-4 animate-bounce" />
+        <div id="milestone-emoji" class="text-9xl mb-4 animate-float-subtle" />
         <div
           id="milestone-text"
           class="text-4xl font-black uppercase bg-white border-6 border-black px-8 py-4"
@@ -170,17 +170,17 @@ const colorMap = {
 </script>
 
 <style>
-  @keyframes bounce {
+  @keyframes float-subtle {
     0%,
     100% {
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-30px) scale(1.1);
+      transform: translateY(-12px);
     }
   }
 
-  .animate-bounce {
-    animation: bounce 1s ease-in-out 3;
+  .animate-float-subtle {
+    animation: float-subtle 2s ease-in-out 3;
   }
 </style>
