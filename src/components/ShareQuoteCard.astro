@@ -23,7 +23,7 @@ interface Props {
 
 const {
   quote,
-  attribution = 'Fusion Party',
+  attribution = 'Reignite Democracy',
   category,
   policyUrl = '/',
   color = 'magenta',
@@ -232,7 +232,7 @@ const dataUrl = encodeURIComponent(
     ctx.fillStyle = '#000000'
     ctx.font = 'bold 40px Arial, sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText('FUSION PARTY', canvas.width / 2, canvas.height - 80)
+    ctx.fillText('REIGNITE DEMOCRACY', canvas.width / 2, canvas.height - 80)
 
     // QR Code placeholder (you'd use a QR library in production)
     ctx.strokeStyle = '#000000'
@@ -251,7 +251,7 @@ const dataUrl = encodeURIComponent(
 
     if (button) {
       const quote = button.dataset.quote || ''
-      const attribution = button.dataset.attribution || 'Fusion Party'
+      const attribution = button.dataset.attribution || 'Reignite Democracy'
       const category = button.dataset.category || ''
       const color = button.dataset.color || '#C926F2'
       const url = button.dataset.url || window.location.href

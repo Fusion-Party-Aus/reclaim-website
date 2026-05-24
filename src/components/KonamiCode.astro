@@ -60,7 +60,7 @@ const content = {
     </button>
 
     <div class="text-center">
-      <div class="text-6xl mb-6 animate-bounce">🎉</div>
+      <div class="text-6xl mb-6 animate-float-subtle">🎉</div>
       <h2 class="text-4xl font-black uppercase text-magenta mb-4" style="transform: rotate(1deg);">
         {content.title}
       </h2>
@@ -108,8 +108,8 @@ const content = {
 
       <button
         id="download-manifesto"
-        class="bg-magenta text-white px-8 py-4 font-black uppercase border-4 border-black hover:bg-magenta-dark transition-all hover:shadow-[8px_8px_0px_0px_#000000] hover:-translate-y-1"
-        style="box-shadow: 6px 6px 0px 0px #000000;"
+        class="bg-magenta text-[#0c0b11] px-8 py-4 font-black border-4 border-black hover:bg-magenta-dark transition-all hover:shadow-[8px_8px_0px_0px_#0c0b11] hover:-translate-y-1"
+        style="box-shadow: 6px 6px 0px 0px #0c0b11;"
       >
         {content.downloadButtonLabel}
       </button>
@@ -254,17 +254,17 @@ const content = {
 </script>
 
 <style>
-  @keyframes bounce {
+  @keyframes float-subtle {
     0%,
     100% {
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-20px) scale(1.1);
+      transform: translateY(-10px);
     }
   }
 
-  .animate-bounce {
-    animation: bounce 2s ease-in-out infinite;
+  .animate-float-subtle {
+    animation: float-subtle 2s ease-in-out infinite;
   }
 </style>

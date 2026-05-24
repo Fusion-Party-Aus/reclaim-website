@@ -109,7 +109,7 @@ const isSignedUp = memberNumber !== undefined
   document.querySelectorAll('.badge-share-btn.facebook').forEach((btn) => {
     btn.addEventListener('click', () => {
       const memberNumber = btn.getAttribute('data-member-number')
-      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}&quote=${encodeURIComponent(`I'm founding member #${memberNumber} of Fusion Party!`)}`
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}&quote=${encodeURIComponent(`I'm founding member #${memberNumber} of Reignite Democracy!`)}`
       window.open(url, '_blank', 'width=550,height=420')
     })
   })
@@ -182,7 +182,7 @@ const isSignedUp = memberNumber !== undefined
     // Logo/branding
     ctx.fillStyle = '#C926F2'
     ctx.font = 'bold 56px Arial, sans-serif'
-    ctx.fillText('FUSION PARTY', canvas.width / 2, 950)
+    ctx.fillText('REIGNITE DEMOCRACY', canvas.width / 2, 950)
 
     ctx.fillStyle = '#000000'
     ctx.font = 'bold 32px Arial, sans-serif'

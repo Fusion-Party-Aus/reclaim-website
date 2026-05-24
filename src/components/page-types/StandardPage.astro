@@ -31,12 +31,12 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
 ---
 
 <div
-  class={`grid gap-8 ${hasSidebar ? (page.sidebarPosition === 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]') : 'grid-cols-1 max-w-5xl mx-auto'}`}
+  class={`grid gap-8 ${hasSidebar ? (page.sidebarPosition === 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]') : 'grid-cols-1 max-w-4xl mx-auto'}`}
 >
   {
     hasSidebar && page.sidebarPosition === 'left' && page.body && (
       <div class="order-2 lg:order-1">
-        <DynamicSidebar content={page.body} />
+        <DynamicSidebar content={page.body} childGroups={childGroups} />
       </div>
     )
   }
@@ -104,7 +104,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
       childGroups.length > 0 && (
         <div class="mt-16 space-y-16">
           {childGroups.map((group) => (
-            <section>
+            <section id={group.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>
               <div class="mb-8">
                 <h2
                   class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
@@ -126,8 +126,8 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                   return (
                     <a
                       href={`/${child.fullPath}`}
-                      class="group flex flex-col border-4 border-black bg-white hover:-translate-y-1 transition-transform"
-                      style={`box-shadow: 6px 6px 0 0 ${accent};`}
+                      class="team-member-card group flex flex-col border-4 border-black bg-white transition-all duration-200"
+                      style={`--accent-color: ${accent};`}
                     >
                       <div class="aspect-square w-full border-b-4 border-black overflow-hidden relative">
                         {imageUrl ? (
@@ -237,8 +237,23 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
   {
     hasSidebar && page.sidebarPosition === 'right' && page.body && (
       <div>
-        <DynamicSidebar content={page.body} />
+        <DynamicSidebar content={page.body} childGroups={childGroups} />
       </div>
     )
   }
 </div>
+
+<style>
+  .team-member-card {
+    box-shadow: 6px 6px 0 0 var(--accent-color);
+    transform: translate(0, 0);
+  }
+  .team-member-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 0 var(--accent-color);
+  }
+  .team-member-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--accent-color);
+  }
+</style>

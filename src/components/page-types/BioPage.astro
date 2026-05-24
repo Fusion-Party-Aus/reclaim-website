@@ -204,7 +204,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     childGroups.length > 0 && (
       <div class="mt-20 space-y-16">
         {childGroups.map((group) => (
-          <section>
+          <section id={group.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>
             <div class="mb-8">
               <h2
                 class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
@@ -226,8 +226,8 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                 return (
                   <a
                     href={`/${child.fullPath}`}
-                    class="group flex flex-col border-4 border-black bg-white hover:-translate-y-1 transition-transform"
-                    style={`box-shadow: 6px 6px 0 0 ${accent};`}
+                    class="team-member-card group flex flex-col border-4 border-black bg-white transition-all duration-200"
+                    style={`--accent-color: ${accent};`}
                   >
                     <div class="aspect-square w-full border-b-4 border-black overflow-hidden relative">
                       {imageUrl ? (
@@ -281,5 +281,20 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     font-size: 1.2rem;
     line-height: 1.65;
     font-weight: 700;
+  }
+</style>
+
+<style>
+  .team-member-card {
+    box-shadow: 6px 6px 0 0 var(--accent-color);
+    transform: translate(0, 0);
+  }
+  .team-member-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 0 var(--accent-color);
+  }
+  .team-member-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--accent-color);
   }
 </style>
