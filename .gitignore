@@ -23,3 +23,12 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 AGENTS.md
+
+# Agent & Tooling caches
+.agents/
+.claude/
+.impeccable/
+skills-lock.json
+
+# Wrangler cache
+.wrangler/
