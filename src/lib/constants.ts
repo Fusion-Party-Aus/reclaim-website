@@ -7,7 +7,7 @@
 
 /**
  * Brand Colors
- * Official Fusion Party brand colors + design system additions
+ * Official Reignite Democracy brand colors + design system additions
  */
 export const BRAND_COLORS = {
   // Primary brand colors
