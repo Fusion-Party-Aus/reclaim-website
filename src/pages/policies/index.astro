@@ -107,88 +107,12 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 ---
 
 <BaseLayout
-  title={`${title} | Future Party Victoria`}
+  title={`${title} | Reignite Democracy`}
   description="Evidence-based policies with real costings — housing, tax justice, transport, renewables."
 >
   <Header />
-  <Hero title={title} subtitle={subtitle} />
+  <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
 
-  {/* ── Manifesto Intro ── */}
-  <section
-    class="bg-black text-white border-b-8 border-mint py-16 px-4 md:px-8 relative overflow-hidden"
-  >
-    {/* Corner triangle accent */}
-    <div
-      class="absolute bottom-0 right-0 w-48 h-48 bg-yellow"
-      style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-    >
-    </div>
-    <div class="max-w-4xl mx-auto relative z-10">
-      <div
-        class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-6 border-2 border-white"
-      >
-        Our Mission
-      </div>
-      <h2
-        class="text-3xl md:text-5xl font-black uppercase text-white mb-8 leading-tight"
-        style="font-family: 'Archivo Black', sans-serif;"
-      >
-        Fix Our Systems,<br /><span class="text-mint">Fix Our Country</span>
-      </h2>
-
-      <div class="space-y-5 border-l-8 border-magenta pl-6">
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          Our country became prosperous because we developed systems that incentivised{' '}
-          <span class="underline decoration-mint not-italic font-black text-white">long-term</span>{
-            ' '
-          }
-          economic growth. Over the past 50 years, those systems have been steadily dismantled and replaced
-          with ones that incentivise{' '}
-          <span class="underline decoration-yellow not-italic font-black text-white"
-            >short-term</span
-          >{' '}
-          gains instead.
-        </p>
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          Growth continued for a while — not because the systems were good, but because of the
-          cultural legacy which shaped our expectations and decisions.
-        </p>
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          But cultural legacy is temporary. It evolves from generation to generation, and changes as
-          we adapt to the world around us. Now that legacy has been diluted to the point that
-          long-term growth is no longer an outcome of our systems.
-        </p>
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          This is not the fault of the youth, nor the immigrant, nor the retiree.
-        </p>
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          It is the fault of an ultra-wealthy minority who used their influence over government to
-          bend our systems to their own advantage.
-        </p>
-        <p class="text-base md:text-lg font-semibold text-white/80 italic leading-relaxed">
-          And we cannot just go backwards. The systems of the past will not work again in the
-          present — the world has changed too much.
-        </p>
-        <p class="text-lg md:text-xl font-black text-mint uppercase leading-snug not-italic">
-          We must rebuild systems that generate long-term growth from first principles.<br />
-          We must Reclaim our economy for the benefit of our future generations.
-        </p>
-        <p class="text-lg md:text-xl font-black text-white uppercase italic leading-snug">
-          Fix our systems, fix our country. It is the only way.
-        </p>
-      </div>
-
-      <div
-        class="mt-8 bg-magenta border-4 border-white px-6 py-5"
-        style="box-shadow: 6px 6px 0 0 #FFED00;"
-      >
-        <p class="text-lg md:text-xl font-black text-white uppercase leading-snug">
-          Australia will not secure its future until we fix the systems that reward short-term gain
-          at the expense of long-term prosperity.
-        </p>
-      </div>
-    </div>
-  </section>
 
   {/* ── Content + Sidebar ── */}
   <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
@@ -242,8 +166,8 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                         return (
                           <div
                             id={policy.slug.current}
-                            class="border-4 border-black bg-white flex flex-col hover:-translate-y-0.5 transition-transform"
-                            style={`box-shadow: 5px 5px 0 0 ${accent};`}
+                            class="policy-card border-4 border-black bg-white flex flex-col transition-all duration-200"
+                            style={`--accent-color: ${accent};`}
                           >
                             {/* Accent top stripe */}
                             <div class="h-2 w-full" style={`background: ${accent};`} />
@@ -361,3 +285,18 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .policy-card {
+    box-shadow: 5px 5px 0 0 var(--accent-color);
+    transform: translate(0, 0);
+  }
+  .policy-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 0 var(--accent-color);
+  }
+  .policy-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--accent-color);
+  }
+</style>

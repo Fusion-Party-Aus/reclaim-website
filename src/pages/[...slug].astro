@@ -72,15 +72,24 @@ childPages.forEach((bio) => {
 })
 
 const childGroups = Object.values(groupedBios)
+
+const heroBgMap: Record<string, string> = {
+  'about': '/collage_crowd.jpg',
+  'get-involved': '/color_panel_rally.jpg',
+  'policies': '/color_panel_rally.jpg',
+  'contact': '/color_panel_rally.jpg',
+}
+
+const bgImage = heroBgMap[slug] || '/hero.png'
 ---
 
 <BaseLayout
-  title={`${page.title} | Fusion Victoria`}
+  title={`${page.title} | Reignite Democracy`}
   description={page.metaDescription || page.subtitle}
 >
   <Header />
 
-  {page.pageType !== 'bio' && <Hero title={page.title} subtitle={page.subtitle || ''} />}
+  {page.pageType !== 'bio' && <Hero title={page.title} subtitle={page.subtitle || ''} compact={true} bgImage={bgImage} />}
 
   <main class="bg-white py-8 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

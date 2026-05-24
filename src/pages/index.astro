@@ -109,7 +109,6 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
   <!-- HERO -->
   <Hero
-    eyebrow={hp.hero.eyebrow}
     title={hp.hero.title}
     subtitle={hp.hero.subtitle}
     stats={hp.hero.stats}
@@ -133,12 +132,6 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <!-- Section header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
-          <div
-            class="inline-block bg-magenta text-black px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
-            style="box-shadow: 3px 3px 0px 0px #000;"
-          >
-            THE MOVEMENT
-          </div>
           <h2
             class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
             style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
@@ -146,7 +139,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
             Movement<br /><span class="text-magenta">In Motion</span>
           </h2>
         </div>
-        <p class="text-lg font-black text-gray-700 max-w-xs border-l-4 border-magenta pl-4">
+        <p class="text-lg font-bold text-gray-700 max-w-xs">
           Real people. Real progress. Watch us grow in real-time.
         </p>
       </div>
@@ -184,19 +177,13 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
     <div class="max-w-7xl mx-auto relative z-10">
       <!-- Section header -->
       <div class="mb-16">
-        <div
-          class="inline-block bg-black text-mint px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #000;"
-        >
-          WHAT WE'LL FIX
-        </div>
         <h2
           class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
           style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
         >
           {hp.theftSection.heading}
         </h2>
-        <p class="text-xl font-black text-black mt-4 max-w-2xl border-l-8 border-black pl-4">
+        <p class="text-xl font-bold text-black mt-4 max-w-2xl">
           {hp.theftSection.description}
         </p>
       </div>
@@ -303,12 +290,6 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <!-- Section header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div
-            class="inline-block bg-mint text-black px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-mint"
-            style="box-shadow: 3px 3px 0px 0px #5EFFD8;"
-          >
-            CANDIDATES
-          </div>
           <h2
             class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
             style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
@@ -316,7 +297,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
             {hp.electoratesSection.heading}
           </h2>
         </div>
-        <p class="text-lg font-black text-mint max-w-xs border-l-4 border-mint pl-4">
+        <p class="text-lg font-bold text-mint max-w-xs">
           {hp.electoratesSection.description}
         </p>
       </div>
@@ -408,7 +389,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                   type="text"
                   placeholder="Search electorates or candidates…"
                   autocomplete="off"
-                  class="bg-transparent text-white placeholder-white/40 font-bold text-sm w-full outline-none"
+                  class="bg-transparent text-white placeholder-white/65 font-bold text-sm w-full outline-none"
                 />
               </div>
 
@@ -454,7 +435,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                 ))}
                 <p
                   id="electorate-no-results"
-                  class="hidden text-center text-white/40 font-bold py-8 text-sm uppercase tracking-widest"
+                  class="hidden text-center text-white/65 font-bold py-8 text-sm"
                 >
                   No electorates match your search
                 </p>
@@ -552,19 +533,13 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <!-- Left: header -->
         <div>
-          <div
-            class="inline-block bg-black text-yellow px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
-            style="box-shadow: 3px 3px 0px 0px #000;"
-          >
-            THE PLAN
-          </div>
           <h2
             class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9] mb-6"
             style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
           >
             {hp.manifestoSection.heading}
           </h2>
-          <p class="text-xl font-black text-gray-900 border-l-8 border-black pl-4 mb-8">
+          <p class="text-xl font-bold text-gray-900 mb-8">
             {hp.manifestoSection.description}
           </p>
           <div class="flex flex-wrap gap-4">
@@ -635,20 +610,15 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
+      <!-- Section header -->
       <div class="mb-16">
-        <div
-          class="inline-block bg-black text-magenta px-4 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #FFED00;"
-        >
-          GET INVOLVED
-        </div>
         <h2
-          class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
+          class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
           style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
         >
           {hp.joinSection.heading}
         </h2>
-        <p class="text-xl font-black text-white mt-4 max-w-xl border-l-4 border-white pl-4">
+        <p class="text-xl font-bold text-black mt-4 max-w-xl">
           {hp.joinSection.description}
         </p>
       </div>
