@@ -4,7 +4,10 @@ import { agentsSummary } from '@nuasite/agent-summary'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
 import cloudflare from '@astrojs/cloudflare'
+import node from '@astrojs/node'
 import sanity from '@sanity/astro'
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,9 +30,13 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  adapter: cloudflare({
-    imageService: 'passthrough',
-    platformProxy: { enabled: false },
-  }),
+  // Use node adapter locally (avoids Miniflare "module is not defined" errors),
+  // switch to cloudflare for production builds.
+  adapter: isDev
+    ? node({ mode: 'standalone' })
+    : cloudflare({
+        imageService: 'passthrough',
+        platformProxy: { enabled: false },
+      }),
   output: 'server',
 })
