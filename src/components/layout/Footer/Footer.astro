@@ -1,7 +1,9 @@
 ---
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
 import { getDocuments, getElectorates } from '@/lib/sanity'
+import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
 
 interface SocialLink {
   platform: string
@@ -65,13 +67,16 @@ const footerData = footers[0]
         <div class="lg:col-span-5 flex flex-col gap-8">
           {/* Campaign Branding */}
           <div>
-            <div class="flex items-baseline gap-1.5 flex-wrap">
-              <span class="font-display font-black text-white text-2xl tracking-tight uppercase">
-                {footerData.logo.mainText}
-              </span>
-              <span class="text-sm font-medium text-white/40 uppercase tracking-wide">
-                {footerData.logo.subText}
-              </span>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <Image src={logoMonoWhite} alt="Fusion Party Victoria" class="h-8 w-auto" />
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="font-display font-black text-white text-2xl tracking-tight uppercase">
+                  {footerData.logo.mainText}
+                </span>
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wide">
+                  {footerData.logo.subText}
+                </span>
+              </div>
             </div>
 
             {
@@ -121,13 +126,12 @@ const footerData = footers[0]
               />
               <button
                 type="submit"
-                class="px-4 py-2 bg-magenta text-white rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer"
+                class="px-4 py-2 bg-magenta text-white rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {footerData.newsletter?.buttonText}
               </button>
             </form>
-            <div id="footer-newsletter-success" class="hidden text-xs text-mint font-medium mt-2">
-            </div>
+            <div id="footer-newsletter-message" class="hidden text-xs font-medium mt-2"></div>
           </div>
         </div>
 
@@ -260,19 +264,47 @@ const footerData = footers[0]
 </style>
 
 <script>
-  // Newsletter Form Handler
-  const form = document.getElementById('footer-newsletter-form')
-  const successMsg = document.getElementById('footer-newsletter-success')
+  // Newsletter form — submits to NationBuilder via /api/newsletter
+  const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null
+  const message = document.getElementById('footer-newsletter-message')
 
-  if (form && successMsg) {
-    form.addEventListener('submit', (e) => {
+  if (form && message) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault()
       const input = form.querySelector('input[type="email"]') as HTMLInputElement | null
-      if (input) {
-        successMsg.textContent = `Success — ${input.value} added to alerts.`
-        successMsg.classList.remove('hidden')
-        form.classList.add('hidden')
-        input.value = ''
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null
+      if (!input) return
+
+      const email = input.value
+      if (button) button.disabled = true
+      message.classList.add('hidden')
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        })
+
+        if (res.ok) {
+          message.textContent = `Success — ${email} added to alerts.`
+          message.classList.remove('text-magenta')
+          message.classList.add('text-mint')
+          message.classList.remove('hidden')
+          form.classList.add('hidden')
+        } else {
+          message.textContent = "Couldn't subscribe right now — please try again shortly."
+          message.classList.remove('text-mint')
+          message.classList.add('text-magenta')
+          message.classList.remove('hidden')
+        }
+      } catch {
+        message.textContent = "Couldn't subscribe right now — please try again shortly."
+        message.classList.remove('text-mint')
+        message.classList.add('text-magenta')
+        message.classList.remove('hidden')
+      } finally {
+        if (button) button.disabled = false
       }
     })
   }
