@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/components/layout/Hero'
-import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
 import { getDocumentBySlug, urlFor } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
@@ -69,11 +69,12 @@ const sortedHTV = hasHTV
     })
   : []
 
-// Design-system-aligned tier colours — no generic Tailwind green/orange/red
+// Design-system-aligned tier colours — dark surface tints, no light backgrounds
 const tierConfig: Record<
   'magenta' | 'green' | 'orange' | 'red',
   {
-    border: string
+    borderTop: string
+    borderLeft: string
     bg: string
     badgeBg: string
     badgeText: string
@@ -81,31 +82,35 @@ const tierConfig: Record<
   }
 > = {
   magenta: {
-    border: '#C926F2',
-    bg: '#FAF0FF',
-    badgeBg: '#C926F2',
-    badgeText: '#fff',
+    borderTop: 'border-t-magenta',
+    borderLeft: 'border-l-magenta',
+    bg: 'bg-magenta/10',
+    badgeBg: 'bg-magenta',
+    badgeText: 'text-white',
     label: 'Vote 1',
   },
   green: {
-    border: '#00B37A',
-    bg: '#EDFFF7',
-    badgeBg: '#00B37A',
-    badgeText: '#fff',
+    borderTop: 'border-t-mint',
+    borderLeft: 'border-l-mint',
+    bg: 'bg-mint/10',
+    badgeBg: 'bg-mint',
+    badgeText: 'text-black',
     label: 'Vote High',
   },
   orange: {
-    border: '#E07A00',
-    bg: '#FFF8ED',
-    badgeBg: '#E07A00',
-    badgeText: '#fff',
+    borderTop: 'border-t-yellow',
+    borderLeft: 'border-l-yellow',
+    bg: 'bg-yellow/10',
+    badgeBg: 'bg-yellow',
+    badgeText: 'text-white',
     label: 'Middle',
   },
   red: {
-    border: '#D32F2F',
-    bg: '#FFF3F3',
-    badgeBg: '#D32F2F',
-    badgeText: '#fff',
+    borderTop: 'border-t-red',
+    borderLeft: 'border-l-red',
+    bg: 'bg-red/10',
+    badgeBg: 'bg-red',
+    badgeText: 'text-white',
     label: 'Vote Last',
   },
 }
@@ -119,7 +124,7 @@ const tierConfig: Record<
     subtitle={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
   />
 
-  <main class="bg-white pb-24">
+  <main class="bg-surface-base pb-24">
     <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10">
       {/* ── Breadcrumbs ── */}
       <nav
@@ -127,30 +132,30 @@ const tierConfig: Record<
       >
         <a
           href="/"
-          class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black transition-colors"
           >Home</a
         >
-        <span class="text-black/30">›</span>
+        <span class="text-white/30">›</span>
         <a
           href="/electorates"
-          class="px-3 py-1.5 border-2 border-black bg-white text-black hover:bg-mint transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black transition-colors"
           >Electorates</a
         >
         {
           electorate.isArchived && (
             <>
-              <span class="text-black/30">›</span>
+              <span class="text-white/30">›</span>
               <a
                 href="/past-candidates"
-                class="px-3 py-1.5 border-2 border-black bg-white text-magenta hover:bg-magenta hover:text-white transition-all"
+                class="px-3 py-1.5 rounded-sm bg-white/10 text-magenta hover:bg-magenta hover:text-white transition-all"
               >
                 Past Candidates
               </a>
             </>
           )
         }
-        <span class="text-black/30">›</span>
-        <span class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+        <span class="text-white/30">›</span>
+        <span class="px-3 py-1.5 rounded-sm bg-black/30 text-white max-w-xs truncate"
           >{electorate.name}</span
         >
       </nav>
@@ -158,62 +163,34 @@ const tierConfig: Record<
       {/* ── Candidate + body ── */}
       <section class="mb-16 grid grid-cols-1 md:grid-cols-[2fr_1.2fr] gap-8 items-start">
         {/* Body / what we're fighting for */}
-        <article
-          class="border-4 border-black bg-white p-8 relative overflow-hidden"
-          style="box-shadow: 6px 6px 0 0 #5EFFD8;"
-        >
-          {/* Mint corner accent */}
-          <div
-            class="absolute top-0 left-0 w-20 h-20 bg-mint"
-            style="clip-path: polygon(0 0, 100% 0, 0 100%);"
-          >
-          </div>
-          <div class="relative z-10">
-            <div
-              class="inline-block bg-mint text-black px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-black"
-            >
-              What We're Fighting For
-            </div>
-            <h2
-              class="text-2xl md:text-3xl font-black uppercase mb-4 leading-tight"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Our Plan for {electorate.name}
-            </h2>
-            {
-              electorate.body ? (
-                <div
-                  class="prose prose-lg max-w-none
+        <BrutalCard variant="surface" shadow="mint" padding="lg">
+          <BrutalBadge variant="mint" class="mb-4">What We're Fighting For</BrutalBadge>
+          <h2 class="text-2xl md:text-3xl font-display font-black uppercase mb-4 leading-tight">
+            Our Plan for {electorate.name}
+          </h2>
+          {
+            electorate.body ? (
+              <div
+                class="prose prose-lg max-w-none
                 prose-headings:font-black prose-headings:uppercase
-                prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4
+                prose-h2:border-l-4 prose-h2:border-magenta prose-h2:pl-4
                 prose-a:text-magenta prose-a:font-black
                 prose-strong:font-black"
-                  set:html={renderPortableText(electorate.body)}
-                />
-              ) : (
-                <p class="text-base font-bold text-gray-500">
-                  This electorate has a candidate and commitments — full detail coming soon.
-                </p>
-              )
-            }
-          </div>
-        </article>
+                set:html={renderPortableText(electorate.body)}
+              />
+            ) : (
+              <p class="text-base font-bold text-white/60">
+                This electorate has a candidate and commitments — full detail coming soon.
+              </p>
+            )
+          }
+        </BrutalCard>
 
         {/* Candidate sidebar */}
-        <aside
-          class="border-4 border-black bg-black text-white relative overflow-hidden"
-          style="box-shadow: 6px 6px 0 0 #C926F2;"
-        >
-          {/* Yellow corner */}
-          <div
-            class="absolute bottom-0 right-0 w-20 h-20 bg-yellow"
-            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-          >
-          </div>
-
+        <BrutalCard variant="black" shadow="magenta" padding="md" class="!p-0 overflow-hidden">
           {
             electorate.candidateImage && (
-              <div class="border-b-4 border-black overflow-hidden">
+              <div class="overflow-hidden">
                 <img
                   src={urlFor(electorate.candidateImage as Parameters<typeof urlFor>[0])
                     .width(600)
@@ -227,20 +204,13 @@ const tierConfig: Record<
             )
           }
 
-          <div class="p-6 relative z-10">
-            <div
-              class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white"
-            >
-              Candidate
-            </div>
+          <div class="p-6">
+            <BrutalBadge variant="magenta" class="mb-4">Candidate</BrutalBadge>
 
             {
               electorate.candidateName ? (
                 <>
-                  <h2
-                    class="text-xl font-black uppercase leading-tight mb-2"
-                    style="font-family: 'Archivo Black', sans-serif;"
-                  >
+                  <h2 class="text-xl font-display font-black uppercase leading-tight mb-2">
                     {electorate.candidateName}
                   </h2>
                   {electorate.candidateBio && (
@@ -265,7 +235,7 @@ const tierConfig: Record<
               )
             }
           </div>
-        </aside>
+        </BrutalCard>
       </section>
 
       {/* ── How To Vote ── */}
@@ -274,13 +244,10 @@ const tierConfig: Record<
           <section class="mb-16">
             {/* Section header */}
             <div class="mb-8">
-              <div class="inline-block bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black">
+              <BrutalBadge variant="black" class="mb-3">
                 How to Vote
-              </div>
-              <h2
-                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
+              </BrutalBadge>
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase leading-tight">
                 <span class="text-magenta">Ballot</span> Guide
               </h2>
             </div>
@@ -294,16 +261,14 @@ const tierConfig: Record<
                 ][]
               ).map(([tier, cfg]) => (
                 <div
-                  class="border-4 border-black p-4"
-                  style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
+                  class={`rounded-sm border border-white/10 border-t-2 p-4 ${cfg.bg} ${cfg.borderTop}`}
                 >
                   <div
-                    class="inline-block px-2 py-0.5 text-xs font-black uppercase mb-2 border-2 border-black"
-                    style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
+                    class={`inline-block px-2 py-0.5 text-xs font-black uppercase mb-2 rounded-sm ${cfg.badgeBg} ${cfg.badgeText}`}
                   >
                     {cfg.label}
                   </div>
-                  <p class="text-xs font-bold text-black/70 leading-snug">
+                  <p class="text-xs font-bold text-white/70 leading-snug">
                     {tier === 'magenta' && 'Your Reignite Democracy candidate. Number them 1.'}
                     {tier === 'green' && 'Close allies sharing core values.'}
                     {tier === 'orange' && 'Some overlap, but meaningful differences.'}
@@ -314,16 +279,10 @@ const tierConfig: Record<
             </div>
 
             {/* Ticket */}
-            <div
-              class="bg-white border-4 border-black p-6 md:p-8"
-              style="box-shadow: 8px 8px 0 0 #000;"
-            >
+            <BrutalCard variant="surface" shadow="black" padding="lg">
               <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
-                  <span
-                    class="inline-block bg-black text-white px-4 py-2 font-black uppercase tracking-wider text-sm"
-                    style="font-family: 'Archivo Black', sans-serif;"
-                  >
+                  <span class="inline-block bg-black/30 text-white px-4 py-2 font-display font-black uppercase tracking-wider text-sm rounded-sm">
                     Ballot Paper — {electorate.name}
                   </span>
                   <p class="mt-2 font-black uppercase text-xs text-magenta">
@@ -332,15 +291,12 @@ const tierConfig: Record<
                 </div>
 
                 {sortedHTV.some((c) => c.suggestedVote) && (
-                  <label
-                    class="flex items-center gap-3 cursor-pointer border-4 border-black bg-white px-4 py-2 hover:bg-yellow transition-colors"
-                    style="box-shadow: 3px 3px 0 0 #000;"
-                  >
+                  <label class="flex items-center gap-3 cursor-pointer bg-white/10 rounded-sm px-4 py-2 hover:bg-white/20 transition-colors">
                     <span class="font-black uppercase text-xs">Show Preferences</span>
                     <div class="relative">
                       <input type="checkbox" id="toggle-preferences" class="sr-only" />
-                      <div class="block bg-white w-10 h-5 border-2 border-black htv-toggle-bg transition-colors" />
-                      <div class="dot absolute left-0.5 top-0.5 bg-magenta w-4 h-4 transition-transform border-2 border-black htv-toggle-dot" />
+                      <div class="block bg-white/20 w-10 h-5 rounded-full htv-toggle-bg transition-colors" />
+                      <div class="dot absolute left-0.5 top-0.5 bg-magenta w-4 h-4 rounded-full transition-transform htv-toggle-dot" />
                     </div>
                   </label>
                 )}
@@ -352,13 +308,9 @@ const tierConfig: Record<
                     const cfg = tierConfig[candidate.candidateTier]
                     return (
                       <div
-                        class="flex-none w-36 md:w-44 flex flex-col items-center gap-3 p-4 border-4 border-black text-center hover:-translate-y-0.5 transition-transform"
-                        style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
+                        class={`flex-none w-36 md:w-44 flex flex-col items-center gap-3 p-4 rounded-sm border border-white/10 border-t-2 text-center hover:-translate-y-0.5 transition-transform ${cfg.bg} ${cfg.borderTop}`}
                       >
-                        <div
-                          class="w-14 h-14 border-4 border-black bg-white flex items-center justify-center font-black text-2xl"
-                          style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
-                        >
+                        <div class="w-14 h-14 rounded-sm bg-black/20 flex items-center justify-center font-black text-2xl">
                           {candidate.candidateTier === 'magenta' ? (
                             '1'
                           ) : (
@@ -367,15 +319,14 @@ const tierConfig: Record<
                             </span>
                           )}
                         </div>
-                        <div class="h-1 w-full bg-black" />
+                        <div class="h-1 w-full bg-white/10" />
                         <p
                           class={`font-black text-sm uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through opacity-50' : ''}`}
                         >
                           {candidate.candidateParty}
                         </p>
                         <span
-                          class="px-2 py-0.5 text-xs font-black uppercase border-2 border-black"
-                          style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
+                          class={`px-2 py-0.5 text-xs font-black uppercase rounded-sm ${cfg.badgeBg} ${cfg.badgeText}`}
                         >
                           {cfg.label}
                         </span>
@@ -389,13 +340,9 @@ const tierConfig: Record<
                     const cfg = tierConfig[candidate.candidateTier]
                     return (
                       <div
-                        class="flex items-center gap-4 p-4 border-4 border-black hover:-translate-x-0.5 transition-transform"
-                        style={`background: ${cfg.bg}; box-shadow: 4px 4px 0 0 ${cfg.border};`}
+                        class={`flex items-center gap-4 p-4 rounded-sm border border-white/10 border-l-2 hover:-translate-x-0.5 transition-transform ${cfg.bg} ${cfg.borderLeft}`}
                       >
-                        <div
-                          class="w-12 h-12 border-4 border-black bg-white flex items-center justify-center shrink-0 font-black text-xl"
-                          style="box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.1);"
-                        >
+                        <div class="w-12 h-12 rounded-sm bg-black/20 flex items-center justify-center shrink-0 font-black text-xl">
                           {candidate.candidateTier === 'magenta' ? (
                             '1'
                           ) : (
@@ -417,8 +364,7 @@ const tierConfig: Record<
                           </p>
                         </div>
                         <span
-                          class="px-3 py-1 text-xs font-black uppercase shrink-0 border-2 border-black"
-                          style={`background: ${cfg.badgeBg}; color: ${cfg.badgeText};`}
+                          class={`px-3 py-1 text-xs font-black uppercase shrink-0 rounded-sm ${cfg.badgeBg} ${cfg.badgeText}`}
                         >
                           {cfg.label}
                         </span>
@@ -427,7 +373,7 @@ const tierConfig: Record<
                   })}
                 </div>
               )}
-            </div>
+            </BrutalCard>
           </section>
         )
       }
@@ -437,13 +383,10 @@ const tierConfig: Record<
         Array.isArray(electorate.commitments) && electorate.commitments.length > 0 && (
           <section class="mb-16">
             <div class="mb-8">
-              <div class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3 border-2 border-black">
+              <BrutalBadge variant="magenta" class="mb-3">
                 Our Commitments
-              </div>
-              <h2
-                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
+              </BrutalBadge>
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase leading-tight">
                 What We'll Do for
                 <>
                   <br />
@@ -454,43 +397,36 @@ const tierConfig: Record<
 
             <div class="grid gap-5 md:grid-cols-2">
               {electorate.commitments.map((commitment, index) => {
-                const accents = ['#5EFFD8', '#FFED00', '#C926F2']
+                const accents = ['mint', 'yellow', 'magenta'] as const
                 const accent = accents[index % accents.length]
                 return (
-                  <article
-                    class="border-4 border-black bg-white p-6 hover:-translate-y-0.5 transition-transform"
-                    style={`box-shadow: 5px 5px 0 0 ${accent};`}
-                  >
-                    <div class="h-1.5 w-full mb-5" style={`background: ${accent};`} />
+                  <BrutalCard variant="surface" shadow={accent} padding="md">
                     <div class="flex items-start gap-4 mb-3">
                       <span
-                        class="text-3xl shrink-0 border-2 border-black p-2 bg-white"
+                        class="text-3xl shrink-0 rounded-sm p-2 bg-white/10"
                         role="img"
                         aria-label="commitment icon"
                       >
                         {commitment.icon}
                       </span>
                       <div>
-                        <h3
-                          class="text-lg font-black uppercase mb-1"
-                          style="font-family: 'Archivo Black', sans-serif;"
-                        >
+                        <h3 class="text-lg font-display font-black uppercase mb-1">
                           {commitment.title}
                         </h3>
-                        <p class="font-bold text-sm text-gray-700">{commitment.highlight}</p>
+                        <p class="font-bold text-sm text-white/70">{commitment.highlight}</p>
                       </div>
                     </div>
                     {commitment.details && commitment.details.length > 0 && (
-                      <ul class="mt-3 space-y-1 border-t-2 border-black/10 pt-3">
+                      <ul class="mt-3 space-y-1 border-t border-white/10 pt-3">
                         {commitment.details.map((item) => (
-                          <li class="flex items-start gap-2 text-sm text-gray-600 font-semibold">
-                            <span class="font-black text-black shrink-0">→</span>
+                          <li class="flex items-start gap-2 text-sm text-white/60 font-semibold">
+                            <span class="font-black text-white shrink-0">→</span>
                             {item.detail}
                           </li>
                         ))}
                       </ul>
                     )}
-                  </article>
+                  </BrutalCard>
                 )
               })}
             </div>
@@ -499,58 +435,23 @@ const tierConfig: Record<
       }
 
       {/* ── CTA ── */}
-      <section
-        class="bg-black text-white border-4 border-black relative overflow-hidden mt-4"
-        style="box-shadow: 8px 8px 0 0 #5EFFD8;"
-      >
-        {/* Yellow corner */}
-        <div
-          class="absolute bottom-0 right-0 w-40 h-40 bg-yellow"
-          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-        >
+      <BrutalCard variant="black" shadow="mint" padding="lg" class="mt-4">
+        <BrutalBadge variant="magenta" class="mb-4">Help Us Win</BrutalBadge>
+        <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
+          Help Us Win<br /><span class="text-mint">{electorate.name}</span>
+        </h2>
+        <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+          We don't take developer or corporate money. We win by people power — volunteers,
+          conversations, and small donations.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <BrutalButton variant="magenta" href="/get-involved" icon="mdi:hand-wave">
+            Volunteer
+          </BrutalButton>
+          <BrutalButton variant="black" href="/manifesto"> Read the Manifesto </BrutalButton>
+          <BrutalButton variant="black" href="/policies"> All Policies </BrutalButton>
         </div>
-        <div class="px-8 py-12 relative z-10">
-          <div
-            class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white"
-          >
-            Help Us Win
-          </div>
-          <h2
-            class="text-3xl md:text-4xl font-black uppercase mb-3 leading-tight"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Help Us Win<br /><span class="text-mint">{electorate.name}</span>
-          </h2>
-          <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
-            We don't take developer or corporate money. We win by people power — volunteers,
-            conversations, and small donations.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a
-              href="/get-involved"
-              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-magenta text-white hover:-translate-y-0.5 transition-all"
-              style="box-shadow: 3px 3px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
-            >
-              <Icon name="mdi:hand-wave" class="w-5 h-5" />
-              Volunteer
-            </a>
-            <a
-              href="/manifesto"
-              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Read the Manifesto
-            </a>
-            <a
-              href="/policies"
-              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              All Policies
-            </a>
-          </div>
-        </div>
-      </section>
+      </BrutalCard>
     </div>
   </main>
 
@@ -577,11 +478,11 @@ const tierConfig: Record<
 
       if (bg && dot) {
         if (isChecked) {
-          bg.classList.replace('bg-white', 'bg-magenta')
+          bg.classList.replace('bg-white/20', 'bg-magenta')
           dot.classList.replace('bg-magenta', 'bg-white')
           dot.classList.add('translate-x-5')
         } else {
-          bg.classList.replace('bg-magenta', 'bg-white')
+          bg.classList.replace('bg-magenta', 'bg-white/20')
           dot.classList.replace('bg-white', 'bg-magenta')
           dot.classList.remove('translate-x-5')
         }

@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
 import { getElectorates, getElectoratesPage, urlFor } from '../../lib/sanity'
 import '../../styles/global.css'
 import type { Electorate } from '../../types/sanity'
@@ -48,7 +49,32 @@ const stateLabels: Record<string, string> = {
   Other: 'Other / Not Set',
 }
 const stateOrder = ['VIC', 'NSW', 'QLD', 'SA', 'WA', 'TAS', 'ACT', 'NT', 'Other']
-const accentCycle = ['#C926F2', '#5EFFD8', '#FFED00']
+const accentCycle = [
+  {
+    name: 'magenta',
+    bg: 'bg-magenta',
+    text: 'text-white',
+    accentText: 'text-magenta',
+    border: 'border-magenta',
+    borderTop: 'border-t-magenta',
+  },
+  {
+    name: 'mint',
+    bg: 'bg-mint',
+    text: 'text-black',
+    accentText: 'text-mint',
+    border: 'border-mint',
+    borderTop: 'border-t-mint',
+  },
+  {
+    name: 'yellow',
+    bg: 'bg-yellow',
+    text: 'text-white',
+    accentText: 'text-yellow',
+    border: 'border-yellow',
+    borderTop: 'border-t-yellow',
+  },
+] as const
 
 function isFederal(election: string) {
   return /federal|national/i.test(election)
@@ -182,73 +208,56 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
   <Hero title={title} subtitle={subtitle} />
 
   {/* ── Intro panel ── */}
-  <section
-    class="border-b-8 border-black py-14 px-4 md:px-8 relative overflow-hidden"
-    style="background: #5EFFD8;"
-  >
+  <section class="border-b border-mint/30 py-14 px-4 md:px-8 relative overflow-hidden bg-mint">
     <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
       <span
-        class="text-[16rem] font-black uppercase leading-none select-none text-black"
-        style="font-family: 'Anton', sans-serif; opacity: 0.05; transform: translateX(10%);"
-        >AUS</span
+        class="text-[16rem] font-display font-black uppercase leading-none select-none text-black"
+        style="opacity: 0.05; transform: translateX(10%);">AUS</span
       >
     </div>
     <div class="max-w-5xl mx-auto relative z-10">
-      <div
-        class="inline-block bg-black text-mint px-3 py-1 text-xs font-black uppercase tracking-widest mb-5 border-2 border-black"
-      >
-        {introCard.title}
-      </div>
+      <BrutalBadge variant="black" size="lg" class="mb-5">{introCard.title}</BrutalBadge>
       <p
-        class="text-xl md:text-2xl font-black uppercase leading-tight mb-5 border-l-8 border-black pl-6 text-black"
+        class="text-xl md:text-2xl font-black uppercase leading-tight mb-5 border-l-4 border-black pl-6 text-black"
       >
         {introCard.body}
       </p>
-      <p class="text-base font-black text-black/70 border-l-4 border-black pl-4 max-w-2xl">
+      <p class="text-base font-black text-black/70 border-l-4 border-black/40 pl-4 max-w-2xl">
         {introCard.highlight}
       </p>
     </div>
   </section>
 
-  <main class="bg-white py-16 px-4 md:px-8">
+  <main class="bg-surface-base py-16 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
       {
         electorates.length === 0 ? (
-          <div
-            class="border-4 border-black bg-yellow p-10 text-center"
-            style="box-shadow: 8px 8px 0 0 #000;"
-          >
-            <Icon name="mdi:alert" class="w-16 h-16 mx-auto mb-4 text-black" />
-            <p class="text-xl font-black uppercase mb-6">
+          <BrutalCard variant="yellow" shadow="black" padding="xl" class="text-center">
+            <Icon name="mdi:alert" class="w-16 h-16 mx-auto mb-4 text-white" />
+            <p class="text-xl font-display font-black uppercase mb-6">
               We're finalising our candidates. Check back soon!
             </p>
-            <a
-              href="/past-candidates"
-              class="inline-flex items-center gap-2 px-6 py-3 font-black uppercase text-sm border-4 border-black bg-black text-white hover:-translate-y-0.5 transition-all"
-              style="box-shadow: 4px 4px 0 0 #C926F2;"
-            >
-              <Icon name="mdi:archive" class="w-5 h-5" /> View Past Candidates
-            </a>
-          </div>
+            <BrutalButton variant="black" href="/past-candidates" icon="mdi:archive">
+              View Past Candidates
+            </BrutalButton>
+          </BrutalCard>
         ) : (
           <div class="space-y-20">
             {electionGroups.map(({ election, count, houses }) => (
               <section>
                 {/* ── Election heading ── */}
-                <div class="flex flex-wrap items-center gap-4 mb-8 pb-4 border-b-4 border-black">
-                  <div
-                    class="inline-block bg-black text-white px-4 py-1 text-xs font-black uppercase tracking-widest border-2 border-black shrink-0"
-                    style="box-shadow: 3px 3px 0 0 #C926F2;"
+                <div class="flex flex-wrap items-center gap-4 mb-8 pb-4 border-b border-white/10">
+                  <BrutalBadge
+                    variant="black"
+                    icon={election === 'Current Campaign' ? 'mdi:vote' : 'mdi:archive'}
+                    class="shrink-0"
                   >
-                    {election === 'Current Campaign' ? '🗳️ Current' : '📁 Archive'}
-                  </div>
-                  <h2
-                    class="text-3xl md:text-4xl font-black uppercase leading-tight"
-                    style="font-family: 'Archivo Black', sans-serif;"
-                  >
+                    {election === 'Current Campaign' ? 'Current' : 'Archive'}
+                  </BrutalBadge>
+                  <h2 class="text-3xl md:text-4xl font-display font-black uppercase leading-tight text-white">
                     {election}
                   </h2>
-                  <span class="text-sm font-black text-gray-400 uppercase tracking-widest ml-auto shrink-0">
+                  <span class="text-sm font-black text-white/40 uppercase tracking-widest ml-auto shrink-0">
                     {count} seat{count !== 1 ? 's' : ''}
                   </span>
                 </div>
@@ -259,8 +268,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                       <div>
                         {/* ── House heading ── */}
                         <h3
-                          class="text-lg font-black uppercase mb-5 border-l-8 pl-3"
-                          style={`font-family: 'Archivo Black', sans-serif; border-color: ${house === 'upper' ? '#5EFFD8' : '#C926F2'};`}
+                          class={`text-lg font-display font-black uppercase mb-5 border-l-4 pl-3 text-white ${house === 'upper' ? 'border-mint' : 'border-magenta'}`}
                         >
                           {label}
                         </h3>
@@ -272,10 +280,10 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                               ({ state, label: stateLabel, electorates: stateElectorates }) => (
                                 <div>
                                   <div class="flex items-center gap-3 mb-4">
-                                    <span class="text-xs font-black uppercase tracking-widest bg-magenta text-white px-2 py-0.5 border-2 border-black">
+                                    <span class="text-xs font-black uppercase tracking-widest bg-magenta text-white px-2 py-0.5 rounded-sm">
                                       {state}
                                     </span>
-                                    <span class="text-sm font-bold text-gray-500">
+                                    <span class="text-sm font-bold text-white/50">
                                       {stateLabel}
                                     </span>
                                   </div>
@@ -285,11 +293,10 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                       return (
                                         <a
                                           href={`/electorates/${electorate.slug.current}`}
-                                          class="group border-4 border-black bg-white flex flex-col hover:-translate-y-0.5 transition-transform"
-                                          style={`box-shadow: 6px 6px 0 0 ${accent};`}
+                                          class={`group bg-grey-dark border border-white/10 rounded-sm border-t-2 flex flex-col hover:border-white/25 transition-colors ${accent.borderTop}`}
                                         >
                                           {electorate.candidateImage ? (
-                                            <div class="border-b-4 border-black overflow-hidden relative">
+                                            <div class="overflow-hidden relative">
                                               <img
                                                 src={urlFor(electorate.candidateImage)
                                                   .width(600)
@@ -299,49 +306,31 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                                 alt={electorate.candidateName || electorate.name}
                                                 class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-300"
                                               />
-                                              <div
-                                                class="absolute bottom-0 right-0 w-12 h-12"
-                                                style={`background: ${accent}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
-                                              />
                                             </div>
                                           ) : (
-                                            <div
-                                              class="h-2 w-full"
-                                              style={`background: ${accent};`}
-                                            />
+                                            <div class={`h-2 w-full ${accent.bg}`} />
                                           )}
                                           <div class="p-5 flex flex-col flex-1">
                                             <div
-                                              class="inline-flex items-center gap-1 border-2 border-black text-xs font-black uppercase tracking-widest px-3 py-1 mb-3 w-fit"
-                                              style={`background: ${accent}; color: #000;`}
+                                              class={`inline-flex items-center gap-1 rounded-sm text-xs font-black uppercase tracking-widest px-3 py-1 mb-3 w-fit ${accent.bg} ${accent.text}`}
                                             >
                                               Electorate
                                             </div>
-                                            <h4
-                                              class="text-xl font-black uppercase mb-1 leading-tight"
-                                              style="font-family: 'Archivo Black', sans-serif;"
-                                            >
+                                            <h4 class="text-xl font-display font-black uppercase mb-1 leading-tight text-white">
                                               {electorate.name}
                                             </h4>
                                             {electorate.candidateName && (
-                                              <div
-                                                class="flex items-center gap-2 border-2 border-black bg-black text-white px-3 py-2 w-fit mt-2 mb-auto"
-                                                style={`box-shadow: 2px 2px 0 0 ${accent};`}
-                                              >
+                                              <div class="flex items-center gap-2 bg-black/30 rounded-sm px-3 py-2 w-fit mt-2 mb-auto">
                                                 <Icon
                                                   name="mdi:account"
-                                                  class="w-4 h-4"
-                                                  style={`color: ${accent};`}
+                                                  class={`w-4 h-4 ${accent.accentText}`}
                                                 />
-                                                <span class="font-black text-xs uppercase">
+                                                <span class="font-black text-xs uppercase text-white">
                                                   {electorate.candidateName}
                                                 </span>
                                               </div>
                                             )}
-                                            <div
-                                              class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs border-4 border-black bg-black text-white group-hover:bg-magenta group-hover:border-magenta transition-all"
-                                              style={`box-shadow: 3px 3px 0 0 ${accent};`}
-                                            >
+                                            <div class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-white group-hover:bg-magenta transition-all">
                                               <Icon name="mdi:eye" class="w-4 h-4" /> View Plan
                                             </div>
                                           </div>
@@ -361,11 +350,10 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                               return (
                                 <a
                                   href={`/electorates/${electorate.slug.current}`}
-                                  class="group border-4 border-black bg-white flex flex-col hover:-translate-y-0.5 transition-transform"
-                                  style={`box-shadow: 6px 6px 0 0 ${accent};`}
+                                  class={`group bg-grey-dark border border-white/10 rounded-sm border-t-2 flex flex-col hover:border-white/25 transition-colors border-t-${accent.name}`}
                                 >
                                   {electorate.candidateImage ? (
-                                    <div class="border-b-4 border-black overflow-hidden relative">
+                                    <div class="overflow-hidden relative">
                                       <img
                                         src={urlFor(electorate.candidateImage)
                                           .width(600)
@@ -375,43 +363,31 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                         alt={electorate.candidateName || electorate.name}
                                         class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-300"
                                       />
-                                      <div
-                                        class="absolute bottom-0 right-0 w-12 h-12"
-                                        style={`background: ${accent}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
-                                      />
                                     </div>
                                   ) : (
-                                    <div class="h-2 w-full" style={`background: ${accent};`} />
+                                    <div class={`h-2 w-full ${accent.bg}`} />
                                   )}
                                   <div class="p-5 flex flex-col flex-1">
                                     <div
-                                      class="inline-flex items-center gap-1 border-2 border-black text-xs font-black uppercase tracking-widest px-3 py-1 mb-3 w-fit"
-                                      style={`background: ${accent}; color: #000;`}
+                                      class={`inline-flex items-center gap-1 rounded-sm text-xs font-black uppercase tracking-widest px-3 py-1 mb-3 w-fit ${accent.bg} ${accent.text}`}
                                     >
                                       Electorate
                                     </div>
-                                    <h4
-                                      class="text-xl font-black uppercase mb-1 leading-tight"
-                                      style="font-family: 'Archivo Black', sans-serif;"
-                                    >
+                                    <h4 class="text-xl font-display font-black uppercase mb-1 leading-tight text-white">
                                       {electorate.name}
                                     </h4>
                                     {electorate.subtitle && (
-                                      <p class="text-xs font-black uppercase tracking-wide text-black/60 mb-2">
+                                      <p class="text-xs font-black uppercase tracking-wide text-white/50 mb-2">
                                         {electorate.subtitle}
                                       </p>
                                     )}
                                     {electorate.candidateName && (
-                                      <div
-                                        class="flex items-center gap-2 border-2 border-black bg-black text-white px-3 py-2 w-fit mt-2 mb-3"
-                                        style={`box-shadow: 2px 2px 0 0 ${accent};`}
-                                      >
+                                      <div class="flex items-center gap-2 bg-black/30 rounded-sm px-3 py-2 w-fit mt-2 mb-3">
                                         <Icon
                                           name="mdi:account"
-                                          class="w-4 h-4"
-                                          style={`color: ${accent};`}
+                                          class={`w-4 h-4 ${accent.accentText}`}
                                         />
-                                        <span class="font-black text-xs uppercase">
+                                        <span class="font-black text-xs uppercase text-white">
                                           {electorate.candidateName}
                                         </span>
                                       </div>
@@ -421,21 +397,17 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                         <ul class="space-y-2 mb-4 flex-1">
                                           {electorate.commitments.slice(0, 2).map((c) => (
                                             <li
-                                              class="flex items-start gap-2 border-l-4 pl-3 py-1"
-                                              style={`border-color: ${accent};`}
+                                              class={`flex items-start gap-2 border-l-4 pl-3 py-1 ${accent.border}`}
                                             >
                                               <span class="text-lg shrink-0">{c.icon}</span>
-                                              <span class="font-black text-xs uppercase leading-tight">
+                                              <span class="font-black text-xs uppercase leading-tight text-white">
                                                 {c.title}
                                               </span>
                                             </li>
                                           ))}
                                         </ul>
                                       )}
-                                    <div
-                                      class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs border-4 border-black bg-black text-white group-hover:bg-magenta group-hover:border-magenta transition-all"
-                                      style={`box-shadow: 3px 3px 0 0 ${accent};`}
-                                    >
+                                    <div class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-white group-hover:bg-magenta transition-all">
                                       <Icon name="mdi:eye" class="w-4 h-4" /> View Plan for{' '}
                                       {electorate.name}
                                     </div>
@@ -456,54 +428,30 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
       }
 
       {/* ── CTA ── */}
-      <section
-        class="mt-16 bg-black text-white border-4 border-black relative overflow-hidden"
-        style="box-shadow: 8px 8px 0 0 #5EFFD8;"
-      >
-        <div
-          class="absolute bottom-0 right-0 w-40 h-40 bg-yellow"
-          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-        >
+      <BrutalCard variant="black" shadow="mint" padding="lg" class="mt-16">
+        <BrutalBadge variant="magenta" class="mb-4">Build the Movement</BrutalBadge>
+        <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
+          {ctaSection.title}
+        </h2>
+        <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+          {ctaSection.body}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <BrutalButton variant="magenta" href="/get-involved" icon="mdi:hand-heart">
+            Volunteer in Your Area
+          </BrutalButton>
+          <BrutalButton variant="black" href="/manifesto" icon="mdi:book-open">
+            Read the Manifesto
+          </BrutalButton>
         </div>
-        <div class="px-8 py-12 relative z-10">
-          <div
-            class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white"
-          >
-            Build the Movement
-          </div>
-          <h2
-            class="text-3xl md:text-4xl font-black uppercase mb-3 leading-tight"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            {ctaSection.title}
-          </h2>
-          <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
-            {ctaSection.body}
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a
-              href="/get-involved"
-              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-magenta text-white hover:-translate-y-0.5 transition-all"
-              style="box-shadow: 3px 3px 0 0 #FFED00;"
-            >
-              <Icon name="mdi:hand-heart" class="w-5 h-5" /> Volunteer in Your Area
-            </a>
-            <a
-              href="/manifesto"
-              class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-            >
-              <Icon name="mdi:book-open" class="w-5 h-5" /> Read the Manifesto
-            </a>
-          </div>
-        </div>
-      </section>
+      </BrutalCard>
 
       {
         electorates.length > 0 && (
           <div class="mt-10 text-center">
             <a
               href="/past-candidates"
-              class="inline-flex items-center gap-2 font-black uppercase text-xs border-b-2 border-black hover:text-magenta hover:border-magenta transition-colors pb-0.5"
+              class="inline-flex items-center gap-2 font-black uppercase text-xs border-b border-white/30 hover:text-magenta hover:border-magenta transition-colors pb-0.5"
             >
               <Icon name="mdi:archive-search-outline" class="w-4 h-4" /> View Past Candidates
               Archive
