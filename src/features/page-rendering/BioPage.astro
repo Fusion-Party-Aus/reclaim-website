@@ -4,6 +4,7 @@ import type { Page } from '@/types/sanity'
 import { renderPortableText } from '@/lib/portableText'
 import { wrapSectionsInBoxes } from '@/lib/sectionWrapper'
 import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton } from '@/components/ui'
 
 interface Props {
   page: Page
@@ -32,17 +33,17 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
   <nav class="flex items-center flex-wrap gap-1 mb-12 text-xs font-black uppercase tracking-widest">
     <a
       href="/"
-      class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+      class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors"
     >
       Home
     </a>
     {
       breadcrumbs.map((bc, i) => (
         <>
-          <span class="text-black/30 font-black">›</span>
+          <span class="text-white/30 font-black">›</span>
           {i === breadcrumbs.length - 1 ? (
             <span
-              class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+              class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
               title={page.title}
             >
               {page.title}
@@ -50,7 +51,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
           ) : (
             <a
               href={bc.path}
-              class="px-3 py-1.5 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+              class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-magenta/40 hover:text-magenta transition-all"
             >
               {bc.label}
             </a>
@@ -66,27 +67,16 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
       {/* Profile image + name card */}
       {
         page.profileImage && (
-          <div
-            class="border-4 border-black overflow-hidden bg-black"
-            style="box-shadow: 8px 8px 0 0 #C926F2;"
-          >
+          <div class="rounded-sm overflow-hidden bg-grey-dark border border-white/10 shadow-brutal-magenta">
             <div class="relative overflow-hidden">
               <img
                 src={urlFor(page.profileImage).width(800).height(900).url()}
                 alt={page.title}
-                class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-black block"
-              />
-              {/* Mint corner triangle */}
-              <div
-                class="absolute top-0 left-0 w-16 h-16 bg-mint"
-                style="clip-path: polygon(0 0, 100% 0, 0 100%);"
+                class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 block"
               />
             </div>
-            <div class="p-6 bg-white border-t-4 border-black">
-              <h1
-                class="text-2xl font-black uppercase leading-tight mb-1"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
+            <div class="p-6 border-t border-white/10">
+              <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
                 {page.title}
               </h1>
               {page.role && (
@@ -102,33 +92,27 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
       {/* No image fallback — just name */}
       {
         !page.profileImage && (
-          <div
-            class="border-4 border-black p-6 bg-black text-white"
-            style="box-shadow: 8px 8px 0 0 #C926F2;"
-          >
-            <div class="w-24 h-24 border-4 border-white/20 bg-white/10 flex items-center justify-center mb-4">
+          <BrutalCard variant="surface" shadow="magenta" padding="md">
+            <div class="w-24 h-24 rounded-sm border border-white/20 bg-white/10 flex items-center justify-center mb-4">
               <svg class="w-12 h-12 text-white/30" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
               </svg>
             </div>
-            <h1
-              class="text-2xl font-black uppercase leading-tight mb-1"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
+            <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
               {page.title}
             </h1>
             {page.role && (
               <p class="text-xs font-black uppercase tracking-wide text-mint">{page.role}</p>
             )}
-          </div>
+          </BrutalCard>
         )
       }
 
       {/* Social links */}
       {
         page.socialLinks && page.socialLinks.length > 0 && (
-          <div class="border-4 border-black bg-yellow p-5" style="box-shadow: 5px 5px 0 0 #000;">
-            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b-2 border-black pb-2">
+          <BrutalCard variant="surface" shadow="yellow" padding="md">
+            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b border-white/10 pb-2">
               Connect
             </h3>
             <div class="flex flex-col gap-2">
@@ -137,7 +121,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 font-black text-sm uppercase border-2 border-black bg-white text-black hover:bg-magenta hover:text-white hover:border-magenta transition-all px-3 py-2"
+                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-white/10 bg-grey-dark text-white hover:bg-magenta hover:text-white hover:border-magenta transition-all px-3 py-2"
                 >
                   <div class="w-6 h-6 flex items-center justify-center shrink-0">
                     <Icon
@@ -149,23 +133,23 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                 </a>
               ))}
             </div>
-          </div>
+          </BrutalCard>
         )
       }
 
       {/* Stand-out quote card */}
-      <div class="border-4 border-black bg-mint p-5" style="box-shadow: 5px 5px 0 0 #000;">
+      <BrutalCard variant="mint" shadow="black" padding="md">
         <p
           class="font-black text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
         >
           {page.subtitle || '"Fighting for a fairer Victoria through evidence-based policy."'}
         </p>
-      </div>
+      </BrutalCard>
     </div>
 
     {/* ── Right column: biography ── */}
     <div class="flex-1 min-w-0 space-y-8">
-      <div class="border-4 border-black bg-white p-8 md:p-12" style="box-shadow: 8px 8px 0 0 #000;">
+      <BrutalCard variant="surface" shadow="black" padding="xl">
         <div
           class="prose prose-lg max-w-none
           prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
@@ -179,23 +163,18 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
             page.body ? (
               <div set:html={pageHtml} />
             ) : (
-              <p class="text-lg font-black uppercase text-black/40">
+              <p class="text-lg font-black uppercase text-white/40">
                 Full biography coming soon...
               </p>
             )
           }
         </div>
-      </div>
+      </BrutalCard>
 
       {/* Action button */}
-      <a
-        href="/get-involved"
-        class="flex items-center justify-center gap-3 px-8 py-5 font-black uppercase text-xl border-4 border-black bg-magenta text-white hover:-translate-y-0.5 transition-all w-full"
-        style="box-shadow: 6px 6px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
-      >
-        <Icon name="mdi:hand-wave" class="w-6 h-6" />
+      <BrutalButton href="/get-involved" variant="magenta" size="lg" fullWidth icon="mdi:hand-wave">
         Join the Movement
-      </a>
+      </BrutalButton>
     </div>
   </div>
 
@@ -211,17 +190,14 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
               .replace(/^-|-$/g, '')}
           >
             <div class="mb-8">
-              <h2
-                class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-tight">
                 {group.title}
               </h2>
               <div class="h-2 w-24 bg-magenta mt-2" />
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {group.pages.map((child, index) => {
-                const accents = ['#5EFFD8', '#FFED00', '#C926F2']
+                const accents = ['#00DDB8', '#4A7AEB', '#D428D4']
                 const accent = accents[index % accents.length]
 
                 const imageUrl = child.page.profileImage
@@ -231,10 +207,10 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                 return (
                   <a
                     href={`/${child.fullPath}`}
-                    class="team-member-card group flex flex-col border-4 border-black bg-white transition-all duration-200"
-                    style={`--accent-color: ${accent};`}
+                    class="team-member-card group flex flex-col rounded-sm border border-white/10 bg-grey-dark transition-colors duration-200"
+                    style={`--accent-color: ${accent}; border-top: 2px solid ${accent};`}
                   >
-                    <div class="aspect-square w-full border-b-4 border-black overflow-hidden relative">
+                    <div class="aspect-square w-full border-b border-white/10 overflow-hidden relative">
                       {imageUrl ? (
                         <img
                           src={imageUrl}
@@ -242,9 +218,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                           class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
                         />
                       ) : (
-                        <div class="w-full h-full flex items-center justify-center bg-black/5">
+                        <div class="w-full h-full flex items-center justify-center bg-white/5">
                           <svg
-                            class="w-20 h-20 text-black/20"
+                            class="w-20 h-20 text-white/20"
                             viewBox="0 0 24 24"
                             fill="currentColor"
                           >
@@ -252,19 +228,15 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                           </svg>
                         </div>
                       )}
-                      <div
-                        class="absolute bottom-0 right-0 w-8 h-8"
-                        style={`background: ${accent}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
-                      />
                     </div>
                     <div class="p-4 flex flex-col gap-1">
-                      <h3 class="text-base md:text-lg font-black uppercase text-black leading-tight">
+                      <h3 class="text-base md:text-lg font-display font-black uppercase text-white leading-tight">
                         {child.page.title}
                       </h3>
                       {(child.page.role || child.page.subtitle) && (
                         <p
                           class="text-xs font-black uppercase tracking-wide"
-                          style={`color: ${accent === '#C926F2' ? '#C926F2' : '#555'};`}
+                          style={`color: ${accent};`}
                         >
                           {child.page.role || child.page.subtitle}
                         </p>
@@ -291,15 +263,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
 
 <style>
   .team-member-card {
-    box-shadow: 6px 6px 0 0 var(--accent-color);
-    transform: translate(0, 0);
+    box-shadow: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
   }
   .team-member-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 10px 10px 0 0 var(--accent-color);
-  }
-  .team-member-card:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 0 var(--accent-color);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--accent-color) 35%, transparent);
   }
 </style>

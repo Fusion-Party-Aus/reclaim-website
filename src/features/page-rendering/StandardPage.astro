@@ -26,6 +26,7 @@ const breadcrumbs = segments.map((seg, i) => {
 import { renderPortableText } from '@/lib/portableText'
 import { wrapSectionsInBoxes } from '@/lib/sectionWrapper'
 import { urlFor } from '@/lib/sanity'
+import { BrutalCard, BrutalBadge, CTA, BrutalButton } from '@/components/ui'
 
 const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
 ---
@@ -48,17 +49,17 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     >
       <a
         href="/"
-        class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors"
+        class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors"
       >
         Home
       </a>
       {
         breadcrumbs.map((bc, i) => (
           <>
-            <span class="text-black/30 font-black">›</span>
+            <span class="text-white/30 font-black">›</span>
             {i === breadcrumbs.length - 1 ? (
               <span
-                class="px-3 py-1.5 border-2 border-black bg-black text-white max-w-xs truncate"
+                class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
                 title={page.title}
               >
                 {page.title}
@@ -66,7 +67,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
             ) : (
               <a
                 href={bc.path}
-                class="px-3 py-1.5 border-2 border-black bg-white hover:bg-magenta hover:text-white transition-all"
+                class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-magenta/40 hover:text-magenta transition-all"
               >
                 {bc.label}
               </a>
@@ -91,11 +92,11 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
           <div set:html={pageHtml} />
         </article>
       ) : (
-        <div class="border-4 border-black bg-yellow p-8" style="box-shadow: 6px 6px 0 0 #000;">
+        <BrutalCard variant="surface" shadow="yellow" padding="lg">
           <p class="text-lg font-black uppercase">
             This page has no content yet. Add content in Sanity Studio.
           </p>
-        </div>
+        </BrutalCard>
       )
     }
 
@@ -111,17 +112,14 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                 .replace(/^-|-$/g, '')}
             >
               <div class="mb-8">
-                <h2
-                  class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"
-                  style="font-family: 'Archivo Black', sans-serif;"
-                >
+                <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-tight">
                   {group.title}
                 </h2>
                 <div class="h-2 w-24 bg-magenta mt-2" />
               </div>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                 {group.pages.map((child, index) => {
-                  const accents = ['#5EFFD8', '#FFED00', '#C926F2']
+                  const accents = ['#00DDB8', '#4A7AEB', '#D428D4']
                   const accent = accents[index % accents.length]
 
                   const imageUrl = child.page.profileImage
@@ -131,10 +129,10 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                   return (
                     <a
                       href={`/${child.fullPath}`}
-                      class="team-member-card group flex flex-col border-4 border-black bg-white transition-all duration-200"
-                      style={`--accent-color: ${accent};`}
+                      class="team-member-card group flex flex-col rounded-sm border border-white/10 bg-grey-dark transition-colors duration-200"
+                      style={`--accent-color: ${accent}; border-top: 2px solid ${accent};`}
                     >
-                      <div class="aspect-square w-full border-b-4 border-black overflow-hidden relative">
+                      <div class="aspect-square w-full border-b border-white/10 overflow-hidden relative">
                         {imageUrl ? (
                           <img
                             src={imageUrl}
@@ -142,9 +140,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
                           />
                         ) : (
-                          <div class="w-full h-full flex items-center justify-center bg-black/5">
+                          <div class="w-full h-full flex items-center justify-center bg-white/5">
                             <svg
-                              class="w-20 h-20 text-black/20"
+                              class="w-20 h-20 text-white/20"
                               viewBox="0 0 24 24"
                               fill="currentColor"
                             >
@@ -152,20 +150,15 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                             </svg>
                           </div>
                         )}
-                        {/* Accent corner */}
-                        <div
-                          class="absolute bottom-0 right-0 w-8 h-8"
-                          style={`background: ${accent}; clip-path: polygon(100% 0, 100% 100%, 0 100%);`}
-                        />
                       </div>
                       <div class="p-4 flex flex-col gap-1">
-                        <h3 class="text-base md:text-lg font-black uppercase text-black leading-tight">
+                        <h3 class="text-base md:text-lg font-display font-black uppercase text-white leading-tight">
                           {child.page.title}
                         </h3>
                         {(child.page.role || child.page.subtitle) && (
                           <p
                             class="text-xs font-black uppercase tracking-wide"
-                            style={`color: ${accent === '#C926F2' ? '#C926F2' : '#000'}; opacity: 0.7;`}
+                            style={`color: ${accent};`}
                           >
                             {child.page.role || child.page.subtitle}
                           </p>
@@ -184,57 +177,32 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     {/* ── CTA ── */}
     {
       !hasSidebar && (
-        <section
-          class="mt-20 bg-black text-white border-4 border-black relative overflow-hidden"
-          style="box-shadow: 8px 8px 0 0 #5EFFD8;"
-        >
-          {/* Yellow corner triangle */}
-          <div
-            class="absolute bottom-0 right-0 w-32 h-32 bg-yellow"
-            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-          />
-          <div class="px-8 py-10 relative z-10">
-            <div class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white">
-              GET INVOLVED
-            </div>
-            <h2
-              class="text-3xl md:text-4xl font-black uppercase mb-3 leading-tight"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Ready to Join
-              <>
-                <br />
-                <span class="text-mint">the Movement?</span>
-              </>
-            </h2>
-            <p class="text-base font-black text-white/70 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
-              We don't take corporate donations. We answer to you, not donors.
-            </p>
-            <div class="flex flex-wrap gap-3">
-              <a
-                href="/get-involved"
-                class="px-5 py-3 font-black uppercase text-sm border-4 border-white bg-magenta text-white hover:-translate-y-0.5 transition-all"
-                style="box-shadow: 3px 3px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;"
-              >
-                Get Involved
-              </a>
-              <a
-                href="/electorates"
-                class="px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
-                Find Your Electorate
-              </a>
-              <a
-                href="/policies"
-                class="px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
-                Read Our Policies
-              </a>
-            </div>
+        <CTA variant="primary" size="lg" shadow="lg" class="mt-20">
+          <BrutalBadge variant="white" class="mb-4">
+            GET INVOLVED
+          </BrutalBadge>
+          <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
+            Ready to Join
+            <>
+              <br />
+              <span class="text-mint">the Movement?</span>
+            </>
+          </h2>
+          <p class="text-base font-black text-white/70 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+            We don't take corporate donations. We answer to you, not donors.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <BrutalButton href="/get-involved" variant="white">
+              Get Involved
+            </BrutalButton>
+            <BrutalButton href="/electorates" variant="black">
+              Find Your Electorate
+            </BrutalButton>
+            <BrutalButton href="/policies" variant="black">
+              Read Our Policies
+            </BrutalButton>
           </div>
-        </section>
+        </CTA>
       )
     }
   </div>
@@ -250,15 +218,9 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
 
 <style>
   .team-member-card {
-    box-shadow: 6px 6px 0 0 var(--accent-color);
-    transform: translate(0, 0);
+    box-shadow: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
   }
   .team-member-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 10px 10px 0 0 var(--accent-color);
-  }
-  .team-member-card:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 0 var(--accent-color);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--accent-color) 35%, transparent);
   }
 </style>
