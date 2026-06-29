@@ -7,7 +7,7 @@ import { getElectorates, getHomePage, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 
-import { MovementMetrics } from '@/components/ui'
+import { MovementMetrics, BrutalButton, BrutalCard, StatCard } from '@/components/ui'
 import { DeveloperMessages, ScrollProgress } from '@/features/engagement'
 import { MemberSignup } from '@/features/members'
 
@@ -45,11 +45,11 @@ interface HomePage {
     suffix?: string
     prefix?: string
   }[]
-  signupCTA?: {
-    heading?: string
-    description?: string
-    buttonText?: string
-    footerText?: string
+  signupCTA: {
+    heading: string
+    description: string
+    buttonText: string
+    footerText: string
   }
   theftSection: { heading: string; description: string; cards: any[]; featuredPolicies?: any[] }
   electoratesSection: {
@@ -96,7 +96,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   <!-- ALERT BAR -->
   {
     hp.alertBar?.enabled !== false && (
-      <div class="alert-bar border-y-4 border-black">
+      <div class="alert-bar">
         <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
         {hp.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
         <a href={hp.alertBar?.linkUrl || '#electorates'}>
@@ -115,15 +115,16 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   />
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 1: MOVEMENT METRICS — solid white, left-aligned header
+       SECTION 1: MOVEMENT METRICS — dark surface, left-aligned header
        ═══════════════════════════════════════════════════════ -->
-  <section class="bg-white border-b-8 border-black py-20 px-4 md:px-8 relative overflow-hidden">
+  <section
+    class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8 relative overflow-hidden"
+  >
     {/* Watermark */}
     <div class="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
       <span
-        class="text-[16rem] font-black uppercase leading-none select-none"
-        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.03; transform: translateY(20%);"
-        >NOW</span
+        class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
+        style="opacity: 0.03; transform: translateY(20%);">NOW</span
       >
     </div>
 
@@ -131,14 +132,11 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <!-- Section header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
-          <h2
-            class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
-            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
-          >
+          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9]">
             Movement<br /><span class="text-magenta">In Motion</span>
           </h2>
         </div>
-        <p class="text-lg font-bold text-gray-700 max-w-xs">
+        <p class="text-lg font-bold text-white/70 max-w-xs">
           Real people. Real progress. Watch us grow in real-time.
         </p>
       </div>
@@ -148,41 +146,29 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 2: FEATURED POLICIES — solid mint background
+       SECTION 2: FEATURED POLICIES — dark surface
        ═══════════════════════════════════════════════════════ -->
   <section
     id="policies"
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black"
-    style="background-color: #5EFFD8;"
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
   >
     {/* Watermark */}
     <div
       class="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden"
     >
       <span
-        class="text-[18rem] font-black uppercase leading-none select-none"
-        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.06; transform: rotate(-4deg) translateX(-5%);"
-        >FIX</span
+        class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
+        style="opacity: 0.04; transform: rotate(-4deg) translateX(-5%);">FIX</span
       >
-    </div>
-
-    {/* Corner accent */}
-    <div
-      class="absolute top-0 right-0 w-40 h-40 bg-black hidden md:block"
-      style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
-    >
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
       <!-- Section header -->
       <div class="mb-16">
-        <h2
-          class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
-          style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
-        >
+        <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9]">
           {hp.theftSection.heading}
         </h2>
-        <p class="text-xl font-bold text-black mt-4 max-w-2xl">
+        <p class="text-xl font-bold text-white/70 mt-4 max-w-2xl">
           {hp.theftSection.description}
         </p>
       </div>
@@ -195,10 +181,27 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
             const imageUrl = item.image
               ? urlFor(item.image).width(600).height(400).url()
               : item.imageUrl || null
-            const shadowColors = ['#000000', '#C926F2', '#000000']
-            const shadowColor = shadowColors[index % 3]
-            const accentColors = ['#C926F2', '#FFED00', '#5EFFD8']
-            const accentColor = accentColors[index % 3]
+            const accents = [
+              {
+                border: 'border-t-2 border-t-magenta',
+                hoverBorder: 'hover:border-magenta/40',
+                tint: 'bg-magenta/10',
+                text: 'text-magenta',
+              },
+              {
+                border: 'border-t-2 border-t-yellow',
+                hoverBorder: 'hover:border-yellow/40',
+                tint: 'bg-yellow/10',
+                text: 'text-yellow',
+              },
+              {
+                border: 'border-t-2 border-t-mint',
+                hoverBorder: 'hover:border-mint/40',
+                tint: 'bg-mint/10',
+                text: 'text-mint',
+              },
+            ]
+            const accent = accents[index % 3]
             const title = isPolicy ? item.title : item.amount || item.title
             const description = isPolicy ? item.summary : item.description
             const category = item.category || (isPolicy ? item.pillar : 'Policy')
@@ -208,38 +211,30 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
             return (
               <a
                 href={link}
-                class="group block bg-white border-4 border-black transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1"
-                style={`box-shadow: 6px 6px 0px 0px ${shadowColor};`}
+                class={`group block bg-grey-dark border border-white/10 rounded-sm transition-colors ${accent.border} ${accent.hoverBorder}`}
               >
                 {imageUrl ? (
                   <img
                     src={imageUrl}
                     alt={category}
-                    class="w-full h-48 object-cover border-b-4 border-black group-hover:brightness-90 transition-all"
+                    class="w-full h-48 object-cover group-hover:brightness-90 transition-all"
                   />
                 ) : (
-                  <div
-                    class="w-full h-48 border-b-4 border-black flex items-center justify-center"
-                    style={`background-color: ${accentColor};`}
-                  >
-                    <Icon name={icon} class="w-20 h-20 text-black opacity-40" />
+                  <div class={`w-full h-48 flex items-center justify-center ${accent.tint}`}>
+                    <Icon name={icon} class={`w-20 h-20 ${accent.text} opacity-60`} />
                   </div>
                 )}
                 <div class="p-6">
                   <div
-                    class="inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider border-2 border-black mb-3"
-                    style={`background: ${accentColor}; color: #000;`}
+                    class={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider rounded-sm mb-3 ${accent.tint} ${accent.text}`}
                   >
                     {category}
                   </div>
-                  <h3
-                    class="text-xl font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors"
-                    style="font-family: 'Archivo Black', sans-serif;"
-                  >
+                  <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors">
                     {title}
                   </h3>
-                  <p class="text-sm font-bold text-gray-700 leading-snug mb-4">{description}</p>
-                  <span class="inline-flex items-center gap-2 font-black uppercase text-sm text-black border-b-2 border-black">
+                  <p class="text-sm font-bold text-white/60 leading-snug mb-4">{description}</p>
+                  <span class="inline-flex items-center gap-2 font-black uppercase text-sm border-b border-white/30">
                     {linkText} <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
                   </span>
                 </div>
@@ -250,14 +245,9 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       </div>
 
       <div class="mt-10">
-        <a
-          href="/policies"
-          class="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-black uppercase text-lg border-4 border-black hover:-translate-y-1 hover:-translate-x-1 transition-all"
-          style="box-shadow: 6px 6px 0px 0px #FFED00;"
-        >
-          <Icon name="mdi:file-document-multiple" class="w-6 h-6" />
+        <BrutalButton variant="black" size="lg" href="/policies" icon="mdi:file-document-multiple">
           See All Policies
-        </a>
+        </BrutalButton>
       </div>
     </div>
   </section>
@@ -267,22 +257,14 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
        ═══════════════════════════════════════════════════════ -->
   <section
     id="electorates"
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-mint bg-black"
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-mint/30 bg-surface-base"
   >
     {/* Watermark */}
     <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
       <span
-        class="text-[14rem] font-black uppercase leading-none select-none"
-        style="font-family: 'Anton', sans-serif; color: #fff; opacity: 0.03; transform: rotate(8deg) translateX(10%);"
-        >VOTE</span
+        class="text-[14rem] font-display font-black uppercase leading-none select-none text-white"
+        style="opacity: 0.03; transform: rotate(8deg) translateX(10%);">VOTE</span
       >
-    </div>
-
-    {/* Corner accent — mint */}
-    <div
-      class="absolute bottom-0 left-0 w-48 h-48 bg-mint hidden md:block"
-      style="clip-path: polygon(0 100%, 100% 100%, 0 0);"
-    >
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
@@ -290,8 +272,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
           <h2
-            class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
-            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+            class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]"
           >
             {hp.electoratesSection.heading}
           </h2>
@@ -303,40 +284,45 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
       {
         electorates.length === 0 ? (
-          <div
-            class="bg-yellow border-4 border-black p-10 text-center max-w-2xl mx-auto"
-            style="box-shadow: 8px 8px 0px 0px #5EFFD8;"
+          <BrutalCard
+            variant="yellow"
+            shadow="black"
+            padding="xl"
+            class="text-center max-w-2xl mx-auto"
           >
-            <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-black" />
-            <h3 class="text-3xl font-black uppercase mb-3">Campaigns Incoming</h3>
+            <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-white" />
+            <h3 class="text-3xl font-display font-black uppercase mb-3">Campaigns Incoming</h3>
             <p class="text-lg font-bold mb-8">
               We are currently finalising our candidates for the upcoming election. Stay tuned!
             </p>
-            <a
-              href="/electorates"
-              class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-transform"
-              style="box-shadow: 4px 4px 0px 0px #000;"
-            >
-              <Icon name="mdi:archive" class="w-5 h-5" /> View Past Candidates
-            </a>
-          </div>
+            <BrutalButton variant="black" href="/electorates" icon="mdi:archive">
+              View Past Candidates
+            </BrutalButton>
+          </BrutalCard>
         ) : (
           <div>
             {/* Spotlight — up to 3 electorates with candidate images */}
             {(() => {
               const spotlight = electorates.filter((e: any) => e.candidateName).slice(0, 3)
+              const spotlightAccents = [
+                { border: 'border-t-2 border-t-mint', tint: 'bg-mint/10', text: 'text-mint' },
+                { border: 'border-t-2 border-t-yellow', tint: 'bg-yellow/10', text: 'text-yellow' },
+                {
+                  border: 'border-t-2 border-t-magenta',
+                  tint: 'bg-magenta/10',
+                  text: 'text-magenta',
+                },
+              ]
               return spotlight.length > 0 ? (
                 <div
                   class={`grid gap-6 mb-10 ${spotlight.length === 1 ? 'grid-cols-1 max-w-sm' : spotlight.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-2xl' : 'grid-cols-1 md:grid-cols-3'}`}
                 >
                   {spotlight.map((electorate: any, index: number) => {
-                    const accentColors = ['#5EFFD8', '#FFED00', '#C926F2']
-                    const accent = accentColors[index % 3]
+                    const accent = spotlightAccents[index % 3]
                     return (
                       <a
                         href={`/electorates/${electorate.slug.current}`}
-                        class="group bg-white border-4 border-black block transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1"
-                        style={`box-shadow: 6px 6px 0px 0px ${accent};`}
+                        class={`group bg-grey-dark border border-white/10 rounded-sm block transition-colors hover:border-white/25 ${accent.border}`}
                       >
                         {electorate.candidateImage && (
                           <img
@@ -346,26 +332,22 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                               .fit('crop')
                               .url()}
                             alt={electorate.candidateName || electorate.name}
-                            class="w-full h-52 object-cover border-b-4 border-black group-hover:brightness-90 transition-all"
+                            class="w-full h-52 object-cover group-hover:brightness-90 transition-all"
                           />
                         )}
                         <div class="p-5">
                           <div
-                            class="inline-block px-2 py-0.5 text-xs font-black uppercase border-2 border-black mb-2"
-                            style={`background: ${accent}; color: #000;`}
+                            class={`inline-block px-2 py-0.5 text-xs font-black uppercase rounded-sm mb-2 ${accent.tint} ${accent.text}`}
                           >
                             {electorate.house === 'upper' ? 'Upper House' : 'Lower House'}
                           </div>
-                          <h3
-                            class="text-2xl font-black uppercase leading-tight mb-1"
-                            style="font-family: 'Archivo Black', sans-serif;"
-                          >
+                          <h3 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
                             {electorate.name}
                           </h3>
                           {electorate.candidateName && (
                             <div class="flex items-center gap-2 mt-1">
-                              <Icon name="mdi:account" class="w-4 h-4 text-gray-500" />
-                              <span class="font-black text-sm uppercase text-gray-700">
+                              <Icon name="mdi:account" class="w-4 h-4 text-white/50" />
+                              <span class="font-black text-sm uppercase text-white/70">
                                 {electorate.candidateName}
                               </span>
                             </div>
@@ -403,15 +385,11 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                   >
                     <div class="flex items-center gap-3 min-w-0">
                       <span
-                        class="text-xs font-black uppercase tracking-widest shrink-0 px-2 py-0.5 border border-white/20"
-                        style={`color: ${electorate.house === 'upper' ? '#5EFFD8' : '#FFED00'};`}
+                        class={`text-xs font-black uppercase tracking-widest shrink-0 px-2 py-0.5 border border-white/20 ${electorate.house === 'upper' ? 'text-mint' : 'text-yellow'}`}
                       >
                         {electorate.house === 'upper' ? 'UPR' : 'LWR'}
                       </span>
-                      <span
-                        class="font-black uppercase text-white text-sm truncate"
-                        style="font-family: 'Archivo Black', sans-serif;"
-                      >
+                      <span class="font-display font-black uppercase text-white text-sm truncate">
                         {electorate.name}
                       </span>
                     </div>
@@ -460,23 +438,19 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       }
 
       <!-- CTA -->
-      <div
-        class="mt-12 bg-mint border-4 border-black p-8 max-w-2xl"
-        style="box-shadow: 8px 8px 0px 0px #FFED00;"
-      >
-        <h3 class="text-2xl font-black uppercase mb-2">
+      <BrutalCard variant="mint" shadow="black" padding="lg" class="mt-12 max-w-2xl">
+        <h3 class="text-2xl font-display font-black uppercase mb-2">
           {hp.electoratesSection.callToAction.heading}
         </h3>
-        <p class="font-bold mb-6 text-gray-800">{hp.electoratesSection.callToAction.description}</p>
-        <a
+        <p class="font-bold mb-6 text-black/70">{hp.electoratesSection.callToAction.description}</p>
+        <BrutalButton
+          variant="black"
           href={hp.electoratesSection.callToAction.buttonLink}
-          class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-transform"
-          style="box-shadow: 4px 4px 0px 0px #C926F2;"
+          icon="mdi:email-fast"
         >
-          <Icon name="mdi:email-fast" class="w-5 h-5" />
           {hp.electoratesSection.callToAction.buttonText}
-        </a>
-      </div>
+        </BrutalButton>
+      </BrutalCard>
     </div>
   </section>
 
@@ -508,54 +482,38 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   </script>
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 4: MANIFESTO — split black/yellow layout
+       SECTION 4: MANIFESTO — dark surface, stat cards
        ═══════════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black bg-yellow">
+  <section
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
+  >
     {/* Watermark */}
     <div
       class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
     >
       <span
-        class="text-[18rem] font-black uppercase leading-none select-none"
-        style="font-family: 'Anton', sans-serif; color: #000; opacity: 0.05; transform: rotate(-3deg);"
-        >PLAN</span
+        class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
+        style="opacity: 0.04; transform: rotate(-3deg);">PLAN</span
       >
-    </div>
-    {/* Corner — black triangle top-left */}
-    <div
-      class="absolute top-0 left-0 w-40 h-40 bg-black hidden md:block"
-      style="clip-path: polygon(0 0, 100% 0, 0 100%);"
-    >
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <!-- Left: header -->
         <div>
-          <h2
-            class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9] mb-6"
-            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
-          >
+          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9] mb-6">
             {hp.manifestoSection.heading}
           </h2>
-          <p class="text-xl font-bold text-gray-900 mb-8">
+          <p class="text-xl font-bold text-white/70 mb-8">
             {hp.manifestoSection.description}
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="/manifesto"
-              class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-all"
-              style="box-shadow: 5px 5px 0px 0px #C926F2;"
-            >
-              <Icon name="mdi:book-open" class="w-5 h-5" /> Read Full Manifesto
-            </a>
-            <a
-              href="/policies"
-              class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 font-black uppercase border-4 border-black hover:-translate-y-1 transition-all"
-              style="box-shadow: 5px 5px 0px 0px #000;"
-            >
-              <Icon name="mdi:calculator" class="w-5 h-5" /> We've Done the Maths
-            </a>
+            <BrutalButton variant="magenta" href="/manifesto" icon="mdi:book-open">
+              Read Full Manifesto
+            </BrutalButton>
+            <BrutalButton variant="white" href="/policies" icon="mdi:calculator">
+              We've Done the Maths
+            </BrutalButton>
           </div>
         </div>
 
@@ -563,24 +521,15 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
         <div class="grid grid-cols-2 gap-4">
           {
             hp.manifestoSection.stats.map((stat: any, index: number) => {
-              const accentColors = ['#C926F2', '#5EFFD8', '#FFED00', '#C926F2']
-              const accent = accentColors[index % 4]
+              const variants = ['magenta', 'mint', 'yellow', 'magenta'] as const
               return (
-                <div
-                  class="bg-black border-4 border-black p-6 flex flex-col items-start"
-                  style={`box-shadow: 6px 6px 0px 0px ${accent};`}
-                >
-                  <div class="w-full h-2 mb-4" style={`background: ${accent};`} />
-                  <span
-                    class="text-4xl lg:text-5xl font-black block mb-1 uppercase"
-                    style={`font-family: 'Archivo Black', sans-serif; color: ${accent};`}
-                  >
-                    {stat.number}
-                  </span>
-                  <span class="text-xs font-black uppercase tracking-wide text-white">
-                    {stat.label}
-                  </span>
-                </div>
+                <StatCard
+                  value={stat.number}
+                  label={stat.label}
+                  variant={variants[index % 4]}
+                  animated={false}
+                  size="lg"
+                />
               )
             })
           }
@@ -590,34 +539,26 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 5: JOIN / TAKE ACTION — solid magenta
+       SECTION 5: JOIN / TAKE ACTION — dark surface, accent cards
        ═══════════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden py-20 px-4 md:px-8 border-b-8 border-black bg-magenta">
+  <section
+    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-base"
+  >
     {/* Watermark */}
     <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
       <span
-        class="text-[16rem] font-black uppercase leading-none select-none"
-        style="font-family: 'Anton', sans-serif; color: #fff; opacity: 0.07; transform: rotate(5deg) translateX(15%);"
-        >JOIN</span
+        class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
+        style="opacity: 0.05; transform: rotate(5deg) translateX(15%);">JOIN</span
       >
-    </div>
-    {/* Corner accent — yellow top-right */}
-    <div
-      class="absolute top-0 right-0 w-48 h-48 bg-yellow hidden md:block"
-      style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
-    >
     </div>
 
     <div class="max-w-7xl mx-auto relative z-10">
       <!-- Section header -->
       <div class="mb-16">
-        <h2
-          class="text-5xl md:text-7xl font-black uppercase text-black leading-[0.9]"
-          style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
-        >
+        <h2 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]">
           {hp.joinSection.heading}
         </h2>
-        <p class="text-xl font-bold text-black mt-4 max-w-xl">
+        <p class="text-xl font-bold text-white/70 mt-4 max-w-xl">
           {hp.joinSection.description}
         </p>
       </div>
@@ -625,44 +566,26 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {
           hp.joinSection.cards.map((card: any, index: number) => {
-            const bgColors = ['#FFED00', '#000000', '#5EFFD8']
-            const textColors = ['#000000', '#ffffff', '#000000']
-            const shadowColors = ['#000000', '#FFED00', '#000000']
-            const bg = bgColors[index % 3]
-            const text = textColors[index % 3]
-            const shadow = shadowColors[index % 3]
-            const ctaBg = bg === '#000000' ? '#FFED00' : '#000000'
-            const ctaText = bg === '#000000' ? '#000000' : '#ffffff'
+            const variants = ['yellow', 'black', 'mint'] as const
+            const buttonVariants = ['black', 'yellow', 'black'] as const
             return (
-              <div
-                class="border-4 border-black p-8 flex flex-col group hover:-translate-y-1 transition-transform"
-                style={`background: ${bg}; color: ${text}; box-shadow: 6px 6px 0px 0px ${shadow};`}
-              >
+              <BrutalCard variant={variants[index % 3]} padding="lg" class="flex flex-col group">
                 {card.icon && card.icon.includes(':') && (
                   <div class="mb-4">
-                    <Icon
-                      name={card.icon}
-                      class="w-12 h-12"
-                      style={`color: ${text === '#000000' ? '#C926F2' : '#5EFFD8'};`}
-                    />
+                    <Icon name={card.icon} class="w-12 h-12" />
                   </div>
                 )}
-                <h3
-                  class="text-2xl font-black uppercase mb-3"
-                  style={`color: ${text}; font-family: 'Archivo Black', sans-serif;`}
-                >
-                  {card.title}
-                </h3>
+                <h3 class="text-2xl font-display font-black uppercase mb-3">{card.title}</h3>
                 <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
-                <a
+                <BrutalButton
+                  variant={buttonVariants[index % 3]}
                   href={card.buttonLink}
-                  class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase border-4 border-black w-fit hover:opacity-90 transition-opacity"
-                  style={`background: ${ctaBg}; color: ${ctaText}; box-shadow: 4px 4px 0px 0px ${ctaText === '#000000' ? '#000' : '#fff'};`}
+                  icon="mdi:arrow-right-circle"
+                  class="w-fit"
                 >
-                  <Icon name="mdi:arrow-right-circle" class="w-5 h-5" />
                   {card.buttonText}
-                </a>
-              </div>
+                </BrutalButton>
+              </BrutalCard>
             )
           })
         }
@@ -672,10 +595,10 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
   <!-- MEMBER SIGNUP -->
   <MemberSignup
-    heading={hp.signupCTA?.heading}
-    description={hp.signupCTA?.description}
-    buttonText={hp.signupCTA?.buttonText}
-    footerText={hp.signupCTA?.footerText}
+    heading={hp.signupCTA.heading}
+    description={hp.signupCTA.description}
+    buttonText={hp.signupCTA.buttonText}
+    footerText={hp.signupCTA.footerText}
   />
 
   <Footer />
