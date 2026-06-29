@@ -24,8 +24,8 @@ const {
 <section
   class="relative bg-black text-white overflow-hidden"
   style={compact
-    ? 'min-height: 45vh; border-bottom: 8px solid #5EFFD8;'
-    : 'min-height: clamp(85vh, 90vh, 100vh); border-bottom: 8px solid #5EFFD8;'}
+    ? 'min-height: 45vh; border-bottom: 8px solid #00DDB8;'
+    : 'min-height: clamp(85vh, 90vh, 100vh); border-bottom: 8px solid #00DDB8;'}
   id="hero-section"
 >
   {/* ===== Full-bleed photographic background ===== */}
@@ -55,7 +55,7 @@ const {
   {/* ===== Magenta colour slash — cuts diagonally across the photo ===== */}
   <div
     class="absolute top-0 right-0 h-full w-1/2 hidden lg:block hero-colour-slash"
-    style="clip-path: polygon(100% 0, 100% 100%, 0 100%); background-color: #C926F2; mix-blend-mode: multiply; opacity: 0.7;"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%); background-color: #D428D4; mix-blend-mode: multiply; opacity: 0.7;"
     aria-hidden="true"
   >
   </div>
@@ -90,14 +90,14 @@ const {
 
       <h1
         class="font-black uppercase text-white hero-headline"
-        style={`font-family: 'Archivo Black', sans-serif; font-size: ${compact ? 'clamp(2.75rem, 4.5vw + 1rem, 4.75rem)' : 'clamp(3.25rem, 5.5vw + 1.5rem, 7.5rem)'}; line-height: 0.87; letter-spacing: -0.03em; text-wrap: balance; margin-bottom: 1.25rem;`}
+        style={`font-family: 'Barlow Condensed', sans-serif; font-size: ${compact ? 'clamp(2.75rem, 4.5vw + 1rem, 4.75rem)' : 'clamp(3.25rem, 5.5vw + 1.5rem, 7.5rem)'}; line-height: 0.87; letter-spacing: -0.03em; text-wrap: balance; margin-bottom: 1.25rem;`}
       >
         {title}
       </h1>
 
       <div
         class="hero-rule"
-        style={`width: 4.5rem; height: 6px; background: #5EFFD8; margin-bottom: ${compact ? '1.25rem' : '2rem'}; transform-origin: left center;`}
+        style={`width: 4.5rem; height: 6px; background: #00DDB8; margin-bottom: ${compact ? '1.25rem' : '2rem'}; transform-origin: left center;`}
       >
       </div>
 
@@ -119,13 +119,13 @@ const {
             style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem 3rem; padding-bottom: 2.5rem; border-bottom: 2px solid rgba(255,255,255,0.15); margin-bottom: 2.5rem;"
           >
             {stats.map((stat, index) => {
-              const colors = ['#C926F2', '#5EFFD8', '#FFED00']
+              const colors = ['#D428D4', '#00DDB8', '#4A7AEB']
               const color = colors[index % 3]
               return (
                 <div style="display: flex; flex-direction: column; gap: 0.3rem;">
                   <span
                     class="font-black leading-none"
-                    style={`font-family: 'Archivo Black', sans-serif; font-size: clamp(2.25rem, 3.5vw + 0.5rem, 4rem); color: ${color};`}
+                    style={`font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.25rem, 3.5vw + 0.5rem, 4rem); color: ${color};`}
                   >
                     {stat.number}
                   </span>

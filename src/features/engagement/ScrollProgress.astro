@@ -13,9 +13,9 @@ interface Props {
 const { showMilestones = true, color = 'magenta' } = Astro.props
 
 const colorMap = {
-  magenta: '#C926F2',
-  mint: '#5EFFD8',
-  yellow: '#FFED00',
+  magenta: '#D428D4',
+  mint: '#00DDB8',
+  yellow: '#4A7AEB',
 }
 ---
 
@@ -59,10 +59,10 @@ const colorMap = {
 <script define:vars={{ showMilestones }}>
   let currentMilestone = 0
   const milestones = [
-    { percent: 25, emoji: '📖', text: "You're getting it!", color: '#5EFFD8' },
-    { percent: 50, emoji: '💡', text: 'Halfway there!', color: '#FFED00' },
-    { percent: 75, emoji: '🔥', text: 'Almost done!', color: '#C926F2' },
-    { percent: 100, emoji: '🎉', text: 'Share what you learned!', color: '#5EFFD8' },
+    { percent: 25, emoji: '📖', text: "You're getting it!", color: '#00DDB8' },
+    { percent: 50, emoji: '💡', text: 'Halfway there!', color: '#4A7AEB' },
+    { percent: 75, emoji: '🔥', text: 'Almost done!', color: '#D428D4' },
+    { percent: 100, emoji: '🎉', text: 'Share what you learned!', color: '#00DDB8' },
   ]
 
   function updateScrollProgress() {

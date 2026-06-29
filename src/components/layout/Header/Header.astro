@@ -1,5 +1,7 @@
 ---
 import { getDocuments } from '@/lib/sanity'
+import { Image } from 'astro:assets'
+import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
 
 const currentPath = Astro.url.pathname
 
@@ -69,22 +71,20 @@ const ctaButton = navigation?.ctaButton || {
         class="flex items-center gap-3 no-underline group shrink-0"
         aria-label="Fusion Party Victoria Home"
       >
-        <div
-          class="relative overflow-hidden border-2 border-black p-1 bg-white group-hover:border-mint transition-all shadow-[3px_3px_0px_0px_#C926F2] group-hover:shadow-[1px_1px_0px_0px_#C926F2] group-hover:translate-x-[2px] group-hover:translate-y-[2px]"
-        >
-          <img src="/solo-full-colour.svg" alt="Fusion Party Victoria" class="h-9 w-auto" />
+        <div class="relative overflow-hidden group-hover:opacity-90 transition-all">
+          <Image src={logoMonoWhite} alt="Fusion Party Victoria" class="h-9 w-auto" />
         </div>
         <div class="flex flex-col leading-none">
           <div class="flex items-baseline gap-1">
             <span
               class="font-black text-magenta text-xl md:text-2xl tracking-tighter uppercase"
-              style="font-family: 'Archivo Black', sans-serif;"
+              style="font-family: 'Barlow Condensed', sans-serif;"
             >
               Fusion
             </span>
             <span
-              class="font-black text-yellow text-[9px] tracking-wider uppercase bg-black px-1.5 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#000] ml-1.5"
-              style="font-family: 'Archivo Black', sans-serif;"
+              class="font-black text-yellow text-[9px] tracking-wider uppercase bg-black px-1.5 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#0F0018] ml-1.5"
+              style="font-family: 'Barlow Condensed', sans-serif;"
             >
               Victoria
             </span>
@@ -100,8 +100,7 @@ const ctaButton = navigation?.ctaButton || {
 
       {/* ── Mobile menu toggle ── */}
       <button
-        class="md:hidden text-white px-3 py-2 border-4 border-mint bg-black hover:bg-mint hover:text-black cursor-pointer font-black uppercase text-sm transition-all"
-        style="box-shadow: 3px 3px 0px 0px #5EFFD8;"
+        class="md:hidden text-white px-3 py-2 border border-white/15 rounded-sm bg-black hover:bg-mint hover:text-black cursor-pointer font-black uppercase text-sm transition-all"
         aria-label="Toggle menu"
         id="mobile-menu-toggle"
       >
@@ -123,7 +122,7 @@ const ctaButton = navigation?.ctaButton || {
                 <div class="nav-dropdown-wrapper relative group">
                   <button
                     class={`nav-link px-3 py-2 text-white font-black text-sm uppercase tracking-wider flex items-center gap-1.5 border-2 border-transparent hover:border-mint hover:bg-white/5 transition-all ${isActive ? 'text-mint' : ''}`}
-                    style="font-family: 'Archivo Black', sans-serif; background: none; cursor: pointer;"
+                    style="font-family: 'Barlow Condensed', sans-serif; background: none; cursor: pointer;"
                   >
                     {item.label}
                     <span class="text-xs dropdown-arrow transition-transform duration-200 group-hover:rotate-180">
@@ -135,17 +134,12 @@ const ctaButton = navigation?.ctaButton || {
                     class="dropdown-menu absolute top-full left-0 pt-2 hidden group-hover:block"
                     style="min-width: 240px; z-index: 100;"
                   >
-                    <div
-                      class="bg-black border-4 border-mint p-1.5"
-                      style="box-shadow: 6px 6px 0px 0px #C926F2;"
-                    >
-                      {/* Top accent stripe */}
-                      <div class="h-1 w-full bg-magenta mb-1.5" />
+                    <div class="bg-black border border-white/10 rounded-sm p-1.5 border-t-2 border-t-magenta">
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
                           class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b border-white/10 last:border-b-0 font-black uppercase text-xs tracking-wider"
-                          style="font-family: 'Archivo Black', sans-serif;"
+                          style="font-family: 'Barlow Condensed', sans-serif;"
                         >
                           {child.label}
                           {child.description && (
@@ -165,7 +159,7 @@ const ctaButton = navigation?.ctaButton || {
               <a
                 href={item.href}
                 class={`nav-link relative px-3 py-2 font-black text-sm uppercase tracking-wider transition-all border-2 border-transparent hover:border-mint hover:bg-white/5 ${isActive ? 'text-yellow' : 'text-white hover:text-mint'}`}
-                style="font-family: 'Archivo Black', sans-serif;"
+                style="font-family: 'Barlow Condensed', sans-serif;"
               >
                 {item.label}
                 {/* Active indicator — thin yellow border on bottom */}
@@ -178,8 +172,8 @@ const ctaButton = navigation?.ctaButton || {
         {/* CTA Button — solid, high-contrast with tactile shadow-press effect */}
         <a
           href={ctaButton.href}
-          class="ml-4 px-5 py-2 text-sm font-black uppercase border-4 border-black transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
-          style={`font-family: 'Archivo Black', sans-serif; background: ${ctaButton.style === 'primary' ? '#C926F2' : ctaButton.style === 'yellow' ? '#FFED00' : '#5EFFD8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'}; box-shadow: 4px 4px 0px 0px ${ctaButton.style === 'primary' ? '#FFED00' : '#C926F2'};`}
+          class="ml-4 px-5 py-2 text-sm font-black uppercase rounded-sm transition-all hover:scale-[1.02]"
+          style={`font-family: 'Barlow Condensed', sans-serif; background: ${ctaButton.style === 'primary' ? '#D428D4' : ctaButton.style === 'yellow' ? '#4A7AEB' : '#00DDB8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'};`}
         >
           {ctaButton.label}
         </a>
@@ -188,7 +182,7 @@ const ctaButton = navigation?.ctaButton || {
 
     {/* ── Mobile navigation ── */}
     <nav class="mobile-nav hidden" id="mobile-nav">
-      <div class="flex flex-col gap-3 py-5 border-t-4 border-magenta mt-0">
+      <div class="flex flex-col gap-2 py-5 border-t border-white/10 mt-0">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -201,8 +195,8 @@ const ctaButton = navigation?.ctaButton || {
               return (
                 <div class="mobile-dropdown">
                   <button
-                    class="mobile-dropdown-toggle w-full text-left px-4 py-3 font-black uppercase text-sm border-4 bg-black text-white border-mint hover:bg-mint hover:text-black transition-all flex justify-between items-center"
-                    style="box-shadow: 3px 3px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+                    class="mobile-dropdown-toggle w-full text-left px-4 py-3 font-black uppercase text-sm rounded-sm bg-black text-white border border-white/10 hover:bg-mint hover:text-black transition-all flex justify-between items-center"
+                    style="font-family: 'Barlow Condensed', sans-serif;"
                   >
                     {item.label}
                     <span class="text-xs dropdown-arrow">▼</span>
@@ -211,8 +205,8 @@ const ctaButton = navigation?.ctaButton || {
                     {item.children?.map((child) => (
                       <a
                         href={child.href}
-                        class="block px-4 py-2.5 font-bold text-sm border-l-4 border-mint bg-black text-white hover:bg-mint hover:text-black transition-all"
-                        style="font-family: 'Archivo Black', sans-serif;"
+                        class="block px-4 py-2.5 font-bold text-sm border-l-2 border-mint bg-black text-white hover:bg-mint hover:text-black transition-all"
+                        style="font-family: 'Barlow Condensed', sans-serif;"
                       >
                         {child.label}
                       </a>
@@ -225,12 +219,12 @@ const ctaButton = navigation?.ctaButton || {
             return (
               <a
                 href={item.href}
-                class={`block px-4 py-3 font-black uppercase text-sm border-4 transition-all ${
+                class={`block px-4 py-3 font-black uppercase text-sm rounded-sm border transition-all ${
                   isActive
-                    ? 'bg-yellow text-black border-black'
-                    : 'bg-black text-white border-mint hover:bg-mint hover:text-black hover:border-black'
+                    ? 'bg-magenta text-white border-transparent'
+                    : 'bg-black text-white border-white/10 hover:bg-mint hover:text-black'
                 }`}
-                style={`box-shadow: 3px 3px 0px 0px ${isActive ? '#C926F2' : '#5EFFD8'}; font-family: 'Archivo Black', sans-serif;`}
+                style="font-family: 'Barlow Condensed', sans-serif;"
               >
                 {item.label}
               </a>
@@ -239,8 +233,8 @@ const ctaButton = navigation?.ctaButton || {
         }
         <a
           href={ctaButton.href}
-          class="block px-4 py-3 text-center font-black uppercase text-sm border-4 border-black transition-all"
-          style={`background: ${ctaButton.style === 'primary' ? '#C926F2' : '#FFED00'}; color: ${ctaButton.style === 'primary' ? '#fff' : '#000'}; box-shadow: 4px 4px 0px 0px #FFED00; font-family: 'Archivo Black', sans-serif;`}
+          class="block px-4 py-3 text-center font-black uppercase text-sm rounded-sm transition-all"
+          style={`background: ${ctaButton.style === 'primary' ? '#D428D4' : '#4A7AEB'}; color: #fff; font-family: 'Barlow Condensed', sans-serif;`}
         >
           {ctaButton.label}
         </a>
@@ -251,7 +245,7 @@ const ctaButton = navigation?.ctaButton || {
 
 <style>
   .nav-link:hover {
-    color: #5effd8 !important;
+    color: #00ddb8 !important;
   }
 
   .dropdown-menu {

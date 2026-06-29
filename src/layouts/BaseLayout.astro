@@ -37,7 +37,7 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
 
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#C926F2" />
+    <meta name="theme-color" content="#D428D4" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Fusion Party Victoria" />
@@ -63,26 +63,24 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
     <!-- PWA Install Prompt -->
     <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">
       <div
-        class="bg-black border-6 border-magenta p-6 max-w-sm transform rotate-1"
-        style="box-shadow: 8px 8px 0px 0px #FFED00, 16px 16px 0px 0px #5EFFD8;"
+        class="bg-grey-dark border border-white/10 rounded-sm border-t-2 border-t-magenta p-6 max-w-sm"
       >
         <button
           id="pwa-close"
-          class="absolute -top-3 -right-3 w-10 h-10 bg-yellow border-4 border-black flex items-center justify-center font-black text-xl hover:bg-mint transition-all"
-          style="box-shadow: 3px 3px 0px 0px #000;"
+          class="absolute -top-3 -right-3 w-8 h-8 bg-yellow rounded-full flex items-center justify-center font-black text-lg text-white hover:scale-110 transition-all"
         >
           ✕
         </button>
         <div class="flex items-start gap-4 mb-4">
           <div
-            class="w-12 h-12 bg-magenta border-4 border-white flex items-center justify-center flex-shrink-0 rotate-12"
+            class="w-12 h-12 bg-magenta rounded-sm flex items-center justify-center flex-shrink-0"
           >
             <span class="text-2xl">📱</span>
           </div>
           <div>
             <h3
               class="text-lg font-black uppercase text-magenta mb-2"
-              style="font-family: 'Archivo Black', sans-serif;"
+              style="font-family: 'Barlow Condensed', sans-serif;"
             >
               Install Fusion App
             </h3>
@@ -93,8 +91,8 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
         </div>
         <button
           id="pwa-install"
-          class="w-full px-4 py-3 bg-magenta text-white border-4 border-white font-black uppercase hover:bg-yellow hover:text-black transition-all"
-          style="box-shadow: 4px 4px 0px 0px #fff; font-family: 'Archivo Black', sans-serif;"
+          class="w-full px-4 py-3 bg-magenta text-white rounded-sm font-black uppercase hover:bg-magenta-bright transition-all"
+          style="font-family: 'Barlow Condensed', sans-serif;"
         >
           Install Now
         </button>

@@ -37,30 +37,29 @@ const {
   class: className = '',
 } = Astro.props
 
-// Variant styles
+// Variant styles — flat fills, no heavy border, brighten on hover (never darken)
 const variantStyles = {
-  primary: 'bg-magenta text-white border-black hover:bg-magenta-dark shadow-[4px_4px_0_0_#000]',
-  secondary: 'bg-mint text-black border-black hover:bg-yellow shadow-[4px_4px_0_0_#000]',
-  yellow: 'bg-yellow text-black border-black hover:bg-mint shadow-[4px_4px_0_0_#000]',
-  mint: 'bg-mint text-black border-black hover:bg-magenta hover:text-white shadow-[4px_4px_0_0_#000]',
-  magenta: 'bg-magenta text-white border-black hover:bg-magenta-dark shadow-[4px_4px_0_0_#C926F2]',
-  white: 'bg-white text-black border-black hover:bg-mint shadow-[4px_4px_0_0_#000]',
-  black:
-    'bg-black text-white border-white hover:bg-white hover:text-black shadow-[4px_4px_0_0_#FFF]',
+  primary: 'bg-magenta text-white hover:bg-magenta-bright',
+  secondary: 'bg-mint text-black hover:bg-mint-bright',
+  yellow: 'bg-yellow text-white hover:bg-yellow-bright',
+  mint: 'bg-mint text-black hover:bg-mint-bright',
+  magenta: 'bg-magenta text-white hover:bg-magenta-bright',
+  white: 'bg-white text-black hover:bg-mint',
+  black: 'bg-black text-white border border-white/20 hover:bg-white/10',
 }
 
 // Size styles
 const sizeStyles = {
-  sm: 'px-4 py-2 text-sm border-4',
-  md: 'px-6 py-3 text-base border-5',
-  lg: 'px-8 py-4 text-lg border-6',
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
 }
 
 const baseClasses = `
   inline-flex items-center justify-center gap-2
-  font-black uppercase tracking-wide
+  font-black uppercase tracking-wide rounded-sm
   transition-all duration-200
-  hover:-translate-x-1 hover:-translate-y-1
+  hover:scale-[1.02]
   ${sizeStyles[size]}
   ${variantStyles[variant]}
   ${fullWidth ? 'w-full' : ''}
@@ -74,7 +73,7 @@ const Element = href ? 'a' : 'button'
   href={href}
   type={!href ? type : undefined}
   class={baseClasses}
-  style="font-family: 'Archivo Black', sans-serif;"
+  style="font-family: 'Barlow Condensed', sans-serif;"
 >
   {icon && iconPosition === 'left' && <Icon name={icon} class="w-5 h-5" />}
   <slot />
@@ -90,8 +89,7 @@ const Element = href ? 'a' : 'button'
 
   button:active,
   a:active {
-    transform: translate(6px, 6px);
-    box-shadow: none !important;
+    transform: scale(0.97);
   }
 
   @media (prefers-reduced-motion: reduce) {
