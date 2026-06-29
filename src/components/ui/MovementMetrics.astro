@@ -31,11 +31,11 @@ const overallProgress = Math.round(
         {metrics.map((metric, index) => {
           const progress = Math.round((metric.current / metric.goal) * 100)
           return (
-            <div class="flex flex-col gap-3 px-6 py-8" style="background: #4A7AEB;">
+            <div class="flex flex-col gap-3 px-6 py-8" style="background: #2E004D;">
               <div style="display: flex; align-items: baseline; gap: 0.2rem; flex-wrap: wrap;">
                 {metric.prefix && (
                   <span
-                    class="font-black text-black"
+                    class="font-black text-white"
                     style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1;"
                   >
                     {metric.prefix}
@@ -43,7 +43,7 @@ const overallProgress = Math.round(
                 )}
                 <span
                   class="font-black leading-none counter"
-                  style={`font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem, 4.5vw + 0.5rem, 5.5rem); color: #0F0018;`}
+                  style={`font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem, 4.5vw + 0.5rem, 5.5rem); color: #4A7AEB;`}
                   data-target={metric.current}
                   data-delay={index * 80}
                 >
@@ -51,7 +51,7 @@ const overallProgress = Math.round(
                 </span>
                 {metric.suffix && (
                   <span
-                    class="font-black text-black/50"
+                    class="font-black text-white/60"
                     style="font-size: clamp(0.875rem, 1.5vw, 1.125rem); line-height: 1; align-self: flex-end; padding-bottom: 0.2rem;"
                   >
                     {metric.suffix}
@@ -60,23 +60,23 @@ const overallProgress = Math.round(
               </div>
 
               <p
-                class="font-black uppercase text-black/60"
+                class="font-black uppercase text-white/60"
                 style="font-size: 0.625rem; letter-spacing: 0.1em;"
               >
                 {metric.label}
               </p>
 
               <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem;">
-                <div style="height: 3px; background: rgba(0,0,0,0.15);">
+                <div style="height: 3px; background: rgba(255,255,255,0.15);">
                   <div
                     class="progress-bar"
-                    style="height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #0F0018;"
+                    style="height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #4A7AEB;"
                     data-progress={progress}
                     data-delay={index * 80}
                   />
                 </div>
                 <span
-                  class="font-black text-black/40"
+                  class="font-black text-white/40"
                   style="font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;"
                 >
                   {progress}% of goal
@@ -93,23 +93,18 @@ const overallProgress = Math.round(
       {/* Header */}
       <div class="text-center mb-8">
         <div class="inline-block bg-magenta px-6 py-3 mb-4 rounded-sm">
-          <p class="text-black font-black uppercase text-xl tracking-wide flex items-center gap-3">
-            <span class="text-3xl" aria-hidden="true">
-              🎯
-            </span>
-            Building the Movement
-          </p>
+          <p class="text-white font-black uppercase text-xl tracking-wide">Building the movement</p>
         </div>
 
         {!compact && (
-          <p class="text-black/80 text-lg font-bold mb-2">
+          <p class="text-white/80 text-lg font-bold mb-2">
             Every number is a person who said{' '}
             <strong class="text-magenta">enough is enough.</strong>
           </p>
         )}
 
         <div class="mt-6">
-          <div class="flex items-center justify-between text-black mb-2">
+          <div class="flex items-center justify-between text-white mb-2">
             <span class="font-black uppercase text-sm">Overall Progress</span>
             <span
               class="font-black text-magenta text-xl"
@@ -136,23 +131,23 @@ const overallProgress = Math.round(
           const progress = Math.round((metric.current / metric.goal) * 100)
           const colorConfigs = {
             magenta: {
-              bg: '#D428D4',
-              shadow: '#4A7AEB',
-              text: '#0F0018',
+              bg: '#2E004D',
+              shadow: '#D428D4',
+              text: '#FFFFFF',
               iconBg: '#0F0018',
-              iconColor: '#FFFFFF',
+              iconColor: '#D428D4',
             },
             mint: {
-              bg: '#00DDB8',
-              shadow: '#D428D4',
-              text: '#0F0018',
+              bg: '#2E004D',
+              shadow: '#00DDB8',
+              text: '#FFFFFF',
               iconBg: '#0F0018',
               iconColor: '#00DDB8',
             },
             yellow: {
-              bg: '#4A7AEB',
-              shadow: '#00DDB8',
-              text: '#0F0018',
+              bg: '#2E004D',
+              shadow: '#4A7AEB',
+              text: '#FFFFFF',
               iconBg: '#0F0018',
               iconColor: '#4A7AEB',
             },
@@ -188,7 +183,7 @@ const overallProgress = Math.round(
                     )}
                     <span
                       class="text-4xl md:text-5xl font-black counter leading-none"
-                      style={`color: ${config.text}; font-family: 'Barlow Condensed', sans-serif; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);`}
+                      style={`color: ${config.text}; font-family: 'Barlow Condensed', sans-serif;`}
                       data-target={metric.current}
                       data-delay={index * 100}
                     >
@@ -206,7 +201,7 @@ const overallProgress = Math.round(
                 </div>
 
                 {/* Label */}
-                <div class="border-t border-black/20 pt-3 mt-2">
+                <div class="border-t border-white/15 pt-3 mt-2">
                   <p
                     class="text-xs md:text-sm font-black uppercase tracking-widest leading-tight mb-2 break-words"
                     style={`color: ${config.text};`}
@@ -225,7 +220,7 @@ const overallProgress = Math.round(
 
                 {/* Progress Bar */}
                 <div class="relative mt-3">
-                  <div class="h-1.5 bg-black/20 rounded-full overflow-hidden" style="opacity: 0.3;">
+                  <div class="h-1.5 bg-white/15 rounded-full overflow-hidden">
                     <div
                       class="h-full progress-bar"
                       style={`width: 100%; transform: scaleX(0); transform-origin: left; background-color: ${config.text};`}
@@ -258,14 +253,14 @@ const overallProgress = Math.round(
         <div class="mt-8 text-center">
           <div class="inline-block bg-yellow text-white px-6 py-4 rounded-sm">
             <p class="font-black text-sm md:text-base">
-              {overallProgress < 50 && '🌱 Every movement starts somewhere. Join us!'}
+              {overallProgress < 50 && 'Every movement starts somewhere. Join us.'}
               {overallProgress >= 50 &&
                 overallProgress < 75 &&
-                '📈 Momentum is building. Be part of it!'}
+                'Momentum is building. Be part of it.'}
               {overallProgress >= 75 &&
                 overallProgress < 90 &&
-                "🚀 We're gaining speed. Don't miss out!"}
-              {overallProgress >= 90 && '⚡ This is happening. History is being made!'}
+                "We're gaining speed. Don't miss out."}
+              {overallProgress >= 90 && 'This is happening. History is being made.'}
             </p>
           </div>
         </div>
