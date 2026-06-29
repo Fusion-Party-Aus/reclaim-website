@@ -11,23 +11,23 @@
  */
 export const BRAND_COLORS = {
   // Primary brand colors
-  MAGENTA: '#C926F2',
-  MINT: '#5EFFD8',
+  MAGENTA: '#D428D4',
+  MINT: '#00DDB8',
 
   // Design system additions (see DESIGN_RATIONALE.md)
-  YELLOW: '#FFED00',
-  LAVENDER: '#E5D4FF',
+  YELLOW: '#4A7AEB',
+  LAVENDER: '#7B3FE4',
 
   // Base colors
-  BLACK: '#000000',
+  BLACK: '#1A0029',
   WHITE: '#FFFFFF',
-  LIGHT_GREY: '#E5E5E5',
+  LIGHT_GREY: '#2E004D',
 
   // Semantic colors
-  SUCCESS: '#5EFFD8', // Mint
-  WARNING: '#FFED00', // Yellow
+  SUCCESS: '#00DDB8', // Mint
+  WARNING: '#4A7AEB', // Yellow
   ERROR: '#FF6B6B',
-  INFO: '#C926F2', // Magenta
+  INFO: '#D428D4', // Magenta
 } as const
 
 /**

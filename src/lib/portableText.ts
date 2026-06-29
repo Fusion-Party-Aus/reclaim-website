@@ -58,7 +58,7 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
       closeAllLists()
 
       html += `<div class="table-wrapper" style="overflow-x: auto; margin-bottom: 2rem;">`
-      html += `<table class="w-full text-left border-collapse border-4 border-black" style="box-shadow: 8px 8px 0 0 #000; min-width: 600px;">`
+      html += `<table class="w-full text-left border-collapse border border-white/10 rounded-sm" style="min-width: 600px;">`
       html += `<tbody>`
 
       block.rows.forEach((row, rowIndex) => {
@@ -66,10 +66,10 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
         row.cells.forEach((cellText) => {
           if (rowIndex === 0) {
             // First row gets Header styling
-            html += `<th class="border-4 border-black bg-yellow p-4 font-black uppercase text-lg text-black">${cellText || ''}</th>`
+            html += `<th class="border border-white/10 bg-yellow p-4 font-black uppercase text-lg text-white">${cellText || ''}</th>`
           } else {
             // Regular cells
-            html += `<td class="border-4 border-black p-4 bg-white text-black font-medium">${cellText || ''}</td>`
+            html += `<td class="border border-white/10 p-4 bg-grey-dark text-white font-medium">${cellText || ''}</td>`
           }
         })
         html += `</tr>`
@@ -188,18 +188,18 @@ export function renderPolicyPortableText(blocks: PortableTextBlock[] | undefined
       return
     }
 
-    const baseClasses = 'border-4 border-black p-6 mb-8'
+    const baseClasses = 'border border-white/10 rounded-sm p-6 mb-8'
     let wrapperClass = ''
 
     if (/^the problem/i.test(title)) {
-      wrapperClass = `bg-white ${baseClasses}`
+      wrapperClass = `bg-grey-dark ${baseClasses}`
     } else if (/^our solution/i.test(title)) {
-      wrapperClass = `bg-white ${baseClasses}`
+      wrapperClass = `bg-grey-dark ${baseClasses}`
     } else if (/^savings?/i.test(title)) {
       wrapperClass = `bg-yellow ${baseClasses}`
     } else {
       // generic section
-      wrapperClass = `bg-white ${baseClasses}`
+      wrapperClass = `bg-grey-dark ${baseClasses}`
     }
 
     sections.push(
