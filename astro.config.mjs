@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap'
 import cloudflare from '@astrojs/cloudflare'
 import node from '@astrojs/node'
 import sanity from '@sanity/astro'
+import { fileURLToPath } from 'node:url'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -28,6 +29,13 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        'astro-icon/components': fileURLToPath(
+          new URL('./src/components/ui/Icon.ts', import.meta.url)
+        ),
+      },
+    },
   },
 
   // Use node adapter locally (avoids Miniflare "module is not defined" errors),

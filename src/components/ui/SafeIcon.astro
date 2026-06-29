@@ -1,0 +1,37 @@
+---
+import AstroIcon from '../../../node_modules/astro-icon/components/Icon.astro'
+import { checkIconExists } from '../../lib/iconValidator'
+// @ts-expect-error virtual module
+import type { Icon } from 'virtual:astro-icon'
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'svg'> {
+  name: Icon | string
+  'is:inline'?: boolean
+  title?: string
+  desc?: string
+  size?: number | string
+  width?: number | string
+  height?: number | string
+}
+
+const { name, ...props } = Astro.props
+
+const isValid = typeof name === 'string' && checkIconExists(name)
+
+if (!isValid && import.meta.env.DEV) {
+  console.warn(`[SafeIcon] Unable to locate "${name}" icon! Rendering fallback placeholder.`)
+}
+---
+
+{
+  isValid ? (
+    <AstroIcon name={name as Icon} {...props} />
+  ) : (
+    <span
+      {...props}
+      style={{ display: 'inline-block', ...((props.style as any) || {}) }}
+      data-missing-icon={name}
+    />
+  )
+}
