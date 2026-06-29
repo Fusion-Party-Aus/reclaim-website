@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
+import { BrutalCard } from '@/components/ui'
 import '../styles/global.css'
 
 const maintenanceMessages = [
@@ -23,7 +24,7 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
 >
   <Header />
 
-  <main class="min-h-screen bg-yellow relative overflow-hidden pt-28 pb-20">
+  <main class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
     <!-- Construction elements floating around -->
     <div class="absolute inset-0 opacity-20">
       {
@@ -46,14 +47,14 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
       <!-- Construction Icon -->
       <div class="text-center mb-12">
         <div class="inline-block relative mb-8">
-          <div class="absolute inset-0 bg-orange-500 blur-3xl opacity-60"></div>
+          <div class="absolute inset-0 bg-yellow blur-3xl opacity-30"></div>
           <div
-            class="relative w-48 h-48 mx-auto bg-black border-8 border-orange-600 flex items-center justify-center"
-            style="box-shadow: 0 0 0 8px #000, 0 0 0 16px #fbbf24, 0 0 60px #fb923c; animation: bounce 2s ease-in-out infinite;"
+            class="relative w-48 h-48 mx-auto bg-grey-dark border border-yellow rounded-full flex items-center justify-center"
+            style="box-shadow: 0 0 60px rgba(74, 122, 235, 0.5); animation: bounce 2s ease-in-out infinite;"
           >
             <Icon
               name="mdi:construction"
-              class="w-32 h-32 text-yellow-400"
+              class="w-32 h-32 text-yellow"
               style="animation: wiggle 3s ease-in-out infinite;"
             />
           </div>
@@ -67,49 +68,39 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
           </div>
         </div>
 
-        <h1
-          class="text-5xl md:text-7xl font-black uppercase mb-6 text-black"
-          style="font-family: 'Anton', 'Archivo Black', sans-serif; text-shadow: 4px 4px 0px rgba(255,255,255,0.8), 8px 8px 0px rgba(0,0,0,0.3);"
-        >
+        <h1 class="text-5xl md:text-7xl font-black uppercase mb-6 text-white font-display">
           UNDER MAINTENANCE
         </h1>
 
-        <p
-          class="text-2xl md:text-3xl font-bold text-black"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
+        <p class="text-2xl md:text-3xl font-bold text-white/80">
           {randomMessage}
         </p>
       </div>
 
       <!-- Status Card -->
       <div class="max-w-3xl mx-auto mb-12">
-        <div
-          class="bg-black border-8 border-black p-8 md:p-12 transform rotate-1"
-          style="box-shadow: 12px 12px 0px 0px rgba(251, 146, 60, 1), 24px 24px 0px 0px rgba(251, 191, 36, 1); border-width: 8px;"
-        >
+        <BrutalCard variant="surface" shadow="yellow" padding="lg" class="transform rotate-1">
           <div class="flex items-center gap-4 mb-8">
             <div class="relative">
               <div
-                class="w-20 h-20 bg-yellow-400 border-5 border-white flex items-center justify-center rotate-12"
+                class="w-20 h-20 bg-yellow/10 border border-yellow rounded-sm flex items-center justify-center"
                 style="animation: pulse 2s ease-in-out infinite;"
               >
-                <Icon name="mdi:hammer-wrench" class="w-12 h-12 text-black" />
+                <Icon name="mdi:hammer-wrench" class="w-12 h-12 text-yellow" />
               </div>
               <div
-                class="absolute -bottom-2 -right-2 bg-orange-500 border-3 border-white px-2 py-1 text-xs font-black text-white uppercase"
+                class="absolute -bottom-2 -right-2 bg-magenta border border-white/20 rounded-sm px-2 py-1 text-xs font-black text-white uppercase"
               >
                 Active
               </div>
             </div>
             <div class="flex-1">
-              <h2
-                class="text-2xl font-black uppercase text-yellow-400 mb-2"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
+              <h2 class="text-2xl font-black uppercase text-yellow mb-2 font-display">
                 System Upgrade In Progress
               </h2>
-              <p class="text-white font-bold">We're improving our platform to serve you better</p>
+              <p class="text-white/80 font-bold">
+                We're improving our platform to serve you better
+              </p>
             </div>
           </div>
 
@@ -118,11 +109,11 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
             <div>
               <div class="flex justify-between items-center mb-2">
                 <span class="text-mint font-black text-sm uppercase">Database Optimization</span>
-                <span class="text-yellow-400 font-black text-sm">87%</span>
+                <span class="text-yellow font-black text-sm">87%</span>
               </div>
-              <div class="h-4 bg-gray-800 border-3 border-mint overflow-hidden">
+              <div class="h-4 bg-white/5 border border-mint/40 rounded-sm overflow-hidden">
                 <div
-                  class="h-full bg-mint border-r-3 border-black"
+                  class="h-full bg-mint"
                   style="width: 87%; animation: pulse 1s ease-in-out infinite;"
                 >
                 </div>
@@ -131,12 +122,12 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
 
             <div>
               <div class="flex justify-between items-center mb-2">
-                <span class="text-yellow-400 font-black text-sm uppercase">Server Updates</span>
-                <span class="text-yellow-400 font-black text-sm">63%</span>
+                <span class="text-yellow font-black text-sm uppercase">Server Updates</span>
+                <span class="text-yellow font-black text-sm">63%</span>
               </div>
-              <div class="h-4 bg-gray-800 border-3 border-yellow-400 overflow-hidden">
+              <div class="h-4 bg-white/5 border border-yellow/40 rounded-sm overflow-hidden">
                 <div
-                  class="h-full bg-yellow-400 border-r-3 border-black"
+                  class="h-full bg-yellow"
                   style="width: 63%; animation: pulse 1s ease-in-out infinite 0.2s;"
                 >
                 </div>
@@ -145,12 +136,12 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
 
             <div>
               <div class="flex justify-between items-center mb-2">
-                <span class="text-orange-400 font-black text-sm uppercase">Testing Changes</span>
-                <span class="text-yellow-400 font-black text-sm">94%</span>
+                <span class="text-magenta font-black text-sm uppercase">Testing Changes</span>
+                <span class="text-yellow font-black text-sm">94%</span>
               </div>
-              <div class="h-4 bg-gray-800 border-3 border-orange-400 overflow-hidden">
+              <div class="h-4 bg-white/5 border border-magenta/40 rounded-sm overflow-hidden">
                 <div
-                  class="h-full bg-orange-400 border-r-3 border-black"
+                  class="h-full bg-magenta"
                   style="width: 94%; animation: pulse 1s ease-in-out infinite 0.4s;"
                 >
                 </div>
@@ -158,100 +149,74 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
             </div>
           </div>
 
-          <div class="mt-8 pt-6 border-t-4 border-orange-500">
+          <div class="mt-8 pt-6 border-t border-white/10">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-bold text-gray-400 uppercase">Estimated time:</p>
-              <p
-                class="text-xl font-black text-yellow-400 uppercase"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
-                Coming Soon™
-              </p>
+              <p class="text-sm font-bold text-white/40 uppercase">Estimated time:</p>
+              <p class="text-xl font-black text-yellow uppercase font-display">Coming Soon™</p>
             </div>
           </div>
-        </div>
+        </BrutalCard>
       </div>
 
       <!-- What's Being Improved -->
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
-        <div class="bg-white border-6 border-black p-6" style="box-shadow: 6px 6px 0px 0px #000;">
+        <BrutalCard variant="surface" shadow="magenta" padding="md">
           <div
-            class="w-16 h-16 bg-orange-500 border-4 border-black flex items-center justify-center mb-4 mx-auto rotate-12"
+            class="w-16 h-16 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center mb-4 mx-auto"
           >
-            <Icon name="mdi:speedometer" class="w-10 h-10 text-white" />
+            <Icon name="mdi:speedometer" class="w-10 h-10 text-magenta" />
           </div>
-          <h3
-            class="text-xl font-black uppercase text-center mb-3"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Performance
-          </h3>
-          <p class="text-sm font-bold text-gray-700 text-center">
+          <h3 class="text-xl font-black uppercase text-center mb-3 font-display">Performance</h3>
+          <p class="text-sm font-bold text-white/60 text-center">
             Making everything faster and smoother
           </p>
-        </div>
+        </BrutalCard>
 
-        <div class="bg-white border-6 border-black p-6" style="box-shadow: 6px 6px 0px 0px #000;">
+        <BrutalCard variant="surface" shadow="yellow" padding="md">
           <div
-            class="w-16 h-16 bg-yellow-400 border-4 border-black flex items-center justify-center mb-4 mx-auto -rotate-12"
+            class="w-16 h-16 bg-yellow/10 border border-yellow rounded-sm flex items-center justify-center mb-4 mx-auto"
           >
-            <Icon name="mdi:shield-check" class="w-10 h-10 text-black" />
+            <Icon name="mdi:shield-check" class="w-10 h-10 text-yellow" />
           </div>
-          <h3
-            class="text-xl font-black uppercase text-center mb-3"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Security
-          </h3>
-          <p class="text-sm font-bold text-gray-700 text-center">
+          <h3 class="text-xl font-black uppercase text-center mb-3 font-display">Security</h3>
+          <p class="text-sm font-bold text-white/60 text-center">
             Enhancing protection for your data
           </p>
-        </div>
+        </BrutalCard>
 
-        <div class="bg-white border-6 border-black p-6" style="box-shadow: 6px 6px 0px 0px #000;">
+        <BrutalCard variant="surface" shadow="magenta" padding="md">
           <div
-            class="w-16 h-16 bg-orange-500 border-4 border-black flex items-center justify-center mb-4 mx-auto rotate-6"
+            class="w-16 h-16 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center mb-4 mx-auto"
           >
-            <Icon name="mdi:star-four-points" class="w-10 h-10 text-white" />
+            <Icon name="mdi:star-four-points" class="w-10 h-10 text-magenta" />
           </div>
-          <h3
-            class="text-xl font-black uppercase text-center mb-3"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Features
-          </h3>
-          <p class="text-sm font-bold text-gray-700 text-center">Adding cool new functionality</p>
-        </div>
+          <h3 class="text-xl font-black uppercase text-center mb-3 font-display">Features</h3>
+          <p class="text-sm font-bold text-white/60 text-center">Adding cool new functionality</p>
+        </BrutalCard>
       </div>
 
       <!-- Stay Updated -->
       <div class="max-w-2xl mx-auto">
-        <div
-          class="bg-black border-8 border-orange-500 p-8 transform -rotate-1"
-          style="box-shadow: 10px 10px 0px 0px #fbbf24;"
-        >
+        <BrutalCard variant="surface" shadow="yellow" padding="lg" class="transform -rotate-1">
           <div class="flex items-center gap-4 mb-6">
             <div
-              class="w-16 h-16 bg-yellow-400 border-4 border-white flex items-center justify-center -rotate-12"
+              class="w-16 h-16 bg-yellow/10 border border-yellow rounded-sm flex items-center justify-center"
               style="animation: wiggle 2s ease-in-out infinite;"
             >
-              <Icon name="mdi:bell-ring" class="w-10 h-10 text-black" />
+              <Icon name="mdi:bell-ring" class="w-10 h-10 text-yellow" />
             </div>
-            <h3
-              class="text-2xl font-black uppercase text-yellow-400"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
+            <h3 class="text-2xl font-black uppercase text-yellow font-display">
               We'll Be Back Soon!
             </h3>
           </div>
-          <p class="text-lg font-bold text-white mb-6">
+          <p class="text-lg font-bold text-white/80 mb-6">
             Follow our social media for real-time updates on when we're back online:
           </p>
           <div class="flex flex-wrap gap-3">
             <a
               href="https://twitter.com/fusionparty"
               target="_blank"
-              class="px-6 py-3 bg-white text-black border-4 border-white font-black uppercase hover:bg-yellow-400 transition-all"
+              class="px-6 py-3 bg-white/5 text-white border border-white/15 rounded-sm font-black uppercase hover:bg-white/10 transition-all font-display"
             >
               <Icon name="mdi:twitter" class="w-5 h-5 inline mr-2" />
               Twitter
@@ -259,20 +224,20 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
             <a
               href="https://facebook.com/fusionparty"
               target="_blank"
-              class="px-6 py-3 bg-white text-black border-4 border-white font-black uppercase hover:bg-yellow-400 transition-all"
+              class="px-6 py-3 bg-white/5 text-white border border-white/15 rounded-sm font-black uppercase hover:bg-white/10 transition-all font-display"
             >
               <Icon name="mdi:facebook" class="w-5 h-5 inline mr-2" />
               Facebook
             </a>
             <button
               onclick="window.location.reload()"
-              class="px-6 py-3 bg-yellow-400 text-black border-4 border-white font-black uppercase hover:bg-orange-500 hover:text-white transition-all"
+              class="px-6 py-3 bg-yellow text-black border border-white/10 rounded-sm font-black uppercase hover:bg-yellow-bright transition-all font-display"
             >
               <Icon name="mdi:refresh" class="w-5 h-5 inline mr-2" />
               Try Now
             </button>
           </div>
-        </div>
+        </BrutalCard>
       </div>
     </div>
   </main>

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Barlow:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -24,15 +24,15 @@
       }
 
       :root {
-        --magenta: #c926f2;
-        --mint: #5effd8;
-        --yellow: #ffed00;
-        --black: #010102;
+        --magenta: #d428d4;
+        --mint: #00ddb8;
+        --yellow: #4a7aeb;
+        --black: #1a0029;
         --white: #ffffff;
-        --archivo: 'Archivo Black', sans-serif;
-        --grotesk: 'Space Grotesk', sans-serif;
-        --inter: 'Inter', sans-serif;
-        --mono: 'JetBrains Mono', monospace;
+        --archivo: 'Barlow Condensed', sans-serif;
+        --grotesk: 'Barlow', sans-serif;
+        --inter: 'Barlow', sans-serif;
+        --mono: 'Space Mono', monospace;
       }
 
       html,
@@ -1253,10 +1253,10 @@
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
                 {
                   [
-                    ['#1A1D21', 'Deep Charcoal', '#fff', 'Background'],
-                    ['#C926F2', 'Magenta', '#fff', 'Primary'],
-                    ['#5EFFD8', 'Mint', '#000', 'Secondary'],
-                    ['#FFED00', 'Yellow', '#000', 'Accent'],
+                    ['#1A0029', 'Deep Purple', '#fff', 'Background'],
+                    ['#D428D4', 'Magenta', '#fff', 'Primary'],
+                    ['#00DDB8', 'Teal', '#000', 'Secondary'],
+                    ['#4A7AEB', 'Blue', '#fff', 'Accent'],
                   ].map(([hex, name, text, role]) => (
                     <div class="swatch">
                       <div class="swatch-block" style={`background:${hex};`} />
@@ -1278,16 +1278,16 @@
                 >
                   Typography
                 </div>
-                <div style="font-family:'Archivo Black';font-size:18px;text-transform:uppercase;">
-                  Archivo Black — Headlines
-                </div>
                 <div
-                  style="font-family:'Space Grotesk';font-weight:700;font-size:16px;margin-top:4px;"
+                  style="font-family:'Barlow Condensed';font-weight:900;font-size:18px;text-transform:uppercase;"
                 >
-                  Space Grotesk — Subheadings
+                  Barlow Condensed — Headlines
                 </div>
-                <div style="font-family:'JetBrains Mono';font-size:14px;margin-top:4px;">
-                  JetBrains Mono — Technical
+                <div style="font-family:'Barlow';font-weight:700;font-size:16px;margin-top:4px;">
+                  Barlow — Body / Subheadings
+                </div>
+                <div style="font-family:'Space Mono';font-size:14px;margin-top:4px;">
+                  Space Mono — Technical
                 </div>
               </div>
             </div>
