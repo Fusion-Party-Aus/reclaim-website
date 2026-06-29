@@ -34,6 +34,7 @@ export default defineConfig({
         'astro-icon/components': fileURLToPath(
           new URL('./src/components/ui/Icon.ts', import.meta.url)
         ),
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
   },

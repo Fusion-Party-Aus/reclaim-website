@@ -1,10 +1,10 @@
 ---
 export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/Header.astro'
-import Hero from '../components/Hero.astro'
-import Footer from '../components/Footer.astro'
-import Sidebar from '../components/Sidebar.astro'
+import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/layout/Hero'
+import { Footer } from '@/components/layout/Footer'
+import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { getPolicies } from '../lib/sanity'
 import '../styles/global.css'

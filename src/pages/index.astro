@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/Header.astro'
-import Hero from '../components/Hero.astro'
-import Footer from '../components/Footer.astro'
+import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/layout/Hero'
+import { Footer } from '@/components/layout/Footer'
 import { getElectorates, getHomePage, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 
-import MovementMetrics from '../components/ui/MovementMetrics.astro'
-import DeveloperMessages from '../components/DeveloperMessages.astro'
-import ScrollProgress from '../components/ScrollProgress.astro'
-import MemberSignup from '../components/MemberSignup.astro'
+import { MovementMetrics } from '@/components/ui'
+import { DeveloperMessages, ScrollProgress } from '@/features/engagement'
+import { MemberSignup } from '@/features/members'
 
 const homePage = await getHomePage()
 

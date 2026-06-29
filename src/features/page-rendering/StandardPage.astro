@@ -1,6 +1,6 @@
 ---
-import DynamicSidebar from '../DynamicSidebar.astro'
-import type { Page } from '../../types/sanity'
+import DynamicSidebar from './DynamicSidebar.astro'
+import type { Page } from '@/types/sanity'
 
 interface Props {
   page: Page
@@ -23,9 +23,9 @@ const breadcrumbs = segments.map((seg, i) => {
   }
 })
 
-import { renderPortableText } from '../../lib/portableText'
-import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
-import { urlFor } from '../../lib/sanity'
+import { renderPortableText } from '@/lib/portableText'
+import { wrapSectionsInBoxes } from '@/lib/sectionWrapper'
+import { urlFor } from '@/lib/sanity'
 
 const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
 ---

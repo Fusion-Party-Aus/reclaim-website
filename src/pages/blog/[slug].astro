@@ -1,9 +1,9 @@
 ---
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import Header from '../../components/Header.astro'
-import Footer from '../../components/Footer.astro'
-import ShareIcon from '../../components/ShareIcon.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { ShareIcon } from '@/features/sharing'
 import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
