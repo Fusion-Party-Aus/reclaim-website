@@ -169,7 +169,7 @@ const footerData = footers[0]
                         href={link.url}
                         target={link.external ? '_blank' : undefined}
                         rel={link.external ? 'noopener' : undefined}
-                        class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                        class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
                       >
                         <span class="text-white/60 font-bold transition-transform duration-200">
                           →
@@ -183,7 +183,7 @@ const footerData = footers[0]
                       <li>
                         <a
                           href={`/electorates/${electorate.slug.current}`}
-                          class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                          class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
                         >
                           <span class="text-white/60 font-bold transition-transform duration-200">
                             →
@@ -209,7 +209,7 @@ const footerData = footers[0]
                     <a
                       href={link.url}
                       target="_blank"
-                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                      class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
                     >
                       <span class="text-white/60 font-bold transition-transform duration-200">
                         →
@@ -245,18 +245,18 @@ const footerData = footers[0]
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left"
     >
-      <p class="text-xs font-bold text-gray-500">
+      <p class="text-xs font-bold text-white/40">
         © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
       </p>
-      <p class="text-xs font-bold text-gray-500 max-w-md">
+      <p class="text-xs font-bold text-white/40 max-w-md">
         {footerData.authorization}
       </p>
-      <p class="text-xs text-gray-500 font-bold">
+      <p class="text-xs text-white/40 font-bold">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
-          class="underline text-gray-400 hover:text-mint transition-colors"
+          class="underline text-white/60 hover:text-mint transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>
