@@ -1,31 +1,28 @@
 ---
+import { Icon } from 'astro-icon/components'
+
 interface Props {
-  heading?: string
-  description?: string
-  buttonText?: string
-  footerText?: string
+  heading: string
+  description: string
+  buttonText: string
+  footerText: string
 }
 
-const {
-  heading = 'Join the movement',
-  description = 'We need people like you to help us reclaim our future. Join Fusion Party Victoria today and be part of the change.',
-  buttonText = 'Sign Up Now',
-  footerText = 'You will be redirected to our official membership portal.',
-} = Astro.props
+const { heading, description, buttonText, footerText } = Astro.props
 ---
 
-<section class="bg-white border-t-8 border-black py-20 md:py-28 px-6 md:px-10 lg:px-16">
+<section class="bg-surface-base border-t border-white/10 py-20 md:py-28 px-6 md:px-10 lg:px-16">
   <div class="max-w-7xl mx-auto">
     <div class="max-w-2xl">
       <h2
-        class="font-black uppercase text-black mb-6"
-        style="font-family: 'Archivo Black', sans-serif; font-size: clamp(2.5rem, 4vw + 0.75rem, 4.5rem); line-height: 0.92; letter-spacing: -0.025em;"
+        class="font-display font-black uppercase text-white mb-6"
+        style="font-size: clamp(2.5rem, 4vw + 0.75rem, 4.5rem); line-height: 0.92; letter-spacing: -0.025em;"
       >
         {heading}
       </h2>
 
       <p
-        class="font-bold text-black/70 mb-10"
+        class="font-bold text-white/70 mb-10"
         style="font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.375rem); line-height: 1.55; max-width: 55ch;"
       >
         {description}
@@ -35,24 +32,14 @@ const {
         href="https://www.fusionparty.org.au/join"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 bg-magenta text-[#0c0b11] font-black uppercase px-8 py-5 border-4 border-black hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-yellow"
-        style="box-shadow: 6px 6px 0px 0px #0c0b11; font-size: 1.125rem; letter-spacing: 0.06em;"
+        class="inline-flex items-center gap-3 bg-magenta text-white font-black uppercase px-8 py-5 rounded-sm hover:scale-[1.02] transition-all duration-150 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-yellow"
+        style="font-size: 1.125rem; letter-spacing: 0.06em;"
       >
         {buttonText}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-5 h-5 shrink-0"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
-          ></path>
-        </svg>
+        <Icon name="mdi:arrow-right" class="w-5 h-5 shrink-0" />
       </a>
 
-      <p class="text-xs font-bold text-black/65 mt-5">
+      <p class="text-xs font-bold text-white/60 mt-5">
         {footerText}
       </p>
     </div>

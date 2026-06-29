@@ -4,6 +4,9 @@
  * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
  * Triggers: Confetti explosion + hidden manifesto download
  */
+import { BrutalCard, BrutalButton } from '@/components/ui'
+import { Icon } from 'astro-icon/components'
+
 interface Props {
   konami?: {
     title?: string
@@ -36,7 +39,7 @@ const content = {
   zeroTrackingDescription:
     konami?.zeroTrackingDescription ||
     'Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.',
-  downloadButtonLabel: konami?.downloadButtonLabel || '📥 Download Annotated Manifesto',
+  downloadButtonLabel: konami?.downloadButtonLabel || 'Download Annotated Manifesto',
   footerMessage:
     konami?.footerMessage ||
     'P.S. Share this with other curious people. Democracy needs more of them.',
@@ -47,33 +50,37 @@ const content = {
   id="konami-modal"
   class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300"
 >
-  <div
-    class="bg-white border-8 border-magenta max-w-2xl w-full p-8 md:p-12 relative"
-    style="box-shadow: 16px 16px 0px 0px #D428D4; transform: rotate(-1deg);"
+  <BrutalCard
+    variant="surface"
+    shadow="magenta"
+    padding="lg"
+    hover={false}
+    class="max-w-2xl w-full relative"
   >
     <button
       id="konami-close"
-      class="absolute top-4 right-4 text-4xl font-black hover:text-magenta transition-colors"
+      class="absolute top-4 right-4 text-white hover:text-magenta transition-colors"
       aria-label="Close"
     >
-      ×
+      <Icon name="mdi:close" class="w-8 h-8" />
     </button>
 
     <div class="text-center">
-      <div class="text-6xl mb-6 animate-float-subtle">🎉</div>
-      <h2 class="text-4xl font-black uppercase text-magenta mb-4" style="transform: rotate(1deg);">
+      <h2 class="text-4xl font-black uppercase text-magenta mb-4">
         {content.title}
       </h2>
-      <p class="text-xl font-bold mb-6">
+      <p class="text-xl font-bold text-white mb-6">
         {content.description}
       </p>
 
-      <div class="bg-mint/10 border-4 border-mint p-6 mb-6 text-left">
+      <div
+        class="bg-mint/10 border border-mint/30 border-t-2 border-t-mint rounded-sm p-6 mb-6 text-left"
+      >
         <div class="flex items-start gap-3 mb-4">
-          <span class="text-3xl">📜</span>
+          <Icon name="mdi:file-document-outline" class="w-8 h-8 text-mint shrink-0" />
           <div>
-            <h3 class="font-black text-xl mb-2">{content.manifestoTitle}</h3>
-            <p class="text-sm font-bold text-gray-700">
+            <h3 class="font-black text-xl text-white mb-2">{content.manifestoTitle}</h3>
+            <p class="text-sm font-bold text-white/70">
               {content.manifestoDescription}
             </p>
           </div>
@@ -81,10 +88,12 @@ const content = {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div class="bg-yellow/20 border-4 border-black p-4">
-          <div class="text-2xl mb-2">💻</div>
-          <h4 class="font-black mb-2">{content.githubLabel}</h4>
-          <p class="text-sm font-bold">
+        <div
+          class="bg-yellow/10 border border-white/10 border-t-2 border-t-yellow rounded-sm p-4 text-left"
+        >
+          <Icon name="mdi:laptop" class="w-6 h-6 text-yellow mb-2" />
+          <h4 class="font-black text-white mb-2">{content.githubLabel}</h4>
+          <p class="text-sm font-bold text-white/70">
             This entire site is open source. Fork it, learn from it, improve it.
           </p>
           <a
@@ -93,32 +102,30 @@ const content = {
             class="inline-flex items-center gap-2 mt-3 text-magenta font-black hover:underline"
           >
             <span>View on GitHub</span>
-            <span>→</span>
+            <Icon name="mdi:arrow-right" class="w-4 h-4" />
           </a>
         </div>
 
-        <div class="bg-magenta/10 border-4 border-black p-4">
-          <div class="text-2xl mb-2">🔍</div>
-          <h4 class="font-black mb-2">{content.zeroTrackingTitle}</h4>
-          <p class="text-sm font-bold">
+        <div
+          class="bg-magenta/10 border border-white/10 border-t-2 border-t-magenta rounded-sm p-4 text-left"
+        >
+          <Icon name="mdi:magnify" class="w-6 h-6 text-magenta mb-2" />
+          <h4 class="font-black text-white mb-2">{content.zeroTrackingTitle}</h4>
+          <p class="text-sm font-bold text-white/70">
             {content.zeroTrackingDescription}
           </p>
         </div>
       </div>
 
-      <button
-        id="download-manifesto"
-        class="bg-magenta text-[#0f0018] px-8 py-4 font-black border-4 border-black hover:bg-magenta-dark transition-all hover:shadow-[8px_8px_0px_0px_#0f0018] hover:-translate-y-1"
-        style="box-shadow: 6px 6px 0px 0px #0f0018;"
-      >
+      <BrutalButton id="download-manifesto" variant="primary" size="lg">
         {content.downloadButtonLabel}
-      </button>
+      </BrutalButton>
 
-      <p class="text-sm text-gray-600 mt-6 font-bold">
+      <p class="text-sm text-white/60 mt-6 font-bold">
         {content.footerMessage}
       </p>
     </div>
-  </div>
+  </BrutalCard>
 </div>
 
 <script is:inline>
@@ -208,7 +215,7 @@ const content = {
     }
 
     // Track in console
-    console.log('🎉 Konami Code activated! Welcome, curious mind.')
+    console.log('Konami Code activated! Welcome, curious mind.')
   }
 
   // Close modal
@@ -240,9 +247,9 @@ const content = {
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       // For now, just log (you'd link to actual PDF)
-      console.log('📥 Downloading annotated manifesto...')
+      console.log('Downloading annotated manifesto...')
       alert(
-        '📥 In production, this would download the annotated manifesto PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
+        'In production, this would download the annotated manifesto PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
       )
 
       // Track the download
@@ -252,19 +259,3 @@ const content = {
     })
   }
 </script>
-
-<style>
-  @keyframes float-subtle {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .animate-float-subtle {
-    animation: float-subtle 2s ease-in-out infinite;
-  }
-</style>
