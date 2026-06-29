@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
+import { BrutalButton } from '@/components/ui'
 import { getDocuments } from '../lib/sanity'
 import '../styles/global.css'
 
@@ -90,59 +91,45 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
 <BaseLayout title={`${title} | Reignite Democracy`} description={intro}>
   <Header />
 
-  {/* ===== HERO: Full-bleed black with giant rotated title ===== */}
+  {/* ===== HERO: Full-bleed dark surface with giant title ===== */}
   <section
-    class="relative bg-black overflow-hidden min-h-[55vh] flex items-center border-b-8 border-mint"
+    class="relative bg-surface-base overflow-hidden min-h-[55vh] flex items-center border-b border-mint/30"
   >
     {/* Giant background watermark */}
     <div
       class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
     >
       <span
-        class="text-[20rem] font-black uppercase leading-none opacity-[0.04] text-white tracking-tighter"
-        style="font-family: 'Anton', sans-serif; transform: rotate(-8deg) translateY(-10%);"
+        class="text-[20rem] font-display font-black uppercase leading-none opacity-[0.04] text-white tracking-tighter"
+        style="transform: rotate(-8deg) translateY(-10%);"
       >
         TALK
       </span>
     </div>
 
-    {/* Animated color stripe strips */}
+    {/* Color stripe strips */}
     <div class="absolute top-0 left-0 w-full h-3 bg-magenta"></div>
     <div class="absolute top-3 left-0 w-full h-2 bg-mint"></div>
     <div class="absolute top-5 left-0 w-full h-1 bg-yellow"></div>
 
-    {/* Geometric corner shapes */}
-    <div
-      class="absolute bottom-0 right-0 w-64 h-64 bg-magenta border-t-8 border-l-8 border-black hidden md:block"
-      style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
-    >
-    </div>
-    <div
-      class="absolute top-12 right-16 w-32 h-32 border-8 border-mint hidden md:block"
-      style="transform: rotate(22deg);"
-    >
-    </div>
-
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
       {/* Eyebrow */}
       <div
-        class="inline-flex items-center gap-2 px-4 py-2 border-4 border-mint bg-black mb-8"
-        style="box-shadow: 4px 4px 0 0 #5EFFD8;"
+        class="inline-flex items-center gap-2 px-4 py-2 border border-mint/40 bg-black/30 rounded-sm mb-8"
       >
         <Icon name="mdi:phone-in-talk" class="w-4 h-4 text-mint" />
         <span class="text-mint font-black text-xs uppercase tracking-widest">Get In Touch</span>
       </div>
 
       <h1
-        class="text-6xl sm:text-7xl md:text-9xl font-black uppercase text-white leading-[0.85] mb-8"
-        style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+        class="text-6xl sm:text-7xl md:text-9xl font-display font-black uppercase text-white leading-[0.85] mb-8"
       >
         <span class="text-mint">{title.split(' ')[0]}</span><br />
         <span class="text-white">{title.split(' ').slice(1).join(' ') || 'Us'}</span>
       </h1>
 
       <p
-        class="text-xl md:text-2xl font-black uppercase text-yellow max-w-2xl leading-snug border-l-8 border-yellow pl-6"
+        class="text-xl md:text-2xl font-black uppercase text-yellow max-w-2xl leading-snug border-l-4 border-yellow pl-6"
       >
         {intro}
       </p>
@@ -150,30 +137,30 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
   </section>
 
   {/* ===== BREADCRUMB STRIP ===== */}
-  <div class="bg-yellow border-b-4 border-black py-3 px-4">
+  <div class="bg-yellow border-b border-white/10 py-3 px-4">
     <nav
       class="max-w-6xl mx-auto text-xs font-mono font-black uppercase tracking-wide flex items-center gap-2"
     >
       <a
         href="/"
-        class="px-2 py-1 border-2 border-black bg-black text-yellow hover:bg-white hover:text-black transition-colors"
+        class="px-2 py-1 rounded-sm bg-black text-yellow hover:bg-white hover:text-black transition-colors"
         >Home</a
       >
-      <span class="opacity-60">/</span>
-      <span class="px-2 py-1 border-2 border-black bg-white">{title}</span>
+      <span class="opacity-60 text-white">/</span>
+      <span class="px-2 py-1 rounded-sm bg-white/20 text-white">{title}</span>
     </nav>
   </div>
 
-  <main class="bg-white">
+  <main class="bg-surface-base">
     {/* ===== GENERAL ENQUIRIES: Mint full-bleed block ===== */}
-    <section class="bg-mint border-b-8 border-black relative overflow-hidden">
+    <section class="bg-mint border-b border-black/10 relative overflow-hidden">
       {/* Big rotated label */}
       <div
         class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block overflow-hidden"
       >
         <span
-          class="block text-[10rem] font-black uppercase opacity-10 text-black leading-none"
-          style="font-family: 'Anton', sans-serif; transform: rotate(90deg) translateX(-10%);"
+          class="block text-[10rem] font-display font-black uppercase opacity-10 text-black leading-none"
+          style="transform: rotate(90deg) translateX(-10%);"
         >
           EMAIL
         </span>
@@ -184,15 +171,11 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
           {/* Left: heading */}
           <div>
             <div class="flex items-center gap-4 mb-6">
-              <div
-                class="w-16 h-16 bg-black flex items-center justify-center border-4 border-black shrink-0"
-                style="box-shadow: 6px 6px 0 0 #FFED00;"
-              >
+              <div class="w-16 h-16 bg-black rounded-sm flex items-center justify-center shrink-0">
                 <Icon name="mdi:email-outline" class="w-8 h-8 text-mint" />
               </div>
               <h2
-                class="text-4xl md:text-5xl font-black uppercase leading-none"
-                style="font-family: 'Archivo Black', sans-serif;"
+                class="text-4xl md:text-5xl font-display font-black uppercase leading-none text-black"
               >
                 {general.heading}
               </h2>
@@ -208,8 +191,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
               general.email && (
                 <a
                   href={`mailto:${general.email}`}
-                  class="group flex items-center gap-4 p-5 bg-black border-4 border-black text-mint font-black uppercase tracking-wider text-lg hover:bg-yellow hover:text-black transition-colors"
-                  style="box-shadow: 6px 6px 0 0 #000;"
+                  class="group flex items-center gap-4 p-5 bg-black rounded-sm text-mint font-black uppercase tracking-wider text-lg hover:bg-yellow hover:text-white transition-colors"
                 >
                   <Icon name="mdi:email" class="w-6 h-6 shrink-0" />
                   <span class="flex-1 truncate">{general.email}</span>
@@ -224,8 +206,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
               general.phone && (
                 <a
                   href={`tel:${general.phone.replace(/\s/g, '')}`}
-                  class="group flex items-center gap-4 p-5 bg-white border-4 border-black text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
-                  style="box-shadow: 6px 6px 0 0 #000;"
+                  class="group flex items-center gap-4 p-5 bg-white rounded-sm text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
                 >
                   <Icon name="mdi:phone" class="w-6 h-6 shrink-0" />
                   <span class="flex-1">{general.phone}</span>
@@ -242,8 +223,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
                   href={general.discordUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group flex items-center gap-4 p-5 bg-lavender border-4 border-black text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
-                  style="box-shadow: 6px 6px 0 0 #000;"
+                  class="group flex items-center gap-4 p-5 bg-lavender rounded-sm text-white font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
                 >
                   <Icon name="mdi:discord" class="w-6 h-6 shrink-0" />
                   <span class="flex-1">Join our Discord</span>
@@ -260,8 +240,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
                   href={general.mailingListUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group flex items-center gap-4 p-5 bg-white border-4 border-black text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
-                  style="box-shadow: 6px 6px 0 0 #000;"
+                  class="group flex items-center gap-4 p-5 bg-white rounded-sm text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
                 >
                   <Icon name="mdi:email-newsletter" class="w-6 h-6 shrink-0" />
                   <span class="flex-1">Join Mailing List</span>
@@ -277,31 +256,28 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
       </div>
     </section>
 
-    {/* ===== MEDIA + ADDRESS: Split black/yellow ===== */}
-    <section class="grid grid-cols-1 md:grid-cols-2 border-b-8 border-black">
+    {/* ===== MEDIA + ADDRESS: Split black/magenta ===== */}
+    <section class="grid grid-cols-1 md:grid-cols-2 border-b border-white/10">
       {/* Media Inquiries — Black */}
       <div
-        class="bg-black border-r-0 md:border-r-8 border-black border-b-8 md:border-b-0 p-10 md:p-14 relative overflow-hidden"
+        class="bg-black border-r-0 md:border-r border-white/10 border-b md:border-b-0 p-10 md:p-14 relative overflow-hidden"
       >
         <div class="absolute top-0 left-0 w-full h-2 bg-yellow"></div>
         {/* Ghost text */}
         <div class="absolute bottom-0 right-0 pointer-events-none overflow-hidden">
           <span
-            class="block text-[8rem] font-black uppercase text-white opacity-5 leading-none"
-            style="font-family: 'Anton', sans-serif; transform: translateY(20%);">PRESS</span
+            class="block text-[8rem] font-display font-black uppercase text-white opacity-5 leading-none"
+            style="transform: translateY(20%);">PRESS</span
           >
         </div>
 
         <div class="relative z-10">
           <div class="flex items-center gap-3 mb-8">
-            <div
-              class="w-14 h-14 bg-yellow border-4 border-yellow flex items-center justify-center shrink-0"
-            >
-              <Icon name="mdi:newspaper" class="w-7 h-7 text-black" />
+            <div class="w-14 h-14 bg-yellow rounded-sm flex items-center justify-center shrink-0">
+              <Icon name="mdi:newspaper" class="w-7 h-7 text-white" />
             </div>
             <h2
-              class="text-3xl md:text-4xl font-black uppercase text-white leading-none"
-              style="font-family: 'Archivo Black', sans-serif;"
+              class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-none"
             >
               {media.heading}
             </h2>
@@ -314,8 +290,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
               media.email && (
                 <a
                   href={`mailto:${media.email}`}
-                  class="group flex items-center gap-4 p-4 bg-yellow border-4 border-yellow text-black font-black uppercase tracking-wider hover:bg-white transition-colors"
-                  style="box-shadow: 4px 4px 0 0 #FFED00;"
+                  class="group flex items-center gap-4 p-4 bg-yellow rounded-sm text-white font-black uppercase tracking-wider hover:bg-white hover:text-black transition-colors"
                 >
                   <Icon name="mdi:email" class="w-5 h-5 shrink-0" />
                   <span class="flex-1 text-sm truncate">{media.email}</span>
@@ -330,8 +305,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
               media.phone && (
                 <a
                   href={`tel:${media.phone.replace(/\s/g, '')}`}
-                  class="group flex items-center gap-4 p-4 bg-white border-4 border-white text-black font-black uppercase tracking-wider hover:bg-yellow transition-colors"
-                  style="box-shadow: 4px 4px 0 0 #fff;"
+                  class="group flex items-center gap-4 p-4 bg-white/10 text-white rounded-sm font-black uppercase tracking-wider hover:bg-yellow hover:text-white transition-colors"
                 >
                   <Icon name="mdi:phone" class="w-5 h-5 shrink-0" />
                   <span class="flex-1 text-sm">{media.phone}</span>
@@ -344,9 +318,9 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
             }
           </div>
 
-          <div class="mt-8 p-4 border-4 border-yellow bg-transparent">
+          <div class="mt-8 p-4 border border-yellow/40 rounded-sm bg-transparent">
             <p class="text-yellow text-xs font-black uppercase tracking-wider leading-relaxed">
-              ⚠️ Press line only. General enquiries sent here may go unanswered.
+              Press line only. General enquiries sent here may go unanswered.
             </p>
           </div>
         </div>
@@ -356,22 +330,18 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
       <div class="bg-magenta p-10 md:p-14 relative overflow-hidden">
         <div class="absolute bottom-0 right-0 pointer-events-none overflow-hidden">
           <span
-            class="block text-[8rem] font-black uppercase text-black opacity-10 leading-none"
-            style="font-family: 'Anton', sans-serif; transform: translateY(20%);">POST</span
+            class="block text-[8rem] font-display font-black uppercase text-black opacity-10 leading-none"
+            style="transform: translateY(20%);">POST</span
           >
         </div>
 
         <div class="relative z-10">
           <div class="flex items-center gap-3 mb-8">
-            <div
-              class="w-14 h-14 bg-black border-4 border-black flex items-center justify-center shrink-0"
-              style="box-shadow: 4px 4px 0 0 #FFED00;"
-            >
+            <div class="w-14 h-14 bg-black rounded-sm flex items-center justify-center shrink-0">
               <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
             </div>
             <h2
-              class="text-3xl md:text-4xl font-black uppercase text-white leading-none"
-              style="font-family: 'Archivo Black', sans-serif;"
+              class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-none"
             >
               {address.heading}
             </h2>
@@ -383,10 +353,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
 
           {
             address.address && (
-              <div
-                class="p-6 bg-black border-4 border-black font-mono text-mint text-lg font-bold leading-loose whitespace-pre-line"
-                style="box-shadow: 8px 8px 0 0 #FFED00;"
-              >
+              <div class="p-6 bg-black/30 rounded-sm font-mono text-mint text-lg font-bold leading-loose whitespace-pre-line">
                 {address.address}
               </div>
             )
@@ -396,25 +363,24 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
     </section>
 
     {/* ===== FOLLOW US: Full bleed social grid ===== */}
-    <section class="bg-black border-b-8 border-mint py-16 md:py-20 relative overflow-hidden">
+    <section class="bg-black border-b border-mint/30 py-16 md:py-20 relative overflow-hidden">
       {/* Background text watermark */}
       <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
         <span
-          class="text-[15rem] font-black uppercase text-white opacity-[0.03] leading-none"
-          style="font-family: 'Anton', sans-serif;">SOCIAL</span
+          class="text-[15rem] font-display font-black uppercase text-white opacity-[0.03] leading-none"
+          >SOCIAL</span
         >
       </div>
 
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <h2
-            class="text-5xl md:text-7xl font-black uppercase text-white leading-[0.9]"
-            style="font-family: 'Archivo Black', sans-serif; letter-spacing: 0.01em;"
+            class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]"
           >
             Follow<br /><span class="text-mint">The Fight</span>
           </h2>
           <p
-            class="text-gray-400 font-bold max-w-xs text-sm uppercase tracking-widest border-l-4 border-mint pl-4"
+            class="text-white/40 font-bold max-w-xs text-sm uppercase tracking-widest border-l-4 border-mint pl-4"
           >
             Stay up to date on every platform we operate.
           </p>
@@ -425,14 +391,10 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
           {
             socialLinks.map((link, i) => {
               const palettes = [
-                { bg: '#5EFFD8', text: '#000', shadow: '#C926F2' },
-                { bg: '#FFED00', text: '#000', shadow: '#5EFFD8' },
-                { bg: '#C926F2', text: '#fff', shadow: '#FFED00' },
-                { bg: '#9A94E7', text: '#000', shadow: '#FFED00' },
-                { bg: '#5EFFD8', text: '#000', shadow: '#FFED00' },
-                { bg: '#FFED00', text: '#000', shadow: '#C926F2' },
-                { bg: '#C926F2', text: '#fff', shadow: '#5EFFD8' },
-                { bg: '#9A94E7', text: '#000', shadow: '#C926F2' },
+                { bg: 'bg-mint', text: 'text-black' },
+                { bg: 'bg-yellow', text: 'text-white' },
+                { bg: 'bg-magenta', text: 'text-white' },
+                { bg: 'bg-lavender', text: 'text-white' },
               ]
               const p = palettes[i % palettes.length]
               return (
@@ -440,8 +402,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group flex flex-col items-center justify-center gap-3 p-6 border-4 border-black font-black uppercase text-sm tracking-widest transition-all hover:-translate-y-2 hover:rotate-1 text-center"
-                  style={`background-color: ${p.bg}; color: ${p.text}; box-shadow: 6px 6px 0 0 ${p.shadow};`}
+                  class={`group flex flex-col items-center justify-center gap-3 p-6 rounded-sm font-black uppercase text-sm tracking-widest transition-all hover:-translate-y-1 text-center ${p.bg} ${p.text}`}
                 >
                   <Icon name={link.icon} class="w-8 h-8" />
                   <span class="leading-none">{link.platform}</span>
@@ -458,29 +419,28 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
     </section>
 
     {/* ===== BOTTOM CTA STRIP ===== */}
-    <section class="bg-yellow border-b-8 border-black py-12 px-4 relative overflow-hidden">
+    <section class="bg-yellow border-b border-white/10 py-12 px-4 relative overflow-hidden">
       <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <span
-          class="absolute -right-16 top-1/2 -translate-y-1/2 text-[12rem] font-black uppercase text-black opacity-10 leading-none"
-          style="font-family: 'Anton', sans-serif;">ACT</span
+          class="absolute -right-16 top-1/2 -translate-y-1/2 text-[12rem] font-display font-black uppercase text-white opacity-10 leading-none"
+          >ACT</span
         >
       </div>
       <div
         class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
       >
         <div>
-          <p class="text-xs font-black uppercase tracking-widest mb-2 opacity-60">
+          <p class="text-xs font-black uppercase tracking-widest mb-2 text-white/70">
             Don't just watch.
           </p>
           <h2
-            class="text-4xl md:text-5xl font-black uppercase leading-none"
-            style="font-family: 'Archivo Black', sans-serif;"
+            class="text-4xl md:text-5xl font-display font-black uppercase leading-none text-white"
           >
             Get Involved
           </h2>
         </div>
         <div class="flex flex-wrap gap-4">
-          <a href="/get-involved" class="btn btn-primary btn-lg"> Volunteer → </a>
+          <BrutalButton variant="black" size="lg" href="/get-involved">Volunteer →</BrutalButton>
           <a
             href="https://www.fusionparty.org.au/join"
             target="_blank"

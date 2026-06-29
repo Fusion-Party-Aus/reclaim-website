@@ -3,7 +3,7 @@ export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { BrutalCard, BrutalButton, FloatingIcon, Section } from '../components/ui'
+import { BrutalCard, BrutalButton, BrutalBadge, FloatingIcon, Section } from '../components/ui'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
 import { getConvinceYourFriendsPage } from '../lib/sanity'
@@ -337,28 +337,18 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
   <main class="relative z-10">
     <!-- Hero Section -->
-    <Section padding="xl" background="mint" class="pt-32 pb-20">
+    <Section padding="xl" bg="dark" class="pt-32 pb-20">
       <div class="max-w-4xl mx-auto text-center">
         <div class="inline-block mb-6">
-          <div
-            class="bg-magenta border-4 border-black px-6 py-2 transform -rotate-2"
-            style="box-shadow: 4px 4px 0px 0px #000;"
-          >
-            <p class="text-white font-black uppercase text-sm tracking-wide">
-              Grassroots Organizing
-            </p>
-          </div>
+          <BrutalBadge variant="magenta" size="lg">Grassroots Organizing</BrutalBadge>
         </div>
 
-        <h1
-          class="text-5xl md:text-7xl font-black uppercase mb-6 leading-none"
-          style="font-family: 'Archivo Black', sans-serif;"
-        >
+        <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-none">
           {pageData?.title || 'Convince Your'}
           {!pageData?.title && <span class="text-magenta">Friends</span>}
         </h1>
 
-        <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight">
+        <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight text-white/80">
           {
             pageData?.subtitle ||
               "Don't know what to say? Use these pre-written templates to share Fusion policies with your network. One click to copy, customized for different audiences."
@@ -366,23 +356,31 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         </p>
 
         <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
-          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+          <div
+            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
+          >
             <Icon name="mdi:rocket-launch" class="w-5 h-5 text-magenta" />
             <span class="font-black text-sm">READY TO SEND</span>
           </div>
-          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+          <div
+            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
+          >
             <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
             <span class="font-black text-sm">{templates.length} AUDIENCES</span>
           </div>
-          <div class="flex items-center gap-2 bg-white border-4 border-black px-4 py-2">
+          <div
+            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
+          >
             <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
             <span class="font-black text-sm">ONE CLICK COPY</span>
           </div>
         </div>
 
         <!-- Why It Works -->
-        <BrutalCard variant="white" shadow="magenta" padding="lg" class="text-left">
-          <h3 class="text-2xl font-black text-magenta mb-4 uppercase flex items-center gap-3">
+        <BrutalCard variant="surface" shadow="magenta" padding="lg" class="text-left">
+          <h3
+            class="text-2xl font-display font-black text-magenta mb-4 uppercase flex items-center gap-3"
+          >
             <Icon name="mdi:lightbulb-on" class="w-8 h-8" />
             Why This Works
           </h3>
@@ -436,20 +434,21 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- Channel Filter Section -->
-    <Section padding="lg" background="white">
+    <Section padding="lg" bg="dark">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-8 uppercase">Choose Your Channel</h2>
+        <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
+          Choose Your Channel
+        </h2>
         <div class="grid md:grid-cols-4 gap-4 mb-12">
           {
             Object.entries(channelInfo).map(([key, info]) => (
               <button
                 data-channel={key}
-                class="channel-filter bg-white border-4 border-black p-4 hover:bg-yellow transition-all transform hover:scale-105 active:scale-95"
-                style="box-shadow: 4px 4px 0px 0px #000;"
+                class="channel-filter bg-grey-dark border border-white/10 rounded-sm p-4 hover:border-yellow/50 transition-all transform hover:scale-105 active:scale-95"
               >
                 <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-magenta" />
                 <p class="font-black uppercase text-sm mb-1">{info.name}</p>
-                <p class="text-xs text-gray-600">{info.tip}</p>
+                <p class="text-xs text-white/60">{info.tip}</p>
               </button>
             ))
           }
@@ -458,11 +457,11 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- Templates Grid -->
-    <Section padding="xl" background="mint">
+    <Section padding="xl" bg="dark">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-black uppercase mb-4">Pick Your Template</h2>
-          <p class="text-lg font-bold max-w-2xl mx-auto">
+          <h2 class="text-4xl font-display font-black uppercase mb-4">Pick Your Template</h2>
+          <p class="text-lg font-bold max-w-2xl mx-auto text-white/70">
             Click to expand, customize if needed, then copy and send!
           </p>
         </div>
@@ -470,45 +469,49 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         <div class="space-y-6" id="templates-container">
           {
             templates.map((template) => (
-              <div
-                class="template-card bg-white border-6 border-black p-6 cursor-pointer hover:shadow-[12px_12px_0px_0px_#000] transition-all transform hover:-translate-y-1"
-                style={`box-shadow: 8px 8px 0px 0px #000; border-color: ${template.color === 'magenta' ? '#C926F2' : template.color === 'mint' ? '#5EFFD8' : '#FFED00'};`}
+              <BrutalCard
+                variant="surface"
+                shadow={template.color}
+                padding="lg"
+                hover={false}
+                class="template-card cursor-pointer"
                 data-channel={template.channel}
               >
                 {/* Collapsed View */}
                 <div class="template-header flex items-center justify-between">
                   <div class="flex items-center gap-4 flex-1">
                     <div
-                      class={`w-16 h-16 bg-${template.color} border-4 border-black flex items-center justify-center flex-shrink-0`}
+                      class={`w-16 h-16 bg-${template.color} rounded-sm flex items-center justify-center flex-shrink-0`}
                     >
-                      <Icon name={template.icon} class="w-8 h-8 text-black" />
+                      <Icon name={template.icon} class="w-8 h-8 text-white" />
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-xl font-black uppercase mb-1">{template.title}</h3>
-                      <p class="text-sm font-bold text-gray-600 mb-2">{template.audience}</p>
+                      <h3 class="text-xl font-display font-black uppercase mb-1">
+                        {template.title}
+                      </h3>
+                      <p class="text-sm font-bold text-white/60 mb-2">{template.audience}</p>
                       <div class="flex flex-wrap gap-2">
                         {template.tags.map((tag) => (
-                          <span class="text-xs bg-gray-200 border-2 border-black px-2 py-1 font-bold">
+                          <span class="text-xs bg-white/10 rounded-sm px-2 py-1 font-bold">
                             #{tag}
                           </span>
                         ))}
                       </div>
                     </div>
                   </div>
-                  <button class="expand-btn bg-magenta border-4 border-black text-white px-6 py-3 font-black uppercase hover:bg-yellow hover:text-black transition-all flex items-center gap-2">
-                    <Icon name="mdi:chevron-down" class="w-6 h-6" />
+                  <BrutalButton variant="magenta" class="expand-btn" icon="mdi:chevron-down">
                     OPEN
-                  </button>
+                  </BrutalButton>
                 </div>
 
                 {/* Expanded View */}
-                <div class="template-body hidden mt-6 pt-6 border-t-4 border-black">
+                <div class="template-body hidden mt-6 pt-6 border-t border-white/10">
                   {template.subject && (
                     <div class="mb-4">
                       <label class="block text-sm font-black uppercase mb-2 text-magenta">
                         Subject Line:
                       </label>
-                      <div class="bg-gray-100 border-4 border-black p-3 font-bold">
+                      <div class="bg-black/30 border border-white/10 rounded-sm p-3 font-bold">
                         {template.subject}
                       </div>
                     </div>
@@ -517,37 +520,32 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                   <div class="mb-4">
                     <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
                       <span>Message:</span>
-                      <span class="text-xs text-gray-600 normal-case font-bold">
+                      <span class="text-xs text-white/60 normal-case font-bold">
                         (Click to edit if you want to personalize)
                       </span>
                     </label>
-                    <textarea
-                      class="w-full h-64 bg-gray-100 border-4 border-black p-4 font-mono text-sm resize-none focus:outline-none focus:border-magenta"
-                      style="font-family: 'Space Grotesk', monospace;"
-                    >
+                    <textarea class="w-full h-64 bg-black/30 border border-white/10 rounded-sm p-4 font-mono text-sm text-white resize-none focus:outline-none focus:border-magenta">
                       {template.body}
                     </textarea>
                   </div>
 
                   <div class="flex flex-wrap gap-3">
-                    <button
-                      class="copy-btn bg-magenta border-4 border-black text-white px-8 py-4 font-black uppercase hover:bg-mint hover:text-black transition-all flex items-center gap-2"
-                      style="box-shadow: 4px 4px 0px 0px #000;"
+                    <BrutalButton
+                      variant="magenta"
+                      size="lg"
+                      class="copy-btn"
+                      icon="mdi:content-copy"
                     >
-                      <Icon name="mdi:content-copy" class="w-5 h-5" />
                       COPY TO CLIPBOARD
-                    </button>
-                    <button class="collapse-btn bg-white border-4 border-black text-black px-6 py-4 font-black uppercase hover:bg-gray-200 transition-all">
+                    </BrutalButton>
+                    <BrutalButton variant="black" size="lg" class="collapse-btn">
                       CLOSE
-                    </button>
+                    </BrutalButton>
                   </div>
 
-                  <div class="mt-4 p-4 bg-yellow border-4 border-black">
+                  <div class="mt-4 p-4 bg-yellow/10 border border-yellow/30 rounded-sm">
                     <p class="text-sm font-bold flex items-start gap-2">
-                      <Icon
-                        name="mdi:lightbulb"
-                        class="w-5 h-5 text-magenta flex-shrink-0 mt-0.5"
-                      />
+                      <Icon name="mdi:lightbulb" class="w-5 h-5 text-yellow flex-shrink-0 mt-0.5" />
                       <span>
                         <strong>Pro tip:</strong> Personalize the template with your own words and
                         experiences. Authentic messages are more convincing!
@@ -555,7 +553,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                     </p>
                   </div>
                 </div>
-              </div>
+              </BrutalCard>
             ))
           }
         </div>
@@ -563,21 +561,23 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- Tips Section -->
-    <Section padding="xl" background="white">
+    <Section padding="xl" bg="dark">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-8 uppercase">Tips for Maximum Impact</h2>
+        <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
+          Tips for Maximum Impact
+        </h2>
 
         <div class="grid md:grid-cols-2 gap-6">
           {
             tips.map((tip: any) => (
-              <BrutalCard variant="white" shadow={tip.color} padding="lg">
+              <BrutalCard variant="surface" shadow={tip.color} padding="lg">
                 <h3
-                  class={`text-xl font-black text-${tip.color} mb-3 uppercase flex items-center gap-2`}
+                  class={`text-xl font-display font-black text-${tip.color} mb-3 uppercase flex items-center gap-2`}
                 >
                   <Icon name={tip.icon} class="w-6 h-6" />
                   {tip.title}
                 </h3>
-                <p class="font-bold text-gray-700">{tip.description}</p>
+                <p class="font-bold text-white/70">{tip.description}</p>
               </BrutalCard>
             ))
           }
@@ -586,43 +586,37 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- Share Your Success Section -->
-    <Section padding="xl" background="yellow">
+    <Section padding="xl" bg="dark">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <div
-            class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-6 transform -rotate-2"
-            style="box-shadow: 4px 4px 0px 0px #000;"
-          >
-            <p
-              class="text-white font-black uppercase text-2xl tracking-wide flex items-center gap-3"
-            >
-              <Icon name="mdi:message-star" class="w-8 h-8" />
+          <div class="inline-block mb-6">
+            <BrutalBadge variant="magenta" size="lg" icon="mdi:message-star">
               Used a Template?
-            </p>
+            </BrutalBadge>
           </div>
-          <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 leading-tight">
+          <h2 class="text-4xl md:text-5xl font-display font-black uppercase mb-6 leading-tight">
             Tell Us How It Went!
           </h2>
-          <p class="text-xl font-bold mb-8 max-w-2xl mx-auto">
+          <p class="text-xl font-bold mb-8 max-w-2xl mx-auto text-white/70">
             Did it work? Did you customize it? Did your boomer dad actually read it? Your feedback
             helps us improve these for everyone.
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 mb-8">
-          <BrutalCard variant="white" shadow="magenta" padding="lg">
+          <BrutalCard variant="surface" shadow="magenta" padding="lg">
             <Icon name="mdi:thumb-up" class="w-12 h-12 text-magenta mb-3" />
-            <h3 class="text-xl font-black uppercase mb-2">Success Stories</h3>
-            <p class="font-bold text-gray-700 text-sm">
+            <h3 class="text-xl font-display font-black uppercase mb-2">Success Stories</h3>
+            <p class="font-bold text-white/70 text-sm">
               "Used the parent template and my mum actually joined!" - These are gold. Help others
               see what works.
             </p>
           </BrutalCard>
 
-          <BrutalCard variant="white" shadow="mint" padding="lg">
+          <BrutalCard variant="surface" shadow="mint" padding="lg">
             <Icon name="mdi:pencil-box" class="w-12 h-12 text-mint mb-3" />
-            <h3 class="text-xl font-black uppercase mb-2">Your Tweaks</h3>
-            <p class="font-bold text-gray-700 text-sm">
+            <h3 class="text-xl font-display font-black uppercase mb-2">Your Tweaks</h3>
+            <p class="font-bold text-white/70 text-sm">
               Changed something that landed better? Share it! Community-sourced improvements make
               these templates stronger.
             </p>
@@ -631,7 +625,9 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
         <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
           <!-- Form content (same as before) -->
-          <h3 class="text-2xl font-black uppercase mb-4 text-white">Quick Feedback Form</h3>
+          <h3 class="text-2xl font-display font-black uppercase mb-4 text-white">
+            Quick Feedback Form
+          </h3>
           <form
             action="https://formspree.io/f/YOUR_FORM_ID"
             method="POST"
@@ -646,7 +642,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               <select
                 name="template"
                 required
-                class="w-full px-4 py-3 border-4 border-black font-bold focus:outline-none focus:border-yellow"
+                class="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-sm text-white font-bold focus:outline-none focus:border-yellow"
               >
                 <option value="">Select a template...</option>
                 {templates.map((t) => <option value={t.id}>{t.title}</option>)}
@@ -661,25 +657,25 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 <label class="flex-1">
                   <input type="radio" name="result" value="great" class="sr-only peer" required />
                   <div
-                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-mint transition-all peer-checked:bg-mint peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint"
                   >
-                    😊 Great!
+                    Great!
                   </div>
                 </label>
                 <label class="flex-1">
                   <input type="radio" name="result" value="ok" class="sr-only peer" />
                   <div
-                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-yellow transition-all peer-checked:bg-yellow peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-white peer-checked:border-yellow"
                   >
-                    😐 OK
+                    OK
                   </div>
                 </label>
                 <label class="flex-1">
                   <input type="radio" name="result" value="meh" class="sr-only peer" />
                   <div
-                    class="bg-white border-4 border-black p-3 text-center font-black cursor-pointer hover:bg-gray-200 transition-all peer-checked:bg-gray-200 peer-checked:border-black peer-checked:shadow-[4px_4px_0px_0px_#000]"
+                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-white/40 transition-all peer-checked:bg-white/20 peer-checked:border-white/40"
                   >
-                    😕 Meh
+                    Meh
                   </div>
                 </label>
               </div>
@@ -693,7 +689,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 name="feedback"
                 rows="4"
                 placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
-                class="w-full px-4 py-3 border-4 border-black font-bold resize-none focus:outline-none focus:border-yellow"
+                class="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-sm text-white font-bold resize-none focus:outline-none focus:border-yellow"
               ></textarea>
             </div>
 
@@ -703,7 +699,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                   type="checkbox"
                   name="can_share"
                   value="yes"
-                  class="mt-1 w-5 h-5 border-4 border-black"
+                  class="mt-1 w-5 h-5 border border-white/30 rounded-sm bg-black/20"
                 />
                 <span class="text-white font-bold text-sm">
                   You can share this as a testimonial (we'll keep you anonymous unless you tell us
@@ -712,16 +708,9 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               </label>
             </div>
 
-            <button
-              type="submit"
-              class="w-full bg-yellow border-4 border-black text-black px-8 py-4 font-black uppercase hover:bg-white transition-all transform hover:scale-105 active:scale-95"
-              style="box-shadow: 6px 6px 0px 0px #000;"
-            >
-              <span class="flex items-center justify-center gap-2">
-                <Icon name="mdi:send" class="w-6 h-6" />
-                Send Feedback
-              </span>
-            </button>
+            <BrutalButton type="submit" variant="yellow" fullWidth icon="mdi:send">
+              Send Feedback
+            </BrutalButton>
           </form>
 
           <p class="text-white text-sm font-bold mt-6 opacity-90">
@@ -732,13 +721,13 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- The Contrast Section -->
-    <Section padding="xl">
+    <Section padding="xl" bg="dark">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-black uppercase mb-4">
+          <h2 class="text-4xl font-display font-black uppercase mb-4">
             {contrastSection.title}
           </h2>
-          <p class="text-xl font-bold max-w-3xl mx-auto">
+          <p class="text-xl font-bold max-w-3xl mx-auto text-white/70">
             {contrastSection.subtitle}
           </p>
         </div>
@@ -746,30 +735,27 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Major Parties Way -->
           <div>
-            <div
-              class="bg-gray-300 border-4 border-gray-400 p-6 mb-4 relative"
-              style="box-shadow: 4px 4px 0px 0px #999;"
-            >
+            <div class="bg-grey-dark border border-white/10 rounded-sm p-6 mb-4 relative">
               <div
-                class="absolute -top-3 -right-3 bg-gray-500 text-white px-3 py-1 text-xs font-black"
+                class="absolute -top-3 -right-3 bg-white/20 text-white px-3 py-1 text-xs font-black rounded-sm"
               >
                 OLD POLITICS
               </div>
-              <Icon name="mdi:alert-circle" class="w-10 h-10 text-gray-600 mb-3" />
-              <h3 class="text-xl font-black uppercase mb-3 text-gray-700">
+              <Icon name="mdi:alert-circle" class="w-10 h-10 text-white/50 mb-3" />
+              <h3 class="text-xl font-display font-black uppercase mb-3 text-white/70">
                 {contrastSection.oldWay.title}
               </h3>
-              <ul class="space-y-2 text-sm font-bold text-gray-600">
+              <ul class="space-y-2 text-sm font-bold text-white/50">
                 {
                   contrastSection.oldWay.points.map((point: any) => (
                     <li class="flex items-start gap-2">
-                      <span class="text-red-500">✗</span>
+                      <span class="text-red">✗</span>
                       <span>{point}</span>
                     </li>
                   ))
                 }
               </ul>
-              <p class="mt-4 text-xs font-black text-gray-500 italic">
+              <p class="mt-4 text-xs font-black text-white/40 italic">
                 Feels like: {contrastSection.oldWay.feeling}
               </p>
             </div>
@@ -777,14 +763,14 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
           <!-- Fusion Way -->
           <div>
-            <BrutalCard variant="white" shadow="magenta" padding="lg" class="h-full">
+            <BrutalCard variant="surface" shadow="magenta" padding="lg" class="h-full relative">
               <div
-                class="absolute -top-3 -right-3 bg-magenta text-white px-3 py-1 text-xs font-black border-2 border-black"
+                class="absolute -top-3 -right-3 bg-magenta text-white px-3 py-1 text-xs font-black rounded-sm"
               >
                 FUSION WAY
               </div>
               <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
-              <h3 class="text-xl font-black uppercase mb-3 text-magenta">
+              <h3 class="text-xl font-display font-black uppercase mb-3 text-magenta">
                 {contrastSection.fusionWay.title}
               </h3>
               <ul class="space-y-2 text-sm font-bold">
@@ -807,27 +793,29 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         <!-- Key Insight -->
         <div class="mt-12">
           <BrutalCard variant="yellow" shadow="black" padding="xl" class="text-center">
-            <Icon name="mdi:lightbulb-on" class="w-16 h-16 mx-auto mb-4 text-magenta" />
-            <h3 class="text-2xl font-black uppercase mb-4">The Message IS the Medium</h3>
+            <Icon name="mdi:lightbulb-on" class="w-16 h-16 mx-auto mb-4 text-white" />
+            <h3 class="text-2xl font-display font-black uppercase mb-4">
+              The Message IS the Medium
+            </h3>
             <p class="text-lg font-bold max-w-2xl mx-auto leading-relaxed">
               When you use these templates, you're not saying "vote Fusion" - you're having a
               conversation about:
             </p>
             <div class="grid sm:grid-cols-2 gap-3 mt-6 max-w-2xl mx-auto text-left">
-              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
-                <Icon name="mdi:home" class="w-5 h-5 text-magenta flex-shrink-0" />
+              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                <Icon name="mdi:home" class="w-5 h-5 text-white flex-shrink-0" />
                 <span class="font-black text-sm">Why rent is unaffordable</span>
               </div>
-              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
-                <Icon name="mdi:train-car" class="w-5 h-5 text-magenta flex-shrink-0" />
+              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                <Icon name="mdi:train-car" class="w-5 h-5 text-white flex-shrink-0" />
                 <span class="font-black text-sm">Why commutes suck</span>
               </div>
-              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
-                <Icon name="mdi:earth" class="w-5 h-5 text-magenta flex-shrink-0" />
+              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                <Icon name="mdi:earth" class="w-5 h-5 text-white flex-shrink-0" />
                 <span class="font-black text-sm">Why climate matters</span>
               </div>
-              <div class="flex items-center gap-2 bg-white border-4 border-black p-3">
-                <Icon name="mdi:account-alert" class="w-5 h-5 text-magenta flex-shrink-0" />
+              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                <Icon name="mdi:account-alert" class="w-5 h-5 text-white flex-shrink-0" />
                 <span class="font-black text-sm">Why politics feels broken</span>
               </div>
             </div>
@@ -841,10 +829,10 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     </Section>
 
     <!-- CTA Section -->
-    <Section padding="xl" background="magenta">
+    <Section padding="xl" bg="dark" class="bg-magenta">
       <div class="max-w-3xl mx-auto text-center text-white">
         <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-yellow" />
-        <h2 class="text-4xl font-black uppercase mb-6">Every Conversation Counts</h2>
+        <h2 class="text-4xl font-display font-black uppercase mb-6">Every Conversation Counts</h2>
         <p class="text-xl font-bold mb-8 leading-relaxed">
           The major parties have millions in corporate donations. We have something better: real
           people having real conversations. You're not just sharing a message - you're building a
@@ -960,7 +948,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
   textarea:focus {
     outline: none;
-    border-color: #c926f2;
+    border-color: #d428d4;
   }
 
   /* Channel filter hover effect */
@@ -969,7 +957,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
   }
 
   .channel-filter.bg-yellow {
-    border-color: #c926f2;
+    border-color: #d428d4;
   }
 
   /* Template card hover effect */

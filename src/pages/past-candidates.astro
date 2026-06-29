@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { BrutalBadge, BrutalCard } from '@/components/ui'
 import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
 import type { Page, Electorate } from '../types/sanity'
 import '../styles/global.css'
@@ -58,12 +59,11 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
 
   <!-- ARCHIVE HEADER -->
   <section
-    class="bg-black pt-32 pb-16 px-6 lg:px-8 relative overflow-hidden"
-    style="box-shadow: 0 12px 0 0 #C926F2;"
+    class="bg-surface-base pt-32 pb-16 px-6 lg:px-8 relative overflow-hidden border-b border-magenta/30"
   >
     <div
       class="absolute inset-0 opacity-10 pointer-events-none"
-      style="background-image: radial-gradient(#FFED00 2px, transparent 2px); background-size: 24px 24px;"
+      style="background-image: radial-gradient(#4A7AEB 2px, transparent 2px); background-size: 24px 24px;"
     >
     </div>
 
@@ -71,21 +71,13 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
       class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row align-end justify-between items-end gap-6"
     >
       <div class="max-w-3xl">
-        <div
-          class="inline-block p-2 bg-yellow border-4 border-black mb-6 transform -rotate-2"
-          style="box-shadow: 4px 4px 0px 0px #5EFFD8;"
-        >
-          <span class="font-black text-black uppercase tracking-widest text-sm"
-            >Historical Archive</span
-          >
-        </div>
+        <BrutalBadge variant="yellow" size="lg" class="mb-6">Historical Archive</BrutalBadge>
         <h1
-          class="text-5xl md:text-7xl font-black text-white uppercase leading-none drop-shadow-md mb-4"
-          style="font-family: 'Archivo Black', sans-serif;"
+          class="text-5xl md:text-7xl font-display font-black text-white uppercase leading-none mb-4"
         >
           Past Candidates
         </h1>
-        <p class="text-xl md:text-2xl font-bold text-gray-300 max-w-2xl">
+        <p class="text-xl md:text-2xl font-bold text-white/60 max-w-2xl">
           A public record of former candidates and representatives who have stood for the Fusion
           Party.
         </p>
@@ -94,46 +86,36 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
   </section>
 
   <!-- ARCHIVE GRID -->
-  <main class="bg-light-grey py-16 min-h-screen">
+  <main class="bg-surface-raised py-16 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         sortedGroups.length > 0 ? (
           <div class="space-y-16">
             {sortedGroups.map((group) => (
               <section>
-                <h2
-                  class="text-3xl md:text-4xl font-black uppercase mb-8 border-b-6 border-black pb-4 text-black text-center"
-                  style="font-family: 'Archivo Black', sans-serif;"
-                >
+                <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-8 border-b border-white/10 pb-4 text-white text-center">
                   {group}
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {groupedByElection[group].map((bio: any, index: number) => {
-                    const bgColors = ['bg-mint', 'bg-yellow', 'bg-magenta', 'bg-white']
-                    const colorClass = bgColors[index % bgColors.length]
+                    const accents = ['mint', 'yellow', 'magenta'] as const
+                    const accent = accents[index % accents.length]
 
                     const imageUrl = bio.profileImage
                       ? urlFor(bio.profileImage).width(400).height(400).fit('crop').url()
                       : null
 
-                    const hoverTextClass =
-                      colorClass === 'bg-magenta' ? 'group-hover:text-white' : ''
-
                     return (
                       <a
                         href={`/${bio.slug}`}
-                        class={`group flex flex-col border-4 border-black transition-transform hover:-translate-y-2 focus:-translate-y-2 ${colorClass} grayscale hover:grayscale-0 overflow-hidden relative`}
-                        style="box-shadow: 6px 6px 0 0 #000;"
+                        class="group flex flex-col bg-grey-dark border border-white/10 rounded-sm transition-colors hover:border-white/25 overflow-hidden relative"
                       >
-                        {/* Archival stamp */}
-                        <div
-                          class="absolute top-2 right-2 bg-black text-yellow text-[10px] font-black uppercase px-2 py-1 transform rotate-3 z-10 border-2 border-yellow"
-                          style="box-shadow: 2px 2px 0 0 #000;"
-                        >
+                        {/* Archival tag */}
+                        <BrutalBadge variant="black" size="sm" class="absolute top-2 right-2 z-10">
                           Archived
-                        </div>
+                        </BrutalBadge>
 
-                        <div class="aspect-square w-full border-b-4 border-black overflow-hidden bg-white">
+                        <div class="aspect-square w-full overflow-hidden bg-black/30">
                           {imageUrl ? (
                             <img
                               src={imageUrl}
@@ -143,7 +125,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
                           ) : (
                             <div class="w-full h-full flex items-center justify-center opacity-20">
                               <svg
-                                class="w-20 h-20 text-black"
+                                class="w-20 h-20 text-white"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                               >
@@ -153,17 +135,15 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
                           )}
                         </div>
 
+                        <div class={`h-1 w-full bg-${accent}`} />
+
                         <div class="p-4 flex-1 flex flex-col justify-center text-center">
-                          <h3
-                            class={`text-lg md:text-xl font-black uppercase text-black wrap-break-word ${hoverTextClass}`}
-                          >
+                          <h3 class="text-lg md:text-xl font-display font-black uppercase text-white wrap-break-word">
                             {bio.title}
                           </h3>
 
                           {(bio.role || bio.subtitle) && (
-                            <p
-                              class={`mt-1 text-[10px] md:text-xs font-bold text-black opacity-80 uppercase tracking-widest ${hoverTextClass}`}
-                            >
+                            <p class="mt-1 text-[10px] md:text-xs font-bold text-white/60 uppercase tracking-widest">
                               {bio.role || bio.subtitle}
                             </p>
                           )}
@@ -176,12 +156,12 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
             ))}
           </div>
         ) : (
-          <div class="brutal-card brutal-card-magenta text-center py-12">
-            <h2 class="text-2xl font-black uppercase mb-2">No Archived Candidates</h2>
+          <BrutalCard variant="magenta" shadow="black" padding="lg" class="text-center">
+            <h2 class="text-2xl font-display font-black uppercase mb-2">No Archived Candidates</h2>
             <p class="font-bold">
               There are currently no historical candidate bios in the archive.
             </p>
-          </div>
+          </BrutalCard>
         )
       }
     </div>
