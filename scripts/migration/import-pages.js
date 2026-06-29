@@ -202,7 +202,7 @@ const pages = [
         _type: 'block',
         style: 'normal',
         listItem: 'bullet',
-        children: [{ _type: 'span', text: 'Transparent costings and impact assessments' }]
+        children: [{ _type: 'span', text: 'Transparent estimates and impact assessments' }]
       },
       {
         _type: 'block',
@@ -271,7 +271,7 @@ const pages = [
           },
           {
             _type: 'span',
-            text: ' Every policy has transparent costings. Every commitment shows exactly how it\'s funded. No magical thinking. No "we\'ll find the money somewhere."'
+            text: ' Every policy has transparent workings. Every commitment shows exactly how it\'s funded. No magical thinking. No "we\'ll find the money somewhere."'
           }
         ]
       }

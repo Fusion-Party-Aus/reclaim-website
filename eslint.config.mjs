@@ -39,9 +39,7 @@ export default [
       '*.config.js',
       '*.config.mjs',
       '*.config.cjs',
-      'import-*.js',
-      'migrate.js',
-      'add-blog-to-nav.js',
+      'scripts/migration/**',
     ],
   },
 ]

@@ -136,7 +136,8 @@ export default defineType({
       name: 'copyrightText',
       title: 'Copyright Text',
       type: 'string',
-      description: 'e.g. "2024-2026 Fusion Party Victoria - Reignite Democracy. All rights reserved."',
+      description:
+        'e.g. "2024-2026 Fusion Party Victoria - Reignite Democracy. All rights reserved."',
       initialValue: '2024-2026 Fusion Party Victoria - Reignite Democracy. All rights reserved.',
     }),
     defineField({

@@ -18,7 +18,7 @@ export default defineType({
       type: 'text',
       rows: 2,
       description: 'Intro text in the hero section.',
-      initialValue: 'Evidence-based solutions. Real costings. No bullshit.',
+      initialValue: "Evidence-based solutions. We've done the maths. No bullshit.",
     }),
     defineField({
       name: 'introCard',

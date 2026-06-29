@@ -17,12 +17,7 @@ export default defineType({
       type: 'string',
       group: 'basic',
       options: {
-        list: [
-          'RECLAIM OUR ECONOMY',
-          'SOLVE THE HOUSING CRISIS',
-          'FIX THE TAX EXPLOITS',
-          'RECLAIM OUR FUTURE',
-        ],
+        list: ['RECLAIM OUR ECONOMY', 'RECLAIM OUR INFRASTRUCTURE', 'RECLAIM OUR DEMOCRACY'],
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -50,6 +45,13 @@ export default defineType({
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'thisTerm',
+      title: 'This Term (Crossbench-Realistic)',
+      type: 'boolean',
+      group: 'basic',
+      initialValue: false,
     }),
     defineField({
       name: 'icon',

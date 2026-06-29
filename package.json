@@ -25,6 +25,7 @@
     "migrate": "node scripts/migration/migrate.js",
     "import:policies": "node scripts/migration/import-policies.js",
     "import:policies:scaffold": "node scripts/migration/import-scaffolded-policies.js",
+    "delete:policies": "node scripts/migration/delete-policies.js",
     "import:faq": "node scripts/migration/import-faq.js",
     "import:pages": "node scripts/migration/import-pages.js",
     "import:manifesto": "node scripts/migration/import-manifesto.js",
