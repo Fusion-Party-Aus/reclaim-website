@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/styles.css">
+  <script src="_ds/reclaim-fusion-party-design-system-214b9501-c063-4b77-85a0-9ed01f6919cb/_ds_bundle.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #1A0029; color: #fff; font-family: 'Barlow', sans-serif; }
+    @media print {
+      .screen-only { display: none !important; }
+      body { background: #fff; color: #1A0029; }
+      section { break-before: page; }
+      section:first-of-type { break-before: avoid; }
+    }
+  </style>
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 56">
+      <rect width="80" height="56" fill="#1A0029"/>
+      <text x="8" y="38" font-family="sans-serif" font-weight="900" font-size="26" fill="white" letter-spacing="-1">RECLAIM</text>
+      <rect x="8" y="42" width="64" height="2" fill="url(#g)"/>
+      <defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#D428D4"/><stop offset="50%" stop-color="#4A7AEB"/><stop offset="100%" stop-color="#00DDB8"/>
+      </linearGradient></defs>
+    </svg>
+  </template>
+</helmet>
+
+<div style="display: flex; align-items: flex-start; min-height: 100vh;">
+
+  <!-- ── Left nav (screen only) ─────────────────────────────────────────── -->
+  <nav class="screen-only" style="width: 210px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.07); padding: 28px 0; display: flex; flex-direction: column;">
+    <div style="padding: 0 18px 28px;">
+      <img src="assets/logo-rings-color.png" alt="Fusion" style="height: 26px; width: auto; display: block;">
+      <div style="margin-top: 8px; font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.22); letter-spacing: 0.2em; text-transform: uppercase; line-height: 1.7;">Reclaim<br>Brand System</div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 1px;">
+      <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="9">
+        <button style="{{ nav.btnStyle }}" onClick="{{ nav.onClick }}">{{ nav.label }}</button>
+      </sc-for>
+    </div>
+    <div style="padding: 24px 18px 0; font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.12); letter-spacing: 0.1em; text-transform: uppercase; line-height: 2;">
+      v1.0 · June 2026<br>fusionparty.org.au
+    </div>
+  </nav>
+
+  <!-- ── Main content ───────────────────────────────────────────────────── -->
+  <main style="flex: 1; min-width: 0; padding: 0 72px 120px;">
+
+    <!-- COVER ──────────────────────────────────────────────────────────── -->
+    <div style="min-height: 65vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 0 72px;">
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.22); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px;">Fusion Party Australia · Campaign Brand System</div>
+      <div style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: clamp(64px, 10vw, 108px); text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; color: #fff; margin: 0;">RECLAIM</div>
+      <div style="height: 3px; background: linear-gradient(90deg, #D428D4 0%, #7B3FE4 25%, #4A7AEB 50%, #0BB8D4 75%, #00DDB8 100%); margin: 24px 0 28px; max-width: 520px;"></div>
+      <p style="font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.5); max-width: 58ch; margin: 0 0 32px;">The visual identity and campaign design system for Fusion Party Australia. Reclaim is to Fusion what Polaris is to Salesforce — the binding system for everything we make. This guide covers logo, colour, typography, photography, voice, templates, and the rules for using all of them correctly.</p>
+      <div style="display: flex; gap: 32px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.12em; line-height: 2;">Prepared by<br><span style="color: #D428D4;">Fusion Party</span></div>
+        <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.12em; line-height: 2;">Status<br><span style="color: #00DDB8;">v1.0 — Active</span></div>
+        <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.12em; line-height: 2;">Updated<br><span style="color: rgba(255,255,255,0.5);">June 2026</span></div>
+      </div>
+    </div>
+
+    <!-- 01 IDENTITY ─────────────────────────────────────────────────────── -->
+    <section data-section="identity" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #D428D4; letter-spacing: 0.2em; text-transform: uppercase;">01</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Identity</h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px;">
+        <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); border-top: 2px solid #D428D4; padding: 28px 24px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #D428D4; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px;">The Party</div>
+          <div style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 12px;">FUSION</div>
+          <p style="font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.55); margin: 0;">What we <em>are</em>. A progressive, evidence-based political party. The entity, the values, the people. Built from the integration of science, technology, whistleblower advocacy, and progressive policy movements.</p>
+        </div>
+        <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); border-top: 2px solid #7B3FE4; padding: 28px 24px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #7B3FE4; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px;">The Campaign System</div>
+          <div style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 12px;">RECLAIM</div>
+          <p style="font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.55); margin: 0;">What we intend to <em>do</em>. The campaign direction, visual language, and design system. Reclaim Our Economy. Reclaim Our Future. The aesthetic of urgency without the scapegoat.</p>
+        </div>
+      </div>
+
+      <div style="background: rgba(212,40,212,0.06); border-left: 3px solid #D428D4; padding: 20px 24px; margin-bottom: 32px;">
+        <p style="margin: 0; font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.7);">"<strong style="color: #fff;">Fusion</strong> is what we are. <strong style="color: #fff;">Reclaim</strong> is what we intend to do. The brand system borrows the aesthetic appeal of populism while backing it with real policy — reaching voters who have switched off without switching sides."</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+        <div style="padding: 18px 20px; background: #1e0035; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">On the Ballot</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.7);">In each state: <strong>RECLAIM</strong> or <strong>RECLAIM VICTORIA</strong>. Fusion sits behind Reclaim — less name, more intent.</div>
+        </div>
+        <div style="padding: 18px 20px; background: #1e0035; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">The Villain</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Always a <strong>mechanism</strong> — privatisation, underfunding, broken incentives. Never a group of people. This is non-negotiable.</div>
+        </div>
+        <div style="padding: 18px 20px; background: #1e0035; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">Core Slogans</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Reclaim Our Economy · Reclaim Our Future. All messaging traces back to these.</div>
+        </div>
+        <div style="padding: 18px 20px; background: #1e0035; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">Authorised By</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.7);">K. Hunt, FUSION, Mansfield VIC</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 LOGO ─────────────────────────────────────────────────────────── -->
+    <section data-section="logo" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #7B3FE4; letter-spacing: 0.2em; text-transform: uppercase;">02</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Logo</h2>
+
+      <!-- Primary mark -->
+      <div style="margin-bottom: 12px; font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em;">Primary Mark — Full Colour</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px;">
+        <!-- Solo mark on dark -->
+        <div style="background: #1A0029; border: 1px solid rgba(255,255,255,0.1); padding: 40px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <img src="assets/logo-rings-solo-colour.png" alt="Fusion rings solo" style="height: 80px; width: auto;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Solo Mark<br>On Dark</div>
+        </div>
+        <!-- Wordmark portrait on dark -->
+        <div style="background: #1A0029; border: 1px solid rgba(255,255,255,0.1); padding: 32px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <img src="assets/logo-wordmark-colour-portrait.png" alt="Fusion wordmark portrait" style="height: 100px; width: auto;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Wordmark<br>Portrait</div>
+        </div>
+        <!-- Inverted landscape on dark -->
+        <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.1); padding: 40px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+          <img src="assets/logo-wordmark-inverted-landscape.png" alt="Fusion wordmark inverted landscape" style="width: 140px; height: auto;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Wordmark<br>Inverted Landscape</div>
+        </div>
+      </div>
+
+      <!-- Additional variants note -->
+      <div style="background: #1e0035; border: 1px solid rgba(255,255,255,0.06); padding: 18px 20px; margin-bottom: 40px; display: flex; gap: 16px; align-items: flex-start;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 16px; color: rgba(255,255,255,0.2); flex-shrink: 0;">→</span>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px;">Additional Variants Available</div>
+          <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.5);">The mark is also available in <strong style="color: rgba(255,255,255,0.7);">mono black line</strong>, <strong style="color: rgba(255,255,255,0.7);">mono white line</strong>, and <strong style="color: rgba(255,255,255,0.7);">outline only (no fill)</strong>. Use mono white on photography and dark print. Use mono black on white/light print backgrounds. Request files from the brand team.</p>
+        </div>
+      </div>
+
+      <!-- Logo on photography -->
+      <div style="margin-bottom: 12px; font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em;">On Photography</div>
+      <div style="position: relative; height: 200px; overflow: hidden; border-radius: 2px; margin-bottom: 40px;">
+        <img src="assets/photo-railway-lines.png" alt="Railway lines" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        <img src="assets/logo-rings-mono-white.png" alt="Fusion mono" style="position: absolute; bottom: 16px; right: 20px; height: 52px; width: auto; opacity: 0.85;">
+        <div style="position: absolute; bottom: 16px; left: 20px; font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em;">White mono rings — bottom right of duotone area</div>
+      </div>
+
+      <!-- Clear space + sizing -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px;">
+        <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 24px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px;">Clear Space Rule</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: 20px; border: 1px dashed rgba(255,255,255,0.12); margin-bottom: 12px;">
+            <div style="border: 1px dashed #D428D4; padding: 10px; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/logo-rings-solo-colour.png" alt="" style="height: 40px; width: auto;">
+            </div>
+          </div>
+          <p style="margin: 0; font-size: 12px; line-height: 1.65; color: rgba(255,255,255,0.4);">Minimum clear space = ½ the ring diameter on all sides. Never crowd the mark with other elements.</p>
+        </div>
+        <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 24px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px;">Minimum Sizes</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <img src="assets/logo-rings-solo-colour.png" alt="" style="height: 24px; width: auto;">
+              <span style="font-size: 12px; color: rgba(255,255,255,0.4);">24px screen · 8mm print</span>
+            </div>
+            <div style="height: 1px; background: rgba(255,255,255,0.06);"></div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <img src="assets/logo-wordmark-colour-portrait.png" alt="" style="height: 36px; width: auto;">
+              <span style="font-size: 12px; color: rgba(255,255,255,0.4);">80px wide screen · 25mm print</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo don'ts -->
+      <div style="margin-bottom: 12px; font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em;">Don'ts</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+        <sc-for list="{{ logoDonts }}" as="dont" hint-placeholder-count="6">
+          <div style="background: #1e0035; border: 1px solid rgba(212,40,40,0.15); padding: 16px;">
+            <div style="font-family: 'Space Mono', monospace; font-size: 18px; color: rgba(212,40,40,0.4); margin-bottom: 8px;">✕</div>
+            <div style="font-size: 12px; line-height: 1.55; color: rgba(255,255,255,0.4);">{{ dont.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 03 COLOUR ───────────────────────────────────────────────────────── -->
+    <section data-section="colour" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #4A7AEB; letter-spacing: 0.2em; text-transform: uppercase;">03</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 12px; color: #fff;">Colour</h2>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.4); margin: 0 0 40px; max-width: 60ch;">Dark-first. The base background is Deep Purple. Surfaces layer upward through purple depth. The accent spectrum runs from magenta through to teal — use one per layout zone. Click any swatch to copy the hex.</p>
+
+      <sc-for list="{{ colorGroups }}" as="group" hint-placeholder-count="3">
+        <div style="margin-bottom: 36px;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px;">{{ group.name }}</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <sc-for list="{{ group.swatches }}" as="swatch" hint-placeholder-count="5">
+              <div style="{{ swatch.outerStyle }}" onClick="{{ swatch.onCopy }}">
+                <div style="{{ swatch.swatchStyle }}">
+                  <sc-if value="{{ swatch.isCopied }}" hint-placeholder-val="{{ false }}">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; border-radius: 2px;">
+                      <span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #fff; letter-spacing: 0.1em;">COPIED</span>
+                    </div>
+                  </sc-if>
+                </div>
+                <div style="margin-top: 8px;">
+                  <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 2px;">{{ swatch.name }}</div>
+                  <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.35);">{{ swatch.hex }}</div>
+                  <div style="font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 3px; line-height: 1.4;">{{ swatch.usage }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+
+      <!-- Gradient reference -->
+      <div style="margin-top: 8px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px;">Spectrum Gradient — Identity Use Only</div>
+        <div style="height: 40px; background: linear-gradient(90deg, #D428D4 0%, #7B3FE4 25%, #4A7AEB 50%, #0BB8D4 75%, #00DDB8 100%); border-radius: 2px;"></div>
+        <p style="margin: 10px 0 0; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.55;">Reserved for logo, section dividers, and splash moments. Never use as a full page background. Never use as a text gradient.</p>
+      </div>
+    </section>
+
+    <!-- 04 TYPOGRAPHY ───────────────────────────────────────────────────── -->
+    <section data-section="typography" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #0BB8D4; letter-spacing: 0.2em; text-transform: uppercase;">04</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Typography</h2>
+
+      <!-- Barlow Condensed -->
+      <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 32px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #D428D4; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px;">Display — Headlines</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.35);">Barlow Condensed Black · Google Fonts</div>
+          </div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.1em; text-align: right;">Always uppercase<br>Tracking 0 to -0.02em<br>Leading ≤ 0.92</div>
+        </div>
+        <div style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 72px; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.9; color: #fff; margin-bottom: 12px;">RECLAIM<br>OUR FUTURE</div>
+        <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+          <span style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 48px; text-transform: uppercase; color: rgba(255,255,255,0.5);">Aa Bb Cc</span>
+          <span style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 48px; text-transform: uppercase; color: rgba(255,255,255,0.25);">1234567890</span>
+        </div>
+      </div>
+
+      <!-- Barlow body -->
+      <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 32px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #7B3FE4; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px;">Body — All Copy</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.35);">Barlow Regular / SemiBold · Google Fonts</div>
+          </div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.1em; text-align: right;">Sentence case<br>Line height 1.65–1.75<br>14–16px body</div>
+        </div>
+        <p style="font-family: 'Barlow', sans-serif; font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 12px; max-width: 64ch;">Victoria's rail infrastructure was built for a population of two million. We have five. The mechanism that failed you isn't the train — it's thirty years of deferral dressed up as fiscal responsibility.</p>
+        <p style="font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.45); margin: 0;">Caption / small body text at 14px. SemiBold (600) for labels, overlines, and UI elements.</p>
+      </div>
+
+      <!-- Space Mono -->
+      <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 32px; margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px;">Data — Stats &amp; Labels</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.35);">Space Mono Bold · Google Fonts</div>
+          </div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.1em; text-align: right;">Always uppercase<br>8–12px for labels<br>20–32px for stats</div>
+        </div>
+        <div style="display: flex; gap: 48px; flex-wrap: wrap;">
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 40px; font-weight: 700; color: #00DDB8; line-height: 1;">$198B</div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;">State debt</div>
+          </div>
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 40px; font-weight: 700; color: #D428D4; line-height: 1;">34%</div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;">Renters stressed</div>
+          </div>
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 40px; font-weight: 700; color: #4A7AEB; line-height: 1;">4×</div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px;">Cost blowout avg.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Casing rules -->
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px;">Casing Rules</div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+        <sc-for list="{{ casingRules }}" as="rule" hint-placeholder-count="4">
+          <div style="padding: 14px 16px; background: #1e0035; border: 1px solid rgba(255,255,255,0.05);">
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">{{ rule.element }}</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.65);">{{ rule.rule }}</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 3px; font-style: italic;">{{ rule.example }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 05 PHOTOGRAPHY ──────────────────────────────────────────────────── -->
+    <section data-section="photography" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; letter-spacing: 0.2em; text-transform: uppercase;">05</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 12px; color: #fff;">Photography</h2>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.4); margin: 0 0 32px; max-width: 60ch;">Real photos of real places and real people — infrastructure, community events, campaign moments, public spaces. Every photo needs a purpose. The diagonal split treatment is the signature device. No AI imagery. No stock photography.</p>
+
+      <!-- The diagonal split explained -->
+      <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); padding: 28px; margin-bottom: 24px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px;">The Diagonal Split — Template</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="padding: 12px 14px; background: #1A0029; border-left: 2px solid #D428D4;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #D428D4; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Step 1 — Treat the Left Side</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.5);"><strong style="color: rgba(255,255,255,0.6);">Infrastructure:</strong> stark B&amp;W desaturation. <strong style="color: rgba(255,255,255,0.6);">People:</strong> reduced saturation only — keep warmth and skin tones readable, don't go stark grey.</div>
+            </div>
+            <div style="padding: 12px 14px; background: #1A0029; border-left: 2px solid #7B3FE4;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #7B3FE4; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Step 2 — Diagonal Clip</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.5);">A sharp diagonal running roughly top-centre to bottom-right divides the image. The clip is roughly 40% from the right at top, 60% at bottom.</div>
+            </div>
+            <div style="padding: 12px 14px; background: #1A0029; border-left: 2px solid #4A7AEB;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #4A7AEB; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Step 3 — Choose Duotone Colour</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.5);"><strong style="color: rgba(255,255,255,0.6);">Infrastructure:</strong> Purple — shadows = Brand Purple (#5C006B), highlights = white. <strong style="color: rgba(255,255,255,0.6);">People &amp; community:</strong> Teal — shadows = #006B5C, highlights = white. One colour per image; don't mix.</div>
+            </div>
+            <div style="padding: 12px 14px; background: #1A0029; border-left: 2px solid #00DDB8;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Step 4 — Rings Watermark</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Place the white mono rings logo bottom-right of the duotone area at ~15% image height. Opacity ~85%.</div>
+            </div>
+          </div>
+          <img src="assets/photo-railway-lines.png" alt="Diagonal split example" style="width: 100%; height: auto; border-radius: 2px;">
+        </div>
+      </div>
+
+      <!-- Example grid -->
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 8px;">Infrastructure — Purple Duotone</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px;">
+        <img src="assets/photo-railway-lines.png" alt="Railway lines" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-southern-cross.png" alt="Southern Cross" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-station-escalator.png" alt="Station escalator" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-flinders-night.png" alt="Flinders at night" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-station-heritage.png" alt="Heritage station" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-station-suburban.png" alt="Suburban station" style="width: 100%; height: 110px; object-fit: cover; border-radius: 2px;">
+      </div>
+
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 8px;">People &amp; Community — Teal Duotone</div>
+      <div style="background: rgba(0,221,184,0.04); border: 1px solid rgba(0,221,184,0.1); padding: 10px 14px; margin-bottom: 12px; font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.55;">People photos keep colour warmth on the left side — don't fully desaturate. The teal duotone on the right anchors them to the brand without washing out skin tones. Photos must have a clear purpose: community events, canvassing, candidate moments — not generic posed smiles.</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 32px;">
+        <img src="assets/photo-people-park.png" alt="Community in park" style="width: 100%; height: 160px; object-fit: cover; border-radius: 2px;">
+        <img src="assets/photo-people-event.png" alt="Campaign event" style="width: 100%; height: 160px; object-fit: cover; border-radius: 2px;">
+      </div>
+
+      <!-- Photography don'ts -->
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px;">Photography Don'ts</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+        <sc-for list="{{ photoDonts }}" as="dont" hint-placeholder-count="4">
+          <div style="padding: 14px 16px; background: #1e0035; border: 1px solid rgba(212,40,40,0.1);">
+            <div style="font-family: 'Space Mono', monospace; font-size: 16px; color: rgba(212,40,40,0.35); margin-bottom: 6px;">✕</div>
+            <div style="font-size: 12px; line-height: 1.55; color: rgba(255,255,255,0.4);">{{ dont.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 06 VOICE & TONE ─────────────────────────────────────────────────── -->
+    <section data-section="voice" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #D428D4; letter-spacing: 0.2em; text-transform: uppercase;">06</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Voice &amp; Tone</h2>
+
+      <!-- Tone spectrum -->
+      <div style="margin-bottom: 40px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 16px;">Tone Spectrum — Move Right for CTAs</div>
+        <div style="display: flex; gap: 0; margin-bottom: 8px;">
+          <div style="flex: 1; background: #4A7AEB; padding: 10px 14px; font-family: 'Space Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Clear</div>
+          <div style="flex: 1; background: #7B3FE4; padding: 10px 14px; font-family: 'Space Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Direct</div>
+          <div style="flex: 1; background: #a030cc; padding: 10px 14px; font-family: 'Space Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Urgent</div>
+          <div style="flex: 1; background: #D428D4; padding: 10px 14px; font-family: 'Space Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">Indignant</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.3);">
+          <span>Policy detail, documents</span>
+          <span>Social posts, CTAs</span>
+        </div>
+      </div>
+
+      <!-- On-brand vs off-brand -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px;">
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px;">✓ On Brand</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ onBrand }}" as="eg" hint-placeholder-count="3">
+              <div style="background: rgba(0,221,184,0.05); border-left: 2px solid #00DDB8; padding: 10px 14px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.65);">{{ eg.text }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(212,40,40,0.8); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px;">✕ Off Brand</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ offBrand }}" as="eg" hint-placeholder-count="3">
+              <div style="background: rgba(212,40,40,0.04); border-left: 2px solid rgba(212,40,40,0.3); padding: 10px 14px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.35);">{{ eg.text }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules -->
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 12px;">Rules for Representatives &amp; Comms</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <sc-for list="{{ voiceRules }}" as="rule" hint-placeholder-count="4">
+          <div style="display: flex; gap: 14px; padding: 14px 16px; background: #1e0035; border: 1px solid rgba(255,255,255,0.05);">
+            <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: #7B3FE4; flex-shrink: 0; margin-top: 1px;">{{ rule.num }}</div>
+            <div style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.6);">{{ rule.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 07 TEMPLATES ────────────────────────────────────────────────────── -->
+    <section data-section="templates" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #4A7AEB; letter-spacing: 0.2em; text-transform: uppercase;">07</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Templates &amp; Sizes</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px;">
+        <sc-for list="{{ formats }}" as="fmt" hint-placeholder-count="6">
+          <div style="background: #2E004D; border: 1px solid rgba(255,255,255,0.07); border-top: 2px solid {{ fmt.color }}; padding: 20px;">
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: {{ fmt.color }}; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px;">{{ fmt.name }}</div>
+            <div style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 22px; text-transform: uppercase; color: #fff; margin-bottom: 6px;">{{ fmt.dims }}</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; margin-bottom: 12px;">{{ fmt.notes }}</div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.1em;">{{ fmt.file }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 08 CAMPAIGN MATERIALS ───────────────────────────────────────────── -->
+    <section data-section="materials" style="padding: 72px 0 56px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #7B3FE4; letter-spacing: 0.2em; text-transform: uppercase;">08</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Campaign Materials</h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <sc-for list="{{ materials }}" as="mat" hint-placeholder-count="8">
+          <div style="padding: 18px 20px; background: #1e0035; border: 1px solid rgba(255,255,255,0.06); border-left: 2px solid {{ mat.color }};">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: {{ mat.color }}; text-transform: uppercase; letter-spacing: 0.14em;">{{ mat.type }}</div>
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em;">{{ mat.size }}</div>
+            </div>
+            <div style="font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 4px;">{{ mat.name }}</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.5;">{{ mat.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- 09 DO / DON'T ───────────────────────────────────────────────────── -->
+    <section data-section="donts" style="padding: 72px 0 80px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; letter-spacing: 0.2em; text-transform: uppercase;">09</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+      </div>
+      <h2 style="font-family: 'Barlow Condensed', 'Barlow', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin: 0 0 40px; color: #fff;">Do / Don't</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ dodonts }}" as="dd" hint-placeholder-count="8">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 2px; overflow: hidden;">
+            <div style="padding: 18px 20px; background: rgba(0,221,184,0.05); border: 1px solid rgba(0,221,184,0.1);">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: #00DDB8; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px;">✓ Do</div>
+              <div style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.7);">{{ dd.do }}</div>
+            </div>
+            <div style="padding: 18px 20px; background: rgba(212,40,40,0.04); border: 1px solid rgba(212,40,40,0.1); border-left: none;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(212,40,40,0.6); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px;">✕ Don't</div>
+              <div style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.35);">{{ dd.dont }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeSection: 'identity', copiedHex: null };
+  observer = null;
+
+  componentDidMount() {
+    const sections = document.querySelectorAll('[data-section]');
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.setState({ activeSection: entry.target.dataset.section });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+    sections.forEach(s => this.observer.observe(s));
+  }
+
+  componentWillUnmount() {
+    if (this.observer) this.observer.disconnect();
+  }
+
+  copyColor(hex) {
+    navigator.clipboard.writeText(hex);
+    this.setState({ copiedHex: hex });
+    setTimeout(() => this.setState({ copiedHex: null }), 1500);
+  }
+
+  renderVals() {
+    const { activeSection, copiedHex } = this.state;
+
+    const NAV_SECTIONS = [
+      { id: 'identity',    label: '01  Identity',     accent: '#D428D4' },
+      { id: 'logo',        label: '02  Logo',          accent: '#7B3FE4' },
+      { id: 'colour',      label: '03  Colour',        accent: '#4A7AEB' },
+      { id: 'typography',  label: '04  Typography',    accent: '#0BB8D4' },
+      { id: 'photography', label: '05  Photography',   accent: '#00DDB8' },
+      { id: 'voice',       label: '06  Voice & Tone',  accent: '#D428D4' },
+      { id: 'templates',   label: '07  Templates',     accent: '#4A7AEB' },
+      { id: 'materials',   label: '08  Materials',     accent: '#7B3FE4' },
+      { id: 'donts',       label: '09  Do / Don\'t',   accent: '#00DDB8' },
+    ];
+
+    const COLORS_RAW = [
+      { group: 'Base',         name: 'Deep Purple',  hex: '#1A0029', usage: 'Primary page background' },
+      { group: 'Base',         name: 'Brand Purple', hex: '#5C006B', usage: 'Photo overlay · feature cards' },
+      { group: 'Base',         name: 'Surface',      hex: '#2E004D', usage: 'Raised cards · panels' },
+      { group: 'Spectrum',     name: 'Magenta',      hex: '#D428D4', usage: 'Primary CTA · emphasis' },
+      { group: 'Spectrum',     name: 'Violet',       hex: '#7B3FE4', usage: 'Secondary interactive' },
+      { group: 'Spectrum',     name: 'Blue',         hex: '#4A7AEB', usage: 'Links · data neutral' },
+      { group: 'Spectrum',     name: 'Cyan',         hex: '#0BB8D4', usage: 'Highlights · positive data' },
+      { group: 'Spectrum',     name: 'Teal',         hex: '#00DDB8', usage: 'Success · data positive' },
+      { group: 'Print / Light', name: 'White',        hex: '#FFFFFF', usage: 'Text on dark · inverted print' },
+      { group: 'Print / Light', name: 'Off-White',    hex: '#F5F4F2', usage: 'Print doc background' },
+    ];
+
+    const groups = ['Base', 'Spectrum', 'Print / Light'].map(gName => ({
+      name: gName,
+      swatches: COLORS_RAW.filter(c => c.group === gName).map(c => {
+        const isLight = c.hex === '#FFFFFF' || c.hex === '#F5F4F2';
+        return {
+          ...c,
+          isCopied: copiedHex === c.hex,
+          onCopy: () => this.copyColor(c.hex),
+          outerStyle: { cursor: 'pointer', width: '140px', flexShrink: 0 },
+          swatchStyle: {
+            background: c.hex,
+            height: '90px',
+            borderRadius: '2px',
+            border: isLight ? '1px solid rgba(255,255,255,0.12)' : 'none',
+            position: 'relative',
+            overflow: 'hidden',
+          },
+        };
+      }),
+    }));
+
+    const casingRules = [
+      { element: 'Hero headlines', rule: 'ALL CAPS', example: 'e.g. RECLAIM OUR FUTURE' },
+      { element: 'Section titles', rule: 'ALL CAPS', example: 'e.g. THE NUMBERS DON\'T LIE' },
+      { element: 'Body copy', rule: 'Sentence case', example: 'e.g. This policy was costed by the PBO.' },
+      { element: 'Labels / tags', rule: 'ALL CAPS', example: 'e.g. POLICY · TRANSPORT · HOUSING' },
+      { element: 'CTAs / buttons', rule: 'Sentence case', example: 'e.g. "Read the full plan"' },
+      { element: 'Data / stats', rule: 'Numbers + units only', example: 'e.g. $198B · 34% · 4×' },
+    ];
+
+    const logoDonts = [
+      { text: 'Don\'t place the full-colour rings on a light background — use mono black instead.' },
+      { text: 'Don\'t stretch, skew, or rotate the mark.' },
+      { text: 'Don\'t recreate the rings in other colours — use the approved files.' },
+      { text: 'Don\'t place the logo inside a coloured box or badge.' },
+      { text: 'Don\'t use the wordmark font (NicoKaku) for any other text.' },
+      { text: 'Don\'t display at smaller than minimum sizes — the rings lose legibility.' },
+    ];
+
+    const photoDonts = [
+      { text: 'No AI-generated imagery of any kind.' },
+      { text: 'No generic stock photography — every photo must have a real, specific purpose.' },
+      { text: 'No duotone colours outside purple (infrastructure) and teal (people/community).' },
+      { text: 'No fully desaturated people photos — keep warmth on the left side for human subjects.' },
+      { text: 'No full-colour photos without any treatment — always apply the diagonal split.' },
+      { text: 'No decorative photo shapes (circles, ovals, blobs) — rectangular crops only.' },
+    ];
+
+    const onBrand = [
+      { text: '"34% of renters in Melbourne spend more than 40% of income on housing."' },
+      { text: '"The mechanism that failed you isn\'t the train — it\'s thirty years of deferral."' },
+      { text: '"We costed it. Here\'s how it works."' },
+    ];
+
+    const offBrand = [
+      { text: '"Too many Australians are being left behind." — Vague sentiment, no number.' },
+      { text: '"The elites are destroying this country." — Group scapegoating, never.' },
+      { text: '"We\'re disrupting democracy." — Tech-bro language, avoid.' },
+    ];
+
+    const voiceRules = [
+      { num: '01', text: 'You may never foment anger against a particular group of people. Blame the government, successive governments, or the mechanism — never a category of people.' },
+      { num: '02', text: 'All speakers must know the 8 key slogans. Repeat them in every spoken answer on the relevant policy area. "Reclaim Our Economy" and "Reclaim Our Future" are the two master headers.' },
+      { num: '03', text: 'If you don\'t know the detail: name the slogan it falls under, say "We have a plan to [slogan]", and direct people to the website. Honesty over bluster.' },
+      { num: '04', text: 'We / our for the party. You / your for the voter. Never "Australians" as a distancing device — direct address only.' },
+    ];
+
+    const formats = [
+      { name: 'Social Square', dims: '1080 × 1080', color: '#D428D4', notes: 'Facebook, Instagram. Primary campaign post format.', file: 'Social Post - Square.dc.html' },
+      { name: 'Social Story', dims: '1080 × 1920', color: '#7B3FE4', notes: 'Instagram / Facebook Stories. Vertical full-bleed.', file: 'Social Post - Story.dc.html' },
+      { name: 'DL Flyer', dims: '99 × 210mm', color: '#4A7AEB', notes: 'Letterbox drops, counter display. Print-ready PDF.', file: 'DL Flyer.dc.html' },
+      { name: 'Candidate Poster', dims: 'A3 / A2', color: '#0BB8D4', notes: 'Roadside and shopfront. Large format print.', file: 'Candidate Poster.dc.html' },
+      { name: 'How to Vote Card', dims: '105 × 210mm', color: '#00DDB8', notes: 'Polling day distribution. AEC-compliant.', file: 'How to Vote Card.dc.html' },
+      { name: 'Formal Submission', dims: 'A4 flowing', color: 'rgba(255,255,255,0.3)', notes: 'Government consultation responses. Print + screen.', file: 'Formal Submission.dc.html' },
+    ];
+
+    const materials = [
+      { type: 'Social', name: 'Social Post — Square', desc: '1080×1080 campaign post with stat block + photography treatment', size: '1080×1080px', color: '#D428D4' },
+      { type: 'Social', name: 'Social Post — Story', desc: 'Full-bleed vertical story format', size: '1080×1920px', color: '#D428D4' },
+      { type: 'Print', name: 'DL Flyer', desc: 'Double-sided letterbox flyer. Dark hero front, policy back.', size: '99×210mm', color: '#4A7AEB' },
+      { type: 'Print', name: 'Candidate Poster', desc: 'Roadside/shopfront large-format with candidate portrait.', size: 'A2/A3', color: '#4A7AEB' },
+      { type: 'Print', name: 'How to Vote Card', desc: 'AEC-compliant polling day card with preference flow.', size: '105×210mm', color: '#0BB8D4' },
+      { type: 'Digital', name: 'Email Template', desc: 'NationBuilder-compatible HTML campaign email.', size: '600px wide', color: '#7B3FE4' },
+      { type: 'Digital', name: 'Email Signature', desc: 'Standardised staff/candidate email signature.', size: 'Auto', color: '#7B3FE4' },
+      { type: 'Document', name: 'Formal Submission', desc: 'Government consultation response. A4, print-ready PDF.', size: 'A4', color: '#00DDB8' },
+      { type: 'Document', name: 'Letterhead', desc: 'Official party correspondence. Light background, branded header.', size: 'A4', color: '#00DDB8' },
+      { type: 'Comms', name: 'Vic Rapid Response', desc: 'Evergreen post library for Victorian election. 41 posts, 6 parties.', size: 'Web', color: 'rgba(255,255,255,0.3)' },
+    ];
+
+    const dodonts = [
+      { do: 'Blame the mechanism — privatisation, underfunding, broken incentives.', dont: 'Blame a group of people, an ethnicity, or a class. The villain is always structural.' },
+      { do: 'Use real numbers. "34% of renters" is evidence. Numbers create accountability.', dont: 'Use vague sentiment. "Too many Australians" is not a claim — it\'s padding.' },
+      { do: 'Use the full-colour rings logo on dark purple backgrounds.', dont: 'Use the full-colour rings on white or light backgrounds — use mono black instead.' },
+      { do: 'Use the diagonal split treatment on all infrastructure photography.', dont: 'Use unprocessed full-colour photos. All photography gets the treatment or B&W.' },
+      { do: 'Stay in the dark purple palette for digital and campaign materials.', dont: 'Invent new brand colours or use the spectrum gradient as a page background.' },
+      { do: 'Use Barlow Condensed Black for all campaign headlines, all caps.', dont: 'Use Inter, Roboto, Arial, or system fonts. These are not brand fonts.' },
+      { do: 'Use "we" and "our" for the party. "You" and "your" for the voter.', dont: 'Use "I" in institutional comms, or "Australians" as a vague rhetorical audience.' },
+      { do: 'Credit good ideas across the political spectrum when they\'re genuinely good.', dont: 'Default to partisan framing. The villain is never a tribe — it\'s always a mechanism.' },
+    ];
+
+    return {
+      navItems: NAV_SECTIONS.map(s => ({
+        ...s,
+        onClick: () => this.setState({ activeSection: s.id }),
+        btnStyle: {
+          display: 'block',
+          width: '100%',
+          textAlign: 'left',
+          padding: '8px 18px',
+          fontFamily: '\'Space Mono\', monospace',
+          fontSize: '9px',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: s.id === activeSection ? '#fff' : 'rgba(255,255,255,0.28)',
+          background: s.id === activeSection ? 'rgba(255,255,255,0.04)' : 'none',
+          border: 'none',
+          borderLeft: s.id === activeSection ? `2px solid ${s.accent}` : '2px solid transparent',
+          cursor: 'pointer',
+          lineHeight: 1.5,
+        },
+      })),
+      colorGroups: groups,
+      casingRules,
+      logoDonts,
+      photoDonts,
+      onBrand,
+      offBrand,
+      voiceRules,
+      formats,
+      materials,
+      dodonts,
+    };
+  }
+}
+</script>
+</body>
+</html>

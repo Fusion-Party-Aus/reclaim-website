@@ -141,15 +141,20 @@ export default defineType({
       fields: [
         {
           name: 'mainText',
-          title: 'Main Text (FUSION)',
+          title: 'Main Text (e.g. FUSION)',
           type: 'string',
           initialValue: 'FUSION',
         },
         {
           name: 'subText',
-          title: 'Sub Text (VICTORIA)',
+          title: 'Badge Text (e.g. VICTORIA)',
           type: 'string',
           initialValue: 'VICTORIA',
+        },
+        {
+          name: 'tagline',
+          title: 'Tagline (e.g. REIGNITE DEMOCRACY)',
+          type: 'string',
         },
       ],
     }),

@@ -32,16 +32,16 @@ export default defineType({
         },
         {
           name: 'manifestoTitle',
-          title: 'Manifesto Box Title',
+          title: 'Policy Files Box Title',
           type: 'string',
-          initialValue: 'ANNOTATED MANIFESTO',
+          initialValue: 'THE ANNOTATED POLICY FILES',
         },
         {
           name: 'manifestoDescription',
-          title: 'Manifesto Box Description',
+          title: 'Policy Files Box Description',
           type: 'text',
           initialValue:
-            'Full manifesto with policy team annotations, research citations, and implementation roadmap. This is the behind-the-scenes version we use internally.',
+            'Every policy with the design rationale, evidence, and risk assessment behind it. This is the behind-the-scenes version our policy team uses internally.',
         },
         {
           name: 'githubUrl',
@@ -72,7 +72,7 @@ export default defineType({
           name: 'downloadButtonLabel',
           title: 'Download Button Label',
           type: 'string',
-          initialValue: '📥 Download Annotated Manifesto',
+          initialValue: '📥 Download Annotated Policy Files',
         },
         {
           name: 'footerMessage',

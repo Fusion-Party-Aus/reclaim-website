@@ -76,6 +76,12 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'resourceLinksLabel',
+      title: 'Resource Links Column Label',
+      type: 'string',
+      initialValue: 'Governance',
+    }),
+    defineField({
       name: 'resourceLinks',
       title: 'Resource Links',
       type: 'array',
@@ -113,9 +119,16 @@ export default defineType({
       fields: [
         {
           name: 'text',
-          title: 'Banner Text',
+          title: 'Banner Text (left, magenta strip)',
           type: 'string',
           validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'subtext',
+          title: 'Banner Subtext (right, yellow)',
+          type: 'string',
+          description:
+            'e.g. "Funded by members & small donors only. That\'s why we answer to you."',
         },
         {
           name: 'rotation',
@@ -124,6 +137,105 @@ export default defineType({
           description: 'Rotation angle in degrees (e.g., -2 for slight left tilt)',
           validation: (Rule) => Rule.required(),
         },
+      ],
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Brand Tagline',
+      type: 'string',
+      description:
+        'Short line under the logo block, e.g. "Taking Back What They Stole. No corporate donations. Ever."',
+    }),
+    defineField({
+      name: 'newsletter',
+      title: 'Newsletter Signup Card',
+      type: 'object',
+      fields: [
+        {name: 'heading', title: 'Heading', type: 'string'},
+        {name: 'description', title: 'Description', type: 'text', rows: 2},
+        {name: 'buttonText', title: 'Button Text', type: 'string'},
+      ],
+    }),
+    defineField({
+      name: 'navColumns',
+      title: 'Navigation Columns',
+      description:
+        'The link columns on the right of the footer. The "Candidates" column will automatically list current electorates after these links.',
+      type: 'array',
+      validation: (Rule) => Rule.max(4),
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'badgeLabel',
+              title: 'Column Label',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'badgeVariant',
+              title: 'Badge Colour',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Mint', value: 'mint'},
+                  {title: 'Yellow', value: 'yellow'},
+                  {title: 'White', value: 'white'},
+                  {title: 'Magenta', value: 'magenta'},
+                ],
+              },
+              initialValue: 'mint',
+            },
+            {
+              name: 'showElectorates',
+              title: 'Auto-list current electorates after these links',
+              type: 'boolean',
+              initialValue: false,
+            },
+            {
+              name: 'links',
+              title: 'Links',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {
+                      name: 'label',
+                      title: 'Label',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'url',
+                      title: 'URL',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'external',
+                      title: 'Opens in new tab',
+                      type: 'boolean',
+                      initialValue: false,
+                    },
+                  ],
+                  preview: {select: {title: 'label', subtitle: 'url'}},
+                },
+              ],
+            },
+          ],
+          preview: {select: {title: 'badgeLabel'}},
+        },
+      ],
+    }),
+    defineField({
+      name: 'donateCta',
+      title: 'Donate Button',
+      type: 'object',
+      fields: [
+        {name: 'buttonText', title: 'Button Text', type: 'string', initialValue: 'Donate Now'},
+        {name: 'url', title: 'URL', type: 'url'},
       ],
     }),
     defineField({

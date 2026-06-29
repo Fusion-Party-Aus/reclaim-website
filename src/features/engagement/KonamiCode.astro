@@ -2,7 +2,7 @@
 /**
  * Konami Code Easter Egg
  * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
- * Triggers: Confetti explosion + hidden manifesto download
+ * Triggers: Confetti explosion + hidden policy files download
  */
 import { BrutalCard, BrutalButton } from '@/components/ui'
 import { Icon } from 'astro-icon/components'
@@ -29,17 +29,17 @@ const content = {
   description:
     konami?.description ||
     "True democracy rewards the curious. Here's something special for developers, gamers, and people who actually read the code...",
-  manifestoTitle: konami?.manifestoTitle || 'ANNOTATED MANIFESTO',
+  manifestoTitle: konami?.manifestoTitle || 'THE ANNOTATED POLICY FILES',
   manifestoDescription:
     konami?.manifestoDescription ||
-    'Full manifesto with policy team annotations, research citations, and implementation roadmap. This is the behind-the-scenes version we use internally.',
+    'Every policy with the design rationale, evidence, and risk assessment behind it. This is the behind-the-scenes version our policy team uses internally.',
   githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website-poc',
   githubLabel: konami?.githubLabel || 'View on GitHub',
   zeroTrackingTitle: konami?.zeroTrackingTitle || 'ZERO TRACKING',
   zeroTrackingDescription:
     konami?.zeroTrackingDescription ||
     'Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.',
-  downloadButtonLabel: konami?.downloadButtonLabel || 'Download Annotated Manifesto',
+  downloadButtonLabel: konami?.downloadButtonLabel || 'Download Annotated Policy Files',
   footerMessage:
     konami?.footerMessage ||
     'P.S. Share this with other curious people. Democracy needs more of them.',
@@ -117,7 +117,7 @@ const content = {
         </div>
       </div>
 
-      <BrutalButton id="download-manifesto" variant="primary" size="lg">
+      <BrutalButton id="download-policy-files" variant="primary" size="lg">
         {content.downloadButtonLabel}
       </BrutalButton>
 
@@ -242,19 +242,19 @@ const content = {
     })
   }
 
-  // Download manifesto button
-  const downloadBtn = document.getElementById('download-manifesto')
+  // Download policy files button
+  const downloadBtn = document.getElementById('download-policy-files')
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       // For now, just log (you'd link to actual PDF)
-      console.log('Downloading annotated manifesto...')
+      console.log('Downloading annotated policy files...')
       alert(
-        'In production, this would download the annotated manifesto PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
+        'In production, this would download the annotated policy PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
       )
 
       // Track the download
       if (window.plausible) {
-        window.plausible('Konami Code - Manifesto Download')
+        window.plausible('Konami Code - Policy Files Download')
       }
     })
   }

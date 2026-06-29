@@ -1,20 +1,29 @@
+export interface PortableTextMarkDef {
+  _key: string
+  _type: string
+  href?: string
+}
+
 export interface PortableTextBlock {
   _type: string
   style?: string
   listItem?: string
   level?: number
   children?: Array<{ _type: string; text: string; marks?: string[] }>
+  markDefs?: PortableTextMarkDef[]
   rows?: Array<{ _type: string; cells: string[] }> // For @sanity/table blocks
 }
 
 /**
- * Render a child span with marks (bold, italic, etc.)
+ * Render a child span with marks (bold, italic, links, etc.)
  */
-function renderSpan(child: { _type: string; text: string; marks?: string[] }): string {
+function renderSpan(
+  child: { _type: string; text: string; marks?: string[] },
+  markDefs: PortableTextMarkDef[] = []
+): string {
   let text = child.text || ''
   const marks = child.marks || []
 
-  // Apply marks in order
   if (marks.includes('strong')) {
     text = `<strong>${text}</strong>`
   }
@@ -23,6 +32,16 @@ function renderSpan(child: { _type: string; text: string; marks?: string[] }): s
   }
   if (marks.includes('code')) {
     text = `<code>${text}</code>`
+  }
+
+  // Any remaining mark that resolves to a 'link' markDef wraps the text in an anchor
+  for (const markKey of marks) {
+    const markDef = markDefs.find((def) => def._key === markKey)
+    if (markDef?._type === 'link' && markDef.href) {
+      const isExternal = /^https?:\/\//.test(markDef.href)
+      const attrs = isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''
+      text = `<a href="${markDef.href}"${attrs}>${text}</a>`
+    }
   }
 
   return text
@@ -82,7 +101,7 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
     if (block._type !== 'block' || block.children == null) continue
 
     // Render children with marks
-    const text = block.children.map(renderSpan).join('')
+    const text = block.children.map((child) => renderSpan(child, block.markDefs)).join('')
 
     // Handle list items
     if (block.listItem) {

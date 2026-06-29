@@ -133,19 +133,25 @@ import '../styles/global.css'
           <!-- Call to action -->
           <div class="text-center pt-6 border-t border-white/10">
             <p class="text-white font-bold mb-4">Want to be the first to know when we launch?</p>
-            <form class="max-w-md mx-auto flex gap-3">
+            <form id="coming-soon-newsletter-form" class="max-w-md mx-auto flex gap-3">
               <input
                 type="email"
+                required
                 placeholder="your@email.com"
                 class="flex-1 px-4 py-3 border border-white/15 rounded-sm bg-black/30 text-white font-bold focus:outline-none focus:border-yellow"
               />
               <button
                 type="submit"
-                class="px-6 py-3 bg-yellow text-black border border-white/10 rounded-sm font-black uppercase hover:bg-yellow-bright transition-all whitespace-nowrap font-display"
+                class="px-6 py-3 bg-yellow text-black border border-white/10 rounded-sm font-black uppercase hover:bg-yellow-bright transition-all whitespace-nowrap font-display cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Notify Me!
               </button>
             </form>
+            <div
+              id="coming-soon-newsletter-message"
+              class="hidden text-sm font-bold mt-4 text-center"
+            >
+            </div>
           </div>
         </BrutalCard>
       </div>
@@ -322,3 +328,50 @@ import '../styles/global.css'
     }
   }
 </style>
+
+<script>
+  // Newsletter form — submits to NationBuilder via /api/newsletter
+  const form = document.getElementById('coming-soon-newsletter-form') as HTMLFormElement | null
+  const message = document.getElementById('coming-soon-newsletter-message')
+
+  if (form && message) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement | null
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null
+      if (!input) return
+
+      const email = input.value
+      if (button) button.disabled = true
+      message.classList.add('hidden')
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        })
+
+        if (res.ok) {
+          message.textContent = `Success — ${email} added to alerts.`
+          message.classList.remove('text-magenta')
+          message.classList.add('text-mint')
+          message.classList.remove('hidden')
+          form.classList.add('hidden')
+        } else {
+          message.textContent = "Couldn't subscribe right now — please try again shortly."
+          message.classList.remove('text-mint')
+          message.classList.add('text-magenta')
+          message.classList.remove('hidden')
+        }
+      } catch {
+        message.textContent = "Couldn't subscribe right now — please try again shortly."
+        message.classList.remove('text-mint')
+        message.classList.add('text-magenta')
+        message.classList.remove('hidden')
+      } finally {
+        if (button) button.disabled = false
+      }
+    })
+  }
+</script>

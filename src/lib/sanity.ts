@@ -29,7 +29,7 @@ export function urlFor(source: SanityImageSource) {
  * @deprecated Use typed functions like getPolicies() instead
  */
 export async function getDocuments<T = unknown>(type: string): Promise<T[]> {
-  const query = `*[_type == "${type}"] | order(_createdAt desc)`
+  const query = `*[_type == "${type}"] | order(_updatedAt desc)`
   return await client.fetch(query)
 }
 
@@ -165,6 +165,11 @@ export async function getBlogPage(): Promise<any | null> {
 }
 
 export async function getSiteConfig(): Promise<any | null> {
-  const query = `*[_type == "siteConfig"][0]`
+  const query = `*[_type == "siteConfig"] | order(_updatedAt desc)[0]`
+  return await client.fetch(query)
+}
+
+export async function getVisionPage(): Promise<any | null> {
+  const query = `*[_type == "visionPage"][0]`
   return await client.fetch(query)
 }
