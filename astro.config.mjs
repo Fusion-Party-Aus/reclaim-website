@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap'
 import cloudflare from '@astrojs/cloudflare'
 import node from '@astrojs/node'
 import sanity from '@sanity/astro'
+import react from '@astrojs/react'
 import { fileURLToPath } from 'node:url'
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -20,10 +21,14 @@ export default defineConfig({
     }),
     agentsSummary(),
     sitemap(),
+    react(),
     sanity({
       projectId: 'qwl3f8jb',
       dataset: 'production',
       useCdn: true,
+      stega: {
+        studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
+      },
     }),
   ],
 

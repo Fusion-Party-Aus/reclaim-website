@@ -1,15 +1,26 @@
 ---
 import { getSiteConfig } from '../lib/sanity'
 import { KonamiCode } from '@/features/engagement'
+import { VisualEditing } from '@sanity/astro/visual-editing'
+import { stegaClean } from '@sanity/client/stega'
 
 interface Props {
   title: string
   description?: string
 }
 
-const { title, description = 'Fusion Party Victoria - Taking back what they stole.' } = Astro.props
+const {
+  title: rawTitle,
+  description: rawDescription = 'Fusion Party Victoria - Taking back what they stole.',
+} = Astro.props
+
+// Sanity stega-encodes editable strings with invisible characters; strip them
+// before they land in <title>/<meta> where they'd otherwise leak into the DOM.
+const title = stegaClean(rawTitle)
+const description = stegaClean(rawDescription)
 
 const siteConfig = await getSiteConfig()
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 ---
 
 <!doctype html>
@@ -46,6 +57,8 @@ const siteConfig = await getSiteConfig()
 
     <!-- Site-wide Secret Features -->
     <KonamiCode konami={siteConfig?.konamiCode} />
+
+    <VisualEditing enabled={visualEditingEnabled} />
 
     <!-- PWA Install Prompt -->
     <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">

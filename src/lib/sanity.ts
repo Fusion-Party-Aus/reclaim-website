@@ -3,11 +3,16 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { Policy, Electorate, FAQ, Page, HomePage } from '../types/sanity'
 
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
+
 export const client = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
-  useCdn: true,
   apiVersion: '2024-01-29',
+  useCdn: !visualEditingEnabled,
+  perspective: visualEditingEnabled ? 'drafts' : 'published',
+  stega: { enabled: visualEditingEnabled },
+  ...(visualEditingEnabled ? { token: import.meta.env.SANITY_API_READ_TOKEN } : {}),
 })
 
 /**
