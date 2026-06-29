@@ -2,7 +2,6 @@
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
 import { getDocuments, getElectorates } from '@/lib/sanity'
-import { BrutalBadge } from '@/components/ui'
 
 interface SocialLink {
   platform: string
@@ -43,51 +42,43 @@ const electorates = await getElectorates()
 const footerData = footers[0]
 ---
 
-<footer class="bg-black text-white relative overflow-hidden">
+<footer class="bg-surface-base text-white">
   {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
-  <div class="bg-magenta border-y border-white/10 py-5 px-4 relative overflow-hidden">
+  <div class="bg-magenta py-4 px-4">
     <div
-      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10"
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"
     >
-      <p
-        class="text-xl md:text-2xl font-black uppercase text-white tracking-wider text-center md:text-left"
-        style="font-family: 'Barlow Condensed', sans-serif;"
-      >
+      <p class="text-lg md:text-xl font-display font-black uppercase text-white tracking-tight">
         {footerData.banner.text}
       </p>
-      <p class="text-sm font-black uppercase text-yellow text-center md:text-right">
+      <p class="text-xs font-semibold text-white/80">
         {footerData.banner.subtext}
       </p>
     </div>
   </div>
 
   {/* ═══ MAIN FOOTER BODY ═══ */}
-  <div class="border-b-4 border-white/10 py-16 px-4 md:px-8">
+  <div class="py-16 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
-      {/* Dynamic split layout: Brand & Newsletter on left, Navigation grid on right */}
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         {/* Left Column (Brand & Newsletter) — Spans 5 columns on large screen */}
         <div class="lg:col-span-5 flex flex-col gap-8">
           {/* Campaign Branding */}
           <div>
             <div class="flex items-baseline gap-1.5 flex-wrap">
-              <span
-                class="font-heading font-black text-magenta text-3xl md:text-4xl tracking-tighter uppercase"
-                style="font-family: 'Barlow Condensed', sans-serif;"
-              >
+              <span class="font-display font-black text-white text-2xl tracking-tight uppercase">
                 {footerData.logo.mainText}
               </span>
-            </div>
-
-            <div
-              class="text-[10px] font-black text-white tracking-[0.3em] uppercase mt-2.5 bg-magenta inline-block w-fit px-2.5 py-1.5"
-            >
-              {footerData.logo.subText}
+              <span class="text-sm font-medium text-white/40 uppercase tracking-wide">
+                {footerData.logo.subText}
+              </span>
             </div>
 
             {
               footerData.tagline && (
-                <p class="font-bold text-sm text-yellow mt-4">{footerData.tagline}</p>
+                <p class="text-sm text-white/50 mt-3 max-w-xs leading-relaxed">
+                  {footerData.tagline}
+                </p>
               )
             }
           </div>
@@ -95,61 +86,47 @@ const footerData = footers[0]
           {/* Social Links Row */}
           <div class="flex flex-wrap gap-2">
             {
-              footerData.socialLinks.map((social, index) => {
-                const accentColors = ['#00DDB8', '#4A7AEB', '#D428D4']
-                const accent = accentColors[index % 3]
-                return (
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener"
-                    class="social-icon"
-                    style={`--accent: ${accent};`}
-                    aria-label={social.ariaLabel || social.platform}
-                  >
-                    <Icon
-                      name={social.icon}
-                      class="w-5 h-5 text-white transition-colors duration-200"
-                    />
-                  </a>
-                )
-              })
+              footerData.socialLinks.map((social) => (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="social-icon"
+                  aria-label={social.ariaLabel || social.platform}
+                >
+                  <Icon
+                    name={social.icon}
+                    class="w-4 h-4 text-white/60 transition-colors duration-150"
+                  />
+                </a>
+              ))
             }
           </div>
 
           {/* Newsletter Signup Card */}
-          <div
-            class="bg-grey-dark border border-white/10 rounded-sm p-6 relative overflow-hidden border-t-2 border-t-yellow"
-          >
-            <h4
-              class="text-sm font-black uppercase text-yellow mb-2 tracking-wider"
-              style="font-family: 'Barlow Condensed', sans-serif;"
-            >
+          <div class="border border-white/10 rounded-sm p-6">
+            <h4 class="text-sm font-semibold text-white mb-1.5">
               {footerData.newsletter?.heading}
             </h4>
-            <p class="text-xs text-white/70 font-bold mb-4">
+            <p class="text-xs text-white/50 mb-4 leading-relaxed">
               {footerData.newsletter?.description}
             </p>
 
-            <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2.5">
+            <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 required
                 placeholder="Enter your email"
-                class="flex-1 px-3 py-2 text-xs border-2 border-white/40 bg-black text-white font-bold placeholder-white/40 focus:outline-none focus:border-mint transition-all"
-                style="font-family: 'Barlow', sans-serif;"
+                class="flex-1 px-3 py-2 text-sm rounded-sm border border-white/15 bg-surface-raised text-white placeholder-white/30 focus:outline-none focus:border-magenta transition-colors"
               />
               <button
                 type="submit"
-                class="px-4 py-2 bg-mint text-black border-2 border-mint hover:bg-black hover:text-mint font-black uppercase text-xs tracking-wider transition-all cursor-pointer whitespace-nowrap"
+                class="px-4 py-2 bg-magenta text-white rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer"
               >
                 {footerData.newsletter?.buttonText}
               </button>
             </form>
-            <div
-              id="footer-newsletter-success"
-              class="hidden text-xs text-mint font-black mt-2 uppercase tracking-wider"
-            >
+            <div id="footer-newsletter-success" class="hidden text-xs text-mint font-medium mt-2">
             </div>
           </div>
         </div>
@@ -159,21 +136,18 @@ const footerData = footers[0]
           {
             footerData.navColumns?.map((col) => (
               <div>
-                <h4 class="mb-5">
-                  <BrutalBadge variant={col.badgeVariant}>{col.badgeLabel}</BrutalBadge>
+                <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+                  {col.badgeLabel}
                 </h4>
-                <ul class="space-y-3">
+                <ul class="space-y-2.5">
                   {col.links.map((link) => (
                     <li>
                       <a
                         href={link.url}
                         target={link.external ? '_blank' : undefined}
                         rel={link.external ? 'noopener' : undefined}
-                        class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
+                        class="footer-link text-sm text-white/50 hover:text-white transition-colors"
                       >
-                        <span class="text-white/60 font-bold transition-transform duration-200">
-                          →
-                        </span>{' '}
                         {link.label}
                       </a>
                     </li>
@@ -183,11 +157,8 @@ const footerData = footers[0]
                       <li>
                         <a
                           href={`/electorates/${electorate.slug.current}`}
-                          class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
+                          class="footer-link text-sm text-white/50 hover:text-white transition-colors"
                         >
-                          <span class="text-white/60 font-bold transition-transform duration-200">
-                            →
-                          </span>{' '}
                           {electorate.name}
                         </a>
                       </li>
@@ -199,21 +170,18 @@ const footerData = footers[0]
 
           {/* Column: Governance (resource links) */}
           <div>
-            <h4 class="mb-5">
-              <BrutalBadge variant="white">{footerData.resourceLinksLabel}</BrutalBadge>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+              {footerData.resourceLinksLabel}
             </h4>
-            <ul class="space-y-3">
+            <ul class="space-y-2.5">
               {
                 footerData.resourceLinks.map((link) => (
                   <li>
                     <a
                       href={link.url}
                       target="_blank"
-                      class="footer-link font-black uppercase text-xs text-white/60 hover:text-white transition-all flex items-center gap-1.5"
+                      class="footer-link text-sm text-white/50 hover:text-white transition-colors"
                     >
-                      <span class="text-white/60 font-bold transition-transform duration-200">
-                        →
-                      </span>{' '}
                       {link.label}
                     </a>
                   </li>
@@ -226,8 +194,7 @@ const footerData = footers[0]
                 <a
                   href={footerData.donateCta.url}
                   target="_blank"
-                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-3 font-black uppercase text-xs rounded-sm bg-yellow text-white hover:scale-[1.02] transition-all w-full"
-                  style="font-family: 'Barlow Condensed', sans-serif;"
+                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-black transition-shadow hover:shadow-brutal-mint w-full"
                 >
                   <Icon name="mdi:currency-usd" class="w-4 h-4" />
                   {footerData.donateCta.buttonText}
@@ -240,34 +207,38 @@ const footerData = footers[0]
     </div>
   </div>
 
-  {/* ═══ BOTTOM BAR ═══ */}
-  <div class="px-4 md:px-8 py-8 bg-black">
+  {/* Spectrum divider */}
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div
-      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left"
+      class="h-px w-full"
+      style="background: linear-gradient(90deg, #D428D4, #7B3FE4, #4A7AEB, #0BB8D4, #00DDB8);"
     >
-      <p class="text-xs font-bold text-white/40">
+    </div>
+  </div>
+
+  {/* ═══ BOTTOM BAR ═══ */}
+  <div class="px-4 md:px-8 py-6">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
+    >
+      <p class="text-xs font-mono text-white/40">
         © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
       </p>
-      <p class="text-xs font-bold text-white/40 max-w-md">
+      <p class="text-xs font-mono text-white/40 max-w-md">
         {footerData.authorization}
       </p>
-      <p class="text-xs text-white/40 font-bold">
+      <p class="text-xs font-mono text-white/40">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
-          class="underline text-white/60 hover:text-mint transition-colors"
+          class="text-white/60 hover:text-mint transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>
       </p>
     </div>
   </div>
-
-  {/* Bottom color stripe accent */}
-  <div class="h-1.5 w-full bg-yellow"></div>
-  <div class="h-1 w-full bg-mint"></div>
-  <div class="h-0.5 w-full bg-magenta"></div>
 </footer>
 
 <style>
@@ -275,26 +246,16 @@ const footerData = footers[0]
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem;
-    background-color: #2e004d;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
   }
   .social-icon:hover {
-    background-color: var(--accent) !important;
-    border-color: var(--accent) !important;
-    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.06);
   }
   .social-icon:hover :global(svg) {
-    color: #0f0018 !important;
-  }
-
-  .footer-link:hover {
-    padding-left: 0.25rem;
-  }
-  .footer-link:hover span {
-    transform: translateX(4px);
+    color: #ffffff;
   }
 </style>
 
@@ -308,7 +269,7 @@ const footerData = footers[0]
       e.preventDefault()
       const input = form.querySelector('input[type="email"]') as HTMLInputElement | null
       if (input) {
-        successMsg.textContent = `✓ SUCCESS: ${input.value} added to alerts!`
+        successMsg.textContent = `Success — ${input.value} added to alerts.`
         successMsg.classList.remove('hidden')
         form.classList.add('hidden')
         input.value = ''
