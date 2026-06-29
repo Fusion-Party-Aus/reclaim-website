@@ -8,7 +8,7 @@ export default defineConfig(
       environment: 'jsdom',
       setupFiles: './src/test/setup.ts',
       include: ['**/*.{test,spec}.{js,ts,jsx,tsx}'],
-      exclude: ['node_modules', 'dist', '.astro', 'fusion'],
+      exclude: ['node_modules', 'dist', '.astro', 'studio'],
       coverage: {
         reporter: ['text', 'json', 'html'],
         exclude: [
@@ -18,7 +18,7 @@ export default defineConfig(
           '**/*.d.ts',
           'dist/',
           '.astro/',
-          'fusion/',
+          'studio/',
           'import-*.js',
           'migrate.js',
         ],

@@ -2,7 +2,13 @@ import {defineConfig, type ConfigContext} from 'sanity'
 import {structureTool, type StructureBuilder} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {table} from '@sanity/table'
+import {presentationTool} from 'sanity/presentation'
 import {schemaTypes} from './schemaTypes'
+
+// The Astro site origin this Studio's Presentation tool previews against.
+// Run the Astro dev server with PUBLIC_SANITY_VISUAL_EDITING_ENABLED=true
+// for stega-encoded overlays to appear in the preview iframe.
+const PREVIEW_ORIGIN = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:4321'
 
 /**
  * Recursive helper to build a nested page tree in the Sanity Desk
@@ -275,6 +281,11 @@ export default defineConfig({
     }),
     visionTool(),
     table(),
+    presentationTool({
+      previewUrl: {
+        origin: PREVIEW_ORIGIN,
+      },
+    }),
   ],
 
   schema: {
