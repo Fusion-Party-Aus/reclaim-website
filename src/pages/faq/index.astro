@@ -7,6 +7,7 @@ import { FaqSidebar } from '@/features/faq';
 import { getDocuments } from '../../lib/sanity';
 import { renderPortableText } from '../../lib/portableText';
 import { Icon } from 'astro-icon/components';
+import { BrutalBadge, CTA, BrutalButton } from '@/components/ui';
 import type { PortableTextBlock } from '../../lib/portableText';
 import '../../styles/global.css';
 
@@ -33,12 +34,12 @@ Object.keys(faqsByCategory).forEach(category => {
 });
 
 const categoryInfo: Record<string, { title: string; description: string; bg: string; textColor: string; icon: string }> = {
-  'debt':         { title: 'Debt & Fiscal Policy',  description: "Questions about Victoria's debt, our spending plans, and fiscal responsibility.", bg: '#C926F2', textColor: '#fff', icon: 'mdi:currency-usd' },
-  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: '#5EFFD8', textColor: '#000', icon: 'mdi:arrow-left-bold' },
-  'right-attacks':{ title: 'From the Right',         description: 'Responding to conservative critiques and Liberal Party talking points.',          bg: '#FFED00', textColor: '#000', icon: 'mdi:arrow-right-bold' },
-  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: '#000',    textColor: '#fff', icon: 'mdi:information' },
-  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: '#5EFFD8', textColor: '#000', icon: 'mdi:vote' },
-  'policy':       { title: 'Policy Details',         description: 'Deep dives into specific policies and implementation.',                           bg: '#FFED00', textColor: '#000', icon: 'mdi:file-document' },
+  'debt':         { title: 'Debt & Fiscal Policy',  description: "Questions about Victoria's debt, our spending plans, and fiscal responsibility.", bg: '#D428D4', textColor: '#fff', icon: 'mdi:currency-usd' },
+  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:arrow-left-bold' },
+  'right-attacks':{ title: 'From the Right',         description: 'Responding to conservative critiques and Liberal Party talking points.',          bg: '#4A7AEB', textColor: '#fff', icon: 'mdi:arrow-right-bold' },
+  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: '#2E004D',    textColor: '#fff', icon: 'mdi:information' },
+  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:vote' },
+  'policy':       { title: 'Policy Details',         description: 'Deep dives into specific policies and implementation.',                           bg: '#4A7AEB', textColor: '#fff', icon: 'mdi:file-document' },
 };
 
 const categoryOrder = ['general', 'debt', 'policy', 'electoral', 'left-attacks', 'right-attacks'];
@@ -56,7 +57,7 @@ const sidebarSections = sortedCategories.map(category => {
   };
 });
 
-const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
+const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 ---
 
 <BaseLayout
@@ -70,14 +71,14 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
     subtitle="Got questions? We've got answers. No spin, no dodge, just straight talk."
   />
 
-  <main class="bg-white py-12 pb-24">
+  <main class="bg-surface-base py-12 pb-24">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
 
       {/* ── Breadcrumbs ── */}
       <nav class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest">
-        <a href="/" class="px-3 py-1.5 border-2 border-black bg-yellow text-black hover:bg-mint transition-colors">Home</a>
-        <span class="text-black/30">›</span>
-        <span class="px-3 py-1.5 border-2 border-black bg-black text-white">FAQ</span>
+        <a href="/" class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors">Home</a>
+        <span class="text-white/30">›</span>
+        <span class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta">FAQ</span>
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
@@ -89,10 +90,10 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
 
         <div>
           {/* ── Quick-jump nav ── */}
-          <div class="border-4 border-black bg-yellow p-6 mb-10" style="box-shadow: 6px 6px 0 0 #000;">
+          <div class="rounded-sm border border-white/10 bg-grey-dark p-6 mb-10" style="border-top: 2px solid #4A7AEB;">
             <div class="flex items-center gap-3 mb-4">
-              <Icon name="mdi:compass" class="w-6 h-6 text-black" />
-              <h2 class="text-lg font-black uppercase">Jump to Category</h2>
+              <Icon name="mdi:compass" class="w-6 h-6 text-white" />
+              <h2 class="text-lg font-display font-black uppercase text-white">Jump to Category</h2>
             </div>
             <div class="flex flex-wrap gap-2">
               {sortedCategories.map(category => {
@@ -100,8 +101,8 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
                 return (
                   <a
                     href={`#${category}`}
-                    class="inline-flex items-center gap-1.5 px-3 py-2 border-2 border-black text-xs font-black uppercase hover:-translate-y-0.5 transition-all"
-                    style={`background: ${info.bg}; color: ${info.textColor}; box-shadow: 2px 2px 0 0 #000;`}
+                    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm text-xs font-black uppercase hover:scale-[1.02] transition-all"
+                    style={`background: ${info.bg}; color: ${info.textColor};`}
                   >
                     <Icon name={info.icon} class="w-3.5 h-3.5" />
                     {info.title}
@@ -119,14 +120,14 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
             return (
               <section id={category} class="mb-12 scroll-mt-24">
                 {/* Category header */}
-                <div class="border-4 border-black px-6 py-5 flex items-center gap-4"
-                  style={`background: ${info.bg}; box-shadow: 6px 6px 0 0 #000;`}>
-                  <div class="p-2 bg-black border-2 border-black shrink-0">
-                    <Icon name={info.icon} class="w-6 h-6" style={`color: ${info.bg};`} />
+                <div class="rounded-sm px-6 py-5 flex items-center gap-4"
+                  style={`background: ${info.bg};`}>
+                  <div class="p-2 rounded-sm bg-black/20 shrink-0">
+                    <Icon name={info.icon} class="w-6 h-6" style={`color: ${info.textColor};`} />
                   </div>
                   <div>
-                    <h2 class="text-2xl font-black uppercase leading-tight"
-                      style={`font-family: 'Archivo Black', sans-serif; color: ${info.textColor};`}>
+                    <h2 class="text-2xl font-display font-black uppercase leading-tight"
+                      style={`color: ${info.textColor};`}>
                       {info.title}
                     </h2>
                     <p class="text-xs font-black uppercase mt-0.5" style={`color: ${info.textColor}; opacity: 0.7;`}>
@@ -140,12 +141,12 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
                   {faqs.map((faq, _index) => (
                     <article
                       id={`faq-${faq._id}`}
-                      class="faq-item scroll-mt-24 border-4 border-black bg-white transition-all duration-150 hover:-translate-y-0.5"
-                      style={`box-shadow: 6px 6px 0 0 ${shadow};`}
+                      class="faq-item scroll-mt-24 rounded-sm border border-white/10 bg-grey-dark transition-colors duration-150"
+                      style={`border-top: 2px solid ${shadow};`}
                     >
-                      <div class="bg-yellow border-b-4 border-black px-6 py-4 flex items-start gap-3">
-                        <span class="text-black font-black text-lg shrink-0 mt-0.5">Q.</span>
-                        <h3 class="text-lg font-black uppercase text-black leading-tight" style="font-family: 'Archivo Black', sans-serif;">
+                      <div class="border-b border-white/10 px-6 py-4 flex items-start gap-3">
+                        <span class="text-magenta font-black text-lg shrink-0 mt-0.5">Q.</span>
+                        <h3 class="text-lg font-display font-black uppercase text-white leading-tight">
                           {faq.question}
                         </h3>
                       </div>
@@ -160,44 +161,29 @@ const shadowCycle = ['#C926F2', '#5EFFD8', '#FFED00'];
           })}
 
           {/* ── CTA ── */}
-          <section class="mt-4 bg-black text-white border-4 border-black relative overflow-hidden"
-            style="box-shadow: 8px 8px 0 0 #5EFFD8;">
-            <div class="absolute bottom-0 right-0 w-40 h-40 bg-yellow"
-              style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
-            <div class="px-8 py-10 relative z-10">
-              <div class="inline-block bg-magenta text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-4 border-2 border-white">Still curious?</div>
-              <h2 class="text-2xl md:text-3xl font-black uppercase mb-2 leading-tight"
-                style="font-family: 'Archivo Black', sans-serif;">
-                Still Have Questions?
-              </h2>
-              <p class="text-sm font-black text-white/65 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
-                Can't find what you're looking for? Email us at{' '}
-                <a href="mailto:hello@fusionparty.org.au" class="text-mint font-black hover:underline">
-                  hello@fusionparty.org.au
-                </a>
-              </p>
-              <div class="flex flex-wrap gap-3">
-                <a href="/get-involved"
-                  class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-magenta text-white hover:-translate-y-0.5 transition-all"
-                  style="box-shadow: 3px 3px 0 0 #FFED00; font-family: 'Archivo Black', sans-serif;">
-                  <Icon name="mdi:hand-heart" class="w-5 h-5" />
-                  Get Involved
-                </a>
-                <a href="/manifesto"
-                  class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-                  style="font-family: 'Archivo Black', sans-serif;">
-                  <Icon name="mdi:book-open" class="w-5 h-5" />
-                  Read the Manifesto
-                </a>
-                <a href="/policies"
-                  class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all"
-                  style="font-family: 'Archivo Black', sans-serif;">
-                  <Icon name="mdi:file-document-multiple" class="w-5 h-5" />
-                  All Policies
-                </a>
-              </div>
+          <CTA variant="primary" size="lg" shadow="lg" class="mt-4">
+            <BrutalBadge variant="white" class="mb-4">Still curious?</BrutalBadge>
+            <h2 class="text-2xl md:text-3xl font-display font-black uppercase mb-2 leading-tight">
+              Still Have Questions?
+            </h2>
+            <p class="text-sm font-black text-white/65 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+              Can't find what you're looking for? Email us at{' '}
+              <a href="mailto:hello@fusionparty.org.au" class="text-mint font-black hover:underline">
+                hello@fusionparty.org.au
+              </a>
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <BrutalButton href="/get-involved" variant="white" icon="mdi:hand-heart">
+                Get Involved
+              </BrutalButton>
+              <BrutalButton href="/manifesto" variant="black" icon="mdi:book-open">
+                Read the Manifesto
+              </BrutalButton>
+              <BrutalButton href="/policies" variant="black" icon="mdi:file-document-multiple">
+                All Policies
+              </BrutalButton>
             </div>
-          </section>
+          </CTA>
 
         </div>
       </div>
