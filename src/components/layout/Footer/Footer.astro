@@ -1,7 +1,8 @@
 ---
-// Footer component — Neo-Brutalist
+// Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
 import { getDocuments, getElectorates } from '@/lib/sanity'
+import { BrutalBadge } from '@/components/ui'
 
 interface SocialLink {
   platform: string
@@ -15,11 +16,23 @@ interface ResourceLink {
   url: string
 }
 
+interface NavColumn {
+  badgeLabel: string
+  badgeVariant: 'mint' | 'yellow' | 'white' | 'magenta'
+  showElectorates?: boolean
+  links: { label: string; url: string; external?: boolean }[]
+}
+
 interface Footer {
   logo: { mainText: string; subText: string }
+  tagline?: string
   socialLinks: SocialLink[]
+  resourceLinksLabel?: string
   resourceLinks: ResourceLink[]
-  banner: { text: string; rotation: number }
+  banner: { text: string; subtext?: string; rotation: number }
+  newsletter?: { heading: string; description: string; buttonText: string }
+  navColumns?: NavColumn[]
+  donateCta?: { buttonText: string; url: string }
   authorization: string
   copyrightText?: string
   networkBranding?: { text: string; url: string }
@@ -27,81 +40,12 @@ interface Footer {
 
 const footers = await getDocuments<Footer>('footer')
 const electorates = await getElectorates()
-const footer = footers?.[0]
-
-const defaultFooter: Footer = {
-  logo: { mainText: 'FUTURE', subText: 'PARTY' },
-  socialLinks: [
-    {
-      platform: 'Instagram',
-      icon: 'mdi:instagram',
-      url: 'https://www.instagram.com/fusionpartyaus/',
-      ariaLabel: 'Instagram',
-    },
-    {
-      platform: 'Facebook',
-      icon: 'mdi:facebook',
-      url: 'https://www.facebook.com/FusionPartyAus/',
-      ariaLabel: 'Facebook',
-    },
-    {
-      platform: 'YouTube',
-      icon: 'mdi:youtube',
-      url: 'https://www.youtube.com/c/fusionpartyaus',
-      ariaLabel: 'YouTube',
-    },
-    {
-      platform: 'Bluesky',
-      icon: 'mdi:cloud',
-      url: 'https://bsky.app/profile/fusionparty.org.au',
-      ariaLabel: 'Bluesky',
-    },
-    {
-      platform: 'Twitter/X',
-      icon: 'mdi:twitter',
-      url: 'https://twitter.com/FusionPartyAus',
-      ariaLabel: 'Twitter/X',
-    },
-    {
-      platform: 'TikTok',
-      icon: 'mdi:music-note',
-      url: 'https://www.tiktok.com/@fusionpartyaus',
-      ariaLabel: 'TikTok',
-    },
-    {
-      platform: 'Mastodon',
-      icon: 'mdi:mastodon',
-      url: 'https://mastodon.au/@FusionPartyAus',
-      ariaLabel: 'Mastodon',
-    },
-    {
-      platform: 'Discord',
-      icon: 'mdi:discord',
-      url: 'https://www.fusionparty.org.au/discord',
-      ariaLabel: 'Discord',
-    },
-    {
-      platform: 'GitHub',
-      icon: 'mdi:github',
-      url: 'https://github.com/Fusion-Party-Aus',
-      ariaLabel: 'GitHub',
-    },
-  ],
-  resourceLinks: [
-    { label: 'Code of Conduct', url: 'https://www.fusionparty.org.au/code_of_conduct' },
-    { label: 'Constitution', url: 'https://www.fusionparty.org.au/constitution' },
-    { label: 'Privacy Policy', url: 'https://www.fusionparty.org.au/privacy_policy' },
-  ],
-  banner: { text: '🚫 We Accept NO Corporate Donations', rotation: 0 },
-  authorization: 'Authorised by Drew Wolfendale, Fusion Party Victoria.',
-}
-
-const footerData = footer || defaultFooter
+const footerData = footers[0]
 ---
 
 <footer class="bg-black text-white relative overflow-hidden">
   {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
-  <div class="bg-magenta border-y-4 border-black py-5 px-4 relative overflow-hidden">
+  <div class="bg-magenta border-y border-white/10 py-5 px-4 relative overflow-hidden">
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10"
     >
@@ -112,7 +56,7 @@ const footerData = footer || defaultFooter
         {footerData.banner.text}
       </p>
       <p class="text-sm font-black uppercase text-yellow text-center md:text-right">
-        Funded by members & small donors only. That's why we answer to you.
+        {footerData.banner.subtext}
       </p>
     </div>
   </div>
@@ -131,31 +75,21 @@ const footerData = footer || defaultFooter
                 class="font-heading font-black text-magenta text-3xl md:text-4xl tracking-tighter uppercase"
                 style="font-family: 'Barlow Condensed', sans-serif;"
               >
-                Fusion
-              </span>
-              <span
-                class="font-heading font-black text-mint text-lg md:text-xl tracking-widest uppercase"
-                style="font-family: 'Barlow Condensed', sans-serif;"
-              >
-                Party
-              </span>
-              <span
-                class="font-heading font-black text-yellow text-xs tracking-wider uppercase bg-black px-2 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#0F0018] ml-1.5"
-                style="font-family: 'Barlow Condensed', sans-serif;"
-              >
-                Victoria
+                {footerData.logo.mainText}
               </span>
             </div>
 
             <div
-              class="text-[10px] font-black text-white tracking-[0.3em] uppercase mt-2.5 bg-magenta inline-block w-fit px-2.5 py-1.5 rotate-[-1.5deg] border-2 border-black shadow-[3px_3px_0px_0px_#0F0018]"
+              class="text-[10px] font-black text-white tracking-[0.3em] uppercase mt-2.5 bg-magenta inline-block w-fit px-2.5 py-1.5"
             >
-              Reignite Democracy
+              {footerData.logo.subText}
             </div>
 
-            <p class="font-bold text-sm text-yellow mt-4">
-              Taking Back What They Stole. No corporate donations. Ever.
-            </p>
+            {
+              footerData.tagline && (
+                <p class="font-bold text-sm text-yellow mt-4">{footerData.tagline}</p>
+              )
+            }
           </div>
 
           {/* Social Links Row */}
@@ -191,10 +125,10 @@ const footerData = footer || defaultFooter
               class="text-sm font-black uppercase text-yellow mb-2 tracking-wider"
               style="font-family: 'Barlow Condensed', sans-serif;"
             >
-              Stay Unreasonable. Join Action Alerts.
+              {footerData.newsletter?.heading}
             </h4>
             <p class="text-xs text-white/70 font-bold mb-4">
-              Get immediate alerts on policies, campaigns, and local events.
+              {footerData.newsletter?.description}
             </p>
 
             <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2.5">
@@ -209,7 +143,7 @@ const footerData = footer || defaultFooter
                 type="submit"
                 class="px-4 py-2 bg-mint text-black border-2 border-mint hover:bg-black hover:text-mint font-black uppercase text-xs tracking-wider transition-all cursor-pointer whitespace-nowrap"
               >
-                Sign Up
+                {footerData.newsletter?.buttonText}
               </button>
             </form>
             <div
@@ -222,83 +156,51 @@ const footerData = footer || defaultFooter
 
         {/* Right Column (Navigation Grid) — Spans 7 columns on large screen */}
         <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Column: Policy */}
-          <div>
-            <h4
-              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-mint inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#0F0018] rotate-[-1deg]"
-            >
-              Policy
-            </h4>
-            <ul class="space-y-3">
-              {
-                [
-                  { label: 'All Policies', href: '/policies' },
-                  { label: 'Manifesto', href: '/manifesto' },
-                  { label: 'About Us', href: '/about' },
-                  { label: 'FAQ', href: '/faq' },
-                  { label: 'Contact Us', href: '/contact' },
-                ].map((link) => (
-                  <li>
-                    <a
-                      href={link.href}
-                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-mint transition-all flex items-center gap-1.5"
-                    >
-                      <span class="text-mint font-bold transition-transform duration-200">→</span>{' '}
-                      {link.label}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          {
+            footerData.navColumns?.map((col) => (
+              <div>
+                <h4 class="mb-5">
+                  <BrutalBadge variant={col.badgeVariant}>{col.badgeLabel}</BrutalBadge>
+                </h4>
+                <ul class="space-y-3">
+                  {col.links.map((link) => (
+                    <li>
+                      <a
+                        href={link.url}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener' : undefined}
+                        class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                      >
+                        <span class="text-white/60 font-bold transition-transform duration-200">
+                          →
+                        </span>{' '}
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                  {col.showElectorates &&
+                    electorates.slice(0, 5).map((electorate) => (
+                      <li>
+                        <a
+                          href={`/electorates/${electorate.slug.current}`}
+                          class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                        >
+                          <span class="text-white/60 font-bold transition-transform duration-200">
+                            →
+                          </span>{' '}
+                          {electorate.name}
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))
+          }
 
-          {/* Column: Candidates */}
+          {/* Column: Governance (resource links) */}
           <div>
-            <h4
-              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-yellow inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#0F0018] rotate-[1.5deg]"
-            >
-              Candidates
-            </h4>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="/electorates"
-                  class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
-                >
-                  <span class="text-yellow font-bold transition-transform duration-200">→</span> All Electorates
-                </a>
-              </li>
-              {
-                electorates.slice(0, 5).map((electorate) => (
-                  <li>
-                    <a
-                      href={`/electorates/${electorate.slug.current}`}
-                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
-                    >
-                      <span class="text-yellow font-bold transition-transform duration-200">→</span>{' '}
-                      {electorate.name}
-                    </a>
-                  </li>
-                ))
-              }
-              <li>
-                <a
-                  href="/past-candidates"
-                  class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
-                >
-                  <span class="text-yellow font-bold transition-transform duration-200">→</span> Past
-                  Candidates
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column: Governance */}
-          <div>
-            <h4
-              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-white inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#0F0018] rotate-[-1deg]"
-            >
-              Governance
+            <h4 class="mb-5">
+              <BrutalBadge variant="white">{footerData.resourceLinksLabel}</BrutalBadge>
             </h4>
             <ul class="space-y-3">
               {
@@ -318,62 +220,20 @@ const footerData = footer || defaultFooter
                 ))
               }
             </ul>
-          </div>
 
-          {/* Column: Take Action & Donate */}
-          <div>
-            <h4
-              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-magenta inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#0F0018] rotate-[1.5deg]"
-            >
-              Take Action
-            </h4>
-            <ul class="space-y-3 mb-6">
-              {
-                [
-                  {
-                    label: 'Join Fusion',
-                    href: 'https://www.fusionparty.org.au/join',
-                    external: true,
-                  },
-                  { label: 'Volunteer', href: '/get-involved', external: false },
-                  {
-                    label: 'Donate',
-                    href: 'https://www.fusionparty.org.au/donate',
-                    external: true,
-                  },
-                  {
-                    label: 'Merch Store',
-                    href: 'https://www.fusionparty.org.au/store',
-                    external: true,
-                  },
-                ].map((link) => (
-                  <li>
-                    <a
-                      href={link.href}
-                      target={link.external ? '_blank' : undefined}
-                      rel={link.external ? 'noopener' : undefined}
-                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-magenta transition-all flex items-center gap-1.5"
-                    >
-                      <span class="text-magenta font-bold transition-transform duration-200">
-                        →
-                      </span>{' '}
-                      {link.label}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-
-            {/* Donate CTA Button */}
-            <a
-              href="https://www.fusionparty.org.au/donate"
-              target="_blank"
-              class="inline-flex items-center justify-center gap-2 px-4 py-3 font-black uppercase text-xs rounded-sm bg-yellow text-white hover:scale-[1.02] transition-all w-full"
-              style="font-family: 'Barlow Condensed', sans-serif;"
-            >
-              <Icon name="mdi:currency-usd" class="w-4 h-4" />
-              Donate Now
-            </a>
+            {
+              footerData.donateCta?.url && (
+                <a
+                  href={footerData.donateCta.url}
+                  target="_blank"
+                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-3 font-black uppercase text-xs rounded-sm bg-yellow text-white hover:scale-[1.02] transition-all w-full"
+                  style="font-family: 'Barlow Condensed', sans-serif;"
+                >
+                  <Icon name="mdi:currency-usd" class="w-4 h-4" />
+                  {footerData.donateCta.buttonText}
+                </a>
+              )
+            }
           </div>
         </div>
       </div>

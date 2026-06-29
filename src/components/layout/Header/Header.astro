@@ -24,7 +24,7 @@ interface Navigation {
   title: string
   mainNav: NavItem[]
   ctaButton: { label: string; href: string; style: string }
-  logo: { mainText: string; subText: string }
+  logo: { mainText: string; subText: string; tagline?: string }
 }
 
 const navigations = await getDocuments<Navigation>('navigation')
@@ -55,6 +55,12 @@ const ctaButton = navigation?.ctaButton || {
   href: '/get-involved',
   style: 'primary',
 }
+
+const logo = navigation?.logo || {
+  mainText: 'FUSION',
+  subText: 'VICTORIA',
+  tagline: 'Reignite Democracy',
+}
 ---
 
 <header class="bg-black sticky top-0 z-50">
@@ -80,20 +86,24 @@ const ctaButton = navigation?.ctaButton || {
               class="font-black text-magenta text-xl md:text-2xl tracking-tighter uppercase"
               style="font-family: 'Barlow Condensed', sans-serif;"
             >
-              Fusion
+              {logo.mainText}
             </span>
-            <span
-              class="font-black text-yellow text-[9px] tracking-wider uppercase bg-black px-1.5 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#0F0018] ml-1.5"
-              style="font-family: 'Barlow Condensed', sans-serif;"
-            >
-              Victoria
-            </span>
+            {
+              logo.subText && (
+                <span
+                  class="font-black text-yellow text-[9px] tracking-wider uppercase bg-black px-1.5 py-0.5 border border-yellow ml-1.5"
+                  style="font-family: 'Barlow Condensed', sans-serif;"
+                >
+                  {logo.subText}
+                </span>
+              )
+            }
           </div>
           <span
             class="text-[9px] font-black text-white tracking-[0.22em] uppercase mt-1 opacity-90"
             style="font-family: 'Barlow', sans-serif;"
           >
-            Reignite Democracy
+            {logo.tagline}
           </span>
         </div>
       </a>
@@ -169,11 +179,17 @@ const ctaButton = navigation?.ctaButton || {
           })
         }
 
-        {/* CTA Button — solid, high-contrast with tactile shadow-press effect */}
+        {/* CTA Button — solid, high-contrast */}
         <a
           href={ctaButton.href}
-          class="ml-4 px-5 py-2 text-sm font-black uppercase rounded-sm transition-all hover:scale-[1.02]"
-          style={`font-family: 'Barlow Condensed', sans-serif; background: ${ctaButton.style === 'primary' ? '#D428D4' : ctaButton.style === 'yellow' ? '#4A7AEB' : '#00DDB8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'};`}
+          class:list={[
+            'ml-4 px-5 py-2 text-sm font-black uppercase rounded-sm transition-all hover:scale-[1.02]',
+            ctaButton.style === 'primary' && 'bg-magenta text-white',
+            ctaButton.style === 'yellow' && 'bg-yellow text-white',
+            ctaButton.style === 'mint' && 'bg-mint text-black',
+            !['primary', 'yellow', 'mint'].includes(ctaButton.style) && 'bg-mint text-black',
+          ]}
+          style="font-family: 'Barlow Condensed', sans-serif;"
         >
           {ctaButton.label}
         </a>
@@ -233,8 +249,11 @@ const ctaButton = navigation?.ctaButton || {
         }
         <a
           href={ctaButton.href}
-          class="block px-4 py-3 text-center font-black uppercase text-sm rounded-sm transition-all"
-          style={`background: ${ctaButton.style === 'primary' ? '#D428D4' : '#4A7AEB'}; color: #fff; font-family: 'Barlow Condensed', sans-serif;`}
+          class:list={[
+            'block px-4 py-3 text-center font-black uppercase text-sm rounded-sm transition-all text-white',
+            ctaButton.style === 'primary' ? 'bg-magenta' : 'bg-yellow',
+          ]}
+          style="font-family: 'Barlow Condensed', sans-serif;"
         >
           {ctaButton.label}
         </a>
