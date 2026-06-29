@@ -204,7 +204,12 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     childGroups.length > 0 && (
       <div class="mt-20 space-y-16">
         {childGroups.map((group) => (
-          <section id={group.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>
+          <section
+            id={group.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '')}
+          >
             <div class="mb-8">
               <h2
                 class="text-3xl md:text-4xl font-black uppercase text-black leading-tight"

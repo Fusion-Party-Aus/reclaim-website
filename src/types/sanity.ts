@@ -84,6 +84,7 @@ export interface Policy extends SanityDocument {
   icon?: string // MDI icon name (e.g., 'mdi:home')
   summary: string
   keyPoints?: PolicyKeyPoint[]
+  thisTerm?: boolean
   // Further Detail fields
   designRationale?: string
   systemInteraction?: string

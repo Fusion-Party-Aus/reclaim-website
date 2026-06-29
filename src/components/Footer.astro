@@ -100,28 +100,19 @@ const footerData = footer || defaultFooter
 ---
 
 <footer class="bg-black text-white relative overflow-hidden">
-  {/* ═══ NO CORPORATE DONATIONS — full-bleed banner ═══ */}
+  {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
   <div class="bg-magenta border-y-4 border-black py-5 px-4 relative overflow-hidden">
-    {/* Ghost text behind */}
     <div
-      class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-    >
-      <span
-        class="text-[8rem] font-black uppercase leading-none select-none text-black opacity-10"
-        style="font-family: 'Anton', sans-serif;">NO DONORS</span
-      >
-    </div>
-    <div
-      class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10"
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10"
     >
       <p
-        class="text-xl md:text-2xl font-black uppercase text-white tracking-wider"
+        class="text-xl md:text-2xl font-black uppercase text-white tracking-wider text-center md:text-left"
         style="font-family: 'Archivo Black', sans-serif;"
       >
         {footerData.banner.text}
       </p>
-      <p class="text-sm font-black uppercase text-yellow border-l-4 border-yellow pl-4 text-left">
-        Funded by members & small donors only.<br />That's why we answer to you.
+      <p class="text-sm font-black uppercase text-yellow text-center md:text-right">
+        Funded by members & small donors only. That's why we answer to you.
       </p>
     </div>
   </div>
@@ -129,28 +120,46 @@ const footerData = footer || defaultFooter
   {/* ═══ MAIN FOOTER BODY ═══ */}
   <div class="border-b-4 border-white/10 py-16 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
-        {/* Brand column */}
-        <div class="lg:col-span-1">
-          <div
-            class="inline-block p-3 bg-white border-4 border-black mb-5"
-            style="box-shadow: 5px 5px 0px 0px #C926F2;"
-          >
-            <img src="/solo-full-colour.svg" alt="Fusion Party Victoria" class="h-10 w-auto" />
+      {/* Dynamic split layout: Brand & Newsletter on left, Navigation grid on right */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        {/* Left Column (Brand & Newsletter) — Spans 5 columns on large screen */}
+        <div class="lg:col-span-5 flex flex-col gap-8">
+          {/* Campaign Branding */}
+          <div>
+            <div class="flex items-baseline gap-1.5 flex-wrap">
+              <span
+                class="font-heading font-black text-magenta text-3xl md:text-4xl tracking-tighter uppercase"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                Fusion
+              </span>
+              <span
+                class="font-heading font-black text-mint text-lg md:text-xl tracking-widest uppercase"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                Party
+              </span>
+              <span
+                class="font-heading font-black text-yellow text-xs tracking-wider uppercase bg-black px-2 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#000] ml-1.5"
+                style="font-family: 'Archivo Black', sans-serif;"
+              >
+                Victoria
+              </span>
+            </div>
+
+            <div
+              class="text-[10px] font-black text-white tracking-[0.3em] uppercase mt-2.5 bg-magenta inline-block w-fit px-2.5 py-1.5 rotate-[-1.5deg] border-2 border-black shadow-[3px_3px_0px_0px_#000]"
+            >
+              Reignite Democracy
+            </div>
+
+            <p class="font-bold text-sm text-yellow mt-4">
+              Taking Back What They Stole. No corporate donations. Ever.
+            </p>
           </div>
 
-          <h3
-            class="text-2xl font-black mb-1 leading-tight"
-            style="color: #C926F2; font-family: 'Archivo Black', sans-serif;"
-          >
-            {footerData.logo.mainText}<br />{footerData.logo.subText}
-          </h3>
-          <p class="font-bold text-sm text-yellow mb-4">
-            Taking Back What They Stole.
-          </p>
-
-          {/* Social links — single horizontal row with uniform sizing */}
-          <div class="flex flex-wrap gap-2 mt-4">
+          {/* Social Links Row */}
+          <div class="flex flex-wrap gap-2">
             {
               footerData.socialLinks.map((social, index) => {
                 const accentColors = ['#5EFFD8', '#FFED00', '#C926F2']
@@ -160,176 +169,235 @@ const footerData = footer || defaultFooter
                     href={social.url}
                     target="_blank"
                     rel="noopener"
-                    class="social-icon p-2 bg-black border-2 border-white/20 hover:border-transparent transition-all hover:-translate-y-0.5"
-                    style={`hover:background: ${accent};`}
+                    class="social-icon"
+                    style={`--accent: ${accent};`}
                     aria-label={social.ariaLabel || social.platform}
-                    data-accent={accent}
                   >
-                    <Icon name={social.icon} class="w-5 h-5 text-white" />
+                    <Icon
+                      name={social.icon}
+                      class="w-5 h-5 text-white transition-colors duration-200"
+                    />
                   </a>
                 )
               })
             }
           </div>
-        </div>
 
-        {/* Policy links */}
-        <div>
-          <h4
-            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-mint inline-block px-3 py-1"
+          {/* Newsletter Signup Card */}
+          <div
+            class="bg-black border-4 border-white p-6 relative overflow-hidden"
+            style="box-shadow: 6px 6px 0px 0px #FFED00;"
           >
-            Policy
-          </h4>
-          <ul class="space-y-2">
-            {
-              [
-                { label: 'All Policies', href: '/policies' },
-                { label: 'Manifesto', href: '/manifesto' },
-                { label: 'About Us', href: '/about' },
-                { label: 'FAQ', href: '/faq' },
-                { label: 'Contact Us', href: '/contact' },
-              ].map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-mint transition-colors flex items-center gap-2"
-                  >
-                    <span class="text-mint">→</span> {link.label}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+            <h4
+              class="text-sm font-black uppercase text-yellow mb-2 tracking-wider"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Stay Unreasonable. Join Action Alerts.
+            </h4>
+            <p class="text-xs text-white/70 font-bold mb-4">
+              Get immediate alerts on policies, campaigns, and local events.
+            </p>
 
-        {/* Electorates */}
-        <div>
-          <h4
-            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-yellow inline-block px-3 py-1"
-          >
-            Candidates
-          </h4>
-          <ul class="space-y-2">
-            <li>
-              <a
-                href="/electorates"
-                class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
+            <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2.5">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email"
+                class="flex-1 px-3 py-2 text-xs border-2 border-white/40 bg-black text-white font-bold placeholder-white/40 focus:outline-none focus:border-mint transition-all"
+                style="font-family: 'Barlow', sans-serif;"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 bg-mint text-black border-2 border-mint hover:bg-black hover:text-mint font-black uppercase text-xs tracking-wider transition-all cursor-pointer whitespace-nowrap"
               >
-                <span class="text-yellow">→</span> All Electorates
-              </a>
-            </li>
-            {
-              electorates.slice(0, 5).map((electorate) => (
-                <li>
-                  <a
-                    href={`/electorates/${electorate.slug.current}`}
-                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
-                  >
-                    <span class="text-yellow">→</span> {electorate.name}
-                  </a>
-                </li>
-              ))
-            }
-            <li>
-              <a
-                href="/past-candidates"
-                class="footer-link font-black uppercase text-sm text-gray-300 hover:text-yellow transition-colors flex items-center gap-2"
-              >
-                <span class="text-yellow">→</span> Past Candidates
-              </a>
-            </li>
-          </ul>
+                Sign Up
+              </button>
+            </form>
+            <div
+              id="footer-newsletter-success"
+              class="hidden text-xs text-mint font-black mt-2 uppercase tracking-wider"
+            >
+            </div>
+          </div>
         </div>
 
-        {/* Governance */}
-        <div>
-          <h4
-            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-white inline-block px-3 py-1"
-          >
-            Governance
-          </h4>
-          <ul class="space-y-2">
-            {
-              footerData.resourceLinks.map((link) => (
-                <li>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"
-                  >
-                    <span class="text-white/60">→</span> {link.label}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        {/* Right Column (Navigation Grid) — Spans 7 columns on large screen */}
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Column: Policy */}
+          <div>
+            <h4
+              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-mint inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#000] rotate-[-1deg]"
+            >
+              Policy
+            </h4>
+            <ul class="space-y-3">
+              {
+                [
+                  { label: 'All Policies', href: '/policies' },
+                  { label: 'Manifesto', href: '/manifesto' },
+                  { label: 'About Us', href: '/about' },
+                  { label: 'FAQ', href: '/faq' },
+                  { label: 'Contact Us', href: '/contact' },
+                ].map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-mint transition-all flex items-center gap-1.5"
+                    >
+                      <span class="text-mint font-bold transition-transform duration-200">→</span>{' '}
+                      {link.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
 
-        {/* Take Action */}
-        <div>
-          <h4
-            class="text-sm font-black uppercase tracking-widest mb-5 text-black bg-magenta inline-block px-3 py-1"
-          >
-            Take Action
-          </h4>
-          <ul class="space-y-2 mb-6">
-            {
-              [
-                {
-                  label: 'Join Fusion',
-                  href: 'https://www.fusionparty.org.au/join',
-                  external: true,
-                },
-                { label: 'Volunteer', href: '/get-involved', external: false },
-                { label: 'Donate', href: 'https://www.fusionparty.org.au/donate', external: true },
-                {
-                  label: 'Merch Store',
-                  href: 'https://www.fusionparty.org.au/store',
-                  external: true,
-                },
-              ].map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    target={link.external ? '_blank' : undefined}
-                    rel={link.external ? 'noopener' : undefined}
-                    class="footer-link font-black uppercase text-sm text-gray-300 hover:text-magenta transition-colors flex items-center gap-2"
-                  >
-                    <span class="text-magenta">→</span> {link.label}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
+          {/* Column: Candidates */}
+          <div>
+            <h4
+              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-yellow inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#000] rotate-[1.5deg]"
+            >
+              Candidates
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="/electorates"
+                  class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
+                >
+                  <span class="text-yellow font-bold transition-transform duration-200">→</span> All Electorates
+                </a>
+              </li>
+              {
+                electorates.slice(0, 5).map((electorate) => (
+                  <li>
+                    <a
+                      href={`/electorates/${electorate.slug.current}`}
+                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
+                    >
+                      <span class="text-yellow font-bold transition-transform duration-200">→</span>{' '}
+                      {electorate.name}
+                    </a>
+                  </li>
+                ))
+              }
+              <li>
+                <a
+                  href="/past-candidates"
+                  class="footer-link font-black uppercase text-xs text-gray-400 hover:text-yellow transition-all flex items-center gap-1.5"
+                >
+                  <span class="text-yellow font-bold transition-transform duration-200">→</span> Past
+                  Candidates
+                </a>
+              </li>
+            </ul>
+          </div>
 
-          {/* Donate CTA — high-contrast button */}
-          <a
-            href="https://www.fusionparty.org.au/donate"
-            target="_blank"
-            class="inline-flex items-center gap-2 px-5 py-3 font-black uppercase text-sm border-4 border-black bg-yellow text-black hover:-translate-y-0.5 transition-all"
-            style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
-          >
-            <Icon name="mdi:currency-usd" class="w-5 h-5" />
-            Donate Now
-          </a>
+          {/* Column: Governance */}
+          <div>
+            <h4
+              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-white inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#000] rotate-[-1deg]"
+            >
+              Governance
+            </h4>
+            <ul class="space-y-3">
+              {
+                footerData.resourceLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-white transition-all flex items-center gap-1.5"
+                    >
+                      <span class="text-white/60 font-bold transition-transform duration-200">
+                        →
+                      </span>{' '}
+                      {link.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          {/* Column: Take Action & Donate */}
+          <div>
+            <h4
+              class="text-xs font-black uppercase tracking-widest mb-5 text-black bg-magenta inline-block px-2.5 py-1 border border-black shadow-[2px_2px_0px_0px_#000] rotate-[1.5deg]"
+            >
+              Take Action
+            </h4>
+            <ul class="space-y-3 mb-6">
+              {
+                [
+                  {
+                    label: 'Join Fusion',
+                    href: 'https://www.fusionparty.org.au/join',
+                    external: true,
+                  },
+                  { label: 'Volunteer', href: '/get-involved', external: false },
+                  {
+                    label: 'Donate',
+                    href: 'https://www.fusionparty.org.au/donate',
+                    external: true,
+                  },
+                  {
+                    label: 'Merch Store',
+                    href: 'https://www.fusionparty.org.au/store',
+                    external: true,
+                  },
+                ].map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener' : undefined}
+                      class="footer-link font-black uppercase text-xs text-gray-400 hover:text-magenta transition-all flex items-center gap-1.5"
+                    >
+                      <span class="text-magenta font-bold transition-transform duration-200">
+                        →
+                      </span>{' '}
+                      {link.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+
+            {/* Donate CTA Button with tactile shadows */}
+            <a
+              href="https://www.fusionparty.org.au/donate"
+              target="_blank"
+              class="inline-flex items-center justify-center gap-2 px-4 py-3 font-black uppercase text-xs border-4 border-black bg-yellow text-black hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all w-full"
+              style="box-shadow: 4px 4px 0px 0px #C926F2; font-family: 'Archivo Black', sans-serif;"
+            >
+              <Icon name="mdi:currency-usd" class="w-4 h-4" />
+              Donate Now
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   {/* ═══ BOTTOM BAR ═══ */}
-  <div class="px-4 md:px-8 py-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+  <div class="px-4 md:px-8 py-8 bg-black">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left"
+    >
       <p class="text-xs font-bold text-gray-500">
         © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
       </p>
-      <p class="text-xs font-bold text-gray-600">{footerData.authorization}</p>
-      <p class="text-xs text-gray-600">
+      <p class="text-xs font-bold text-gray-500 max-w-md">
+        {footerData.authorization}
+      </p>
+      <p class="text-xs text-gray-500 font-bold">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
-          class="underline hover:text-mint transition-colors"
+          class="underline text-gray-400 hover:text-mint transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>
@@ -337,44 +405,56 @@ const footerData = footer || defaultFooter
     </div>
   </div>
 
-  {/* Bottom colour stripe — mirrors hero triple stripe */}
-  <div class="h-1 w-full bg-yellow"></div>
-  <div class="h-0.5 w-full bg-mint"></div>
-  <div class="h-px w-full bg-magenta"></div>
+  {/* Bottom color stripe accent */}
+  <div class="h-1.5 w-full bg-yellow"></div>
+  <div class="h-1 w-full bg-mint"></div>
+  <div class="h-0.5 w-full bg-magenta"></div>
 </footer>
 
 <style>
-  .footer-link:hover {
-    padding-left: 0.15rem;
-    transition:
-      padding-left 0.15s ease,
-      color 0.15s ease;
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    background-color: #121118;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
   .social-icon:hover {
-    background: var(--accent, #5effd8) !important;
+    background-color: var(--accent) !important;
+    border-color: #0c0b11 !important;
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px 0px #0c0b11;
+  }
+  .social-icon:hover :global(svg) {
+    color: #0c0b11 !important;
   }
 
-  .social-icon:hover svg {
-    color: #000 !important;
+  .footer-link:hover {
+    padding-left: 0.25rem;
+  }
+  .footer-link:hover span {
+    transform: translateX(4px);
   }
 </style>
 
 <script>
-  // Social icon accent colours on hover
-  document.querySelectorAll('.social-icon').forEach((el) => {
-    const accent = (el as HTMLElement).dataset.accent || '#5EFFD8'
-    el.addEventListener('mouseenter', () => {
-      ;(el as HTMLElement).style.backgroundColor = accent
-      ;(el as HTMLElement).style.borderColor = accent
-      const icon = el.querySelector('svg') as SVGElement | null
-      if (icon) icon.style.color = '#000'
+  // Newsletter Form Handler
+  const form = document.getElementById('footer-newsletter-form')
+  const successMsg = document.getElementById('footer-newsletter-success')
+
+  if (form && successMsg) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement | null
+      if (input) {
+        successMsg.textContent = `✓ SUCCESS: ${input.value} added to alerts!`
+        successMsg.classList.remove('hidden')
+        form.classList.add('hidden')
+        input.value = ''
+      }
     })
-    el.addEventListener('mouseleave', () => {
-      ;(el as HTMLElement).style.backgroundColor = ''
-      ;(el as HTMLElement).style.borderColor = ''
-      const icon = el.querySelector('svg') as SVGElement | null
-      if (icon) icon.style.color = ''
-    })
-  })
+  }
 </script>

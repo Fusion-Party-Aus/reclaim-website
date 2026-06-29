@@ -1,13 +1,13 @@
 ---
 export const prerender = false
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import Header from '../../components/Header.astro'
-import Hero from '../../components/Hero.astro'
-import Footer from '../../components/Footer.astro'
-import Sidebar from '../../components/Sidebar.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Footer from '../components/Footer.astro'
+import Sidebar from '../components/Sidebar.astro'
 import { Icon } from 'astro-icon/components'
-import { getPolicies, getPoliciesPage } from '../../lib/sanity'
-import '../../styles/global.css'
+import { getPolicies } from '../lib/sanity'
+import '../styles/global.css'
 
 interface Policy {
   _id: string
@@ -23,15 +23,14 @@ interface Policy {
   body?: unknown
 }
 
-const policies = await getPolicies({ thisTerm: true })
-const pageData = await getPoliciesPage()
+const policies = await getPolicies({ thisTerm: false })
 
-const title = pageData?.title || 'Our Policies'
+const title = 'Our Vision'
 const subtitle =
-  pageData?.subtitle || "Evidence-based solutions. We've done the maths. No bullshit."
-const ctaSection = pageData?.ctaSection || {
-  title: 'These Policies Can Win',
-  body: "But only if we build a movement that can't be ignored. Join us.",
+  'Long-term solutions for Victoria’s future. Bold structural change for the next generation.'
+const ctaSection = {
+  title: 'Help Us Build the Future',
+  body: 'These bold policies represent our long-term vision. Be part of the movement.',
 }
 
 // Group by Pillar → Category
@@ -103,7 +102,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
 <BaseLayout
   title={`${title} | Reignite Democracy`}
-  description="Evidence-based policies where we've done the maths — housing, tax justice, transport, renewables."
+  description="Our visionary policies for Victoria's future — Sovereign Wealth Fund, public asset reclamation, direct democracy."
 >
   <Header />
   <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
@@ -273,7 +272,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     </div>
 
     {/* Sidebar */}
-    <Sidebar sections={sidebarSections} page="policies" />
+    <Sidebar sections={sidebarSections} page="vision" />
   </div>
 
   <Footer />

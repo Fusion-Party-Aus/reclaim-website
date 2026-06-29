@@ -36,8 +36,7 @@ const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
   { href: '/', label: 'Home', order: 0 },
   { href: '/about', label: 'About', order: 1 },
   { href: '/policies', label: 'Policies', order: 2 },
-  { href: '/manifesto', label: 'Manifesto', order: 3 },
-  { href: '/faq', label: 'FAQ', order: 4 },
+  { href: '/vision', label: 'Vision', order: 3 },
 ]
 
 const navItems = rawNavItems.map((item) => ({
@@ -54,34 +53,47 @@ const ctaButton = navigation?.ctaButton || {
   href: '/get-involved',
   style: 'primary',
 }
-const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
 ---
 
 <header class="bg-black sticky top-0 z-50">
   {/* Triple stripe — mirrors hero top edge */}
-  <div class="h-1 w-full bg-magenta"></div>
+  <div class="h-1 w-full bg-magenta animate-pulse-gentle"></div>
   <div class="h-0.5 w-full bg-mint"></div>
   <div class="h-px w-full bg-yellow"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
+    <div class="flex justify-between items-center h-20">
       {/* ── Logo ── */}
-      <a href="/" class="flex items-center gap-3 no-underline group shrink-0">
+      <a
+        href="/"
+        class="flex items-center gap-3 no-underline group shrink-0"
+        aria-label="Fusion Party Victoria Home"
+      >
         <div
-          class="relative overflow-hidden border-2 border-transparent group-hover:border-mint transition-colors"
+          class="relative overflow-hidden border-2 border-black p-1 bg-white group-hover:border-mint transition-all shadow-[3px_3px_0px_0px_#C926F2] group-hover:shadow-[1px_1px_0px_0px_#C926F2] group-hover:translate-x-[2px] group-hover:translate-y-[2px]"
         >
-          <img src="/solo-full-colour.svg" alt="Reignite Democracy" class="h-9 w-auto" />
+          <img src="/solo-full-colour.svg" alt="Fusion Party Victoria" class="h-9 w-auto" />
         </div>
         <div class="flex flex-col leading-none">
+          <div class="flex items-baseline gap-1">
+            <span
+              class="font-black text-magenta text-xl md:text-2xl tracking-tighter uppercase"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Fusion
+            </span>
+            <span
+              class="font-black text-yellow text-[9px] tracking-wider uppercase bg-black px-1.5 py-0.5 border-2 border-yellow shadow-[2px_2px_0px_0px_#000] ml-1.5"
+              style="font-family: 'Archivo Black', sans-serif;"
+            >
+              Victoria
+            </span>
+          </div>
           <span
-            style="color: #C926F2; font-family: 'Archivo Black', sans-serif; font-size: 1.4rem; letter-spacing: 0.01em;"
+            class="text-[9px] font-black text-white tracking-[0.22em] uppercase mt-1 opacity-90"
+            style="font-family: 'Barlow', sans-serif;"
           >
-            {logo.mainText}
-          </span>
-          <span
-            style="color: #5EFFD8; font-family: 'Archivo Black', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;"
-          >
-            {logo.subText}
+            Reignite Democracy
           </span>
         </div>
       </a>
@@ -97,7 +109,7 @@ const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
       </button>
 
       {/* ── Desktop nav ── */}
-      <nav class="hidden md:flex items-center gap-1 lg:gap-2" id="main-nav">
+      <nav class="hidden md:flex items-center gap-1.5 lg:gap-2.5" id="main-nav">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -110,34 +122,34 @@ const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
               return (
                 <div class="nav-dropdown-wrapper relative group">
                   <button
-                    class="nav-link px-3 py-2 text-white font-black text-sm uppercase tracking-wider flex items-center gap-1 hover:text-mint transition-colors"
-                    style="font-family: 'Archivo Black', sans-serif; background: none; border: none; cursor: pointer;"
+                    class={`nav-link px-3 py-2 text-white font-black text-sm uppercase tracking-wider flex items-center gap-1.5 border-2 border-transparent hover:border-mint hover:bg-white/5 transition-all ${isActive ? 'text-mint' : ''}`}
+                    style="font-family: 'Archivo Black', sans-serif; background: none; cursor: pointer;"
                   >
                     {item.label}
-                    <span class="text-xs dropdown-arrow transition-transform duration-200">▼</span>
+                    <span class="text-xs dropdown-arrow transition-transform duration-200 group-hover:rotate-180">
+                      ▼
+                    </span>
                   </button>
-                  {/* Active underline */}
-                  {isActive && <div class="absolute bottom-0 left-0 right-0 h-1 bg-mint" />}
                   {/* Dropdown */}
                   <div
-                    class="dropdown-menu absolute top-full left-0 pt-1 hidden group-hover:block"
-                    style="min-width: 220px; z-index: 100;"
+                    class="dropdown-menu absolute top-full left-0 pt-2 hidden group-hover:block"
+                    style="min-width: 240px; z-index: 100;"
                   >
                     <div
-                      class="bg-black border-4 border-mint"
-                      style="box-shadow: 4px 4px 0px 0px #C926F2;"
+                      class="bg-black border-4 border-mint p-1.5"
+                      style="box-shadow: 6px 6px 0px 0px #C926F2;"
                     >
                       {/* Top accent stripe */}
-                      <div class="h-1 w-full bg-magenta" />
+                      <div class="h-1 w-full bg-magenta mb-1.5" />
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
-                          class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b-2 border-white/10 last:border-b-0 font-black uppercase text-sm"
+                          class="block px-4 py-3 text-white hover:bg-mint hover:text-black transition-all border-b border-white/10 last:border-b-0 font-black uppercase text-xs tracking-wider"
                           style="font-family: 'Archivo Black', sans-serif;"
                         >
                           {child.label}
                           {child.description && (
-                            <div class="text-xs mt-0.5 opacity-60 font-normal normal-case">
+                            <div class="text-[10px] mt-1 opacity-60 font-normal normal-case tracking-normal">
                               {child.description}
                             </div>
                           )}
@@ -152,22 +164,22 @@ const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
             return (
               <a
                 href={item.href}
-                class="nav-link relative px-3 py-2 text-white font-black text-sm uppercase tracking-wider transition-colors hover:text-mint"
-                style={`font-family: 'Archivo Black', sans-serif; ${isActive ? 'color: #5EFFD8;' : ''}`}
+                class={`nav-link relative px-3 py-2 font-black text-sm uppercase tracking-wider transition-all border-2 border-transparent hover:border-mint hover:bg-white/5 ${isActive ? 'text-yellow' : 'text-white hover:text-mint'}`}
+                style="font-family: 'Archivo Black', sans-serif;"
               >
                 {item.label}
-                {/* Active indicator — thick yellow underbar */}
-                {isActive && <span class="absolute bottom-0 left-0 right-0 h-1 bg-yellow" />}
+                {/* Active indicator — thin yellow border on bottom */}
+                {isActive && <span class="absolute bottom-0 left-3 right-3 h-1 bg-yellow" />}
               </a>
             )
           })
         }
 
-        {/* CTA Button — solid, high-contrast */}
+        {/* CTA Button — solid, high-contrast with tactile shadow-press effect */}
         <a
           href={ctaButton.href}
-          class="ml-4 px-5 py-2 text-sm font-black uppercase border-4 border-black transition-all hover:-translate-y-0.5"
-          style={`font-family: 'Archivo Black', sans-serif; background: ${ctaButton.style === 'primary' ? '#C926F2' : ctaButton.style === 'yellow' ? '#FFED00' : '#5EFFD8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'}; box-shadow: 3px 3px 0px 0px ${ctaButton.style === 'primary' ? '#FFED00' : '#C926F2'};`}
+          class="ml-4 px-5 py-2 text-sm font-black uppercase border-4 border-black transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+          style={`font-family: 'Archivo Black', sans-serif; background: ${ctaButton.style === 'primary' ? '#C926F2' : ctaButton.style === 'yellow' ? '#FFED00' : '#5EFFD8'}; color: ${ctaButton.style === 'yellow' || ctaButton.style === 'mint' ? '#000' : '#fff'}; box-shadow: 4px 4px 0px 0px ${ctaButton.style === 'primary' ? '#FFED00' : '#C926F2'};`}
         >
           {ctaButton.label}
         </a>
@@ -176,7 +188,7 @@ const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
 
     {/* ── Mobile navigation ── */}
     <nav class="mobile-nav hidden" id="mobile-nav">
-      <div class="flex flex-col gap-2 py-4 border-t-4 border-magenta mt-0">
+      <div class="flex flex-col gap-3 py-5 border-t-4 border-magenta mt-0">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -195,11 +207,11 @@ const logo = navigation?.logo || { mainText: 'FUTURE', subText: 'PARTY' }
                     {item.label}
                     <span class="text-xs dropdown-arrow">▼</span>
                   </button>
-                  <div class="mobile-dropdown-content hidden mt-1 ml-4 space-y-1">
+                  <div class="mobile-dropdown-content hidden mt-1.5 ml-4 space-y-1">
                     {item.children?.map((child) => (
                       <a
                         href={child.href}
-                        class="block px-4 py-2 font-bold text-sm border-l-4 border-mint bg-black text-white hover:bg-mint hover:text-black transition-all"
+                        class="block px-4 py-2.5 font-bold text-sm border-l-4 border-mint bg-black text-white hover:bg-mint hover:text-black transition-all"
                         style="font-family: 'Archivo Black', sans-serif;"
                       >
                         {child.label}

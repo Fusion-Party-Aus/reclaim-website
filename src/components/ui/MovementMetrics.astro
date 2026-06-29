@@ -23,109 +23,114 @@ const overallProgress = Math.round(
 )
 ---
 
-{bare ? (
-  /* ─── Bare mode: numbers as structural elements, no card chrome ─── */
-  <div style="background: #000000;">
-    <div class="grid grid-cols-2 lg:grid-cols-4" style="gap: 4px;">
-    {metrics.map((metric, index) => {
-      const progress = Math.round((metric.current / metric.goal) * 100)
-      return (
-        <div
-          class="flex flex-col gap-3 px-6 py-8"
-          style="background: #FFED00;"
-        >
-          <div style="display: flex; align-items: baseline; gap: 0.2rem; flex-wrap: wrap;">
-            {metric.prefix && (
-              <span
-                class="font-black text-black"
-                style="font-family: 'Archivo Black', sans-serif; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1;"
-              >{metric.prefix}</span>
-            )}
-            <span
-              class="font-black leading-none counter"
-              style={`font-family: 'Archivo Black', sans-serif; font-size: clamp(3rem, 4.5vw + 0.5rem, 5.5rem); color: #000;`}
-              data-target={metric.current}
-              data-delay={index * 80}
-            >0</span>
-            {metric.suffix && (
-              <span
-                class="font-black text-black/50"
-                style="font-size: clamp(0.875rem, 1.5vw, 1.125rem); line-height: 1; align-self: flex-end; padding-bottom: 0.2rem;"
-              >{metric.suffix}</span>
-            )}
-          </div>
+{
+  bare ? (
+    /* ─── Bare mode: numbers as structural elements, no card chrome ─── */
+    <div style="background: #000000;">
+      <div class="grid grid-cols-2 lg:grid-cols-4" style="gap: 4px;">
+        {metrics.map((metric, index) => {
+          const progress = Math.round((metric.current / metric.goal) * 100)
+          return (
+            <div class="flex flex-col gap-3 px-6 py-8" style="background: #FFED00;">
+              <div style="display: flex; align-items: baseline; gap: 0.2rem; flex-wrap: wrap;">
+                {metric.prefix && (
+                  <span
+                    class="font-black text-black"
+                    style="font-family: 'Archivo Black', sans-serif; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1;"
+                  >
+                    {metric.prefix}
+                  </span>
+                )}
+                <span
+                  class="font-black leading-none counter"
+                  style={`font-family: 'Archivo Black', sans-serif; font-size: clamp(3rem, 4.5vw + 0.5rem, 5.5rem); color: #000;`}
+                  data-target={metric.current}
+                  data-delay={index * 80}
+                >
+                  0
+                </span>
+                {metric.suffix && (
+                  <span
+                    class="font-black text-black/50"
+                    style="font-size: clamp(0.875rem, 1.5vw, 1.125rem); line-height: 1; align-self: flex-end; padding-bottom: 0.2rem;"
+                  >
+                    {metric.suffix}
+                  </span>
+                )}
+              </div>
 
-          <p
-            class="font-black uppercase text-black/60"
-            style="font-size: 0.625rem; letter-spacing: 0.1em;"
-          >{metric.label}</p>
+              <p
+                class="font-black uppercase text-black/60"
+                style="font-size: 0.625rem; letter-spacing: 0.1em;"
+              >
+                {metric.label}
+              </p>
 
-          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem;">
-            <div style="height: 3px; background: rgba(0,0,0,0.15);">
-              <div
-                class="progress-bar"
-                style="height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #000;"
-                data-progress={progress}
-                data-delay={index * 80}
-              />
+              <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem;">
+                <div style="height: 3px; background: rgba(0,0,0,0.15);">
+                  <div
+                    class="progress-bar"
+                    style="height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #000;"
+                    data-progress={progress}
+                    data-delay={index * 80}
+                  />
+                </div>
+                <span
+                  class="font-black text-black/40"
+                  style="font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;"
+                >
+                  {progress}% of goal
+                </span>
+              </div>
             </div>
-            <span
-              class="font-black text-black/40"
-              style="font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;"
-            >{progress}% of goal</span>
-          </div>
-        </div>
-      )
-    })}
-    </div>
-  </div>
-) : (
-  /* ─── Card mode: existing layout, no rotations ─── */
-  <div
-    class={`bg-transparent p-0 ${compact ? '' : 'lg:py-6'}`}
-  >
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <div
-        class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-4"
-        style="box-shadow: 4px 4px 0px 0px #FFED00;"
-      >
-        <p class="text-black font-black uppercase text-xl tracking-wide flex items-center gap-3">
-          <span class="text-3xl" aria-hidden="true">🎯</span>
-          Building the Movement
-        </p>
+          )
+        })}
       </div>
-
-      {
-        !compact && (
-          <p class="text-black/80 text-lg font-bold mb-2">
-            Every number is a person who said <strong class="text-magenta">enough is enough.</strong>
+    </div>
+  ) : (
+    /* ─── Card mode: existing layout, no rotations ─── */
+    <div class={`bg-transparent p-0 ${compact ? '' : 'lg:py-6'}`}>
+      {/* Header */}
+      <div class="text-center mb-8">
+        <div
+          class="inline-block bg-magenta border-4 border-black px-6 py-3 mb-4"
+          style="box-shadow: 4px 4px 0px 0px #FFED00;"
+        >
+          <p class="text-black font-black uppercase text-xl tracking-wide flex items-center gap-3">
+            <span class="text-3xl" aria-hidden="true">
+              🎯
+            </span>
+            Building the Movement
           </p>
-        )
-      }
-
-      <div class="mt-6">
-        <div class="flex items-center justify-between text-black mb-2">
-          <span class="font-black uppercase text-sm">Overall Progress</span>
-          <span class="font-black text-magenta text-xl">{overallProgress}%</span>
         </div>
-        <div class="h-4 bg-black/10 border-4 border-black relative overflow-hidden">
-          <div
-            class="h-full bg-yellow transition-transform duration-700 ease-out origin-left"
-            style={`width: 100%; transform: scaleX(${overallProgress / 100});`}
-            data-progress-bar
-          >
+
+        {!compact && (
+          <p class="text-black/80 text-lg font-bold mb-2">
+            Every number is a person who said{' '}
+            <strong class="text-magenta">enough is enough.</strong>
+          </p>
+        )}
+
+        <div class="mt-6">
+          <div class="flex items-center justify-between text-black mb-2">
+            <span class="font-black uppercase text-sm">Overall Progress</span>
+            <span class="font-black text-magenta text-xl">{overallProgress}%</span>
+          </div>
+          <div class="h-4 bg-black/10 border-4 border-black relative overflow-hidden">
+            <div
+              class="h-full bg-yellow transition-transform duration-700 ease-out origin-left"
+              style={`width: 100%; transform: scaleX(${overallProgress / 100});`}
+              data-progress-bar
+            />
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Metrics Grid -->
-    <div
-      class={`grid ${compact ? 'md:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'} gap-8 md:gap-10 lg:gap-8 px-4 md:px-0`}
-    >
-      {
-        metrics.map((metric, index) => {
+      {/* Metrics Grid */}
+      <div
+        class={`grid ${compact ? 'md:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'} gap-8 md:gap-10 lg:gap-8 px-4 md:px-0`}
+      >
+        {metrics.map((metric, index) => {
           const progress = Math.round((metric.current / metric.goal) * 100)
           const colorConfigs = {
             magenta: {
@@ -166,10 +171,7 @@ const overallProgress = Math.round(
                   class="mb-4 inline-block p-3 border-6 border-black"
                   style={`background-color: ${config.iconBg}; box-shadow: 4px 4px 0px 0px ${config.shadow};`}
                 >
-                  <span
-                    class="text-3xl md:text-4xl"
-                    aria-hidden="true"
-                  >
+                  <span class="text-3xl md:text-4xl" aria-hidden="true">
                     {metric.icon}
                   </span>
                 </div>
@@ -256,12 +258,10 @@ const overallProgress = Math.round(
               )}
             </div>
           )
-        })
-      }
-    </div>
+        })}
+      </div>
 
-    {
-      showMotivation && (
+      {showMotivation && (
         <div class="mt-8 text-center">
           <div
             class="inline-block bg-yellow border-4 border-black px-6 py-4 transform rotate-1"
@@ -279,10 +279,10 @@ const overallProgress = Math.round(
             </p>
           </div>
         </div>
-      )
-    }
-  </div>
-)}
+      )}
+    </div>
+  )
+}
 
 <script>
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -353,8 +353,9 @@ const overallProgress = Math.round(
       },
       { threshold: 0.15 }
     )
-    const target = document.querySelector('.counter')?.closest('section') ||
-                   document.querySelector('[data-progress-bar]')?.closest('div')
+    const target =
+      document.querySelector('.counter')?.closest('section') ||
+      document.querySelector('[data-progress-bar]')?.closest('div')
     if (target) observer.observe(target)
   } else {
     initAnimations()

@@ -114,7 +114,7 @@
   /* Card / sub-section titles: legible at smaller sizes */
   h3,
   h4 {
-    line-height: 1.0;
+    line-height: 1;
     letter-spacing: -0.01em;
   }
 
@@ -757,6 +757,152 @@
     background: #c926f2;
     color: #fff;
     border-bottom-color: #000;
+  }
+
+  /* FAQ Page styling refinements */
+  .faq-answer p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  .faq-answer p:first-child {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .faq-answer strong {
+    font-weight: 900;
+    background: #ffed00;
+    padding: 0.1rem 0.3rem;
+    color: #000;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 0 #000;
+  }
+
+  .faq-answer em {
+    font-style: italic;
+    color: #c926f2;
+    font-weight: 600;
+  }
+
+  .faq-answer h4 {
+    font-size: 1.125rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.75rem;
+    padding: 0.375rem 0.625rem;
+    background: #ffed00;
+    color: #000;
+    border: 2px solid #000;
+    display: inline-block;
+    box-shadow: 3px 3px 0 0 #000;
+  }
+
+  .faq-answer h5 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 1.25rem 0 0.5rem;
+    padding: 0.375rem 0.625rem;
+    background: #000;
+    color: #5effd8;
+    border: 2px solid #000;
+    display: inline-block;
+    box-shadow: 2px 2px 0 0 #5effd8;
+  }
+
+  .faq-answer ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .faq-answer li {
+    position: relative;
+    padding: 0.625rem 0.75rem 0.625rem 1.75rem;
+    margin-bottom: 0.5rem;
+    background: #f5f5f5;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 0 #000;
+    font-weight: 500;
+  }
+
+  .faq-answer li::before {
+    content: '→';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.625rem;
+    font-weight: 900;
+    color: #c926f2;
+  }
+
+  .faq-answer ol {
+    list-style: none;
+    counter-reset: brutal-counter;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .faq-answer ol li {
+    counter-increment: brutal-counter;
+    padding-left: 2.75rem;
+  }
+
+  .faq-answer ol li::before {
+    content: counter(brutal-counter);
+    position: absolute;
+    left: 0.375rem;
+    top: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #c926f2;
+    color: #fff;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.75rem;
+  }
+
+  .faq-answer a {
+    color: #c926f2;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid #c926f2;
+    transition: all 0.15s;
+  }
+
+  .faq-answer a:hover {
+    background: #c926f2;
+    color: #fff;
+  }
+
+  .faq-answer blockquote {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: #ffed00;
+    border-left: 8px solid #c926f2;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+    box-shadow: 5px 5px 0 0 #000;
+  }
+
+  .faq-answer blockquote p {
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .faq-answer code {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #5effd8;
+    padding: 0.2rem 0.4rem;
+    border: 2px solid #000;
+    font-size: 0.875em;
   }
 }
 
