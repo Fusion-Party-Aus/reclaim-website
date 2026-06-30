@@ -4,7 +4,7 @@ import { subscribeToNewsletter } from '../../../nationbuilder/nationbuilder.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   let payload: any
   try {
     payload = await request.json()
@@ -17,13 +17,13 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'A valid email is required' }), { status: 422 })
   }
 
-  // getSecret() is adapter-portable: process.env locally (Node adapter),
-  // real Cloudflare Worker bindings in production (Cloudflare adapter).
-  // Plain process.env would silently be empty once deployed — Cloudflare
-  // Workers don't auto-populate it from bindings.
+  const cfEnv = (locals as { runtime?: { env?: Record<string, unknown> } })?.runtime?.env ?? {}
   const env = {
     NATIONBUILDER_SLUG: getSecret('NATIONBUILDER_SLUG'),
     NATIONBUILDER_API_TOKEN: getSecret('NATIONBUILDER_API_TOKEN'),
+    NATIONBUILDER_CLIENT_ID: getSecret('NATIONBUILDER_CLIENT_ID'),
+    NATIONBUILDER_CLIENT_SECRET: getSecret('NATIONBUILDER_CLIENT_SECRET'),
+    NATIONBUILDER_TOKENS: cfEnv.NATIONBUILDER_TOKENS,
   }
 
   if (!env.NATIONBUILDER_SLUG || !env.NATIONBUILDER_API_TOKEN) {

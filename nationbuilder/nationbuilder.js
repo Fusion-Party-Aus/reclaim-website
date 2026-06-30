@@ -45,9 +45,12 @@ function baseUrl(env) {
   return `https://${env.NATIONBUILDER_SLUG}.nationbuilder.com/api/v2`;
 }
 
-function authHeaders(env) {
+import { getAccessToken } from "./oauth.js";
+
+async function authHeaders(env) {
+  const token = await getAccessToken(env);
   return {
-    Authorization: `Bearer ${env.NATIONBUILDER_API_TOKEN}`,
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
     Accept: "application/json",
   };
@@ -58,7 +61,7 @@ async function nbGet(env, path, params = {}) {
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(key, value);
   }
-  const res = await fetch(url.toString(), { headers: authHeaders(env) });
+  const res = await fetch(url.toString(), { headers: await authHeaders(env) });
   if (!res.ok) {
     throw new Error(`NationBuilder GET ${path} failed: ${res.status} ${await res.text().catch(() => "")}`);
   }
@@ -68,7 +71,7 @@ async function nbGet(env, path, params = {}) {
 async function nbPost(env, path, body) {
   const res = await fetch(`${baseUrl(env)}${path}`, {
     method: "POST",
-    headers: authHeaders(env),
+    headers: await authHeaders(env),
     body: JSON.stringify(body),
   });
   if (!res.ok) {
@@ -80,7 +83,7 @@ async function nbPost(env, path, body) {
 async function nbPatch(env, path, body) {
   const res = await fetch(`${baseUrl(env)}${path}`, {
     method: "PATCH",
-    headers: authHeaders(env),
+    headers: await authHeaders(env),
     body: JSON.stringify(body),
   });
   if (!res.ok) {
