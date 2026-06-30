@@ -8,7 +8,7 @@ directory = "./dist"
 [[kv_namespaces]]
 # Run `wrangler kv namespace create NATIONBUILDER_TOKENS` to get the id, then paste it below.
 binding = "NATIONBUILDER_TOKENS"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "4be5b5fc9edc49f3bd5a2c040483da0e"
 
 [observability]
 enabled = false

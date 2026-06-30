@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro'
 import { getSecret } from 'astro:env/server'
-import { storeTokens } from '../../../../nationbuilder/oauth.js'
+import { storeTokens } from '../../../../../nationbuilder/oauth.js'
 
 // NationBuilder redirects here after the admin grants consent.
 // Exchanges the authorization code for access + refresh tokens and stores
