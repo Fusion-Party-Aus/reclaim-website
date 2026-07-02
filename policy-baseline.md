@@ -54,7 +54,7 @@ Making Australia a country where your effort secures a stable income, essential 
 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
-1. Every Australian will receive a Citizens Dividend set at the Henderson Poverty Line, paid automatically and unconditionally, replacing existing baseline welfare payments.
+1. Every Australian will receive a Citizens Dividend, launched at the Henderson Poverty Line and later tied to Australia’s productivity, paid automatically and unconditionally, replacing existing baseline welfare payments.
 
    1. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
    2. A reliable income foundation will support stability through job changes, illness, and economic transition.
@@ -69,7 +69,7 @@ Making Australia a country where your effort secures a stable income, essential 
 
 **Design rationale**
 
-A Universal Basic Income was selected over expanded conditional welfare and negative income tax models because it establishes a clear, permanent income floor without eligibility churn, behavioural conditions, or ongoing recalibration. Conditional and targeted systems were assessed as structurally complex, exclusion-prone, and poorly suited to labour-market volatility. The design intent is to provide a stable baseline that does not require frequent policy intervention as economic conditions change.
+A Universal Basic Income creates a clear income floor without eligibility churn, behavioural conditions, or constant redesign. Conditional and targeted systems were assessed as structurally complex, exclusion-prone, and poorly suited to labour-market volatility. The design intent is to provide a stable baseline that does not require frequent policy intervention as economic conditions change.
 
 **System interaction**
 
@@ -77,7 +77,7 @@ The Citizens Dividend replaces baseline income-support payments that provide sub
 
 **Economic and institutional logic**
 
-The policy alters incentive structures by separating basic income security from continuous employment. This reduces effective marginal tax rates created by benefit withdrawal, increases flexibility around part-time work, retraining, caregiving, and entrepreneurship, and improves worker bargaining position without relying on compliance enforcement. The design assumes that labour participation is primarily driven by income above subsistence levels, job quality, and social participation rather than coercive welfare conditionality.
+The policy alters incentive structures by separating basic income security from continuous employment. This reduces effective marginal tax rates created by benefit withdrawal, increases flexibility around part-time work, retraining, caregiving, and entrepreneurship, and improves worker bargaining position without relying on compliance enforcement. The design recognises that most people seek work for income above the baseline, job quality, purpose, and social participation — not because poverty is used as a threat.
 
 **Risk and failure modes**
 
@@ -85,11 +85,17 @@ Key risks include fiscal miscalibration if the baseline level is poorly set, pol
 
 **Evidence and precedent**
 
-Relevant evidence includes international income-floor pilots, negative income tax experiments, Australian basic-income modelling, and long-standing universal payment frameworks such as pensions and family benefits. Results consistently show strong poverty-reduction effects and administrative simplification, with labour-market impacts varying by design scale, interaction with taxation, and surrounding economic conditions. No single trial is treated as decisive; the policy draws on converging findings across multiple approaches.
+The evidence base includes income-floor trials, negative income tax experiments, Australian modelling, and universal payment systems such as pensions and family benefits. Results consistently show strong poverty-reduction effects and administrative simplification, with labour-market impacts varying by design scale, interaction with taxation, and surrounding economic conditions. No single trial is treated as decisive; the policy draws on converging findings across multiple approaches.
 
 **Implementation outline**
 
 Implementation is sequenced around legislative consolidation of baseline payments, integration with existing tax and reporting systems, and a managed transition period to prevent duplication or income gaps. Dependencies include accurate income data flows, agency coordination, and clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
+
+**Long-term indexation and productivity link**
+
+The Citizens Dividend would launch at the Henderson Poverty Line to establish a clear starting income floor. Once the system is operating, indexation would shift to a statutory national dividend formula linked to a smoothed share of GDP per eligible citizen. The Henderson Poverty Line would remain a public benchmark for comparison, not a permanent floor or ceiling.
+
+This makes the Citizens Dividend a share in Australia’s productive base rather than a payment that automatically follows inflation. When national output grows, Australians share in that growth. When productivity weakens, the payment does not automatically rise faster than the economy can sustain. This preserves the dividend’s role as a universal income foundation while keeping long-term increases tied to real national performance.
 
 ---
 </details>
@@ -111,11 +117,14 @@ Implementation is sequenced around legislative consolidation of baseline payment
 
 **Design rationale**
 
-With Universal Basic Income in place, workers are no longer compelled to accept poor pay or conditions to meet basic needs. Wage-setting institutions are therefore required to coordinate labour prices across sectors, not to protect workers from hardship.
+With Universal Basic Income in place, workers have stronger freedom to reject poor pay or unsafe conditions without losing basic economic security. Wage-setting institutions should then focus on coordinating fair pay and conditions across sectors, not acting as a last line of defence against poverty.
 
 **System interaction**
 
 This reform operates alongside UBI by shaping wage outcomes in the labour market without substituting for income security. Unions and other worker organisations represent workers within sector-level bargaining councils, while the Fair Work Commission provides coordination, certification, and enforcement.
+
+**Residual minimum wage**
+With Universal Basic Income in place, the National Minimum Wage would shift from being a poverty-prevention tool to being a residual labour-standard guardrail. The Fair Work Commission would account for the Citizens Dividend when setting the award/agreement-free minimum wage, allowing lower-value work to occur while preserving a minimum hourly floor against exploitation.
 
 **Economic and institutional logic**
 
@@ -132,6 +141,48 @@ High-income economies with sector-level wage coordination show stronger middle-i
 **Implementation outline**
 
 Implementation focuses on legislative recognition of sector-level bargaining councils, accreditation and governance standards for representative bodies, and expanded coordination powers for the Fair Work Commission, with detailed delivery handled through industrial relations legislation.
+
+---
+</details>
+
+### **Protect Migrant Workers from Exploitation**
+
+1. Temporary visa holders and other migrant workers will be protected from wage theft, coercion, retaliation, trafficking-linked exploitation, and sham contracting through safe reporting pathways, visa security during workplace disputes, stronger labour-hire and supply-chain liability, and coordinated enforcement across migration, workplace, and anti-slavery law.
+
+   1. Migrant workers will be more able to report abuse without fearing that speaking up will cost them their visa or livelihood.
+   2. Employers relying on underpayment, coercion, or migration insecurity will face fewer opportunities to profit from that exploitation.
+   3. Australian workers will face less downward pressure from business models that depend on underpaid and unprotected migrant labour.
+   4. Communities will have stronger confidence that migration is not being used to create a more exploitable class of worker.
+   5. Workplace law will better protect people who are easiest to silence under the current system.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+A migration system is not defensible if it leaves workers dependent on an employer who can underpay, intimidate, or threaten them with visa consequences. That arrangement harms migrant workers first, but it also weakens labour standards more broadly by rewarding employers who build their model around coercion and insecurity. A fair system must make it safer to report abuse and harder to profit from it.
+
+**Protection model**
+
+The key shift is to protect migrant workers at the point where exploitation usually succeeds: fear of losing status, income, or the ability to stay. That means safe reporting pathways, practical visa protection during disputes, and a system that does not force workers to choose between silence and self-destruction.
+
+**Enforcement structure**
+
+Workplace exploitation of migrant workers often sits across multiple legal systems at once: migration law, workplace law, anti-slavery enforcement, and sometimes criminal law. A stronger model needs those systems to work together rather than leaving responsibility fragmented across separate agencies and thresholds.
+
+**Business accountability**
+
+Where exploitation is carried through labour hire, subcontracting, franchising, or other layered business structures, liability should not stop at the most disposable intermediary. Supply-chain and labour-hire accountability matters because exploitation is often organised through distance from the principal beneficiary, not despite it.
+
+**Residual risks**
+
+Even with stronger legal protections, some workers will still be hard to reach where exploitation is tied to debt, coercive relationships, language barriers, or trafficking. The reform reduces silence as a business tool, but it cannot remove every barrier that keeps people from seeking help.
+
+**Implementation outline**
+
+Bring in stronger visa protections for workers reporting exploitation, coordinate migration and workplace enforcement, and increase liability for businesses benefiting from exploitative labour-hire, subcontracting, trafficking-linked, or sham-contracting arrangements.
 
 ---
 </details>
@@ -159,7 +210,7 @@ This reform operates alongside UBI, explicitly excluding baseline income support
 
 **Economic and institutional logic**
 
-Reducing administrative friction improves service effectiveness without increasing payment levels, delivering efficiency gains through coordination rather than conditionality.
+Simpler processes make support easier to access, reduce duplicated administration, and improve service quality without changing payment levels.
 
 **Risk and failure modes**
 
@@ -167,7 +218,7 @@ Risks include uneven agency adoption and data-sharing constraints. Underperforma
 
 **Implementation outline**
 
-Cross-agency process review, standardisation of eligibility interfaces, and shared data infrastructure, with detailed execution handled through service delivery planning.
+Eligibility interfaces, agency processes, and data-sharing systems would be standardised across disability, housing, and family supports.
 
 ---
 </details>
@@ -200,7 +251,7 @@ Removing coercive controls does not alter fiscal flows while improving user expe
 
 **Risk and failure modes**
 
-Risks are limited to transitional administration. Monitoring focuses on voluntary uptake patterns.
+The main risk is transition confusion as compulsory use ends. Monitoring should focus on voluntary uptake, user experience, and whether payment access improves.
 
 **Implementation outline**
 
@@ -241,11 +292,58 @@ Risks include provider capacity constraints and uneven uptake. Failure indicator
 
 **Evidence and precedent**
 
-Universal coverage models demonstrate reduced long-term costs and improved population health outcomes.
+Universal coverage models clearly demonstrate reduced long-term costs and improved population health outcomes over time.
 
 **Implementation outline**
 
 Service inclusion staged by care type alongside provider incentive alignment.
+
+---
+</details>
+
+### **Make Health Care Keep Up With Population Growth**
+
+1. National health workforce and service-capacity planning will be tied to population growth through regular demand projections, training and placement targets, service-capacity benchmarks, and Commonwealth funding agreements that align workforce, training, and infrastructure growth with projected community need.
+
+   1. Australians will be less likely to face longer waits and thinner services as population growth puts pressure on the health system.
+   2. Growing communities will be more likely to see health capacity planned before shortages become acute.
+   3. Health workers will face less pressure from systems that fall behind rising demand.
+   4. Outer-suburban, regional, and fast-growth areas will be less likely to miss out when population grows faster than workforce planning.
+   5. Population growth will be less likely to outpace the health system’s ability to absorb it.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Health systems do not fail only because funding is too low. They also fail when workforce, training, and service capacity grow more slowly than the population they are meant to serve. Australia already uses national health funding agreements and workforce data tools, but population growth, ageing, and uneven local growth can still leave communities waiting for the system to catch up. A stronger planning model would make capacity growth a built-in part of population planning rather than a delayed response to visible strain.
+
+**Planning basis**
+
+This reform is about tying health workforce and service-capacity planning to projected demand. That means using regular demand projections, training and placement targets, service-capacity benchmarks, and funding agreements that reflect where growth is occurring and what kinds of care will be needed. The point is not to predict the future perfectly. It is to stop growth in health demand being treated as a surprise each time fast-growing areas fall behind.
+
+**Federal role**
+
+The Commonwealth does not run every part of the health system, but it does shape the national workforce and service picture through Medicare, university and training settings, primary care policy, and intergovernmental funding agreements. That makes it the right level of government to require a planning framework that links workforce supply, training pipelines, and service benchmarks to projected population demand. The National Health Reform Agreement already provides a federal-state structure for public hospital funding and roles; this reform would make demand-linked planning a more explicit part of that structure.
+
+**Geographic distribution**
+
+A national headcount is not enough. Capacity pressure is often felt first in outer-suburban, regional, and fast-growth areas where population rises quickly but the workforce pipeline, placements, and local services lag behind. A workable model therefore needs planning rules that look at distribution, not just total numbers. Otherwise the country can appear to have workforce growth on paper while particular communities still cannot get timely care.
+
+**Residual risks**
+
+Even with stronger planning, workforce and service growth will not move evenly across all places and specialties. Training pipelines are slow, local conditions vary, and sudden shifts in population or illness patterns can still create pressure faster than the system can respond. This reform makes those gaps easier to see and address earlier, but it cannot remove every lag built into a large national health system.
+
+**Implementation outline**
+
+Demand projections, workforce and service benchmarks, training targets, placements, and funding agreements would be updated on a regular review cycle so health capacity tracks projected community need.
+
+**Reference**
+
+[Workforce intelligence report 2025](https://www.health.gov.au/sites/default/files/2026-04/workforce-intelligence-report-2025.pdf)
+[National Health Reform Agreement](https://www.health.gov.au/our-work/national-health-reform-agreement-nhra)
 
 ---
 </details>
@@ -282,11 +380,11 @@ Risks include workforce shortages and uneven compliance. Performance will be tra
 
 **Evidence and precedent**
 
-Findings from national inquiries consistently identify funding and accountability as decisive factors in care quality.
+National aged care inquiries have linked poor care to weak accountability, thin staffing, poor workforce conditions, and funding models that fail to support safe, consistent care.
 
 **Implementation outline**
 
-Funding recalibration, regulatory strengthening, and staged compliance enforcement.
+Funding, provider standards, workforce requirements, and compliance powers would be updated together, with staged enforcement of the new baseline.
 
 ---
 </details>
@@ -2041,7 +2139,7 @@ Commonwealth-funded services should be judged against whether they improve safet
 
 **Migration consequences**
 
-Where a non-citizen has been convicted of serious sexual violence, the Commonwealth should treat that as grounds for mandatory visa cancellation unless a narrow exception required by law applies. This would bring serious sexual violence into closer line with the existing mandatory-cancellation treatment of other serious offending under section 501, instead of leaving it to a weaker discretionary pathway when the sentence falls below the ordinary 12-month threshold. To do that, migration law should specify serious sexual violence as a mandatory-cancellation trigger rather than relying only on sentence length. The same approach should apply to defined serious family-violence and coercive-control convictions where those offences are specified in migration law. The point is not to invent a new punishment. It is to make clear that serious abuse of this kind is incompatible with the privilege of staying in Australia.
+Migration law should make specified serious sexual-violence, serious family-violence, and coercive-control convictions mandatory visa-cancellation triggers for non-citizens, rather than relying only on sentence length under section 501. Narrow exceptions would apply where required by law. This is not a second criminal punishment; it is a migration consequence for serious abuse incompatible with the privilege of remaining in Australia.
 
 **Implementation outline**
 
@@ -2130,7 +2228,7 @@ Even with a well-designed framework, intake settings will still involve judgemen
 
 **Implementation outline**
 
-Implementation would require the Commonwealth to establish the framework in law or formal planning rules, define the indicators it uses, publish the methodology, and require annual migration settings to be justified against it. The review cycle should include transparent adjustment triggers so changes in capacity are reflected in planning before pressure becomes acute.
+Federal planning rules would establish the framework, define its indicators, publish its methodology, and require annual migration settings to be justified against it. The review cycle should include transparent adjustment triggers so changes in capacity are reflected in planning before pressure becomes acute.
 
 **Reference**
 
@@ -2172,7 +2270,7 @@ Making orientation mandatory matters because optional programs are most often mi
 
 **Implementation outline**
 
-Implementation would require the Commonwealth to define which settlement pathways are covered, set minimum civic-orientation content, fund delivery and practical support, and link completion to relevant settlement or visa milestones. Delivery should be flexible enough to work across different languages, family situations, and local contexts without changing the core civic standard.
+Covered settlement pathways, minimum civic-orientation content, practical support funding, and completion milestones would be defined in federal settlement and visa rules. Delivery should be flexible enough to work across different languages, family situations, and local contexts without changing the core civic standard.
 
 **Reference**
 
@@ -2218,7 +2316,7 @@ Even with strong local coordination, settlement choices will still involve trade
 
 **Implementation outline**
 
-Implementation would require the Commonwealth to designate settlement-ready communities against published criteria, align settlement funding and placements to those communities, and use existing settlement locations, regional partnerships, and community-led models as the base for expansion. Funding and placement decisions should be linked so local support capacity grows with the settlement task rather than trailing behind it.
+Settlement-ready communities would be designated against published criteria, with funding and placements aligned to those communities and expansion built from existing settlement locations, regional partnerships, and community-led models. Funding and placement decisions should be linked so local support capacity grows with the settlement task rather than trailing behind it.
 
 **Reference**
 
@@ -2260,7 +2358,7 @@ A well-designed system still needs lawful ways to deal with genuine changes in c
 
 **Implementation outline**
 
-Implementation would require the Commonwealth to review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
+The Government would need to review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
 
 **Reference**
 
@@ -2310,7 +2408,7 @@ Public ownership should be tied to a clear test. If the service should be univer
 
 **Implementation outline**
 
-Implementation would require the Commonwealth to build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
+The Commonwealth government would build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
 
 ---
 </details>
@@ -2353,7 +2451,7 @@ Tax-deductible status should follow public benefit, not worship alone. Reforming
 
 **Implementation outline**
 
-Implementation would require Commonwealth law to define the public settings in which secular and non-discriminatory rules apply, identify which exemptions are narrowed in publicly funded or public-function contexts, and amend philanthropy law in line with Recommendation 6.1 from the "Future foundations for giving" Inquiry report, so tax-deductible status no longer applies to activities solely for advancing religion. Guidance and reporting rules would then need to make the boundaries clear for Commonwealth institutions, funded providers, and mixed-purpose organisations.
+Federal law would define where secular and non-discriminatory rules apply, narrow exemptions in publicly funded and public-function contexts, and amend philanthropy law in line with Recommendation 6.1 from the "Future foundations for giving" Inquiry report, so tax-deductible status no longer applies to activities solely for advancing religion. Guidance and reporting rules would then need to make the boundaries clear for Commonwealth institutions, funded providers, and mixed-purpose organisations.
 
 **Reference**
 
@@ -2417,8 +2515,55 @@ The office would be created by Commonwealth law with defined functions in standa
 * Cut university bureaucracy
 * Give researchers funding security
 
+### **End University Dependence on Mass Student Migration**
+
+1. Rebuild university funding and international education rules by creating a higher education contribution-credit system for degree-reliant industries, using those funds and a transition levy on international education revenue to reduce dependence on mass full-fee international enrolments, and aligning student visa settings, provider standards, and course integrity rules to genuine education rather than revenue substitution.
+
+   1. Domestic students will face fewer risks that teaching quality, course access, and campus planning are being distorted by pressure to maximise international fee revenue.
+   2. International students will have stronger confidence that they are entering genuine education pathways rather than a system built around volume and revenue growth.
+   3. Communities will have clearer migration settings when large student inflows are no longer functioning as a quasi-hidden intake channel outside normal planning discipline.
+   4. Universities will be under less pressure to behave like migration-dependent businesses in order to sustain core teaching and research.
+   5. Public confidence in higher education will strengthen when university funding and international education are put on a more honest footing.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia’s public universities should not need to rely on ever-expanding international student revenue to fund core teaching and research. When they do, higher education policy, student migration, and institutional survival start to pull in the same direction regardless of what the education system actually needs. A more stable model should reduce that dependence without pretending universities can absorb the transition on goodwill alone. The aim is to replace passive dependence with a funding structure that has its own reason to keep working over time.
+
+**Funding mechanism**
+
+The core funding change is a higher education contribution-credit system for industries that rely heavily on university-trained labour. Employers in degree-reliant sectors would contribute to a higher education sustainability fund, but could earn back some or all of that contribution through accredited participation such as paid placements, shared teaching infrastructure, industry training partnerships, or research collaboration. That makes the model easier to sustain politically than a simple levy because businesses can reduce their liability by helping build the graduate pipeline they depend on.
+
+**Transition support**
+
+A transition levy on international education revenue can support the shift away from overdependence while universities rebalance their funding mix. This is not the long-term answer on its own. Its role is to help unwind an entrenched model rather than lock the system into permanent reliance on the same revenue source.
+
+**System interaction**
+
+This reform sits where university funding, international education, and migration settings overlap. It works best when paired with tighter provider standards, clearer course-integrity rules, and visa settings that treat student pathways as education pathways rather than as an open-ended revenue and migration valve. The Managed Growth Funding system already points toward a more planned and transparent domestic funding structure; this reform would push the sector further away from fee-growth dependence.
+
+**Residual risks**
+
+Some universities are already deeply reliant on international fee revenue, so the transition will not land evenly across the sector. Business participation may also cluster too heavily in high-status industries, leaving weaker disciplines or regional institutions with less support. These risks can be managed through equalising design features such as baseline funding floors, regional weighting, discipline-balancing rules, and limits on how narrowly contribution credits can be concentrated.
+
+**Implementation outline**
+
+The Commonwealth would establish the contribution-credit system in higher-education funding law, define eligible employer contributions and credit-earning activities, create the transition fund and levy settings, and align provider regulation and student visa integrity rules to the rebuilt funding model. The funding framework should also include anti-backsliding rules so universities are not pushed back into migration-volume dependence once the transition period ends.
+
+**Reference**
+
+[Australia's universities under sustained financial strain ...](https://universitiesaustralia.edu.au/media-item/australias-universities-under-sustained-financial-strain-new-report-warns)
+
+---
+</details>
+
 ## Transform Our Industries
 
+* Green Lightning Nitrogen Technology
 * Create hundreds of thousands of green jobs
 * Declare a climate emergency now
 * Build 800% renewable energy capacity
@@ -2432,6 +2577,50 @@ The office would be created by Commonwealth law with defined functions in standa
 ### **Build a Circular Economy** <-Relocate here?
 
 1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
+
+
+
+### **Match Skilled Migration to Genuine National Need**
+
+1. Align skilled migration settings to independently assessed shortage evidence and national capability priorities, with occupation access, visa pathways, and intake levels tied to current shortage data and strategic sector needs rather than routine employer demand alone.
+
+   1. Skilled migration will be more clearly directed to areas where Australia genuinely lacks the workers or capabilities it needs.
+   2. Employers will face stronger pressure to justify skilled migration through real shortage evidence instead of using it as a shortcut around training and workforce development.
+   3. Critical sectors will have a clearer pathway to fill gaps that cannot yet be met domestically.
+   4. Communities will have stronger confidence that skilled migration is being used to solve real problems rather than to suppress wages or avoid reform.
+   5. Migration planning will better reflect long-term national capability rather than short-term labour demand alone.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Skilled migration is most defensible when it fills real capability gaps that matter to the country, not when it becomes a general-purpose labour supply valve. Australia does face genuine shortages in some occupations and sectors, but a credible skilled migration system must be tied to evidence and national need rather than treated as the easiest response to every workforce pressure.
+
+**Evidence base**
+
+The reform should use independent shortage assessment and national workforce evidence as the starting point for skilled migration settings. That matters because employer demand alone does not always tell you whether the problem is a genuine shortage, a pay and conditions problem, a training failure, or a regional distribution issue.
+
+**Capability focus**
+
+Skilled migration should help where Australia faces real capability gaps, especially in sectors that matter to national resilience, industrial transformation, or critical services. It should not displace the need to train workers locally or to improve the conditions that make key sectors unattractive in the first place.
+
+**System interaction**
+
+This reform works best when skilled migration settings are tied to occupation shortage analysis, industrial strategy, and domestic workforce planning at the same time. The aim is not to treat migration and local workforce development as opposites. It is to stop skilled migration from becoming a substitute for doing domestic workforce policy properly.
+
+**Residual risks**
+
+Even with stronger evidence settings, shortage assessment will never be perfectly current. Labour markets shift, and some sectors will continue to argue for wider access than the evidence supports. The reform improves the basis for judgement, but it does not remove the need for judgement altogether.
+
+**Implementation outline**
+
+Skilled migration pathways and occupation access would be tied to independent shortage evidence and national capability priorities, with regular review so visa settings follow genuine need rather than stale lists or routine employer demand.
+
+---
+</details>
 
 ---
 

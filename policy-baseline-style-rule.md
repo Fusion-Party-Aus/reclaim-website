@@ -1,17 +1,50 @@
 
-### Stack Integrity Rule (Applies to All Tiers)
+# Stack Integrity Rules (Applies to All Tiers)
+
+## Tier Independence Rule
 
 > **Each tier must be readable in isolation without performing another tier’s job.**
 
 If a sentence could sit comfortably in another tier, it does **not** belong where it is.
 
-# Platform Calibration Rule
+## Platform Calibration Rule
 
 When drafting a new policy item within an existing platform, the drafter must calibrate against the surrounding platform corpus rather than relying on the most recently drafted item alone.
 
 * New entries should match the established level of Tier-3 density, Tier-4 depth, and analytical cadence already present in comparable sections of the platform.
 * Structural compliance with the tier rules is necessary but not sufficient; a draft also fails if it is formally compliant but stylistically or analytically out of character with the surrounding platform.
 * Where the platform already shows a stable pattern for similar reforms, that pattern should be treated as the default unless there is a clear reason to depart from it.
+
+## Government Level Terminology Rule
+
+Use the plainest term that still identifies the correct level of government:
+
+* Use **federal** as the default adjective for national Australian government action in public-facing policy text.
+* Use **the federal government** when the sentence needs a clear actor.
+* Use **national** when referring to a system, standard, framework, benchmark, or rule that applies across Australia, especially where states and territories remain involved in delivery.
+* Use **Commonwealth** only when the term itself requires it or when legal/institutional precision would be lost: Commonwealth funding agreements, Commonwealth institutions, Commonwealth powers, Commonwealth records, a specific Commonwealth-state division of responsibility, or official program names such as Commonwealth Rent Assistance.
+* Avoid using **Commonwealth** as a general-purpose synonym for **the federal government** in explanatory prose. It often makes sentences sound legalistic and longer than necessary.
+
+Prefer direct constructions:
+
+* Use **actor-led phrasing** when the responsible institution needs to be clear.
+
+  * **The federal government would publish demand projections...**
+  * not **Implementation would require the Commonwealth to publish demand projections...**
+
+* Use **mechanism-led phrasing** when the actor is obvious from the policy context. Mechanism-led phrasing should still use clear action verbs where possible; do not turn active reforms into passive noun lists.
+
+  * **Funding, provider standards, workforce requirements, and compliance powers would be updated together...**
+  * **Bring in stronger visa protections, coordinate enforcement, and increase liability...**
+  * not **Implementation would require the Commonwealth to update aged care funding...**
+  * not **Funding recalibration, regulatory strengthening, and staged compliance enforcement.**
+
+* Use **federal legislation**, **federal law**, and **national standards** unless **Commonwealth** is needed for a specific institutional term, program name, funding agreement, record type, power, or Commonwealth-state distinction.
+
+  * **Federal legislation would...** over **Commonwealth legislation would...**
+  * **National standards would...** over **Commonwealth standards would...**
+
+The test is not whether the sentence names the actor. The test is whether it states the action plainly. Avoid both clunky actor-led phrasing and compressed bureaucratic noun stacks.
 
 ---
 
@@ -874,6 +907,7 @@ If Tier-4 content fails:
 * ☐ Removing Tier-2 does not alter why Tier-3 exists
 * ☐ Tier-1 still makes sense on its own
 * ☐ Tier-1 scope must not be broader than the legislative or institutional domain defined in Tier-2
+* ☐ Government-level terms are used consistently: **federal** for plain public-facing national action, **national** for Australia-wide systems or standards, and **Commonwealth** only where legal or institutional precision is needed
 
 **AUTO-FAIL if ANY are present:**
 
@@ -881,6 +915,7 @@ If Tier-4 content fails:
 * Tier-1 requiring explanation to understand "what"
 * Tier-2 persuading rather than describing
 * Tier-3 explaining mechanics
+* Unnecessary use of **Commonwealth** where **federal**, **national**, or **the federal government** would be clearer and no legal precision is gained
 
 ---
 
