@@ -89,7 +89,7 @@ The evidence base includes income-floor trials, negative income tax experiments,
 
 **Implementation outline**
 
-Implementation is sequenced around legislative consolidation of baseline payments, integration with existing tax and reporting systems, and a managed transition period to prevent duplication or income gaps. Dependencies include accurate income data flows, agency coordination, and clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
+Baseline payments would be consolidated in legislation, tax and reporting systems integrated, and the transition staged to prevent duplication or income gaps. Delivery depends on accurate income data flows, agency coordination, and a clear separation between baseline and supplementary supports. Detailed operational delivery is handled through a separate Delivery Plan document.
 
 **Long-term indexation and productivity link**
 
@@ -140,7 +140,7 @@ High-income economies with sector-level wage coordination show stronger middle-i
 
 **Implementation outline**
 
-Implementation focuses on legislative recognition of sector-level bargaining councils, accreditation and governance standards for representative bodies, and expanded coordination powers for the Fair Work Commission, with detailed delivery handled through industrial relations legislation.
+Sector-level bargaining councils would be recognised in law, representative bodies accredited under governance standards, and Fair Work Commission coordination powers expanded through industrial relations legislation.
 
 ---
 </details>
@@ -255,7 +255,7 @@ The main risk is transition confusion as compulsory use ends. Monitoring should 
 
 **Implementation outline**
 
-Regulatory change to payment conditions and provider communication.
+Payment conditions and provider communications would be updated as compulsory use ends.
 
 ---
 </details>
@@ -292,18 +292,18 @@ Risks include provider capacity constraints and uneven uptake. Failure indicator
 
 **Evidence and precedent**
 
-Universal coverage models clearly demonstrate reduced long-term costs and improved population health outcomes over time.
+Universal coverage models support earlier treatment, fewer cost barriers, better health outcomes, and lower long-term system costs.
 
 **Implementation outline**
 
-Service inclusion staged by care type alongside provider incentive alignment.
+Dental and mental health services would be added in stages, with provider incentives aligned as coverage expands.
 
 ---
 </details>
 
 ### **Make Health Care Keep Up With Population Growth**
 
-1. National health workforce and service-capacity planning will be tied to population growth through regular demand projections, training and placement targets, service-capacity benchmarks, and Commonwealth funding agreements that align workforce, training, and infrastructure growth with projected community need.
+1. National health workforce and service-capacity planning will be tied to population growth through regular demand projections, training and placement targets, service-capacity benchmarks, and federal funding agreements that align workforce, training, and infrastructure growth with projected community need.
 
    1. Australians will be less likely to face longer waits and thinner services as population growth puts pressure on the health system.
    2. Growing communities will be more likely to see health capacity planned before shortages become acute.
@@ -326,7 +326,7 @@ This reform is about tying health workforce and service-capacity planning to pro
 
 **Federal role**
 
-The Commonwealth does not run every part of the health system, but it does shape the national workforce and service picture through Medicare, university and training settings, primary care policy, and intergovernmental funding agreements. That makes it the right level of government to require a planning framework that links workforce supply, training pipelines, and service benchmarks to projected population demand. The National Health Reform Agreement already provides a federal-state structure for public hospital funding and roles; this reform would make demand-linked planning a more explicit part of that structure.
+The federal government does not run every part of the health system, but it shapes the national workforce and service picture through Medicare, university and training settings, primary care policy, and intergovernmental funding agreements. That makes it the right level of government to require a planning framework that links workforce supply, training pipelines, and service benchmarks to projected population demand. The National Health Reform Agreement already provides a federal-state structure for public hospital funding and roles; this reform would make demand-linked planning a more explicit part of that structure.
 
 **Geographic distribution**
 
@@ -476,7 +476,7 @@ Stamp duty functions as a transaction barrier that suppresses mobility and disto
 
 **Structural framework**
 
-The Commonwealth legislation establishes:
+Federal legislation establishes:
 - A mandatory land-only valuation base (excluding improvements).
 - Universal application across residential, commercial, industrial, and agricultural land categories.
 - Prohibition of residential transaction taxes once a compliant land tax is in place.
@@ -560,7 +560,7 @@ Risks include lock-in effects if poorly designed, or loopholes that preserve the
 
 **Implementation outline**
 
-Implementation is delivered through amendments to CGT discount provisions, indexation factor definitions, transitional acquisition-date rules, and compliance guidance to support consistent application.
+CGT discount provisions, indexation factor definitions, transitional acquisition-date rules, and compliance guidance would be updated to support consistent application.
 
 ---
 </details>
@@ -600,7 +600,7 @@ Risks include avoidance via reclassification of expenses or restructuring of own
 
 **Implementation outline**
 
-Implementation proceeds through tax law amendments establishing quarantining, transitional rules for existing carried-forward losses, and integrity provisions for common avoidance structures.
+Tax law amendments would establish quarantining, transitional rules for existing carried-forward losses, and integrity provisions for common avoidance structures.
 
 ---
 </details>
@@ -641,7 +641,7 @@ Risks include valuation disputes, gaming around rezoning boundaries, or politica
 
 **Implementation outline**
 
-Implementation requires a valuation method for pre- and post-rezoning land values, uplift assessment notices, a structured deferral pathway, and a clear interaction rule with Land Value Tax so the two taxes do not duplicate the same base at the same event.
+Valuation methods, uplift assessment notices, deferral rules, and Land Value Tax interaction rules would be defined so the two taxes do not duplicate the same base at the same event.
 
 ---
 </details>
@@ -678,7 +678,7 @@ Australia’s major cities contain substantial amounts of well-located, well-ser
 
 **Structural framework**
 
-The Commonwealth requires states to embed minimum as-of-right permissions within defined priority geographies, ensuring that housing growth can occur where infrastructure already exists.
+Federal rules require states to embed minimum as-of-right permissions within defined priority geographies, ensuring that housing growth can occur where infrastructure already exists.
 
 **Minimum permission geographies (baseline requirements)**
 
@@ -712,7 +712,7 @@ Risks include token compliance (permissions that are technically legal but pract
 
 **Implementation outline**
 
-Commonwealth legislation defines priority geographies and compliance certification. States incorporate minimum permissions into planning schemes, subject to federal funding linkage where applicable.
+Federal legislation defines priority geographies and compliance certification. States incorporate minimum permissions into planning schemes, subject to federal funding linkage where applicable.
 
 ---
 </details>
@@ -740,7 +740,7 @@ Even where zoning permits housing, discretionary assessment and unpredictable de
 
 **Structural framework**
 
-The Commonwealth requires states to implement a code-complying pathway covering common redevelopment typologies. The pathway specifies objective standards, fixed decision timeframes, and limited refusal grounds.
+Federal rules require states to implement a code-complying pathway covering common redevelopment typologies. The pathway specifies objective standards, fixed decision timeframes, and limited refusal grounds.
 
 **Covered typologies (baseline)**
 
@@ -773,7 +773,7 @@ Risks include code capture, weak enforcement, or “shadow discretion” through
 
 **Implementation outline**
 
-Implementation is delivered through state planning law amendments establishing code standards, statutory clocks, and an escalation pathway, with compliance reporting and public metrics.
+State planning law would establish code standards, statutory clocks, an escalation pathway, compliance reporting, and public metrics.
 
 ---
 </details>
@@ -844,7 +844,7 @@ Risks include over-concentration in specific dwelling types, gaming of bedroom c
 
 **Implementation outline**
 
-Commonwealth legislation defines payment amounts, uplift criteria, indexing method, and reporting requirements. States and councils participate through automatic eligibility upon compliance with minimum permission and fast-track reforms.
+Federal legislation defines payment amounts, uplift criteria, indexing method, and reporting requirements. States and councils participate through automatic eligibility upon compliance with minimum permission and fast-track reforms.
 
 ---
 </details>
@@ -950,7 +950,7 @@ Excessive regulatory burden could discourage rental supply if poorly calibrated.
 
 **Implementation outline**
 
-Commonwealth legislation establishes funding-linked national tenancy benchmarks and Rent Assistance reforms. States retain tribunal administration subject to baseline standards.
+Federal legislation establishes funding-linked national tenancy benchmarks and Rent Assistance reforms. States retain tribunal administration subject to baseline standards.
 
 ---
 </details>
@@ -998,7 +998,7 @@ Risks include under-utilised stations, speculative land inflation prior to deliv
 
 **Implementation outline**
 
-Commonwealth-led corridor development with staged construction, priority routing, and binding housing capacity conditions at designated stops.
+Federal-led corridor development would use staged construction, priority routing, and binding housing capacity conditions at designated stops.
 
 ---
 </details>
@@ -1008,7 +1008,7 @@ Making Australia a country where wealth is earned by creating value, not by gami
 
 ### **Turn Resource Wealth into Sovereign Wealth**
 
-1. Reform Commonwealth resource taxation and royalty frameworks to ensure economic rent from the extraction of publicly owned natural resources is properly captured and a defined share is directed into a national sovereign wealth fund.
+1. Reform federal resource taxation and royalty frameworks to ensure economic rent from the extraction of publicly owned natural resources is properly captured and a defined share is directed into a national sovereign wealth fund.
 
    1. Public revenue will better reflect the true value of finite national resources when extraction includes full economic rent capture.
    2. Long-term fiscal stability will strengthen when commodity windfalls are converted into diversified financial assets rather than consumed in-year.
@@ -1034,7 +1034,7 @@ Australia’s natural resources are publicly owned. When royalty systems or taxa
 
 **Sovereign wealth structure**
 
-1. A defined share of Commonwealth-captured resource rent is credited to a legislated sovereign wealth fund.
+1. A defined share of federally captured resource rent is credited to a legislated sovereign wealth fund.
 2. Fund capital is invested in diversified global assets under independent governance arrangements.
 3. Withdrawal rules are rule-based and linked to long-term sustainable earnings rather than commodity revenue in-year.
 4. Capital drawdown is restricted to defined fiscal conditions to prevent routine budget substitution.
@@ -1055,7 +1055,7 @@ Risks include rate miscalibration that suppresses marginal projects, political p
 
 **Implementation outline**
 
-Legislation amends resource profit taxation provisions, establishes rent adjustment triggers, creates the sovereign wealth fund structure with defined governance rules, and specifies deposit and withdrawal mechanisms consistent with long-term capital preservation.
+Resource tax legislation would amend profit-tax provisions, establish rent adjustment triggers, create the sovereign wealth fund structure with defined governance rules, and specify deposit and withdrawal mechanisms consistent with long-term capital preservation.
 
 ---
 </details>
@@ -1168,14 +1168,14 @@ Trust structures are a recognised pathway for tax minimisation and income splitt
 
 **Implementation outline**
 
-Legislation reforms discretionary trust distribution integrity rules, strengthens personal-services and income-conversion integrity provisions, adjusts large-balance superannuation concession settings, and establishes a minimum effective tax framework for ultra-high-net-worth individuals with clear thresholds, definitions, and anti-avoidance provisions.
+Legislation would reform discretionary trust distribution integrity rules, strengthen personal-services and income-conversion integrity provisions, adjust large-balance superannuation concession settings, and establish a minimum effective tax framework for ultra-high-net-worth individuals with clear thresholds, definitions, and anti-avoidance provisions.
 
 ---
 </details>
 
 ### **End Fossil Fuel Subsidies**
 
-1. Repeal Commonwealth tax expenditures, budgetary programs, and concessional treatment that directly or indirectly reduce the cost of fossil fuel exploration, production, or consumption.
+1. Repeal federal tax expenditures, budgetary programs, and concessional treatment that directly or indirectly reduce the cost of fossil fuel exploration, production, or consumption.
 
    1. Energy markets will reflect more accurate price signals when public subsidies no longer cushion fossil fuel production and use.
    2. Public expenditure will better align with long-term decarbonisation commitments when support is not directed toward high-emissions activities.
@@ -1333,7 +1333,7 @@ This measure interacts most strongly with competition policy and corporate tax i
 
 **Implementation outline**
 
-Legislation would need clear definitions for corporate coverage (including group structures), the reference inflation statistic, the baseline company rate, and the method for applying and unwinding the temporary uplift, supported by integrity alignment with existing anti-avoidance frameworks.
+Legislation would define corporate coverage, group treatment, the reference inflation statistic, the baseline company rate, and the method for applying and unwinding the temporary uplift, supported by alignment with existing anti-avoidance frameworks.
 
 ---
 </details>
@@ -1382,7 +1382,7 @@ This measure interacts with unfair contract term rules, procurement standards, a
 
 **Implementation outline**
 
-Legislation would need to define the covered large-customer class, the protected small-business supplier class, the maximum payment period, the event that starts the payment clock, the treatment of disputed invoices and staged contracts, and the form of automatic penalties, supported by complaint and enforcement powers that do not rely entirely on supplier-initiated litigation.
+Legislation would define the covered large-customer class, protected small-business supplier class, maximum payment period, payment-clock trigger, treatment of disputed invoices and staged contracts, and the form of automatic penalties, supported by complaint and enforcement powers that do not rely entirely on supplier-initiated litigation.
 
 ---
 </details>
@@ -1429,7 +1429,7 @@ This measure interacts closely with merger control, misuse of market power rules
 
 **Implementation outline**
 
-Legislation would need to define the covered corporate class, require sector allocation and competitive threshold determination, specify how market share is measured for tax purposes, and establish integrity treatment for corporate groups, related entities, and multi-sector firms, with ACCC and tax administration roles clearly separated but operationally aligned.
+Legislation would define the covered corporate class, require sector allocation and competitive threshold determination, specify how market share is measured for tax purposes, and establish integrity treatment for corporate groups, related entities, and multi-sector firms, with ACCC and tax administration roles clearly separated but operationally aligned.
 
 ---
 </details>
@@ -1475,7 +1475,7 @@ This measure interacts with telecommunications regulation, competition law, and 
 
 **Implementation outline**
 
-Legislation would need to define prohibited discriminatory treatment, set narrow technical-management exceptions, establish transparency requirements for traffic management and service quality, and give regulators power to investigate practical discrimination across retail, wholesale, and affiliated service arrangements.
+Legislation would define prohibited discriminatory treatment, set narrow technical-management exceptions, establish transparency requirements for traffic management and service quality, and give regulators power to investigate practical discrimination across retail, wholesale, and affiliated service arrangements.
 
 ---
 </details>
@@ -1522,7 +1522,7 @@ This measure interacts with competition policy, consumer protection, and digital
 
 **Implementation outline**
 
-Legislation would need to define necessity-based collection limits, regulate retention and commercial use standards, establish enforceable user rights over personal data, set practical compliance standards for portability and deletion, and provide regulator powers to audit data practices and penalise evasive service design.
+Legislation would define necessity-based collection limits, regulate retention and commercial-use standards, establish enforceable user rights over personal data, set practical standards for portability and deletion, and give regulators power to audit data practices and penalise evasive service design.
 
 ---
 </details>
@@ -1571,7 +1571,7 @@ This measure interacts with unfair contract term law, small business commissione
 
 **Implementation outline**
 
-Legislation would need to define the covered small-business class, the types of contract disputes eligible for the pathway, the scope of available remedies, the applicable cost caps and time limits, and the institutional body responsible for hearing disputes, supported by simple filing processes and enforceable outcomes.
+Legislation would define the covered small-business class, eligible contract disputes, available remedies, cost caps, time limits, and the body responsible for hearing disputes, supported by simple filing processes and enforceable outcomes.
 
 ---
 </details>
@@ -1618,7 +1618,7 @@ This measure interacts with unfair contract protections, dispute pathways, and p
 
 **Implementation outline**
 
-Legislation or intergovernmental agreements would need to define agency responsibilities for templates, guidance, and review services, set minimum service standards for review accessibility and turnaround, and establish processes for updating standard materials to reflect changing law and market practice.
+Legislation or intergovernmental agreements would define agency responsibilities for templates, guidance, and review services, set minimum service standards for review accessibility and turnaround, and establish processes for updating standard materials to reflect changing law and market practice.
 
 ---
 </details>
@@ -1667,7 +1667,7 @@ This measure interacts with competition law, small business dispute processes, a
 
 **Implementation outline**
 
-Legislation would need to define revised protection periods, tighten claim-scope rules, establish active-use conditions for enforcement, regulate long-duration exclusive licensing, broaden fair-use exceptions, and create capped-cost procedures for smaller firms, with judicial and administrative guidance aligned to the new standards.
+Legislation would define revised protection periods, tighten claim-scope rules, establish active-use conditions for enforcement, regulate long-duration exclusive licensing, broaden fair-use exceptions, and create capped-cost procedures for smaller firms, with judicial and administrative guidance aligned to the new standards.
 
 ---
 </details>
@@ -1724,7 +1724,7 @@ This reform interacts with redistribution rules, party nomination processes, cam
 
 **Implementation outline**
 
-Implementation would require legislation redefining House electorates, district magnitude, ballot structure, local allocation rules, the national under-representation correction process, nomination requirements for candidate blocks and independents, and the transition arrangements for moving from the current single-member structure to the Wolfendale System.
+Legislation would redefine House electorates, district magnitude, ballot structure, local allocation rules, the national under-representation correction process, nomination requirements for candidate blocks and independents, and the transition arrangements for moving from the current single-member structure to the Wolfendale System.
 
 **Reference**
 
@@ -1841,7 +1841,7 @@ Legislation should align to the system already shown to work effectively in Sout
 
 1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, establish statutory capability-linked funding safeguards, and mandate structured public reporting of enforcement activity.
 
-   1. Serious corruption risks within the Commonwealth will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
+   1. Serious corruption risks within the federal government will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
    2. Corruption investigations will progress more effectively when the Commission has stronger investigative tools and clear pathways to prosecution.
    3. Public confidence will improve when enforcement activity is visible through consistent, structured reporting rather than opaque discretion.
    4. Deterrence will strengthen when corrupt conduct is more likely to be investigated and referred for action.
@@ -1878,7 +1878,7 @@ An effective federal anti-corruption body requires clarity of jurisdiction, robu
 
 **Interaction with electoral transparency reforms**
 
-Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the Commonwealth’s investigative response capacity.
+Enhanced donation transparency increases visibility of relationships that may warrant scrutiny, while NACC reform strengthens the federal investigative response capacity.
 
 **Risk and failure modes**
 
@@ -1944,7 +1944,7 @@ This reform interacts with anti-corruption oversight, workplace health and safet
 
 **Implementation outline**
 
-Implementation would require consolidating existing protections into a single national framework, defining protected disclosures and immunities consistently across sectors, establishing the Whistleblower Protection Authority and its powers, creating support and reward mechanisms, imposing positive duties on organisations, and aligning enforcement settings with existing integrity, workplace, and regulatory systems.
+A single national framework would consolidate existing protections, define protected disclosures and immunities consistently across sectors, establish the Whistleblower Protection Authority and its powers, create support and reward mechanisms, impose positive duties on organisations, and align enforcement with existing integrity, workplace, and regulatory systems.
 
 **Reference**
 
@@ -1995,7 +1995,7 @@ This measure interacts with general competition law, media ownership rules, and 
 
 **Implementation outline**
 
-Legislation would need to define the covered media classes, the concentration metrics used for national and regional assessment, the control tests that trigger divestiture or structural separation, and the conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
+Legislation would define the covered media classes, concentration metrics for national and regional assessment, control tests that trigger divestiture or structural separation, and conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
 
 ---
 </details>
@@ -2042,7 +2042,7 @@ This measure interacts with media competition, consumer payment systems, and pri
 
 **Implementation outline**
 
-Legislation would need to define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
+Legislation would define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
 
 ---
 </details>
@@ -2072,7 +2072,7 @@ Online gambling is designed to reach people constantly, push repeated betting, a
 
 **Federal scope**
 
-This reform focuses on the parts of the gambling system that operate nationally rather than venue by venue. Online wagering services, digital advertising, self-exclusion systems, payment pathways, and offshore access all cross state borders as a matter of course. That makes them a Commonwealth problem. A national framework can set one set of rules for how online gambling is marketed, how operators must treat customers, how self-exclusion works, how harmful products are restricted, and how illegal offshore services are blocked.
+This reform focuses on the parts of the gambling system that operate nationally rather than venue by venue. Online wagering services, digital advertising, self-exclusion systems, payment pathways, and offshore access all cross state borders as a matter of course. That makes them a federal responsibility. A national framework can set one set of rules for how online gambling is marketed, how operators must treat customers, how self-exclusion works, how harmful products are restricted, and how illegal offshore services are blocked.
 
 **Advertising and inducements**
 
@@ -2092,7 +2092,7 @@ Even with the system working as intended, some gambling harm will still occur be
 
 **Implementation outline**
 
-Implementation can be staged through amendments to the Interactive Gambling Act and related communications and payments law, with the advertising ban phased in over a defined transition period and the consumer-protection architecture commencing on a fixed national timetable. The legislative sequence would usually begin with inducements, identity verification, and regulator powers, then move to the full advertising prohibition and product bans, with data reporting and enforcement obligations applied across licensed operators from the start date. This sequencing mirrors the way the Murphy framework separates immediate restrictions from broader structural reform.
+Amendments to the Interactive Gambling Act and related communications and payments law would stage the advertising ban over a defined transition period and commence the consumer-protection architecture on a fixed national timetable. The legislative sequence would usually begin with inducements, identity verification, and regulator powers, then move to the full advertising prohibition and product bans, with data reporting and enforcement obligations applied across licensed operators from the start date. This sequencing mirrors the way the Murphy framework separates immediate restrictions from broader structural reform.
 
 **Reference**
 
@@ -2103,12 +2103,12 @@ Implementation can be staged through amendments to the Interactive Gambling Act 
 
 ### **Crack Down on Coercive Control and Sexual Violence**
 
-1. Federal family law, national online safety regulation, Commonwealth-funded domestic and sexual violence responses, and migration consequences for non-citizens convicted of serious sexual violence will be aligned around coercive-control-aware and trauma-informed victim-survivor safety standards by strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and creating mandatory visa cancellation consequences for specified serious sexual violence and defined serious family-violence and coercive-control convictions where required by migration law.
+1. Federal family law, national online safety regulation, federally funded domestic and sexual violence responses, and migration consequences for non-citizens convicted of serious sexual violence will be aligned around coercive-control-aware and trauma-informed victim-survivor safety standards by strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and creating mandatory visa cancellation consequences for specified serious sexual violence and defined serious family-violence and coercive-control convictions where required by migration law.
 
    1. Victim-survivors will face fewer federal systems that treat coercive control and sexual violence as isolated incidents instead of patterns of abuse.
    2. People leaving abusive relationships will encounter safer court processes and stronger protection against abuse carried through digital tools and online platforms.
    3. Family law decisions will better reflect the safety, economic, and parenting impacts of family violence, coercive control, and sexual abuse.
-   4. Commonwealth-funded services will be more consistent in putting victim-survivor safety ahead of fragmented case handling or procedural blind spots.
+   4. Federally funded services will be more consistent in putting victim-survivor safety ahead of fragmented case handling or procedural blind spots.
    5. Federal responses will better match the lived reality that coercive control and sexual violence often overlap and continue after separation.
    6. Victim-survivors and the wider community will have stronger confidence that serious sexual violence by non-citizens is treated as grounds to lose the privilege of staying in Australia.
 
@@ -2123,7 +2123,7 @@ Coercive control and sexual violence are often not one-off events. They are patt
 
 **Federal scope**
 
-This reform is aimed at the parts of the system the Commonwealth actually controls. It does not pretend Canberra can rewrite every state criminal offence. It focuses on family law, federal court practice, online safety regulation, migration consequences for non-citizens convicted of serious sexual violence, and the standards attached to Commonwealth-funded services. Those are all places where the federal government can make victim-survivor safety more real or more fragile.
+This reform is aimed at the parts of the system the federal government actually controls. It does not pretend Canberra can rewrite every state criminal offence. It focuses on family law, federal court practice, online safety regulation, migration consequences for non-citizens convicted of serious sexual violence, and the standards attached to federally funded services. Those are all places where the federal government can make victim-survivor safety more real or more fragile.
 
 **Family law and courts**
 
@@ -2135,7 +2135,7 @@ Digital tools now carry a large part of abuse. Tracking, harassment, image-based
 
 **Victim-survivor safety standards**
 
-Commonwealth-funded services should be judged against whether they improve safety, recognise patterns of abuse, and reduce opportunities for systems abuse. That means clearer expectations around trauma-informed practice, perpetrator-pattern awareness, coordination, and safe referral pathways. A funded service should not be able to satisfy formal requirements while still missing the reality of the abuse it is supposed to respond to.
+Federally funded services should be judged against whether they improve safety, recognise patterns of abuse, and reduce opportunities for systems abuse. That means clearer expectations around trauma-informed practice, perpetrator-pattern awareness, coordination, and safe referral pathways. A funded service should not be able to satisfy formal requirements while still missing the reality of the abuse it is supposed to respond to.
 
 **Migration consequences**
 
@@ -2143,7 +2143,7 @@ Migration law should make specified serious sexual-violence, serious family-viol
 
 **Implementation outline**
 
-Implementation would require amendments to Commonwealth legislation, federal court rules, online safety regulation, migration settings, and funding agreements so the federal system applies a consistent victim-survivor safety standard across family law, digital abuse, service delivery, and migration consequences for serious sexual violence.
+Federal legislation, court rules, online safety regulation, migration settings, and funding agreements would be updated so the federal system applies a consistent victim-survivor safety standard across family law, digital abuse, service delivery, and migration consequences for serious sexual violence.
 
 ---
 </details>
@@ -2170,7 +2170,7 @@ Punishing personal drug use often adds criminal records, fear of police, and lon
 
 **National coordination**
 
-Drug policy is split across jurisdictions, but the Commonwealth still sets national direction through strategy, funding, controlled substances law, health policy, and intergovernmental agreements. A national framework matters because people should not face completely different treatment for the same low-level conduct depending on which border they cross. The aim is to set one health-first direction and use Commonwealth leverage to pull the rest of the system into line.
+Drug policy is split across jurisdictions, but the federal government still sets national direction through strategy, funding, controlled substances law, health policy, and intergovernmental agreements. A national framework matters because people should not face completely different treatment for the same low-level conduct depending on which border they cross. The aim is to set one health-first direction and use federal leverage to pull the rest of the system into line.
 
 **Cannabis regulation**
 
@@ -2186,7 +2186,7 @@ Historical personal-use cannabis records continue to block work, housing, and or
 
 **Implementation outline**
 
-Implementation would require Commonwealth law to create the national cannabis framework, remove relevant Commonwealth criminal penalties for personal possession and use, establish expungement pathways for historical Commonwealth cannabis offences, and negotiate national agreements that tie federal funding and reform incentives to aligned harm-minimisation settings in state and territory systems.
+Federal law would create the national cannabis framework, remove relevant federal criminal penalties for personal possession and use, establish expungement pathways for historical Commonwealth cannabis offences, and support national agreements that tie federal funding and reform incentives to aligned harm-minimisation settings in state and territory systems.
 
 ---
 </details>
@@ -2216,7 +2216,7 @@ The framework should be built around a defined set of capacity measures that can
 
 **National coordination**
 
-The Commonwealth controls migration settings, but many of the systems that absorb population growth are planned or delivered with the states, territories, and local communities. A workable framework therefore needs shared data, clear responsibilities, and regular review so migration planning is tied to real delivery conditions rather than to assumptions made in Canberra alone.
+The federal government controls migration settings, but many of the systems that absorb population growth are planned or delivered with the states, territories, and local communities. A workable framework therefore needs shared data, clear responsibilities, and regular review so migration planning is tied to real delivery conditions rather than to assumptions made in Canberra alone.
 
 **Planning discipline**
 
@@ -2316,7 +2316,7 @@ Even with strong local coordination, settlement choices will still involve trade
 
 **Implementation outline**
 
-Settlement-ready communities would be designated against published criteria, with funding and placements aligned to those communities and expansion built from existing settlement locations, regional partnerships, and community-led models. Funding and placement decisions should be linked so local support capacity grows with the settlement task rather than trailing behind it.
+Settlement-ready communities would be designated against published criteria, with funding and placements aligned to those communities and expansion built from existing settlement locations, regional partnerships, and community-led models. Funding and placements should remain linked so local support capacity grows with the settlement task rather than trailing behind it.
 
 **Reference**
 
@@ -2358,7 +2358,7 @@ A well-designed system still needs lawful ways to deal with genuine changes in c
 
 **Implementation outline**
 
-The Government would need to review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
+The federal government would review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
 
 **Reference**
 
@@ -2400,15 +2400,15 @@ Some infrastructure does not behave like a normal competitive market. Monopoly e
 
 **Shared public ownership**
 
-Where an essential asset serves both national and state-level public functions, public ownership may be structured jointly between the Commonwealth and participating states to make privatisation harder and preserve multi-level public control. Co-ownership should not be treated as a safeguard on its own, so it should be backed by statutory sale restraints, high approval thresholds, or both. This is most useful for monopoly infrastructure and shared backbone systems where long-term public control matters more than ownership churn.
+Where an essential asset serves both national and state-level public functions, public ownership may be structured jointly between the federal government and participating states to make privatisation harder and preserve multi-level public control. Co-ownership should not be treated as a safeguard on its own, so it should be backed by statutory sale restraints, high approval thresholds, or both. This is most useful for monopoly infrastructure and shared backbone systems where long-term public control matters more than ownership churn.
 
 **Delivery discipline**
 
-Public ownership should be tied to a clear test. If the service should be universal, if public data trust is central to its operation, or if the system functions as a natural monopoly or critical backbone, the Commonwealth should default toward public ownership or direct public delivery. If those conditions are not met, the case for public control is weaker and should be argued separately.
+Public ownership should be tied to a clear test. If the service should be universal, if public data trust is central to its operation, or if the system functions as a natural monopoly or critical backbone, the federal government should default toward public ownership or direct public delivery. If those conditions are not met, the case for public control is weaker and should be argued separately.
 
 **Implementation outline**
 
-The Commonwealth government would build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
+The federal government would build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
 
 ---
 </details>
@@ -2462,7 +2462,7 @@ Federal law would define where secular and non-discriminatory rules apply, narro
 
 ### **Set National Animal Welfare Standards**
 
-1. Establish a statutory National Office of Animal Welfare to develop, coordinate, monitor, and publicly report on national animal welfare standards, advise on Commonwealth laws and trade-exposed animal industries, and drive consistent welfare benchmarks across jurisdictions and sectors through a renewed national animal welfare framework.
+1. Establish a statutory National Office of Animal Welfare to develop, coordinate, monitor, and publicly report on national animal welfare standards, advise on federal laws and trade-exposed animal industries, and drive consistent welfare benchmarks across jurisdictions and sectors through a renewed national animal welfare framework.
 
    1. Australians will see a clearer and more consistent baseline of animal welfare across the country.
    2. Consumers will have stronger confidence that products sold nationwide are subject to the same minimum welfare expectations.
@@ -2484,9 +2484,9 @@ Animal welfare rules in Australia are fragmented across jurisdictions, industrie
 
 The office would not replace every existing animal welfare law. Its role is to create a clearer national baseline by coordinating standards, tracking outcomes, and reducing the current mix of uneven rules and patchy reporting. That matters most where welfare expectations should not change sharply from one border to another or from one sector to the next without a clear reason.
 
-**Commonwealth role**
+**Federal role**
 
-The Commonwealth already makes decisions that affect animal welfare through trade, exports, national industry settings, procurement, and other federal laws. A national office gives those decisions a dedicated source of welfare advice and scrutiny. It also creates a clearer national point of coordination where animal welfare issues cut across more than one jurisdiction or industry.
+The federal government already makes decisions that affect animal welfare through trade, exports, national industry settings, procurement, and other federal laws. A national office gives those decisions a dedicated source of welfare advice and scrutiny. It also creates a clearer national point of coordination where animal welfare issues cut across more than one jurisdiction or industry.
 
 **Transparency and scrutiny**
 
@@ -2498,7 +2498,7 @@ A clearer national framework reduces the advantage held by operators relying on 
 
 **Implementation outline**
 
-The office would be created by Commonwealth law with defined functions in standard-setting coordination, monitoring, reporting, and advice. Its reporting duties should be mandatory and public. Its advisory role should apply across relevant Commonwealth decisions, especially where trade, exports, or federally regulated animal uses are involved. Detailed enforcement would remain with the institutions that already hold those powers unless changed by later reform.
+Federal law would create the office with defined functions in standard-setting coordination, monitoring, reporting, and advice. Its reporting duties should be mandatory and public. Its advisory role should apply across relevant federal decisions, especially where trade, exports, or federally regulated animal uses are involved. Detailed enforcement would remain with the institutions that already hold those powers unless changed by later reform.
 
 ---
 </details>
@@ -2552,7 +2552,7 @@ Some universities are already deeply reliant on international fee revenue, so th
 
 **Implementation outline**
 
-The Commonwealth would establish the contribution-credit system in higher-education funding law, define eligible employer contributions and credit-earning activities, create the transition fund and levy settings, and align provider regulation and student visa integrity rules to the rebuilt funding model. The funding framework should also include anti-backsliding rules so universities are not pushed back into migration-volume dependence once the transition period ends.
+The federal government would establish the contribution-credit system in higher-education funding law, define eligible employer contributions and credit-earning activities, create the transition fund and levy settings, and align provider regulation and student visa integrity rules to the rebuilt funding model. The funding framework should also include anti-backsliding rules so universities are not pushed back into migration-volume dependence once the transition period ends.
 
 **Reference**
 
