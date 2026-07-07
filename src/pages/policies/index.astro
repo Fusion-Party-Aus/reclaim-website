@@ -6,7 +6,7 @@ import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
-import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
+import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
 import { getPolicies, getPoliciesPage } from '../../lib/sanity'
 import '../../styles/global.css'
 
@@ -18,10 +18,18 @@ interface Policy {
   pillar?: string
   category?: string
   summary: string
-  keyPoints?: string[]
+  hook?: string
+  keyPoints?: unknown[]
   cost?: string
   funding?: string
   body?: unknown
+}
+
+interface ProofStat {
+  number: string
+  label: string
+  icon?: string
+  variant?: 'magenta' | 'mint' | 'yellow'
 }
 
 const policies = await getPolicies({ thisTerm: true })
@@ -30,6 +38,40 @@ const pageData = await getPoliciesPage()
 const title = pageData?.title || 'Our Policies'
 const subtitle =
   pageData?.subtitle || "Evidence-based solutions. We've done the maths. No bullshit."
+const seoDescription =
+  pageData?.seoDescription ||
+  "Victoria is being ripped off. See Fusion Party Victoria's fully costed policy platform to fix housing, transport, tax, and democracy."
+const manifesto = pageData?.manifesto || {
+  heading: 'They built the system to take from you.',
+  body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
+  punchline: 'The fix is below. Fully costed. No bullshit.',
+}
+const proofStats: ProofStat[] = pageData?.proofStats || [
+  {
+    number: '$2M/day',
+    label: 'Flowing to Transurban from Victorian roads',
+    icon: 'mdi:cash-remove',
+    variant: 'magenta',
+  },
+  {
+    number: '42 years',
+    label: 'Of lottery revenue sold to a private operator in one deal',
+    icon: 'mdi:clock-alert',
+    variant: 'yellow',
+  },
+  {
+    number: '$199B',
+    label: 'State debt — while private operators keep the income',
+    icon: 'mdi:trending-up',
+    variant: 'mint',
+  },
+  {
+    number: '30,000',
+    label: 'Homes we can build and keep — without selling the upside',
+    icon: 'mdi:home-city',
+    variant: 'magenta',
+  },
+]
 const ctaSection = pageData?.ctaSection || {
   title: 'These Policies Can Win',
   body: "But only if we build a movement that can't be ignored. Join us.",
@@ -49,7 +91,6 @@ const PILLAR_ORDER = Object.keys(groupedPolicies).filter(
   (p) => Object.keys(groupedPolicies[p]).length > 0
 )
 
-// Design-system-aligned pillar config — accent variants from the Reclaim spectrum
 const pillarConfig: Record<
   string,
   { icon: string; variant: 'magenta' | 'mint' | 'yellow'; textColor: string }
@@ -98,133 +139,207 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 }))
 ---
 
-<BaseLayout
-  title={`${title} | Reignite Democracy`}
-  description="Evidence-based policies where we've done the maths — housing, tax justice, transport, renewables."
->
+<BaseLayout title={`${title} | Fusion Party Victoria`} description={seoDescription}>
   <Header />
-  <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
+  <main id="main-content">
+    <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
 
-  {/* ── Content + Sidebar ── */}
-  <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
-    <div class="min-w-0">
-      {
-        PILLAR_ORDER.map((pillar) => {
-          const cfg = getConfig(pillar)
-          return (
-            <section id={applyHash(pillar)} class="mb-12 scroll-mt-28">
-              <BrutalCard
-                variant="surface"
-                shadow={cfg.variant}
-                padding="md"
-                class="!p-0 overflow-hidden"
-              >
-                {/* Pillar header bar */}
-                <div
-                  class={`bg-${cfg.variant} border-b border-white/10 px-8 py-6 flex items-center gap-5`}
-                >
-                  <div class="p-3 bg-black/20 rounded-sm">
-                    <Icon name={cfg.icon} class={`w-8 h-8 ${cfg.textColor}`} />
-                  </div>
-                  <h2
-                    class={`text-2xl md:text-3xl font-display font-black uppercase leading-tight ${cfg.textColor}`}
-                  >
-                    {pillar}
-                  </h2>
-                </div>
-
-                <div class="p-6 md:p-8">
-                  {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
-                    <div
-                      id={applyHash(`${pillar}-${category}`)}
-                      class="mb-12 last:mb-0 scroll-mt-24"
-                    >
-                      {/* Category header */}
-                      <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                        <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
-                      </div>
-
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {catPolicies.map((policy, index) => {
-                          const accent = cardAccents[index % cardAccents.length]
-                          return (
-                            <BrutalCard
-                              id={policy.slug.current}
-                              variant="surface"
-                              shadow={accent}
-                              padding="sm"
-                              class="flex flex-col"
-                            >
-                              <div class="flex items-start justify-between gap-3 mb-3">
-                                <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
-                                  {policy.title}
-                                </h4>
-                                <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
-                                  <Icon
-                                    name={toIconName(policy.icon) as string}
-                                    class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-white'}`}
-                                  />
-                                </div>
-                              </div>
-
-                              <p class="text-sm font-semibold text-white/70 mb-4 flex-1 leading-snug">
-                                {policy.summary}
-                              </p>
-
-                              <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
-                                {policy.cost && (
-                                  <span class="text-xs font-black uppercase rounded-sm bg-yellow text-white px-2 py-1 flex items-center gap-1">
-                                    <Icon name="mdi:currency-usd" class="w-3 h-3" />
-                                    {policy.cost}
-                                  </span>
-                                )}
-                                <a
-                                  href={`/policies/${policy.slug.current}`}
-                                  class="ml-auto inline-flex items-center gap-1 text-xs font-black uppercase text-magenta hover:gap-2 transition-all"
-                                >
-                                  Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
-                                </a>
-                              </div>
-                            </BrutalCard>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </BrutalCard>
-            </section>
-          )
-        })
-      }
-
-      {/* ── CTA ── */}
-      <BrutalCard variant="black" shadow="mint" padding="lg" class="mt-4">
-        <BrutalBadge variant="magenta" class="mb-4">Join Us</BrutalBadge>
-        <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
-          {ctaSection.title}
-        </h2>
-        <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
-          {ctaSection.body}
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <BrutalButton variant="magenta" href="/get-involved" icon="mdi:account-plus">
-            Get Involved
-          </BrutalButton>
-          <BrutalButton
-            variant="black"
-            href="https://fusionparty.org.au/costings"
-            icon="mdi:calculator"
+    {/* ── Manifesto Strip ── */}
+    <div class="bg-black border-b-4 border-magenta">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
+        <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
+          <div class="max-w-3xl">
+            <h2
+              class="text-2xl md:text-4xl font-display font-black uppercase text-white leading-tight mb-5"
+            >
+              {manifesto.heading}
+            </h2>
+            <p
+              class="text-base md:text-lg font-semibold text-white/75 leading-relaxed border-l-4 border-magenta pl-5 mb-5"
+            >
+              {manifesto.body}
+            </p>
+            <p class="text-sm font-black uppercase tracking-widest text-magenta">
+              {manifesto.punchline}
+            </p>
+          </div>
+          <div
+            class="hidden lg:flex flex-col items-center justify-center w-32 h-32 bg-magenta rounded-sm shrink-0 self-center"
           >
-            We've Done the Maths
-          </BrutalButton>
+            <Icon name="mdi:fist" class="w-16 h-16 text-white" />
+          </div>
         </div>
-      </BrutalCard>
+      </div>
     </div>
 
-    {/* Sidebar */}
-    <Sidebar sections={sidebarSections} page="policies" />
-  </div>
+    {/* ── Proof Stats Strip ── */}
+    <div class="bg-surface-base border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
+        <div
+          class={`grid gap-3 ${proofStats.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}
+        >
+          {
+            proofStats.map((stat) => (
+              <StatCard
+                value={stat.number}
+                label={stat.label}
+                icon={stat.icon}
+                variant={stat.variant || 'magenta'}
+                size="sm"
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
 
+    {/* ── Content + Sidebar ── */}
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
+      <div class="min-w-0">
+        {/* ── Evidence Credibility Strip ── */}
+        <div
+          class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-black/20 px-5 py-4"
+        >
+          <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
+          {
+            [
+              'Victorian Budget 2026-27',
+              'Parliamentary Budget Office',
+              "Auditor-General's Reports",
+              'NYC Mamdani Budget',
+            ].map((src) => (
+              <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
+                {src}
+              </span>
+            ))
+          }
+        </div>
+
+        {
+          PILLAR_ORDER.map((pillar) => {
+            const cfg = getConfig(pillar)
+            return (
+              <section id={applyHash(pillar)} class="mb-12 scroll-mt-28">
+                <BrutalCard
+                  variant="surface"
+                  shadow={cfg.variant}
+                  padding="md"
+                  class="!p-0 overflow-hidden"
+                >
+                  {/* Pillar header bar */}
+                  <div
+                    class={`bg-${cfg.variant} border-b border-white/10 px-8 py-6 flex items-center gap-5`}
+                  >
+                    <div class="p-3 bg-black/20 rounded-sm">
+                      <Icon name={cfg.icon} class={`w-8 h-8 ${cfg.textColor}`} />
+                    </div>
+                    <h2
+                      class={`text-2xl md:text-3xl font-display font-black uppercase leading-tight ${cfg.textColor}`}
+                    >
+                      {pillar}
+                    </h2>
+                  </div>
+
+                  <div class="p-6 md:p-8">
+                    {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
+                      <div
+                        id={applyHash(`${pillar}-${category}`)}
+                        class="mb-12 last:mb-0 scroll-mt-24"
+                      >
+                        {/* Category header */}
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                          <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {catPolicies.map((policy, index) => {
+                            const accent = cardAccents[index % cardAccents.length]
+                            return (
+                              <BrutalCard
+                                id={policy.slug.current}
+                                variant="surface"
+                                shadow={accent}
+                                padding="sm"
+                                class="flex flex-col"
+                              >
+                                <div class="flex items-start justify-between gap-3 mb-3">
+                                  <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
+                                    {policy.title}
+                                  </h4>
+                                  <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
+                                    <Icon
+                                      name={toIconName(policy.icon) as string}
+                                      class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-white'}`}
+                                    />
+                                  </div>
+                                </div>
+
+                                {/* Hook — shown if available, falls back to summary */}
+                                {policy.hook ? (
+                                  <p
+                                    class={`text-sm font-black text-${accent} mb-2 leading-snug italic`}
+                                  >
+                                    "{policy.hook}"
+                                  </p>
+                                ) : null}
+
+                                <p class="text-sm font-semibold text-white/70 mb-4 flex-1 leading-snug">
+                                  {policy.summary}
+                                </p>
+
+                                <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
+                                  {policy.cost && (
+                                    <span class="text-xs font-black uppercase rounded-sm bg-yellow text-white px-2 py-1 flex items-center gap-1">
+                                      <span class="opacity-80">Cost:</span>
+                                      {policy.cost}
+                                    </span>
+                                  )}
+                                  <a
+                                    href={`/policies/${policy.slug.current}`}
+                                    class="ml-auto inline-flex items-center gap-1 text-xs font-black uppercase text-magenta hover:gap-2 transition-all"
+                                  >
+                                    Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                                  </a>
+                                </div>
+                              </BrutalCard>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </BrutalCard>
+              </section>
+            )
+          })
+        }
+
+        {/* ── CTA ── */}
+        <BrutalCard variant="black" shadow="mint" padding="lg" class="mt-4 border border-white/10">
+          <BrutalBadge variant="magenta" class="mb-4">Get involved</BrutalBadge>
+          <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
+            {ctaSection.title}
+          </h2>
+          <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+            {ctaSection.body}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <BrutalButton variant="magenta" href="/get-involved" icon="mdi:account-plus">
+              Get Involved
+            </BrutalButton>
+            <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
+              We've Done the Maths
+            </BrutalButton>
+            <BrutalButton variant="black" href="/electorate" icon="mdi:map-marker">
+              Find Your Electorate
+            </BrutalButton>
+          </div>
+        </BrutalCard>
+      </div>
+
+      {/* Sidebar */}
+      <Sidebar sections={sidebarSections} page="policies" />
+    </div>
+  </main>
   <Footer />
 </BaseLayout>

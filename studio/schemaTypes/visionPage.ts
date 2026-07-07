@@ -19,6 +19,57 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'manifesto',
+      title: 'Manifesto Block',
+      type: 'object',
+      description: 'Opening statement shown above the vision policy grid.',
+      fields: [
+        defineField({
+          name: 'heading',
+          title: 'Heading',
+          type: 'string',
+          initialValue: 'This is what Victoria could look like.',
+        }),
+        defineField({
+          name: 'body',
+          title: 'Body Text',
+          type: 'text',
+          rows: 4,
+          initialValue:
+            'The policies on this page require more than one seat. They require a mandate. But they are fully designed, fully costed, and ready to legislate the day we have the numbers. This is the long game.',
+        }),
+        defineField({
+          name: 'punchline',
+          title: 'Punchline',
+          type: 'string',
+          initialValue: 'The detail is below. Every number is sourced.',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'proofStats',
+      title: 'Proof Stats',
+      type: 'array',
+      description: 'Four key numbers shown in the stats strip below the manifesto.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'number', title: 'Number', type: 'string'},
+            {name: 'label', title: 'Label', type: 'string'},
+            {name: 'icon', title: 'MDI Icon', type: 'string'},
+            {
+              name: 'variant',
+              title: 'Colour',
+              type: 'string',
+              options: {list: [{value: 'magenta'}, {value: 'mint'}, {value: 'yellow'}]},
+            },
+          ],
+          preview: {select: {title: 'number', subtitle: 'label'}},
+        },
+      ],
+    }),
+    defineField({
       name: 'ctaSection',
       title: 'Bottom CTA',
       type: 'object',

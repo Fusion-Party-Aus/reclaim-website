@@ -13,6 +13,12 @@ import type { PortableTextBlock } from '../../lib/portableText'
 import type { PolicyKeyPoint } from '../../types/sanity'
 import '../../styles/global.css'
 
+interface ProofStat {
+  number: string
+  label: string
+  source?: string
+}
+
 interface Policy {
   _id: string
   title: string
@@ -21,6 +27,12 @@ interface Policy {
   icon?: string
   summary: string
   keyPoints?: PolicyKeyPoint[]
+  // Campaign Voice fields
+  hook?: string
+  villain?: string
+  proofStat?: ProofStat
+  shareableQuote?: string
+  seoDescription?: string
   // Further Detail fields
   designRationale?: string
   systemInteraction?: string
@@ -80,7 +92,6 @@ const contentSections = headingBlocks
   })
   .filter(Boolean)
 
-// Determine pillar colour for hero accent
 const pillarConfig: Record<string, { variant: 'magenta' | 'mint' | 'yellow'; textColor: string }> =
   {
     'RECLAIM OUR ECONOMY': { variant: 'magenta', textColor: 'text-white' },
@@ -92,7 +103,6 @@ const pillarCfg = (policy.pillar && pillarConfig[policy.pillar]) || {
   textColor: 'text-white',
 }
 
-// Detail field sections — only render populated ones
 const detailSections = [
   { id: 'design-rationale', title: 'Design Rationale', content: policy.designRationale },
   { id: 'system-interaction', title: 'System Interaction', content: policy.systemInteraction },
@@ -104,15 +114,18 @@ const detailSections = [
 
 const sidebarSections = [
   { id: 'top', title: policy.title },
+  ...(policy.hook ? [{ id: 'the-problem', title: 'The Problem' }] : []),
   ...(policy.keyPoints && policy.keyPoints.length > 0
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
   ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
   ...contentSections,
 ]
+
+const metaDescription = policy.seoDescription || policy.summary
 ---
 
-<BaseLayout title={`${policy.title} | Reignite Democracy Policy`} description={policy.summary}>
+<BaseLayout title={`${policy.title} | Fusion Party Victoria`} description={metaDescription}>
   <Header />
 
   {/* ── HERO ── */}
@@ -156,7 +169,7 @@ const sidebarSections = [
             </span>
           )
         }
-        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]">
+        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
           {policy.title}
         </h1>
       </div>
@@ -171,6 +184,7 @@ const sidebarSections = [
   </div>
 
   <main
+    id="main-content"
     class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10 lg:items-start"
   >
     <div class="min-w-0">
@@ -180,7 +194,7 @@ const sidebarSections = [
       >
         <a
           href="/"
-          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black transition-colors"
           >Home</a
         >
         <span class="text-white/30">›</span>
@@ -196,6 +210,41 @@ const sidebarSections = [
         >
       </nav>
 
+      {/* ── Hook Block (Populist accusation) ── */}
+      {
+        policy.hook && (
+          <section id="the-problem" class="mb-8 scroll-mt-28">
+            <div class="border-l-4 border-magenta bg-black/40 px-6 py-5 rounded-r-sm">
+              <p class="text-xl md:text-2xl font-black text-white leading-snug">{policy.hook}</p>
+              {policy.villain && (
+                <p class="mt-3 text-sm font-semibold text-white/65 leading-relaxed">
+                  {policy.villain}
+                </p>
+              )}
+            </div>
+          </section>
+        )
+      }
+
+      {/* ── Proof Stat ── */}
+      {
+        policy.proofStat && (
+          <div class="mb-8 flex items-start gap-4 bg-magenta/10 border border-magenta/30 rounded-sm px-6 py-4">
+            <div class="text-3xl md:text-4xl font-black text-magenta font-mono leading-none shrink-0">
+              {policy.proofStat.number}
+            </div>
+            <div>
+              <p class="text-sm font-black uppercase tracking-wide text-white/80 leading-tight">
+                {policy.proofStat.label}
+              </p>
+              {policy.proofStat.source && (
+                <p class="text-xs text-white/40 mt-1 italic">{policy.proofStat.source}</p>
+              )}
+            </div>
+          </div>
+        )
+      }
+
       {/* ── Costing block ── */}
       {
         (policy.cost || policy.funding) && (
@@ -203,15 +252,15 @@ const sidebarSections = [
             <div class="flex items-center gap-2 mb-2">
               <Icon name="mdi:currency-usd" class="w-5 h-5 text-white" />
               <span class="text-xs font-black uppercase tracking-widest text-white/70">
-                Costing
+                What it costs
               </span>
             </div>
             {policy.cost && (
-              <p class="font-black text-2xl text-white leading-tight">Cost: {policy.cost}</p>
+              <p class="font-black text-2xl text-white leading-tight">{policy.cost}</p>
             )}
             {policy.funding && (
               <p class="text-sm font-bold text-white/80 mt-1 border-l-4 border-white/40 pl-3">
-                Funded by: {policy.funding}
+                Paid for by: {policy.funding}
               </p>
             )}
           </BrutalCard>
@@ -230,7 +279,7 @@ const sidebarSections = [
             >
               <div class="bg-magenta border-b border-white/10 px-6 py-4">
                 <h2 class="text-xl font-display font-black uppercase text-white tracking-tight">
-                  Key Points
+                  What it does
                 </h2>
               </div>
               <ul class="divide-y divide-white/10">
@@ -254,6 +303,30 @@ const sidebarSections = [
               </ul>
             </BrutalCard>
           </section>
+        )
+      }
+
+      {/* ── Shareable Quote ── */}
+      {
+        policy.shareableQuote && (
+          <div class="mb-8 relative">
+            <div class="border border-yellow/30 bg-yellow/5 rounded-sm px-7 py-6">
+              <Icon name="mdi:format-quote-open" class="w-8 h-8 text-yellow/40 mb-3" />
+              <p class="text-lg md:text-xl font-black text-white/90 leading-snug italic">
+                {policy.shareableQuote}
+              </p>
+              <div class="mt-4">
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(policy.shareableQuote)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs font-black uppercase text-yellow hover:text-yellow/80 transition-colors"
+                >
+                  <Icon name="mdi:twitter" class="w-4 h-4" /> Post this
+                </a>
+              </div>
+            </div>
+          </div>
         )
       }
 
@@ -284,10 +357,12 @@ const sidebarSections = [
                           class="w-5 h-5 text-white/40 transition-transform group-open:rotate-180 shrink-0"
                         />
                       </summary>
-                      <div class="px-6 pb-6 pt-2 border-t border-white/10">
-                        <p class="text-base font-semibold text-white/70 leading-relaxed whitespace-pre-wrap">
-                          {section.content}
-                        </p>
+                      <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-3">
+                        {section.content.split(/\n\n+/).map((para: string) => (
+                          <p class="text-base font-semibold text-white/70 leading-relaxed">
+                            {para.trim()}
+                          </p>
+                        ))}
                       </div>
                     </details>
                   )
@@ -308,13 +383,28 @@ const sidebarSections = [
       }
 
       {/* ── Back / CTA row ── */}
-      <div class="mt-10 flex flex-wrap gap-3 border-t border-white/10 pt-8">
-        <BrutalButton variant="black" href="/policies" icon="mdi:arrow-left">
-          All Policies
-        </BrutalButton>
-        <BrutalButton variant="magenta" href="/get-involved" icon="mdi:hand-heart">
-          Get Involved
-        </BrutalButton>
+      <div class="mt-10 border-t border-white/10 pt-8">
+        <BrutalCard variant="black" shadow="magenta" padding="md" class="mb-6">
+          <p class="text-sm font-black uppercase tracking-widest text-white/50 mb-2">
+            This policy won't pass itself.
+          </p>
+          <h3
+            class="text-xl md:text-2xl font-display font-black uppercase text-white mb-4 leading-tight"
+          >
+            Every vote we get is a vote against the system that's taking from you.
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <BrutalButton variant="magenta" href="/get-involved" icon="mdi:hand-heart">
+              Join the Movement
+            </BrutalButton>
+            <BrutalButton variant="mint" href="/get-involved#donate" icon="mdi:cash-heart">
+              Chip In
+            </BrutalButton>
+            <BrutalButton variant="black" href="/policies" icon="mdi:arrow-left">
+              All Policies
+            </BrutalButton>
+          </div>
+        </BrutalCard>
       </div>
     </div>
 
@@ -325,7 +415,6 @@ const sidebarSections = [
 </BaseLayout>
 
 <style is:global>
-  /* Details/summary chevron animation */
   details > summary::-webkit-details-marker {
     display: none;
   }

@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   groups: [
     {name: 'basic', title: 'Basic Info', default: true},
+    {name: 'campaign', title: 'Campaign Voice'},
     {name: 'details', title: 'Further Detail'},
     {name: 'meta', title: 'Metadata'},
   ],
@@ -107,6 +108,73 @@ export default defineType({
           },
         },
       ],
+    }),
+
+    // Campaign Voice Group
+    defineField({
+      name: 'hook',
+      title: 'Populist Hook',
+      type: 'text',
+      rows: 2,
+      group: 'campaign',
+      description:
+        'The one-sentence accusation that frames why this policy exists. Make it visceral and specific. E.g. "CityLink rakes in $2M every single day from Victorian commuters — none of it comes back to you."',
+    }),
+    defineField({
+      name: 'villain',
+      title: 'Villain Framing',
+      type: 'text',
+      rows: 3,
+      group: 'campaign',
+      description:
+        'Who or what is doing the stealing, and how. Name the mechanism. E.g. "Transurban holds a government-granted toll monopoly until 2045. They set the price. You pay it. The profit goes to shareholders."',
+    }),
+    defineField({
+      name: 'proofStat',
+      title: 'Proof Statistic',
+      type: 'object',
+      group: 'campaign',
+      description: 'A single concrete number that proves the problem is real.',
+      fields: [
+        defineField({
+          name: 'number',
+          title: 'The Number',
+          type: 'string',
+          description: 'E.g. "$2M/day", "42 years", "$199B"',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'label',
+          title: 'What It Means',
+          type: 'string',
+          description: 'E.g. "flowing to Transurban daily", "locked into a private lottery deal"',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'source',
+          title: 'Source',
+          type: 'string',
+          description: 'Attribution for the stat. E.g. "Victorian Budget 2026-27"',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'shareableQuote',
+      title: 'Shareable Quote',
+      type: 'text',
+      rows: 2,
+      group: 'campaign',
+      description:
+        'A punchy pull-quote suitable for social sharing. This appears as a highlighted callout on the policy page.',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Meta Description',
+      type: 'text',
+      rows: 2,
+      group: 'campaign',
+      description:
+        'Custom meta description (155 chars max). If blank, the summary is used. Lead with the problem and the fix.',
     }),
 
     // Further Detail Group
