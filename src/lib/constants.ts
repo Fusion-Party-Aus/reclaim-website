@@ -121,7 +121,7 @@ export const FAQ_CATEGORIES = [
  */
 export const EXTERNAL_LINKS = {
   FUSION_MAIN: 'https://fusionparty.org.au',
-  FUSION_COSTINGS: 'https://fusionparty.org.au/costings',
+  FUSION_COSTINGS: '/costings',
   FACEBOOK: 'https://www.facebook.com/FusionPartyAus',
   TWITTER: 'https://twitter.com/FusionPartyAus',
   INSTAGRAM: 'https://www.instagram.com/fusionpartyaus',
