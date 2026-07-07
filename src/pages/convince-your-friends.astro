@@ -335,7 +335,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
     />
   </div>
 
-  <main class="relative z-10">
+  <main id="main-content" class="relative z-10">
     <!-- Hero Section -->
     <Section padding="xl" bg="dark" class="pt-32 pb-20">
       <div class="max-w-4xl mx-auto text-center">
@@ -343,7 +343,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
           <BrutalBadge variant="magenta" size="lg">Grassroots Organizing</BrutalBadge>
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-none">
+        <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-[1]">
           {pageData?.title || 'Convince Your'}
           {!pageData?.title && <span class="text-magenta">Friends</span>}
         </h1>

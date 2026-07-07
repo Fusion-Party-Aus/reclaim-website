@@ -118,7 +118,9 @@ const footerData = footers[0]
             </p>
 
             <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
+              <label for="footer-newsletter-email" class="sr-only">Email address</label>
               <input
+                id="footer-newsletter-email"
                 type="email"
                 required
                 placeholder="Enter your email"
@@ -184,6 +186,7 @@ const footerData = footers[0]
                     <a
                       href={link.url}
                       target="_blank"
+                      rel="noopener noreferrer"
                       class="footer-link text-sm text-white/50 hover:text-white transition-colors"
                     >
                       {link.label}
@@ -198,6 +201,7 @@ const footerData = footers[0]
                 <a
                   href={footerData.donateCta.url}
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-black transition-shadow hover:shadow-brutal-mint w-full"
                 >
                   <Icon name="mdi:currency-usd" class="w-4 h-4" />
@@ -225,18 +229,19 @@ const footerData = footers[0]
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
     >
-      <p class="text-xs font-mono text-white/40">
+      <p class="text-xs font-mono text-white/60">
         © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
       </p>
-      <p class="text-xs font-mono text-white/40 max-w-md">
+      <p class="text-xs font-mono text-white/60 max-w-md">
         {footerData.authorization}
       </p>
-      <p class="text-xs font-mono text-white/40">
+      <p class="text-xs font-mono text-white/60">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
-          class="text-white/60 hover:text-mint transition-colors"
+          rel="noopener noreferrer"
+          class="text-white/70 hover:text-mint transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>

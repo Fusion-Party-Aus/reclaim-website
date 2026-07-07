@@ -84,208 +84,214 @@ const pageDescription = post.seoDescription || post.excerpt
 
 <BaseLayout title={`${pageTitle} | Fusion Blog`} description={pageDescription}>
   <Header />
-
-  <!-- Breadcrumbs -->
-  <div class="bg-surface-base pt-28 pb-4">
-    <div class="max-w-5xl mx-auto px-4">
-      <nav class="text-xs font-mono uppercase tracking-wide flex items-center gap-2">
-        <a href="/" class="px-2 py-1 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black"
-          >Home</a
-        >
-        <span class="opacity-60 text-white">/</span>
-        <a
-          href="/blog"
-          class="px-2 py-1 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black">Blog</a
-        >
-        <span class="opacity-60 text-white">/</span>
-        <span
-          class="px-2 py-1 rounded-sm bg-black/30 text-white max-w-xs truncate"
-          title={post.title}
-        >
-          {post.title}
-        </span>
-      </nav>
+  <main id="main-content">
+    <!-- Breadcrumbs -->
+    <div class="bg-surface-base pt-28 pb-4">
+      <div class="max-w-5xl mx-auto px-4">
+        <nav class="text-xs font-mono uppercase tracking-wide flex items-center gap-2">
+          <a
+            href="/"
+            class="px-2 py-1 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black">Home</a
+          >
+          <span class="opacity-60 text-white">/</span>
+          <a
+            href="/blog"
+            class="px-2 py-1 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black"
+            >Blog</a
+          >
+          <span class="opacity-60 text-white">/</span>
+          <span
+            class="px-2 py-1 rounded-sm bg-black/30 text-white max-w-xs truncate"
+            title={post.title}
+          >
+            {post.title}
+          </span>
+        </nav>
+      </div>
     </div>
-  </div>
 
-  <!-- Article Header -->
-  <article class="bg-surface-base py-6 px-4 md:px-8 pb-24">
-    <div class="max-w-5xl mx-auto">
-      <!-- Main card -->
-      <BrutalCard variant="surface" shadow="magenta" padding="lg">
-        <!-- Category Badge -->
-        <div class="mb-6">
-          <BrutalBadge variant={colors.variant} size="lg">{post.category}</BrutalBadge>
-        </div>
+    <!-- Article Header -->
+    <article class="bg-surface-base py-6 px-4 md:px-8 pb-24">
+      <div class="max-w-5xl mx-auto">
+        <!-- Main card -->
+        <BrutalCard variant="surface" shadow="magenta" padding="lg">
+          <!-- Category Badge -->
+          <div class="mb-6">
+            <BrutalBadge variant={colors.variant} size="lg">{post.category}</BrutalBadge>
+          </div>
 
-        <!-- Title -->
-        <h1
-          class="text-4xl md:text-6xl font-display font-black mb-6 uppercase leading-tight text-magenta"
-        >
-          {post.title}
-        </h1>
+          <!-- Title -->
+          <h1
+            class="text-4xl md:text-6xl font-display font-black mb-6 uppercase leading-tight text-magenta"
+          >
+            {post.title}
+          </h1>
 
-        <!-- Excerpt -->
-        {
-          post.excerpt && (
-            <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-white/80">
-              {post.excerpt}
-            </p>
-          )
-        }
-
-        <!-- Meta Info -->
-        <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-white/10">
+          <!-- Excerpt -->
           {
-            post.author && (
-              <div class="flex items-center gap-4">
-                {authorImageUrl && (
-                  <img src={authorImageUrl} alt={post.author.name} class="w-12 h-12 rounded-full" />
-                )}
-                <div>
-                  <div class="font-black text-lg">{post.author.name}</div>
-                  {post.author.role && (
-                    <div class="font-bold text-sm text-white/60">{post.author.role}</div>
+            post.excerpt && (
+              <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-white/80">
+                {post.excerpt}
+              </p>
+            )
+          }
+
+          <!-- Meta Info -->
+          <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-white/10">
+            {
+              post.author && (
+                <div class="flex items-center gap-4">
+                  {authorImageUrl && (
+                    <img
+                      src={authorImageUrl}
+                      alt={post.author.name}
+                      class="w-12 h-12 rounded-full"
+                    />
                   )}
+                  <div>
+                    <div class="font-black text-lg">{post.author.name}</div>
+                    {post.author.role && (
+                      <div class="font-bold text-sm text-white/60">{post.author.role}</div>
+                    )}
+                  </div>
                 </div>
+              )
+            }
+
+            <div class="h-8 w-px bg-white/20"></div>
+
+            <time class="font-bold text-white/70">{formatDate(post.publishedAt)}</time>
+
+            {
+              post.tags && post.tags.length > 0 && (
+                <>
+                  <div class="h-8 w-px bg-white/20" />
+                  <div class="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span class="px-3 py-1 bg-white/10 rounded-sm text-xs font-black uppercase">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )
+            }
+          </div>
+
+          <!-- Featured Image -->
+          {
+            imageUrl && (
+              <div class="mb-12">
+                <img
+                  src={imageUrl}
+                  alt={post.featuredImage?.alt || post.title}
+                  class="w-full h-auto rounded-sm"
+                />
               </div>
             )
           }
 
-          <div class="h-8 w-px bg-white/20"></div>
+          <!-- Article Body -->
+          <div class="prose-brutal max-w-none" set:html={renderPortableText(post.body)} />
 
-          <time class="font-bold text-white/70">{formatDate(post.publishedAt)}</time>
-
-          {
-            post.tags && post.tags.length > 0 && (
-              <>
-                <div class="h-8 w-px bg-white/20" />
-                <div class="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span class="px-3 py-1 bg-white/10 rounded-sm text-xs font-black uppercase">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </>
-            )
-          }
-        </div>
-
-        <!-- Featured Image -->
-        {
-          imageUrl && (
-            <div class="mb-12">
-              <img
-                src={imageUrl}
-                alt={post.featuredImage?.alt || post.title}
-                class="w-full h-auto rounded-sm"
-              />
-            </div>
-          )
-        }
-
-        <!-- Article Body -->
-        <div class="prose-brutal max-w-none" set:html={renderPortableText(post.body)} />
-
-        <!-- Share Section -->
-        <div class="mt-12 pt-8 border-t border-white/10">
-          <div class="flex items-center justify-between flex-wrap gap-4">
-            <div class="font-black text-xl uppercase">Share this post:</div>
-            <div class="flex gap-3">
-              <BrutalButton
-                variant="black"
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
-              >
-                Twitter
-              </BrutalButton>
-              <BrutalButton
-                variant="black"
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
-              >
-                Facebook
-              </BrutalButton>
-              <button
-                onclick={`navigator.clipboard.writeText('${Astro.url.href}'); alert('Link copied!')`}
-                class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-white border border-white/20 hover:bg-white/10"
-              >
-                Copy Link
-              </button>
-            </div>
-          </div>
-        </div>
-      </BrutalCard>
-    </div>
-  </article>
-
-  <!-- Related Posts -->
-  {
-    relatedPosts.length > 0 && (
-      <section class="bg-surface-raised py-16 px-4 md:px-8 border-t border-white/10">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-display font-black mb-10 uppercase text-white">
-            Related Posts
-          </h2>
-
-          <div class="grid md:grid-cols-3 gap-6">
-            {relatedPosts.map((relatedPost) => {
-              const relatedColors = getCategoryColor(relatedPost.category)
-              const relatedImageUrl = relatedPost.featuredImage
-                ? urlFor(relatedPost.featuredImage).width(400).height(300).url()
-                : null
-
-              return (
-                <BrutalCard
-                  variant="surface"
-                  shadow={relatedColors.variant}
-                  padding="sm"
-                  class="!p-0 overflow-hidden"
+          <!-- Share Section -->
+          <div class="mt-12 pt-8 border-t border-white/10">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <div class="font-black text-xl uppercase">Share this post:</div>
+              <div class="flex gap-3">
+                <BrutalButton
+                  variant="black"
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
                 >
-                  {relatedImageUrl && (
-                    <a href={`/blog/${relatedPost.slug.current}`}>
-                      <img
-                        src={relatedImageUrl}
-                        alt={relatedPost.featuredImage?.alt || relatedPost.title}
-                        class="w-full h-40 object-cover"
-                      />
-                    </a>
-                  )}
+                  Twitter
+                </BrutalButton>
+                <BrutalButton
+                  variant="black"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+                >
+                  Facebook
+                </BrutalButton>
+                <button
+                  onclick={`navigator.clipboard.writeText('${Astro.url.href}'); alert('Link copied!')`}
+                  class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-white border border-white/20 hover:bg-white/10"
+                >
+                  Copy Link
+                </button>
+              </div>
+            </div>
+          </div>
+        </BrutalCard>
+      </div>
+    </article>
 
-                  <div class="p-5">
-                    <div class="mb-3">
-                      <BrutalBadge variant={relatedColors.variant}>
-                        {relatedPost.category}
-                      </BrutalBadge>
-                    </div>
+    <!-- Related Posts -->
+    {
+      relatedPosts.length > 0 && (
+        <section class="bg-surface-raised py-16 px-4 md:px-8 border-t border-white/10">
+          <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-black mb-10 uppercase text-white">
+              Related Posts
+            </h2>
 
-                    <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight text-white">
-                      <a
-                        href={`/blog/${relatedPost.slug.current}`}
-                        class="hover:text-magenta transition-colors"
-                      >
-                        {relatedPost.title}
+            <div class="grid md:grid-cols-3 gap-6">
+              {relatedPosts.map((relatedPost) => {
+                const relatedColors = getCategoryColor(relatedPost.category)
+                const relatedImageUrl = relatedPost.featuredImage
+                  ? urlFor(relatedPost.featuredImage).width(400).height(300).url()
+                  : null
+
+                return (
+                  <BrutalCard
+                    variant="surface"
+                    shadow={relatedColors.variant}
+                    padding="sm"
+                    class="!p-0 overflow-hidden"
+                  >
+                    {relatedImageUrl && (
+                      <a href={`/blog/${relatedPost.slug.current}`}>
+                        <img
+                          src={relatedImageUrl}
+                          alt={relatedPost.featuredImage?.alt || relatedPost.title}
+                          class="w-full h-40 object-cover"
+                        />
                       </a>
-                    </h3>
+                    )}
 
-                    <time class="text-sm font-bold text-white/60">
-                      {formatDate(relatedPost.publishedAt)}
-                    </time>
-                  </div>
-                </BrutalCard>
-              )
-            })}
+                    <div class="p-5">
+                      <div class="mb-3">
+                        <BrutalBadge variant={relatedColors.variant}>
+                          {relatedPost.category}
+                        </BrutalBadge>
+                      </div>
+
+                      <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight text-white">
+                        <a
+                          href={`/blog/${relatedPost.slug.current}`}
+                          class="hover:text-magenta transition-colors"
+                        >
+                          {relatedPost.title}
+                        </a>
+                      </h3>
+
+                      <time class="text-sm font-bold text-white/60">
+                        {formatDate(relatedPost.publishedAt)}
+                      </time>
+                    </div>
+                  </BrutalCard>
+                )
+              })}
+            </div>
+
+            <div class="text-center mt-10">
+              <a href="/blog" class="btn btn-primary">
+                View All Posts →
+              </a>
+            </div>
           </div>
-
-          <div class="text-center mt-10">
-            <a href="/blog" class="btn btn-primary">
-              View All Posts →
-            </a>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
+        </section>
+      )
+    }
+  </main>
   <Footer />
 </BaseLayout>
 

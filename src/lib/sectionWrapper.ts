@@ -46,7 +46,7 @@ export function wrapSectionsInBoxes(html: string): string {
   }
 
   // Process each h2 section
-  const sectionColors = ['bg-magenta', 'bg-mint', 'bg-yellow']
+  const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
 
   for (let i = 0; i < matches.length; i++) {
     const h2Match = matches[i]

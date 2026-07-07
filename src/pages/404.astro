@@ -30,7 +30,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
 >
   <Header />
 
-  <main class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
+  <main id="main-content" class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
     <!-- ABSOLUTE CHAOS Background Elements -->
     <div class="absolute inset-0 opacity-20">
       <div
@@ -272,15 +272,16 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
             >
               <Icon name="mdi:magnify" class="w-6 h-6 text-mint" />
             </div>
-            <label class="block text-mint font-black uppercase text-lg font-display">
+            <p class="block text-mint font-black uppercase text-lg font-display">
               Find Your Way Back!
-            </label>
+            </p>
           </div>
           <form action="/search" method="get" class="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               name="q"
               placeholder="Type anything..."
+              aria-label="Search"
               class="flex-1 px-4 py-4 border border-white/15 rounded-sm bg-black/30 text-white font-bold text-lg focus:outline-none focus:border-mint transition-all"
             />
             <button

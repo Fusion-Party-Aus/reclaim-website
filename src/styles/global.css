@@ -101,6 +101,17 @@
     color: #ffffff;
   }
 
+  /* Keyboard focus — visible on every interactive element, mouse users unaffected */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid #00ddb8;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
   /* Headings */
   h1,
   h2,
@@ -113,28 +124,28 @@
     text-transform: uppercase;
   }
 
-  /* Display: hero-level, tight as a poster */
+  /* Display: hero-level poster feel, without letting wrapped lines collide */
   h1 {
-    line-height: 0.88;
-    letter-spacing: -0.02em;
+    line-height: 0.98;
+    letter-spacing: -0.015em;
   }
 
-  /* Section titles: tight but not colliding */
+  /* Section titles: condensed but readable across wraps */
   h2 {
-    line-height: 0.92;
-    letter-spacing: -0.025em;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   /* Card / sub-section titles: legible at smaller sizes */
   h3,
   h4 {
-    line-height: 1;
-    letter-spacing: -0.01em;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
   }
 
   h5,
   h6 {
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: 0;
   }
 }
@@ -384,7 +395,6 @@
   .prose li {
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    max-width: 70ch;
   }
 
   .prose p:last-child {
@@ -443,6 +453,46 @@
     top: 0;
     font-weight: 900;
     color: #d428d4;
+  }
+
+  .prose ol {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+    counter-reset: prose-counter;
+  }
+
+  .prose ol li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    counter-increment: prose-counter;
+  }
+
+  .prose ol li::before {
+    content: counter(prose-counter) '.';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    color: #d428d4;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .prose blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: #2e004d;
+    border-left: 3px solid #d428d4;
+    border-radius: 4px;
+  }
+
+  .prose blockquote p {
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0;
+    color: #f2eef7;
   }
 
   /* Global Link Refinements */
@@ -799,5 +849,9 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -97,13 +97,15 @@ const logo = navigation?.logo || {
       <button
         class="md:hidden text-white/70 hover:text-white p-2 cursor-pointer transition-colors"
         aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
         id="mobile-menu-toggle"
       >
         <Icon name="mdi:menu" class="menu-icon w-6 h-6" />
       </button>
 
       {/* ── Desktop nav ── */}
-      <nav class="hidden md:flex items-center gap-7" id="main-nav">
+      <nav class="hidden md:flex items-center gap-7" id="main-nav" aria-label="Primary">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -117,6 +119,8 @@ const logo = navigation?.logo || {
                 <div class="nav-dropdown-wrapper relative group">
                   <button
                     class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/60 border-transparent hover:text-white'}`}
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
                     {item.label}
                     <Icon
@@ -126,7 +130,7 @@ const logo = navigation?.logo || {
                   </button>
                   {/* Dropdown */}
                   <div
-                    class="dropdown-menu absolute top-full left-0 pt-3 hidden group-hover:block"
+                    class="dropdown-menu absolute top-full left-0 pt-3 hidden group-hover:block group-focus-within:block"
                     style="min-width: 240px; z-index: 100;"
                   >
                     <div class="bg-surface-raised border border-white/10 rounded-sm p-1.5 shadow-brutal-md">
@@ -137,7 +141,7 @@ const logo = navigation?.logo || {
                         >
                           {child.label}
                           {child.description && (
-                            <div class="text-xs mt-0.5 text-white/40">{child.description}</div>
+                            <div class="text-xs mt-0.5 text-white/60">{child.description}</div>
                           )}
                         </a>
                       ))}
@@ -176,7 +180,7 @@ const logo = navigation?.logo || {
     </div>
 
     {/* ── Mobile navigation ── */}
-    <nav class="mobile-nav hidden" id="mobile-nav">
+    <nav class="mobile-nav hidden" id="mobile-nav" aria-label="Mobile">
       <div class="flex flex-col gap-1 py-4 border-t border-white/10">
         {
           navItems.map((item) => {
@@ -189,7 +193,10 @@ const logo = navigation?.logo || {
             if (hasDropdown) {
               return (
                 <div class="mobile-dropdown">
-                  <button class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-colors flex justify-between items-center">
+                  <button
+                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-colors flex justify-between items-center"
+                    aria-expanded="false"
+                  >
                     {item.label}
                     <Icon name="mdi:chevron-down" class="w-3.5 h-3.5 dropdown-arrow" />
                   </button>
@@ -274,12 +281,14 @@ const logo = navigation?.logo || {
   const mobileNav = document.getElementById('mobile-nav')
 
   toggle?.addEventListener('click', () => {
-    mobileNav?.classList.toggle('hidden')
+    const isHidden = mobileNav?.classList.toggle('hidden')
+    toggle.setAttribute('aria-expanded', String(!isHidden))
   })
 
   mobileNav?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
     })
   })
 
@@ -288,11 +297,11 @@ const logo = navigation?.logo || {
       e.preventDefault()
       const dropdown = button.nextElementSibling
       dropdown?.classList.toggle('hidden')
+      const isOpen = !dropdown?.classList.contains('hidden')
+      button.setAttribute('aria-expanded', String(isOpen))
       const arrow = button.querySelector('.dropdown-arrow') as HTMLElement | null
       if (arrow) {
-        arrow.style.transform = dropdown?.classList.contains('hidden')
-          ? 'rotate(0deg)'
-          : 'rotate(180deg)'
+        arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
         arrow.style.transition = 'transform 0.25s ease'
       }
     })
@@ -301,6 +310,29 @@ const logo = navigation?.logo || {
   document.addEventListener('click', (e) => {
     if (!mobileNav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
       mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
     }
+  })
+
+  // Escape closes the mobile menu and returns focus to the toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileNav?.classList.contains('hidden')) {
+      mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.focus()
+    }
+  })
+
+  // Keep desktop dropdown aria-expanded in sync with hover/focus visibility
+  document.querySelectorAll<HTMLElement>('.nav-dropdown-wrapper').forEach((wrapper) => {
+    const trigger = wrapper.querySelector('button')
+    const setExpanded = (expanded: boolean) =>
+      trigger?.setAttribute('aria-expanded', String(expanded))
+    wrapper.addEventListener('mouseenter', () => setExpanded(true))
+    wrapper.addEventListener('mouseleave', () => setExpanded(false))
+    wrapper.addEventListener('focusin', () => setExpanded(true))
+    wrapper.addEventListener('focusout', (e) => {
+      if (!wrapper.contains(e.relatedTarget as Node)) setExpanded(false)
+    })
   })
 </script>

@@ -73,7 +73,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
       <div class="max-w-3xl">
         <BrutalBadge variant="yellow" size="lg" class="mb-6">Historical Archive</BrutalBadge>
         <h1
-          class="text-5xl md:text-7xl font-display font-black text-white uppercase leading-none mb-4"
+          class="text-5xl md:text-7xl font-display font-black text-white uppercase leading-[1] mb-4"
         >
           Past Candidates
         </h1>
@@ -86,7 +86,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
   </section>
 
   <!-- ARCHIVE GRID -->
-  <main class="bg-surface-raised py-16 min-h-screen">
+  <main id="main-content" class="bg-surface-raised py-16 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         sortedGroups.length > 0 ? (

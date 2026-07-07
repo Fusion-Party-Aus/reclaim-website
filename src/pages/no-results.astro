@@ -35,7 +35,7 @@ const suggestions = [
 >
   <Header />
 
-  <main class="min-h-screen bg-black pt-28 pb-20">
+  <main id="main-content" class="min-h-screen bg-black pt-28 pb-20">
     <div class="max-w-6xl mx-auto px-4">
       <!-- Search Icon -->
       <div class="text-center mb-12">
@@ -94,6 +94,7 @@ const suggestions = [
               name="q"
               value={searchQuery}
               placeholder="What are you looking for?"
+              aria-label="Search"
               class="flex-1 px-4 py-4 border border-white/15 rounded-sm bg-black/30 text-white font-bold text-lg focus:outline-none focus:border-magenta transition-all"
             />
             <button

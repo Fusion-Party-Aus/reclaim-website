@@ -90,520 +90,533 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
 <BaseLayout title={hp.seo?.metaTitle || hp.title} description={hp.seo?.metaDescription || ''}>
   <Header />
-  <DeveloperMessages />
-  <ScrollProgress showMilestones={true} color="magenta" />
+  <main id="main-content">
+    <DeveloperMessages />
+    <ScrollProgress showMilestones={true} color="magenta" />
 
-  <!-- ALERT BAR -->
-  {
-    hp.alertBar?.enabled !== false && (
-      <div class="alert-bar">
-        <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
-        {hp.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
-        <a href={hp.alertBar?.linkUrl || '#electorates'}>
-          {hp.alertBar?.linkText || 'Find your electorate'}
-        </a>
-      </div>
-    )
-  }
+    <!-- ALERT BAR -->
+    {
+      hp.alertBar?.enabled !== false && (
+        <div class="alert-bar">
+          <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
+          {hp.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
+          <a href={hp.alertBar?.linkUrl || '#electorates'}>
+            {hp.alertBar?.linkText || 'Find your electorate'}
+          </a>
+        </div>
+      )
+    }
 
-  <!-- HERO -->
-  <Hero
-    title={hp.hero.title}
-    subtitle={hp.hero.subtitle}
-    stats={hp.hero.stats}
-    showCTA={hp.hero.showCTA}
-  />
+    <!-- HERO -->
+    <Hero
+      title={hp.hero.title}
+      subtitle={hp.hero.subtitle}
+      stats={hp.hero.stats}
+      showCTA={hp.hero.showCTA}
+    />
 
-  <!-- ═══════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
        SECTION 1: MOVEMENT METRICS — dark surface, left-aligned header
        ═══════════════════════════════════════════════════════ -->
-  <section
-    class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8 relative overflow-hidden"
-  >
-    {/* Watermark */}
-    <div class="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
-      <span
-        class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
-        style="opacity: 0.03; transform: translateY(20%);">NOW</span
-      >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <!-- Section header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-        <div>
-          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9]">
-            Movement<br /><span class="text-magenta">In Motion</span>
-          </h2>
-        </div>
-        <p class="text-lg font-bold text-white/70 max-w-xs">
-          Real people. Real progress. Watch us grow in real-time.
-        </p>
+    <section
+      class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8 relative overflow-hidden"
+    >
+      {/* Watermark */}
+      <div class="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
+        <span
+          class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
+          style="opacity: 0.03; transform: translateY(20%);">NOW</span
+        >
       </div>
 
-      <MovementMetrics metrics={movementMetrics} />
-    </div>
-  </section>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div>
+            <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[1]">
+              Movement<br /><span class="text-magenta">In Motion</span>
+            </h2>
+          </div>
+          <p class="text-lg font-bold text-white/70 max-w-xs">
+            Real people. Real progress. Watch us grow in real-time.
+          </p>
+        </div>
 
-  <!-- ═══════════════════════════════════════════════════════
+        <MovementMetrics metrics={movementMetrics} />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
        SECTION 2: FEATURED POLICIES — dark surface
        ═══════════════════════════════════════════════════════ -->
-  <section
-    id="policies"
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
-  >
-    {/* Watermark */}
-    <div
-      class="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden"
+    <section
+      id="policies"
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
     >
-      <span
-        class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
-        style="opacity: 0.04; transform: rotate(-4deg) translateX(-5%);">FIX</span
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden"
       >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <!-- Section header -->
-      <div class="mb-16">
-        <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9]">
-          {hp.theftSection.heading}
-        </h2>
-        <p class="text-xl font-bold text-white/70 mt-4 max-w-2xl">
-          {hp.theftSection.description}
-        </p>
+        <span
+          class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
+          style="opacity: 0.04; transform: rotate(-4deg) translateX(-5%);">FIX</span
+        >
       </div>
 
-      <!-- Policy cards — clean grid, no rotation on cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {
-          policyItems.map((item: any, index: number) => {
-            const isPolicy = !!item.slug
-            const imageUrl = item.image
-              ? urlFor(item.image).width(600).height(400).url()
-              : item.imageUrl || null
-            const accents = [
-              {
-                border: 'border-t-2 border-t-magenta',
-                hoverBorder: 'hover:border-magenta/40',
-                tint: 'bg-magenta/10',
-                text: 'text-magenta',
-              },
-              {
-                border: 'border-t-2 border-t-yellow',
-                hoverBorder: 'hover:border-yellow/40',
-                tint: 'bg-yellow/10',
-                text: 'text-yellow',
-              },
-              {
-                border: 'border-t-2 border-t-mint',
-                hoverBorder: 'hover:border-mint/40',
-                tint: 'bg-mint/10',
-                text: 'text-mint',
-              },
-            ]
-            const accent = accents[index % 3]
-            const title = isPolicy ? item.title : item.amount || item.title
-            const description = isPolicy ? item.summary : item.description
-            const category = item.category || (isPolicy ? item.pillar : 'Policy')
-            const icon = item.icon || 'mdi:file-document'
-            const link = isPolicy ? `/policies/${item.slug.current}` : item.link || '#'
-            const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
-            return (
-              <a
-                href={link}
-                class={`group block bg-grey-dark border border-white/10 rounded-sm transition-colors ${accent.border} ${accent.hoverBorder}`}
-              >
-                {imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt={category}
-                    class="w-full h-48 object-cover group-hover:brightness-90 transition-all"
-                  />
-                ) : (
-                  <div class={`w-full h-48 flex items-center justify-center ${accent.tint}`}>
-                    <Icon name={icon} class={`w-20 h-20 ${accent.text} opacity-60`} />
-                  </div>
-                )}
-                <div class="p-6">
-                  <div
-                    class={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider rounded-sm mb-3 ${accent.tint} ${accent.text}`}
-                  >
-                    {category}
-                  </div>
-                  <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors">
-                    {title}
-                  </h3>
-                  <p class="text-sm font-bold text-white/60 leading-snug mb-4">{description}</p>
-                  <span class="inline-flex items-center gap-2 font-black uppercase text-sm border-b border-white/30">
-                    {linkText} <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
-                  </span>
-                </div>
-              </a>
-            )
-          })
-        }
-      </div>
-
-      <div class="mt-10">
-        <BrutalButton variant="black" size="lg" href="/policies" icon="mdi:file-document-multiple">
-          See All Policies
-        </BrutalButton>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
-       SECTION 3: ELECTORATES — solid black background
-       ═══════════════════════════════════════════════════════ -->
-  <section
-    id="electorates"
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-mint/30 bg-surface-base"
-  >
-    {/* Watermark */}
-    <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
-      <span
-        class="text-[14rem] font-display font-black uppercase leading-none select-none text-white"
-        style="opacity: 0.03; transform: rotate(8deg) translateX(10%);">VOTE</span
-      >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <!-- Section header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-        <div>
-          <h2
-            class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]"
-          >
-            {hp.electoratesSection.heading}
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="mb-16">
+          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[1]">
+            {hp.theftSection.heading}
           </h2>
+          <p class="text-xl font-bold text-white/70 mt-4 max-w-2xl">
+            {hp.theftSection.description}
+          </p>
         </div>
-        <p class="text-lg font-bold text-mint max-w-xs">
-          {hp.electoratesSection.description}
-        </p>
-      </div>
 
-      {
-        electorates.length === 0 ? (
-          <BrutalCard
-            variant="yellow"
-            shadow="black"
-            padding="xl"
-            class="text-center max-w-2xl mx-auto"
-          >
-            <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-white" />
-            <h3 class="text-3xl font-display font-black uppercase mb-3">Campaigns Incoming</h3>
-            <p class="text-lg font-bold mb-8">
-              We are currently finalising our candidates for the upcoming election. Stay tuned!
-            </p>
-            <BrutalButton variant="black" href="/electorates" icon="mdi:archive">
-              View Past Candidates
-            </BrutalButton>
-          </BrutalCard>
-        ) : (
-          <div>
-            {/* Spotlight — up to 3 electorates with candidate images */}
-            {(() => {
-              const spotlight = electorates.filter((e: any) => e.candidateName).slice(0, 3)
-              const spotlightAccents = [
-                { border: 'border-t-2 border-t-mint', tint: 'bg-mint/10', text: 'text-mint' },
-                { border: 'border-t-2 border-t-yellow', tint: 'bg-yellow/10', text: 'text-yellow' },
+        <!-- Policy cards — clean grid, no rotation on cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            policyItems.map((item: any, index: number) => {
+              const isPolicy = !!item.slug
+              const imageUrl = item.image
+                ? urlFor(item.image).width(600).height(400).url()
+                : item.imageUrl || null
+              const accents = [
                 {
                   border: 'border-t-2 border-t-magenta',
+                  hoverBorder: 'hover:border-magenta/40',
                   tint: 'bg-magenta/10',
                   text: 'text-magenta',
                 },
+                {
+                  border: 'border-t-2 border-t-yellow',
+                  hoverBorder: 'hover:border-yellow/40',
+                  tint: 'bg-yellow/10',
+                  text: 'text-yellow',
+                },
+                {
+                  border: 'border-t-2 border-t-mint',
+                  hoverBorder: 'hover:border-mint/40',
+                  tint: 'bg-mint/10',
+                  text: 'text-mint',
+                },
               ]
-              return spotlight.length > 0 ? (
-                <div
-                  class={`grid gap-6 mb-10 ${spotlight.length === 1 ? 'grid-cols-1 max-w-sm' : spotlight.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-2xl' : 'grid-cols-1 md:grid-cols-3'}`}
-                >
-                  {spotlight.map((electorate: any, index: number) => {
-                    const accent = spotlightAccents[index % 3]
-                    return (
-                      <a
-                        href={`/electorates/${electorate.slug.current}`}
-                        class={`group bg-grey-dark border border-white/10 rounded-sm block transition-colors hover:border-white/25 ${accent.border}`}
-                      >
-                        {electorate.candidateImage && (
-                          <img
-                            src={urlFor(electorate.candidateImage)
-                              .width(400)
-                              .height(280)
-                              .fit('crop')
-                              .url()}
-                            alt={electorate.candidateName || electorate.name}
-                            class="w-full h-52 object-cover group-hover:brightness-90 transition-all"
-                          />
-                        )}
-                        <div class="p-5">
-                          <div
-                            class={`inline-block px-2 py-0.5 text-xs font-black uppercase rounded-sm mb-2 ${accent.tint} ${accent.text}`}
-                          >
-                            {electorate.house === 'upper' ? 'Upper House' : 'Lower House'}
-                          </div>
-                          <h3 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
-                            {electorate.name}
-                          </h3>
-                          {electorate.candidateName && (
-                            <div class="flex items-center gap-2 mt-1">
-                              <Icon name="mdi:account" class="w-4 h-4 text-white/50" />
-                              <span class="font-black text-sm uppercase text-white/70">
-                                {electorate.candidateName}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </a>
-                    )
-                  })}
-                </div>
-              ) : null
-            })()}
-
-            {/* Search + compact list — all electorates */}
-            <div class="border-4 border-white/20" id="electorate-list-wrapper">
-              {/* Search bar */}
-              <div class="border-b-4 border-white/20 p-3 flex items-center gap-3">
-                <Icon name="mdi:magnify" class="w-5 h-5 text-white/50 shrink-0" />
-                <input
-                  id="electorate-search"
-                  type="text"
-                  placeholder="Search electorates or candidates…"
-                  autocomplete="off"
-                  class="bg-transparent text-white placeholder-white/65 font-bold text-sm w-full outline-none"
-                />
-              </div>
-
-              {/* Rows */}
-              <div id="electorate-rows">
-                {electorates.map((electorate: any) => (
-                  <a
-                    href={`/electorates/${electorate.slug.current}`}
-                    class="electorate-row flex items-center justify-between gap-4 px-4 py-3 border-b border-white/10 hover:bg-white/5 transition-colors group"
-                    data-name={electorate.name.toLowerCase()}
-                    data-candidate={(electorate.candidateName || '').toLowerCase()}
-                  >
-                    <div class="flex items-center gap-3 min-w-0">
-                      <span
-                        class={`text-xs font-black uppercase tracking-widest shrink-0 px-2 py-0.5 border border-white/20 ${electorate.house === 'upper' ? 'text-mint' : 'text-yellow'}`}
-                      >
-                        {electorate.house === 'upper' ? 'UPR' : 'LWR'}
-                      </span>
-                      <span class="font-display font-black uppercase text-white text-sm truncate">
-                        {electorate.name}
-                      </span>
-                    </div>
-                    <div class="flex items-center gap-3 shrink-0">
-                      {electorate.candidateName ? (
-                        <span class="text-xs font-bold text-white/60 hidden sm:block">
-                          {electorate.candidateName}
-                        </span>
-                      ) : (
-                        <span class="text-xs font-bold text-white/30 hidden sm:block italic">
-                          No candidate yet
-                        </span>
-                      )}
-                      <Icon
-                        name="mdi:arrow-right"
-                        class="w-4 h-4 text-white/30 group-hover:text-mint transition-colors"
-                      />
-                    </div>
-                  </a>
-                ))}
-                <p
-                  id="electorate-no-results"
-                  class="hidden text-center text-white/65 font-bold py-8 text-sm"
-                >
-                  No electorates match your search
-                </p>
-              </div>
-
-              <div class="px-4 py-2 border-t border-white/10">
-                <span
-                  id="electorate-count"
-                  class="text-xs font-bold text-white/30 uppercase tracking-widest"
-                >
-                  {electorates.length} electorate{electorates.length !== 1 ? 's' : ''}
-                </span>
+              const accent = accents[index % 3]
+              const title = isPolicy ? item.title : item.amount || item.title
+              const description = isPolicy ? item.summary : item.description
+              const category = item.category || (isPolicy ? item.pillar : 'Policy')
+              const icon = item.icon || 'mdi:file-document'
+              const link = isPolicy ? `/policies/${item.slug.current}` : item.link || '#'
+              const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
+              return (
                 <a
-                  href="/electorates"
-                  class="text-xs font-black uppercase tracking-widest text-mint hover:underline ml-4"
+                  href={link}
+                  class={`group block bg-grey-dark border border-white/10 rounded-sm transition-colors ${accent.border} ${accent.hoverBorder}`}
                 >
-                  View full candidates page →
+                  {imageUrl ? (
+                    <img
+                      src={imageUrl}
+                      alt={category}
+                      class="w-full h-48 object-cover group-hover:brightness-90 transition-all"
+                    />
+                  ) : (
+                    <div class={`w-full h-48 flex items-center justify-center ${accent.tint}`}>
+                      <Icon name={icon} class={`w-20 h-20 ${accent.text} opacity-60`} />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <div
+                      class={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider rounded-sm mb-3 ${accent.tint} ${accent.text}`}
+                    >
+                      {category}
+                    </div>
+                    <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors">
+                      {title}
+                    </h3>
+                    <p class="text-sm font-bold text-white/60 leading-snug mb-4">{description}</p>
+                    <span class="inline-flex items-center gap-2 font-black uppercase text-sm border-b border-white/30">
+                      {linkText} <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                    </span>
+                  </div>
                 </a>
-              </div>
-            </div>
-          </div>
-        )
-      }
-
-      <!-- CTA -->
-      <BrutalCard variant="mint" shadow="black" padding="lg" class="mt-12 max-w-2xl">
-        <h3 class="text-2xl font-display font-black uppercase mb-2">
-          {hp.electoratesSection.callToAction.heading}
-        </h3>
-        <p class="font-bold mb-6 text-black/70">{hp.electoratesSection.callToAction.description}</p>
-        <BrutalButton
-          variant="black"
-          href={hp.electoratesSection.callToAction.buttonLink}
-          icon="mdi:email-fast"
-        >
-          {hp.electoratesSection.callToAction.buttonText}
-        </BrutalButton>
-      </BrutalCard>
-    </div>
-  </section>
-
-  <script>
-    const searchInput = document.getElementById('electorate-search') as HTMLInputElement | null
-    const rows = document.querySelectorAll<HTMLElement>('.electorate-row')
-    const noResults = document.getElementById('electorate-no-results')
-    const countEl = document.getElementById('electorate-count')
-
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase().trim()
-        let visible = 0
-        rows.forEach((row) => {
-          const name = row.dataset.name || ''
-          const candidate = row.dataset.candidate || ''
-          const match = !q || name.includes(q) || candidate.includes(q)
-          row.style.display = match ? '' : 'none'
-          if (match) visible++
-        })
-        if (noResults) noResults.classList.toggle('hidden', visible > 0)
-        if (countEl) {
-          countEl.textContent = q
-            ? `${visible} of ${rows.length} electorates`
-            : `${rows.length} electorate${rows.length !== 1 ? 's' : ''}`
-        }
-      })
-    }
-  </script>
-
-  <!-- ═══════════════════════════════════════════════════════
-       SECTION 4: MANIFESTO — dark surface, stat cards
-       ═══════════════════════════════════════════════════════ -->
-  <section
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
-  >
-    {/* Watermark */}
-    <div
-      class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-    >
-      <span
-        class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
-        style="opacity: 0.04; transform: rotate(-3deg);">PLAN</span
-      >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <!-- Left: header -->
-        <div>
-          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9] mb-6">
-            {hp.manifestoSection.heading}
-          </h2>
-          <p class="text-xl font-bold text-white/70 mb-8">
-            {hp.manifestoSection.description}
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <BrutalButton variant="magenta" href="/policies" icon="mdi:book-open">
-              See Every Policy
-            </BrutalButton>
-            <BrutalButton
-              variant="white"
-              href="https://fusionparty.org.au/costings"
-              icon="mdi:calculator"
-            >
-              We've Done the Maths
-            </BrutalButton>
-          </div>
+              )
+            })
+          }
         </div>
 
-        <!-- Right: stat cards -->
-        <div class="grid grid-cols-2 gap-4">
+        <div class="mt-10">
+          <BrutalButton
+            variant="black"
+            size="lg"
+            href="/policies"
+            icon="mdi:file-document-multiple"
+          >
+            See All Policies
+          </BrutalButton>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 3: ELECTORATES — solid black background
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      id="electorates"
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-mint/30 bg-surface-base"
+    >
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
+      >
+        <span
+          class="text-[14rem] font-display font-black uppercase leading-none select-none text-white"
+          style="opacity: 0.03; transform: rotate(8deg) translateX(10%);">VOTE</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <h2
+              class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[1]"
+            >
+              {hp.electoratesSection.heading}
+            </h2>
+          </div>
+          <p class="text-lg font-bold text-mint max-w-xs">
+            {hp.electoratesSection.description}
+          </p>
+        </div>
+
+        {
+          electorates.length === 0 ? (
+            <BrutalCard
+              variant="yellow"
+              shadow="black"
+              padding="xl"
+              class="text-center max-w-2xl mx-auto"
+            >
+              <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-white" />
+              <h3 class="text-3xl font-display font-black uppercase mb-3">Campaigns Incoming</h3>
+              <p class="text-lg font-bold mb-8">
+                We are currently finalising our candidates for the upcoming election. Stay tuned!
+              </p>
+              <BrutalButton variant="black" href="/electorates" icon="mdi:archive">
+                View Past Candidates
+              </BrutalButton>
+            </BrutalCard>
+          ) : (
+            <div>
+              {/* Spotlight — up to 3 electorates with candidate images */}
+              {(() => {
+                const spotlight = electorates.filter((e: any) => e.candidateName).slice(0, 3)
+                const spotlightAccents = [
+                  { border: 'border-t-2 border-t-mint', tint: 'bg-mint/10', text: 'text-mint' },
+                  {
+                    border: 'border-t-2 border-t-yellow',
+                    tint: 'bg-yellow/10',
+                    text: 'text-yellow',
+                  },
+                  {
+                    border: 'border-t-2 border-t-magenta',
+                    tint: 'bg-magenta/10',
+                    text: 'text-magenta',
+                  },
+                ]
+                return spotlight.length > 0 ? (
+                  <div
+                    class={`grid gap-6 mb-10 ${spotlight.length === 1 ? 'grid-cols-1 max-w-sm' : spotlight.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-2xl' : 'grid-cols-1 md:grid-cols-3'}`}
+                  >
+                    {spotlight.map((electorate: any, index: number) => {
+                      const accent = spotlightAccents[index % 3]
+                      return (
+                        <a
+                          href={`/electorates/${electorate.slug.current}`}
+                          class={`group bg-grey-dark border border-white/10 rounded-sm block transition-colors hover:border-white/25 ${accent.border}`}
+                        >
+                          {electorate.candidateImage && (
+                            <img
+                              src={urlFor(electorate.candidateImage)
+                                .width(400)
+                                .height(280)
+                                .fit('crop')
+                                .url()}
+                              alt={electorate.candidateName || electorate.name}
+                              class="w-full h-52 object-cover group-hover:brightness-90 transition-all"
+                            />
+                          )}
+                          <div class="p-5">
+                            <div
+                              class={`inline-block px-2 py-0.5 text-xs font-black uppercase rounded-sm mb-2 ${accent.tint} ${accent.text}`}
+                            >
+                              {electorate.house === 'upper' ? 'Upper House' : 'Lower House'}
+                            </div>
+                            <h3 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+                              {electorate.name}
+                            </h3>
+                            {electorate.candidateName && (
+                              <div class="flex items-center gap-2 mt-1">
+                                <Icon name="mdi:account" class="w-4 h-4 text-white/50" />
+                                <span class="font-black text-sm uppercase text-white/70">
+                                  {electorate.candidateName}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </a>
+                      )
+                    })}
+                  </div>
+                ) : null
+              })()}
+
+              {/* Search + compact list — all electorates */}
+              <div class="border-4 border-white/20" id="electorate-list-wrapper">
+                {/* Search bar */}
+                <div class="border-b-4 border-white/20 p-3 flex items-center gap-3">
+                  <Icon name="mdi:magnify" class="w-5 h-5 text-white/50 shrink-0" />
+                  <input
+                    id="electorate-search"
+                    type="text"
+                    placeholder="Search electorates or candidates…"
+                    aria-label="Search electorates or candidates"
+                    autocomplete="off"
+                    class="bg-transparent text-white placeholder-white/65 font-bold text-sm w-full outline-none"
+                  />
+                </div>
+
+                {/* Rows */}
+                <div id="electorate-rows">
+                  {electorates.map((electorate: any) => (
+                    <a
+                      href={`/electorates/${electorate.slug.current}`}
+                      class="electorate-row flex items-center justify-between gap-4 px-4 py-3 border-b border-white/10 hover:bg-white/5 transition-colors group"
+                      data-name={electorate.name.toLowerCase()}
+                      data-candidate={(electorate.candidateName || '').toLowerCase()}
+                    >
+                      <div class="flex items-center gap-3 min-w-0">
+                        <span
+                          class={`text-xs font-black uppercase tracking-widest shrink-0 px-2 py-0.5 border border-white/20 ${electorate.house === 'upper' ? 'text-mint' : 'text-yellow'}`}
+                        >
+                          {electorate.house === 'upper' ? 'UPR' : 'LWR'}
+                        </span>
+                        <span class="font-display font-black uppercase text-white text-sm truncate">
+                          {electorate.name}
+                        </span>
+                      </div>
+                      <div class="flex items-center gap-3 shrink-0">
+                        {electorate.candidateName ? (
+                          <span class="text-xs font-bold text-white/60 hidden sm:block">
+                            {electorate.candidateName}
+                          </span>
+                        ) : (
+                          <span class="text-xs font-bold text-white/30 hidden sm:block italic">
+                            No candidate yet
+                          </span>
+                        )}
+                        <Icon
+                          name="mdi:arrow-right"
+                          class="w-4 h-4 text-white/30 group-hover:text-mint transition-colors"
+                        />
+                      </div>
+                    </a>
+                  ))}
+                  <p
+                    id="electorate-no-results"
+                    class="hidden text-center text-white/65 font-bold py-8 text-sm"
+                  >
+                    No electorates match your search
+                  </p>
+                </div>
+
+                <div class="px-4 py-2 border-t border-white/10">
+                  <span
+                    id="electorate-count"
+                    class="text-xs font-bold text-white/30 uppercase tracking-widest"
+                  >
+                    {electorates.length} electorate{electorates.length !== 1 ? 's' : ''}
+                  </span>
+                  <a
+                    href="/electorates"
+                    class="text-xs font-black uppercase tracking-widest text-mint hover:underline ml-4"
+                  >
+                    View full candidates page →
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
+        }
+
+        <!-- CTA -->
+        <BrutalCard variant="mint" shadow="black" padding="lg" class="mt-12 max-w-2xl">
+          <h3 class="text-2xl font-display font-black uppercase mb-2">
+            {hp.electoratesSection.callToAction.heading}
+          </h3>
+          <p class="font-bold mb-6 text-black/70">
+            {hp.electoratesSection.callToAction.description}
+          </p>
+          <BrutalButton
+            variant="black"
+            href={hp.electoratesSection.callToAction.buttonLink}
+            icon="mdi:email-fast"
+          >
+            {hp.electoratesSection.callToAction.buttonText}
+          </BrutalButton>
+        </BrutalCard>
+      </div>
+    </section>
+
+    <script>
+      const searchInput = document.getElementById('electorate-search') as HTMLInputElement | null
+      const rows = document.querySelectorAll<HTMLElement>('.electorate-row')
+      const noResults = document.getElementById('electorate-no-results')
+      const countEl = document.getElementById('electorate-count')
+
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.toLowerCase().trim()
+          let visible = 0
+          rows.forEach((row) => {
+            const name = row.dataset.name || ''
+            const candidate = row.dataset.candidate || ''
+            const match = !q || name.includes(q) || candidate.includes(q)
+            row.style.display = match ? '' : 'none'
+            if (match) visible++
+          })
+          if (noResults) noResults.classList.toggle('hidden', visible > 0)
+          if (countEl) {
+            countEl.textContent = q
+              ? `${visible} of ${rows.length} electorates`
+              : `${rows.length} electorate${rows.length !== 1 ? 's' : ''}`
+          }
+        })
+      }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 4: MANIFESTO — dark surface, stat cards
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
+    >
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+      >
+        <span
+          class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
+          style="opacity: 0.04; transform: rotate(-3deg);">PLAN</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <!-- Left: header -->
+          <div>
+            <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[1] mb-6">
+              {hp.manifestoSection.heading}
+            </h2>
+            <p class="text-xl font-bold text-white/70 mb-8">
+              {hp.manifestoSection.description}
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <BrutalButton variant="magenta" href="/policies" icon="mdi:book-open">
+                See Every Policy
+              </BrutalButton>
+              <BrutalButton variant="white" href="/costings" icon="mdi:calculator">
+                We've Done the Maths
+              </BrutalButton>
+            </div>
+          </div>
+
+          <!-- Right: stat cards -->
+          <div class="grid grid-cols-2 gap-4">
+            {
+              hp.manifestoSection.stats.map((stat: any, index: number) => {
+                const variants = ['magenta', 'mint', 'yellow', 'magenta'] as const
+                return (
+                  <StatCard
+                    value={stat.number}
+                    label={stat.label}
+                    variant={variants[index % 4]}
+                    animated={false}
+                    size="lg"
+                  />
+                )
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 5: JOIN / TAKE ACTION — dark surface, accent cards
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-base"
+    >
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
+      >
+        <span
+          class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
+          style="opacity: 0.05; transform: rotate(5deg) translateX(15%);">JOIN</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="mb-16">
+          <h2 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+            {hp.joinSection.heading}
+          </h2>
+          <p class="text-xl font-bold text-white/70 mt-4 max-w-xl">
+            {hp.joinSection.description}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {
-            hp.manifestoSection.stats.map((stat: any, index: number) => {
-              const variants = ['magenta', 'mint', 'yellow', 'magenta'] as const
+            hp.joinSection.cards.map((card: any, index: number) => {
+              const variants = ['yellow', 'black', 'mint'] as const
+              const buttonVariants = ['black', 'yellow', 'black'] as const
               return (
-                <StatCard
-                  value={stat.number}
-                  label={stat.label}
-                  variant={variants[index % 4]}
-                  animated={false}
-                  size="lg"
-                />
+                <BrutalCard variant={variants[index % 3]} padding="lg" class="flex flex-col group">
+                  {card.icon && card.icon.includes(':') && (
+                    <div class="mb-4">
+                      <Icon name={card.icon} class="w-12 h-12" />
+                    </div>
+                  )}
+                  <h3 class="text-2xl font-display font-black uppercase mb-3">{card.title}</h3>
+                  <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
+                  <BrutalButton
+                    variant={buttonVariants[index % 3]}
+                    href={card.buttonLink}
+                    icon="mdi:arrow-right-circle"
+                    class="w-fit"
+                  >
+                    {card.buttonText}
+                  </BrutalButton>
+                </BrutalCard>
               )
             })
           }
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════
-       SECTION 5: JOIN / TAKE ACTION — dark surface, accent cards
-       ═══════════════════════════════════════════════════════ -->
-  <section
-    class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-base"
-  >
-    {/* Watermark */}
-    <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
-      <span
-        class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
-        style="opacity: 0.05; transform: rotate(5deg) translateX(15%);">JOIN</span
-      >
-    </div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <!-- Section header -->
-      <div class="mb-16">
-        <h2 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[0.9]">
-          {hp.joinSection.heading}
-        </h2>
-        <p class="text-xl font-bold text-white/70 mt-4 max-w-xl">
-          {hp.joinSection.description}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {
-          hp.joinSection.cards.map((card: any, index: number) => {
-            const variants = ['yellow', 'black', 'mint'] as const
-            const buttonVariants = ['black', 'yellow', 'black'] as const
-            return (
-              <BrutalCard variant={variants[index % 3]} padding="lg" class="flex flex-col group">
-                {card.icon && card.icon.includes(':') && (
-                  <div class="mb-4">
-                    <Icon name={card.icon} class="w-12 h-12" />
-                  </div>
-                )}
-                <h3 class="text-2xl font-display font-black uppercase mb-3">{card.title}</h3>
-                <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
-                <BrutalButton
-                  variant={buttonVariants[index % 3]}
-                  href={card.buttonLink}
-                  icon="mdi:arrow-right-circle"
-                  class="w-fit"
-                >
-                  {card.buttonText}
-                </BrutalButton>
-              </BrutalCard>
-            )
-          })
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- MEMBER SIGNUP -->
-  <MemberSignup
-    heading={hp.signupCTA.heading}
-    description={hp.signupCTA.description}
-    buttonText={hp.signupCTA.buttonText}
-    footerText={hp.signupCTA.footerText}
-  />
-
+    <!-- MEMBER SIGNUP -->
+    <MemberSignup
+      heading={hp.signupCTA.heading}
+      description={hp.signupCTA.description}
+      buttonText={hp.signupCTA.buttonText}
+      footerText={hp.signupCTA.footerText}
+    />
+  </main>
   <Footer />
 </BaseLayout>
