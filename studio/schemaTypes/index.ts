@@ -15,6 +15,7 @@ import siteConfig from './siteConfig'
 import letterhead from './letterhead'
 import contactPage from './contactPage'
 import visionPage from './visionPage'
+import manifestoPage from './manifestoPage'
 
 export const schemaTypes = [
   page,
@@ -34,4 +35,5 @@ export const schemaTypes = [
   letterhead,
   contactPage,
   visionPage,
+  manifestoPage,
 ]

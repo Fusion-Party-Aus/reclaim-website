@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/layout/Hero'
+import { Footer } from '@/components/layout/Footer'
+import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
+import { getManifestoPage } from '../lib/sanity'
+import '../styles/global.css'
+
+interface Stat {
+  value: string
+  label: string
+  variant?: 'magenta' | 'mint' | 'yellow' | 'lavender'
+}
+interface Promise {
+  icon: string
+  title: string
+  body: string
+}
+interface HonestyTile {
+  icon?: string
+  text: string
+}
+interface Button {
+  label: string
+  href: string
+  icon?: string
+  style?: 'magenta' | 'black'
+}
+
+const manifestoPage = await getManifestoPage()
+
+const title = manifestoPage?.title || 'Victoria Belongs To Victorians'
+const subtitle =
+  manifestoPage?.subtitle ||
+  "They sold your train station. They sold your toll road. They sold your lottery. Now they want your vote — by promising to argue about the bill a little differently. We're here to take back what's ours."
+const heroImage = manifestoPage?.heroImage || '/color_panel_rally.jpg'
+
+const lede = manifestoPage?.lede || {
+  badge: 'Not A Budget Document. A Promise.',
+  body: "Every train line in this state was built with your money. It doesn't belong to you anymore. A private consortium owns the shops at Southern Cross. A toll company owns the road into the city until 2045. A gambling corporation owns Victoria's lottery until 2068. Every day, money that should be yours walks past you into a shareholder report on the other side of the world.",
+  stats: [
+    { value: '$1.145B', label: 'Lottery deal premium, May 2026', variant: 'magenta' },
+    { value: '2068', label: 'Length of that lottery monopoly', variant: 'mint' },
+    { value: '2045', label: 'CityLink toll concession runs to', variant: 'yellow' },
+    {
+      value: '2–2.5x',
+      label: 'Est. value Victoria gave away on the lottery deal',
+      variant: 'magenta',
+    },
+  ] as Stat[],
+  footnote:
+    "That lottery deal landed just in time to cover almost the entire budget surplus the government's campaigning on. We don't know if the timing was coincidence. We do know a 40-year monopoly got sold for a one-year accounting win — and that's a bad trade either way.",
+}
+
+const lieBlock = manifestoPage?.lieBlock || {
+  eyebrow: 'Thirty Years, Two Parties, One Lie',
+  headline:
+    "We sold the income from your infrastructure to private companies, and we're still paying the bill.",
+  body: 'Two parties, two accents, same story: borrow more or borrow less, spend more or cut more — neither will say the sentence that admits what they did. They built the trains. They handed the revenue away. You got the debt. Someone else got the dividend.',
+}
+
+const promises: Promise[] = manifestoPage?.promises?.length
+  ? manifestoPage.promises
+  : [
+      {
+        icon: 'mdi:train',
+        title: 'Every station becomes yours again',
+        body: "When a private operator's contract ends, it doesn't get renewed. The state takes the asset back and keeps every dollar of revenue. Break the contract early, and we take it back for nothing.",
+      },
+      {
+        icon: 'mdi:home-city',
+        title: 'A public developer that never sells what it builds',
+        body: "A public fund builds housing on state-owned land near train stations — tens of thousands of homes, then more. We keep it forever and rent it at a price that doesn't bankrupt the person paying it.",
+      },
+      {
+        icon: 'mdi:parking',
+        title: 'Land-banking near stations stops paying off',
+        body: "Sitting on empty land next to a station the public just upgraded gets more expensive every year you do nothing with it. This never touches anyone's home — it targets speculators, not families.",
+      },
+      {
+        icon: 'mdi:sword-cross',
+        title: 'We out-build the developers ripping you off',
+        body: 'The state builds the same homes private developers do, at cost, no profit margin — and undercuts them. Same as Medicare does to insurers, or Australia Post does to couriers.',
+      },
+      {
+        icon: 'mdi:cash-refund',
+        title: 'Every Victorian gets a cheque',
+        body: "Once the state owns these assets and they're earning money, a share comes back to you — a direct cash payment, every year, growing over time. Like Alaska has paid its residents since 1982.",
+      },
+      {
+        icon: 'mdi:alert-decagram',
+        title: 'Crime is the symptom. Housing is the disease.',
+        body: "A generation locked out of housing and priced out of stability is the upstream cause of Victoria's crime wave. Fix the economics, and you fix more of it than another decade of bail-law theatre ever will.",
+      },
+    ]
+
+const whyNobody = manifestoPage?.whyNobody || {
+  badge: 'Why Nobody Else Will Do This',
+  body: "Because doing this means admitting what they did. Labor signed the contracts. The Coalition wants to sign more, just with different beneficiaries. Both have spent thirty years treating a handful of corporate partners as more important to keep happy than the people who actually live here. We're not interested in managing that system more politely. We're interested in ending it.",
+}
+
+const notPromising = manifestoPage?.notPromising || {
+  intro:
+    "We're not going to pretend this fixes everything overnight — we'd rather you trust us in five years than believe us for five minutes.",
+  items: [
+    {
+      icon: 'mdi:bank',
+      text: "The pension fix doesn't add a dollar to this year's budget — it stops the state borrowing more for an old promise, and that's still real.",
+    },
+    {
+      icon: 'mdi:home-group',
+      text: "The housing fund doesn't deliver 100,000 homes on day one — it delivers tens of thousands in the first wave, and compounds from there.",
+    },
+    {
+      icon: 'mdi:cash-multiple',
+      text: "The dividend doesn't hit every bank account next year — it starts with the first tenants, and grows until it reaches everyone.",
+    },
+  ] as HonestyTile[],
+}
+
+const oneSeat = manifestoPage?.oneSeat || {
+  heading: 'One Seat Can Start This',
+  body: "You don't need to win government to force this onto the table. One seat with a clear mandate — refusing supply, refusing to wave through the next thirty-year contract — can make every contract renewal a fight instead of a formality.",
+}
+
+const closing = manifestoPage?.closing || {
+  quote:
+    'Every dollar Victoria borrows should buy something Victorians keep. Everything we already own should start paying us back — starting now, not someday.',
+  buttons: [
+    { label: 'Read The Full Plan', href: '/vision', icon: 'mdi:book-open', style: 'magenta' },
+    { label: 'Get Involved', href: '/get-involved', icon: 'mdi:hand-heart', style: 'black' },
+  ] as Button[],
+}
+
+const cardAccents = ['magenta', 'mint', 'yellow'] as const
+const tileIcons = ['mdi:bank', 'mdi:home-group', 'mdi:cash-multiple']
+const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
+---
+
+<BaseLayout
+  title={manifestoPage?.seo?.metaTitle || `${title} | Fusion Party Victoria`}
+  description={manifestoPage?.seo?.metaDescription || subtitle}
+>
+  <Header />
+  <main id="main-content">
+    <Hero title={title} subtitle={subtitle} compact={true} bgImage={heroImage} />
+
+    {/* ── Breadcrumb ── */}
+    <div class="bg-yellow border-b border-white/10 py-3 px-4">
+      <nav
+        class="max-w-6xl mx-auto text-xs font-mono font-black uppercase tracking-wide flex items-center gap-2"
+      >
+        <a
+          href="/"
+          class="px-2 py-1 rounded-sm bg-black text-yellow hover:bg-white hover:text-black transition-colors"
+          >Home</a
+        >
+        <span class="opacity-60 text-white">/</span>
+        <span class="px-2 py-1 rounded-sm bg-white/20 text-white">Manifesto</span>
+      </nav>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 md:px-8 py-14 space-y-14">
+      {/* ── Opening Statement ── */}
+      <section>
+        {
+          lede.badge && (
+            <BrutalBadge variant="magenta" class="mb-4">
+              {lede.badge}
+            </BrutalBadge>
+          )
+        }
+        <p class="text-lg md:text-xl font-black text-white leading-snug mb-6 max-w-3xl">
+          {lede.body}
+        </p>
+
+        {
+          lede.stats?.length > 0 && (
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              {lede.stats.map((stat: Stat) => (
+                <StatCard
+                  value={stat.value}
+                  label={stat.label}
+                  variant={stat.variant || 'magenta'}
+                />
+              ))}
+            </div>
+          )
+        }
+
+        {
+          lede.footnote && (
+            <p class="text-base font-semibold text-white/70 leading-relaxed max-w-3xl border-l-4 border-yellow pl-5">
+              {lede.footnote}
+            </p>
+          )
+        }
+      </section>
+
+      {/* ── The Lie ── */}
+      <BrutalCard variant="black" shadow="magenta" padding="lg">
+        {
+          lieBlock.eyebrow && (
+            <p class="text-xs font-black uppercase tracking-widest text-magenta mb-4">
+              {lieBlock.eyebrow}
+            </p>
+          )
+        }
+        <p
+          class="text-xl md:text-2xl font-display font-black uppercase leading-tight text-white mb-4"
+        >
+          {lieBlock.headline}
+        </p>
+        {
+          lieBlock.body && (
+            <p class="text-base font-semibold text-white/70 leading-relaxed max-w-2xl">
+              {lieBlock.body}
+            </p>
+          )
+        }
+      </BrutalCard>
+
+      {/* ── What We're Actually Going To Do ── */}
+      <section>
+        <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white mb-8">
+          What We're Actually Going To Do
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {
+            promises.map((item, index) => {
+              const accent = cardAccents[index % cardAccents.length]
+              return (
+                <BrutalCard variant="surface" shadow={accent} padding="md" class="flex flex-col">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class={`p-2 rounded-sm bg-${accent} shrink-0`}>
+                      <Icon
+                        name={item.icon}
+                        class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-white'}`}
+                      />
+                    </div>
+                    <h3 class="text-base md:text-lg font-display font-black uppercase leading-tight text-white">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p class="text-sm font-semibold text-white/70 leading-relaxed">{item.body}</p>
+                </BrutalCard>
+              )
+            })
+          }
+        </div>
+      </section>
+
+      {/* ── Why Nobody Else Will Do This ── */}
+      <BrutalCard variant="surface" shadow="lavender" padding="lg">
+        {
+          whyNobody.badge && (
+            <BrutalBadge variant="lavender" class="mb-4">
+              {whyNobody.badge}
+            </BrutalBadge>
+          )
+        }
+        <p class="text-base font-semibold text-white/80 leading-relaxed max-w-3xl">
+          {whyNobody.body}
+        </p>
+      </BrutalCard>
+
+      {/* ── What We're Not Promising ── */}
+      <section>
+        <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-white mb-6">
+          What We're Not Promising
+        </h2>
+        {
+          notPromising.intro && (
+            <p class="text-base font-semibold text-white/70 leading-relaxed max-w-3xl mb-6">
+              {notPromising.intro}
+            </p>
+          )
+        }
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {
+            notPromising.items?.map((tile: HonestyTile, index: number) => (
+              <div class="p-5 bg-grey-dark border border-white/10 rounded-sm">
+                <Icon
+                  name={tile.icon || tileIcons[index % tileIcons.length]}
+                  class={`w-6 h-6 mb-3 ${tileColors[index % tileColors.length]}`}
+                />
+                <p class="text-sm font-semibold text-white/70 leading-relaxed">{tile.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      {/* ── One Seat Can Start This ── */}
+      <BrutalCard variant="mint" padding="lg">
+        <div class="flex items-start gap-4">
+          <Icon name="mdi:vote" class="w-10 h-10 text-black shrink-0" />
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-display font-black uppercase text-black leading-tight mb-2"
+            >
+              {oneSeat.heading}
+            </h2>
+            <p class="text-base font-bold text-black/80 leading-relaxed max-w-2xl">
+              {oneSeat.body}
+            </p>
+          </div>
+        </div>
+      </BrutalCard>
+
+      {/* ── Closing Pull Quote + CTA ── */}
+      <BrutalCard variant="black" shadow="yellow" padding="xl" class="text-center">
+        <p
+          class="text-2xl md:text-4xl font-display font-black uppercase leading-tight text-white mb-8 max-w-3xl mx-auto"
+        >
+          {closing.quote}
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          {
+            closing.buttons?.map((btn: Button) => (
+              <BrutalButton
+                variant={btn.style || 'black'}
+                size="lg"
+                href={btn.href}
+                icon={btn.icon}
+              >
+                {btn.label}
+              </BrutalButton>
+            ))
+          }
+        </div>
+      </BrutalCard>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

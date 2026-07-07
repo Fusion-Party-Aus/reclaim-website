@@ -173,3 +173,8 @@ export async function getVisionPage(): Promise<any | null> {
   const query = `*[_type == "visionPage"][0]`
   return await client.fetch(query)
 }
+
+export async function getManifestoPage(): Promise<any | null> {
+  const query = `*[_type == "manifestoPage"][0]`
+  return await client.fetch(query)
+}
