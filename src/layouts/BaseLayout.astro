@@ -20,12 +20,10 @@ const {
 // before they land in <title>/<meta> where they'd otherwise leak into the DOM.
 const title = stegaClean(rawTitle)
 const description = stegaClean(rawDescription)
-
 const siteConfig = await getSiteConfig()
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 ---
 
-<!doctype html>
 <html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
@@ -44,6 +42,23 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Fusion Party Victoria" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js"
+    ></script>
+    <script>
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      ;((window.plausible =
+        window.plausible ||
+        function (...args) {
+          ;(plausible.q = plausible.q || []).push(...args)
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {}
+          }))
+      plausible.init()
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
