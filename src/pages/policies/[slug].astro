@@ -245,6 +245,36 @@ const metaDescription = policy.seoDescription || policy.summary
         )
       }
 
+      {/* ── Transport Score Callout ── */}
+      {
+        policy.pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
+          <div class="mb-8 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
+              <Icon name="mdi:train" class="w-32 h-32 text-mint" />
+            </div>
+            <div class="relative z-10 max-w-2xl">
+              <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
+                📊 Check Your Local Transport Score
+              </h3>
+              <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
+                How does your electorate stack up? Use our Victoria-wide transport scoring tool to
+                check public transport frequency, coverage, and connectivity in your area.
+              </p>
+              <BrutalButton
+                href="https://transportscore.fusionparty.org.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="mint"
+                size="sm"
+                icon="mdi:launch"
+              >
+                Go to Transport Score Tool
+              </BrutalButton>
+            </div>
+          </div>
+        )
+      }
+
       {/* ── Costing block ── */}
       {
         (policy.cost || policy.funding) && (
