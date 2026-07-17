@@ -31,6 +31,7 @@
     "import:home": "node scripts/migration/import-home.js",
     "import:navigation": "node scripts/migration/import-navigation.js",
     "import:footer": "node scripts/migration/import-footer.js",
+    "generate:og": "node scripts/og/generate-og-images.mjs",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -69,6 +70,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@fontsource/anton": "^5.2.7",
+    "@fontsource/archivo-black": "^5.2.8",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
     "@iconify-json/mdi": "^1.2.3",
     "@types/canvas-confetti": "^1.9.0",
     "@vitest/coverage-v8": "^4.0.8",
@@ -79,6 +84,7 @@
     "husky": "^9.1.7",
     "jsdom": "^27.2.0",
     "lint-staged": "^16.2.6",
+    "playwright": "^1.61.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^8.46.4",

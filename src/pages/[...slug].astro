@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro'
 import Footer from '../components/Footer.astro'
 import StandardPage from '../components/page-types/StandardPage.astro'
 import BioPage from '../components/page-types/BioPage.astro'
-import { getPages } from '../lib/sanity'
+import { getPages, urlFor } from '../lib/sanity'
 import type { Page } from '../types/sanity'
 import '../styles/global.css'
 
@@ -41,11 +41,18 @@ const { page, segments } = Astro.props
 if (!page) {
   return Astro.redirect('/404')
 }
+
+const ogImageUrl =
+  page.pageType === 'bio' && page.profileImage
+    ? urlFor(page.profileImage).width(1200).height(630).fit('crop').url()
+    : '/og/default.png'
 ---
 
 <BaseLayout
   title={`${page.title} | Fusion Victoria`}
   description={page.metaDescription || page.subtitle}
+  image={ogImageUrl}
+  imageAlt={page.title}
 >
   <Header />
 

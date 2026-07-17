@@ -77,12 +77,20 @@ const imageUrl = post.featuredImage
 const authorImageUrl = post.author?.image
   ? urlFor(post.author.image).width(100).height(100).url()
   : null
+const ogImageUrl = post.featuredImage
+  ? urlFor(post.featuredImage).width(1200).height(630).fit('crop').url()
+  : '/og/blog.png'
 
 const pageTitle = post.seoTitle || post.title
 const pageDescription = post.seoDescription || post.excerpt
 ---
 
-<BaseLayout title={`${pageTitle} | Fusion Blog`} description={pageDescription}>
+<BaseLayout
+  title={`${pageTitle} | Fusion Blog`}
+  description={pageDescription}
+  image={ogImageUrl}
+  imageAlt={post.featuredImage?.alt || post.title}
+>
   <Header />
 
   <!-- Breadcrumbs -->

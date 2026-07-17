@@ -15,6 +15,7 @@ interface Policy {
   title: string
   slug: { current: string }
   icon?: string
+  pillar?: string
   summary: string
   keyPoints?: string[]
   cost?: string
@@ -35,9 +36,22 @@ if (!policy) {
 }
 
 const bodyHtml = policy.body ? wrapSectionsInBoxes(renderPortableText(policy.body)) : ''
+
+const PILLAR_OG_IMAGE: Record<string, string> = {
+  'RECLAIM OUR ECONOMY': '/og/policies-economy.png',
+  'SOLVE THE HOUSING CRISIS': '/og/policies-housing.png',
+  'FIX THE TAX EXPLOITS': '/og/policies-tax.png',
+  'RECLAIM OUR FUTURE': '/og/policies-future.png',
+}
+const ogImage = (policy.pillar && PILLAR_OG_IMAGE[policy.pillar]) || '/og/policies.png'
 ---
 
-<BaseLayout title={`${policy.title} | Fusion Victoria Policy`} description={policy.summary}>
+<BaseLayout
+  title={`${policy.title} | Fusion Victoria Policy`}
+  description={policy.summary}
+  image={ogImage}
+  imageAlt={policy.pillar || 'Fusion Victoria Policies'}
+>
   <Header />
 
   <main class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 flex gap-8">

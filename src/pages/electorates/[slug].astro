@@ -44,9 +44,18 @@ const electorate = await getDocumentBySlug<Electorate>('electorate', slug)
 if (!electorate) {
   return Astro.redirect('/404')
 }
+
+const ogImageUrl = electorate.candidateImage
+  ? urlFor(electorate.candidateImage).width(1200).height(630).fit('crop').url()
+  : '/og/electorates.png'
 ---
 
-<BaseLayout title={`${electorate.name} | Fusion Victoria`}>
+<BaseLayout
+  title={`${electorate.name} | Fusion Victoria`}
+  description={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
+  image={ogImageUrl}
+  imageAlt={electorate.candidateName || electorate.name}
+>
   <Header />
 
   <Hero

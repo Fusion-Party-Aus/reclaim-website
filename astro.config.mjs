@@ -9,6 +9,8 @@ import sanity from '@sanity/astro'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://vic.fusionparty.org.au',
+
   integrations: [
     react(),
     icon({
