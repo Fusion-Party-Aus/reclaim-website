@@ -1,10 +1,14 @@
 name = "fusion-website"
-main = "./dist/_worker.js/index.js"
 compatibility_date = "2025-01-29"
 compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist"
+
+[[kv_namespaces]]
+# Run `wrangler kv namespace create NATIONBUILDER_TOKENS` to get the id, then paste it below.
+binding = "NATIONBUILDER_TOKENS"
+id = "4be5b5fc9edc49f3bd5a2c040483da0e"
 
 [observability]
 enabled = false

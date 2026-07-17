@@ -84,6 +84,7 @@ export interface Policy extends SanityDocument {
   icon?: string // MDI icon name (e.g., 'mdi:home')
   summary: string
   keyPoints?: PolicyKeyPoint[]
+  thisTerm?: boolean
   // Further Detail fields
   designRationale?: string
   systemInteraction?: string
@@ -113,15 +114,28 @@ export interface Commitment {
   details?: CommitmentDetail[]
 }
 
+export interface HTVCandidate {
+  candidateName: string
+  candidateParty: string
+  candidateTier: 'magenta' | 'green' | 'orange' | 'red'
+  ballotOrder?: number
+  suggestedVote?: number
+}
+
 export interface Electorate extends SanityDocument {
   _type: 'electorate'
   name: string
   slug: SanitySlug
+  isArchived?: boolean
+  electionGrouping?: string
+  house?: 'lower' | 'upper'
+  state?: string
   subtitle?: string
   candidateName?: string
   candidateImage?: SanityImageAsset
   candidateBio?: string
   commitments?: Commitment[]
+  htv?: HTVCandidate[]
   body?: PortableTextBlock[]
   region?: string
   publishedAt?: string

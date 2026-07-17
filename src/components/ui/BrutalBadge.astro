@@ -22,28 +22,21 @@ interface Props {
 
 const { variant = 'magenta', size = 'md', icon, class: className = '' } = Astro.props
 
-// Variant styles
-const variantStyles = {
-  magenta: 'bg-magenta text-white',
-  mint: 'bg-mint text-black',
-  yellow: 'bg-yellow text-black',
-  lavender: 'bg-lavender text-black',
-  black: 'bg-black text-white',
-  white: 'bg-white text-black',
+// Subtle tinted background + solid text colour + left accent bar — Space Mono label
+const variantStyles: Record<string, { text: string; bg: string; border: string }> = {
+  magenta: { text: 'text-magenta', bg: 'bg-magenta/10', border: 'border-magenta' },
+  mint: { text: 'text-mint', bg: 'bg-mint/10', border: 'border-mint' },
+  yellow: { text: 'text-yellow', bg: 'bg-yellow/10', border: 'border-yellow' },
+  lavender: { text: 'text-lavender', bg: 'bg-lavender/10', border: 'border-lavender' },
+  black: { text: 'text-white', bg: 'bg-white/5', border: 'border-white/30' },
+  white: { text: 'text-black', bg: 'bg-black/5', border: 'border-black/30' },
 }
 
 // Size styles
 const sizeStyles = {
-  sm: 'px-2 py-1 text-xs border-2',
-  md: 'px-3 py-1 text-sm border-3',
-  lg: 'px-4 py-2 text-base border-4',
-}
-
-// Shadow sizes
-const shadowSizes = {
-  sm: '2px 2px 0px 0px #000',
-  md: '3px 3px 0px 0px #000',
-  lg: '4px 4px 0px 0px #000',
+  sm: 'px-2 py-0.5 text-[10px]',
+  md: 'px-2.5 py-1 text-xs',
+  lg: 'px-3 py-1.5 text-sm',
 }
 
 const iconSizes = {
@@ -51,21 +44,20 @@ const iconSizes = {
   md: 'w-4 h-4',
   lg: 'w-5 h-5',
 }
+
+const v = variantStyles[variant]
 ---
 
 <span
   class={`
-    inline-flex items-center gap-1
-    ${variantStyles[variant]}
+    inline-flex items-center gap-1.5
+    ${v.bg} ${v.text}
     ${sizeStyles[size]}
-    border-black
-    font-black uppercase tracking-wider
+    border-l-2 ${v.border}
+    font-bold uppercase tracking-widest
     ${className}
   `}
-  style={`
-    box-shadow: ${shadowSizes[size]};
-    font-family: 'Archivo Black', sans-serif;
-  `}
+  style="font-family: 'Space Mono', monospace;"
 >
   {icon && <Icon name={icon} class={iconSizes[size]} />}
   <slot />

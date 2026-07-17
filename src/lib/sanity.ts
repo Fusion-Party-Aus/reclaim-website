@@ -3,11 +3,16 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { Policy, Electorate, FAQ, Page, HomePage } from '../types/sanity'
 
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
+
 export const client = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
-  useCdn: true,
   apiVersion: '2024-01-29',
+  useCdn: !visualEditingEnabled,
+  perspective: visualEditingEnabled ? 'drafts' : 'published',
+  stega: { enabled: visualEditingEnabled },
+  ...(visualEditingEnabled ? { token: import.meta.env.SANITY_API_READ_TOKEN } : {}),
 })
 
 /**
@@ -24,7 +29,7 @@ export function urlFor(source: SanityImageSource) {
  * @deprecated Use typed functions like getPolicies() instead
  */
 export async function getDocuments<T = unknown>(type: string): Promise<T[]> {
-  const query = `*[_type == "${type}"] | order(_createdAt desc)`
+  const query = `*[_type == "${type}"] | order(_updatedAt desc)`
   return await client.fetch(query)
 }
 
@@ -58,8 +63,12 @@ export async function getDocumentsByField<T = unknown>(
  * These provide better type safety and are the recommended way to fetch data
  */
 
-export async function getPolicies(): Promise<Policy[]> {
-  const query = `*[_type == "policy"] | order(_createdAt desc)`
+export async function getPolicies(options?: { thisTerm?: boolean }): Promise<Policy[]> {
+  let filter = '_type == "policy"'
+  if (options && options.thisTerm !== undefined) {
+    filter += ` && thisTerm == ${options.thisTerm}`
+  }
+  const query = `*[${filter}] | order(_createdAt desc)`
   return await client.fetch(query)
 }
 
@@ -69,7 +78,12 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
 }
 
 export async function getElectorates(): Promise<Electorate[]> {
-  const query = `*[_type == "electorate"] | order(_createdAt desc)`
+  const query = `*[_type == "electorate" && coalesce(isArchived, false) != true] | order(_createdAt desc)`
+  return await client.fetch(query)
+}
+
+export async function getArchivedElectorates(): Promise<Electorate[]> {
+  const query = `*[_type == "electorate" && isArchived == true] | order(_createdAt desc)`
   return await client.fetch(query)
 }
 
@@ -96,6 +110,8 @@ export async function getFAQsByCategory(category: string): Promise<FAQ[]> {
 export async function getPages(): Promise<any[]> {
   const query = `*[_type == "page"] {
     ...,
+    profileImage,
+    role,
     "parent": parent->{
       slug,
       "parent": parent->{
@@ -121,15 +137,7 @@ export async function getHomePage(): Promise<HomePage | null> {
     ...,
     theftSection {
       ...,
-      featuredPolicies[]->{
-        title,
-        slug,
-        icon,
-        summary,
-        category,
-        cost,
-        impact
-      }
+      featuredPolicies[]->
     }
   }`
   return await client.fetch(query)
@@ -157,6 +165,16 @@ export async function getBlogPage(): Promise<any | null> {
 }
 
 export async function getSiteConfig(): Promise<any | null> {
-  const query = `*[_type == "siteConfig"][0]`
+  const query = `*[_type == "siteConfig"] | order(_updatedAt desc)[0]`
+  return await client.fetch(query)
+}
+
+export async function getVisionPage(): Promise<any | null> {
+  const query = `*[_type == "visionPage"][0]`
+  return await client.fetch(query)
+}
+
+export async function getManifestoPage(): Promise<any | null> {
+  const query = `*[_type == "manifestoPage"][0]`
   return await client.fetch(query)
 }

@@ -1,18 +1,21 @@
 import { defineConfig } from 'astro/config'
-import react from '@astrojs/react'
 import tailwindcss from '@tailwindcss/vite'
 import { agentsSummary } from '@nuasite/agent-summary'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
 import cloudflare from '@astrojs/cloudflare'
+import node from '@astrojs/node'
 import sanity from '@sanity/astro'
+import react from '@astrojs/react'
+import { fileURLToPath } from 'node:url'
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vic.fusionparty.org.au',
 
   integrations: [
-    react(),
     icon({
       include: {
         mdi: ['*'], // Include all Material Design Icons
@@ -20,10 +23,14 @@ export default defineConfig({
     }),
     agentsSummary(),
     sitemap(),
+    react(),
     sanity({
       projectId: 'qwl3f8jb',
       dataset: 'production',
       useCdn: true,
+      stega: {
+        studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
+      },
     }),
   ],
 
@@ -31,14 +38,21 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        'react-dom/server': 'react-dom/server.edge',
-        'react-dom/static': 'react-dom/static.edge',
+        'astro-icon/components': fileURLToPath(
+          new URL('./src/components/ui/Icon.ts', import.meta.url)
+        ),
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
   },
 
-  adapter: cloudflare({
-    imageService: 'passthrough',
-  }),
-  output: 'static',
+  // Use node adapter locally (avoids Miniflare "module is not defined" errors),
+  // switch to cloudflare for production builds.
+  adapter: isDev
+    ? node({ mode: 'standalone' })
+    : cloudflare({
+        imageService: 'passthrough',
+        platformProxy: { enabled: false },
+      }),
+  output: 'server',
 })

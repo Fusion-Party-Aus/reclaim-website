@@ -1,0 +1,271 @@
+---
+import { urlFor } from '@/lib/sanity'
+import type { Page } from '@/types/sanity'
+import { renderPortableText } from '@/lib/portableText'
+import { wrapSectionsInBoxes } from '@/lib/sectionWrapper'
+import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton } from '@/components/ui'
+
+interface Props {
+  page: Page
+  segments: string[]
+  childGroups?: { title: string; pages: { fullPath: string; page: Page; segments: string[] }[] }[]
+}
+
+const { page, segments, childGroups = [] } = Astro.props
+
+const breadcrumbs = segments.map((seg, i) => {
+  const path = '/' + segments.slice(0, i + 1).join('/')
+  return {
+    label:
+      seg === page.slug.current
+        ? page.title
+        : seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+    path,
+  }
+})
+
+const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
+---
+
+<div class="max-w-6xl mx-auto">
+  {/* ── Breadcrumbs ── */}
+  <nav class="flex items-center flex-wrap gap-1 mb-12 text-xs font-black uppercase tracking-widest">
+    <a
+      href="/"
+      class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors"
+    >
+      Home
+    </a>
+    {
+      breadcrumbs.map((bc, i) => (
+        <>
+          <span class="text-white/30 font-black">›</span>
+          {i === breadcrumbs.length - 1 ? (
+            <span
+              class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
+              title={page.title}
+            >
+              {page.title}
+            </span>
+          ) : (
+            <a
+              href={bc.path}
+              class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-magenta/40 hover:text-magenta transition-all"
+            >
+              {bc.label}
+            </a>
+          )}
+        </>
+      ))
+    }
+  </nav>
+
+  <div class="flex flex-col lg:flex-row gap-8 md:gap-12 items-start">
+    {/* ── Left column ── */}
+    <div class="w-full lg:w-[320px] space-y-6 shrink-0">
+      {/* Profile image + name card */}
+      {
+        page.profileImage && (
+          <div class="rounded-sm overflow-hidden bg-grey-dark border border-white/10 shadow-brutal-magenta">
+            <div class="relative overflow-hidden">
+              <img
+                src={urlFor(page.profileImage).width(800).height(900).url()}
+                alt={page.title}
+                class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 block"
+              />
+            </div>
+            <div class="p-6 border-t border-white/10">
+              <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+                {page.title}
+              </h1>
+              {page.role && (
+                <p class="text-xs font-black uppercase tracking-widest border-l-4 border-magenta pl-3 text-magenta">
+                  {page.role}
+                </p>
+              )}
+            </div>
+          </div>
+        )
+      }
+
+      {/* No image fallback — just name */}
+      {
+        !page.profileImage && (
+          <BrutalCard variant="surface" shadow="magenta" padding="md">
+            <div class="w-24 h-24 rounded-sm border border-white/20 bg-white/10 flex items-center justify-center mb-4">
+              <svg class="w-12 h-12 text-white/30" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+              </svg>
+            </div>
+            <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+              {page.title}
+            </h1>
+            {page.role && (
+              <p class="text-xs font-black uppercase tracking-wide text-mint">{page.role}</p>
+            )}
+          </BrutalCard>
+        )
+      }
+
+      {/* Social links */}
+      {
+        page.socialLinks && page.socialLinks.length > 0 && (
+          <BrutalCard variant="surface" shadow="yellow" padding="md">
+            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b border-white/10 pb-2">
+              Connect
+            </h3>
+            <div class="flex flex-col gap-2">
+              {page.socialLinks.map((link) => (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-white/10 bg-grey-dark text-white hover:bg-magenta hover:text-white hover:border-magenta transition-all px-3 py-2"
+                >
+                  <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                    <Icon
+                      name={`mdi:${link.platform === 'website' ? 'web' : link.platform}`}
+                      class="w-5 h-5"
+                    />
+                  </div>
+                  <span class="capitalize">{link.platform}</span>
+                </a>
+              ))}
+            </div>
+          </BrutalCard>
+        )
+      }
+
+      {/* Stand-out quote card */}
+      <BrutalCard variant="mint" shadow="black" padding="md">
+        <p
+          class="font-black text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
+        >
+          {page.subtitle || '"Fighting for a fairer Victoria through evidence-based policy."'}
+        </p>
+      </BrutalCard>
+    </div>
+
+    {/* ── Right column: biography ── */}
+    <div class="flex-1 min-w-0 space-y-8">
+      <BrutalCard variant="surface" shadow="black" padding="xl">
+        <div
+          class="prose prose-lg max-w-none
+          prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
+          prose-h2:text-2xl prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4 prose-h2:mt-10
+          prose-h3:text-lg prose-h3:border-l-4 prose-h3:border-mint prose-h3:pl-3
+          prose-a:text-magenta prose-a:font-black prose-a:no-underline hover:prose-a:underline
+          prose-strong:font-black
+          prose-p:first:text-xl prose-p:first:font-black"
+        >
+          {
+            page.body ? (
+              <div set:html={pageHtml} />
+            ) : (
+              <p class="text-lg font-black uppercase text-white/40">
+                Full biography coming soon...
+              </p>
+            )
+          }
+        </div>
+      </BrutalCard>
+
+      {/* Action button */}
+      <BrutalButton href="/get-involved" variant="magenta" size="lg" fullWidth icon="mdi:hand-wave">
+        Join the Movement
+      </BrutalButton>
+    </div>
+  </div>
+
+  {/* ── Child groups ── */}
+  {
+    childGroups.length > 0 && (
+      <div class="mt-20 space-y-16">
+        {childGroups.map((group) => (
+          <section
+            id={group.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '')}
+          >
+            <div class="mb-8">
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-tight">
+                {group.title}
+              </h2>
+              <div class="h-2 w-24 bg-magenta mt-2" />
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              {group.pages.map((child, index) => {
+                const accents = ['#00DDB8', '#4A7AEB', '#D428D4']
+                const accent = accents[index % accents.length]
+
+                const imageUrl = child.page.profileImage
+                  ? urlFor(child.page.profileImage).width(400).height(400).fit('crop').url()
+                  : null
+
+                return (
+                  <a
+                    href={`/${child.fullPath}`}
+                    class="team-member-card group flex flex-col rounded-sm border border-white/10 bg-grey-dark transition-colors duration-200"
+                    style={`--accent-color: ${accent}; border-top: 2px solid ${accent};`}
+                  >
+                    <div class="aspect-square w-full border-b border-white/10 overflow-hidden relative">
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt={child.page.title}
+                          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                        />
+                      ) : (
+                        <div class="w-full h-full flex items-center justify-center bg-white/5">
+                          <svg
+                            class="w-20 h-20 text-white/20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div class="p-4 flex flex-col gap-1">
+                      <h3 class="text-base md:text-lg font-display font-black uppercase text-white leading-tight">
+                        {child.page.title}
+                      </h3>
+                      {(child.page.role || child.page.subtitle) && (
+                        <p
+                          class="text-xs font-black uppercase tracking-wide"
+                          style={`color: ${accent};`}
+                        >
+                          {child.page.role || child.page.subtitle}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                )
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<style is:global>
+  .prose p:first-of-type {
+    font-size: 1.2rem;
+    line-height: 1.65;
+    font-weight: 700;
+  }
+</style>
+
+<style>
+  .team-member-card {
+    box-shadow: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
+  }
+  .team-member-card:hover {
+    box-shadow: 0 0 24px color-mix(in srgb, var(--accent-color) 35%, transparent);
+  }
+</style>

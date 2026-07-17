@@ -1,26 +1,24 @@
 ---
 /**
- * BrutalCard - Reusable Neo-Brutalist Card Component
+ * BrutalCard - Reusable Card Component
  *
- * A consistent card component with brutal borders and shadows.
- * Reduces code duplication and ensures design consistency.
+ * Default ('surface') is the Reclaim system's primary card: a dark raised
+ * panel with a hairline border and a 2px brand-coloured top accent — no
+ * heavy border, no glow shadow. Solid-fill variants (magenta/mint/etc) stay
+ * available for accent callouts, used sparingly.
  *
- * @param {string} variant - Color variant: 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
- * @param {string} shadow - Shadow color (default: black)
- * @param {string} borderWidth - Border thickness: 'sm' (4px) | 'md' (6px) | 'lg' (8px)
- * @param {string} shadowSize - Shadow size: '4' | '6' | '8' | '10' | '12'
+ * @param {string} variant - 'surface' (default, dark panel) | 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
+ * @param {string} shadow - Top accent colour, either a named accent ('magenta' | 'mint' | 'yellow' | 'lavender' | 'black' | 'white') or any CSS color
  * @param {string} padding - Padding size: 'sm' | 'md' | 'lg'
  * @param {number} rotation - Rotation in degrees (e.g., -0.5, 1, 2) or 0 for none
- * @param {boolean} hover - Enable hover effect (lifts up and increases shadow)
+ * @param {boolean} hover - Enable hover effect (border brightens slightly)
  * @param {string} class - Additional CSS classes
  * @param {string} id - HTML id attribute
  */
 
 interface Props {
-  variant?: 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
+  variant?: 'surface' | 'white' | 'magenta' | 'mint' | 'yellow' | 'lavender' | 'black'
   shadow?: string
-  borderWidth?: 'sm' | 'md' | 'lg'
-  shadowSize?: '4' | '6' | '8' | '10' | '12'
   padding?: 'sm' | 'md' | 'lg' | 'xl'
   rotation?: number
   hover?: boolean
@@ -29,10 +27,8 @@ interface Props {
 }
 
 const {
-  variant = 'white',
-  shadow = '#000000',
-  borderWidth = 'md',
-  shadowSize = '8',
+  variant = 'surface',
+  shadow = 'magenta',
   padding = 'md',
   rotation = 0,
   hover = true,
@@ -40,21 +36,15 @@ const {
   id,
 } = Astro.props
 
-// Background colors
+// Background colors. 'surface' is the dark raised panel used everywhere by default.
 const bgColors = {
-  white: 'bg-white text-black',
-  magenta: 'bg-magenta text-white',
-  mint: 'bg-mint text-black',
-  yellow: 'bg-yellow text-black',
-  lavender: 'bg-lavender text-black',
-  black: 'bg-black text-white',
-}
-
-// Border widths
-const borderSizes = {
-  sm: 'border-4',
-  md: 'border-6',
-  lg: 'border-8',
+  surface: 'bg-grey-dark text-white border border-white/10',
+  white: 'bg-white text-black border border-black/10',
+  magenta: 'bg-magenta text-white border border-white/10',
+  mint: 'bg-mint text-black border border-black/10',
+  yellow: 'bg-yellow text-white border border-white/10',
+  lavender: 'bg-lavender text-white border border-white/10',
+  black: 'bg-black text-white border border-white/10',
 }
 
 // Padding sizes
@@ -65,40 +55,34 @@ const paddingSizes = {
   xl: 'p-10 md:p-12',
 }
 
-// Calculate shadow based on shadowSize
-const shadowOffset = `${shadowSize}px`
-const hoverShadowOffset = `${parseInt(shadowSize) + 4}px`
+// Named accents resolve to brand hex; anything else (a hex/rgba string) passes through.
+const accentColors: Record<string, string> = {
+  magenta: '#D428D4',
+  mint: '#00DDB8',
+  yellow: '#4A7AEB',
+  lavender: '#7B3FE4',
+  black: '#0F0018',
+  white: '#FFFFFF',
+}
+const resolvedAccent = accentColors[shadow] ?? shadow
 
 // Calculate rotation style
 const rotationStyle = rotation !== 0 ? `rotate(${rotation}deg)` : 'rotate(0deg)'
 
-// Build inline styles
-const cardStyle = `
-  box-shadow: ${shadowOffset} ${shadowOffset} 0px 0px ${shadow};
-  transform: ${rotationStyle};
-`
+const cardStyle = `border-top: 2px solid ${resolvedAccent}; transform: ${rotationStyle};`
 ---
 
 <div
   id={id}
-  class={`
-    ${bgColors[variant]}
-    ${borderSizes[borderWidth]}
-    ${paddingSizes[padding]}
-    border-black
-    transition-all duration-200
-    ${hover ? `hover:-translate-y-1 hover:shadow-[${hoverShadowOffset}_${hoverShadowOffset}_0px_0px_${shadow}]` : ''}
-    ${className}
-  `}
+  class:list={[
+    bgColors[variant],
+    'rounded-sm',
+    paddingSizes[padding],
+    'transition-colors duration-200',
+    { 'hover:border-white/25': hover && variant === 'surface' },
+    className,
+  ]}
   style={cardStyle}
 >
   <slot />
 </div>
-
-<style>
-  @media (prefers-reduced-motion: reduce) {
-    div {
-      transition: none !important;
-    }
-  }
-</style>

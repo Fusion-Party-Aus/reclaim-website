@@ -1,351 +1,738 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BrutalButton, BrutalCard, BrutalBadge, CTA, StatCard, IconBadge } from '@/components/ui'
 import '../styles/global.css'
 ---
 
 <BaseLayout
-  title="Fusion Design System | Reclaim"
-  description="Complete neo-brutalist design system for the Fusion Party rebrand."
+  title="Design System | Reignite Democracy"
+  description="The Reclaim design system for the Fusion Party Victoria brand — colours, typography, components, and patterns."
 >
   <Header />
 
-  <div class="alert-bar">
-    📚 Complete Neo-Brutalist Design System | <a href="#colors">Explore the chaos</a>
+  <!-- Spectrum stripe — identity use only, top of page -->
+  <div
+    class="h-[3px] w-full"
+    style="background: linear-gradient(90deg, #D428D4 0%, #7B3FE4 25%, #4A7AEB 50%, #0BB8D4 75%, #00DDB8 100%);"
+  >
   </div>
 
-  <section
-    class="bg-black text-white py-20 px-8 text-center border-b-8 border-magenta relative overflow-hidden"
-    style="border-left: 12px solid #5EFFD8; border-right: 12px solid #FFED00;"
-  >
-    <!-- Background geometric chaos -->
-    <div class="absolute inset-0 opacity-20">
-      <div
-        class="absolute top-0 right-0 w-64 h-64 border-8 border-mint transform rotate-45 translate-x-20 -translate-y-20"
-      >
-      </div>
-      <div
-        class="absolute bottom-0 left-0 w-56 h-56 bg-yellow transform -rotate-30 -translate-x-16 translate-y-16"
-      >
-      </div>
-      <div class="absolute top-1/3 left-1/4 w-40 h-40 border-6 border-red transform rotate-12">
-      </div>
-    </div>
-
-    <div class="max-w-5xl mx-auto relative z-10">
-      <h1
-        class="text-5xl md:text-8xl font-black mb-6 uppercase relative inline-block"
-        style="color: #C926F2; font-family: 'Anton', 'Archivo Black', sans-serif; letter-spacing: -0.03em;"
-      >
-        <span class="absolute inset-0 text-yellow" style="transform: translate(4px, 4px);"
-          >FUSION DESIGN SYSTEM</span
+  <main id="main-content" class="bg-black text-white">
+    <!-- ═══ COVER ═══ -->
+    <section class="px-4 md:px-8 pt-20 pb-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-white/30 mb-5">
+          Fusion Party Victoria · Internal Reference
+        </p>
+        <h1
+          class="font-black uppercase leading-[0.98] mb-6"
+          style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem, 9vw, 6.5rem); letter-spacing: -0.01em;"
         >
-        <span class="relative z-10" style="text-shadow: 6px 6px 0 #000;">FUSION DESIGN SYSTEM</span>
-      </h1>
-      <p
-        class="text-2xl font-bold px-6 py-4 inline-block border-t-6 border-b-6 border-lavender"
-        style="color: #9A94E7; border-top-width: 6px; border-bottom-width: 6px;"
-      >
-        Reclaim Brand — Maximum brutalism for political revolution
-      </p>
-    </div>
-  </section>
+          Design<br />System
+        </h1>
+        <p class="text-base md:text-lg text-white/50 max-w-2xl leading-relaxed">
+          Reclaim is the binding design system for everything Fusion Party makes — colour, type,
+          components, and the rules for using them correctly. Dark-first, evidence-forward, spectrum
+          accents used sparingly.
+        </p>
+        <div class="flex gap-8 mt-8 font-mono text-[10px] uppercase tracking-widest text-white/25">
+          <div>Status<br /><span class="text-mint">v1.0 — Active</span></div>
+          <div>Updated<br /><span class="text-white/50">2026</span></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="bg-white py-20 px-8 border-b-8 border-black">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+    <!-- ═══ QUICK NAV ═══ -->
+    <nav
+      class="sticky top-[67px] z-40 bg-black/95 backdrop-blur border-b border-white/10 px-4 md:px-8 overflow-x-auto"
+    >
+      <div class="max-w-5xl mx-auto flex items-center gap-1 py-2">
+        {
+          [
+            { href: '#principles', label: 'Principles' },
+            { href: '#colours', label: 'Colour' },
+            { href: '#colour-rules', label: 'Colour Rules' },
+            { href: '#typography', label: 'Typography' },
+            { href: '#glow', label: 'Glow & Radius' },
+            { href: '#components', label: 'Components' },
+            { href: '#patterns', label: 'Patterns' },
+            { href: '#photography', label: 'Photography' },
+          ].map((item) => (
+            <a
+              href={item.href}
+              class="px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-white/40 hover:text-white transition-colors whitespace-nowrap"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- ═══ 01 PRINCIPLES ═══ -->
+    <section id="principles" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-magenta tracking-widest">01</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
         <h2
-          id="principles"
-          class="text-4xl md:text-5xl font-black mb-4 uppercase inline-block relative"
-          style="color: #c926f2; font-family: 'Anton', 'Archivo Black', sans-serif; transform: rotate(-1deg);"
+          class="font-black uppercase text-3xl md:text-5xl mb-10"
+          style="font-family: 'Barlow Condensed', sans-serif;"
         >
-          BRAND PRINCIPLES
-          <span class="absolute -bottom-2 left-0 w-32 h-2 bg-magenta"></span>
+          Brand Principles
         </h2>
-        <p class="text-xl text-gray-700 font-bold mt-8">
-          Our design system embodies our values: bold, transparent, unapologetic, and maximally
-          impactful.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {
+            [
+              {
+                label: 'Dark-First',
+                accent: 'magenta' as const,
+                body: 'The base canvas is deep purple, not white. Surfaces layer upward through purple depth. Light backgrounds are for print only.',
+              },
+              {
+                label: 'Evidence-Forward',
+                accent: 'mint' as const,
+                body: 'Every claim needs a number or a named mechanism. No vague sentiment — "34% of renters" beats "too many Australians."',
+              },
+              {
+                label: 'Mechanism, Never People',
+                accent: 'yellow' as const,
+                body: 'The villain is always structural — privatisation, underfunding, broken incentives. Never a group, an ethnicity, or a class.',
+              },
+            ].map((p) => (
+              <BrutalCard shadow={p.accent} padding="md">
+                <p class={`font-mono text-[10px] uppercase tracking-widest text-${p.accent} mb-3`}>
+                  {p.label}
+                </p>
+                <p class="text-sm text-white/60 leading-relaxed">{p.body}</p>
+              </BrutalCard>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 COLOUR ═══ -->
+    <section id="colours" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-lavender tracking-widest">02</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-3"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Colour
+        </h2>
+        <p class="text-sm text-white/40 max-w-2xl mb-10 leading-relaxed">
+          Dark-first. The base background is Deep Purple; surfaces layer upward through purple
+          depth. The accent spectrum runs magenta → violet → blue → cyan → teal — use one per layout
+          zone. Click a swatch's hex to copy mentally; this is a reference, not a tool.
         </p>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="brutal-card brutal-card-mint relative">
+        {
+          [
+            {
+              group: 'Base',
+              swatches: [
+                { name: 'Deep Purple', hex: '#1A0029', usage: 'Primary page background' },
+                { name: 'Brand Purple', hex: '#5C006B', usage: 'Photo overlay · feature cards' },
+                {
+                  name: 'Surface',
+                  hex: '#2E004D',
+                  usage: 'Raised cards · panels',
+                  css: '--color-grey-dark',
+                },
+              ],
+            },
+            {
+              group: 'Spectrum (mapped to existing token names)',
+              swatches: [
+                {
+                  name: 'Magenta',
+                  hex: '#D428D4',
+                  usage: 'Primary CTA · emphasis',
+                  css: '--color-magenta',
+                },
+                {
+                  name: 'Violet',
+                  hex: '#7B3FE4',
+                  usage: 'Secondary interactive',
+                  css: '--color-lavender',
+                },
+                {
+                  name: 'Blue',
+                  hex: '#4A7AEB',
+                  usage: 'Links · alerts · data neutral',
+                  css: '--color-yellow',
+                },
+                {
+                  name: 'Cyan',
+                  hex: '#0BB8D4',
+                  usage: 'Highlights · bright accent',
+                  css: '--color-mint-bright',
+                },
+                {
+                  name: 'Teal',
+                  hex: '#00DDB8',
+                  usage: 'Secondary CTA · success',
+                  css: '--color-mint',
+                },
+              ],
+            },
+            {
+              group: 'Print / Light',
+              swatches: [
+                { name: 'White', hex: '#FFFFFF', usage: 'Text on dark · inverted print' },
+                { name: 'Off-White', hex: '#F2EEF7', usage: 'Print doc background' },
+              ],
+            },
+          ].map((group) => (
+            <div class="mb-8">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">
+                {group.group}
+              </p>
+              <div class="flex flex-wrap gap-3">
+                {group.swatches.map((c) => (
+                  <div style="width: 140px;">
+                    <div
+                      class="h-20 rounded-sm border border-white/10"
+                      style={`background: ${c.hex};`}
+                    />
+                    <p class="text-xs font-semibold text-white/80 mt-2">{c.name}</p>
+                    <p class="font-mono text-[10px] text-white/35">{c.hex}</p>
+                    <p class="text-[11px] text-white/25 mt-0.5 leading-snug">{c.usage}</p>
+                    {c.css && (
+                      <code class="font-mono text-[10px] text-mint block mt-1">{c.css}</code>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+
+        <div class="mt-8">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">
+            Spectrum gradient — identity use only
+          </p>
           <div
-            class="absolute -top-4 -left-4 w-8 h-8 bg-magenta border-4 border-black transform rotate-45"
+            class="h-8 rounded-sm"
+            style="background: linear-gradient(90deg, #D428D4 0%, #7B3FE4 25%, #4A7AEB 50%, #0BB8D4 75%, #00DDB8 100%);"
           >
           </div>
-          <h3
-            class="text-magenta text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Bold & Unapologetic
-          </h3>
-          <p class="font-semibold text-lg">
-            Maximum contrast colors, aggressive shadows, and typography that screams for attention.
-          </p>
-        </div>
-        <div class="brutal-card brutal-card-magenta relative">
-          <div class="absolute -top-4 -left-4 w-8 h-8 bg-yellow border-4 border-black"></div>
-          <h3
-            class="text-white text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Clear & Direct
-          </h3>
-          <p class="font-semibold text-white text-lg">
-            No political BS. Geometric clarity and straightforward messaging that cuts through the
-            noise.
-          </p>
-        </div>
-        <div class="brutal-card brutal-card-yellow relative">
-          <div
-            class="absolute -top-4 -left-4 w-8 h-8 bg-mint border-4 border-black transform -rotate-12"
-          >
-          </div>
-          <h3
-            class="text-black text-3xl font-black mb-4 uppercase"
-            style="font-family: 'Archivo Black', sans-serif;"
-          >
-            Modern & Aggressive
-          </h3>
-          <p class="font-semibold text-lg">
-            Forward-looking design that breaks conventions. Asymmetry, collision, and controlled
-            chaos.
+          <p class="text-xs text-white/30 mt-2 max-w-xl leading-relaxed">
+            Reserved for logo, section dividers, and splash moments. Never a full page background.
+            Never a text gradient.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="colors" class="bg-light-grey py-20 px-8 border-b-4 border-mint">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
-          COLOR SYSTEM
+    <!-- ═══ 02b COLOUR DECISION RULES ═══ -->
+    <section id="colour-rules" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-magenta tracking-widest">02b</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-3"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Colour Decision Rules
         </h2>
-        <p class="text-xl text-gray-700 font-bold">
-          Our palette combines vibrant energy with professional credibility
+        <p class="text-sm text-white/40 max-w-2xl mb-10 leading-relaxed">
+          When do you use magenta vs teal vs blue? These rules have one answer for every situation.
+          Ambiguity causes drift.
         </p>
-      </div>
 
-      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Primary Colors</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-magenta text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Magenta</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#C926F2</span>
+        <div class="space-y-2 mb-10">
+          {
+            [
+              {
+                situation: 'Primary CTA',
+                examples: 'Join, Volunteer, Donate',
+                colour: '#D428D4',
+                name: 'Magenta',
+                why: 'Primary Fusion brand colour. Highest-attention action gets highest-attention colour.',
+              },
+              {
+                situation: 'Secondary CTA',
+                examples: 'Learn More, Read Policy, Share',
+                colour: '#00DDB8',
+                name: 'Teal',
+                why: 'Secondary brand colour. Signals "proceed" without competing with magenta.',
+              },
+              {
+                situation: 'Links / Alerts',
+                examples: 'Policy costs, deadlines, inline links',
+                colour: '#4A7AEB',
+                name: 'Blue',
+                why: 'Functional only. Reads as "pay attention" without alarm. No brand association.',
+              },
+            ].map((row) => (
+              <div
+                class="grid grid-cols-1 md:grid-cols-[180px_1fr_140px] gap-4 md:gap-0 p-4 md:p-0 bg-grey-dark md:bg-transparent rounded-sm md:rounded-none border-l-2 md:border-l-0"
+                style={`border-color: ${row.colour};`}
+              >
+                <div class="md:p-4 md:border-l-2" style={`border-color: ${row.colour};`}>
+                  <p class="font-bold text-sm">{row.situation}</p>
+                  <p class="text-xs text-white/35 mt-0.5">{row.examples}</p>
+                </div>
+                <p class="md:p-4 text-sm text-white/55 flex items-center">{row.why}</p>
+                <div class="md:p-4 flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full" style={`background: ${row.colour};`} />
+                  <span class="font-mono text-xs" style={`color: ${row.colour};`}>
+                    {row.name}
+                  </span>
+                </div>
               </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>201, 38, 242</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>288°, 89%, 55%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>17, 84, 0, 5</span>
-              </div>
-            </div>
-            <div class="brutal-badge brutal-badge-magenta font-mono text-xs">--fusion-magenta</div>
-          </div>
+            ))
+          }
         </div>
 
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-mint text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Mint</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#5EFFD8</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>94, 255, 216</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>165°, 100%, 68%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>63, 0, 15, 0</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-mint</div>
-          </div>
-        </div>
-
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-lavender text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Lavender</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#9A94E7</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>154, 148, 231</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>244°, 62%, 74%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>33, 36, 0, 9</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-lavender</div>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          <BrutalCard shadow="yellow" padding="sm">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-yellow mb-3">
+              Hover States
+            </p>
+            <p class="text-sm text-white/60 leading-relaxed">
+              Hover = <code class="font-mono text-magenta">scale(1.02)</code> + brighter glow. Active/press
+              = <code class="font-mono text-magenta">scale(0.97)</code>.
+              <br /><br />
+              <strong class="text-white">Never darken</strong> a colour on hover — always brighten. This
+              is the opposite of the old neo-brutalist convention.
+            </p>
+          </BrutalCard>
+          <BrutalCard shadow="yellow" padding="sm">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-yellow mb-3">
+              Blue is NOT for
+            </p>
+            <ul class="text-sm text-white/60 space-y-1.5">
+              <li>✕ Hero section backgrounds</li>
+              <li>✕ Primary headlines</li>
+              <li>✕ Large background blocks (&gt;300px tall)</li>
+              <li>✕ The spectrum gradient as page background</li>
+            </ul>
+          </BrutalCard>
         </div>
       </div>
+    </section>
 
-      <h3 class="text-3xl font-black mb-8 uppercase" style="color: #000;">Secondary Colors</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="brutal-card">
-          <div
-            class="bg-fusion-yellow text-black h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Yellow</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#FFED00</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>255, 237, 0</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>56°, 100%, 50%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>0, 7, 100, 0</span>
-              </div>
-            </div>
-            <div class="brutal-badge brutal-badge-yellow font-mono text-xs">--fusion-yellow</div>
-          </div>
+    <!-- ═══ 03 TYPOGRAPHY ═══ -->
+    <section id="typography" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-mint tracking-widest">03</span>
+          <div class="flex-1 h-px bg-white/10"></div>
         </div>
-
-        <div class="brutal-card">
-          <div
-            class="bg-black text-white h-40 flex items-center justify-center text-6xl font-black mb-6 border-4 border-black"
-          >
-            Aa
-          </div>
-          <div>
-            <div class="text-2xl font-black mb-4 uppercase">Black</div>
-            <div class="space-y-2 mb-4">
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HEX</span>
-                <span>#010102</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">RGB</span>
-                <span>1, 1, 2</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">HSL</span>
-                <span>240°, 33%, 1%</span>
-              </div>
-              <div class="flex justify-between items-center font-mono text-sm font-semibold">
-                <span class="font-black">CMYK</span>
-                <span>50, 50, 0, 99</span>
-              </div>
-            </div>
-            <div class="brutal-badge font-mono text-xs">--fusion-black</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="buttons" class="bg-white py-20 px-8 border-b-4 border-black">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase" style="color: #c926f2;">
-          COMPONENTS
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-3"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Typography
         </h2>
-      </div>
+        <p class="text-sm text-white/40 max-w-2xl mb-10 leading-relaxed">
+          Three families, three jobs. Headlines always uppercase, body always sentence case, data
+          always Space Mono.
+        </p>
 
-      <div class="brutal-card mb-12">
-        <h3 class="text-3xl font-black mb-6 uppercase">Buttons</h3>
+        <BrutalCard shadow="magenta" padding="lg" class="mb-4">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-magenta mb-1">
+            Display — Headlines
+          </p>
+          <p class="text-xs text-white/35 mb-6">
+            Barlow Condensed Black · always uppercase · tracking 0 to −0.02em
+          </p>
+          <p
+            class="font-black uppercase leading-[1] mb-2"
+            style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem);"
+          >
+            Reclaim Our Future
+          </p>
+        </BrutalCard>
+
+        <BrutalCard shadow="lavender" padding="lg" class="mb-4">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-lavender mb-1">
+            Body — All Copy
+          </p>
+          <p class="text-xs text-white/35 mb-6">
+            Barlow Regular / SemiBold · sentence case · line-height 1.65–1.75
+          </p>
+          <p
+            class="text-lg leading-relaxed text-white/85 max-w-2xl"
+            style="font-family: 'Barlow', sans-serif;"
+          >
+            Victoria's rail infrastructure was built for a population of two million. We have five.
+            The mechanism that failed you isn't the train — it's thirty years of deferral dressed up
+            as fiscal responsibility.
+          </p>
+        </BrutalCard>
+
+        <BrutalCard shadow="mint" padding="lg" class="mb-10">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-mint mb-1">
+            Data — Stats &amp; Labels
+          </p>
+          <p class="text-xs text-white/35 mb-6">
+            Space Mono Bold · always uppercase for labels · 20–40px for stat figures
+          </p>
+          <div class="flex gap-10 flex-wrap">
+            {
+              [
+                { value: '$198B', label: 'State debt', color: '#00DDB8' },
+                { value: '34%', label: 'Renters stressed', color: '#D428D4' },
+                { value: '4×', label: 'Cost blowout avg.', color: '#4A7AEB' },
+              ].map((s) => (
+                <div>
+                  <div
+                    class="font-bold text-4xl"
+                    style={`font-family: 'Space Mono', monospace; color: ${s.color};`}
+                  >
+                    {s.value}
+                  </div>
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-white/35 mt-1">
+                    {s.label}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </BrutalCard>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">
+          Casing rules
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {
+            [
+              { el: 'Hero / section headlines', rule: 'ALL CAPS', example: 'RECLAIM OUR FUTURE' },
+              {
+                el: 'Body copy',
+                rule: 'Sentence case',
+                example: 'This policy was costed by the PBO.',
+              },
+              { el: 'Labels / tags', rule: 'ALL CAPS', example: 'POLICY · TRANSPORT · HOUSING' },
+              { el: 'CTAs / buttons', rule: 'Sentence case', example: '"Read the full plan"' },
+              { el: 'Data / stats', rule: 'Numbers + units only', example: '$198B · 34% · 4×' },
+            ].map((rule) => (
+              <div class="p-3 bg-grey-dark rounded-sm">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-white/30">
+                  {rule.el}
+                </p>
+                <p class="text-sm font-bold text-white/80 mt-0.5">{rule.rule}</p>
+                <p class="text-xs text-white/30 italic mt-0.5">e.g. {rule.example}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 GLOW & RADIUS ═══ -->
+    <section id="glow" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-blue tracking-widest">04</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-3"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Glow &amp; Radius
+        </h2>
+        <p class="text-sm text-white/40 max-w-2xl mb-10 leading-relaxed">
+          Soft, coloured glows on the accent of the moment — not hard-offset brutalist shadows.
+          Border radius is sharp but not zero (2–4px).
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+          {
+            [
+              { label: 'Magenta accent', color: '#D428D4' },
+              { label: 'Teal accent', color: '#00DDB8' },
+              { label: 'Blue accent', color: '#4A7AEB' },
+            ].map((s) => (
+              <div
+                class="h-24 flex items-center justify-center rounded-sm bg-grey-dark border-t-2"
+                style={`border-color: ${s.color};`}
+              >
+                <span
+                  class="font-mono text-xs uppercase tracking-widest"
+                  style={`color: ${s.color};`}
+                >
+                  {s.label}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <BrutalCard shadow="mint" padding="sm">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-mint mb-3">
+              Border Radius
+            </p>
+            <div class="space-y-2">
+              {
+                [0, 2, 4, 8].map((r) => (
+                  <div class="flex items-center gap-4">
+                    <div class="flex-1 h-3 bg-white/15" style={`border-radius: ${r}px;`} />
+                    <code class="font-mono text-[10px] text-white/40">{r}px</code>
+                  </div>
+                ))
+              }
+            </div>
+            <p class="text-xs text-white/40 mt-3">Default is 2–4px — sharp, not zero.</p>
+          </BrutalCard>
+          <BrutalCard shadow="mint" padding="sm">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-mint mb-3">
+              Accent Stripe
+            </p>
+            <div
+              class="h-1.5 w-full rounded-full mb-3"
+              style="background: linear-gradient(90deg, #D428D4 0%, #7B3FE4 25%, #4A7AEB 50%, #0BB8D4 75%, #00DDB8 100%);"
+            >
+            </div>
+            <p class="text-xs text-white/40">
+              Spectrum stripe — identity use only, never a full background.
+            </p>
+          </BrutalCard>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 05 COMPONENTS ═══ -->
+    <section id="components" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-magenta tracking-widest">05</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-10"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Components
+        </h2>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">Buttons</p>
+        <div class="flex flex-wrap gap-4 mb-10">
+          <BrutalButton variant="primary">Primary</BrutalButton>
+          <BrutalButton variant="secondary">Secondary</BrutalButton>
+          <BrutalButton variant="magenta" size="lg">Large Magenta</BrutalButton>
+          <BrutalButton variant="black" size="sm">Small Black</BrutalButton>
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">Cards</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          <BrutalCard shadow="magenta">
+            <p class="font-bold text-magenta mb-2">Magenta Accent</p>
+            <p class="text-sm text-white/60">
+              Default surface card — dark panel, hairline border, 2px top accent.
+            </p>
+          </BrutalCard>
+          <BrutalCard shadow="mint">
+            <p class="font-bold text-mint mb-2">Teal Accent</p>
+            <p class="text-sm text-white/60">
+              Used everywhere by default — solid-fill cards are for splash moments only.
+            </p>
+          </BrutalCard>
+          <BrutalCard variant="magenta" shadow="yellow">
+            <p class="font-bold text-white mb-2">Solid Fill (sparing use)</p>
+            <p class="text-sm text-white/80">One bold-fill card per section, maximum.</p>
+          </BrutalCard>
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">
+          Badges &amp; Stats
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <BrutalBadge variant="magenta">Magenta</BrutalBadge>
+          <BrutalBadge variant="mint">Mint</BrutalBadge>
+          <BrutalBadge variant="yellow">Blue</BrutalBadge>
+          <BrutalBadge variant="lavender">Violet</BrutalBadge>
+          <BrutalBadge variant="black">Black</BrutalBadge>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <StatCard value="$198B" label="State debt" variant="magenta" animated={false} />
+          <StatCard value="34%" label="Renters stressed" variant="mint" animated={false} />
+          <StatCard value="4×" label="Cost blowout avg." variant="yellow" animated={false} />
+          <StatCard value="100+" label="Policies costed" variant="lavender" animated={false} />
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-3">
+          Icon Badges
+        </p>
         <div class="flex flex-wrap gap-4">
-          <button class="btn btn-primary">Primary Button</button>
-          <button class="btn btn-secondary">Secondary Button</button>
-          <button class="btn btn-primary btn-lg">Large Button</button>
-          <button class="btn btn-primary btn-sm">Small Button</button>
+          <IconBadge name="mdi:home-city" variant="magenta" />
+          <IconBadge name="mdi:train" variant="mint" />
+          <IconBadge name="mdi:hospital-box" variant="yellow" />
+          <IconBadge name="mdi:school" variant="lavender" />
+          <IconBadge name="mdi:hand-heart" variant="black" />
         </div>
       </div>
+    </section>
 
-      <div class="brutal-card mb-12">
-        <h3 class="text-3xl font-black mb-6 uppercase">Cards</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="brutal-card brutal-card-magenta">
-            <h5 class="text-fusion-magenta font-black text-lg mb-2 uppercase">Magenta Card</h5>
-            <p class="font-semibold">Card with magenta accent border</p>
+    <!-- ═══ 06 PATTERNS ═══ -->
+    <section id="patterns" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-lavender tracking-widest">06</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-10"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Layout Patterns
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <BrutalCard shadow="mint" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-mint mb-4">
+              Section header pattern
+            </p>
+            <p
+              class="font-black uppercase text-3xl leading-[1] mb-2"
+              style="font-family: 'Barlow Condensed', sans-serif;"
+            >
+              Section<br /><span class="text-magenta">Heading</span>
+            </p>
+            <p class="text-sm text-white/50 mt-3">
+              Numbered tag in accent colour, hairline divider, Barlow Condensed headline.
+            </p>
+          </BrutalCard>
+
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-white/25 mb-4">
+              CTA block
+            </p>
+            <CTA variant="primary" size="md" centered>
+              <p class="text-white font-black uppercase text-lg mb-2">Reclaim Our Future</p>
+              <p class="text-white/80 text-sm">
+                Flat colour fill — use sparingly for join/donate moments.
+              </p>
+            </CTA>
           </div>
-          <div class="brutal-card brutal-card-mint">
-            <h5 class="text-fusion-mint font-black text-lg mb-2 uppercase">Mint Card</h5>
-            <p class="font-semibold">Card with mint accent border</p>
-          </div>
-          <div class="brutal-card brutal-card-yellow">
-            <h5 class="text-black font-black text-lg mb-2 uppercase">Yellow Card</h5>
-            <p class="font-semibold">Card with yellow background</p>
-          </div>
+
+          <BrutalCard shadow="yellow" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-yellow mb-4">
+              Alert bar
+            </p>
+            <div class="alert-bar rounded-sm text-sm">
+              📢 Alert Bar Example | <a href="#">Action Link</a>
+            </div>
+          </BrutalCard>
+
+          <BrutalCard shadow="magenta" padding="lg" class="relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span
+                class="text-[8rem] font-black uppercase leading-none text-white select-none"
+                style="font-family: 'Barlow Condensed', sans-serif; opacity: 0.06;">BG</span
+              >
+            </div>
+            <div class="relative z-10">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-magenta mb-4">
+                Ghost watermark
+              </p>
+              <p class="text-sm text-white/50">
+                Barlow Condensed ghost text at 0.03–0.08 opacity. Avoid in sections &lt;300px tall
+                or already dense with text.
+              </p>
+            </div>
+          </BrutalCard>
         </div>
       </div>
+    </section>
 
-      <div class="brutal-card">
-        <h3 class="text-3xl font-black mb-6 uppercase">Badges</h3>
-        <div class="flex flex-wrap gap-4">
-          <span class="brutal-badge">Default Badge</span>
-          <span class="brutal-badge brutal-badge-magenta">Magenta Badge</span>
-          <span class="brutal-badge brutal-badge-yellow">Yellow Badge</span>
+    <!-- ═══ 07 PHOTOGRAPHY ═══ -->
+    <section id="photography" class="px-4 md:px-8 py-16 border-b border-white/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[11px] text-mint tracking-widest">07</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+        <h2
+          class="font-black uppercase text-3xl md:text-5xl mb-3"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Photography
+        </h2>
+        <p class="text-sm text-white/40 max-w-2xl mb-10 leading-relaxed">
+          Real photos of real places and real people. No AI imagery. No stock photography. Every
+          photo needs a purpose.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <BrutalCard shadow="lavender" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-lavender mb-3">
+              Infrastructure — purple duotone
+            </p>
+            <p class="text-sm text-white/60 leading-relaxed">
+              Stark B&amp;W desaturation, then a sharp diagonal clip (~40% from the right at top,
+              60% at bottom). Duotone shadows = Brand Purple{' '}
+              <code class="font-mono text-mint">#5C006B</code>, highlights = white.
+            </p>
+          </BrutalCard>
+          <BrutalCard shadow="mint" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-mint mb-3">
+              People &amp; community — teal duotone
+            </p>
+            <p class="text-sm text-white/60 leading-relaxed">
+              Reduced saturation only — keep warmth and skin tones readable, don't go stark grey.
+              Duotone shadows = <code class="font-mono text-mint">#006B5C</code>, highlights =
+              white.
+            </p>
+          </BrutalCard>
+        </div>
+
+        <BrutalCard padding="md">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-3">
+            Photography don'ts
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+            {
+              [
+                'No AI-generated imagery of any kind',
+                'No generic stock photography — every photo needs a real purpose',
+                'No duotone colours outside purple (infrastructure) and teal (people)',
+                'No fully desaturated people photos — keep warmth on human subjects',
+                'No full-colour photos without treatment — always apply the diagonal split',
+                'No decorative photo shapes (circles, blobs) — rectangular crops only',
+              ].map((rule) => <p class="text-xs text-white/40">✕ {rule}</p>)
+            }
+          </div>
+        </BrutalCard>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BOTTOM ═══ -->
+    <section class="px-4 md:px-8 py-16 text-center">
+      <div class="max-w-xl mx-auto">
+        <h2
+          class="font-black uppercase text-3xl md:text-4xl mb-4"
+          style="font-family: 'Barlow Condensed', sans-serif;"
+        >
+          Ready to Build?
+        </h2>
+        <p class="text-sm text-white/50 mb-8">
+          Apply this system consistently. Every deviation costs brand equity.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <BrutalButton href="/" variant="primary" icon="mdi:home">Back to Home</BrutalButton>
+          <BrutalButton href="/policies" variant="secondary" icon="mdi:file-document">
+            View Policies
+          </BrutalButton>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-magenta-gradient text-white py-20 px-8 border-t-4 border-yellow">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-black mb-6 uppercase">READY TO BUILD?</h2>
-      <p class="text-xl mb-12 max-w-3xl mx-auto font-bold">
-        Use this design system to create consistent, powerful experiences.
-      </p>
-      <div class="cta-buttons">
-        <a href="/" class="btn btn-secondary">BACK TO HOME</a>
-        <a href="/policies" class="btn btn-secondary">VIEW POLICIES</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <Footer />
 </BaseLayout>

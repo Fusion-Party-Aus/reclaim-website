@@ -37,7 +37,7 @@ src/
 ├── types/             # TypeScript definitions
 └── test/              # Test utilities
 
-fusion/                # Sanity Studio config
+studio/                # Sanity Studio config
 ```
 
 ## 📚 Documentation

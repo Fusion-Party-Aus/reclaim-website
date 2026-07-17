@@ -1,0 +1,338 @@
+---
+import { getDocuments } from '@/lib/sanity'
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
+
+const currentPath = Astro.url.pathname
+
+interface DropdownItem {
+  label: string
+  href: string
+  description?: string
+}
+
+interface NavItem {
+  label: string
+  href?: string
+  order: number
+  highlight?: boolean
+  children?: DropdownItem[]
+}
+
+interface Navigation {
+  _id: string
+  title: string
+  mainNav: NavItem[]
+  ctaButton: { label: string; href: string; style: string }
+  logo: { mainText: string; subText: string; tagline?: string }
+}
+
+const navigations = await getDocuments<Navigation>('navigation')
+const navigation = navigations[0]
+
+// Ensure all hrefs are root-relative (protect against Sanity entries missing the leading slash)
+const ensureRootRelative = (href: string) =>
+  href && !href.startsWith('/') && !href.startsWith('http') ? `/${href}` : href
+
+const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
+  { href: '/', label: 'Home', order: 0 },
+  { href: '/about', label: 'About', order: 1 },
+  { href: '/policies', label: 'Policies', order: 2 },
+  { href: '/vision', label: 'Vision', order: 3 },
+]
+
+const navItems = rawNavItems.map((item) => ({
+  ...item,
+  href: item.href ? ensureRootRelative(item.href) : item.href,
+  children: item.children?.map((child) => ({
+    ...child,
+    href: ensureRootRelative(child.href),
+  })),
+}))
+
+const ctaButton = navigation?.ctaButton || {
+  label: 'Get involved',
+  href: '/get-involved',
+  style: 'primary',
+}
+
+const logo = navigation?.logo || {
+  mainText: 'FUSION',
+  subText: 'VICTORIA',
+  tagline: 'Reignite Democracy',
+}
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-surface-base/85 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      {/* ── Logo ── */}
+      <a
+        href="/"
+        class="flex items-center gap-2.5 no-underline group shrink-0"
+        aria-label="Fusion Party Victoria Home"
+      >
+        <Image
+          src={logoMonoWhite}
+          alt="Fusion Party Victoria"
+          class="h-7 w-auto group-hover:opacity-80 transition-opacity"
+        />
+        <div class="flex flex-col leading-none">
+          <span class="font-display font-black text-white text-lg tracking-tight uppercase">
+            {logo.mainText}
+            {logo.subText && <span class="text-white/50 font-bold ml-1">{logo.subText}</span>}
+          </span>
+          {
+            logo.tagline && (
+              <span class="text-[10px] font-medium text-white/40 tracking-wide mt-0.5">
+                {logo.tagline}
+              </span>
+            )
+          }
+        </div>
+      </a>
+
+      {/* ── Mobile menu toggle ── */}
+      <button
+        class="md:hidden text-white/70 hover:text-white p-2 cursor-pointer transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        id="mobile-menu-toggle"
+      >
+        <Icon name="mdi:menu" class="menu-icon w-6 h-6" />
+      </button>
+
+      {/* ── Desktop nav ── */}
+      <nav class="hidden md:flex items-center gap-7" id="main-nav" aria-label="Primary">
+        {
+          navItems.map((item) => {
+            const hasDropdown = item.children && item.children.length > 0
+            const isActive =
+              item.href &&
+              (currentPath === item.href ||
+                (item.href !== '/' && currentPath.startsWith(item.href)))
+
+            if (hasDropdown) {
+              return (
+                <div class="nav-dropdown-wrapper relative group">
+                  <button
+                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/60 border-transparent hover:text-white'}`}
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {item.label}
+                    <Icon
+                      name="mdi:chevron-down"
+                      class="w-3.5 h-3.5 dropdown-arrow transition-transform duration-200 group-hover:rotate-180"
+                    />
+                  </button>
+                  {/* Dropdown */}
+                  <div
+                    class="dropdown-menu absolute top-full left-0 pt-3 hidden group-hover:block group-focus-within:block"
+                    style="min-width: 240px; z-index: 100;"
+                  >
+                    <div class="bg-surface-raised border border-white/10 rounded-sm p-1.5 shadow-brutal-md">
+                      {item.children?.map((child) => (
+                        <a
+                          href={child.href}
+                          class="block px-3.5 py-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-sm text-sm font-medium"
+                        >
+                          {child.label}
+                          {child.description && (
+                            <div class="text-xs mt-0.5 text-white/60">{child.description}</div>
+                          )}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            return (
+              <a
+                href={item.href}
+                class={`nav-link text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/60 border-transparent hover:text-white'}`}
+              >
+                {item.label}
+              </a>
+            )
+          })
+        }
+
+        {/* CTA Button — flat fill, sentence case, soft glow on hover */}
+        <a
+          href={ctaButton.href}
+          class:list={[
+            'ml-2 px-4 py-2 text-sm font-semibold rounded-sm transition-shadow',
+            ctaButton.style === 'primary' && 'bg-magenta text-white hover:shadow-brutal-magenta',
+            ctaButton.style === 'yellow' && 'bg-yellow text-white hover:shadow-brutal-yellow',
+            ctaButton.style === 'mint' && 'bg-mint text-black hover:shadow-brutal-mint',
+            !['primary', 'yellow', 'mint'].includes(ctaButton.style) &&
+              'bg-mint text-black hover:shadow-brutal-mint',
+          ]}
+        >
+          {ctaButton.label}
+        </a>
+      </nav>
+    </div>
+
+    {/* ── Mobile navigation ── */}
+    <nav class="mobile-nav hidden" id="mobile-nav" aria-label="Mobile">
+      <div class="flex flex-col gap-1 py-4 border-t border-white/10">
+        {
+          navItems.map((item) => {
+            const hasDropdown = item.children && item.children.length > 0
+            const isActive =
+              item.href &&
+              (currentPath === item.href ||
+                (item.href !== '/' && currentPath.startsWith(item.href)))
+
+            if (hasDropdown) {
+              return (
+                <div class="mobile-dropdown">
+                  <button
+                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-colors flex justify-between items-center"
+                    aria-expanded="false"
+                  >
+                    {item.label}
+                    <Icon name="mdi:chevron-down" class="w-3.5 h-3.5 dropdown-arrow" />
+                  </button>
+                  <div class="mobile-dropdown-content hidden ml-3 mb-1 space-y-0.5">
+                    {item.children?.map((child) => (
+                      <a
+                        href={child.href}
+                        class="block px-2 py-2 text-sm text-white/60 hover:text-white transition-colors"
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+
+            return (
+              <a
+                href={item.href}
+                class={`block px-2 py-2.5 text-sm font-medium transition-colors ${
+                  isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </a>
+            )
+          })
+        }
+        <a
+          href={ctaButton.href}
+          class:list={[
+            'mt-2 block px-4 py-2.5 text-center text-sm font-semibold rounded-sm text-white',
+            ctaButton.style === 'mint' ? 'bg-mint text-black' : 'bg-magenta',
+          ]}
+        >
+          {ctaButton.label}
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .dropdown-menu {
+    animation: dropdownSlide 0.15s ease-out;
+  }
+
+  @keyframes dropdownSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-nav {
+    animation: slideDown 0.25s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-dropdown-content {
+    animation: slideDown 0.2s ease-out;
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle')
+  const mobileNav = document.getElementById('mobile-nav')
+
+  toggle?.addEventListener('click', () => {
+    const isHidden = mobileNav?.classList.toggle('hidden')
+    toggle.setAttribute('aria-expanded', String(!isHidden))
+  })
+
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
+    })
+  })
+
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
+      const dropdown = button.nextElementSibling
+      dropdown?.classList.toggle('hidden')
+      const isOpen = !dropdown?.classList.contains('hidden')
+      button.setAttribute('aria-expanded', String(isOpen))
+      const arrow = button.querySelector('.dropdown-arrow') as HTMLElement | null
+      if (arrow) {
+        arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+        arrow.style.transition = 'transform 0.25s ease'
+      }
+    })
+  })
+
+  document.addEventListener('click', (e) => {
+    if (!mobileNav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
+      mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
+    }
+  })
+
+  // Escape closes the mobile menu and returns focus to the toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileNav?.classList.contains('hidden')) {
+      mobileNav?.classList.add('hidden')
+      toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.focus()
+    }
+  })
+
+  // Keep desktop dropdown aria-expanded in sync with hover/focus visibility
+  document.querySelectorAll<HTMLElement>('.nav-dropdown-wrapper').forEach((wrapper) => {
+    const trigger = wrapper.querySelector('button')
+    const setExpanded = (expanded: boolean) =>
+      trigger?.setAttribute('aria-expanded', String(expanded))
+    wrapper.addEventListener('mouseenter', () => setExpanded(true))
+    wrapper.addEventListener('mouseleave', () => setExpanded(false))
+    wrapper.addEventListener('focusin', () => setExpanded(true))
+    wrapper.addEventListener('focusout', (e) => {
+      if (!wrapper.contains(e.relatedTarget as Node)) setExpanded(false)
+    })
+  })
+</script>

@@ -9,7 +9,6 @@
  * @param {string} variant - Style variant: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white' | 'black'
  * @param {string} size - Size: 'sm' | 'md' | 'lg' | 'xl'
  * @param {boolean} circular - Show circular background
- * @param {boolean} border - Show border
  * @param {string} animation - Animation: 'none' | 'bounce' | 'wiggle' | 'pulse' | 'float'
  * @param {string} class - Additional CSS classes
  */
@@ -21,7 +20,6 @@ interface Props {
   variant?: 'magenta' | 'mint' | 'yellow' | 'lavender' | 'white' | 'black'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   circular?: boolean
-  border?: boolean
   animation?: 'none' | 'bounce' | 'wiggle' | 'pulse' | 'float'
   class?: string
 }
@@ -31,19 +29,18 @@ const {
   variant = 'magenta',
   size = 'md',
   circular = true,
-  border = true,
   animation = 'none',
   class: className = '',
 } = Astro.props
 
 // Color variants
 const variants = {
-  magenta: 'bg-magenta text-white border-black',
-  mint: 'bg-mint text-black border-black',
-  yellow: 'bg-yellow text-black border-black',
-  lavender: 'bg-lavender text-black border-black',
-  white: 'bg-white text-black border-black',
-  black: 'bg-black text-white border-black',
+  magenta: 'bg-magenta text-white',
+  mint: 'bg-mint text-black',
+  yellow: 'bg-yellow text-white',
+  lavender: 'bg-lavender text-white',
+  white: 'bg-white text-black border border-black/10',
+  black: 'bg-black text-white border border-white/15',
 }
 
 // Sizes
@@ -76,8 +73,7 @@ const animations = {
 }
 
 const sizeClasses = sizes[size]
-const circularClass = circular ? 'rounded-full' : 'rounded-lg'
-const borderClass = border ? 'border-4' : ''
+const circularClass = circular ? 'rounded-full' : 'rounded-sm'
 ---
 
 {
@@ -87,10 +83,8 @@ const borderClass = border ? 'border-4' : ''
       ${variants[variant]}
       ${sizeClasses.container}
       ${circularClass}
-      ${borderClass}
       ${animations[animation]}
       flex items-center justify-center
-      shadow-[4px_4px_0px_0px_#000000]
       transition-transform duration-200
       hover:scale-110
       ${className}

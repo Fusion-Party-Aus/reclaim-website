@@ -1,61 +1,74 @@
 /* ============================================
-    FUSION PARTY - NEO-BRUTALIST DESIGN SYSTEM
+    RECLAIM — FUSION PARTY DESIGN SYSTEM
+    Dark-first, evidence-forward, spectrum accents.
     ============================================ */
 
-/* Import Google Fonts - EVEN MORE EXPERIMENTAL, GRAPHIC, DISPLAY FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Chakra+Petch:wght@400;600;700&family=Bebas+Neue&family=Anton&display=swap');
+/* Import Google Fonts. Archivo Black/Anton stay loaded for any
+   not-yet-migrated inline font-family references on long-tail pages. */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Archivo+Black&family=Anton&display=swap');
 
 @import 'tailwindcss';
 
 @theme {
-  /* Neo-Brutalist Brand Colors - LOUD, HIGH CONTRAST, VIBRANT, FLAT */
-  --color-magenta: #c926f2;
-  --color-magenta-dark: #8b1fa8;
-  --color-magenta-darker: #6b0e88;
-  --color-magenta-bright: #e91e63;
-  --color-mint: #5effd8;
-  --color-mint-dark: #4de5c5;
-  --color-mint-bright: #00e5ff;
-  --color-lavender: #9a94e7;
-  --color-lavender-light: #b5b0f2;
-  --color-lavender-bright: #e1bee7;
-  --color-grey: #949494;
-  --color-grey-dark: #1a1a1a;
-  --color-grey-light: #e5e5e5;
-  --color-yellow: #ffed00;
-  --color-yellow-bright: #ffeb3b;
-  --color-black: #010102;
+  /* Brand colors — mapped from the old neo-brutalist palette onto the
+     Reclaim spectrum (magenta → violet → blue → cyan → teal). Names are
+     kept stable so every bg-magenta/text-mint/etc. utility class already
+     in use across the site repaints automatically. */
+  --color-magenta: #d428d4;
+  --color-magenta-dark: #8b1a8b;
+  --color-magenta-darker: #5c006b;
+  --color-magenta-bright: #ec6aed;
+  --color-mint: #00ddb8;
+  --color-mint-dark: #00b89a;
+  --color-mint-bright: #0bb8d4;
+  --color-lavender: #7b3fe4;
+  --color-lavender-light: #a87af2;
+  --color-lavender-bright: #a87af2;
+  --color-grey: #887898;
+  --color-grey-dark: #2e004d;
+  --color-grey-light: #d8d0e0;
+  --color-yellow: #4a7aeb;
+  --color-yellow-bright: #7ea8f5;
+  --color-black: #0f0018;
   --color-white: #ffffff;
-  --color-red: #ff3b30;
-  --color-orange: #ff9500;
-  --color-blue: #007aff;
-  --color-green: #34c759;
+  --color-red: #e84040;
+  --color-orange: #f5a623;
+  --color-blue: #4a7aeb;
+  --color-green: #00ddb8;
 
-  /* EXPERIMENTAL FONTS - Aggressive, Display-Heavy Typography */
-  --default-font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-heading: 'Archivo Black', 'Anton', 'Impact', sans-serif;
-  --font-display: 'Space Grotesk', 'Bebas Neue', 'Archivo Black', sans-serif;
-  --font-accent: 'Chakra Petch', 'Inter', sans-serif;
-  --font-ultra: 'Anton', 'Bebas Neue', 'Impact', sans-serif;
+  /* Surface scale — dark-first canvas */
+  --color-surface-base: #1a0029;
+  --color-surface-raised: #2e004d;
+  --color-surface-overlay: #470060;
+  --color-surface-brand: #5c006b;
 
-  /* NEO-BRUTALIST SHADOWS - AGGRESSIVE, ASYMMETRIC, VARIED */
-  --shadow-brutal: 10px 10px 0px 0px #000000;
-  --shadow-brutal-sm: 5px 5px 0px 0px #000000;
-  --shadow-brutal-lg: 15px 15px 0px 0px #000000;
-  --shadow-brutal-xl: 20px 20px 0px 0px #000000;
-  --shadow-brutal-magenta: 10px 10px 0px 0px #c926f2;
-  --shadow-brutal-mint: 10px 10px 0px 0px #5effd8;
-  --shadow-brutal-yellow: 10px 10px 0px 0px #ffed00;
-  --shadow-brutal-red: 10px 10px 0px 0px #ff3b30;
-  --shadow-brutal-orange: 10px 10px 0px 0px #ff9500;
-  --shadow-brutal-asymmetric-1: 8px 12px 0px 0px #000000;
-  --shadow-brutal-asymmetric-2: 12px 8px 0px 0px #000000;
-  --shadow-brutal-asymmetric-3: 6px 14px 0px 0px #000000;
-  --shadow-brutal-inverted: -6px -6px 0px 0px #000000;
-  --shadow-brutal-double: 5px 5px 0px 0px #5effd8, 10px 10px 0px 0px #000000;
+  /* Typography system */
+  --default-font-family: 'Barlow', system-ui, sans-serif;
+  --font-sans: 'Barlow', system-ui, sans-serif;
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-ultra: 'Anton', sans-serif;
+
+  /* Shadows — soft glows in the brand accents, not hard brutalist offsets.
+     Names are kept stable for the same reason as the colors above. */
+  --shadow-brutal: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-sm: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
+  --shadow-brutal-lg: 0 12px 40px 0px rgba(0, 0, 0, 0.65);
+  --shadow-brutal-xl: 0 16px 48px 0px rgba(0, 0, 0, 0.7);
+  --shadow-brutal-magenta: 0 0 24px rgba(212, 40, 212, 0.35);
+  --shadow-brutal-mint: 0 0 24px rgba(0, 221, 184, 0.3);
+  --shadow-brutal-yellow: 0 0 24px rgba(74, 122, 235, 0.35);
+  --shadow-brutal-red: 0 0 24px rgba(232, 64, 64, 0.35);
+  --shadow-brutal-orange: 0 0 24px rgba(245, 166, 35, 0.35);
+  --shadow-brutal-asymmetric-1: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-asymmetric-2: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-asymmetric-3: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-inverted: 0 -8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-double: 0 0 16px rgba(0, 221, 184, 0.3), 0 8px 32px 0px rgba(0, 0, 0, 0.6);
   --shadow-brutal-triple:
-    4px 4px 0px 0px #ffed00, 8px 8px 0px 0px #c926f2, 12px 12px 0px 0px #000000;
+    0 0 12px rgba(74, 122, 235, 0.3), 0 0 20px rgba(212, 40, 212, 0.3),
+    0 8px 32px 0px rgba(0, 0, 0, 0.6);
 }
 
 /* Base layer customizations */
@@ -66,73 +79,80 @@
     box-sizing: border-box;
   }
 
-  body {
-    font-family:
-      'Inter',
-      -apple-system,
-      BlinkMacSystemFont,
-      system-ui,
-      sans-serif;
-    background-color: #ffffff;
-    color: #000000;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem; /* Account for sticky header */
+    overflow-x: clip; /* Prevent horizontal scroll without breaking sticky */
   }
 
-  /* Neo-brutalist selection - high contrast yellow */
+  body {
+    font-family: 'Barlow', system-ui, sans-serif;
+    background-color: #1a0029;
+    color: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip; /* Prevent horizontal scroll without breaking sticky */
+  }
+
+  /* Dark-first selection - magenta, the primary interactive accent */
   ::selection {
-    background-color: #ffed00;
-    color: #000000;
+    background-color: #d428d4;
+    color: #ffffff;
   }
 
-  /* LOUD, GRAPHIC, EXPERIMENTAL HEADINGS - Pure Neo-Brutalism */
+  /* Keyboard focus — visible on every interactive element, mouse users unaffected */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid #00ddb8;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Headings */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Archivo Black', 'Anton', 'Impact', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    line-height: 0.85; /* Even tighter line-height for maximum impact */
-    letter-spacing: -0.03em; /* Tighter tracking for condensed look */
     text-transform: uppercase;
   }
 
-  /* H1: Ultra-bold display headlines */
+  /* Display: hero-level poster feel, without letting wrapped lines collide */
   h1 {
-    font-family: 'Anton', 'Bebas Neue', 'Archivo Black', sans-serif;
-    font-weight: 400; /* Anton is already ultra-bold */
-    letter-spacing: -0.02em;
-    line-height: 0.9;
+    line-height: 0.98;
+    letter-spacing: -0.015em;
   }
 
-  /* H2: Strong display with Space Grotesk */
+  /* Section titles: condensed but readable across wraps */
   h2 {
-    font-family: 'Space Grotesk', 'Archivo Black', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  /* H3+: Archivo Black for consistency */
+  /* Card / sub-section titles: legible at smaller sizes */
   h3,
-  h4,
+  h4 {
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+  }
+
   h5,
   h6 {
-    font-family: 'Archivo Black', sans-serif;
-    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: 0;
   }
 }
 
-/* Component layer - NEO-BRUTALIST COMPONENTS */
+/* Component layer */
 @layer components {
-  /* BUTTONS - CLEAN BRUTALISM: BOLD BUT FOCUSED */
+  /* BUTTONS - sharp, glowing, brighten on hover (never darken) */
   .btn {
     display: inline-block;
     padding: 1.25rem 2.5rem;
@@ -142,334 +162,79 @@
     letter-spacing: 0.08em;
     cursor: pointer;
     text-decoration: none;
-    border: 5px solid #000000;
-    transition: all 0.15s ease;
-    box-shadow: 6px 6px 0px 0px #000000;
-    font-family: 'Archivo Black', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
+    font-family: 'Barlow Condensed', sans-serif;
     position: relative;
   }
 
   .btn:hover {
-    transform: translate(4px, 4px);
-    box-shadow: 2px 2px 0px 0px #000000;
+    transform: scale(1.02);
   }
 
   .btn:active {
-    transform: translate(6px, 6px);
-    box-shadow: none;
+    transform: scale(0.97);
   }
 
   .btn-primary {
-    background-color: #c926f2;
+    background-color: #d428d4;
     color: #ffffff;
+    border-color: transparent;
   }
 
   .btn-primary:hover {
-    background-color: #8b1fa8;
+    background-color: #ec6aed;
+    box-shadow: 0 0 24px rgba(212, 40, 212, 0.45);
   }
 
   .btn-secondary {
-    background-color: #5effd8;
-    color: #000000;
+    background-color: #00ddb8;
+    color: #0f0018;
+    border-color: transparent;
   }
 
   .btn-secondary:hover {
-    background-color: #ffed00;
+    background-color: #5eedd8;
+    box-shadow: 0 0 24px rgba(0, 221, 184, 0.4);
   }
 
   .btn-lg {
     padding: 1.5rem 3rem;
     font-size: 1.25rem;
-    border-width: 6px;
-    box-shadow: 8px 8px 0px 0px #000000;
   }
 
   .btn-sm {
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
-    border-width: 4px;
-    box-shadow: 4px 4px 0px 0px #000000;
   }
 
-  /* ALERT BAR - Clean and focused */
+  /* ALERT BAR - flat accent strip */
   .alert-bar {
-    background: #c926f2;
+    background: #d428d4;
     color: #ffffff;
     text-align: center;
     padding: 1.25rem;
     font-weight: 900;
-    border-top: 5px solid #000000;
-    border-bottom: 5px solid #000000;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.95rem;
   }
 
   .alert-bar a {
-    color: #ffed00;
+    color: #0f0018;
     text-decoration: none;
-    border-bottom: 3px solid #ffed00;
+    border-bottom: 2px solid #0f0018;
     padding-bottom: 2px;
     transition: all 0.15s;
     font-weight: 900;
   }
 
   .alert-bar a:hover {
-    color: #5effd8;
-    border-bottom-color: #5effd8;
-  }
-
-  /* THEFT GRID - Asymmetric masonry-style layout */
-  .theft-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  /* Create asymmetric layout by spanning different columns */
-  .theft-grid > *:nth-child(3n + 1) {
-    grid-column: span 5;
-  }
-
-  .theft-grid > *:nth-child(3n + 2) {
-    grid-column: span 7;
-  }
-
-  .theft-grid > *:nth-child(3n + 3) {
-    grid-column: span 12;
-  }
-
-  @media (max-width: 768px) {
-    .theft-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .theft-grid > * {
-      grid-column: span 1 !important;
-    }
-  }
-
-  /* THEFT/PROBLEM CARDS - Clean brutalism with minimal decoration */
-  .theft-card {
-    background-color: #ffffff;
-    border: 6px solid #000000;
-    overflow: hidden;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 8px 8px 0px 0px #000000;
-    position: relative;
-  }
-
-  .theft-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px 0px #000000;
-  }
-
-  .theft-card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 5px solid #000000;
-  }
-
-  .theft-card-content {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    flex: 1;
-  }
-
-  .theft-card-category {
-    color: #000000;
-    background-color: #5effd8;
-    font-weight: 900;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 0.5rem 1rem;
-    display: inline-block;
-    width: fit-content;
-    border: 3px solid #000000;
-    box-shadow: 4px 4px 0px 0px #000000;
-  }
-
-  .theft-card h3 {
-    color: #c926f2;
-    font-size: 2.5rem;
-    font-weight: 900;
-    line-height: 0.95;
-    margin: 0;
-    text-transform: uppercase;
-    font-family: 'Archivo Black', sans-serif;
-  }
-
-  .theft-card-description {
-    color: #000000;
-    line-height: 1.6;
-    flex: 1;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  .theft-card-impact {
-    background-color: #ffed00;
-    border: 5px solid #000000;
-    padding: 1rem;
-    box-shadow: 4px 4px 0px 0px #000000;
-  }
-
-  .theft-card-impact strong {
-    color: #000000;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.08em;
-  }
-
-  .theft-card-impact p {
-    color: #000000;
-    margin: 0;
-    font-weight: 700;
-  }
-
-  .theft-card a {
-    color: #000000;
-    font-weight: 900;
-    font-size: 0.875rem;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-bottom: 4px solid #c926f2;
-    padding-bottom: 0.25rem;
-    transition: all 0.15s ease;
-  }
-
-  .theft-card a:hover {
-    border-bottom-color: #000000;
-    transform: translateX(4px);
-    color: #c926f2;
-  }
-
-  /* ELECTORATE GRID - Asymmetric layout */
-  .electorate-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  /* Asymmetric spanning for visual interest */
-  .electorate-grid > *:nth-child(2n + 1) {
-    grid-column: span 7;
-  }
-
-  .electorate-grid > *:nth-child(2n) {
-    grid-column: span 5;
-  }
-
-  @media (max-width: 768px) {
-    .electorate-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .electorate-grid > * {
-      grid-column: span 1 !important;
-    }
-  }
-
-  /* ELECTORATE CARDS - Clean with asymmetric border */
-  .electorate-card {
-    background-color: #ffffff;
-    border: 5px solid #000000;
-    padding: 2rem;
-    transition: all 0.2s ease;
-    box-shadow: 8px 8px 0px 0px #5effd8;
-    border-left: 12px solid #5effd8;
-  }
-
-  .electorate-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px 0px #5effd8;
-  }
-
-  .electorate-card h3 {
-    color: #c926f2;
-    font-size: 2.25rem;
-    font-weight: 900;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    line-height: 0.95;
-    font-family: 'Archivo Black', sans-serif;
-  }
-
-  .candidate-name {
-    display: block;
-    color: #000000;
-    background-color: #ffed00;
-    font-weight: 900;
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    padding: 0.75rem 1rem;
-    border: 4px solid #000000;
-    text-transform: uppercase;
-    width: fit-content;
-    box-shadow: 4px 4px 0px 0px #000000;
-    letter-spacing: 0.08em;
-  }
-
-  .electorate-card > p {
-    color: #000000;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-  }
-
-  .electorate-priorities {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
-  }
-
-  .electorate-priorities li {
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    background-color: #f5f5f5;
-    border: 3px solid #000000;
-    border-left: 6px solid #c926f2;
-    color: #000000;
-    line-height: 1.5;
-    font-weight: 600;
-    box-shadow: 4px 4px 0px 0px #000000;
-  }
-
-  .electorate-priorities li strong {
-    color: #c926f2;
-    font-weight: 900;
-  }
-
-  .electorate-card > a {
-    color: #000000;
-    font-weight: 900;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-bottom: 4px solid #000000;
-    padding-bottom: 0.25rem;
-    transition: all 0.15s ease;
-  }
-
-  .electorate-card > a:hover {
-    border-bottom-color: #c926f2;
-    transform: translateX(4px);
-    color: #c926f2;
+    color: #ffffff;
+    border-bottom-color: #ffffff;
   }
 
   /* CTA BUTTONS CONTAINER */
@@ -481,140 +246,116 @@
     margin-top: 2rem;
   }
 
-  /* UTILITY BACKGROUNDS - Neo-brutalist flat blocks */
-  .bg-magenta-brutal {
-    background: #c926f2;
-    border-top: 4px solid #000000;
-    border-bottom: 4px solid #000000;
-  }
-
-  /* Legacy class name support - maps to brutal version */
+  /* UTILITY BACKGROUNDS - flat accent fills */
+  .bg-magenta-brutal,
   .bg-magenta-gradient {
-    background: #c926f2;
-    border-top: 4px solid #000000;
-    border-bottom: 4px solid #000000;
+    background: #d428d4;
   }
 
   .bg-light-grey {
-    background-color: #f5f5f5;
+    background-color: #f2eef7;
   }
 
   .bg-yellow-brutal {
-    background: #ffed00;
-    border: 4px solid #000000;
+    background: #4a7aeb;
   }
 
   .bg-mint-brutal {
-    background: #5effd8;
-    border: 4px solid #000000;
+    background: #00ddb8;
   }
 
-  /* BRUTAL CARDS - Clean with selective asymmetry */
+  /* CARDS - dark raised panel, hairline border, 2px accent top border */
   .brutal-card {
-    background: #ffffff;
-    border: 6px solid #000000;
+    background: #2e004d;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid #ffffff;
+    border-radius: 4px;
     padding: 2rem;
-    box-shadow: 8px 8px 0px 0px #000000;
-    transition: all 0.2s ease;
-    position: relative;
+    box-shadow: var(--shadow-brutal-sm);
+    transition: border-color 0.2s ease;
   }
 
   .brutal-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px 0px #000000;
+    border-color: rgba(255, 255, 255, 0.25);
   }
 
   .brutal-card-magenta {
-    border-left: 12px solid #c926f2;
-    box-shadow: 8px 8px 0px 0px #c926f2;
-  }
-
-  .brutal-card-magenta:hover {
-    box-shadow: 12px 12px 0px 0px #c926f2;
+    border-top-color: #d428d4;
   }
 
   .brutal-card-mint {
-    border-left: 12px solid #5effd8;
-    box-shadow: 8px 8px 0px 0px #5effd8;
-  }
-
-  .brutal-card-mint:hover {
-    box-shadow: 12px 12px 0px 0px #5effd8;
+    border-top-color: #00ddb8;
   }
 
   .brutal-card-yellow {
-    background: #ffed00;
-    border: 6px solid #000000;
-    box-shadow: 8px 8px 0px 0px #000000;
+    border-top-color: #4a7aeb;
   }
 
-  .brutal-card-yellow:hover {
-    box-shadow: 12px 12px 0px 0px #000000;
-  }
-
-  /* BRUTAL BADGES - Clean and focused */
+  /* BADGES */
   .brutal-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #5effd8;
-    border: 3px solid #000000;
+    background: #00ddb8;
+    color: #0f0018;
+    border-radius: 4px;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
-    box-shadow: 3px 3px 0px 0px #000000;
   }
 
   .brutal-badge-magenta {
-    background: #c926f2;
+    background: #d428d4;
     color: #ffffff;
   }
 
   .brutal-badge-yellow {
-    background: #ffed00;
-    color: #000000;
+    background: #4a7aeb;
+    color: #ffffff;
   }
 
-  /* BRUTAL LINKS - Bolder underlines and interactions */
+  /* LINKS - accent underline, brightens on hover */
   .brutal-link {
-    color: #000000;
+    color: #ffffff;
     font-weight: 900;
     text-decoration: none;
-    border-bottom: 5px solid #c926f2;
+    border-bottom: 3px solid #d428d4;
     padding-bottom: 0.125rem;
-    transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
   .brutal-link:hover {
-    border-bottom-color: #000000;
-    transform: translateX(6px);
-    color: #c926f2;
+    border-bottom-color: #ec6aed;
+    color: #ec6aed;
   }
 
-  /* BRUTAL SECTION DIVIDERS - Thicker, more dramatic */
+  /* SECTION DIVIDERS */
   .brutal-divider {
-    height: 6px;
-    background: #000000;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
     margin: 4rem 0;
     border: none;
-    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
   }
 
   .brutal-divider-magenta {
-    background: #c926f2;
-    box-shadow: 0 4px 0 0 rgba(201, 38, 242, 0.3);
+    height: 2px;
+    background: #d428d4;
   }
 
   .brutal-divider-mint {
-    background: #5effd8;
-    box-shadow: 0 4px 0 0 rgba(94, 255, 216, 0.3);
+    height: 2px;
+    background: #00ddb8;
   }
 
-  /* BRUTAL SECTIONS - Enhanced with geometric decorations */
+  /* SECTIONS - dark panel with accent-coloured header, hairline border */
   .brutal-section {
     margin-bottom: 3rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .brutal-section-header {
@@ -622,46 +363,273 @@
     font-weight: 900;
     text-transform: uppercase;
     padding: 1.5rem;
-    border: 6px solid #000000;
-    box-shadow: var(--shadow-brutal);
-    position: relative;
-    font-family: 'Archivo Black', sans-serif;
-  }
-
-  /* Decorative corner on section headers */
-  .brutal-section-header::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 20px;
-    height: 20px;
-    background: #ffed00;
-    border: 4px solid #000000;
-    transform: rotate(45deg);
+    color: #ffffff;
+    background-color: #2e004d;
+    font-family: 'Barlow Condensed', sans-serif;
+    border-bottom: 2px solid #d428d4;
   }
 
   .brutal-section-header.bg-magenta {
-    background-color: #c926f2;
-    color: #ffffff;
+    border-bottom-color: #d428d4;
   }
 
   .brutal-section-header.bg-mint {
-    background-color: #5effd8;
-    color: #000000;
+    border-bottom-color: #00ddb8;
   }
 
   .brutal-section-header.bg-yellow {
-    background-color: #ffed00;
-    color: #000000;
+    border-bottom-color: #4a7aeb;
   }
 
   .brutal-section-content {
-    background: #ffffff;
-    border: 6px solid #000000;
-    border-top: none;
+    background: #2e004d;
     padding: 2rem;
-    box-shadow: var(--shadow-brutal);
+  }
+
+  /* PROSE - body copy on dark surfaces */
+  .prose {
+    color: #f2eef7;
+  }
+
+  .prose p,
+  .prose li {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Accent highlights for strong tags */
+  .prose strong {
+    color: #ffffff;
+    font-weight: 700;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .prose p:nth-of-type(3n) strong {
+    color: #00ddb8;
+  }
+
+  .prose p:nth-of-type(3n + 1) strong {
+    color: #ec6aed;
+  }
+
+  /* H3s - condensed, accent-bordered, no rotation */
+  .prose h3 {
+    color: #ffffff;
+    padding: 0 0 0.5rem 0;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #4a7aeb;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .prose h3:nth-of-type(2n) {
+    border-bottom-color: #d428d4;
+  }
+
+  /* Custom List Markers */
+  .prose ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  .prose ul li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .prose ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    color: #d428d4;
+  }
+
+  .prose ol {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+    counter-reset: prose-counter;
+  }
+
+  .prose ol li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    counter-increment: prose-counter;
+  }
+
+  .prose ol li::before {
+    content: counter(prose-counter) '.';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    color: #d428d4;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .prose blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: #2e004d;
+    border-left: 3px solid #d428d4;
+    border-radius: 4px;
+  }
+
+  .prose blockquote p {
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0;
+    color: #f2eef7;
+  }
+
+  /* Global Link Refinements */
+  .prose a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid #d428d4;
+    transition: all 0.1s ease;
+  }
+
+  .prose a:hover {
+    color: #d428d4;
+    border-bottom-color: #ec6aed;
+  }
+
+  /* FAQ Page styling refinements */
+  .faq-answer p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    color: #d8d0e0;
+  }
+
+  .faq-answer p:first-child {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .faq-answer strong {
+    font-weight: 900;
+    color: #ffffff;
+  }
+
+  .faq-answer em {
+    font-style: italic;
+    color: #ec6aed;
+    font-weight: 600;
+  }
+
+  .faq-answer h4 {
+    font-size: 1.125rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.75rem;
+    color: #4a7aeb;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .faq-answer h5 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 1.25rem 0 0.5rem;
+    color: #00ddb8;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .faq-answer ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .faq-answer li {
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #f2eef7;
+    font-weight: 500;
+  }
+
+  .faq-answer li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    font-weight: 900;
+    color: #d428d4;
+  }
+
+  .faq-answer ol {
+    list-style: none;
+    counter-reset: faq-counter;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .faq-answer ol li {
+    counter-increment: faq-counter;
+    padding-left: 2rem;
+  }
+
+  .faq-answer ol li::before {
+    content: counter(faq-counter) '.';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    font-weight: 900;
+    color: #d428d4;
+  }
+
+  .faq-answer a {
+    color: #ec6aed;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid #ec6aed;
+    transition: all 0.15s;
+  }
+
+  .faq-answer a:hover {
+    color: #d428d4;
+    border-bottom-color: #d428d4;
+  }
+
+  .faq-answer blockquote {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: #2e004d;
+    border-left: 3px solid #d428d4;
+    border-radius: 4px;
+  }
+
+  .faq-answer blockquote p {
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0;
+    color: #f2eef7;
+  }
+
+  .faq-answer code {
+    font-family: 'Space Mono', monospace;
+    background: #0f0018;
+    color: #00ddb8;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    font-size: 0.875em;
   }
 }
 
@@ -673,74 +641,74 @@
 
   /* Neo-brutalist text utilities */
   .text-brutal-magenta {
-    color: #c926f2;
+    color: #d428d4;
     font-weight: 900;
     text-transform: uppercase;
   }
 
   .text-brutal-mint {
-    color: #5effd8;
+    color: #00ddb8;
     font-weight: 900;
     text-transform: uppercase;
   }
 
   .text-brutal-black {
-    color: #000000;
+    color: #0f0018;
     font-weight: 900;
     text-transform: uppercase;
   }
 
   /* Color utilities */
   .text-magenta {
-    color: #c926f2;
+    color: #d428d4;
   }
 
   .text-mint {
-    color: #5effd8;
+    color: #00ddb8;
   }
 
   .text-lavender {
-    color: #9a94e7;
+    color: #7b3fe4;
   }
 
   .bg-grey-dark {
-    background-color: #2a2a2a;
+    background-color: #2e004d;
   }
 
   .border-magenta {
-    border-color: #c926f2;
+    border-color: #d428d4;
   }
 
   .border-mint {
-    border-color: #5effd8;
+    border-color: #00ddb8;
   }
 
   .bg-magenta-light {
-    background-color: rgba(201, 38, 242, 0.05);
+    background-color: rgba(212, 40, 212, 0.05);
   }
 
   .bg-mint-light {
-    background-color: rgba(94, 255, 216, 0.2);
+    background-color: rgba(0, 221, 184, 0.2);
   }
 
   .bg-magenta-solid {
-    background-color: #c926f2;
+    background-color: #d428d4;
   }
 
   .bg-magenta-dark {
-    background-color: #a01ec8;
+    background-color: #ec6aed;
   }
 
   .bg-lavender {
-    background-color: #9a94e7;
+    background-color: #7b3fe4;
   }
 
   .hover\:bg-magenta:hover {
-    background-color: #c926f2;
+    background-color: #d428d4;
   }
 
   .hover\:bg-magenta-dark:hover {
-    background-color: #a01ec8;
+    background-color: #ec6aed;
   }
 
   /* REFINED ERROR PAGE ANIMATIONS - Toned down for main site */
@@ -804,7 +772,7 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
   }
 
@@ -861,5 +829,29 @@
 
   .animate-glow-pulse {
     animation: glow-pulse 2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-gentle,
+  .animate-float-slow,
+  .animate-wiggle-subtle,
+  .animate-pulse-gentle,
+  .animate-spin-slow,
+  .animate-bounce-subtle,
+  .animate-glow-pulse {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -1,7 +1,11 @@
 ---
 import { SEO } from 'astro-seo'
 import { getSiteConfig } from '../lib/sanity'
-import KonamiCode from '../components/KonamiCode.astro'
+import { KonamiCode } from '@/features/engagement'
+import { VisualEditing } from '@sanity/astro/visual-editing'
+import { stegaClean } from '@sanity/client/stega'
+import { Icon } from 'astro-icon/components'
+import { BrutalCard } from '@/components/ui'
 
 interface Props {
   title: string
@@ -13,19 +17,23 @@ interface Props {
 }
 
 const {
-  title,
-  description = 'Fusion Victoria - Taking back what they stole.',
+  title: rawTitle,
+  description: rawDescription = 'Fusion Party Victoria - Taking back what they stole.',
   image = '/og/default.png',
-  imageAlt = 'Fusion Victoria - Taking back what they stole.',
+  imageAlt = 'Fusion Party Victoria - Taking back what they stole.',
   type = 'website',
 } = Astro.props
 
+// Sanity stega-encodes editable strings with invisible characters; strip them
+// before they land in <title>/<meta> where they'd otherwise leak into the DOM.
+const title = stegaClean(rawTitle)
+const description = stegaClean(rawDescription)
 const siteConfig = await getSiteConfig()
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 
 const canonicalImage = new URL(image, Astro.site ?? Astro.url)
 ---
 
-<!doctype html>
 <html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
@@ -41,7 +49,7 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
         },
         optional: {
           description,
-          siteName: 'Fusion Victoria',
+          siteName: 'Fusion Party Victoria',
           locale: 'en_AU',
         },
         image: {
@@ -66,60 +74,82 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
 
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#C926F2" />
+    <meta name="theme-color" content="#D428D4" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Fusion VIC" />
+    <meta name="apple-mobile-web-app-title" content="Fusion Party Victoria" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js"
+    ></script>
+    <script>
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      ;((window.plausible =
+        window.plausible ||
+        function (...args) {
+          ;(plausible.q = plausible.q || []).push(...args)
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {}
+          }))
+      plausible.init()
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-yellow focus:text-white focus:px-4 focus:py-2 focus:border focus:border-white/10 focus:font-black focus:uppercase focus:text-sm"
+    >
+      Skip to main content
+    </a>
     <slot />
 
     <!-- Site-wide Secret Features -->
     <KonamiCode konami={siteConfig?.konamiCode} />
 
+    <VisualEditing enabled={visualEditingEnabled} />
+
     <!-- PWA Install Prompt -->
     <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">
-      <div
-        class="bg-black border-6 border-magenta p-6 max-w-sm transform rotate-1"
-        style="box-shadow: 8px 8px 0px 0px #FFED00, 16px 16px 0px 0px #5EFFD8;"
-      >
+      <BrutalCard class="relative max-w-sm" shadow="magenta" hover={false}>
         <button
           id="pwa-close"
-          class="absolute -top-3 -right-3 w-10 h-10 bg-yellow border-4 border-black flex items-center justify-center font-black text-xl hover:bg-mint transition-all"
-          style="box-shadow: 3px 3px 0px 0px #000;"
+          class="absolute -top-3 -right-3 w-8 h-8 bg-yellow rounded-full flex items-center justify-center text-white hover:scale-110 transition-all"
+          aria-label="Close"
         >
-          ✕
+          <Icon name="mdi:close" class="w-4 h-4" />
         </button>
         <div class="flex items-start gap-4 mb-4">
           <div
-            class="w-12 h-12 bg-magenta border-4 border-white flex items-center justify-center flex-shrink-0 rotate-12"
+            class="w-12 h-12 bg-magenta rounded-sm flex items-center justify-center flex-shrink-0"
           >
-            <span class="text-2xl">📱</span>
+            <Icon name="mdi:cellphone" class="w-6 h-6 text-white" />
           </div>
           <div>
             <h3
               class="text-lg font-black uppercase text-magenta mb-2"
-              style="font-family: 'Archivo Black', sans-serif;"
+              style="font-family: 'Barlow Condensed', sans-serif;"
             >
               Install Fusion App
             </h3>
-            <p class="text-sm font-bold text-white leading-tight">
+            <p class="text-sm font-bold text-white leading-normal">
               Add to your home screen for quick access & offline use!
             </p>
           </div>
         </div>
         <button
           id="pwa-install"
-          class="w-full px-4 py-3 bg-magenta text-white border-4 border-white font-black uppercase hover:bg-yellow hover:text-black transition-all"
-          style="box-shadow: 4px 4px 0px 0px #fff; font-family: 'Archivo Black', sans-serif;"
+          class="w-full px-4 py-3 bg-magenta text-white rounded-sm font-black uppercase hover:bg-magenta-bright transition-all"
+          style="font-family: 'Barlow Condensed', sans-serif;"
         >
           Install Now
         </button>
-      </div>
+      </BrutalCard>
     </div>
 
     <!-- PWA Service Worker Registration & Install Prompt -->
@@ -194,11 +224,11 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
       @keyframes slideInRight {
         from {
           opacity: 0;
-          transform: translateX(100%) rotate(1deg);
+          transform: translateX(100%);
         }
         to {
           opacity: 1;
-          transform: translateX(0) rotate(1deg);
+          transform: translateX(0);
         }
       }
     </style>

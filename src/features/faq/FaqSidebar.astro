@@ -1,0 +1,100 @@
+---
+interface Props {
+  sections: Array<{
+    id: string
+    title: string
+    questions: Array<{
+      id: string
+      title: string
+    }>
+  }>
+}
+
+const { sections } = Astro.props
+
+import { Icon } from 'astro-icon/components'
+---
+
+<aside class="faq-sidebar">
+  <div class="sticky top-8">
+    <div
+      class="bg-grey-dark border border-white/10 rounded-sm p-6"
+      style="border-top: 2px solid #D428D4;"
+    >
+      <h3 class="text-xl font-display font-black text-magenta mb-6 uppercase">Questions</h3>
+      <nav class="space-y-6">
+        {
+          sections.map((section) => (
+            <div class="category-section">
+              <a
+                href={`#${section.id}`}
+                class="block py-2 px-3 rounded-sm font-display font-black uppercase bg-yellow text-white hover:bg-mint hover:text-black transition-colors text-sm mb-3"
+              >
+                {section.title}
+              </a>
+              <ul class="space-y-1 pl-2">
+                {section.questions.map((question) => (
+                  <li>
+                    <a
+                      href={`#${question.id}`}
+                      class="block py-2 px-3 rounded-sm text-xs font-bold border border-white/10 bg-grey-dark text-white hover:border-mint/40 hover:text-mint hover:translate-x-1 transition-all"
+                    >
+                      {question.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+
+      <div class="mt-8 pt-6 border-t border-white/10">
+        <h4 class="text-lg font-display font-black text-magenta mb-4 uppercase">Quick Links</h4>
+        <div class="space-y-2">
+          <a
+            href="/policies"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 hover:text-mint transition-colors"
+          >
+            <Icon name="mdi:file-document" class="w-4 h-4" />
+            All Policies
+          </a>
+          <a
+            href="/get-involved"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm border border-white/10 bg-grey-dark text-white hover:bg-magenta hover:border-magenta hover:text-white transition-colors"
+          >
+            <Icon name="mdi:hand-heart" class="w-4 h-4" />
+            Get Involved
+          </a>
+          <a
+            href="https://fusionparty.org.au/donate"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm bg-yellow text-white hover:bg-magenta transition-colors"
+          >
+            <Icon name="mdi:currency-usd" class="w-4 h-4" />
+            Donate
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 rounded-sm bg-magenta/10 border-l-2 border-magenta">
+        <p class="font-black text-sm uppercase text-magenta">No Corporate Donations. Ever.</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .faq-sidebar {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .faq-sidebar a {
+    display: block;
+  }
+
+  .category-section {
+    border-left: 2px solid #d428d4;
+    padding-left: 0.5rem;
+  }
+</style>

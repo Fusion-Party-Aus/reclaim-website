@@ -1,0 +1,327 @@
+---
+// Footer component — Reclaim design system
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+import { getDocuments, getElectorates } from '@/lib/sanity'
+import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
+
+interface SocialLink {
+  platform: string
+  icon: string
+  url: string
+  ariaLabel?: string
+}
+
+interface ResourceLink {
+  label: string
+  url: string
+}
+
+interface NavColumn {
+  badgeLabel: string
+  badgeVariant: 'mint' | 'yellow' | 'white' | 'magenta'
+  showElectorates?: boolean
+  links: { label: string; url: string; external?: boolean }[]
+}
+
+interface Footer {
+  logo: { mainText: string; subText: string }
+  tagline?: string
+  socialLinks: SocialLink[]
+  resourceLinksLabel?: string
+  resourceLinks: ResourceLink[]
+  banner: { text: string; subtext?: string; rotation: number }
+  newsletter?: { heading: string; description: string; buttonText: string }
+  navColumns?: NavColumn[]
+  donateCta?: { buttonText: string; url: string }
+  authorization: string
+  copyrightText?: string
+  networkBranding?: { text: string; url: string }
+}
+
+const footers = await getDocuments<Footer>('footer')
+const electorates = await getElectorates()
+const footerData = footers[0]
+---
+
+<footer class="bg-surface-base text-white">
+  {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
+  <div class="bg-magenta py-4 px-4">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"
+    >
+      <p class="text-lg md:text-xl font-display font-black uppercase text-white tracking-tight">
+        {footerData.banner.text}
+      </p>
+      <p class="text-xs font-semibold text-white/80">
+        {footerData.banner.subtext}
+      </p>
+    </div>
+  </div>
+
+  {/* ═══ MAIN FOOTER BODY ═══ */}
+  <div class="py-16 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        {/* Left Column (Brand & Newsletter) — Spans 5 columns on large screen */}
+        <div class="lg:col-span-5 flex flex-col gap-8">
+          {/* Campaign Branding */}
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <Image src={logoMonoWhite} alt="Fusion Party Victoria" class="h-8 w-auto" />
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="font-display font-black text-white text-2xl tracking-tight uppercase">
+                  {footerData.logo.mainText}
+                </span>
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wide">
+                  {footerData.logo.subText}
+                </span>
+              </div>
+            </div>
+
+            {
+              footerData.tagline && (
+                <p class="text-sm text-white/50 mt-3 max-w-xs leading-relaxed">
+                  {footerData.tagline}
+                </p>
+              )
+            }
+          </div>
+
+          {/* Social Links Row */}
+          <div class="flex flex-wrap gap-2">
+            {
+              footerData.socialLinks.map((social) => (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="social-icon"
+                  aria-label={social.ariaLabel || social.platform}
+                >
+                  <Icon
+                    name={social.icon}
+                    class="w-4 h-4 text-white/60 transition-colors duration-150"
+                  />
+                </a>
+              ))
+            }
+          </div>
+
+          {/* Newsletter Signup Card */}
+          <div class="border border-white/10 rounded-sm p-6">
+            <h4 class="text-sm font-semibold text-white mb-1.5">
+              {footerData.newsletter?.heading}
+            </h4>
+            <p class="text-xs text-white/50 mb-4 leading-relaxed">
+              {footerData.newsletter?.description}
+            </p>
+
+            <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
+              <label for="footer-newsletter-email" class="sr-only">Email address</label>
+              <input
+                id="footer-newsletter-email"
+                type="email"
+                required
+                placeholder="Enter your email"
+                class="flex-1 px-3 py-2 text-sm rounded-sm border border-white/15 bg-surface-raised text-white placeholder-white/30 focus:outline-none focus:border-magenta transition-colors"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 bg-magenta text-white rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {footerData.newsletter?.buttonText}
+              </button>
+            </form>
+            <div id="footer-newsletter-message" class="hidden text-xs font-medium mt-2"></div>
+          </div>
+        </div>
+
+        {/* Right Column (Navigation Grid) — Spans 7 columns on large screen */}
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {
+            footerData.navColumns?.map((col) => (
+              <div>
+                <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+                  {col.badgeLabel}
+                </h4>
+                <ul class="space-y-2.5">
+                  {col.links.map((link) => (
+                    <li>
+                      <a
+                        href={link.url}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener' : undefined}
+                        class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                  {col.showElectorates &&
+                    electorates.slice(0, 5).map((electorate) => (
+                      <li>
+                        <a
+                          href={`/electorates/${electorate.slug.current}`}
+                          class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                        >
+                          {electorate.name}
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))
+          }
+
+          {/* Column: Governance (resource links) */}
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+              {footerData.resourceLinksLabel}
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://transportscore.fusionparty.org.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer-link text-sm text-mint hover:text-white transition-colors font-bold flex items-center gap-1"
+                >
+                  <Icon name="mdi:train" class="w-4 h-4" />
+                  Transport Score Tool
+                </a>
+              </li>
+              {
+                footerData.resourceLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+
+            {
+              footerData.donateCta?.url && (
+                <a
+                  href={footerData.donateCta.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-black transition-shadow hover:shadow-brutal-mint w-full"
+                >
+                  <Icon name="mdi:currency-usd" class="w-4 h-4" />
+                  {footerData.donateCta.buttonText}
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Spectrum divider */}
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div
+      class="h-px w-full"
+      style="background: linear-gradient(90deg, #D428D4, #7B3FE4, #4A7AEB, #0BB8D4, #00DDB8);"
+    >
+    </div>
+  </div>
+
+  {/* ═══ BOTTOM BAR ═══ */}
+  <div class="px-4 md:px-8 py-6">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
+    >
+      <p class="text-xs font-mono text-white/60">
+        © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
+      </p>
+      <p class="text-xs font-mono text-white/60 max-w-md">
+        {footerData.authorization}
+      </p>
+      <p class="text-xs font-mono text-white/60">
+        Part of{' '}
+        <a
+          href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white/70 hover:text-mint transition-colors"
+        >
+          {footerData.networkBranding?.text || 'Fusion'}
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
+  }
+  .social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  .social-icon:hover :global(svg) {
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  // Newsletter form — submits to NationBuilder via /api/newsletter
+  const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null
+  const message = document.getElementById('footer-newsletter-message')
+
+  if (form && message) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement | null
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null
+      if (!input) return
+
+      const email = input.value
+      if (button) button.disabled = true
+      message.classList.add('hidden')
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        })
+
+        if (res.ok) {
+          message.textContent = `Success — ${email} added to alerts.`
+          message.classList.remove('text-magenta')
+          message.classList.add('text-mint')
+          message.classList.remove('hidden')
+          form.classList.add('hidden')
+        } else {
+          message.textContent = "Couldn't subscribe right now — please try again shortly."
+          message.classList.remove('text-mint')
+          message.classList.add('text-magenta')
+          message.classList.remove('hidden')
+        }
+      } catch {
+        message.textContent = "Couldn't subscribe right now — please try again shortly."
+        message.classList.remove('text-mint')
+        message.classList.add('text-magenta')
+        message.classList.remove('hidden')
+      } finally {
+        if (button) button.disabled = false
+      }
+    })
+  }
+</script>
