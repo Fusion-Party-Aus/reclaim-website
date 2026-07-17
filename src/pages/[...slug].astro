@@ -5,7 +5,7 @@ import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { StandardPage } from '@/features/page-rendering'
 import { BioPage } from '@/features/page-rendering'
-import { getPages } from '../lib/sanity'
+import { getPages, urlFor } from '../lib/sanity'
 import type { Page } from '../types/sanity'
 import '../styles/global.css'
 
@@ -81,11 +81,18 @@ const heroBgMap: Record<string, string> = {
 }
 
 const bgImage = heroBgMap[slug] || '/hero.png'
+
+const ogImageUrl =
+  page.pageType === 'bio' && page.profileImage
+    ? urlFor(page.profileImage).width(1200).height(630).fit('crop').url()
+    : '/og/default.png'
 ---
 
 <BaseLayout
   title={`${page.title} | Reignite Democracy`}
   description={page.metaDescription || page.subtitle}
+  image={ogImageUrl}
+  imageAlt={page.title}
 >
   <Header />
 

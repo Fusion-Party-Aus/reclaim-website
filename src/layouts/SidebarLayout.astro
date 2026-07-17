@@ -7,14 +7,15 @@ import type { PortableTextBlock } from '../lib/portableText'
 interface Props {
   title: string
   description?: string
+  image?: string
   content?: PortableTextBlock[]
   sidebarPosition?: 'left' | 'right'
 }
 
-const { title, description, content, sidebarPosition = 'right' } = Astro.props
+const { title, description, image, content, sidebarPosition = 'right' } = Astro.props
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={image}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div
       class={`grid gap-8 ${content ? (sidebarPosition === 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]') : 'grid-cols-1'}`}

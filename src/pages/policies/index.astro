@@ -139,7 +139,11 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 }))
 ---
 
-<BaseLayout title={`${title} | Fusion Party Victoria`} description={seoDescription}>
+<BaseLayout
+  title={`${title} | Fusion Party Victoria`}
+  description={seoDescription}
+  image="/og/policies.png"
+>
   <Header />
   <main id="main-content">
     <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />

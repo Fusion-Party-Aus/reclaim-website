@@ -125,7 +125,12 @@ const sidebarSections = [
 const metaDescription = policy.seoDescription || policy.summary
 ---
 
-<BaseLayout title={`${policy.title} | Fusion Party Victoria`} description={metaDescription}>
+<BaseLayout
+  title={`${policy.title} | Fusion Party Victoria`}
+  description={metaDescription}
+  image={`/og/policies/${policy.slug.current}.png`}
+  imageAlt={policy.title}
+>
   <Header />
 
   {/* ── HERO ── */}
