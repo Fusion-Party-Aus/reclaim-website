@@ -151,9 +151,9 @@ const { faq } = Astro.props
     const url = encodeURIComponent(window.location.href)
     const text = encodeURIComponent(document.title)
 
-    const twitter = document.getElementById('share-twitter')
-    const facebook = document.getElementById('share-facebook')
-    const email = document.getElementById('share-email')
+    const twitter = document.getElementById('share-twitter') as HTMLAnchorElement | null
+    const facebook = document.getElementById('share-facebook') as HTMLAnchorElement | null
+    const email = document.getElementById('share-email') as HTMLAnchorElement | null
 
     if (twitter) {
       twitter.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`

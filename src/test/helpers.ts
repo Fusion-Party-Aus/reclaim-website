@@ -28,7 +28,7 @@ export function createMockPolicy(overrides?: Partial<Policy>): Policy {
     slug: { _type: 'slug', current: 'test-policy' },
     icon: 'mdi:home',
     summary: 'This is a test policy summary',
-    keyPoints: ['Point 1', 'Point 2', 'Point 3'],
+    keyPoints: [{ point: 'Point 1' }, { point: 'Point 2' }, { point: 'Point 3' }],
     cost: '$1 billion',
     funding: 'Tax reform',
     body: [],
