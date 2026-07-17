@@ -1,27 +1,42 @@
 #!/usr/bin/env node
 /**
- * Generates the site's static OpenGraph images (1200x630) with Playwright,
- * styled to the Reclaim design system (dark-first, spectrum accents, Barlow
- * Condensed display type — see "Fusion Brand Guide.dc.html").
+ * Generates the site's OpenGraph images (1200x630), styled to the Reclaim
+ * design system (dark-first, spectrum accents, Barlow Condensed display type
+ * — see "Fusion Brand Guide.dc.html").
  *
- * These cover the home page and section index pages — everywhere a
- * Sanity-hosted photo isn't a better fit and content isn't individually
- * templated. Individual policy pages get their own generated image instead
- * (see src/pages/og/policies/[slug].png.ts); blog posts, electorate
- * candidates, and bio pages use their own uploaded image (see
- * src/layouts/BaseLayout.astro).
+ * Two passes:
+ *  1. Static section images (Playwright) — home page and section index
+ *     pages, everywhere a Sanity-hosted photo isn't a better fit and content
+ *     isn't individually templated.
+ *  2. One card per policy (satori + @resvg/resvg-js, see policy-card.mjs),
+ *     built from that policy's own title/summary. This runs as a plain
+ *     Node script rather than an Astro route/endpoint because
+ *     @resvg/resvg-js ships a native binary that Vite/Rollup can't bundle
+ *     for the Cloudflare Worker target — see the git history on this file
+ *     for the build failure that motivated moving it here.
  *
- * Run with: node scripts/og/generate-og-images.mjs
+ * Blog posts, electorate candidates, and bio pages use their own uploaded
+ * image instead (see src/layouts/BaseLayout.astro).
+ *
+ * Runs automatically before `npm run build` (see the `prebuild` script in
+ * package.json) so every deploy picks up current policy content. Not wired
+ * into `npm run dev` — that would add several seconds to every dev server
+ * restart for images nobody's looking at locally. Run it manually with
+ * `npm run generate:og` (or `node scripts/og/generate-og-images.mjs`) if you
+ * want to preview OG images during local development.
  */
 import { chromium } from 'playwright'
-import { readFileSync, mkdirSync } from 'node:fs'
+import { createClient } from '@sanity/client'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { renderPolicyCardPng, PILLAR_ACCENT, DEFAULT_ACCENT } from './policy-card.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '../..')
 const outDir = path.join(root, 'public/og')
-mkdirSync(outDir, { recursive: true })
+const policiesOutDir = path.join(outDir, 'policies')
+mkdirSync(policiesOutDir, { recursive: true })
 
 const WIDTH = 1200
 const HEIGHT = 630
@@ -316,7 +331,30 @@ const IMAGES = [
   },
 ]
 
-async function main() {
+// satori needs woff (not woff2) font data, unlike the Playwright/CSS pass above.
+const satoriFonts = [
+  {
+    name: 'Barlow Condensed',
+    data: fontFile('barlow-condensed', 'barlow-condensed-latin-900-normal.woff'),
+    weight: 900,
+    style: 'normal',
+  },
+  {
+    name: 'Barlow',
+    data: fontFile('barlow', 'barlow-latin-600-normal.woff'),
+    weight: 600,
+    style: 'normal',
+  },
+  {
+    name: 'Space Mono',
+    data: fontFile('space-mono', 'space-mono-latin-700-normal.woff'),
+    weight: 700,
+    style: 'normal',
+  },
+]
+const logoMarkDataUri = `data:image/png;base64,${logoMarkBase64}`
+
+async function generateSectionImages() {
   const browser = await chromium.launch({
     executablePath: process.env.CHROMIUM_PATH || undefined,
   })
@@ -337,7 +375,57 @@ async function main() {
   await browser.close()
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+async function generatePolicyImages() {
+  const client = createClient({
+    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
+    dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
+    useCdn: true,
+    apiVersion: '2024-01-29',
+  })
+
+  const policies = await client.fetch(
+    `*[_type == "policy" && defined(slug.current)]{ title, summary, pillar, "slug": slug.current }`
+  )
+
+  for (const policy of policies) {
+    const accent = PILLAR_ACCENT[policy.pillar] || DEFAULT_ACCENT
+    const png = await renderPolicyCardPng(
+      {
+        eyebrow: policy.pillar || 'OUR POLICIES',
+        title: policy.title,
+        subline: policy.summary,
+        accent,
+        tag: 'VIC.FUSIONPARTY.ORG.AU',
+        logoMarkDataUri,
+      },
+      satoriFonts
+    )
+    const outPath = path.join(policiesOutDir, `${policy.slug}.png`)
+    writeFileSync(outPath, png)
+    console.log(`Generated ${path.relative(root, outPath)}`)
+  }
+}
+
+async function main() {
+  await generateSectionImages()
+
+  try {
+    await generatePolicyImages()
+  } catch (err) {
+    console.warn(`Skipping per-policy OG images — couldn't reach Sanity: ${err.message}`)
+  }
+}
+
+main()
+  .catch((err) => {
+    console.error(err)
+    process.exitCode = 1
+  })
+  .finally(() => {
+    // @sanity/client's HTTP layer can emit a socket error a tick after a
+    // failed request is already caught above (seen with unreachable/blocked
+    // networks) — harmless, but left to fire it would crash the process as
+    // an unhandled event. Exiting explicitly once generation is done (with
+    // whatever exit code the run has earned) sidesteps that race entirely.
+    process.exit(process.exitCode ?? 0)
+  })

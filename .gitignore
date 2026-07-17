@@ -36,3 +36,7 @@ skills-lock.json
 
 # Sanity Studio local runtime cache
 .sanity/
+
+# Per-policy OG images are regenerated from live Sanity content before every
+# build (see the `prebuild` script) — committing them would just go stale.
+public/og/policies/

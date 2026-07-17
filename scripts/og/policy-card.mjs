@@ -1,67 +1,36 @@
 /**
- * Renders branded 1200x630 OG images at build time for content that doesn't
- * have (or shouldn't use) a hand-designed static image — e.g. one per policy.
+ * Renders one branded 1200x630 OG card per policy, using that policy's own
+ * title/summary and its pillar's accent colour.
  *
- * Styled to the Reclaim design system (dark-first, spectrum accents, Barlow
- * Condensed display type — see "Fusion Brand Guide.dc.html").
- *
- * Uses satori (HTML/CSS-ish layout -> SVG) + resvg (SVG -> PNG) rather than a
- * headless browser, since this runs as part of `astro build`.
+ * Runs as a plain Node script (see generate-og-images.mjs) rather than as an
+ * Astro route: @resvg/resvg-js ships a native binary that Vite/Rollup can't
+ * bundle for the Cloudflare Worker target, so this has to stay outside
+ * Astro's build graph entirely.
  */
 import satori from 'satori'
 import { Resvg } from '@resvg/resvg-js'
-import { readFileSync } from 'node:fs'
-import path from 'node:path'
 
 const WIDTH = 1200
 const HEIGHT = 630
 
-// Resolved from the project root rather than import.meta.url, since this
-// module runs inside Astro/Vite's build pipeline where the latter isn't
-// guaranteed to point at a location node_modules is reachable from.
-function fontFile(pkgRelativePath: string) {
-  return readFileSync(path.join(process.cwd(), 'node_modules', pkgRelativePath))
-}
-
-const fontsPromise = Promise.resolve([
-  {
-    name: 'Barlow Condensed',
-    data: fontFile('@fontsource/barlow-condensed/files/barlow-condensed-latin-900-normal.woff'),
-    weight: 900 as const,
-    style: 'normal' as const,
-  },
-  {
-    name: 'Barlow',
-    data: fontFile('@fontsource/barlow/files/barlow-latin-600-normal.woff'),
-    weight: 600 as const,
-    style: 'normal' as const,
-  },
-  {
-    name: 'Space Mono',
-    data: fontFile('@fontsource/space-mono/files/space-mono-latin-700-normal.woff'),
-    weight: 700 as const,
-    style: 'normal' as const,
-  },
-])
-
-const logoMarkDataUri = (() => {
-  const png = readFileSync(path.join(process.cwd(), 'src/assets/brand/logo-rings-mono-white.png'))
-  return `data:image/png;base64,${png.toString('base64')}`
-})()
-
-export const COLORS = {
+const COLORS = {
   deepPurple: '#1a0029',
   surfaceRaised: '#2e004d',
   white: '#ffffff',
   magenta: '#d428d4',
-  violet: '#7b3fe4',
   blue: '#4a7aeb',
-  cyan: '#0bb8d4',
   teal: '#00ddb8',
 }
 
+export const PILLAR_ACCENT = {
+  'RECLAIM OUR ECONOMY': COLORS.magenta,
+  'RECLAIM OUR INFRASTRUCTURE': COLORS.blue,
+  'RECLAIM OUR DEMOCRACY': COLORS.teal,
+}
+export const DEFAULT_ACCENT = COLORS.magenta
+
 /** Rough headline size so long policy titles still fit within the 630px canvas. */
-function headlineSize(title: string) {
+function headlineSize(title) {
   if (title.length <= 24) return 76
   if (title.length <= 40) return 60
   if (title.length <= 60) return 48
@@ -69,21 +38,7 @@ function headlineSize(title: string) {
   return 34
 }
 
-export interface OgCardSpec {
-  eyebrow: string
-  title: string
-  subline?: string
-  tag?: string
-  accent: string
-}
-
-function buildTree({
-  eyebrow,
-  title,
-  subline,
-  tag = 'VIC.FUSIONPARTY.ORG.AU',
-  accent,
-}: OgCardSpec) {
+function buildTree({ eyebrow, title, subline, tag, accent, logoMarkDataUri }) {
   const watermarkLetter = title.trim().charAt(0).toUpperCase()
 
   return {
@@ -334,9 +289,18 @@ function buildTree({
   }
 }
 
-export async function renderOgImagePng(spec: OgCardSpec): Promise<Buffer> {
-  const fonts = await fontsPromise
-  const svg = await satori(buildTree(spec) as never, { width: WIDTH, height: HEIGHT, fonts })
+/**
+ * @param {object} spec
+ * @param {string} spec.eyebrow
+ * @param {string} spec.title
+ * @param {string} [spec.subline]
+ * @param {string} spec.accent
+ * @param {string} spec.tag
+ * @param {string} spec.logoMarkDataUri
+ * @param {Array<{name: string, data: Buffer, weight: number, style: 'normal'}>} fonts
+ */
+export async function renderPolicyCardPng(spec, fonts) {
+  const svg = await satori(buildTree(spec), { width: WIDTH, height: HEIGHT, fonts })
   const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: WIDTH } })
   return resvg.render().asPng()
 }

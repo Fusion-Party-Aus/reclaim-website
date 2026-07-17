@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:sanity": "cd studio && ./node_modules/.bin/sanity dev --port 3333",
+    "prebuild": "node scripts/og/generate-og-images.mjs",
     "build": "astro build",
     "build:sanity": "cd studio && ./node_modules/.bin/sanity build",
     "deploy:sanity": "cd studio && ./node_modules/.bin/sanity deploy",
@@ -55,7 +56,6 @@
     "@astrojs/sitemap": "^3.7.2",
     "@nuasite/agent-summary": "^0.0.37",
     "@portabletext/react": "^5.0.0",
-    "@resvg/resvg-js": "^2.6.2",
     "@sanity/astro": "^3.4.0",
     "@sanity/client": "^7.14.1",
     "@sanity/image-url": "^1.2.0",
@@ -72,7 +72,6 @@
     "react-is": "^19.2.4",
     "sanity": "^5.7.0",
     "sass": "^1.73.0",
-    "satori": "^0.28.0",
     "styled-components": "^6.3.8",
     "tailwindcss": "^4.1.17"
   },
@@ -82,6 +81,7 @@
     "@fontsource/barlow-condensed": "^5.2.8",
     "@fontsource/space-mono": "^5.2.9",
     "@iconify-json/mdi": "^1.2.3",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/canvas-confetti": "^1.9.0",
     "@vitest/coverage-v8": "^4.0.8",
     "@vitest/ui": "^4.0.8",
@@ -94,6 +94,7 @@
     "playwright": "^1.61.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
+    "satori": "^0.28.0",
     "typescript-eslint": "^8.46.4",
     "vitest": "^4.0.8"
   }
