@@ -1,0 +1,261 @@
+---
+/**
+ * Konami Code Easter Egg
+ * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
+ * Triggers: Confetti explosion + hidden policy files download
+ */
+import { BrutalCard, BrutalButton } from '@/components/ui'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  konami?: {
+    title?: string
+    description?: string
+    manifestoTitle?: string
+    manifestoDescription?: string
+    githubUrl?: string
+    githubLabel?: string
+    zeroTrackingTitle?: string
+    zeroTrackingDescription?: string
+    downloadButtonLabel?: string
+    footerMessage?: string
+  }
+}
+
+const { konami } = Astro.props
+
+const content = {
+  title: konami?.title || 'You Found the Secret!',
+  description:
+    konami?.description ||
+    "True democracy rewards the curious. Here's something special for developers, gamers, and people who actually read the code...",
+  manifestoTitle: konami?.manifestoTitle || 'THE ANNOTATED POLICY FILES',
+  manifestoDescription:
+    konami?.manifestoDescription ||
+    'Every policy with the design rationale, evidence, and risk assessment behind it. This is the behind-the-scenes version our policy team uses internally.',
+  githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website-poc',
+  githubLabel: konami?.githubLabel || 'View on GitHub',
+  zeroTrackingTitle: konami?.zeroTrackingTitle || 'ZERO TRACKING',
+  zeroTrackingDescription:
+    konami?.zeroTrackingDescription ||
+    'Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.',
+  downloadButtonLabel: konami?.downloadButtonLabel || 'Download Annotated Policy Files',
+  footerMessage:
+    konami?.footerMessage ||
+    'P.S. Share this with other curious people. Democracy needs more of them.',
+}
+---
+
+<div
+  id="konami-modal"
+  class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300"
+>
+  <BrutalCard
+    variant="surface"
+    shadow="magenta"
+    padding="lg"
+    hover={false}
+    class="max-w-2xl w-full relative"
+  >
+    <button
+      id="konami-close"
+      class="absolute top-4 right-4 text-white hover:text-magenta transition-colors"
+      aria-label="Close"
+    >
+      <Icon name="mdi:close" class="w-8 h-8" />
+    </button>
+
+    <div class="text-center">
+      <h2 class="text-4xl font-black uppercase text-magenta mb-4">
+        {content.title}
+      </h2>
+      <p class="text-xl font-bold text-white mb-6">
+        {content.description}
+      </p>
+
+      <div
+        class="bg-mint/10 border border-mint/30 border-t-2 border-t-mint rounded-sm p-6 mb-6 text-left"
+      >
+        <div class="flex items-start gap-3 mb-4">
+          <Icon name="mdi:file-document-outline" class="w-8 h-8 text-mint shrink-0" />
+          <div>
+            <h3 class="font-black text-xl text-white mb-2">{content.manifestoTitle}</h3>
+            <p class="text-sm font-bold text-white/70">
+              {content.manifestoDescription}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div
+          class="bg-yellow/10 border border-white/10 border-t-2 border-t-yellow rounded-sm p-4 text-left"
+        >
+          <Icon name="mdi:laptop" class="w-6 h-6 text-yellow mb-2" />
+          <h4 class="font-black text-white mb-2">{content.githubLabel}</h4>
+          <p class="text-sm font-bold text-white/70">
+            This entire site is open source. Fork it, learn from it, improve it.
+          </p>
+          <a
+            href={content.githubUrl}
+            target="_blank"
+            class="inline-flex items-center gap-2 mt-3 text-magenta font-black hover:underline"
+          >
+            <span>View on GitHub</span>
+            <Icon name="mdi:arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+
+        <div
+          class="bg-magenta/10 border border-white/10 border-t-2 border-t-magenta rounded-sm p-4 text-left"
+        >
+          <Icon name="mdi:magnify" class="w-6 h-6 text-magenta mb-2" />
+          <h4 class="font-black text-white mb-2">{content.zeroTrackingTitle}</h4>
+          <p class="text-sm font-bold text-white/70">
+            {content.zeroTrackingDescription}
+          </p>
+        </div>
+      </div>
+
+      <BrutalButton id="download-policy-files" variant="primary" size="lg">
+        {content.downloadButtonLabel}
+      </BrutalButton>
+
+      <p class="text-sm text-white/60 mt-6 font-bold">
+        {content.footerMessage}
+      </p>
+    </div>
+  </BrutalCard>
+</div>
+
+<script is:inline>
+  // Konami Code sequence: ↑ ↑ ↓ ↓ ← → ← → B A
+  const konamiCode = [
+    'ArrowUp',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowLeft',
+    'ArrowRight',
+    'b',
+    'a',
+  ]
+  let konamiIndex = 0
+
+  // Confetti animation
+  function createConfetti() {
+    const colors = ['#D428D4', '#00DDB8', '#4A7AEB', '#E6E6FA']
+    const confettiCount = 150
+
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div')
+      confetti.style.position = 'fixed'
+      confetti.style.width = '10px'
+      confetti.style.height = '10px'
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+      confetti.style.left = Math.random() * 100 + 'vw'
+      confetti.style.top = '-10px'
+      confetti.style.opacity = '1'
+      confetti.style.zIndex = '10000'
+      confetti.style.pointerEvents = 'none'
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`
+
+      document.body.appendChild(confetti)
+
+      // Animate
+      const duration = Math.random() * 3 + 2
+      const drift = (Math.random() - 0.5) * 100
+
+      confetti.animate(
+        [
+          { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+          {
+            transform: `translateY(100vh) translateX(${drift}px) rotate(${Math.random() * 720}deg)`,
+            opacity: 0,
+          },
+        ],
+        {
+          duration: duration * 1000,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        }
+      )
+
+      setTimeout(() => confetti.remove(), duration * 1000)
+    }
+  }
+
+  // Listen for Konami Code
+  document.addEventListener('keydown', (e) => {
+    const expectedKey = konamiCode[konamiIndex]
+    const pressedKey = e.key
+
+    if (pressedKey.toLowerCase() === expectedKey.toLowerCase()) {
+      konamiIndex++
+
+      if (konamiIndex === konamiCode.length) {
+        // Success! Trigger easter egg
+        triggerEasterEgg()
+        konamiIndex = 0
+      }
+    } else {
+      konamiIndex = 0
+    }
+  })
+
+  function triggerEasterEgg() {
+    // Create confetti
+    createConfetti()
+
+    // Show modal
+    const modal = document.getElementById('konami-modal')
+    if (modal) {
+      modal.classList.remove('opacity-0', 'pointer-events-none')
+    }
+
+    // Track in console
+    console.log('Konami Code activated! Welcome, curious mind.')
+  }
+
+  // Close modal
+  const closeBtn = document.getElementById('konami-close')
+  const modal = document.getElementById('konami-modal')
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('opacity-0', 'pointer-events-none')
+    })
+
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('opacity-0', 'pointer-events-none')
+      }
+    })
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+        modal.classList.add('opacity-0', 'pointer-events-none')
+      }
+    })
+  }
+
+  // Download policy files button
+  const downloadBtn = document.getElementById('download-policy-files')
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      // For now, just log (you'd link to actual PDF)
+      console.log('Downloading annotated policy files...')
+      alert(
+        'In production, this would download the annotated policy PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
+      )
+
+      // Track the download
+      if (window.plausible) {
+        window.plausible('Konami Code - Policy Files Download')
+      }
+    })
+  }
+</script>

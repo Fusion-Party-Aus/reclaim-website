@@ -1,22 +1,46 @@
 ---
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import Header from '../../components/Header.astro'
-import Footer from '../../components/Footer.astro'
-import Sidebar from '../../components/Sidebar.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Sidebar } from '@/features/page-rendering'
+import { Icon } from 'astro-icon/components'
+import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
 import { getDocumentBySlug } from '../../lib/sanity'
 import { renderPortableText } from '../../lib/portableText'
 import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
 import type { PortableTextBlock } from '../../lib/portableText'
+import type { PolicyKeyPoint } from '../../types/sanity'
 import '../../styles/global.css'
+
+interface ProofStat {
+  number: string
+  label: string
+  source?: string
+}
 
 interface Policy {
   _id: string
   title: string
   slug: { current: string }
+  pillar?: string
   icon?: string
   summary: string
-  keyPoints?: string[]
+  keyPoints?: PolicyKeyPoint[]
+  // Campaign Voice fields
+  hook?: string
+  villain?: string
+  proofStat?: ProofStat
+  shareableQuote?: string
+  seoDescription?: string
+  // Further Detail fields
+  designRationale?: string
+  systemInteraction?: string
+  economicLogic?: string
+  riskAndFailureModes?: string
+  evidenceAndPrecedent?: string
+  implementationOutline?: string
+  // Metadata
   cost?: string
   funding?: string
   body?: PortableTextBlock[]
@@ -35,268 +59,393 @@ if (!policy) {
 }
 
 const bodyHtml = policy.body ? wrapSectionsInBoxes(renderPortableText(policy.body)) : ''
+
+const applyHash = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+
+const getPolicyIcon = (icon?: string) => {
+  if (!icon) return null
+  if (icon.includes(':')) return { type: 'icon', value: icon }
+  if (/^[a-z0-9-]+$/i.test(icon)) return { type: 'icon', value: `mdi:${icon}` }
+  return { type: 'emoji', value: icon }
+}
+
+const headingBlocks =
+  policy.body?.filter(
+    (block: PortableTextBlock) =>
+      (block as { _type?: string; style?: string })._type === 'block' &&
+      (block as { _type?: string; style?: string }).style === 'h2'
+  ) || []
+
+const contentSections = headingBlocks
+  .map((block: PortableTextBlock) => {
+    const b = block as { children?: { text?: string }[] }
+    const title = (b.children || [])
+      .map((child) => child.text || '')
+      .join(' ')
+      .trim()
+    return title ? { id: applyHash(title), title } : null
+  })
+  .filter(Boolean)
+
+const pillarConfig: Record<string, { variant: 'magenta' | 'mint' | 'yellow'; textColor: string }> =
+  {
+    'RECLAIM OUR ECONOMY': { variant: 'magenta', textColor: 'text-white' },
+    'RECLAIM OUR INFRASTRUCTURE': { variant: 'mint', textColor: 'text-black' },
+    'RECLAIM OUR DEMOCRACY': { variant: 'yellow', textColor: 'text-white' },
+  }
+const pillarCfg = (policy.pillar && pillarConfig[policy.pillar]) || {
+  variant: 'magenta' as const,
+  textColor: 'text-white',
+}
+
+const detailSections = [
+  { id: 'design-rationale', title: 'Design Rationale', content: policy.designRationale },
+  { id: 'system-interaction', title: 'System Interaction', content: policy.systemInteraction },
+  { id: 'economic-logic', title: 'Economic & Institutional Logic', content: policy.economicLogic },
+  { id: 'risks', title: 'Risk & Failure Modes', content: policy.riskAndFailureModes },
+  { id: 'evidence', title: 'Evidence & Precedent', content: policy.evidenceAndPrecedent },
+  { id: 'implementation', title: 'Implementation Outline', content: policy.implementationOutline },
+].filter((s) => !!s.content)
+
+const sidebarSections = [
+  { id: 'top', title: policy.title },
+  ...(policy.hook ? [{ id: 'the-problem', title: 'The Problem' }] : []),
+  ...(policy.keyPoints && policy.keyPoints.length > 0
+    ? [{ id: 'key-points', title: 'Key Points' }]
+    : []),
+  ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
+  ...contentSections,
+]
+
+const metaDescription = policy.seoDescription || policy.summary
 ---
 
-<BaseLayout title={`${policy.title} | Fusion Victoria Policy`} description={policy.summary}>
+<BaseLayout title={`${policy.title} | Fusion Party Victoria`} description={metaDescription}>
   <Header />
 
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 flex gap-8">
-    <div class="flex-1">
+  {/* ── HERO ── */}
+  <div
+    class="bg-surface-base border-b border-mint/30 relative overflow-hidden"
+    style="padding-top: calc(5rem + 6px); padding-bottom: 3rem;"
+  >
+    {/* Triple stripe */}
+    <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20"></div>
+    <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20"></div>
+    <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      {/* Pillar badge */}
+      {
+        policy.pillar && (
+          <BrutalBadge variant={pillarCfg.variant} size="lg" class="mb-4">
+            {policy.pillar}
+          </BrutalBadge>
+        )
+      }
+
+      {/* Icon + Title */}
+      <div class="flex items-start gap-5 mb-5">
+        {
+          getPolicyIcon(policy.icon)?.type === 'icon' && (
+            <div
+              class={`hidden md:flex items-center justify-center w-20 h-20 rounded-sm shrink-0 bg-${pillarCfg.variant}`}
+            >
+              <Icon
+                name={getPolicyIcon(policy.icon)?.value as string}
+                class={`w-10 h-10 ${pillarCfg.textColor}`}
+              />
+            </div>
+          )
+        }
+        {
+          getPolicyIcon(policy.icon)?.type === 'emoji' && (
+            <span class="hidden md:block text-6xl shrink-0">
+              {getPolicyIcon(policy.icon)?.value}
+            </span>
+          )
+        }
+        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+          {policy.title}
+        </h1>
+      </div>
+
+      {/* Summary */}
+      <p
+        class={`text-xl md:text-2xl font-black text-white/80 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
+      >
+        {policy.summary}
+      </p>
+    </div>
+  </div>
+
+  <main
+    id="main-content"
+    class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10 lg:items-start"
+  >
+    <div class="min-w-0">
+      {/* ── Breadcrumbs ── */}
       <nav
-        class="mb-6 text-xs md:text-sm font-black uppercase flex items-center gap-2 tracking-[0.12em]"
+        class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest"
       >
         <a
           href="/"
-          class="px-2 py-1 bg-black text-yellow border-2 border-yellow"
-          style="box-shadow: 3px 3px 0px 0px #000000;">Home</a
+          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black transition-colors"
+          >Home</a
         >
-        <span class="text-gray-500">/</span>
+        <span class="text-white/30">›</span>
         <a
           href="/policies"
-          class="px-2 py-1 bg-magenta text-white border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #000000;">Policies</a
+          class="px-3 py-1.5 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black transition-colors"
+          >Policies</a
         >
-        <span class="text-gray-500">/</span>
+        <span class="text-white/30">›</span>
         <span
-          class="px-2 py-1 bg-white border-2 border-black"
-          style="box-shadow: 3px 3px 0px 0px #000000;">{policy.title}</span
+          class="px-3 py-1.5 rounded-sm bg-black/30 text-white max-w-xs truncate"
+          title={policy.title}>{policy.title}</span
         >
       </nav>
 
-      <section
-        id="top"
-        class="bg-white border-4 border-black px-5 md:px-10 py-8 md:py-10 relative overflow-visible"
-        style="box-shadow: 10px 10px 0px 0px #000000;"
-      >
-        <div
-          class="absolute -top-4 left-6 bg-black text-yellow px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] border-2 border-white"
-          style="box-shadow: 4px 4px 0px 0px #000000;"
-        >
-          Policy Detail
-        </div>
-
-        <header class="mb-8 mt-4">
-          <h1
-            class="text-3xl md:text-5xl font-black text-magenta mb-4 uppercase flex items-center gap-3 tracking-tight"
-          >
-            {policy.icon && <span class="text-4xl md:text-6xl">{policy.icon}</span>}
-            <span class="leading-tight">{policy.title}</span>
-          </h1>
-          <p class="text-lg md:text-2xl font-bold mb-5 leading-snug max-w-3xl">{policy.summary}</p>
-
-          {
-            (policy.cost || policy.funding) && (
-              <div
-                class="inline-block bg-yellow border-4 border-black px-4 py-3 mb-6 max-w-md"
-                style="box-shadow: 6px 6px 0px 0px #000000; transform: rotate(-1.5deg);"
-              >
-                <p class="text-[0.7rem] font-black uppercase tracking-[0.16em] text-black/70 mb-1">
-                  Costing
+      {/* ── Hook Block (Populist accusation) ── */}
+      {
+        policy.hook && (
+          <section id="the-problem" class="mb-8 scroll-mt-28">
+            <div class="border-l-4 border-magenta bg-black/40 px-6 py-5 rounded-r-sm">
+              <p class="text-xl md:text-2xl font-black text-white leading-snug">{policy.hook}</p>
+              {policy.villain && (
+                <p class="mt-3 text-sm font-semibold text-white/65 leading-relaxed">
+                  {policy.villain}
                 </p>
-                {policy.cost && <p class="font-black text-lg leading-snug">Cost: {policy.cost}</p>}
-                {policy.funding && (
-                  <p class="text-xs mt-2 font-semibold leading-snug">Funded by: {policy.funding}</p>
-                )}
-              </div>
-            )
-          }
+              )}
+            </div>
+          </section>
+        )
+      }
 
-          {
-            policy.keyPoints && policy.keyPoints.length > 0 && (
-              <div
-                id="key-points"
-                class="bg-light-grey border-4 border-black p-5 md:p-6 mb-6"
-                style="box-shadow: 6px 6px 0px 0px #000000; transform: rotate(0.8deg);"
+      {/* ── Proof Stat ── */}
+      {
+        policy.proofStat && (
+          <div class="mb-8 flex items-start gap-4 bg-magenta/10 border border-magenta/30 rounded-sm px-6 py-4">
+            <div class="text-3xl md:text-4xl font-black text-magenta font-mono leading-none shrink-0">
+              {policy.proofStat.number}
+            </div>
+            <div>
+              <p class="text-sm font-black uppercase tracking-wide text-white/80 leading-tight">
+                {policy.proofStat.label}
+              </p>
+              {policy.proofStat.source && (
+                <p class="text-xs text-white/40 mt-1 italic">{policy.proofStat.source}</p>
+              )}
+            </div>
+          </div>
+        )
+      }
+
+      {/* ── Transport Score Callout ── */}
+      {
+        policy.pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
+          <div class="mb-8 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
+              <Icon name="mdi:train" class="w-32 h-32 text-mint" />
+            </div>
+            <div class="relative z-10 max-w-2xl">
+              <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
+                📊 Check Your Local Transport Score
+              </h3>
+              <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
+                How does your electorate stack up? Use our Victoria-wide transport scoring tool to
+                check public transport frequency, coverage, and connectivity in your area.
+              </p>
+              <BrutalButton
+                href="https://transportscore.fusionparty.org.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="mint"
+                size="sm"
+                icon="mdi:launch"
               >
-                <h2 class="text-xl md:text-2xl font-black text-magenta mb-4 uppercase tracking-tight">
-                  Key Points
+                Go to Transport Score Tool
+              </BrutalButton>
+            </div>
+          </div>
+        )
+      }
+
+      {/* ── Costing block ── */}
+      {
+        (policy.cost || policy.funding) && (
+          <BrutalCard id="top" variant="yellow" padding="md" class="mb-8 scroll-mt-28">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="mdi:currency-usd" class="w-5 h-5 text-white" />
+              <span class="text-xs font-black uppercase tracking-widest text-white/70">
+                What it costs
+              </span>
+            </div>
+            {policy.cost && (
+              <p class="font-black text-2xl text-white leading-tight">{policy.cost}</p>
+            )}
+            {policy.funding && (
+              <p class="text-sm font-bold text-white/80 mt-1 border-l-4 border-white/40 pl-3">
+                Paid for by: {policy.funding}
+              </p>
+            )}
+          </BrutalCard>
+        )
+      }
+
+      {/* ── Key Points ── */}
+      {
+        policy.keyPoints && policy.keyPoints.length > 0 && (
+          <section id="key-points" class="mb-8 scroll-mt-28">
+            <BrutalCard
+              variant="surface"
+              shadow="magenta"
+              padding="md"
+              class="!p-0 overflow-hidden"
+            >
+              <div class="bg-magenta border-b border-white/10 px-6 py-4">
+                <h2 class="text-xl font-display font-black uppercase text-white tracking-tight">
+                  What it does
                 </h2>
-                <ul class="space-y-2">
-                  {policy.keyPoints.map((point) => (
-                    <li class="flex items-start">
-                      <span class="text-mint mr-2 font-black text-2xl leading-none mt-[2px]">
-                        ✓
-                      </span>
-                      <span class="font-semibold text-sm md:text-base leading-snug">{point}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            )
-          }
-        </header>
+              <ul class="divide-y divide-white/10">
+                {policy.keyPoints.map((kp) => (
+                  <li class="px-6 py-5 flex items-start gap-4">
+                    <span class="shrink-0 w-7 h-7 bg-mint rounded-sm flex items-center justify-center font-black text-black text-sm mt-0.5">
+                      ✓
+                    </span>
+                    <div>
+                      <p class="font-black text-base uppercase leading-tight text-white mb-1">
+                        {kp.point}
+                      </p>
+                      {kp.description && (
+                        <p class="text-sm font-semibold text-white/60 leading-snug">
+                          {kp.description}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </BrutalCard>
+          </section>
+        )
+      }
 
-        <article class="prose prose-lg max-w-none">
-          <style is:global>
-            /* Neo-Brutal Section Boxes - Using Fusion Brand Colors */
-            .brutal-section {
-              margin-bottom: 2.5rem;
-            }
+      {/* ── Shareable Quote ── */}
+      {
+        policy.shareableQuote && (
+          <div class="mb-8 relative">
+            <div class="border border-yellow/30 bg-yellow/5 rounded-sm px-7 py-6">
+              <Icon name="mdi:format-quote-open" class="w-8 h-8 text-yellow/40 mb-3" />
+              <p class="text-lg md:text-xl font-black text-white/90 leading-snug italic">
+                {policy.shareableQuote}
+              </p>
+              <div class="mt-4">
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(policy.shareableQuote)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs font-black uppercase text-yellow hover:text-yellow/80 transition-colors"
+                >
+                  <Icon name="mdi:twitter" class="w-4 h-4" /> Post this
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      }
 
-            .brutal-section-header {
-              font-size: 2.5rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #ffffff;
-              background: #c926f2;
-              margin: 0;
-              padding: 1.5rem;
-              line-height: 1.1;
-              letter-spacing: -0.02em;
-              border: 4px solid #000000;
-              box-shadow: 8px 8px 0 0 #000000;
-            }
+      {/* ── Further Detail ── */}
+      {
+        detailSections.length > 0 && (
+          <section id="further-detail" class="mb-8 scroll-mt-28">
+            <BrutalCard variant="surface" shadow="mint" padding="md" class="!p-0 overflow-hidden">
+              <div class="bg-black/30 border-b border-white/10 px-6 py-4 flex items-center gap-3">
+                <Icon name="mdi:book-open-variant" class="w-6 h-6 text-mint" />
+                <h2 class="text-xl font-display font-black uppercase text-white">Further Detail</h2>
+              </div>
+              <div class="divide-y divide-white/10">
+                {detailSections.map((section, idx) => {
+                  const accentClasses = ['bg-magenta', 'bg-mint', 'bg-yellow']
+                  const accentClass = accentClasses[idx % 3]
+                  return (
+                    <details class="group">
+                      <summary class="px-6 py-4 flex items-center justify-between gap-4 cursor-pointer select-none hover:bg-white/5 transition-colors list-none">
+                        <div class="flex items-center gap-3">
+                          <div class={`w-2 h-6 shrink-0 rounded-sm ${accentClass}`} />
+                          <span class="font-black uppercase text-sm tracking-wide text-white">
+                            {section.title}
+                          </span>
+                        </div>
+                        <Icon
+                          name="mdi:chevron-down"
+                          class="w-5 h-5 text-white/40 transition-transform group-open:rotate-180 shrink-0"
+                        />
+                      </summary>
+                      <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-3">
+                        {section.content.split(/\n\n+/).map((para: string) => (
+                          <p class="text-base font-semibold text-white/70 leading-relaxed">
+                            {para.trim()}
+                          </p>
+                        ))}
+                      </div>
+                    </details>
+                  )
+                })}
+              </div>
+            </BrutalCard>
+          </section>
+        )
+      }
 
-            .brutal-section-content {
-              background: #ffffff;
-              border: 4px solid #000000;
-              border-top: none;
-              padding: 2rem;
-              box-shadow: 8px 8px 0 0 #000000;
-            }
+      {/* ── Body (portable text) ── */}
+      {
+        bodyHtml && (
+          <article class="prose prose-lg max-w-none">
+            <div set:html={bodyHtml} />
+          </article>
+        )
+      }
 
-            .prose h3 {
-              font-size: 1.75rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #000000;
-              margin: 2rem -2rem 1.5rem -2rem;
-              padding: 1rem 2rem;
-              line-height: 1.2;
-              background: #ffed00;
-              border-top: 4px solid #000000;
-              border-bottom: 4px solid #000000;
-            }
-
-            .brutal-section-content > h3:first-child {
-              margin-top: -2rem;
-            }
-
-            .prose h4 {
-              font-size: 1.25rem;
-              font-weight: 900;
-              text-transform: uppercase;
-              color: #c926f2;
-              margin-top: 1.5rem;
-              margin-bottom: 0.75rem;
-            }
-
-            .prose p {
-              font-size: 1.125rem;
-              line-height: 1.75;
-              margin-bottom: 1.25rem;
-              color: #1a1a1a;
-            }
-
-            .prose strong {
-              font-weight: 900;
-              color: #000000;
-              background: #ffed00;
-              padding: 0 0.25rem;
-            }
-
-            .prose em {
-              font-style: italic;
-              color: #1a1a1a;
-            }
-
-            .prose ul {
-              list-style: none;
-              padding-left: 0;
-              margin: 1.5rem 0;
-            }
-
-            .prose ol {
-              list-style: none;
-              counter-reset: item;
-              padding-left: 0;
-              margin: 1.5rem 0;
-            }
-
-            .prose li {
-              position: relative;
-              margin-bottom: 1rem;
-              background: #e5e5e5;
-              border: 3px solid #000000;
-              padding: 1rem 1rem 1rem 2.5rem;
-              box-shadow: 4px 4px 0 0 #000000;
-            }
-
-            .prose ul > li::before {
-              content: '▸';
-              position: absolute;
-              left: 1rem;
-              top: 1rem;
-              font-weight: 900;
-              color: #c926f2;
-              font-size: 1.25rem;
-            }
-
-            .prose ol > li {
-              counter-increment: item;
-            }
-
-            .prose ol > li::before {
-              content: counter(item) '.';
-              position: absolute;
-              left: 1rem;
-              top: 1rem;
-              font-weight: 900;
-              color: #c926f2;
-              font-size: 1rem;
-            }
-
-            .prose a {
-              color: #c926f2;
-              text-decoration: none;
-              font-weight: 700;
-              border-bottom: 3px solid #c926f2;
-              transition: all 0.2s;
-            }
-
-            .prose a:hover {
-              background: #c926f2;
-              color: #ffffff;
-              border-bottom-color: #c926f2;
-            }
-
-            .prose blockquote {
-              border: 4px solid #000000;
-              background: #5effd8;
-              padding: 1.5rem;
-              margin: 2rem -2rem;
-              font-weight: 700;
-              font-size: 1.25rem;
-              box-shadow: 6px 6px 0 0 #000000;
-              border-left: 8px solid #c926f2;
-              color: #000000;
-            }
-
-            .prose code {
-              background: #000000;
-              color: #5effd8;
-              padding: 0.25rem 0.5rem;
-              border-radius: 0;
-              font-family: 'Courier New', monospace;
-              font-weight: 700;
-            }
-          </style>
-          <div set:html={bodyHtml} />
-        </article>
-      </section>
+      {/* ── Back / CTA row ── */}
+      <div class="mt-10 border-t border-white/10 pt-8">
+        <BrutalCard variant="black" shadow="magenta" padding="md" class="mb-6">
+          <p class="text-sm font-black uppercase tracking-widest text-white/50 mb-2">
+            This policy won't pass itself.
+          </p>
+          <h3
+            class="text-xl md:text-2xl font-display font-black uppercase text-white mb-4 leading-tight"
+          >
+            Every vote we get is a vote against the system that's taking from you.
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <BrutalButton variant="magenta" href="/get-involved" icon="mdi:hand-heart">
+              Join the Movement
+            </BrutalButton>
+            <BrutalButton variant="mint" href="/get-involved#donate" icon="mdi:cash-heart">
+              Chip In
+            </BrutalButton>
+            <BrutalButton variant="black" href="/policies" icon="mdi:arrow-left">
+              All Policies
+            </BrutalButton>
+          </div>
+        </BrutalCard>
+      </div>
     </div>
 
-    <Sidebar
-      sections={[
-        { id: 'top', title: policy.title },
-        { id: 'key-points', title: 'Key Points' },
-        { id: 'problem', title: 'The Problem' },
-        { id: 'solution', title: 'Our Solution' },
-        { id: 'savings', title: 'Savings' },
-      ]}
-      page="policy"
-    />
+    <Sidebar sections={sidebarSections} page="policy" />
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -6,12 +6,12 @@ We've updated the icon system to use **Material Design Icons (MDI)** instead of 
 
 ## What Changed
 
-### 1. Policy Schema (`fusion/schemaTypes/policy.ts`)
+### 1. Policy Schema (`studio/schemaTypes/policy.ts`)
 
 - **Old:** `icon` field expected an emoji (e.g., 🏠)
 - **New:** `icon` field expects an MDI icon name (e.g., `mdi:home-city`)
 
-### 2. Home Page Schema (`fusion/schemaTypes/homePage.ts`)
+### 2. Home Page Schema (`studio/schemaTypes/homePage.ts`)
 
 **Theft Section Cards:**
 

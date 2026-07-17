@@ -1,63 +1,107 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/Header.astro'
-import Hero from '../components/Hero.astro'
-import Footer from '../components/Footer.astro'
-import StandardPage from '../components/page-types/StandardPage.astro'
-import BioPage from '../components/page-types/BioPage.astro'
+import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/layout/Hero'
+import { Footer } from '@/components/layout/Footer'
+import { StandardPage } from '@/features/page-rendering'
+import { BioPage } from '@/features/page-rendering'
 import { getPages } from '../lib/sanity'
 import type { Page } from '../types/sanity'
 import '../styles/global.css'
 
-export async function getStaticPaths() {
-  const pages = await getPages()
+const pages = await getPages()
 
-  return (pages as Page[])
-    .filter((p) => p.slug?.current)
-    .map((p) => {
-      // Construct full path
-      const segments = [p.slug.current]
-      let currentParent = (p as any).parent
-      while (currentParent) {
-        segments.unshift(currentParent.slug.current)
-        currentParent = currentParent.parent
-      }
-      const fullPath = segments.join('/')
+const slug = Astro.params.slug || ''
 
-      return {
-        params: { slug: fullPath },
-        props: { page: p, segments },
-      }
-    })
-}
+const allPages = (pages as Page[])
+  .filter((p) => p.slug?.current)
+  .map((p) => {
+    // Construct full path
+    const segments = [p.slug.current]
+    let currentParent = (p as any).parent
+    while (currentParent) {
+      segments.unshift(currentParent.slug.current)
+      currentParent = currentParent.parent
+    }
+    const fullPath = segments.join('/')
 
-export interface Props {
-  page: Page
-  segments: string[]
-}
+    return {
+      fullPath,
+      page: p,
+      segments,
+    }
+  })
 
-const { page, segments } = Astro.props
+const pageMatch = allPages.find((m) => m.fullPath === slug)
 
-if (!page) {
+if (!pageMatch) {
   return Astro.redirect('/404')
 }
+
+const { page, segments: originalSegments } = pageMatch
+
+// Intercept breadcrumbs if this page is an 'Archived' bio profile
+const isArchivedBio = page.pageType === 'bio' && (page as any).isArchived === true
+let segments = [...originalSegments]
+
+if (isArchivedBio) {
+  // Replace the structural hierarchy with the Archive pathway
+  segments = ['past-candidates', page.slug.current]
+}
+
+// Find all descendant bio pages to build the automatic Team Grid
+const childPages = allPages.filter(
+  (p) =>
+    p.fullPath.startsWith(slug + '/') && p.page.pageType === 'bio' && p.page.isArchived !== true
+)
+
+// Group them by their immediate parent
+const groupedBios: Record<string, { title: string; pages: typeof childPages }> = {}
+childPages.forEach((bio) => {
+  const parentPath = bio.segments.slice(0, -1).join('/')
+  const parentPageMatch = allPages.find((p) => p.fullPath === parentPath)
+  const groupTitle = parentPageMatch ? parentPageMatch.page.title : 'Team Members'
+
+  if (!groupedBios[groupTitle]) {
+    groupedBios[groupTitle] = {
+      title: groupTitle,
+      pages: [],
+    }
+  }
+  groupedBios[groupTitle].pages.push(bio)
+})
+
+const childGroups = Object.values(groupedBios)
+
+const heroBgMap: Record<string, string> = {
+  about: '/collage_crowd.jpg',
+  'get-involved': '/color_panel_rally.jpg',
+  policies: '/color_panel_rally.jpg',
+  contact: '/color_panel_rally.jpg',
+}
+
+const bgImage = heroBgMap[slug] || '/hero.png'
 ---
 
 <BaseLayout
-  title={`${page.title} | Fusion Victoria`}
+  title={`${page.title} | Reignite Democracy`}
   description={page.metaDescription || page.subtitle}
 >
   <Header />
 
-  {page.pageType !== 'bio' && <Hero title={page.title} subtitle={page.subtitle || ''} />}
+  {
+    page.pageType !== 'bio' && (
+      <Hero title={page.title} subtitle={page.subtitle || ''} compact={true} bgImage={bgImage} />
+    )
+  }
 
-  <main class="bg-white py-8 pb-16">
+  <main id="main-content" class="bg-surface-base py-8 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         page.pageType === 'bio' ? (
-          <BioPage page={page} segments={segments} />
+          <BioPage page={page} segments={segments} childGroups={childGroups} />
         ) : (
-          <StandardPage page={page} segments={segments} />
+          <StandardPage page={page} segments={segments} childGroups={childGroups} />
         )
       }
     </div>

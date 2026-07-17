@@ -1,25 +1,25 @@
 # Fix Our Systems, Fix Our Country
 
-*Our country became prosperous because we developed systems that incentivised <u>long-term</u> economic growth.*
-*Over the past 50 years, those systems have been steadily dismantled and replaced with ones that incentivise <u>short-term</u> gains instead.*
-*Growth continued for a while - not because the systems were good, but because of the cultural legacy which shaped our expectations and decisions.*
+_Our country became prosperous because we developed systems that incentivised <u>long-term</u> economic growth._
+_Over the past 50 years, those systems have been steadily dismantled and replaced with ones that incentivise <u>short-term</u> gains instead._
+_Growth continued for a while - not because the systems were good, but because of the cultural legacy which shaped our expectations and decisions._
 
-*But cultural legacy is temporary.*
-*It evolves from generation to generation, and changes as we adapt to the world around us.*
-*Now that legacy has been diluted to the point that long-term growth is no longer an outcome of our systems.*
+_But cultural legacy is temporary._
+_It evolves from generation to generation, and changes as we adapt to the world around us._
+_Now that legacy has been diluted to the point that long-term growth is no longer an outcome of our systems._
 
-*This is not the fault of the working person, nor the youth, nor the immigrant, nor the retiree.*
+_This is not the fault of the working person, nor the youth, nor the immigrant, nor the retiree._
 
-*It is the fault of an ultra-wealthy minority who used their influence over government to bend our systems to their own advantage.*
+_It is the fault of an ultra-wealthy minority who used their influence over government to bend our systems to their own advantage._
 
-*And we cannot just go backwards. The systems of the past will not work again in the present, the world has changed too much.*
+_And we cannot just go backwards. The systems of the past will not work again in the present, the world has changed too much._
 
-*We must Restore the opportunity of a fair go for all Australians.*
-*We must Rebuild systems that generate long-term growth from first principles.*
-*We must Reclaim our economy for the benefit of our future generations.*
+_We must Restore the opportunity of a fair go for all Australians._
+_We must Rebuild systems that generate long-term growth from first principles._
+_We must Reclaim our economy for the benefit of our future generations._
 
-*Fix our systems, fix our country.*
-*It is the only way.*
+_Fix our systems, fix our country._
+_It is the only way._
 
 **Australia will not secure its future until we fix the systems that reward short-term gain at the expense of long-term prosperity.**
 
@@ -42,20 +42,22 @@
 ## Transform Our Industries
 ## Repair Our Environment
 ```
+
 </details>
 
 ---
+
 ---
 
 # RECLAIM OUR ECONOMY
 
 ## Restore the Fair Go
+
 Making Australia a country where your effort secures a stable income, essential services work when you need them, and prosperity is not reserved for those who were already born lucky.
 
 ### **Deliver UBI / Citizen’s Dividend for All Australians**
 
 1. Every Australian will receive a Citizens Dividend, launched at the Henderson Poverty Line and later tied to Australia’s productivity, paid automatically and unconditionally, replacing existing baseline welfare payments.
-
    1. Adaptation to AI-driven labour change will be strengthened by separating basic economic security from full-time employment.
    2. A reliable income foundation will support stability through job changes, illness, and economic transition.
    3. Personal autonomy and dignity will be restored by providing income support without surveillance, compliance, or conditionality.
@@ -98,12 +100,12 @@ The Citizens Dividend would launch at the Henderson Poverty Line to establish a 
 This makes the Citizens Dividend a share in Australia’s productive base rather than a payment that automatically follows inflation. When national output grows, Australians share in that growth. When productivity weakens, the payment does not automatically rise faster than the economy can sustain. This preserves the dividend’s role as a universal income foundation while keeping long-term increases tied to real national performance.
 
 ---
+
 </details>
 
 ### **Build Fair and Stable Labour Markets**
 
 1. Labour market rules will be restructured by establishing sector-level bargaining councils, enabling binding multi-employer wage agreements, requiring democratic governance and representation thresholds for worker organisations (including unions), and expanding the authority of the Fair Work Commission to coordinate, extend, and enforce wage and condition standards across industries.
-
    1. Wage outcomes will reflect productivity, skills, and conditions rather than desperation or fragmentation.
    2. Employers will compete on efficiency, innovation, and job quality instead of labour undercutting.
    3. Labour markets will become more stable as industry-wide standards reduce churn and arbitrage.
@@ -143,12 +145,12 @@ High-income economies with sector-level wage coordination show stronger middle-i
 Sector-level bargaining councils would be recognised in law, representative bodies accredited under governance standards, and Fair Work Commission coordination powers expanded through industrial relations legislation.
 
 ---
+
 </details>
 
 ### **Protect Migrant Workers from Exploitation**
 
 1. Temporary visa holders and other migrant workers will be protected from wage theft, coercion, retaliation, trafficking-linked exploitation, and sham contracting through safe reporting pathways, visa security during workplace disputes, stronger labour-hire and supply-chain liability, and coordinated enforcement across migration, workplace, and anti-slavery law.
-
    1. Migrant workers will be more able to report abuse without fearing that speaking up will cost them their visa or livelihood.
    2. Employers relying on underpayment, coercion, or migration insecurity will face fewer opportunities to profit from that exploitation.
    3. Australian workers will face less downward pressure from business models that depend on underpaid and unprotected migrant labour.
@@ -185,12 +187,12 @@ Even with stronger legal protections, some workers will still be hard to reach w
 Bring in stronger visa protections for workers reporting exploitation, coordinate migration and workplace enforcement, and increase liability for businesses benefiting from exploitative labour-hire, subcontracting, trafficking-linked, or sham-contracting arrangements.
 
 ---
+
 </details>
 
 ### **Simplify Access to Supplementary Supports**
 
 1. Administrative processes for non-income supports such as disability, housing, and family assistance will be streamlined and standardised across agencies.
-
    1. Access to additional support will become faster and more predictable.
    2. Administrative duplication across government services will be reduced.
    3. Errors and access barriers caused by fragmented systems will decline.
@@ -221,12 +223,12 @@ Risks include uneven agency adoption and data-sharing constraints. Underperforma
 Eligibility interfaces, agency processes, and data-sharing systems would be standardised across disability, housing, and family supports.
 
 ---
+
 </details>
 
 ### **End Forced Indue Cards**
 
 1. Welfare payment recipients will no longer be required to use Indue cards, with the option remaining voluntary.
-
    1. Individual autonomy over financial decisions will increase.
    2. Stigma associated with payment controls will decline.
    3. Welfare delivery will better respect personal agency.
@@ -258,12 +260,12 @@ The main risk is transition confusion as compulsory use ends. Monitoring should 
 Payment conditions and provider communications would be updated as compulsory use ends.
 
 ---
+
 </details>
 
 ### **Bring Dental and Mental Health Into Medicare**
 
 1. Medicare coverage will be expanded to include basic dental care and comprehensive mental health services delivered through existing public health infrastructure.
-
    1. Access to essential health services will become more equitable.
    2. Preventative care will reduce long-term health system costs.
    3. Treatment gaps caused by cost barriers will narrow.
@@ -299,12 +301,12 @@ Universal coverage models support earlier treatment, fewer cost barriers, better
 Dental and mental health services would be added in stages, with provider incentives aligned as coverage expands.
 
 ---
+
 </details>
 
 ### **Make Health Care Keep Up With Population Growth**
 
 1. National health workforce and service-capacity planning will be tied to population growth through regular demand projections, training and placement targets, service-capacity benchmarks, and federal funding agreements that align workforce, training, and infrastructure growth with projected community need.
-
    1. Australians will be less likely to face longer waits and thinner services as population growth puts pressure on the health system.
    2. Growing communities will be more likely to see health capacity planned before shortages become acute.
    3. Health workers will face less pressure from systems that fall behind rising demand.
@@ -346,12 +348,12 @@ Demand projections, workforce and service benchmarks, training targets, placemen
 [National Health Reform Agreement](https://www.health.gov.au/our-work/national-health-reform-agreement-nhra)
 
 ---
+
 </details>
 
 ### **Rebuild Aged Care Standards**
 
 1. Aged care funding and regulation will be restructured to enforce quality standards, improve workforce conditions, and strengthen oversight and accountability.
-
    1. Care quality for older Australians will improve consistently across providers.
    2. Workforce stability will increase through better pay and conditions.
    3. Transparency and accountability will reduce neglect and abuse.
@@ -387,12 +389,12 @@ National aged care inquiries have linked poor care to weak accountability, thin 
 Funding, provider standards, workforce requirements, and compliance powers would be updated together, with staged enforcement of the new baseline.
 
 ---
+
 </details>
 
 ### **Deliver Free or Affordable Childcare for Families**
 
 1. Childcare will be provided as a publicly funded universal service with income-adjusted fees, expanded capacity, strengthened workforce quality, higher staff-to-child ratios, and consistent national regulation and oversight.
-
    1. Workforce participation will increase as childcare affordability and availability improve.
    2. Children’s safety, development, and learning outcomes will improve through professional qualifications and better staff-to-child ratios.
    3. Families will experience greater economic security and flexibility when childcare is reliable, affordable, and consistent.
@@ -440,23 +442,24 @@ Sector-wide expert plans advocate international best practice: universal access 
 
 Phased expansion includes:
 
-* Legislating universal service access with income-adjusted fees.
-* Establishing statutory minimum staff qualifications and professional pathways.
-* Setting stronger minima for staff-to-child ratios, particularly for early years.
-* Resourcing regulatory authorities for regular quality assessments, unannounced inspections, and enforcement capacity.
-* Coordinating wage improvement programs and retention incentives for educators.
-* Detailed delivery planning, including legislative sequencing and intergovernmental coordination, is contained in a separate implementation plan.
+- Legislating universal service access with income-adjusted fees.
+- Establishing statutory minimum staff qualifications and professional pathways.
+- Setting stronger minima for staff-to-child ratios, particularly for early years.
+- Resourcing regulatory authorities for regular quality assessments, unannounced inspections, and enforcement capacity.
+- Coordinating wage improvement programs and retention incentives for educators.
+- Detailed delivery planning, including legislative sequencing and intergovernmental coordination, is contained in a separate implementation plan.
 
 ---
+
 </details>
 
 ## Solve the Housing Crisis
+
 Making Australia a country where housing is a right, not an investment. Where ordinary Australians can find a secure, well-located home without being locked out by speculation, scarcity, or postcode privilege.
 
 ### **Make It Easier to Buy and Move Home**
 
 1. Implement a nationally consistent Land Value Tax framework that applies by default, abolishes residential stamp duty, and requires a broad land-only tax base, while allowing states to displace the federal tax by adopting a structurally compliant system of their own.
-
    1. Housing mobility will increase as Australians can move without punitive upfront costs.
    2. Entry costs for first-home buyers will fall as taxation shifts away from lump-sum purchase barriers.
    3. Families will be able to right-size their homes more easily as financial penalties for moving decline.
@@ -477,6 +480,7 @@ Stamp duty functions as a transaction barrier that suppresses mobility and disto
 **Structural framework**
 
 Federal legislation establishes:
+
 - A mandatory land-only valuation base (excluding improvements).
 - Universal application across residential, commercial, industrial, and agricultural land categories.
 - Prohibition of residential transaction taxes once a compliant land tax is in place.
@@ -486,6 +490,7 @@ The default federal rate applies nationally unless displaced by a compliant stat
 **Displacement mechanism**
 
 A state may displace the federal tax only if:
+
 1. Residential stamp duty is fully abolished.
 2. The land tax applies to a broad base without structural exemptions.
 3. Valuation methodology excludes improvements.
@@ -518,12 +523,12 @@ System integrity depends on maintaining a broad base and resisting exemption cre
 Federal legislation establishes the default system and certification process. States may assume administration upon structural compliance. Intergovernmental coordination standardises land valuation practices across jurisdictions.
 
 ---
+
 </details>
 
 ### **Make Housing Tax Fair Across Generations**
 
 1. Replace the 50% Capital Gains Tax discount with inflation indexation of the cost base for newly acquired assets, and apply stricter CGT treatment to investment housing so gains reflect real value creation rather than a tax-favoured windfall.
-
    1. Younger Australians will face a fairer market when competing with tax-advantaged capital gains strategies.
    2. Investment returns will reflect real gains after inflation rather than an automatic discount.
    3. Capital will flow more readily toward productive investment when housing is less tax-favoured as a wealth vehicle.
@@ -563,12 +568,12 @@ Risks include lock-in effects if poorly designed, or loopholes that preserve the
 CGT discount provisions, indexation factor definitions, transitional acquisition-date rules, and compliance guidance would be updated to support consistent application.
 
 ---
+
 </details>
 
 ### **End Housing Speculation Incentives**
 
 1. Restrict negative gearing for housing so rental losses cannot be used to reduce tax on wages and salaries, with loss deductions quarantined to future rental income and capital gains within the housing portfolio.
-
    1. First-home buyers will face less investor bid pressure when purchasing established homes.
    2. Investment choices will shift toward rental performance and genuine housing demand rather than paper losses.
    3. Household finances will become more resilient as the tax system rewards sustainable returns instead of leverage.
@@ -603,12 +608,12 @@ Risks include avoidance via reclassification of expenses or restructuring of own
 Tax law amendments would establish quarantining, transitional rules for existing carried-forward losses, and integrity provisions for common avoidance structures.
 
 ---
+
 </details>
 
 ### **Shift Rezoning Gains to Benefit the Public**
 
 1. Apply a windfall gains tax to land value uplifts created by government rezoning decisions, capturing a share of rezoning-created value for public benefit rather than leaving it as an unearned private gain.
-
    1. Infrastructure and services will be better funded as rezoning uplifts contribute to public value.
    2. Communities will see a fairer return from public decisions that create sudden land value jumps.
    3. Planning reform will become more credible when rezoning benefits are shared rather than concentrated.
@@ -644,12 +649,12 @@ Risks include valuation disputes, gaming around rezoning boundaries, or politica
 Valuation methods, uplift assessment notices, deferral rules, and Land Value Tax interaction rules would be defined so the two taxes do not duplicate the same base at the same event.
 
 ---
+
 </details>
 
 ### **Stop Wasting Our Best Land**
 
 1. Establish National Minimum Housing Permissions that require states to ensure as-of-right housing capacity in defined priority locations, including activity centres, rail station catchments, and frequent public transport corridors, with planning schemes updated to reflect those minimum permissions.
-
    1. More homes will become possible in the places Australians already rely on for work, study, and services.
    2. Families will gain more realistic housing choices in established communities.
    3. Commutes will shorten as growth concentrates around existing infrastructure and service networks.
@@ -690,6 +695,7 @@ Federal rules require states to embed minimum as-of-right permissions within def
 **Minimum allowable outcomes (baseline)**
 
 Within the priority geographies, planning schemes must permit, at minimum:
+
 1. Medium density housing (terraces, townhouses, walk-ups).
 2. Mid-rise apartments in station and centre zones.
 3. Mixed-use buildings along main streets and centre cores (housing above retail/commerce).
@@ -715,12 +721,12 @@ Risks include token compliance (permissions that are technically legal but pract
 Federal legislation defines priority geographies and compliance certification. States incorporate minimum permissions into planning schemes, subject to federal funding linkage where applicable.
 
 ---
+
 </details>
 
 ### **Create a Housing Approval Fast-Track**
 
 1. Require a binding code-complying approval pathway for standard housing types so developments that meet published design and safety codes receive streamlined approval within fixed time limits, with councils limited to objective compliance checks rather than discretionary refusal.
-
    1. Home building will become more predictable as approvals follow clear rules rather than politics.
    2. Construction timelines will shorten as routine housing types move through faster assessment pathways.
    3. Smaller builders will gain fairer access as approval certainty reduces financing and holding-cost barriers.
@@ -745,6 +751,7 @@ Federal rules require states to implement a code-complying pathway covering comm
 **Covered typologies (baseline)**
 
 States must provide code pathways for, at minimum:
+
 1. Terraces and townhouses.
 2. Low-rise walk-ups.
 3. Mid-rise apartments and mixed-use buildings in centre and corridor zones.
@@ -776,12 +783,12 @@ Risks include code capture, weak enforcement, or “shadow discretion” through
 State planning law would establish code standards, statutory clocks, an escalation pathway, compliance reporting, and public metrics.
 
 ---
+
 </details>
 
 ### **Reward Communities That Build Quality Homes**
 
 1. Establish a Commonwealth Housing Delivery Accelerator that pays councils lump-sum bonuses for completed homes delivered in priority catchments under the minimum permission standard and code-complying pathway, with payments triggered only on verified completion.
-
    1. Councils will gain a direct financial incentive to approve housing that meets clear standards.
    2. Local services and infrastructure will improve as housing growth generates dedicated funding streams.
    3. Community confidence will rise as growth is paired with visible upgrades rather than unfunded strain.
@@ -847,12 +854,12 @@ Risks include over-concentration in specific dwelling types, gaming of bedroom c
 Federal legislation defines payment amounts, uplift criteria, indexing method, and reporting requirements. States and councils participate through automatic eligibility upon compliance with minimum permission and fast-track reforms.
 
 ---
+
 </details>
 
 ### **Supply Integrated Public Housing at Scale**
 
 1. Establish a Public Housing Acquisition Program that has enduring first right of purchase for a one defined floor of dwellings within new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
-
    1. Access to and usage of transport, services, and employment will improve when public housing is located in well-serviced centres.
    2. Public housing residents will not be isolated in service deserts where they have extra costs for living that maintain poverty traps.
    3. Mixed-tenure buildings will support social stability and reduce concentrated disadvantage.
@@ -900,12 +907,12 @@ Risks include over-concentration within specific developments, acquisition prici
 Federal legislation establishes funding authority, eligibility criteria, acquisition proportion, and reporting standards. States retain tenancy administration consistent with national public housing benchmarks.
 
 ---
+
 </details>
 
 ### **Guarantee Secure and Safe Renting**
 
 1. Establish National Rental Security Standards that prohibit no-grounds evictions, require minimum property safety standards, and reform Commonwealth Rent Assistance to reflect a defined proportion of actual rent paid.
-
    1. Renters will gain greater housing stability when tenancy cannot be terminated without defined cause.
    2. Unsafe and substandard rental conditions will decline under enforceable national minimum standards.
    3. Households will experience less sudden displacement during tight market conditions.
@@ -953,12 +960,12 @@ Excessive regulatory burden could discourage rental supply if poorly calibrated.
 Federal legislation establishes funding-linked national tenancy benchmarks and Rent Assistance reforms. States retain tribunal administration subject to baseline standards.
 
 ---
+
 </details>
 
 ### **Connect Regions with High Speed Rail**
 
 1. Deliver high-speed regional rail corridors between major cities with strategically located regional stops to create new affordable residential options and vibrant economic corridors.
-
    1. Families will gain access to new affordable housing options within practical commuting range of major employment centres.
    2. Housing demand pressure on capital cities will diffuse as commuting distances shrink in time rather than geography.
    3. Regional centres will become more viable long-term residential alternatives.
@@ -1001,15 +1008,16 @@ Risks include under-utilised stations, speculative land inflation prior to deliv
 Federal-led corridor development would use staged construction, priority routing, and binding housing capacity conditions at designated stops.
 
 ---
+
 </details>
 
 ## Fix the Tax Exploits
+
 Making Australia a country where wealth is earned by creating value, not by gaming the rules, shifting burdens onto everyone else, or extracting unearned gains from public systems and natural assets.
 
 ### **Turn Resource Wealth into Sovereign Wealth**
 
 1. Reform federal resource taxation and royalty frameworks to ensure economic rent from the extraction of publicly owned natural resources is properly captured and a defined share is directed into a national sovereign wealth fund.
-
    1. Public revenue will better reflect the true value of finite national resources when extraction includes full economic rent capture.
    2. Long-term fiscal stability will strengthen when commodity windfalls are converted into diversified financial assets rather than consumed in-year.
    3. Intergenerational equity will improve when depletion of non-renewable assets produces enduring public wealth.
@@ -1058,12 +1066,12 @@ Risks include rate miscalibration that suppresses marginal projects, political p
 Resource tax legislation would amend profit-tax provisions, establish rent adjustment triggers, create the sovereign wealth fund structure with defined governance rules, and specify deposit and withdrawal mechanisms consistent with long-term capital preservation.
 
 ---
+
 </details>
 
 ### **Stop Corporate Tax Avoidance**
 
 1. Strengthen anti-profit shifting rules for large and multinational firms by tightening transfer pricing and anti-hybrid settings, restricting artificial debt loading and concession stacking, expanding public tax transparency, and resourcing the ATO for sustained large-case enforcement.
-
    1. Company tax paid in Australia will better reflect real economic activity when shifting profits offshore is harder and less rewarding.
    2. Investment incentives will shift toward productive operations rather than aggressive tax engineering when avoidance pathways are structurally constrained.
    3. Competition will become fairer when businesses that pay tax are not undercut by firms that minimise tax through cross-border structuring.
@@ -1115,12 +1123,12 @@ Australia already maintains a dedicated tax avoidance enforcement focus within t
 Amendments to corporate tax integrity provisions strengthen transfer pricing, anti-hybrid, thin capitalisation, and deduction integrity rules, expand public reporting standards, and establish sustained enforcement resourcing settings through budget and administrative design.
 
 ---
+
 </details>
 
 ### **Stop Ultra-Wealthy Tax Avoidance**
 
 1. Rebuild private-wealth tax integrity rules by reforming discretionary trust distribution rules, restricting income-conversion pathways through private vehicles, strengthening large-balance superannuation concession limits, and applying a minimum effective tax framework to ultra-high-net-worth individuals.
-
    1. Effective tax rates among the wealthiest will better reflect their economic capacity when income conversion and distribution strategies lose their structural advantage.
    2. Public confidence will improve when the tax system is harder to bypass through private legal structures that are not available to ordinary earners.
    3. Investment decisions will become less distorted when tax minimisation strategies are less profitable than productive deployment of capital.
@@ -1171,12 +1179,12 @@ Trust structures are a recognised pathway for tax minimisation and income splitt
 Legislation would reform discretionary trust distribution integrity rules, strengthen personal-services and income-conversion integrity provisions, adjust large-balance superannuation concession settings, and establish a minimum effective tax framework for ultra-high-net-worth individuals with clear thresholds, definitions, and anti-avoidance provisions.
 
 ---
+
 </details>
 
 ### **End Fossil Fuel Subsidies**
 
 1. Repeal federal tax expenditures, budgetary programs, and concessional treatment that directly or indirectly reduce the cost of fossil fuel exploration, production, or consumption.
-
    1. Energy markets will reflect more accurate price signals when public subsidies no longer cushion fossil fuel production and use.
    2. Public expenditure will better align with long-term decarbonisation commitments when support is not directed toward high-emissions activities.
    3. Investment will shift toward lower-emissions energy and industrial pathways when structural fossil fuel advantages are removed.
@@ -1216,12 +1224,12 @@ Risks include incomplete subsidy identification, substitution through new conces
 Budget legislation and tax law amendments identify, catalogue, and repeal defined fossil fuel concessions, with structured phase-out schedules where required.
 
 ---
+
 </details>
 
 ### **Make Carbon Compliance Real**
 
 1. Require large polluters to buy and surrender one high-integrity carbon credit for every tonne of emissions, and prohibit rules that allow weak, over-issued, or self-generated credits to dilute the system and avoid real emissions costs.
-
    1. Every tonne of pollution will carry a real and unavoidable cost.
    2. Only credits backed by genuine, measurable, and lasting emissions reductions will count for compliance.
    3. Companies will not be able to create credits within their own corporate group and use them to cancel out their own pollution.
@@ -1273,23 +1281,24 @@ Quarterly reporting and carry-forward obligations prevent strategic delay while 
 
 Amend safeguard and carbon credit legislation to:
 
-* Enforce quarterly one-for-one liability.
-* Restrict eligibility to high-integrity Australian credits.
-* Prohibit related-party credit surrender.
-* Establish quarterly benchmark price publication.
-* Define the 2× benchmark shortfall charge with indexed cap.
-* Codify mandatory carry-forward of unsurrendered tonnes.
+- Enforce quarterly one-for-one liability.
+- Restrict eligibility to high-integrity Australian credits.
+- Prohibit related-party credit surrender.
+- Establish quarterly benchmark price publication.
+- Define the 2× benchmark shortfall charge with indexed cap.
+- Codify mandatory carry-forward of unsurrendered tonnes.
 
 ---
+
 </details>
 
 ## Build Up Small Businesses
+
 Making Australia a country where small businesses can compete, grow, and innovate on fair terms, without being squeezed out by concentrated market power, delayed payments, exploitative contracts, or structural disadvantage.
 
 ### **Ease the Squeeze on Small Business**
 
 1. Large corporations will pay an increased company tax rate equal to the gap between the national inflation rate and the upper bound of the Reserve Bank target band, with the rate returning to its baseline once inflation moves back within the target range.
-
    1. Small businesses will face less volatile input prices, making it easier to set prices and manage cashflow.
    2. Small businesses will experience fewer margin squeezes caused by fast-moving cost increases that outpace their ability to reprice.
    3. Fewer abrupt cost spikes will reduce the frequency of emergency price rises that risk losing customers.
@@ -1336,12 +1345,12 @@ This measure interacts most strongly with competition policy and corporate tax i
 Legislation would define corporate coverage, group treatment, the reference inflation statistic, the baseline company rate, and the method for applying and unwinding the temporary uplift, supported by alignment with existing anti-avoidance frameworks.
 
 ---
+
 </details>
 
 ### **Enforce Prompt Payment of Small Businesses**
 
 1. Large corporations above a defined revenue threshold will be required to pay small business suppliers within a fixed maximum payment period, with automatic financial penalties applying for late payment.
-
    1. Small businesses will receive revenue sooner, making cashflow less fragile between invoicing and payment.
    2. Small businesses will face fewer financing gaps caused by large customers delaying payment after work has already been completed.
    3. Pricing decisions will become more sustainable when suppliers no longer need to build long payment delays into their margins.
@@ -1385,12 +1394,12 @@ This measure interacts with unfair contract term rules, procurement standards, a
 Legislation would define the covered large-customer class, protected small-business supplier class, maximum payment period, payment-clock trigger, treatment of disputed invoices and staged contracts, and the form of automatic penalties, supported by complaint and enforcement powers that do not rely entirely on supplier-initiated litigation.
 
 ---
+
 </details>
 
 ### **Give Small Business a Fair Shot**
 
 1. Corporations above an indexed revenue threshold will pay an increased company tax rate in proportion to the extent that their market share exceeds an ACCC-defined competitive threshold within their sector.
-
    1. Small businesses will face less pressure from dominant firms that can rely on scale and market control instead of better performance.
    2. More growing firms will be able to compete on quality, price, and service without being crowded out by entrenched market power.
    3. Dominant firms will have stronger incentives to improve productivity and business performance instead of relying on further market concentration to lift profits.
@@ -1432,12 +1441,12 @@ This measure interacts closely with merger control, misuse of market power rules
 Legislation would define the covered corporate class, require sector allocation and competitive threshold determination, specify how market share is measured for tax purposes, and establish integrity treatment for corporate groups, related entities, and multi-sector firms, with ACCC and tax administration roles clearly separated but operationally aligned.
 
 ---
+
 </details>
 
 ### **Guarantee Net Neutrality**
 
 1. Prohibit internet service providers from blocking, throttling, prioritising, or discriminating against lawful content, applications, or services based on payment, ownership, or affiliation.
-
    1. Small online businesses will have a fairer chance to reach customers when internet access cannot be skewed toward larger firms that can pay for preferential treatment.
    2. Consumers will be able to access lawful online content and services without hidden interference from their internet provider.
    3. New digital services will be able to compete on quality and usefulness rather than on their ability to buy privileged network access.
@@ -1478,12 +1487,12 @@ This measure interacts with telecommunications regulation, competition law, and 
 Legislation would define prohibited discriminatory treatment, set narrow technical-management exceptions, establish transparency requirements for traffic management and service quality, and give regulators power to investigate practical discrimination across retail, wholesale, and affiliated service arrangements.
 
 ---
+
 </details>
 
 ### **Protect Your Privacy from Big Tech**
 
 1. Prohibit the collection, retention, or commercial use of personal data beyond what is strictly necessary to deliver a requested service, and establish enforceable rights to data access, correction, portability, and deletion.
-
    1. Australians will have more control over how their personal information is collected, used, and retained online.
    2. Small businesses and independent digital services will face less pressure to imitate surveillance-heavy platform models in order to compete.
    3. Consumers will be less exposed to opaque profiling, manipulation, and behavioural targeting built on excessive data extraction.
@@ -1525,12 +1534,12 @@ This measure interacts with competition policy, consumer protection, and digital
 Legislation would define necessity-based collection limits, regulate retention and commercial-use standards, establish enforceable user rights over personal data, set practical standards for portability and deletion, and give regulators power to audit data practices and penalise evasive service design.
 
 ---
+
 </details>
 
 ### **Simplify Unfair Contract Disputes for Small Business**
 
 1. Small businesses will have access to a streamlined statutory dispute process to challenge unfair contract terms through a dedicated small-business tribunal or ombuds pathway with capped costs and defined resolution timelines.
-
    1. Small businesses will be more able to challenge unfair contract terms without risking ruinous legal costs.
    2. Fewer dominant customers will be able to rely on expensive and slow dispute processes to enforce one-sided standard form contracts.
    3. Business planning will become more reliable when unfair terms can be tested through a predictable and accessible pathway.
@@ -1574,12 +1583,12 @@ This measure interacts with unfair contract term law, small business commissione
 Legislation would define the covered small-business class, eligible contract disputes, available remedies, cost caps, time limits, and the body responsible for hearing disputes, supported by simple filing processes and enforceable outcomes.
 
 ---
+
 </details>
 
 ### **Support Small Businesses to Stay Compliant**
 
 1. Small businesses entering standard form agreements will have access to standardised contract templates, plain-language compliance guidance, and low-cost pre-execution contract review services delivered through the ACCC and state small business commissioners.
-
    1. Small businesses will be better able to identify unfair or high-risk contract terms before becoming locked into them.
    2. Compliance decisions will become easier and less intimidating when guidance is standardised, practical, and written for ordinary operators rather than specialist lawyers.
    3. More small businesses will be able to sign routine agreements with confidence when low-cost review support is available before disputes arise.
@@ -1621,12 +1630,12 @@ This measure interacts with unfair contract protections, dispute pathways, and p
 Legislation or intergovernmental agreements would define agency responsibilities for templates, guidance, and review services, set minimum service standards for review accessibility and turnaround, and establish processes for updating standard materials to reflect changing law and market practice.
 
 ---
+
 </details>
 
 ### **Stop IP Abuse Against Small Business**
 
 1. Intellectual property law will be amended to shorten protection duration, restrict patent claims to specific disclosed implementations, require active use prior to enforcement, limit perpetual exclusive licensing, expand fair-use rights, and establish capped-cost dispute procedures for small and medium enterprises.
-
    1. Small businesses will face fewer legal and financial barriers when developing products, services, or creative work near the edge of existing intellectual property claims.
    2. Fewer dominant rights-holders will be able to rely on broad or inactive claims to block smaller competitors without actually using the protected asset themselves.
    3. Innovation will become more practical for smaller firms when enforceable rights are tied more closely to genuine disclosure and active application rather than defensive stockpiling.
@@ -1670,20 +1679,22 @@ This measure interacts with competition law, small business dispute processes, a
 Legislation would define revised protection periods, tighten claim-scope rules, establish active-use conditions for enforcement, regulate long-duration exclusive licensing, broaden fair-use exceptions, and create capped-cost procedures for smaller firms, with judicial and administrative guidance aligned to the new standards.
 
 ---
+
 </details>
 
 ---
+
 ---
 
 # RECLAIM OUR FUTURE
 
 ## Renew Our Democracy
+
 Making Australia a country where public power answers to the public, representation reflects the people, and democratic institutions cannot be bent by concentrated wealth, opaque influence, or captured information.
 
 ### **Build a Parliament That Reflects the People**
 
 1. Reform the House of Representatives to be elected under the Wolfendale System, replacing single-member electorates with five-member electorates, using preferential voting for candidate blocks, allocating seats locally within each electorate, and assigning additional seats at the national level if needed to reduce under-representation and improve overall fairness of representation.
-
    1. More Australians will see their vote contribute to representation instead of being lost in winner-take-all contests.
    2. Voters will be able to support parties or candidates closer to their actual views without feeling pushed into tactical choices to avoid wasting their vote.
    3. Local communities will retain identifiable representatives while gaining broader and more politically diverse representation.
@@ -1731,12 +1742,12 @@ Legislation would redefine House electorates, district magnitude, ballot structu
 [Wolfendale System](https://wolfofauspol.me/electoral-reform)
 
 ---
+
 </details>
 
 ### **Expose Political Donations**
 
 1. Introduce real-time political donation disclosure requirements, lower reporting thresholds, require machine-readable public databases, and prohibit donation aggregation practices that obscure the true source, amount, or timing of contributions.
-
    1. Voters will be able to see who is funding political actors in close to real time rather than long after elections are decided.
    2. Large donations will become more transparent as artificial splitting and associated-entity routing lose their effectiveness.
    3. Public trust in the political system will improve when funding flows are visible and searchable.
@@ -1785,12 +1796,12 @@ Risks include compliance burden for small campaigns, attempts to re-route funds 
 Amendments to federal electoral law establish reporting timeframes, aggregation rules, digital reporting infrastructure, and regulator enforcement powers, with phased transition to real-time reporting standards.
 
 ---
+
 </details>
 
 ### **End Lies in Political Advertising**
 
 1. Adopt a federal truth-in-political-advertising law based on South Australia’s successful model, prohibiting electoral advertisements that contain statements of fact that are inaccurate and misleading to a material extent, and empowering the Electoral Commissioner and courts to require withdrawal, correction, and penalties for breaches.
-
    1. Voters will be better able to make political choices based on real information rather than deliberate factual deception.
    2. Election campaigns will rely less on false factual claims designed to manipulate confusion or outrage at speed.
    3. Political actors will face stronger incentives to attack opponents on opinion, values, and record rather than on fabricated or materially distorted “facts”.
@@ -1835,12 +1846,12 @@ Legislation should align to the system already shown to work effectively in Sout
 [South Australian Legislation](https://www.legislation.sa.gov.au/_legislation-documents/lz/c/a/electoral-act-1985/current/1985.77.auth.pdf)
 
 ---
+
 </details>
 
 ### **Reform the National Anti-Corruption Commission**
 
 1. Amend the National Anti-Corruption Commission Act to expand jurisdictional coverage, enhance investigative powers and referral authority, establish statutory capability-linked funding safeguards, and mandate structured public reporting of enforcement activity.
-
    1. Serious corruption risks within the federal government will be more likely to be detected and investigated when coverage includes a wider range of officials and contractors.
    2. Corruption investigations will progress more effectively when the Commission has stronger investigative tools and clear pathways to prosecution.
    3. Public confidence will improve when enforcement activity is visible through consistent, structured reporting rather than opaque discretion.
@@ -1889,12 +1900,12 @@ Risks include jurisdictional carve-outs, procedural complexity that slows referr
 Amendments to the National Anti-Corruption Commission Act establish expanded jurisdiction, investigative and referral powers, reporting requirements, statutory capability definitions, independent funding assessments, and public shortfall reporting obligations. Budget adjustments align appropriations with assessed capability requirements.
 
 ---
+
 </details>
 
 ### **Reward Whistleblowers For Exposing Corruption**
 
 1. Establish a unified national whistleblower protection system covering the public, private, and not-for-profit sectors, with protected-disclosure immunities, reversed burden of proof in retaliation cases, enforceable duties on organisations to prevent harm, an independent Whistleblower Protection Authority, practical legal, financial, and psychological support, and reward schemes tied to significant public-interest recoveries or penalties.
-
    1. More people will be able to expose corruption and serious wrongdoing because the personal cost of speaking up will no longer fall so heavily on the whistleblower alone.
    2. Whistleblowers will have clearer legal protection when disclosures and preparatory acts are made in the public interest across government, business, and non-profit settings.
    3. People who are forced out, blacklisted, or otherwise harmed for speaking up will be better able to rebuild their lives when legal, financial, and psychological support is built into the system.
@@ -1951,12 +1962,12 @@ A single national framework would consolidate existing protections, define prote
 [Whistleblower Policy](https://www.fusionparty.org.au/whistleblower_policy)
 
 ---
+
 </details>
 
 ### **Break Up Media Monopolies**
 
 1. Amend media ownership and competition law to require divestiture or structural separation where a media corporation exceeds defined national or regional concentration thresholds across news and information markets.
-
    1. Audiences will have access to a wider range of news sources, editorial priorities, and local reporting voices.
    2. Journalists and editors will face fewer structural pressures to align with the political or commercial priorities of a single dominant owner.
    3. Local communities will be less likely to lose coverage when concentrated ownership treats regional reporting as expendable.
@@ -1998,12 +2009,12 @@ This measure interacts with general competition law, media ownership rules, and 
 Legislation would define the covered media classes, concentration metrics for national and regional assessment, control tests that trigger divestiture or structural separation, and conditions for post-separation independence, supported by regulator powers to investigate coordinated ownership structures and enforce compliance.
 
 ---
+
 </details>
 
 ### **Open Up Access to Australian News**
 
 1. Establish a national media token payment system that requires Australian news publishers offering paid digital content to accept ACMA-issued tokens for subscriptions and individual article access, with tokens redeemable at a fixed one-to-one value with Australian cents.
-
    1. Readers will be able to access individual articles across multiple outlets without repeated account creation, payment entry, or full-subscription lock-in.
    2. Smaller and independent publishers will gain fairer access to occasional readers who would not otherwise commit to a full recurring subscription.
    3. News audiences will be more able to compare reporting across outlets when cross-publication access carries less friction and lower commitment.
@@ -2045,6 +2056,7 @@ This measure interacts with media competition, consumer payment systems, and pri
 Legislation would define the covered Australian news publisher class, require token acceptance for paid digital content, establish the issuing and redemption authority, preserve publisher control over token-denominated pricing, and set minimum functional standards for article unlocking and subscription access so the system cannot be undermined through interface design or discriminatory treatment.
 
 ---
+
 </details>
 
 ### Restore ABC and SBS funding <- Add new in this section somewhere
@@ -2054,7 +2066,6 @@ Legislation would define the covered Australian news publisher class, require to
 ### **Rein In Online Gambling Harm**
 
 1. Online wagering providers, gambling advertisers, digital platforms, payment intermediaries, and related services will be regulated through National Online Gambling Harm Rules that ban inducements and phase in a complete ban on online gambling advertising, require identity verification before gambling begins, impose a customer duty of care, strengthen BetStop and external complaint pathways, establish a national online gambling regulator and ombudsman, block illegal offshore operators and prohibited transaction pathways, and ban online keno and similar rapid-cycle online gambling products.
-
    1. Children and young people will be far better shielded from gambling promotion in sport, streaming, and everyday online media.
    2. People showing signs of gambling harm will face earlier intervention and clearer exit pathways before losses compound into crisis.
    3. Families will experience fewer gambling-driven financial shocks as online wagering becomes harder to market aggressively and harder to push during vulnerable moments.
@@ -2099,12 +2110,12 @@ Amendments to the Interactive Gambling Act and related communications and paymen
 [Murphy Framework Recommendations](https://www.aph.gov.au/Parliamentary_Business/Committees/House/Social_Policy_and_Legal_Affairs/Onlinegamblingimpacts/Report/List_of_recommendations)
 
 ---
+
 </details>
 
 ### **Crack Down on Coercive Control and Sexual Violence**
 
 1. Federal family law, national online safety regulation, federally funded domestic and sexual violence responses, and migration consequences for non-citizens convicted of serious sexual violence will be aligned around coercive-control-aware and trauma-informed victim-survivor safety standards by strengthening court safety and evidence handling, expanding protection against technology-facilitated abuse and image-based abuse, tying federal funding to victim-survivor safety standards, and creating mandatory visa cancellation consequences for specified serious sexual violence and defined serious family-violence and coercive-control convictions where required by migration law.
-
    1. Victim-survivors will face fewer federal systems that treat coercive control and sexual violence as isolated incidents instead of patterns of abuse.
    2. People leaving abusive relationships will encounter safer court processes and stronger protection against abuse carried through digital tools and online platforms.
    3. Family law decisions will better reflect the safety, economic, and parenting impacts of family violence, coercive control, and sexual abuse.
@@ -2146,12 +2157,12 @@ Migration law should make specified serious sexual-violence, serious family-viol
 Federal legislation, court rules, online safety regulation, migration settings, and funding agreements would be updated so the federal system applies a consistent victim-survivor safety standard across family law, digital abuse, service delivery, and migration consequences for serious sexual violence.
 
 ---
+
 </details>
 
 ### **Finally End the War on Drugs**
 
 1. Establish National Drug Harm Reduction Standards that legalise and regulate cannabis, replace criminal penalties for personal drug possession and use with health-led diversion pathways, expunge Commonwealth records for historical personal-use cannabis offences, and use federal law, national agreements, and tied funding to drive aligned harm-minimisation settings across Australia.
-
    1. People with drug use challenges will be more likely to encounter health care and diversion than a criminal record for personal use.
    2. People using cannabis will face fewer life-changing penalties for conduct that can be regulated more openly and safely.
    3. Families will have clearer pathways into treatment and harm reduction before drug use escalates into crisis.
@@ -2189,12 +2200,12 @@ Historical personal-use cannabis records continue to block work, housing, and or
 Federal law would create the national cannabis framework, remove relevant federal criminal penalties for personal possession and use, establish expungement pathways for historical Commonwealth cannabis offences, and support national agreements that tie federal funding and reform incentives to aligned harm-minimisation settings in state and territory systems.
 
 ---
+
 </details>
 
 ### **Match Migration to What Australia Can Support**
 
 1. Establish a published absorptive-capacity framework that determines annual migration planning and intake settings against housing supply, service capacity, infrastructure readiness, labour market conditions, and settlement capability, with regular review and transparent adjustment triggers.
-
    1. Australians and migrants will both face less pressure from migration settings that outrun housing, services, and infrastructure.
    2. Population growth will be planned against real capacity rather than used as a shortcut for headline GDP growth.
    3. Communities will have stronger confidence that migration levels are being set on practical grounds rather than on pressure for unlimited labour supply.
@@ -2235,12 +2246,12 @@ Federal planning rules would establish the framework, define its indicators, pub
 [Migration Policy](https://www.fusionparty.org.au/migration_policy)
 
 ---
+
 </details>
 
 ### **Provide Civic Orientation to New Migrants**
 
 1. New migrants entering long-term or permanent settlement pathways will be required to complete mandatory civic orientation and practical support programs covering Australian law, institutions, services, work, and community life.
-
    1. New migrants will have a clearer understanding of Australian law, institutions, rights, and responsibilities from the start.
    2. Families settling permanently will face fewer problems caused by confusion about services, schools, workplaces, and everyday legal expectations.
    3. Communities will face fewer avoidable tensions caused by poor settlement support and weaker civic understanding.
@@ -2277,12 +2288,12 @@ Covered settlement pathways, minimum civic-orientation content, practical suppor
 [Migration Policy](https://www.fusionparty.org.au/migration_policy)
 
 ---
+
 </details>
 
 ### **Coordinate Refugee Support Through Local Communities**
 
 1. Humanitarian settlement placements and support will be coordinated through designated local communities where housing, health, education, English, trauma support, and settlement services are assessed and funded together, building on existing settlement locations, regional partnerships, and community-led models to improve capacity and reduce avoidable overheads.
-
    1. More people fleeing persecution, war, and severe danger will have a safe and orderly path to protection.
    2. New arrivals will begin settlement in communities where the support they need is already in place.
    3. Communities taking part will absorb new arrivals with less fragmented service pressure and less avoidable strain on local systems.
@@ -2323,12 +2334,12 @@ Settlement-ready communities would be designated against published criteria, wit
 [Migration Policy](https://www.fusionparty.org.au/migration_policy)
 
 ---
+
 </details>
 
 ### **Make Every Visa Fit Its Purpose**
 
 1. Rebuild federal visa settings so student, work, holiday, business, humanitarian, and family pathways are clearly defined, enforceable, and protected against routine misuse as substitutes for other migration categories, with visa conditions, integrity checks, and pathway rules aligned to each pathway’s stated purpose.
-
    1. Visa holders will face a clearer and more honest migration system, with fewer backdoor pathways and fewer false expectations.
    2. Communities will have stronger confidence that migration rules mean what they say.
    3. Genuine students, visitors, workers, and families will be less crowded out by misuse of pathways designed for something else.
@@ -2365,12 +2376,12 @@ The federal government would review pathway definitions, tighten rules where sub
 [Migration Policy](https://www.fusionparty.org.au/migration_policy)
 
 ---
+
 </details>
 
 ### **Put Essential Services Back in Public Hands**
 
 1. Essential services, including major public data systems holding sensitive personal data and natural monopoly infrastructure, will remain, return to, or be placed under public ownership and public-delivery control where universal access, privacy, affordability, or system integrity would otherwise be weakened by privatisation, outsourcing, or fragmented private control.
-
    1. Australians will have stronger confidence that essential services are being run for access and reliability rather than private extraction.
    2. Households relying on core services will face fewer pressures to treat basic needs as user-pays market opportunities.
    3. People using major government service platforms will have stronger confidence that sensitive personal data is handled inside public accountability structures.
@@ -2411,12 +2422,12 @@ Public ownership should be tied to a clear test. If the service should be univer
 The federal government would build a public-interest test into ownership, procurement, and delivery decisions; preserve or restore public ownership where the test is met; and use direct delivery, public options, reacquisition powers, or government business structures where private control has already undermined access, privacy, affordability, or system integrity.
 
 ---
+
 </details>
 
 ### **Take Religious Advantage Out of Public Services**
 
 1. Commonwealth institutions, publicly funded service providers, and federally regulated public-facing services will be required to operate on secular and non-discriminatory terms by removing official religious prayers, rituals, and bias from public institutional practice and documentation, narrowing religious exemptions where services are delivered to the public or public functions are carried out with public funding, and reforming philanthropy law so tax-deductible status does not apply to activities solely for advancing religion.
-
    1. Australians of all beliefs and none will meet public institutions on more equal civic terms.
    2. People using publicly funded services will have stronger confidence that access and treatment do not depend on someone else’s religious doctrine.
    3. Non-religious Australians and minority-faith communities will face fewer signals that public life is built around a preferred belief system.
@@ -2458,12 +2469,12 @@ Federal law would define where secular and non-discriminatory rules apply, narro
 [Inquiry report: Future foundations for giving](https://assets.pc.gov.au/inquiries/completed/philanthropy/report/philanthropy.pdf)
 
 ---
+
 </details>
 
 ### **Set National Animal Welfare Standards**
 
 1. Establish a statutory National Office of Animal Welfare to develop, coordinate, monitor, and publicly report on national animal welfare standards, advise on federal laws and trade-exposed animal industries, and drive consistent welfare benchmarks across jurisdictions and sectors through a renewed national animal welfare framework.
-
    1. Australians will see a clearer and more consistent baseline of animal welfare across the country.
    2. Consumers will have stronger confidence that products sold nationwide are subject to the same minimum welfare expectations.
    3. Communities will be better able to see when cruelty and neglect are being ignored.
@@ -2501,24 +2512,23 @@ A clearer national framework reduces the advantage held by operators relying on 
 Federal law would create the office with defined functions in standard-setting coordination, monitoring, reporting, and advice. Its reporting duties should be mandatory and public. Its advisory role should apply across relevant federal decisions, especially where trade, exports, or federally regulated animal uses are involved. Detailed enforcement would remain with the institutions that already hold those powers unless changed by later reform.
 
 ---
-</details>
 
+</details>
 
 ## Update Our Schools
 
-* Deliver Gonski reforms now
-* Fund education properly
-* Teach critical thinking in every classroom
-* Teach democracy in high school
-* Provide skills training for changing industries
-* Keep HECS/HELP accessible
-* Cut university bureaucracy
-* Give researchers funding security
+- Deliver Gonski reforms now
+- Fund education properly
+- Teach critical thinking in every classroom
+- Teach democracy in high school
+- Provide skills training for changing industries
+- Keep HECS/HELP accessible
+- Cut university bureaucracy
+- Give researchers funding security
 
 ### **End University Dependence on Mass Student Migration**
 
 1. Rebuild university funding and international education rules by creating a higher education contribution-credit system for degree-reliant industries, using those funds and a transition levy on international education revenue to reduce dependence on mass full-fee international enrolments, and aligning student visa settings, provider standards, and course integrity rules to genuine education rather than revenue substitution.
-
    1. Domestic students will face fewer risks that teaching quality, course access, and campus planning are being distorted by pressure to maximise international fee revenue.
    2. International students will have stronger confidence that they are entering genuine education pathways rather than a system built around volume and revenue growth.
    3. Communities will have clearer migration settings when large student inflows are no longer functioning as a quasi-hidden intake channel outside normal planning discipline.
@@ -2559,31 +2569,29 @@ The federal government would establish the contribution-credit system in higher-
 [Australia's universities under sustained financial strain ...](https://universitiesaustralia.edu.au/media-item/australias-universities-under-sustained-financial-strain-new-report-warns)
 
 ---
+
 </details>
 
 ## Transform Our Industries
 
-* Green Lightning Nitrogen Technology
-* Create hundreds of thousands of green jobs
-* Declare a climate emergency now
-* Build 800% renewable energy capacity
-* Reach negative emissions within 10 years
-* Cut rogue emissions from mining
-* Build green hydrogen for heavy transport
-* Modernise agriculture with precision fermentation
-* Build closed-loop manufacturing
-* Invest in fusion energy research
+- Green Lightning Nitrogen Technology
+- Create hundreds of thousands of green jobs
+- Declare a climate emergency now
+- Build 800% renewable energy capacity
+- Reach negative emissions within 10 years
+- Cut rogue emissions from mining
+- Build green hydrogen for heavy transport
+- Modernise agriculture with precision fermentation
+- Build closed-loop manufacturing
+- Invest in fusion energy research
 
 ### **Build a Circular Economy** <-Relocate here?
 
 1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
 
-
-
 ### **Match Skilled Migration to Genuine National Need**
 
 1. Align skilled migration settings to independently assessed shortage evidence and national capability priorities, with occupation access, visa pathways, and intake levels tied to current shortage data and strategic sector needs rather than routine employer demand alone.
-
    1. Skilled migration will be more clearly directed to areas where Australia genuinely lacks the workers or capabilities it needs.
    2. Employers will face stronger pressure to justify skilled migration through real shortage evidence instead of using it as a shortcut around training and workforce development.
    3. Critical sectors will have a clearer pathway to fill gaps that cannot yet be met domestically.
@@ -2620,24 +2628,26 @@ Even with stronger evidence settings, shortage assessment will never be perfectl
 Skilled migration pathways and occupation access would be tied to independent shortage evidence and national capability priorities, with regular review so visa settings follow genuine need rather than stale lists or routine employer demand.
 
 ---
+
 </details>
 
 ---
 
 ## Repair Our Environment
 
-* Enrich soil carbon
-* Regenerate degraded farmland
-* End native logging now
-* Restore wetlands and ocean ecosystems
-* Promote regenerative agriculture
-* Invest in immediate cooling research
-
+- Enrich soil carbon
+- Regenerate degraded farmland
+- End native logging now
+- Restore wetlands and ocean ecosystems
+- Promote regenerative agriculture
+- Invest in immediate cooling research
 
 ---
+
 ---
 
 Policy items that are "New" and need voting on:
+
 - Reward Communities That Build Quality Homes
 - Supply Integrated Public Housing at Scale
 - Simplify Unfair Contract Disputes for Small Business

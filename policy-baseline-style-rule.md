@@ -1,4 +1,3 @@
-
 # Stack Integrity Rules (Applies to All Tiers)
 
 ## Tier Independence Rule
@@ -11,38 +10,35 @@ If a sentence could sit comfortably in another tier, it does **not** belong wher
 
 When drafting a new policy item within an existing platform, the drafter must calibrate against the surrounding platform corpus rather than relying on the most recently drafted item alone.
 
-* New entries should match the established level of Tier-3 density, Tier-4 depth, and analytical cadence already present in comparable sections of the platform.
-* Structural compliance with the tier rules is necessary but not sufficient; a draft also fails if it is formally compliant but stylistically or analytically out of character with the surrounding platform.
-* Where the platform already shows a stable pattern for similar reforms, that pattern should be treated as the default unless there is a clear reason to depart from it.
+- New entries should match the established level of Tier-3 density, Tier-4 depth, and analytical cadence already present in comparable sections of the platform.
+- Structural compliance with the tier rules is necessary but not sufficient; a draft also fails if it is formally compliant but stylistically or analytically out of character with the surrounding platform.
+- Where the platform already shows a stable pattern for similar reforms, that pattern should be treated as the default unless there is a clear reason to depart from it.
 
 ## Government Level Terminology Rule
 
 Use the plainest term that still identifies the correct level of government:
 
-* Use **federal** as the default adjective for national Australian government action in public-facing policy text.
-* Use **the federal government** when the sentence needs a clear actor.
-* Use **national** when referring to a system, standard, framework, benchmark, or rule that applies across Australia, especially where states and territories remain involved in delivery.
-* Use **Commonwealth** only when the term itself requires it or when legal/institutional precision would be lost: Commonwealth funding agreements, Commonwealth institutions, Commonwealth powers, Commonwealth records, a specific Commonwealth-state division of responsibility, or official program names such as Commonwealth Rent Assistance.
-* Avoid using **Commonwealth** as a general-purpose synonym for **the federal government** in explanatory prose. It often makes sentences sound legalistic and longer than necessary.
+- Use **federal** as the default adjective for national Australian government action in public-facing policy text.
+- Use **the federal government** when the sentence needs a clear actor.
+- Use **national** when referring to a system, standard, framework, benchmark, or rule that applies across Australia, especially where states and territories remain involved in delivery.
+- Use **Commonwealth** only when the term itself requires it or when legal/institutional precision would be lost: Commonwealth funding agreements, Commonwealth institutions, Commonwealth powers, Commonwealth records, a specific Commonwealth-state division of responsibility, or official program names such as Commonwealth Rent Assistance.
+- Avoid using **Commonwealth** as a general-purpose synonym for **the federal government** in explanatory prose. It often makes sentences sound legalistic and longer than necessary.
 
 Prefer direct constructions:
 
-* Use **actor-led phrasing** when the responsible institution needs to be clear.
+- Use **actor-led phrasing** when the responsible institution needs to be clear.
+  - **The federal government would publish demand projections...**
+  - not **Implementation would require the Commonwealth to publish demand projections...**
 
-  * **The federal government would publish demand projections...**
-  * not **Implementation would require the Commonwealth to publish demand projections...**
+- Use **mechanism-led phrasing** when the actor is obvious from the policy context. Mechanism-led phrasing should still use clear action verbs where possible; do not turn active reforms into passive noun lists.
+  - **Funding, provider standards, workforce requirements, and compliance powers would be updated together...**
+  - **Bring in stronger visa protections, coordinate enforcement, and increase liability...**
+  - not **Implementation would require the Commonwealth to update aged care funding...**
+  - not **Funding recalibration, regulatory strengthening, and staged compliance enforcement.**
 
-* Use **mechanism-led phrasing** when the actor is obvious from the policy context. Mechanism-led phrasing should still use clear action verbs where possible; do not turn active reforms into passive noun lists.
-
-  * **Funding, provider standards, workforce requirements, and compliance powers would be updated together...**
-  * **Bring in stronger visa protections, coordinate enforcement, and increase liability...**
-  * not **Implementation would require the Commonwealth to update aged care funding...**
-  * not **Funding recalibration, regulatory strengthening, and staged compliance enforcement.**
-
-* Use **federal legislation**, **federal law**, and **national standards** unless **Commonwealth** is needed for a specific institutional term, program name, funding agreement, record type, power, or Commonwealth-state distinction.
-
-  * **Federal legislation would...** over **Commonwealth legislation would...**
-  * **National standards would...** over **Commonwealth standards would...**
+- Use **federal legislation**, **federal law**, and **national standards** unless **Commonwealth** is needed for a specific institutional term, program name, funding agreement, record type, power, or Commonwealth-state distinction.
+  - **Federal legislation would...** over **Commonwealth legislation would...**
+  - **National standards would...** over **Commonwealth standards would...**
 
 The test is not whether the sentence names the actor. The test is whether it states the action plainly. Avoid both clunky actor-led phrasing and compressed bureaucratic noun stacks.
 
@@ -52,14 +48,14 @@ The test is not whether the sentence names the actor. The test is whether it sta
 
 ## T0 Purpose
 
-Tier-0 exists to establish *orientation*, not policy detail. It signals **what domain is being addressed** and **why it matters at a civic level**.
+Tier-0 exists to establish _orientation_, not policy detail. It signals **what domain is being addressed** and **why it matters at a civic level**.
 
 ## What Tier-0 Is
 
 Tier-0 consists of:
 
-* **Primary Category Headers** (e.g. *RECLAIM OUR ECONOMY*)
-* **Sub-headers / Slogans** (e.g. *Restore the Fair Go*)
+- **Primary Category Headers** (e.g. _RECLAIM OUR ECONOMY_)
+- **Sub-headers / Slogans** (e.g. _Restore the Fair Go_)
 
 These frame the section emotionally and thematically, not operationally.
 
@@ -67,19 +63,19 @@ These frame the section emotionally and thematically, not operationally.
 
 Every Tier-0 element must:
 
-* Be **short and declarative**
-* Use **collective language** (“our”, “we”, “Australia”)
-* Refer to a **system, domain, or shared outcome**, not a policy
+- Be **short and declarative**
+- Use **collective language** (“our”, “we”, “Australia”)
+- Refer to a **system, domain, or shared outcome**, not a policy
 
 ## T0 Prohibited Content
 
 Tier-0 must **not** include:
 
-* Specific policies or actions
-* Promises or commitments
-* Numeric targets
-* Technical or economic terminology
-* Moral accusations or assignment of blame
+- Specific policies or actions
+- Promises or commitments
+- Numeric targets
+- Technical or economic terminology
+- Moral accusations or assignment of blame
 
 If a phrase could plausibly appear in a policy document or budget paper, it does **not** belong in Tier-0.
 
@@ -87,23 +83,23 @@ If a phrase could plausibly appear in a policy document or budget paper, it does
 
 Allowed:
 
-* Broad civic language
-* Shared values
-* Directional themes
+- Broad civic language
+- Shared values
+- Directional themes
 
 Avoid:
 
-* Verbs that imply delivery or implementation
-* Adjectives that require justification
-* Ideological or factional language
+- Verbs that imply delivery or implementation
+- Adjectives that require justification
+- Ideological or factional language
 
 ## T0 Acceptance Test
 
 A Tier-0 phrase is valid if:
 
-* It can be understood without policy literacy
-* It remains accurate even if specific policies change
-* It answers *“What area are we talking about?”* rather than *“What are we doing?”*
+- It can be understood without policy literacy
+- It remains accurate even if specific policies change
+- It answers _“What area are we talking about?”_ rather than _“What are we doing?”_
 
 ---
 
@@ -117,32 +113,32 @@ Each Tier-1 reform should target a single primary institutional surface.
 
 Tier-0 sections organise reforms by **system lever**, not by policy theme.
 
-* An institutional surface is the system component being modified (e.g. a tax mechanism, regulatory obligation, compliance system, market rule, or legal right).
-* Multiple reforms should not independently modify the same institutional surface unless they clearly produce distinct structural outcomes.
-* Where several proposed measures affect the same institutional surface, they should normally be consolidated into a single reform item with supporting mechanisms described at lower tiers.
-* This prevents platform expansion through incremental fragmentation and ensures that each Tier-1 reform represents a distinct structural intervention.
+- An institutional surface is the system component being modified (e.g. a tax mechanism, regulatory obligation, compliance system, market rule, or legal right).
+- Multiple reforms should not independently modify the same institutional surface unless they clearly produce distinct structural outcomes.
+- Where several proposed measures affect the same institutional surface, they should normally be consolidated into a single reform item with supporting mechanisms described at lower tiers.
+- This prevents platform expansion through incremental fragmentation and ensures that each Tier-1 reform represents a distinct structural intervention.
 
 ### Surface-First Placement Rule
 
 Tier-1 reforms must be placed in the Tier-0 section that corresponds to the **institutional surface being modified**, not the broader policy topic the reform relates to.
 
-* Reforms should be grouped according to the system mechanism they change (e.g. taxation, regulatory enforcement, market structure, public service provision), rather than the policy domain they affect.
-* A reform should appear in a Tier-0 section if that section contains the **primary institutional lever being modified**.
-* Where a reform has effects across multiple policy domains, it should still be placed according to the system component it directly changes.
+- Reforms should be grouped according to the system mechanism they change (e.g. taxation, regulatory enforcement, market structure, public service provision), rather than the policy domain they affect.
+- A reform should appear in a Tier-0 section if that section contains the **primary institutional lever being modified**.
+- Where a reform has effects across multiple policy domains, it should still be placed according to the system component it directly changes.
 
 ### Surface Placement Test
 
-It is placed correctly if the Tier-0 section name still makes sense when read as: *“What structural part of the system is being changed?”*
+It is placed correctly if the Tier-0 section name still makes sense when read as: _“What structural part of the system is being changed?”_
 
-If the section instead answers: *“What issue does this policy relate to?”* the reform may be placed under the wrong Tier-0 category.
+If the section instead answers: _“What issue does this policy relate to?”_ the reform may be placed under the wrong Tier-0 category.
 
 ### Surface Duplication Test
 
 A new Tier-1 proposal should be merged with an existing reform if:
 
-* it modifies the same institutional rule set,
-* it targets the same regulatory authority or compliance mechanism, and
-* it would produce largely overlapping Tier-3 outcomes.
+- it modifies the same institutional rule set,
+- it targets the same regulatory authority or compliance mechanism, and
+- it would produce largely overlapping Tier-3 outcomes.
 
 If these conditions apply, the proposal should normally be incorporated into the existing reform rather than introduced as a separate item.
 
@@ -158,73 +154,73 @@ Tier-1 exists to **capture attention** and **signal intent** to people with mini
 
 Tier-1 consists of **single sentence or clause action statements** that:
 
-* Are immediately intelligible
-* Directly relate to everyday concerns
-* Communicate *what will change* without explanation
+- Are immediately intelligible
+- Directly relate to everyday concerns
+- Communicate _what will change_ without explanation
 
 ## T1 Mandatory Structure
 
 Every Tier-1 statement must:
 
-* Be **one sentence or clause**
-* Use **plain, non-technical language**
-* Be **specific enough to be testable**, but not explanatory
+- Be **one sentence or clause**
+- Use **plain, non-technical language**
+- Be **specific enough to be testable**, but not explanatory
 
 ## T1 Prohibited Content
 
 Tier-1 must **not** include:
 
-* Mechanisms or processes
-* Justifications or explanations
-* Conditional language
-* Multi-part constructions
-* Bundled reform themes that imply multiple independent structural changes
+- Mechanisms or processes
+- Justifications or explanations
+- Conditional language
+- Multi-part constructions
+- Bundled reform themes that imply multiple independent structural changes
 
-If a statement explains *why* or *how*, it belongs in a lower tier.
+If a statement explains _why_ or _how_, it belongs in a lower tier.
 
 ## T1 Language Rules
 
 Allowed:
 
-* Direct action verbs
-* Common vocabulary
-* Familiar policy labels (e.g. “UBI”, “high-speed rail”)
+- Direct action verbs
+- Common vocabulary
+- Familiar policy labels (e.g. “UBI”, “high-speed rail”)
 
 Avoid:
 
-* Abstract nouns
-* Bureaucratic phrasing
-* Compound commitments
-* Verbs that imply incremental adjustment (e.g. “strengthen”, “tighten”)
+- Abstract nouns
+- Bureaucratic phrasing
+- Compound commitments
+- Verbs that imply incremental adjustment (e.g. “strengthen”, “tighten”)
 
 ### T1 Bureaucratic Verb Test
 
 Tier-1 statements should use verbs that describe a **clear, observable action** rather than administrative intent.
 
-* A Tier-1 verb is likely bureaucratic if it could plausibly appear in a departmental strategy document without implying a concrete change.
-* Verbs such as “support”, “facilitate”, “promote”, “encourage”, “enhance”, or “strengthen” should normally be avoided unless they clearly correspond to a specific structural intervention described in Tier-2.
-* If the action could occur without any law, rule, or institutional change being made, the Tier-1 verb is likely too bureaucratic.
+- A Tier-1 verb is likely bureaucratic if it could plausibly appear in a departmental strategy document without implying a concrete change.
+- Verbs such as “support”, “facilitate”, “promote”, “encourage”, “enhance”, or “strengthen” should normally be avoided unless they clearly correspond to a specific structural intervention described in Tier-2.
+- If the action could occur without any law, rule, or institutional change being made, the Tier-1 verb is likely too bureaucratic.
 
 ### T1 Outcome Framing (Precision Rule)
 
-Tier-1 may embed a broad civic outcome implicitly within the action statement (e.g. *“Make Housing Tax Fair Across Generations”*), but only where it improves structural precision. This implicit outcome framing is **preferred** when it increases clarity of reform direction without expanding scope.
+Tier-1 may embed a broad civic outcome implicitly within the action statement (e.g. _“Make Housing Tax Fair Across Generations”_), but only where it improves structural precision. This implicit outcome framing is **preferred** when it increases clarity of reform direction without expanding scope.
 
 **Use implicit outcome framing only if ALL are true:**
 
-* ☐ The outcome framing clarifies the structural direction of the reform and adds precision rather than emphasis.
-* ☐ The outcome wording narrows interpretation rather than broadens it.
-* ☐ The instrument name alone would be unclear to a disengaged reader without directional framing.
-* ☐ The action still maps cleanly to a single legislative or institutional reform.
+- ☐ The outcome framing clarifies the structural direction of the reform and adds precision rather than emphasis.
+- ☐ The outcome wording narrows interpretation rather than broadens it.
+- ☐ The instrument name alone would be unclear to a disengaged reader without directional framing.
+- ☐ The action still maps cleanly to a single legislative or institutional reform.
 
 If these conditions are met, outcome framing is preferred over purely procedural wording.
 
 **Do NOT use implicit outcome framing if ANY are true:**
 
-* ☐ The instrument name already defines the reform boundary with sufficient precision.
-* ☐ The action is already clearly understandable to a disengaged reader without added framing.
-* ☐ The outcome wording expands, abstracts, or obscures the specific reform described in Tier-2.
-* ☐ The phrasing adds rhetorical weight without adding structural clarity.
-* ☐ The wording implies benefit, success, or moral judgement rather than defining reform direction.
+- ☐ The instrument name already defines the reform boundary with sufficient precision.
+- ☐ The action is already clearly understandable to a disengaged reader without added framing.
+- ☐ The outcome wording expands, abstracts, or obscures the specific reform described in Tier-2.
+- ☐ The phrasing adds rhetorical weight without adding structural clarity.
+- ☐ The wording implies benefit, success, or moral judgement rather than defining reform direction.
 
 > If implicit outcome framing increases directional precision, use it.
 > If it adds rhetoric instead of precision, do not use it.
@@ -233,9 +229,9 @@ If these conditions are met, outcome framing is preferred over purely procedural
 
 In sections explicitly anchored to a voter identity group (e.g. small business owners, families, renters), outcome framing may adopt plain or sharp language that reflects how the group experiences the issue, provided:
 
-* The phrasing still maps cleanly to a single structural reform.
-* The wording does not expand scope beyond the Tier-2 mechanism.
-* Structural meaning is preserved over rhetorical emphasis.
+- The phrasing still maps cleanly to a single structural reform.
+- The wording does not expand scope beyond the Tier-2 mechanism.
+- Structural meaning is preserved over rhetorical emphasis.
 
 Identity resonance is permitted only where structural precision and Tier-2 containment remain intact.
 
@@ -245,27 +241,27 @@ Tier-1 should function both as a policy hook and as a campaign line.
 Memorable, forceful, and emotionally resonant phrasing is preferred where it still maps cleanly to a single reform surface and remains structurally contained by Tier-2.
 A Tier-1 does not fail merely because it sounds like a slogan. It fails only if:
 
-* the broad reform direction is not reasonably inferable,
-* the phrasing could point to multiple distinct reforms,
-* or the rhetorical force obscures the actual institutional change.
+- the broad reform direction is not reasonably inferable,
+- the phrasing could point to multiple distinct reforms,
+- or the rhetorical force obscures the actual institutional change.
 
 ## T1 Acceptance Test
 
 A Tier-1 statement is valid if:
 
-* A disengaged reader can understand it in under 3 seconds
-* It can be quoted without additional context
-* It should be quotable in a campaign context without losing its link to a single coherent reform surface
-* It answers *“What are you going to do?”* — nothing more
-* If splitting the sentence produces two valid stand-alone policies, it fails Tier-1.
+- A disengaged reader can understand it in under 3 seconds
+- It can be quoted without additional context
+- It should be quotable in a campaign context without losing its link to a single coherent reform surface
+- It answers _“What are you going to do?”_ — nothing more
+- If splitting the sentence produces two valid stand-alone policies, it fails Tier-1.
 
 ### T1 Section Cadence Check
 
 Within a Tier-0 section, Tier-1 statements should generally follow a similar grammatical pattern and rhetorical strength.
 
-* Where possible, statements should maintain comparable action framing (e.g. “Make…”, “Stop…”, “Break…”, “Guarantee…”, “Protect…”).
-* If one item reads like an administrative program description while others read like direct actions, it should normally be rewritten to match the section’s action cadence.
-* This rule exists to maintain clarity and memorability across sections with many reforms.
+- Where possible, statements should maintain comparable action framing (e.g. “Make…”, “Stop…”, “Break…”, “Guarantee…”, “Protect…”).
+- If one item reads like an administrative program description while others read like direct actions, it should normally be rewritten to match the section’s action cadence.
+- This rule exists to maintain clarity and memorability across sections with many reforms.
 
 ---
 
@@ -281,10 +277,10 @@ Tier-2 consists of **plain mechanical descriptions** of how a policy operates or
 
 It describes:
 
-* Inputs
-* Flows
-* Replacements
-* Scope
+- Inputs
+- Flows
+- Replacements
+- Scope
 
 ## T2 Structural Containment
 
@@ -296,9 +292,9 @@ It may include multiple mechanisms when they are necessary components of the sam
 
 Bundling is appropriate when the mechanisms:
 
-* operate on the same regulatory subject,
-* serve the same policy objective described in Tier-1, and
-* are required for the reform to function as intended.
+- operate on the same regulatory subject,
+- serve the same policy objective described in Tier-1, and
+- are required for the reform to function as intended.
 
 Mechanisms should be separated if they introduce independent regulatory objectives or could operate as standalone reforms.
 
@@ -318,8 +314,8 @@ Artificially splitting such mechanisms increases platform length without improvi
 
 Separate reforms are appropriate only when the mechanisms:
 
-* target different institutional subjects, or
-* produce materially different Tier-3 outcomes.
+- target different institutional subjects, or
+- produce materially different Tier-3 outcomes.
 
 ### T2 Tier-3 Overlap Test
 
@@ -331,18 +327,18 @@ Distinct reforms should produce clearly distinguishable Tier-3 outcome sets.
 
 Every Tier-2 statement must:
 
-* Describe **only mechanics or structure**
-* Be intelligible to a layperson
-* Avoid claims about benefit or success
+- Describe **only mechanics or structure**
+- Be intelligible to a layperson
+- Avoid claims about benefit or success
 
 ## T2 Prohibited Content
 
 Tier-2 must **not** include:
 
-* Outcomes or benefits
-* Moral or emotional language
-* Value judgements
-* Phrases such as “to ensure”, “so that”, or “providing”
+- Outcomes or benefits
+- Moral or emotional language
+- Value judgements
+- Phrases such as “to ensure”, “so that”, or “providing”
 
 If a sentence persuades, it is doing too much.
 
@@ -350,16 +346,16 @@ If a sentence persuades, it is doing too much.
 
 Allowed:
 
-* Neutral descriptive language
-* Clear nouns and verbs
-* Simple sentence structure
-* Technical terminology which describes institutional structure rather than moral evaluation
+- Neutral descriptive language
+- Clear nouns and verbs
+- Simple sentence structure
+- Technical terminology which describes institutional structure rather than moral evaluation
 
 Avoid:
 
-* Adjectives that imply goodness or fairness
-* Normative claims
-* Forecasts or promises
+- Adjectives that imply goodness or fairness
+- Normative claims
+- Forecasts or promises
 
 ### T2 Opening Rule
 
@@ -375,21 +371,21 @@ A verb-led opening is valid only if the first meaningful noun phrase after the v
 
 **Good subject-led openings**
 
-* Online wagering providers and related services will be regulated through…
-* Medicare coverage will be expanded to include basic dental care and…
-* Labour market rules will be restructured by establishing sector-level bargaining councils…
+- Online wagering providers and related services will be regulated through…
+- Medicare coverage will be expanded to include basic dental care and…
+- Labour market rules will be restructured by establishing sector-level bargaining councils…
 
 **Good instrument-led openings**
 
-* Rebuild federal visa settings so…
-* Replace the 50% Capital Gains Tax discount with…
-* Implement a nationally consistent Land Value Tax framework…
+- Rebuild federal visa settings so…
+- Replace the 50% Capital Gains Tax discount with…
+- Implement a nationally consistent Land Value Tax framework…
 
 **Bad openings**
 
-* Require federally supported settlement programs to…
-* Use Commonwealth funding to…
-* Establish a body to…
+- Require federally supported settlement programs to…
+- Use Commonwealth funding to…
+- Establish a body to…
 
 These are bad openings when they lead with a secondary delivery mechanism instead of the main thing being changed.
 
@@ -397,19 +393,19 @@ These are bad openings when they lead with a secondary delivery mechanism instea
 
 A Tier-2 sentence should be rewritten if:
 
-* the opening element does not make the reform boundary clearer;
-* the sentence opens with a program, provider, regulator, funding source, or implementation channel that is only carrying the reform rather than defining it;
-* the opening verb does not immediately introduce the primary reform surface;
-* or the sentence would become clearer by opening with either the affected subject or the named instrument instead.
+- the opening element does not make the reform boundary clearer;
+- the sentence opens with a program, provider, regulator, funding source, or implementation channel that is only carrying the reform rather than defining it;
+- the opening verb does not immediately introduce the primary reform surface;
+- or the sentence would become clearer by opening with either the affected subject or the named instrument instead.
 
 ## T2 Acceptance Test
 
 A Tier-2 statement is valid if:
 
-* It can be followed up with “Why?” without already answering
-* It reads like system wiring, not advocacy
-* Removing it would make the policy unclear, not unconvincing
-* Its opening element clearly identifies the reform boundary
+- It can be followed up with “Why?” without already answering
+- It reads like system wiring, not advocacy
+- Removing it would make the policy unclear, not unconvincing
+- Its opening element clearly identifies the reform boundary
 
 ---
 
@@ -417,13 +413,13 @@ A Tier-2 statement is valid if:
 
 ## T3 Purpose
 
-Tier-3 exists to explain *why a policy works* without describing *how it works* or *how it will be implemented*.
+Tier-3 exists to explain _why a policy works_ without describing _how it works_ or _how it will be implemented_.
 
 It translates system reform into outcomes that are intelligible, credible, and coherent for a general audience.
 
 ## What Tier-3 Is
 
-Tier-3 consists of **atomic justification statements** that describe the *intended outcomes* of a policy.
+Tier-3 consists of **atomic justification statements** that describe the _intended outcomes_ of a policy.
 
 Each dotpoint answers:
 
@@ -433,61 +429,63 @@ Each dotpoint answers:
 
 Every Tier-3 dotpoint must:
 
-* Be a **single, complete sentence**
-* Be **future-oriented** (describing outcomes that will occur)
-* Use **benefit-first construction**
-  *(state the outcome before the cause wherever possible)*
-* Use **positive framing**
-  *(describe what is created or enabled, not what is prevented or avoided)*
+- Be a **single, complete sentence**
+- Be **future-oriented** (describing outcomes that will occur)
+- Use **benefit-first construction**
+  _(state the outcome before the cause wherever possible)_
+- Use **positive framing**
+  _(describe what is created or enabled, not what is prevented or avoided)_
 
 ## T3 Prohibited Content
 
 Tier-3 dotpoints must **not** include:
 
-* Implementation detail
-* Mechanisms, processes, or delivery methods
-* Funding or cost language
-* Administrative steps
-* Appeals to emotion or moral obligation
-* Phrases that belong in Tier-2 (e.g. “paid”, “replaced”, “introduced”, “set at”)
+- Implementation detail
+- Mechanisms, processes, or delivery methods
+- Funding or cost language
+- Administrative steps
+- Appeals to emotion or moral obligation
+- Phrases that belong in Tier-2 (e.g. “paid”, “replaced”, “introduced”, “set at”)
 
-If a sentence explains *how* something is done, it does **not** belong in Tier-3.
+If a sentence explains _how_ something is done, it does **not** belong in Tier-3.
 
 ## T3 Language Rules
 
 Allowed:
 
-* Neutral declarative statements
-* Outcomes expressed as future states
-* Clear, concrete benefits
+- Neutral declarative statements
+- Outcomes expressed as future states
+- Clear, concrete benefits
 
 Avoid:
 
-* Present-tense assertions (“creates”, “ensures”)
-* Repetitive sentence leads (e.g. beginning every point with “Will”)
-* Negative framing (“prevent”, “stop”, “avoid”)
-* Adjectives that signal persuasion rather than explanation
+- Present-tense assertions (“creates”, “ensures”)
+- Repetitive sentence leads (e.g. beginning every point with “Will”)
+- Negative framing (“prevent”, “stop”, “avoid”)
+- Adjectives that signal persuasion rather than explanation
 
 ### T3 Actor Anchoring
 
 Tier-3 outcomes should identify the primary actor experiencing the change whenever possible.
 
-* Prefer outcomes that begin with the affected entity (e.g. “small businesses”, “voters”, “suppliers”, “consumers”) rather than abstract system states.
-* Actor-anchored outcomes improve clarity and causal traceability.
-* Avoid outcomes that describe system-level changes without identifying who experiences them.
+- Prefer outcomes that begin with the affected entity (e.g. “small businesses”, “voters”, “suppliers”, “consumers”) rather than abstract system states.
+- Actor-anchored outcomes improve clarity and causal traceability.
+- Avoid outcomes that describe system-level changes without identifying who experiences them.
 
 Weak example:
-* “Market stability will improve.”
+
+- “Market stability will improve.”
 
 Stronger example:
-* “Small businesses will experience fewer margin squeezes caused by rapid cost increases.”
+
+- “Small businesses will experience fewer margin squeezes caused by rapid cost increases.”
 
 ### T3 Actor Repetition Control
 
 When multiple outcomes involve the same primary actor, avoid repeating the actor at the start of every bullet.
 
-* The actor should normally appear in the first outcome, with subsequent outcomes shifting to the next causal subject (e.g. decision-making behaviour, market interactions, or system effects).
-* This helps the outcome list reflect a cascading chain of consequences rather than repeating the same actor experiencing the same change.
+- The actor should normally appear in the first outcome, with subsequent outcomes shifting to the next causal subject (e.g. decision-making behaviour, market interactions, or system effects).
+- This helps the outcome list reflect a cascading chain of consequences rather than repeating the same actor experiencing the same change.
 
 ## T3 Atomicity Rule
 
@@ -528,6 +526,7 @@ However, outcomes must **never be presented in reverse order** (e.g. systemic ef
 Tier-3 should read as a **cascade of consequences**, where each item plausibly follows from the previous one.
 
 Avoid:
+
 - Beginning with abstract or institutional outcomes.
 - Jumping between levels of impact.
 - Listing outcomes without a discernible causal relationship.
@@ -536,25 +535,25 @@ Avoid:
 
 Each Tier-3 bullet must describe a **distinct causal consequence** of the reform.
 
-* Do not restate the same effect at different levels of abstraction or with synonymous wording.
-* Outcomes should advance the causal chain rather than repeat the previous outcome in broader or more general terms.
-* If two outcomes could reasonably be combined into a single statement without losing meaning, they are likely describing the same effect and should not appear as separate bullets.
+- Do not restate the same effect at different levels of abstraction or with synonymous wording.
+- Outcomes should advance the causal chain rather than repeat the previous outcome in broader or more general terms.
+- If two outcomes could reasonably be combined into a single statement without losing meaning, they are likely describing the same effect and should not appear as separate bullets.
 
 ## T3 Acceptance Test
 
 A Tier-3 dotpoint is valid if:
 
-* It can be debated as an outcome without reference to implementation
-* It does not require another dotpoint to make sense
-* It does not persuade by emotion alone
-* Removing the sentence does not affect the operational meaning of Tier-2
-* The first outcome must describe a direct effect on the primary affected actor.
-* Each outcome must represent a new causal step rather than a restatement of the previous outcome.
-* Apply the **Reverse Test**:
+- It can be debated as an outcome without reference to implementation
+- It does not require another dotpoint to make sense
+- It does not persuade by emotion alone
+- Removing the sentence does not affect the operational meaning of Tier-2
+- The first outcome must describe a direct effect on the primary affected actor.
+- Each outcome must represent a new causal step rather than a restatement of the previous outcome.
+- Apply the **Reverse Test**:
   Ask whether the first outcome could plausibly occur before the reform has affected individual actors.  
   If the answer is yes, the list likely begins too far downstream and should be reordered.
 
-If a reader can ask *“But how?”* and the sentence already answers, it is **not Tier-3**.
+If a reader can ask _“But how?”_ and the sentence already answers, it is **not Tier-3**.
 
 ---
 
@@ -590,85 +589,86 @@ Tier-4 **must** be implemented using a native HTML disclosure block:
 [Tier-4 content]
 
 ---
+
 </details>
 ```
 
 ## T4 Visibility Rules
 
-* Tier-4 **must be collapsed by default**
-* Users must explicitly opt in by expanding the block
-* Removing Tier-4 must not affect comprehension of Tier-0 through Tier-3 content
+- Tier-4 **must be collapsed by default**
+- Users must explicitly opt in by expanding the block
+- Removing Tier-4 must not affect comprehension of Tier-0 through Tier-3 content
 
 ## T4 Structural Rules
 
-* Tier-4 must appear **after Tier-3 dotpoints and before the next Tier-1 header**
-* Tier-4 must not be nested inside lists
-* Tier-4 must not introduce additional tiers or headings
-* Each internal label introduces a discrete analytical topic.
-* Each internal label should correspond to a single analytical topic or design question. Avoid compound labels that merge multiple topics (e.g. “Compliance and Market Effects”). If two distinct issues need explanation, they should appear under separate labels.
-* Use as few internal labels as possible while remaining clear under scrutiny; prefer no more than 6 labels unless necessary for clarity, and group related numbered items under broader topical labels rather than creating a label for each micro-issue.
-* Internal section names must be formatted as a single bolded label on its own line (e.g. **Design rationale**), followed immediately by plain paragraph text or a numbered list; do not use markdown headings (e.g. #, ##, ###) for internal structure. Within paragraphs and numbered lists, bold must not be used except for the exact name of a Named Category or Mechanism that functions as a label in the form **Label** — description or **Label**: description; bold must not be used for emphasis.
+- Tier-4 must appear **after Tier-3 dotpoints and before the next Tier-1 header**
+- Tier-4 must not be nested inside lists
+- Tier-4 must not introduce additional tiers or headings
+- Each internal label introduces a discrete analytical topic.
+- Each internal label should correspond to a single analytical topic or design question. Avoid compound labels that merge multiple topics (e.g. “Compliance and Market Effects”). If two distinct issues need explanation, they should appear under separate labels.
+- Use as few internal labels as possible while remaining clear under scrutiny; prefer no more than 6 labels unless necessary for clarity, and group related numbered items under broader topical labels rather than creating a label for each micro-issue.
+- Internal section names must be formatted as a single bolded label on its own line (e.g. **Design rationale**), followed immediately by plain paragraph text or a numbered list; do not use markdown headings (e.g. #, ##, ###) for internal structure. Within paragraphs and numbered lists, bold must not be used except for the exact name of a Named Category or Mechanism that functions as a label in the form **Label** — description or **Label**: description; bold must not be used for emphasis.
 
 ## T4 Content Rules
 
 Tier-4 **may include**:
 
-* Design rationale and high-level trade-offs
-* System and institutional interaction notes
-* Economic or incentive logic
-* Known risks and failure modes
-* Evidence, precedent, or modelling references
-* High-level implementation context (non-procedural)
-* Implementation outline describing phases, dependencies, and order of operations
+- Design rationale and high-level trade-offs
+- System and institutional interaction notes
+- Economic or incentive logic
+- Known risks and failure modes
+- Evidence, precedent, or modelling references
+- High-level implementation context (non-procedural)
+- Implementation outline describing phases, dependencies, and order of operations
 
 Tier-4 **must not include**:
 
-* Slogans, hooks, or moral framing
-* Repetition of Tier-1, Tier-2, or Tier-3 content
-* New commitments or policy expansion
-* Emotional or persuasive language
-* Step-by-step detail such as operational runbooks, internal procedural steps, or volatile delivery minutiae
+- Slogans, hooks, or moral framing
+- Repetition of Tier-1, Tier-2, or Tier-3 content
+- New commitments or policy expansion
+- Emotional or persuasive language
+- Step-by-step detail such as operational runbooks, internal procedural steps, or volatile delivery minutiae
 
 ### T4 Scrutiny Rule
 
 Tier-4 exists to support scrutiny rather than persuasion.
 
-* Its purpose is to explain how the policy operates, what assumptions it relies upon, and how risks or edge cases are handled.
-* It should prioritise structural explanation, institutional interactions, enforcement considerations, and potential failure modes where relevant.
-* It must not introduce persuasive or normative arguments for the reform.
-* It may describe the structural problem the reform addresses, but should focus on institutional design, implementation constraints, and system behaviour rather than advocacy.
+- Its purpose is to explain how the policy operates, what assumptions it relies upon, and how risks or edge cases are handled.
+- It should prioritise structural explanation, institutional interactions, enforcement considerations, and potential failure modes where relevant.
+- It must not introduce persuasive or normative arguments for the reform.
+- It may describe the structural problem the reform addresses, but should focus on institutional design, implementation constraints, and system behaviour rather than advocacy.
 
 ### T4 Scope Control
 
 Tier-4 should describe institutional design rather than engineering implementation.
 
-* Explain the obligations, authorities, constraints, and enforcement structures created by the reform.
-* Avoid specifying technical architecture, administrative procedures, or operational system design that would normally be determined by regulators or implementing agencies.
-* Simpler reforms should normally have lighter treatment; do not add analytical substructure beyond what is needed to explain the core institutional logic, key edge cases, and implementation dependencies under scrutiny.
+- Explain the obligations, authorities, constraints, and enforcement structures created by the reform.
+- Avoid specifying technical architecture, administrative procedures, or operational system design that would normally be determined by regulators or implementing agencies.
+- Simpler reforms should normally have lighter treatment; do not add analytical substructure beyond what is needed to explain the core institutional logic, key edge cases, and implementation dependencies under scrutiny.
 
 ### T4 Addressing Failure Modes
 
 If relevant, Tier-4 should explain how the reform could be undermined, misused, or circumvented.
 
-* This analysis should normally be expressed through topical headings (e.g. “Integrity Safeguards”, “Compliance Risks”, “System Discipline”) rather than a repeated generic heading such as “Risk and Failure Modes”.
-* Policies are more robust under scrutiny when Tier-4 distinguishes clearly between:
-  * vulnerabilities that are already controlled by the design, and
-  * genuinely residual risks that remain live after those safeguards are taken into account.
-* A Risk and Failure Modes section should include only genuinely residual vulnerabilities, design trade-offs, or edge cases that remain live after the policy’s built-in safeguards are taken into account.
-* If a risk would arise only because a core institution in the policy is too weak to fulfil its stated function, do not list that as a separate risk unless the design itself leaves a meaningful gap in that institution’s powers, scope, independence, or resources.
+- This analysis should normally be expressed through topical headings (e.g. “Integrity Safeguards”, “Compliance Risks”, “System Discipline”) rather than a repeated generic heading such as “Risk and Failure Modes”.
+- Policies are more robust under scrutiny when Tier-4 distinguishes clearly between:
+  - vulnerabilities that are already controlled by the design, and
+  - genuinely residual risks that remain live after those safeguards are taken into account.
+- A Risk and Failure Modes section should include only genuinely residual vulnerabilities, design trade-offs, or edge cases that remain live after the policy’s built-in safeguards are taken into account.
+- If a risk would arise only because a core institution in the policy is too weak to fulfil its stated function, do not list that as a separate risk unless the design itself leaves a meaningful gap in that institution’s powers, scope, independence, or resources.
 
 **Perfect-function test**
 
 A point may be included as a residual risk, failure mode, or trade-off only if it remains live when the policy’s architecture is functioning as designed.
 Do **not** include:
 
-* risks already controlled or structurally contained by the policy’s own design, safeguards, or institutions, because these belong under the relevant design heading and are not genuine residual risks,
-* risks that exist only under a counterfactual where the policy’s core institution is assumed to fail despite the design not leaving a meaningful gap in its powers, scope, independence, or resources,
-* generic implementation difficulty that does not identify a policy-specific residual vulnerability,
-* temporary enforcement gaps, regulator catch-up problems, or short-term non-compliance by actors the policy is designed to detect and address, unless the design leaves a distinct structural reason those breaches would persist, scale, or evade ordinary enforcement,
-* political communications problems, public misunderstanding, or salesmanship challenges that do not alter the policy’s institutional function,
-* risks that arise only because another level of government controls a separate institutional surface that the policy does not attempt to change,
-* or market responses that advance rather than undermine the policy objective.
+- risks already controlled or structurally contained by the policy’s own design, safeguards, or institutions, because these belong under the relevant design heading and are not genuine residual risks,
+- risks that exist only under a counterfactual where the policy’s core institution is assumed to fail despite the design not leaving a meaningful gap in its powers, scope, independence, or resources,
+- generic implementation difficulty that does not identify a policy-specific residual vulnerability,
+- temporary enforcement gaps, regulator catch-up problems, or short-term non-compliance by actors the policy is designed to detect and address, unless the design leaves a distinct structural reason those breaches would persist, scale, or evade ordinary enforcement,
+- political communications problems, public misunderstanding, or salesmanship challenges that do not alter the policy’s institutional function,
+- risks that arise only because another level of government controls a separate institutional surface that the policy does not attempt to change,
+- or market responses that advance rather than undermine the policy objective.
 
 If no genuine residual risks remain after this test, omit the section entirely. Do not replace it with another heading unless the policy itself creates a distinct ancillary concern that still requires scrutiny and is not already covered under an earlier design heading.
 
@@ -676,18 +676,18 @@ A point fails this test unless the drafter can state in one sentence why it stil
 
 Points that usually pass this test are limited to:
 
-* genuine edge cases,
-* irreducible trade-offs,
-* exposure created by interaction with an external system the policy does not control, or
-* vulnerabilities that remain live even when all built-in safeguards operate as intended.
+- genuine edge cases,
+- irreducible trade-offs,
+- exposure created by interaction with an external system the policy does not control, or
+- vulnerabilities that remain live even when all built-in safeguards operate as intended.
 
 ### T4 Analytical Lenses
 
 Tier-4 headings should remain topical and specific to the policy being explained.
 
-* Except for **Design Rationale**, the lens names listed below should normally be treated as analytical prompts rather than default headings.
-* Headings should describe the specific institutional or system topic being explained (e.g. “Disclosure Data Standards”, “Credit Integrity Rules”, “Enforcement Authority”) rather than generic labels such as “Enforcement and Compliance” or “Risk and Failure Modes”.
-* Where helpful for reader comprehension, risk analysis may be grouped by what primarily constrains the risk or what the risk primarily affects, provided each label remains a single analytical topic and the grouping does not become rhetorical.
+- Except for **Design Rationale**, the lens names listed below should normally be treated as analytical prompts rather than default headings.
+- Headings should describe the specific institutional or system topic being explained (e.g. “Disclosure Data Standards”, “Credit Integrity Rules”, “Enforcement Authority”) rather than generic labels such as “Enforcement and Compliance” or “Risk and Failure Modes”.
+- Where helpful for reader comprehension, risk analysis may be grouped by what primarily constrains the risk or what the risk primarily affects, provided each label remains a single analytical topic and the grouping does not become rhetorical.
 
 When drafting Tier-4, authors should consider the following analytical lenses to ensure the reform can withstand scrutiny:
 
@@ -706,9 +706,9 @@ When multiple analytical lenses are used, authors should normally introduce them
 
 Where minor enabling mechanisms are necessary for completeness but are not core to the reform, they may be included in concise parenthetical form.
 
-* Such elements must be clearly subordinate to the primary structural point.
-* They must not introduce new commitments or expand scope.
-* They must remain brief and non-operational.
+- Such elements must be clearly subordinate to the primary structural point.
+- They must not introduce new commitments or expand scope.
+- They must remain brief and non-operational.
 
 Parenthetical support notes must clarify implementation context without elevating ancillary detail to policy status.
 
@@ -716,24 +716,24 @@ Parenthetical support notes must clarify implementation context without elevatin
 
 Allowed:
 
-* Informational, neutral tone
-* Explicit acknowledgement of uncertainty or risk
-* Clear, restrained technical language
+- Informational, neutral tone
+- Explicit acknowledgement of uncertainty or risk
+- Clear, restrained technical language
 
 Avoid:
 
-* Rhetorical devices
-* Value judgements
-* Present-tense claims of success
+- Rhetorical devices
+- Value judgements
+- Present-tense claims of success
 
 ## T4 Acceptance Test
 
 A Tier-4 block is valid if:
 
-* It can be removed without weakening the argument or structure of higher tiers
-* It improves confidence without attempting persuasion
-* It satisfies scrutiny rather than winning agreement
-* It does not introduce new mechanisms or commitments beyond Tier-2
+- It can be removed without weakening the argument or structure of higher tiers
+- It improves confidence without attempting persuasion
+- It satisfies scrutiny rather than winning agreement
+- It does not introduce new mechanisms or commitments beyond Tier-2
 
 ## T4 Canonical Label
 
@@ -744,6 +744,7 @@ All Tier-4 blocks must use the summary label:
 No alternatives are permitted.
 
 ---
+
 ---
 
 # Policy Stack Compliance Checklist
@@ -758,130 +759,130 @@ No interpretation, no debate, no vibes — each item is **pass / fail**.
 
 ## Tier-0 — Categories & Slogans
 
-*(Orientation & framing)*
+_(Orientation & framing)_
 
 **PASS only if ALL are true:**
 
-* ☐ Uses collective civic language (“our”, “Australia”, “we”)
-* ☐ Contains **no policy actions or commitments**
-* ☐ Makes sense without reference to any specific reform
-* ☐ Frames a *system, domain, or shared outcome*
-* ☐ Would still be accurate if individual policies changed
+- ☐ Uses collective civic language (“our”, “Australia”, “we”)
+- ☐ Contains **no policy actions or commitments**
+- ☐ Makes sense without reference to any specific reform
+- ☐ Frames a _system, domain, or shared outcome_
+- ☐ Would still be accurate if individual policies changed
 
 **AUTO-FAIL if ANY are present:**
 
-* Specific verbs implying delivery or action
-* Numbers, targets, or metrics
-* Technical or sectoral jargon
-* Assignment of blame
+- Specific verbs implying delivery or action
+- Numbers, targets, or metrics
+- Technical or sectoral jargon
+- Assignment of blame
 
 ---
 
 ## Tier-1 — Hook Statements
 
-*(Action signals)*
+_(Action signals)_
 
 **PASS only if ALL are true:**
 
-* ☐ Single sentence or clause
-* ☐ Understandable in < 3 seconds by a disengaged reader
-* ☐ Clearly states *what will be done*
-* ☐ Can be quoted without additional explanation
-* ☐ Does **not** explain how or why
+- ☐ Single sentence or clause
+- ☐ Understandable in < 3 seconds by a disengaged reader
+- ☐ Clearly states _what will be done_
+- ☐ Can be quoted without additional explanation
+- ☐ Does **not** explain how or why
 
 **AUTO-FAIL if ANY are present:**
 
-* Mechanisms, processes, or structure
-* Conditional phrasing (“by”, “through”, “so that”)
-* Multiple actions or bundled commitments
-* Abstract or bureaucratic language
+- Mechanisms, processes, or structure
+- Conditional phrasing (“by”, “through”, “so that”)
+- Multiple actions or bundled commitments
+- Abstract or bureaucratic language
 
 ---
 
 ## Tier-2 — Mechanistic “How” Statements
 
-*(Structural description)*
+_(Structural description)_
 
 **PASS only if ALL are true:**
 
-* ☐ Describes **only** structure, flow, or replacement
-* ☐ Uses neutral, non-evaluative language
-* ☐ Explains how the policy operates at a basic level
-* ☐ Intelligible to a lay reader without persuasion
+- ☐ Describes **only** structure, flow, or replacement
+- ☐ Uses neutral, non-evaluative language
+- ☐ Explains how the policy operates at a basic level
+- ☐ Intelligible to a lay reader without persuasion
 
 **AUTO-FAIL if ANY are present:**
 
-* Outcomes or benefits
-* Moral or emotive language
-* Claims about effectiveness or success
-* Phrases like “to ensure”, “so that”, “providing”
+- Outcomes or benefits
+- Moral or emotive language
+- Claims about effectiveness or success
+- Phrases like “to ensure”, “so that”, “providing”
 
 ---
 
 ## Tier-3 — Surface Justifications
 
-*(Why it works)*
+_(Why it works)_
 
 **PASS only if ALL are true:**
 
-* ☐ Each dotpoint is a single, complete sentence
-* ☐ Future-oriented outcome framing
-* ☐ Positive, benefit-first construction
-* ☐ No mechanisms, processes, or delivery detail
-* ☐ Each dotpoint expresses **one outcome only**
+- ☐ Each dotpoint is a single, complete sentence
+- ☐ Future-oriented outcome framing
+- ☐ Positive, benefit-first construction
+- ☐ No mechanisms, processes, or delivery detail
+- ☐ Each dotpoint expresses **one outcome only**
 
 **AUTO-FAIL if ANY are present:**
 
-* Present-tense assertions
-* Repetitive sentence openings
-* Negative framing (prevent, stop, avoid)
-* Implicit how-statements
-* Compound outcomes
+- Present-tense assertions
+- Repetitive sentence openings
+- Negative framing (prevent, stop, avoid)
+- Implicit how-statements
+- Compound outcomes
 
 ---
 
 ## Tier-4 — Further Detail
 
-*(Optional depth & scrutiny support)*
+_(Optional depth & scrutiny support)_
 
 **PASS only if ALL are true:**
 
-* ☐ Enclosed in a `<details>` block with the summary label **“Further Detail”**
-* ☐ Collapsed by default and requires user action to expand
-* ☐ Positioned **after Tier-3 dotpoints and before the next Tier-1 header**
-* ☐ Fully removable without affecting understanding of Tier-0 through Tier-3
-* ☐ Expands confidence or understanding rather than attempting persuasion
-* ☐ Contains only contextual, analytical, or explanatory material
-* ☐ Uses bold labels (not markdown headings) for internal sections
+- ☐ Enclosed in a `<details>` block with the summary label **“Further Detail”**
+- ☐ Collapsed by default and requires user action to expand
+- ☐ Positioned **after Tier-3 dotpoints and before the next Tier-1 header**
+- ☐ Fully removable without affecting understanding of Tier-0 through Tier-3
+- ☐ Expands confidence or understanding rather than attempting persuasion
+- ☐ Contains only contextual, analytical, or explanatory material
+- ☐ Uses bold labels (not markdown headings) for internal sections
 
 **AUTO-FAIL if ANY are present:**
 
-* Step-by-step operational runbooks or procedural instructions
-* Internal agency workflows or volatile delivery minutiae
-* New commitments, promises, or policy scope expansion
-* Repetition of Tier-1 hooks, Tier-2 mechanics, or Tier-3 outcomes
-* Emotional, moral, or rhetorical language
-* Present-tense claims implying current success
-* Slogans or campaign messaging
-* Nested tiers or additional heading levels
+- Step-by-step operational runbooks or procedural instructions
+- Internal agency workflows or volatile delivery minutiae
+- New commitments, promises, or policy scope expansion
+- Repetition of Tier-1 hooks, Tier-2 mechanics, or Tier-3 outcomes
+- Emotional, moral, or rhetorical language
+- Present-tense claims implying current success
+- Slogans or campaign messaging
+- Nested tiers or additional heading levels
 
 ### Tier-4 Content Boundary Check
 
 A Tier-4 block **fails** if:
 
-* ☐ It feels like “the real policy” rather than supporting context
-* ☐ Removing it weakens the clarity or credibility of Tier-3
-* ☐ It answers *“Why should I support this?”* rather than *“How does this stand up to scrutiny?”*
-* ☐ It could reasonably be read aloud in a speech
+- ☐ It feels like “the real policy” rather than supporting context
+- ☐ Removing it weakens the clarity or credibility of Tier-3
+- ☐ It answers _“Why should I support this?”_ rather than _“How does this stand up to scrutiny?”_
+- ☐ It could reasonably be read aloud in a speech
 
 ### Tier-4 Implementation Discipline Check
 
 **PASS only if ALL are true:**
 
-* ☐ Any implementation material is limited to a **high-level outline**
-  *(phases, dependencies, order of operations)*
-* ☐ No individual step is sufficiently detailed to be executed directly
-* ☐ Detailed delivery instructions are **referenced externally** (Delivery Plan), not embedded
+- ☐ Any implementation material is limited to a **high-level outline**
+  _(phases, dependencies, order of operations)_
+- ☐ No individual step is sufficiently detailed to be executed directly
+- ☐ Detailed delivery instructions are **referenced externally** (Delivery Plan), not embedded
 
 ### Tier-4 Final Acceptance Rule
 
@@ -890,32 +891,32 @@ A Tier-4 block **fails** if:
 
 If Tier-4 content fails:
 
-* It is trimmed back to outline level, or
-* Moved into a separate Delivery Plan document, or
-* Rejected outright.
+- It is trimmed back to outline level, or
+- Moved into a separate Delivery Plan document, or
+- Rejected outright.
 
 ---
 
 ## Cross-Tier Integrity Check
 
-*(Stack discipline)*
+_(Stack discipline)_
 
 **PASS only if ALL are true:**
 
-* ☐ No sentence could comfortably belong in a different tier
-* ☐ Removing Tier-3 does not alter how Tier-2 functions
-* ☐ Removing Tier-2 does not alter why Tier-3 exists
-* ☐ Tier-1 still makes sense on its own
-* ☐ Tier-1 scope must not be broader than the legislative or institutional domain defined in Tier-2
-* ☐ Government-level terms are used consistently: **federal** for plain public-facing national action, **national** for Australia-wide systems or standards, and **Commonwealth** only where legal or institutional precision is needed
+- ☐ No sentence could comfortably belong in a different tier
+- ☐ Removing Tier-3 does not alter how Tier-2 functions
+- ☐ Removing Tier-2 does not alter why Tier-3 exists
+- ☐ Tier-1 still makes sense on its own
+- ☐ Tier-1 scope must not be broader than the legislative or institutional domain defined in Tier-2
+- ☐ Government-level terms are used consistently: **federal** for plain public-facing national action, **national** for Australia-wide systems or standards, and **Commonwealth** only where legal or institutional precision is needed
 
 **AUTO-FAIL if ANY are present:**
 
-* Repetition of the same idea across tiers
-* Tier-1 requiring explanation to understand "what"
-* Tier-2 persuading rather than describing
-* Tier-3 explaining mechanics
-* Unnecessary use of **Commonwealth** where **federal**, **national**, or **the federal government** would be clearer and no legal precision is gained
+- Repetition of the same idea across tiers
+- Tier-1 requiring explanation to understand "what"
+- Tier-2 persuading rather than describing
+- Tier-3 explaining mechanics
+- Unnecessary use of **Commonwealth** where **federal**, **national**, or **the federal government** would be clearer and no legal precision is gained
 
 ---
 
@@ -925,9 +926,9 @@ If Tier-4 content fails:
 
 Policy entries that fail:
 
-* Are revised downward (remove detail), or
-* Revised upward (move content to the correct tier), or
-* Rejected outright
+- Are revised downward (remove detail), or
+- Revised upward (move content to the correct tier), or
+- Rejected outright
 
 ## Calbration Examples
 
@@ -937,28 +938,28 @@ Treat Reward Communities That Build Quality Homes as the “heavy Tier-4 benchma
 
 Starter pack:
 
-* Reward Communities That Build Quality Homes
-* Make It Easier to Buy and Move Home
-* Stop Corporate Tax Avoidance
-* Guarantee Secure and Safe Renting
-* Enforce Prompt Payment of Small Businesses
+- Reward Communities That Build Quality Homes
+- Make It Easier to Buy and Move Home
+- Stop Corporate Tax Avoidance
+- Guarantee Secure and Safe Renting
+- Enforce Prompt Payment of Small Businesses
 
 For enforcement-heavy / integrity-heavy reforms - These are good when scrutiny should focus on loopholes, enforcement, and system discipline:
 
-* Stop Corporate Tax Avoidance
-* Expose Political Donations
-* Reform the National Anti-Corruption Commission
-* Make Carbon Compliance Real
+- Stop Corporate Tax Avoidance
+- Expose Political Donations
+- Reform the National Anti-Corruption Commission
+- Make Carbon Compliance Real
 
 For supply / planning / regulatory-capacity reforms - These are good when the policy changes permissions, approval pathways, or institutional incentives:
 
-* Stop Wasting Our Best Land
-* Create a Housing Approval Fast-Track
-* Reward Communities That Build Quality Homes
+- Stop Wasting Our Best Land
+- Create a Housing Approval Fast-Track
+- Reward Communities That Build Quality Homes
 
 For bundled but still coherent Tier-2 design - These are useful when Tier-2 contains multiple mechanisms that still belong together:
 
-* Build Fair and Stable Labour Markets
-* Deliver Free or Affordable Childcare for Families
-* Stop Corporate Tax Avoidance
-* Make Carbon Compliance Real
+- Build Fair and Stable Labour Markets
+- Deliver Free or Affordable Childcare for Families
+- Stop Corporate Tax Avoidance
+- Make Carbon Compliance Real

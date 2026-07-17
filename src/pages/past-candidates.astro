@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BrutalBadge, BrutalCard } from '@/components/ui'
+import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
+import type { Page, Electorate } from '../types/sanity'
+import '../styles/global.css'
+
+const pages = await getPages()
+const archivedElectorates = await getArchivedElectorates()
+
+// Explicitly filter for historical / archived bios
+const archivedBios = (pages as Page[])
+  .filter((p) => p.pageType === 'bio' && p.isArchived === true)
+  .map((p) => ({
+    title: p.title,
+    slug: p.slug?.current,
+    profileImage: p.profileImage,
+    role: p.role || p.subtitle,
+  }))
+
+const archivedElecs = archivedElectorates.map((e: Electorate) => ({
+  title: e.candidateName || `Candidate for ${e.name}`,
+  slug: `electorates/${e.slug?.current}`,
+  profileImage: e.candidateImage,
+  role: e.subtitle || `Former Candidate - ${e.name}`,
+  electionGrouping: e.electionGrouping || 'Historical Archive',
+}))
+
+const allArchived = [...archivedBios, ...archivedElecs].sort((a, b) =>
+  a.title.localeCompare(b.title)
+)
+
+// Group by election
+const groupedByElection = allArchived.reduce(
+  (acc, curr) => {
+    const group = curr.electionGrouping || 'Historical Archive'
+    if (!acc[group]) acc[group] = []
+    acc[group].push(curr)
+    return acc
+  },
+  {} as Record<string, typeof allArchived>
+)
+
+// Sort groups (e.g. 2026 before 2022, fallback Historical Archive at the end)
+const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
+  if (a === 'Historical Archive') return 1
+  if (b === 'Historical Archive') return -1
+  return b.localeCompare(a)
+})
+---
+
+<BaseLayout
+  title="Past Candidates | Reignite Democracy"
+  description="Historical archive of past Reignite Democracy candidates."
+>
+  <Header />
+
+  <!-- ARCHIVE HEADER -->
+  <section
+    class="bg-surface-base pt-32 pb-16 px-6 lg:px-8 relative overflow-hidden border-b border-magenta/30"
+  >
+    <div
+      class="absolute inset-0 opacity-10 pointer-events-none"
+      style="background-image: radial-gradient(#4A7AEB 2px, transparent 2px); background-size: 24px 24px;"
+    >
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row align-end justify-between items-end gap-6"
+    >
+      <div class="max-w-3xl">
+        <BrutalBadge variant="yellow" size="lg" class="mb-6">Historical Archive</BrutalBadge>
+        <h1
+          class="text-5xl md:text-7xl font-display font-black text-white uppercase leading-[1] mb-4"
+        >
+          Past Candidates
+        </h1>
+        <p class="text-xl md:text-2xl font-bold text-white/60 max-w-2xl">
+          A public record of former candidates and representatives who have stood for the Fusion
+          Party.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHIVE GRID -->
+  <main id="main-content" class="bg-surface-raised py-16 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {
+        sortedGroups.length > 0 ? (
+          <div class="space-y-16">
+            {sortedGroups.map((group) => (
+              <section>
+                <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-8 border-b border-white/10 pb-4 text-white text-center">
+                  {group}
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {groupedByElection[group].map((bio: any, index: number) => {
+                    const accents = ['mint', 'yellow', 'magenta'] as const
+                    const accent = accents[index % accents.length]
+
+                    const imageUrl = bio.profileImage
+                      ? urlFor(bio.profileImage).width(400).height(400).fit('crop').url()
+                      : null
+
+                    return (
+                      <a
+                        href={`/${bio.slug}`}
+                        class="group flex flex-col bg-grey-dark border border-white/10 rounded-sm transition-colors hover:border-white/25 overflow-hidden relative"
+                      >
+                        {/* Archival tag */}
+                        <BrutalBadge variant="black" size="sm" class="absolute top-2 right-2 z-10">
+                          Archived
+                        </BrutalBadge>
+
+                        <div class="aspect-square w-full overflow-hidden bg-black/30">
+                          {imageUrl ? (
+                            <img
+                              src={imageUrl}
+                              alt={bio.title}
+                              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                            />
+                          ) : (
+                            <div class="w-full h-full flex items-center justify-center opacity-20">
+                              <svg
+                                class="w-20 h-20 text-white"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                              >
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+
+                        <div class={`h-1 w-full bg-${accent}`} />
+
+                        <div class="p-4 flex-1 flex flex-col justify-center text-center">
+                          <h3 class="text-lg md:text-xl font-display font-black uppercase text-white wrap-break-word">
+                            {bio.title}
+                          </h3>
+
+                          {(bio.role || bio.subtitle) && (
+                            <p class="mt-1 text-[10px] md:text-xs font-bold text-white/60 uppercase tracking-widest">
+                              {bio.role || bio.subtitle}
+                            </p>
+                          )}
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <BrutalCard variant="magenta" shadow="black" padding="lg" class="text-center">
+            <h2 class="text-2xl font-display font-black uppercase mb-2">No Archived Candidates</h2>
+            <p class="font-bold">
+              There are currently no historical candidate bios in the archive.
+            </p>
+          </BrutalCard>
+        )
+      }
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

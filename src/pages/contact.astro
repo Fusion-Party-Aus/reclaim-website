@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Icon } from 'astro-icon/components'
+import { BrutalButton } from '@/components/ui'
+import { getDocuments } from '../lib/sanity'
+import '../styles/global.css'
+
+interface SocialLink {
+  platform: string
+  icon: string
+  url: string
+}
+
+interface ContactPage {
+  title?: string
+  subtitle?: string
+  intro?: string
+  generalContact?: {
+    heading?: string
+    description?: string
+    email?: string
+    phone?: string
+    discordUrl?: string
+    mailingListUrl?: string
+  }
+  mediaContact?: {
+    heading?: string
+    description?: string
+    email?: string
+    phone?: string
+  }
+  mailingAddress?: {
+    heading?: string
+    description?: string
+    address?: string
+  }
+  socialLinks?: SocialLink[]
+}
+
+const results = await getDocuments<ContactPage>('contactPage')
+const data: ContactPage = results?.[0] ?? {}
+
+const title = data.title ?? 'Contact Us'
+const subtitle = data.subtitle ?? "We'd love to hear from you."
+const intro =
+  data.intro ??
+  "Whether you're a voter, journalist, or potential member — we actually pick up the phone."
+
+const general = data.generalContact ?? {
+  heading: 'General Enquiries',
+  description: 'For feedback or questions about the party or this website:',
+  email: 'contact@fusionparty.org.au',
+  phone: '0410 249 574',
+  discordUrl: 'https://www.fusionparty.org.au/discord',
+}
+
+const media = data.mediaContact ?? {
+  heading: 'Media Inquiries',
+  description: 'For members of the press only:',
+  email: 'press@fusionparty.org.au',
+}
+
+const address = data.mailingAddress ?? {
+  heading: 'Mailing Address',
+  description: 'Legal correspondence only:',
+  address: '254 McLeod Lane\nMansfield VIC 3722\nAustralia',
+}
+
+const socialLinks: SocialLink[] = data.socialLinks ?? [
+  { platform: 'Facebook', icon: 'mdi:facebook', url: 'https://www.facebook.com/FusionPartyAus/' },
+  { platform: 'Twitter / X', icon: 'mdi:twitter', url: 'https://twitter.com/FusionPartyAus' },
+  {
+    platform: 'Instagram',
+    icon: 'mdi:instagram',
+    url: 'https://www.instagram.com/fusionpartyaus/',
+  },
+  { platform: 'YouTube', icon: 'mdi:youtube', url: 'https://www.youtube.com/c/fusionpartyaus' },
+  { platform: 'TikTok', icon: 'mdi:music-note', url: 'https://www.tiktok.com/@fusionpartyaus' },
+  { platform: 'Discord', icon: 'mdi:discord', url: 'https://www.fusionparty.org.au/discord' },
+  { platform: 'Mastodon', icon: 'mdi:mastodon', url: 'https://mastodon.au/@FusionPartyAus' },
+  {
+    platform: 'LinkedIn',
+    icon: 'mdi:linkedin',
+    url: 'https://www.linkedin.com/company/fusionpartyaus/',
+  },
+]
+---
+
+<BaseLayout title={`${title} | Reignite Democracy`} description={intro}>
+  <Header />
+
+  {/* ===== HERO: Full-bleed dark surface with giant title ===== */}
+  <section
+    class="relative bg-surface-base overflow-hidden min-h-[55vh] flex items-center border-b border-mint/30"
+  >
+    {/* Giant background watermark */}
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+    >
+      <span
+        class="text-[20rem] font-display font-black uppercase leading-none opacity-[0.04] text-white tracking-tighter"
+        style="transform: rotate(-8deg) translateY(-10%);"
+      >
+        TALK
+      </span>
+    </div>
+
+    {/* Color stripe strips */}
+    <div class="absolute top-0 left-0 w-full h-3 bg-magenta"></div>
+    <div class="absolute top-3 left-0 w-full h-2 bg-mint"></div>
+    <div class="absolute top-5 left-0 w-full h-1 bg-yellow"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      {/* Eyebrow */}
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 border border-mint/40 bg-black/30 rounded-sm mb-8"
+      >
+        <Icon name="mdi:phone-in-talk" class="w-4 h-4 text-mint" />
+        <span class="text-mint font-black text-xs uppercase tracking-widest">Get In Touch</span>
+      </div>
+
+      <h1
+        class="text-6xl sm:text-7xl md:text-9xl font-display font-black uppercase text-white leading-[0.95] mb-8"
+      >
+        <span class="text-mint">{title.split(' ')[0]}</span><br />
+        <span class="text-white">{title.split(' ').slice(1).join(' ') || 'Us'}</span>
+      </h1>
+
+      <p
+        class="text-xl md:text-2xl font-black uppercase text-yellow max-w-2xl leading-snug border-l-4 border-yellow pl-6"
+      >
+        {intro}
+      </p>
+    </div>
+  </section>
+
+  {/* ===== BREADCRUMB STRIP ===== */}
+  <div class="bg-yellow border-b border-white/10 py-3 px-4">
+    <nav
+      class="max-w-6xl mx-auto text-xs font-mono font-black uppercase tracking-wide flex items-center gap-2"
+    >
+      <a
+        href="/"
+        class="px-2 py-1 rounded-sm bg-black text-yellow hover:bg-white hover:text-black transition-colors"
+        >Home</a
+      >
+      <span class="opacity-60 text-white">/</span>
+      <span class="px-2 py-1 rounded-sm bg-white/20 text-white">{title}</span>
+    </nav>
+  </div>
+
+  <main id="main-content" class="bg-surface-base">
+    {/* ===== GENERAL ENQUIRIES: Mint full-bleed block ===== */}
+    <section class="bg-mint border-b border-black/10 relative overflow-hidden">
+      {/* Big rotated label */}
+      <div
+        class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block overflow-hidden"
+      >
+        <span
+          class="block text-[10rem] font-display font-black uppercase opacity-10 text-black leading-none"
+          style="transform: rotate(90deg) translateX(-10%);"
+        >
+          EMAIL
+        </span>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: heading */}
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 bg-black rounded-sm flex items-center justify-center shrink-0">
+                <Icon name="mdi:email-outline" class="w-8 h-8 text-mint" />
+              </div>
+              <h2
+                class="text-4xl md:text-5xl font-display font-black uppercase leading-none text-black"
+              >
+                {general.heading}
+              </h2>
+            </div>
+            <p class="text-lg font-bold text-black leading-relaxed max-w-sm">
+              {general.description}
+            </p>
+          </div>
+
+          {/* Right: links */}
+          <div class="space-y-4">
+            {
+              general.email && (
+                <a
+                  href={`mailto:${general.email}`}
+                  class="group flex items-center gap-4 p-5 bg-black rounded-sm text-mint font-black uppercase tracking-wider text-lg hover:bg-yellow hover:text-white transition-colors"
+                >
+                  <Icon name="mdi:email" class="w-6 h-6 shrink-0" />
+                  <span class="flex-1 truncate">{general.email}</span>
+                  <Icon
+                    name="mdi:arrow-right"
+                    class="w-5 h-5 group-hover:translate-x-2 transition-transform"
+                  />
+                </a>
+              )
+            }
+            {
+              general.phone && (
+                <a
+                  href={`tel:${general.phone.replace(/\s/g, '')}`}
+                  class="group flex items-center gap-4 p-5 bg-white rounded-sm text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
+                >
+                  <Icon name="mdi:phone" class="w-6 h-6 shrink-0" />
+                  <span class="flex-1">{general.phone}</span>
+                  <Icon
+                    name="mdi:arrow-right"
+                    class="w-5 h-5 group-hover:translate-x-2 transition-transform"
+                  />
+                </a>
+              )
+            }
+            {
+              general.discordUrl && (
+                <a
+                  href={general.discordUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-4 p-5 bg-lavender rounded-sm text-white font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
+                >
+                  <Icon name="mdi:discord" class="w-6 h-6 shrink-0" />
+                  <span class="flex-1">Join our Discord</span>
+                  <Icon
+                    name="mdi:arrow-top-right"
+                    class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                  />
+                </a>
+              )
+            }
+            {
+              general.mailingListUrl && (
+                <a
+                  href={general.mailingListUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-4 p-5 bg-white rounded-sm text-black font-black uppercase tracking-wider text-lg hover:bg-yellow transition-colors"
+                >
+                  <Icon name="mdi:email-newsletter" class="w-6 h-6 shrink-0" />
+                  <span class="flex-1">Join Mailing List</span>
+                  <Icon
+                    name="mdi:arrow-top-right"
+                    class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                  />
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ===== MEDIA + ADDRESS: Split black/magenta ===== */}
+    <section class="grid grid-cols-1 md:grid-cols-2 border-b border-white/10">
+      {/* Media Inquiries — Black */}
+      <div
+        class="bg-black border-r-0 md:border-r border-white/10 border-b md:border-b-0 p-10 md:p-14 relative overflow-hidden"
+      >
+        <div class="absolute top-0 left-0 w-full h-2 bg-yellow"></div>
+        {/* Ghost text */}
+        <div class="absolute bottom-0 right-0 pointer-events-none overflow-hidden">
+          <span
+            class="block text-[8rem] font-display font-black uppercase text-white opacity-5 leading-none"
+            style="transform: translateY(20%);">PRESS</span
+          >
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-14 h-14 bg-yellow rounded-sm flex items-center justify-center shrink-0">
+              <Icon name="mdi:newspaper" class="w-7 h-7 text-white" />
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-none"
+            >
+              {media.heading}
+            </h2>
+          </div>
+
+          <p class="text-yellow font-bold mb-8 text-base leading-relaxed">{media.description}</p>
+
+          <div class="space-y-4">
+            {
+              media.email && (
+                <a
+                  href={`mailto:${media.email}`}
+                  class="group flex items-center gap-4 p-4 bg-yellow rounded-sm text-white font-black uppercase tracking-wider hover:bg-white hover:text-black transition-colors"
+                >
+                  <Icon name="mdi:email" class="w-5 h-5 shrink-0" />
+                  <span class="flex-1 text-sm truncate">{media.email}</span>
+                  <Icon
+                    name="mdi:arrow-right"
+                    class="w-4 h-4 group-hover:translate-x-2 transition-transform"
+                  />
+                </a>
+              )
+            }
+            {
+              media.phone && (
+                <a
+                  href={`tel:${media.phone.replace(/\s/g, '')}`}
+                  class="group flex items-center gap-4 p-4 bg-white/10 text-white rounded-sm font-black uppercase tracking-wider hover:bg-yellow hover:text-white transition-colors"
+                >
+                  <Icon name="mdi:phone" class="w-5 h-5 shrink-0" />
+                  <span class="flex-1 text-sm">{media.phone}</span>
+                  <Icon
+                    name="mdi:arrow-right"
+                    class="w-4 h-4 group-hover:translate-x-2 transition-transform"
+                  />
+                </a>
+              )
+            }
+          </div>
+
+          <div class="mt-8 p-4 border border-yellow/40 rounded-sm bg-transparent">
+            <p class="text-yellow text-xs font-black uppercase tracking-wider leading-relaxed">
+              Press line only. General enquiries sent here may go unanswered.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mailing Address — Magenta */}
+      <div class="bg-magenta p-10 md:p-14 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 pointer-events-none overflow-hidden">
+          <span
+            class="block text-[8rem] font-display font-black uppercase text-black opacity-10 leading-none"
+            style="transform: translateY(20%);">POST</span
+          >
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-14 h-14 bg-black rounded-sm flex items-center justify-center shrink-0">
+              <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-none"
+            >
+              {address.heading}
+            </h2>
+          </div>
+
+          <p class="text-white font-bold mb-8 text-base leading-relaxed opacity-90">
+            {address.description}
+          </p>
+
+          {
+            address.address && (
+              <div class="p-6 bg-black/30 rounded-sm font-mono text-mint text-lg font-bold leading-loose whitespace-pre-line">
+                {address.address}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ===== FOLLOW US: Full bleed social grid ===== */}
+    <section class="bg-black border-b border-mint/30 py-16 md:py-20 relative overflow-hidden">
+      {/* Background text watermark */}
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span
+          class="text-[15rem] font-display font-black uppercase text-white opacity-[0.03] leading-none"
+          >SOCIAL</span
+        >
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <h2 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+            Follow<br /><span class="text-mint">The Fight</span>
+          </h2>
+          <p
+            class="text-white/40 font-bold max-w-xs text-sm uppercase tracking-widest border-l-4 border-mint pl-4"
+          >
+            Stay up to date on every platform we operate.
+          </p>
+        </div>
+
+        {/* Social grid — 4 columns on desktop */}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {
+            socialLinks.map((link, i) => {
+              const palettes = [
+                { bg: 'bg-mint', text: 'text-black' },
+                { bg: 'bg-yellow', text: 'text-white' },
+                { bg: 'bg-magenta', text: 'text-white' },
+                { bg: 'bg-lavender', text: 'text-white' },
+              ]
+              const p = palettes[i % palettes.length]
+              return (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={`group flex flex-col items-center justify-center gap-3 p-6 rounded-sm font-black uppercase text-sm tracking-widest transition-all hover:-translate-y-1 text-center ${p.bg} ${p.text}`}
+                >
+                  <Icon name={link.icon} class="w-8 h-8" />
+                  <span class="leading-none">{link.platform}</span>
+                  <Icon
+                    name="mdi:arrow-top-right"
+                    class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+                  />
+                </a>
+              )
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ===== BOTTOM CTA STRIP ===== */}
+    <section class="bg-yellow border-b border-white/10 py-12 px-4 relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <span
+          class="absolute -right-16 top-1/2 -translate-y-1/2 text-[12rem] font-display font-black uppercase text-white opacity-10 leading-none"
+          >ACT</span
+        >
+      </div>
+      <div
+        class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
+      >
+        <div>
+          <p class="text-xs font-black uppercase tracking-widest mb-2 text-white/70">
+            Don't just watch.
+          </p>
+          <h2
+            class="text-4xl md:text-5xl font-display font-black uppercase leading-none text-white"
+          >
+            Get Involved
+          </h2>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <BrutalButton variant="black" size="lg" href="/get-involved">Volunteer →</BrutalButton>
+          <a
+            href="https://www.fusionparty.org.au/join"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary btn-lg"
+          >
+            Join Fusion →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

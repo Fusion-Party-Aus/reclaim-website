@@ -152,7 +152,7 @@ const manifestoPage = {
       _type: 'block',
       style: 'normal',
       children: [
-        { _type: 'span', text: 'And we\'re going to do it by being the only adults in the room: with evidence, with costings, with competence, and with a plan that actually works.' }
+        { _type: 'span', text: 'And we\'re going to do it by being the only adults in the room: with evidence, with maths you can check, with competence, and with a plan that actually works.' }
       ]
     },
     {
@@ -615,7 +615,7 @@ const manifestoPage = {
       _type: 'block',
       style: 'normal',
       children: [
-        { _type: 'span', text: 'Not by asking nicely. Not by negotiating for scraps. But by being the only adults in the room: with evidence, costings, competence, and a plan that works.' }
+        { _type: 'span', text: 'Not by asking nicely. Not by negotiating for scraps. But by being the only adults in the room: with evidence, maths you can check, competence, and a plan that works.' }
       ]
     },
     {

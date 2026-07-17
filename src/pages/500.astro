@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
+import { BrutalCard } from '@/components/ui'
 import '../styles/global.css'
 
 const errorMessages = [
@@ -28,20 +29,18 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 ---
 
 <BaseLayout
-  title="500 - Server Error | Fusion Victoria"
+  title="500 - Server Error | Reignite Democracy"
   description="Oops! Something went wrong on our end."
 >
   <Header />
 
-  <main
-    class="min-h-screen bg-gradient-to-br from-red-600 via-red-700 to-red-900 relative overflow-hidden pt-28 pb-20"
-  >
+  <main id="main-content" class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
     <!-- Fire and chaos background -->
     <div class="absolute inset-0 opacity-20">
       {
         [...Array(8)].map((_, i) => (
           <div
-            class={`absolute text-8xl ${i % 2 === 0 ? 'text-orange-500' : 'text-yellow-400'}`}
+            class={`absolute text-8xl ${i % 2 === 0 ? 'text-yellow' : 'text-magenta'}`}
             style={`
             top: ${Math.random() * 80 + 10}%;
             left: ${Math.random() * 90}%;
@@ -58,61 +57,41 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
       <!-- Giant 500 -->
       <div class="text-center mb-12">
         <div class="relative inline-block mb-8">
-          <div class="absolute inset-0 bg-orange-500 blur-3xl opacity-60 animate-pulse"></div>
+          <div class="absolute inset-0 bg-yellow blur-3xl opacity-30 animate-pulse"></div>
           <h1
-            class="relative text-[12rem] md:text-[20rem] font-black leading-none text-white"
-            style="
-              font-family: 'Anton', 'Archivo Black', sans-serif;
-              text-shadow: 8px 8px 0px rgba(255, 152, 0, 0.8), 16px 16px 0px rgba(255, 235, 59, 0.6);
-              animation: shake 0.5s ease-in-out infinite;
-            "
+            class="relative text-[12rem] md:text-[20rem] font-black uppercase leading-none text-white font-display"
+            style="animation: shake 0.5s ease-in-out infinite;"
           >
             500
           </h1>
         </div>
 
-        <h2
-          class="text-4xl md:text-6xl font-black uppercase text-white mb-6"
-          style="font-family: 'Archivo Black', sans-serif; text-shadow: 4px 4px 0px rgba(0,0,0,0.5);"
-        >
+        <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-6 font-display">
           INTERNAL SERVER ERROR
         </h2>
 
-        <p
-          class="text-2xl font-bold text-yellow-200"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          (We're the ones who messed up this time)
-        </p>
+        <p class="text-2xl font-bold text-yellow">(We're the ones who messed up this time)</p>
       </div>
 
       <!-- Error Message Card -->
       <div class="max-w-3xl mx-auto mb-12 relative">
         <div
-          class="absolute -top-8 -right-8 w-24 h-24 bg-yellow-400 border-6 border-black rotate-45 flex items-center justify-center"
+          class="absolute -top-8 -right-8 w-24 h-24 bg-yellow/20 border border-yellow rounded-sm rotate-45 flex items-center justify-center"
           style="animation: spin 4s linear infinite;"
         >
-          <Icon name="mdi:fire" class="w-16 h-16 text-red-600 -rotate-45" />
+          <Icon name="mdi:fire" class="w-16 h-16 text-yellow -rotate-45" />
         </div>
 
-        <div
-          class="bg-black border-8 border-yellow-400 p-8 md:p-12"
-          style="box-shadow: 12px 12px 0px 0px rgba(255, 152, 0, 1), 24px 24px 0px 0px rgba(0,0,0,0.5);"
-        >
+        <BrutalCard variant="surface" shadow="yellow" padding="lg">
           <div class="flex items-start gap-4 mb-6">
             <div
-              class="w-16 h-16 bg-red-600 border-5 border-white flex items-center justify-center flex-shrink-0"
+              class="w-16 h-16 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center flex-shrink-0"
               style="animation: wiggle 2s ease-in-out infinite;"
             >
-              <Icon name="mdi:alert-octagon" class="w-10 h-10 text-white" />
+              <Icon name="mdi:alert-octagon" class="w-10 h-10 text-magenta" />
             </div>
             <div>
-              <h3
-                class="text-3xl font-black uppercase text-yellow-400 mb-2"
-                style="font-family: 'Archivo Black', sans-serif;"
-              >
-                OH NO!
-              </h3>
+              <h3 class="text-3xl font-black uppercase text-yellow mb-2 font-display">OH NO!</h3>
               <p class="text-xl md:text-2xl font-bold text-white">
                 {randomMessage}
               </p>
@@ -120,103 +99,87 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
           </div>
 
           <!-- Fake Console Output -->
-          <div class="bg-gray-900 border-4 border-red-600 p-6 font-mono text-sm overflow-x-auto">
-            <div class="flex items-center gap-2 mb-4 pb-2 border-b-2 border-gray-700">
+          <div
+            class="bg-black/40 border border-white/10 rounded-sm p-6 font-mono text-sm overflow-x-auto"
+          >
+            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
               <div class="flex gap-2">
-                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-magenta rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow rounded-full"></div>
+                <div class="w-3 h-3 bg-mint rounded-full"></div>
               </div>
-              <span class="text-gray-500 text-xs">console.error()</span>
+              <span class="text-white/40 text-xs">console.error()</span>
             </div>
             {
               techErrors.map((error, i) => (
                 <div
-                  class="mb-2 text-red-400"
+                  class="mb-2 text-magenta"
                   style={`animation: fadeIn 0.5s ease-in ${i * 0.2}s backwards;`}
                 >
-                  <span class="text-gray-600">[{new Date().toLocaleTimeString()}]</span> {error}
+                  <span class="text-white/30">[{new Date().toLocaleTimeString()}]</span> {error}
                 </div>
               ))
             }
-            <div class="mt-4 text-yellow-400 animate-pulse">&gt; Attempting to recover...</div>
+            <div class="mt-4 text-yellow animate-pulse">&gt; Attempting to recover...</div>
           </div>
-        </div>
+        </BrutalCard>
       </div>
 
       <!-- Action Cards -->
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
         <button
           onclick="window.location.reload()"
-          class="block bg-yellow-400 border-8 border-black p-8 text-center group transition-all hover:-translate-y-4 hover:rotate-3 relative overflow-hidden"
-          style="box-shadow: 8px 8px 0px 0px #000;"
+          class="block bg-yellow rounded-sm border border-white/10 p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden"
         >
           <div
-            class="absolute top-0 right-0 w-32 h-32 bg-orange-500 opacity-30 rotate-45 -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute top-0 right-0 w-32 h-32 bg-magenta opacity-20 rounded-sm rotate-45 -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform"
           >
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black border-5 border-white rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black/10 border border-black/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:refresh" class="w-12 h-12 text-yellow-400" />
+              <Icon name="mdi:refresh" class="w-12 h-12 text-white" />
             </div>
-            <h3
-              class="text-3xl font-black uppercase mb-2 text-black"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Try Again
-            </h3>
+            <h3 class="text-3xl font-black uppercase mb-2 text-black font-display">Try Again</h3>
             <p class="text-sm font-bold text-black">Maybe it'll work now?</p>
           </div>
         </button>
 
         <a
           href="/"
-          class="block bg-white border-8 border-black p-8 text-center group transition-all hover:-translate-y-4 hover:-rotate-3 relative overflow-hidden"
-          style="box-shadow: 8px 8px 0px 0px #000;"
+          class="block bg-grey-dark border border-white/10 rounded-sm p-8 text-center group transition-all hover:-translate-y-2 hover:-rotate-1 relative overflow-hidden"
         >
           <div
-            class="absolute bottom-0 left-0 w-32 h-32 bg-yellow-400 opacity-30 -rotate-45 translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute bottom-0 left-0 w-32 h-32 bg-yellow opacity-10 rounded-sm -rotate-45 translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
           >
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-red-600 border-5 border-black rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-magenta/10 border border-magenta rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:home" class="w-12 h-12 text-white" />
+              <Icon name="mdi:home" class="w-12 h-12 text-magenta" />
             </div>
-            <h3
-              class="text-3xl font-black uppercase mb-2 text-black"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Go Home
-            </h3>
-            <p class="text-sm font-bold text-black">Safe haven awaits</p>
+            <h3 class="text-3xl font-black uppercase mb-2 text-white font-display">Go Home</h3>
+            <p class="text-sm font-bold text-white/60">Safe haven awaits</p>
           </div>
         </a>
 
         <a
           href="/contact"
-          class="block bg-orange-500 border-8 border-black p-8 text-center group transition-all hover:-translate-y-4 hover:rotate-2 relative overflow-hidden"
-          style="box-shadow: 8px 8px 0px 0px #000;"
+          class="block bg-magenta rounded-sm border border-white/10 p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden"
         >
           <div
-            class="absolute top-0 left-0 w-32 h-32 bg-red-600 opacity-30 rotate-12 -translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute top-0 left-0 w-32 h-32 bg-yellow opacity-20 rounded-sm rotate-12 -translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
           >
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black border-5 border-white rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white/10 border border-white/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:email-alert" class="w-12 h-12 text-orange-500" />
+              <Icon name="mdi:email-alert" class="w-12 h-12 text-white" />
             </div>
-            <h3
-              class="text-3xl font-black uppercase mb-2 text-white"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Report Bug
-            </h3>
+            <h3 class="text-3xl font-black uppercase mb-2 text-white font-display">Report Bug</h3>
             <p class="text-sm font-bold text-white">Help us fix this!</p>
           </div>
         </a>
@@ -224,32 +187,24 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 
       <!-- Apology Box -->
       <div class="max-w-2xl mx-auto">
-        <div
-          class="bg-white border-8 border-black p-8 transform -rotate-1"
-          style="box-shadow: 10px 10px 0px 0px #ff9800;"
-        >
+        <BrutalCard variant="surface" shadow="yellow" padding="lg" class="transform -rotate-1">
           <div class="flex items-center gap-4 mb-6">
             <div
-              class="w-16 h-16 bg-black border-4 border-yellow-400 flex items-center justify-center rotate-12"
+              class="w-16 h-16 bg-yellow/10 border border-yellow rounded-sm flex items-center justify-center"
             >
-              <Icon name="mdi:emoticon-sad" class="w-10 h-10 text-yellow-400" />
+              <Icon name="mdi:emoticon-sad" class="w-10 h-10 text-yellow" />
             </div>
-            <h3
-              class="text-2xl font-black uppercase"
-              style="font-family: 'Archivo Black', sans-serif;"
-            >
-              Our Sincere Apologies
-            </h3>
+            <h3 class="text-2xl font-black uppercase font-display">Our Sincere Apologies</h3>
           </div>
-          <p class="text-lg font-bold text-gray-800 leading-relaxed mb-4">
+          <p class="text-lg font-bold text-white/70 leading-relaxed mb-4">
             We're experiencing technical difficulties. Our team has been notified and we're working
             on it!
           </p>
-          <p class="text-sm font-bold text-gray-600">
+          <p class="text-sm font-bold text-white/50">
             Unlike the major parties, we actually admit when we make mistakes and work to fix them.
             💪
           </p>
-        </div>
+        </BrutalCard>
       </div>
     </div>
   </main>

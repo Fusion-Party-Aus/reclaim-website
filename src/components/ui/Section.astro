@@ -5,7 +5,7 @@
  * Consistent section wrapper with optional background, padding, and borders.
  * Provides consistent spacing and layout structure.
  *
- * @param {string} bg - Background color: 'white' | 'gray' | 'transparent'
+ * @param {string} bg - Background color: 'white' | 'gray' | 'dark' | 'transparent'
  * @param {string} padding - Vertical padding: 'sm' | 'md' | 'lg' | 'xl' | 'none'
  * @param {boolean} border - Show border (top or bottom)
  * @param {string} borderPosition - Border position: 'top' | 'bottom' | 'both'
@@ -15,7 +15,7 @@
  */
 
 interface Props {
-  bg?: 'white' | 'gray' | 'transparent'
+  bg?: 'white' | 'gray' | 'dark' | 'transparent'
   padding?: 'sm' | 'md' | 'lg' | 'xl' | 'none'
   border?: boolean
   borderPosition?: 'top' | 'bottom' | 'both'
@@ -41,7 +41,8 @@ const {
 // Background colors
 const backgrounds = {
   white: 'bg-white',
-  gray: 'bg-gray-50',
+  gray: 'bg-gray-100',
+  dark: 'bg-black text-white',
   transparent: 'bg-transparent',
 }
 

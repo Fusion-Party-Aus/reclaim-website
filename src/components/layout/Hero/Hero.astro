@@ -1,0 +1,295 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  eyebrow?: string
+  title: string
+  subtitle?: string
+  stats?: Array<{ number: string; label: string }>
+  showCTA?: boolean
+  compact?: boolean
+  bgImage?: string
+}
+
+const {
+  title,
+  subtitle,
+  stats,
+  showCTA = false,
+  compact = false,
+  bgImage = '/hero.png',
+} = Astro.props
+---
+
+<section
+  class="relative bg-black text-white overflow-hidden"
+  style={compact
+    ? 'min-height: 45vh; border-bottom: 8px solid #00DDB8;'
+    : 'min-height: clamp(85vh, 90vh, 100vh); border-bottom: 8px solid #00DDB8;'}
+  id="hero-section"
+>
+  {/* ===== Full-bleed photographic background ===== */}
+  <div class="absolute inset-0 hero-bg-image" aria-hidden="true">
+    <img
+      src={bgImage}
+      alt=""
+      class="w-full h-full object-cover"
+      style="filter: contrast(1.15) brightness(0.85);"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+
+  {/* ===== Dark overlay — heavier on left for text legibility ===== */}
+  <div
+    class="absolute inset-0 hero-overlay"
+    style="background: linear-gradient(105deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.72) 35%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.15) 75%, transparent 100%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  {/* ===== Mobile overlay — stronger for readability ===== */}
+  <div class="absolute inset-0 lg:hidden" style="background: rgba(0,0,0,0.6);" aria-hidden="true">
+  </div>
+
+  {/* ===== Magenta colour slash — cuts diagonally across the photo ===== */}
+  <div
+    class="absolute top-0 right-0 h-full w-1/2 hidden lg:block hero-colour-slash"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%); background-color: #D428D4; mix-blend-mode: multiply; opacity: 0.7;"
+    aria-hidden="true"
+  >
+  </div>
+
+  {/* ===== Triple colour stripe — top edge ===== */}
+  <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20 stripe-magenta"></div>
+  <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20 stripe-mint"></div>
+  <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20 stripe-yellow"></div>
+
+  {/* ===== Structural watermark — ghosted initial ===== */}
+  <div
+    class="absolute inset-0 flex items-center pointer-events-none select-none overflow-hidden"
+    style="padding-left: 3%;"
+    aria-hidden="true"
+  >
+    <span
+      class="font-black uppercase leading-none"
+      style="font-family: 'Barlow Condensed', sans-serif; font-size: clamp(14rem, 22vw, 26rem); color: #fff; opacity: 0.04;"
+      >{title.charAt(0)}</span
+    >
+  </div>
+
+  {/* ===== Content — left-aligned, vertically centred ===== */}
+  <div
+    class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 flex items-center"
+    style={compact
+      ? 'padding-top: calc(6.5rem + 16px); padding-bottom: 3.5rem; min-height: 45vh;'
+      : 'padding-top: calc(6rem + 48px); padding-bottom: 5rem; min-height: clamp(85vh, 90vh, 100vh);'}
+  >
+    <div class="lg:max-w-[65%] w-full">
+      <slot name="breadcrumbs" />
+
+      <h1
+        class="font-black uppercase text-white hero-headline"
+        style={`font-family: 'Barlow Condensed', sans-serif; font-size: ${compact ? 'clamp(2.75rem, 4.5vw + 1rem, 4.75rem)' : 'clamp(3.25rem, 5.5vw + 1.5rem, 7.5rem)'}; line-height: 0.98; letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 1.25rem;`}
+      >
+        {title}
+      </h1>
+
+      <div
+        class="hero-rule"
+        style={`width: 4.5rem; height: 6px; background: #00DDB8; margin-bottom: ${compact ? '1.25rem' : '2rem'}; transform-origin: left center;`}
+      >
+      </div>
+
+      {
+        subtitle && (
+          <p
+            class="font-bold text-white/80 hero-subtitle"
+            style={`font-size: clamp(1.1rem, 1.4vw + 0.5rem, 1.45rem); line-height: 1.55; max-width: 50ch; margin-bottom: ${compact ? '1rem' : '2.5rem'};`}
+          >
+            {subtitle}
+          </p>
+        )
+      }
+
+      {
+        stats && stats.length > 0 && (
+          <div
+            class="hero-stats"
+            style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem 3rem; padding-bottom: 2.5rem; border-bottom: 2px solid rgba(255,255,255,0.15); margin-bottom: 2.5rem;"
+          >
+            {stats.map((stat, index) => {
+              const colors = ['#D428D4', '#00DDB8', '#4A7AEB']
+              const color = colors[index % 3]
+              return (
+                <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                  <span
+                    class="font-black leading-none"
+                    style={`font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.25rem, 3.5vw + 0.5rem, 4rem); color: ${color};`}
+                  >
+                    {stat.number}
+                  </span>
+                  <span
+                    class="font-black uppercase"
+                    style="font-size: 0.625rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.5);"
+                  >
+                    {stat.label}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        )
+      }
+
+      {
+        showCTA && (
+          <div class="flex flex-col sm:flex-row gap-4 hero-cta">
+            <a
+              href="/get-involved"
+              class="btn btn-primary btn-lg w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-yellow"
+            >
+              <Icon name="mdi:hand-heart" class="w-6 h-6" />
+              JOIN THE FIGHT
+            </a>
+            <a
+              href="/policies"
+              class="btn btn-secondary btn-lg w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-magenta"
+            >
+              <Icon name="mdi:book-open" class="w-6 h-6" />
+              READ THE PLAN
+            </a>
+          </div>
+        )
+      }
+
+      <slot />
+    </div>
+  </div>
+
+  {/* ===== Bottom edge accent — thin mint line ===== */}
+  <div class="absolute bottom-0 left-0 w-full h-px bg-mint/30 z-10" aria-hidden="true"></div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    /* Background image — slow ken-burns drift */
+    .hero-bg-image {
+      animation: hero-kenburns 25s ease-out both;
+    }
+    @keyframes hero-kenburns {
+      from {
+        transform: scale(1.08);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Overlay fades in slightly delayed */
+    .hero-overlay {
+      animation: overlay-in 600ms ease-out 100ms both;
+    }
+    @keyframes overlay-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Stripes sweep in left-to-right */
+    .stripe-magenta {
+      transform-origin: left center;
+      animation: stripe-sweep 160ms cubic-bezier(0.4, 0, 0.2, 1) 400ms both;
+    }
+    .stripe-mint {
+      transform-origin: left center;
+      animation: stripe-sweep 140ms cubic-bezier(0.4, 0, 0.2, 1) 470ms both;
+    }
+    .stripe-yellow {
+      transform-origin: left center;
+      animation: stripe-sweep 120ms cubic-bezier(0.4, 0, 0.2, 1) 520ms both;
+    }
+    @keyframes stripe-sweep {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    /* Colour slash slides in from the right */
+    .hero-colour-slash {
+      animation: slash-enter 700ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+    }
+    @keyframes slash-enter {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 0.7;
+      }
+    }
+
+    /* Headline slides up into place */
+    .hero-headline {
+      animation: fade-up 400ms cubic-bezier(0.22, 1, 0.36, 1) 650ms both;
+    }
+
+    /* Mint rule expands from left */
+    .hero-rule {
+      animation: rule-expand 220ms cubic-bezier(0.4, 0, 0.2, 1) 900ms both;
+    }
+    @keyframes rule-expand {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .hero-subtitle {
+      animation: fade-up 280ms ease-out 1000ms both;
+    }
+
+    .hero-stats {
+      animation: fade-up 280ms ease-out 1100ms both;
+    }
+
+    .hero-cta {
+      animation: fade-up 280ms ease-out 1200ms both;
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  /* Reduced-motion: still show image but skip animations */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-image {
+      opacity: 1;
+    }
+    .hero-colour-slash {
+      opacity: 0.7;
+    }
+  }
+</style>

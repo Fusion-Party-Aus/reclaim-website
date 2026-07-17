@@ -92,7 +92,7 @@ const homePageData = {
   },
   manifestoSection: {
     heading: 'THE VICTORIA MANIFESTO',
-    description: 'Our complete plan to fix Victoria\'s broken systems. Every policy costed. Every claim sourced. Every promise tracked.',
+    description: 'Our complete plan to fix Victoria\'s broken systems. We\'ve done the maths. Every claim sourced. Every promise tracked.',
     stats: [
       { number: '50,000', label: 'Public homes over 4 years', size: 'small' },
       { number: '$2.8B', label: 'Infrastructure waste cut per year', size: 'large' },

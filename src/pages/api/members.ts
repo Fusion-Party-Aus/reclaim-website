@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro'
-
-const API_URL = process.env.AEC_CRM_API_URL || ''
-const API_KEY = process.env.AEC_CRM_API_KEY || ''
+import { getSecret } from 'astro:env/server'
 
 export const post: APIRoute = async ({ request }) => {
+  const API_URL = getSecret('AEC_CRM_API_URL') ?? ''
+  const API_KEY = getSecret('AEC_CRM_API_KEY') ?? ''
+
   if (!API_URL) {
     return new Response(JSON.stringify({ error: 'AEC_CRM_API_URL is not configured' }), {
       status: 500,
