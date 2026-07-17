@@ -2,10 +2,12 @@
 /**
  * Generates the site's static OpenGraph images (1200x630) with Playwright.
  *
- * These cover the home page, section index pages, and the four policy
- * pillars — everywhere a Sanity-hosted photo isn't a better fit (blog posts,
- * electorate candidates, and bio pages use their own uploaded image instead;
- * see src/layouts/BaseLayout.astro).
+ * These cover the home page and section index pages — everywhere a
+ * Sanity-hosted photo isn't a better fit and content isn't individually
+ * templated. Individual policy pages get their own generated image instead
+ * (see src/pages/og/policies/[slug].png.ts); blog posts, electorate
+ * candidates, and bio pages use their own uploaded image (see
+ * src/layouts/BaseLayout.astro).
  *
  * Run with: node scripts/og/generate-og-images.mjs
  */
@@ -321,42 +323,6 @@ const IMAGES = [
     subline: 'Evidence-based solutions to fix the systems that failed us.',
     primary: COLORS.mint,
     secondary: COLORS.yellow,
-  },
-  {
-    name: 'policies-economy',
-    eyebrow: 'POLICY PILLAR 01',
-    headline: ['RECLAIM OUR'],
-    highlight: 'ECONOMY',
-    subline: 'Fix the systems. Fix the country.',
-    primary: COLORS.magenta,
-    secondary: COLORS.yellow,
-  },
-  {
-    name: 'policies-housing',
-    eyebrow: 'POLICY PILLAR 02',
-    headline: ['SOLVE THE'],
-    highlight: 'HOUSING CRISIS',
-    subline: 'Housing is a right, not an investment.',
-    primary: COLORS.mint,
-    secondary: COLORS.magenta,
-  },
-  {
-    name: 'policies-tax',
-    eyebrow: 'POLICY PILLAR 03',
-    headline: ['FIX THE'],
-    highlight: 'TAX EXPLOITS',
-    subline: 'Wealth should be earned, not extracted.',
-    primary: COLORS.yellow,
-    secondary: COLORS.mint,
-  },
-  {
-    name: 'policies-future',
-    eyebrow: 'POLICY PILLAR 04',
-    headline: ['RECLAIM OUR'],
-    highlight: 'FUTURE',
-    subline: 'A democracy that answers to the public.',
-    primary: COLORS.lavender,
-    secondary: COLORS.mint,
   },
   {
     name: 'blog',
