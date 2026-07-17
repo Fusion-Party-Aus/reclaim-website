@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Generates the site's static OpenGraph images (1200x630) with Playwright.
+ * Generates the site's static OpenGraph images (1200x630) with Playwright,
+ * styled to the Reclaim design system (dark-first, spectrum accents, Barlow
+ * Condensed display type — see "Fusion Brand Guide.dc.html").
  *
  * These cover the home page and section index pages — everywhere a
  * Sanity-hosted photo isn't a better fit and content isn't individually
@@ -32,64 +34,62 @@ function fontFile(pkg, file) {
 }
 
 const fonts = {
-  anton: fontFile('anton', 'anton-latin-400-normal.woff2'),
-  archivoBlack: fontFile('archivo-black', 'archivo-black-latin-400-normal.woff2'),
-  spaceGrotesk700: fontFile('space-grotesk', 'space-grotesk-latin-700-normal.woff2'),
-  inter800: fontFile('inter', 'inter-latin-800-normal.woff2'),
+  barlowCondensed900: fontFile(
+    'barlow-condensed',
+    'barlow-condensed-latin-900-normal.woff2'
+  ).toString('base64'),
+  barlow600: fontFile('barlow', 'barlow-latin-600-normal.woff2').toString('base64'),
+  spaceMono700: fontFile('space-mono', 'space-mono-latin-700-normal.woff2').toString('base64'),
 }
 
-const fontFace = (family, weight, buf) => `
+const fontFace = (family, weight, base64) => `
   @font-face {
     font-family: '${family}';
-    src: url(data:font/woff2;base64,${buf.toString('base64')}) format('woff2');
+    src: url(data:font/woff2;base64,${base64}) format('woff2');
     font-weight: ${weight};
     font-style: normal;
   }
 `
 
 const FONT_CSS = [
-  fontFace('Anton', 400, fonts.anton),
-  fontFace('Archivo Black', 400, fonts.archivoBlack),
-  fontFace('Space Grotesk', 700, fonts.spaceGrotesk700),
-  fontFace('Inter', 800, fonts.inter800),
+  fontFace('Barlow Condensed', 900, fonts.barlowCondensed900),
+  fontFace('Barlow', 600, fonts.barlow600),
+  fontFace('Space Mono', 700, fonts.spaceMono700),
 ].join('\n')
 
-const logoMark = readFileSync(path.join(root, 'public/solo-mono-white.svg'), 'utf8')
+const logoMarkBase64 = readFileSync(
+  path.join(root, 'src/assets/brand/logo-rings-mono-white.png')
+).toString('base64')
 
 // ---------------------------------------------------------------------------
-// Brand tokens
+// Brand tokens — the Reclaim spectrum (see "Fusion Brand Guide.dc.html")
 // ---------------------------------------------------------------------------
 const COLORS = {
-  black: '#010102',
+  deepPurple: '#1a0029',
+  surfaceRaised: '#2e004d',
+  brandPurple: '#5c006b',
   white: '#ffffff',
-  magenta: '#c926f2',
-  mint: '#5effd8',
-  yellow: '#ffed00',
-  lavender: '#9a94e7',
+  magenta: '#d428d4',
+  violet: '#7b3fe4',
+  blue: '#4a7aeb',
+  cyan: '#0bb8d4',
+  teal: '#00ddb8',
 }
 
 /**
  * @param {object} spec
  * @param {string} spec.eyebrow - small uppercase tag above the headline
- * @param {string[]} spec.headline - headline, one array entry per line
- * @param {string} [spec.highlight] - final line rendered as a boxed callout instead of plain text
+ * @param {string[]} spec.headline - plain headline lines, rendered white
+ * @param {string} [spec.accentLine] - final headline line, rendered in the accent color
  * @param {string} [spec.subline] - smaller supporting line under the headline
- * @param {string} spec.primary - primary accent color (left border, eyebrow bg)
- * @param {string} spec.secondary - secondary accent color (right border, stripe)
+ * @param {string} spec.accent - primary spectrum accent (badge, rule, accent line, top stripe)
  * @param {string} [spec.tag] - bottom-right corner tag, defaults to the domain
  */
 function renderTemplate(spec) {
-  const {
-    eyebrow,
-    headline,
-    highlight,
-    subline,
-    primary,
-    secondary,
-    tag = 'VIC.FUSIONPARTY.ORG.AU',
-  } = spec
+  const { eyebrow, headline, accentLine, subline, accent, tag = 'VIC.FUSIONPARTY.ORG.AU' } = spec
 
   const headlineLines = headline.map((line) => `<div class="line">${line}</div>`).join('\n')
+  const watermarkLetter = (accentLine || headline[0] || '').trim().charAt(0)
 
   return `<!doctype html>
 <html>
@@ -103,68 +103,54 @@ function renderTemplate(spec) {
   body {
     width: ${WIDTH}px;
     height: ${HEIGHT}px;
-    background: ${COLORS.black};
+    background: linear-gradient(160deg, ${COLORS.deepPurple} 0%, ${COLORS.surfaceRaised} 100%);
     overflow: hidden;
     position: relative;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
+    border-bottom: 8px solid ${COLORS.teal};
   }
 
-  .frame {
+  /* Triple colour stripe — the Reclaim system's signature top edge */
+  .stripe-magenta { position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: ${COLORS.magenta}; }
+  .stripe-teal { position: absolute; top: 8px; left: 0; width: 100%; height: 5px; background: ${COLORS.teal}; }
+  .stripe-blue { position: absolute; top: 13px; left: 0; width: 100%; height: 3px; background: ${COLORS.blue}; }
+
+  /* Ghosted structural watermark, matching the Hero component's initial-letter motif */
+  .watermark {
     position: absolute;
     inset: 0;
-    border: 7px solid ${COLORS.black};
-    border-left: 16px solid ${primary};
-    border-right: 16px solid ${secondary};
-    box-shadow: inset 0 -10px 0 0 ${primary};
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+    pointer-events: none;
+    overflow: hidden;
   }
-
-  .stripe {
-    position: absolute;
-    opacity: 0.14;
-  }
-  .stripe-a {
-    top: -60%;
-    right: -12%;
-    width: 46%;
-    height: 220%;
-    background: ${primary};
-    transform: rotate(18deg);
-  }
-  .stripe-b {
-    bottom: -60%;
-    left: -14%;
-    width: 40%;
-    height: 220%;
-    background: ${secondary};
-    transform: rotate(-18deg);
-  }
-
-  .corner-ring {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 260px;
-    height: 260px;
-    border: 8px solid ${secondary};
-    opacity: 0.5;
-    transform: translate(28%, -28%) rotate(20deg);
+  .watermark span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 520px;
+    line-height: 1;
+    color: ${COLORS.white};
+    opacity: 0.045;
   }
 
   .logo-mark {
     position: absolute;
-    bottom: -120px;
-    right: -100px;
-    width: 460px;
-    height: 460px;
-    opacity: 0.08;
+    bottom: 44px;
+    right: 72px;
+    width: 46px;
+    height: 46px;
+    opacity: 0.9;
   }
-  .logo-mark svg { width: 100%; height: 100%; }
+  .logo-mark img { width: 100%; height: 100%; }
 
   .content {
     position: relative;
     z-index: 2;
     height: 100%;
-    padding: 66px 72px 50px 76px;
+    padding: 70px 72px 56px 76px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,58 +159,47 @@ function renderTemplate(spec) {
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     align-self: flex-start;
-    background: ${primary};
-    color: ${COLORS.black};
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 21px;
-    letter-spacing: 0.08em;
-    padding: 10px 20px;
-    border: 4px solid ${COLORS.black};
-    box-shadow: 6px 6px 0 0 ${COLORS.black};
-    transform: rotate(-1.2deg);
-    margin-bottom: 40px;
-  }
-  .eyebrow .dot {
-    width: 12px;
-    height: 12px;
-    background: ${COLORS.black};
-    border-radius: 50%;
+    background: color-mix(in srgb, ${accent} 12%, transparent);
+    color: ${accent};
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    padding: 9px 18px 9px 16px;
+    border-left: 3px solid ${accent};
+    margin-bottom: 34px;
   }
 
   .headline {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
     color: ${COLORS.white};
-    font-size: 92px;
-    line-height: 0.94;
-    letter-spacing: -0.01em;
+    font-size: 90px;
+    line-height: 0.96;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     max-width: 980px;
   }
-  .headline .line {
-    display: block;
-  }
+  .headline .line { display: block; }
+  .headline .accent-line { display: block; color: ${accent}; }
 
-  .highlight {
-    display: inline-block;
-    background: ${secondary};
-    color: ${COLORS.black};
-    padding: 4px 18px 10px;
-    margin-top: 6px;
-    border: 5px solid ${COLORS.black};
-    box-shadow: 8px 8px 0 0 ${COLORS.black};
-    transform: rotate(-1deg);
+  .rule {
+    width: 84px;
+    height: 6px;
+    background: ${COLORS.teal};
+    margin-top: 28px;
+    margin-bottom: 24px;
   }
 
   .subline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
     color: ${COLORS.white};
-    font-size: 30px;
-    margin-top: 30px;
-    max-width: 760px;
-    opacity: 0.92;
+    opacity: 0.8;
+    font-size: 27px;
+    line-height: 1.45;
+    max-width: 780px;
   }
 
   .footer {
@@ -241,61 +216,54 @@ function renderTemplate(spec) {
   .brand {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 68px;
   }
-  .brand-mark {
-    width: 40px;
-    height: 40px;
-    opacity: 0.95;
-  }
-  .brand-mark svg { width: 100%; height: 100%; }
   .brand-text {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
     color: ${COLORS.white};
-    font-size: 22px;
-    letter-spacing: 0.02em;
+    font-size: 24px;
+    letter-spacing: 0.01em;
     line-height: 1;
   }
   .brand-text span {
-    display: block;
-    color: ${primary};
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    margin-left: 0.4em;
   }
 
   .tag {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Mono', monospace;
     font-weight: 700;
-    color: ${COLORS.black};
-    background: ${COLORS.white};
-    font-size: 16px;
-    letter-spacing: 0.05em;
-    padding: 8px 14px;
-    border: 3px solid ${COLORS.black};
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
   }
 </style>
 </head>
 <body>
-  <div class="frame"></div>
-  <div class="stripe stripe-a"></div>
-  <div class="stripe stripe-b"></div>
-  <div class="corner-ring"></div>
-  <div class="logo-mark">${logoMark}</div>
+  <div class="stripe-magenta"></div>
+  <div class="stripe-teal"></div>
+  <div class="stripe-blue"></div>
+  <div class="watermark"><span>${watermarkLetter}</span></div>
 
   <div class="content">
-    <div class="eyebrow"><span class="dot"></span>${eyebrow}</div>
+    <div class="eyebrow">${eyebrow}</div>
     <div class="headline">
       ${headlineLines}
-      ${highlight ? `<span class="highlight">${highlight}</span>` : ''}
+      ${accentLine ? `<span class="accent-line">${accentLine}</span>` : ''}
     </div>
+    <div class="rule"></div>
     ${subline ? `<div class="subline">${subline}</div>` : ''}
   </div>
 
   <div class="footer">
     <div class="brand">
-      <div class="brand-mark">${logoMark}</div>
-      <div class="brand-text">FUSION VICTORIA<span>RECLAIM OUR FUTURE</span></div>
+      <div class="logo-mark"><img src="data:image/png;base64,${logoMarkBase64}" /></div>
+      <div class="brand-text">FUSION<span>VICTORIA</span></div>
     </div>
     <div class="tag">${tag}</div>
   </div>
@@ -309,46 +277,42 @@ function renderTemplate(spec) {
 const IMAGES = [
   {
     name: 'default',
-    eyebrow: 'FUSION VICTORIA',
-    headline: ['TAKING', 'BACK WHAT'],
-    highlight: 'THEY STOLE',
-    primary: COLORS.magenta,
-    secondary: COLORS.mint,
+    eyebrow: 'FUSION PARTY VICTORIA',
+    headline: ['TAKING BACK'],
+    accentLine: 'WHAT THEY STOLE',
+    subline: 'A progressive, evidence-based movement to reclaim Victoria.',
+    accent: COLORS.magenta,
   },
   {
     name: 'policies',
     eyebrow: 'OUR POLICIES',
     headline: ['REAL COSTINGS.'],
-    highlight: 'NO BULLSHIT.',
+    accentLine: 'NO BULLSHIT.',
     subline: 'Evidence-based solutions to fix the systems that failed us.',
-    primary: COLORS.mint,
-    secondary: COLORS.yellow,
+    accent: COLORS.teal,
   },
   {
     name: 'blog',
     eyebrow: 'FUSION VICTORIA / BLOG',
     headline: ['STORIES FROM'],
-    highlight: 'THE MOVEMENT',
+    accentLine: 'THE MOVEMENT',
     subline: 'Campaign updates and policy announcements.',
-    primary: COLORS.mint,
-    secondary: COLORS.lavender,
+    accent: COLORS.violet,
   },
   {
     name: 'electorates',
     eyebrow: 'VIC ELECTORATES',
     headline: ['WHERE WE’RE'],
-    highlight: 'TAKING IT BACK',
+    accentLine: 'TAKING IT BACK',
     subline: 'Find your electorate. See the plan.',
-    primary: COLORS.yellow,
-    secondary: COLORS.magenta,
+    accent: COLORS.blue,
   },
   {
     name: 'faq',
     eyebrow: 'GOT QUESTIONS?',
-    headline: ['NO SPIN.', 'NO DODGE.'],
-    highlight: 'STRAIGHT TALK.',
-    primary: COLORS.lavender,
-    secondary: COLORS.yellow,
+    headline: ['NO SPIN. NO DODGE.'],
+    accentLine: 'STRAIGHT TALK.',
+    accent: COLORS.cyan,
   },
 ]
 

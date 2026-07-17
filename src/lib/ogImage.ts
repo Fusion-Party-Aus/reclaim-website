@@ -2,6 +2,9 @@
  * Renders branded 1200x630 OG images at build time for content that doesn't
  * have (or shouldn't use) a hand-designed static image — e.g. one per policy.
  *
+ * Styled to the Reclaim design system (dark-first, spectrum accents, Barlow
+ * Condensed display type — see "Fusion Brand Guide.dc.html").
+ *
  * Uses satori (HTML/CSS-ish layout -> SVG) + resvg (SVG -> PNG) rather than a
  * headless browser, since this runs as part of `astro build`.
  */
@@ -22,32 +25,39 @@ function fontFile(pkgRelativePath: string) {
 
 const fontsPromise = Promise.resolve([
   {
-    name: 'Anton',
-    data: fontFile('@fontsource/anton/files/anton-latin-400-normal.woff'),
-    weight: 400 as const,
+    name: 'Barlow Condensed',
+    data: fontFile('@fontsource/barlow-condensed/files/barlow-condensed-latin-900-normal.woff'),
+    weight: 900 as const,
     style: 'normal' as const,
   },
   {
-    name: 'Archivo Black',
-    data: fontFile('@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff'),
-    weight: 400 as const,
+    name: 'Barlow',
+    data: fontFile('@fontsource/barlow/files/barlow-latin-600-normal.woff'),
+    weight: 600 as const,
     style: 'normal' as const,
   },
   {
-    name: 'Space Grotesk',
-    data: fontFile('@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff'),
+    name: 'Space Mono',
+    data: fontFile('@fontsource/space-mono/files/space-mono-latin-700-normal.woff'),
     weight: 700 as const,
     style: 'normal' as const,
   },
 ])
 
+const logoMarkDataUri = (() => {
+  const png = readFileSync(path.join(process.cwd(), 'src/assets/brand/logo-rings-mono-white.png'))
+  return `data:image/png;base64,${png.toString('base64')}`
+})()
+
 export const COLORS = {
-  black: '#010102',
+  deepPurple: '#1a0029',
+  surfaceRaised: '#2e004d',
   white: '#ffffff',
-  magenta: '#c926f2',
-  mint: '#5effd8',
-  yellow: '#ffed00',
-  lavender: '#9a94e7',
+  magenta: '#d428d4',
+  violet: '#7b3fe4',
+  blue: '#4a7aeb',
+  cyan: '#0bb8d4',
+  teal: '#00ddb8',
 }
 
 /** Rough headline size so long policy titles still fit within the 630px canvas. */
@@ -64,8 +74,7 @@ export interface OgCardSpec {
   title: string
   subline?: string
   tag?: string
-  primary: string
-  secondary: string
+  accent: string
 }
 
 function buildTree({
@@ -73,9 +82,10 @@ function buildTree({
   title,
   subline,
   tag = 'VIC.FUSIONPARTY.ORG.AU',
-  primary,
-  secondary,
+  accent,
 }: OgCardSpec) {
+  const watermarkLetter = title.trim().charAt(0).toUpperCase()
+
   return {
     type: 'div',
     props: {
@@ -85,34 +95,27 @@ function buildTree({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: COLORS.black,
-        borderWidth: '7px',
-        borderStyle: 'solid',
-        borderColor: COLORS.black,
-        borderLeftWidth: '16px',
-        borderLeftColor: primary,
-        borderRightWidth: '16px',
-        borderRightColor: secondary,
-        borderBottomWidth: '10px',
-        borderBottomColor: primary,
-        padding: '66px 72px 50px 76px',
+        backgroundImage: `linear-gradient(160deg, ${COLORS.deepPurple} 0%, ${COLORS.surfaceRaised} 100%)`,
+        borderBottomWidth: '8px',
+        borderBottomStyle: 'solid',
+        borderBottomColor: COLORS.teal,
+        padding: '70px 72px 56px 76px',
         position: 'relative',
-        fontFamily: 'Inter',
+        fontFamily: 'Barlow',
       },
       children: [
+        // Triple colour stripe — the Reclaim system's signature top edge
         {
           type: 'div',
           props: {
             style: {
               display: 'flex',
               position: 'absolute',
-              top: '-40px',
-              right: '-60px',
-              width: '220px',
-              height: '220px',
-              border: `8px solid ${secondary}`,
-              opacity: 0.4,
-              transform: 'rotate(20deg)',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '8px',
+              backgroundColor: COLORS.magenta,
             },
             children: [],
           },
@@ -122,17 +125,80 @@ function buildTree({
           props: {
             style: {
               display: 'flex',
+              position: 'absolute',
+              top: '8px',
+              left: 0,
+              width: '100%',
+              height: '5px',
+              backgroundColor: COLORS.teal,
+            },
+            children: [],
+          },
+        },
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
+              position: 'absolute',
+              top: '13px',
+              left: 0,
+              width: '100%',
+              height: '3px',
+              backgroundColor: COLORS.blue,
+            },
+            children: [],
+          },
+        },
+        // Ghosted structural watermark — first letter of the title
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
+              position: 'absolute',
+              inset: 0,
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              paddingRight: '2%',
+              overflow: 'hidden',
+            },
+            children: [
+              {
+                type: 'div',
+                props: {
+                  style: {
+                    display: 'flex',
+                    fontFamily: 'Barlow Condensed',
+                    fontWeight: 900,
+                    textTransform: 'uppercase',
+                    fontSize: '520px',
+                    lineHeight: 1,
+                    color: COLORS.white,
+                    opacity: 0.045,
+                  },
+                  children: watermarkLetter,
+                },
+              },
+            ],
+          },
+        },
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
               alignSelf: 'flex-start',
-              backgroundColor: primary,
-              color: COLORS.black,
-              fontFamily: 'Archivo Black',
-              fontSize: '20px',
-              letterSpacing: '0.04em',
-              padding: '10px 20px',
-              border: `4px solid ${COLORS.black}`,
-              boxShadow: `6px 6px 0 0 ${COLORS.black}`,
-              transform: 'rotate(-1.2deg)',
-              marginBottom: '38px',
+              backgroundColor: `${accent}1F`,
+              color: accent,
+              fontFamily: 'Space Mono',
+              fontSize: '18px',
+              letterSpacing: '0.16em',
+              padding: '9px 18px 9px 16px',
+              borderLeftWidth: '3px',
+              borderLeftStyle: 'solid',
+              borderLeftColor: accent,
+              marginBottom: '34px',
             },
             children: eyebrow,
           },
@@ -142,15 +208,30 @@ function buildTree({
           props: {
             style: {
               display: 'flex',
-              fontFamily: 'Anton',
+              fontFamily: 'Barlow Condensed',
+              fontWeight: 900,
               color: COLORS.white,
               fontSize: `${headlineSize(title)}px`,
-              lineHeight: 1.02,
-              letterSpacing: '-0.01em',
+              lineHeight: 0.98,
+              letterSpacing: '-0.02em',
               textTransform: 'uppercase',
               maxWidth: '980px',
             },
             children: title,
+          },
+        },
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
+              width: '84px',
+              height: '6px',
+              backgroundColor: COLORS.teal,
+              marginTop: '28px',
+              marginBottom: subline ? '24px' : 0,
+            },
+            children: [],
           },
         },
         subline
@@ -159,12 +240,13 @@ function buildTree({
               props: {
                 style: {
                   display: 'flex',
-                  fontFamily: 'Space Grotesk',
+                  fontFamily: 'Barlow',
+                  fontWeight: 600,
                   color: COLORS.white,
                   fontSize: '26px',
-                  marginTop: '26px',
+                  lineHeight: 1.4,
                   maxWidth: '820px',
-                  opacity: 0.9,
+                  opacity: 0.8,
                 },
                 children: subline,
               },
@@ -186,13 +268,45 @@ function buildTree({
               {
                 type: 'div',
                 props: {
-                  style: {
-                    display: 'flex',
-                    fontFamily: 'Archivo Black',
-                    color: COLORS.white,
-                    fontSize: '22px',
-                  },
-                  children: 'FUSION VICTORIA',
+                  style: { display: 'flex', alignItems: 'center', gap: '68px' },
+                  children: [
+                    {
+                      type: 'img',
+                      props: {
+                        src: logoMarkDataUri,
+                        width: 46,
+                        height: 46,
+                        style: { display: 'flex', opacity: 0.9 },
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          display: 'flex',
+                          fontFamily: 'Barlow Condensed',
+                          fontWeight: 900,
+                          textTransform: 'uppercase',
+                          color: COLORS.white,
+                          fontSize: '24px',
+                        },
+                        children: [
+                          { type: 'span', props: { children: 'FUSION' } },
+                          {
+                            type: 'span',
+                            props: {
+                              style: {
+                                color: 'rgba(255,255,255,0.5)',
+                                fontWeight: 700,
+                                marginLeft: '0.4em',
+                              },
+                              children: 'VICTORIA',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
               },
               {
@@ -200,12 +314,14 @@ function buildTree({
                 props: {
                   style: {
                     display: 'flex',
-                    fontFamily: 'Space Grotesk',
-                    color: COLORS.black,
-                    backgroundColor: COLORS.white,
-                    fontSize: '16px',
-                    padding: '8px 14px',
-                    border: `3px solid ${COLORS.black}`,
+                    fontFamily: 'Space Mono',
+                    color: 'rgba(255,255,255,0.7)',
+                    fontSize: '15px',
+                    letterSpacing: '0.08em',
+                    padding: '7px 14px',
+                    borderWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(255,255,255,0.25)',
                   },
                   children: tag,
                 },

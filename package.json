@@ -2,6 +2,9 @@
   "name": "astro",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "dev:sanity": "cd studio && ./node_modules/.bin/sanity dev --port 3333",
@@ -75,10 +78,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@fontsource/anton": "^5.2.7",
-    "@fontsource/archivo-black": "^5.2.8",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/space-grotesk": "^5.2.10",
+    "@fontsource/barlow": "^5.2.8",
+    "@fontsource/barlow-condensed": "^5.2.8",
+    "@fontsource/space-mono": "^5.2.9",
     "@iconify-json/mdi": "^1.2.3",
     "@types/canvas-confetti": "^1.9.0",
     "@vitest/coverage-v8": "^4.0.8",
