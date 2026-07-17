@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:sanity": "cd studio && ./node_modules/.bin/sanity dev --port 3333",
-    "prebuild": "node scripts/og/generate-og-images.mjs",
+    "prebuild": "node scripts/og/generate-policy-images.mjs",
     "build": "astro build",
     "build:sanity": "cd studio && ./node_modules/.bin/sanity build",
     "deploy:sanity": "cd studio && ./node_modules/.bin/sanity deploy",
@@ -37,7 +37,9 @@
     "import:home": "node scripts/migration/import-home.js",
     "import:navigation": "node scripts/migration/import-navigation.js",
     "import:footer": "node scripts/migration/import-footer.js",
-    "generate:og": "node scripts/og/generate-og-images.mjs",
+    "generate:og": "node scripts/og/generate-static-images.mjs && node scripts/og/generate-policy-images.mjs",
+    "generate:og:static": "node scripts/og/generate-static-images.mjs",
+    "generate:og:policies": "node scripts/og/generate-policy-images.mjs",
     "prepare": "husky"
   },
   "lint-staged": {

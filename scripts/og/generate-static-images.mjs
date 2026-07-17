@@ -1,53 +1,37 @@
 #!/usr/bin/env node
 /**
- * Generates the site's OpenGraph images (1200x630), styled to the Reclaim
- * design system (dark-first, spectrum accents, Barlow Condensed display type
- * — see "Fusion Brand Guide.dc.html").
+ * Generates the site's 5 static OpenGraph images (1200x630) — home/default
+ * and section index pages — with Playwright, styled to the Reclaim design
+ * system (dark-first, spectrum accents, Barlow Condensed display type —
+ * see "Fusion Brand Guide.dc.html").
  *
- * Two passes:
- *  1. Static section images (Playwright) — home page and section index
- *     pages, everywhere a Sanity-hosted photo isn't a better fit and content
- *     isn't individually templated.
- *  2. One card per policy (satori + @resvg/resvg-js, see policy-card.mjs),
- *     built from that policy's own title/summary. This runs as a plain
- *     Node script rather than an Astro route/endpoint because
- *     @resvg/resvg-js ships a native binary that Vite/Rollup can't bundle
- *     for the Cloudflare Worker target — see the git history on this file
- *     for the build failure that motivated moving it here.
- *
- * Blog posts, electorate candidates, and bio pages use their own uploaded
- * image instead (see src/layouts/BaseLayout.astro).
- *
- * Runs automatically before `npm run build` (see the `prebuild` script in
- * package.json) so every deploy picks up current policy content. Not wired
- * into `npm run dev` — that would add several seconds to every dev server
- * restart for images nobody's looking at locally. Run it manually with
- * `npm run generate:og` (or `node scripts/og/generate-og-images.mjs`) if you
- * want to preview OG images during local development.
+ * These are stable, hand-authored brand assets that don't depend on Sanity
+ * content, so unlike the per-policy generator (generate-policy-images.mjs)
+ * this is NOT run automatically before a build — a Chromium launch is a
+ * meaningfully heavier and more environment-sensitive dependency than the
+ * satori/@resvg/resvg-js pipeline, and there's nothing here that goes stale
+ * between manual runs. Regenerate manually after changing the template or
+ * copy, and commit the results:
+ *   node scripts/og/generate-static-images.mjs
  */
 import { chromium } from 'playwright'
-import { createClient } from '@sanity/client'
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import {
+  COLORS,
+  WIDTH,
+  HEIGHT,
+  root,
+  outDir,
+  fontFile,
+  logoMarkBase64,
+  ensureOutDirs,
+} from './lib.mjs'
 import path from 'node:path'
-import { renderPolicyCardPng, PILLAR_ACCENT, DEFAULT_ACCENT } from './policy-card.mjs'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const root = path.resolve(__dirname, '../..')
-const outDir = path.join(root, 'public/og')
-const policiesOutDir = path.join(outDir, 'policies')
-mkdirSync(policiesOutDir, { recursive: true })
-
-const WIDTH = 1200
-const HEIGHT = 630
+ensureOutDirs()
 
 // ---------------------------------------------------------------------------
 // Fonts — inlined as base64 so rendering never depends on network access.
 // ---------------------------------------------------------------------------
-function fontFile(pkg, file) {
-  return readFileSync(path.join(root, 'node_modules/@fontsource', pkg, 'files', file))
-}
-
 const fonts = {
   barlowCondensed900: fontFile(
     'barlow-condensed',
@@ -71,25 +55,6 @@ const FONT_CSS = [
   fontFace('Barlow', 600, fonts.barlow600),
   fontFace('Space Mono', 700, fonts.spaceMono700),
 ].join('\n')
-
-const logoMarkBase64 = readFileSync(
-  path.join(root, 'src/assets/brand/logo-rings-mono-white.png')
-).toString('base64')
-
-// ---------------------------------------------------------------------------
-// Brand tokens — the Reclaim spectrum (see "Fusion Brand Guide.dc.html")
-// ---------------------------------------------------------------------------
-const COLORS = {
-  deepPurple: '#1a0029',
-  surfaceRaised: '#2e004d',
-  brandPurple: '#5c006b',
-  white: '#ffffff',
-  magenta: '#d428d4',
-  violet: '#7b3fe4',
-  blue: '#4a7aeb',
-  cyan: '#0bb8d4',
-  teal: '#00ddb8',
-}
 
 /**
  * @param {object} spec
@@ -331,30 +296,7 @@ const IMAGES = [
   },
 ]
 
-// satori needs woff (not woff2) font data, unlike the Playwright/CSS pass above.
-const satoriFonts = [
-  {
-    name: 'Barlow Condensed',
-    data: fontFile('barlow-condensed', 'barlow-condensed-latin-900-normal.woff'),
-    weight: 900,
-    style: 'normal',
-  },
-  {
-    name: 'Barlow',
-    data: fontFile('barlow', 'barlow-latin-600-normal.woff'),
-    weight: 600,
-    style: 'normal',
-  },
-  {
-    name: 'Space Mono',
-    data: fontFile('space-mono', 'space-mono-latin-700-normal.woff'),
-    weight: 700,
-    style: 'normal',
-  },
-]
-const logoMarkDataUri = `data:image/png;base64,${logoMarkBase64}`
-
-async function generateSectionImages() {
+async function main() {
   const browser = await chromium.launch({
     executablePath: process.env.CHROMIUM_PATH || undefined,
   })
@@ -375,57 +317,7 @@ async function generateSectionImages() {
   await browser.close()
 }
 
-async function generatePolicyImages() {
-  const client = createClient({
-    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
-    dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
-    useCdn: true,
-    apiVersion: '2024-01-29',
-  })
-
-  const policies = await client.fetch(
-    `*[_type == "policy" && defined(slug.current)]{ title, summary, pillar, "slug": slug.current }`
-  )
-
-  for (const policy of policies) {
-    const accent = PILLAR_ACCENT[policy.pillar] || DEFAULT_ACCENT
-    const png = await renderPolicyCardPng(
-      {
-        eyebrow: policy.pillar || 'OUR POLICIES',
-        title: policy.title,
-        subline: policy.summary,
-        accent,
-        tag: 'VIC.FUSIONPARTY.ORG.AU',
-        logoMarkDataUri,
-      },
-      satoriFonts
-    )
-    const outPath = path.join(policiesOutDir, `${policy.slug}.png`)
-    writeFileSync(outPath, png)
-    console.log(`Generated ${path.relative(root, outPath)}`)
-  }
-}
-
-async function main() {
-  await generateSectionImages()
-
-  try {
-    await generatePolicyImages()
-  } catch (err) {
-    console.warn(`Skipping per-policy OG images — couldn't reach Sanity: ${err.message}`)
-  }
-}
-
-main()
-  .catch((err) => {
-    console.error(err)
-    process.exitCode = 1
-  })
-  .finally(() => {
-    // @sanity/client's HTTP layer can emit a socket error a tick after a
-    // failed request is already caught above (seen with unreachable/blocked
-    // networks) — harmless, but left to fire it would crash the process as
-    // an unhandled event. Exiting explicitly once generation is done (with
-    // whatever exit code the run has earned) sidesteps that race entirely.
-    process.exit(process.exitCode ?? 0)
-  })
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
