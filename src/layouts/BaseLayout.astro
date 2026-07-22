@@ -15,6 +15,7 @@ interface Props {
   image?: string
   imageAlt?: string
   type?: 'website' | 'article'
+  noindex?: boolean
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   image = '/og/default.png',
   imageAlt = 'Fusion Party Victoria - Taking back what they stole.',
   type = 'website',
+  noindex = false,
 } = Astro.props
 
 // Sanity stega-encodes editable strings with invisible characters; strip them
@@ -42,6 +44,7 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <SEO
       title={title}
       description={description}
+      noindex={noindex}
       openGraph={{
         basic: {
           title,
