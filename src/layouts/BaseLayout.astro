@@ -5,6 +5,7 @@ import { KonamiCode } from '@/features/engagement'
 import { VisualEditing } from '@sanity/astro/visual-editing'
 import { stegaClean } from '@sanity/client/stega'
 import { Icon } from 'astro-icon/components'
+import { OrganizationSchema, WebSiteSchema } from '@adkinn/astro-ai-readiness/components'
 import { BrutalCard } from '@/components/ui'
 
 interface Props {
@@ -72,6 +73,10 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
     <link rel="icon" href="/icons/favicon.ico" />
 
+    <!-- JSON-LD Structured Data -->
+    <OrganizationSchema />
+    <WebSiteSchema />
+
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#D428D4" />
@@ -79,6 +84,12 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Fusion Party Victoria" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Fusion Party Victoria"
+      href="/rss.xml"
+    />
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js"
     ></script>
@@ -113,44 +124,6 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <KonamiCode konami={siteConfig?.konamiCode} />
 
     <VisualEditing enabled={visualEditingEnabled} />
-
-    <!-- PWA Install Prompt -->
-    <div id="pwa-install-prompt" class="fixed bottom-6 right-6 z-50 hidden">
-      <BrutalCard class="relative max-w-sm" shadow="magenta" hover={false}>
-        <button
-          id="pwa-close"
-          class="absolute -top-3 -right-3 w-8 h-8 bg-yellow rounded-full flex items-center justify-center text-white hover:scale-110 transition-all"
-          aria-label="Close"
-        >
-          <Icon name="mdi:close" class="w-4 h-4" />
-        </button>
-        <div class="flex items-start gap-4 mb-4">
-          <div
-            class="w-12 h-12 bg-magenta rounded-sm flex items-center justify-center flex-shrink-0"
-          >
-            <Icon name="mdi:cellphone" class="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h3
-              class="text-lg font-black uppercase text-magenta mb-2"
-              style="font-family: 'Barlow Condensed', sans-serif;"
-            >
-              Install Fusion App
-            </h3>
-            <p class="text-sm font-bold text-white leading-normal">
-              Add to your home screen for quick access & offline use!
-            </p>
-          </div>
-        </div>
-        <button
-          id="pwa-install"
-          class="w-full px-4 py-3 bg-magenta text-white rounded-sm font-black uppercase hover:bg-magenta-bright transition-all"
-          style="font-family: 'Barlow Condensed', sans-serif;"
-        >
-          Install Now
-        </button>
-      </BrutalCard>
-    </div>
 
     <!-- PWA Service Worker Registration & Install Prompt -->
     <script is:inline>

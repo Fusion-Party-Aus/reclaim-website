@@ -68,7 +68,7 @@ function formatDate(date: string) {
 ---
 
 <BaseLayout
-  title={`${title} | Reignite Democracy`}
+  title={`${title} | Fusion Party Victoria`}
   description={subtitle}
   image="/og/blog.png"
 >
@@ -76,7 +76,7 @@ function formatDate(date: string) {
   <main id="main-content">
 
   <div class="alert-bar">
-    {alertBar} | <a href="#latest">Read the latest</a>
+    {alertBar} | <a href="#latest">Read the latest</a> | <a href="/rss.xml" class="inline-flex items-center gap-1 hover:underline" target="_blank" rel="noopener">RSS Feed</a>
   </div>
 
   <!-- Hero Section -->
@@ -107,6 +107,7 @@ function formatDate(date: string) {
                 <img
                   src={urlFor(featuredPost.featuredImage).width(800).height(500).url()}
                   alt={featuredPost.featuredImage.alt || featuredPost.title}
+                  loading="lazy"
                   class="w-full h-full object-cover rounded-sm transition-all hover:brightness-90"
                 />
               </a>
@@ -179,6 +180,7 @@ function formatDate(date: string) {
                     <img
                       src={imageUrl}
                       alt={post.featuredImage?.alt || post.title}
+                      loading="lazy"
                       class="w-full h-48 object-cover"
                     />
                   </a>

@@ -1,12 +1,24 @@
 ---
-export const prerender = false
+export const prerender = true
+
+export async function getStaticPaths() {
+  const electorates = await getElectorates()
+  return electorates
+    .filter((e) => e.slug?.current)
+    .map((e) => ({
+      params: { slug: e.slug.current },
+    }))
+}
+
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/components/layout/Hero'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug, urlFor } from '../../lib/sanity'
-import { renderPortableText } from '../../lib/portableText'
+import { getDocumentBySlug, getElectorates, urlFor } from '../../lib/sanity'
+import { PortableText } from 'astro-portabletext'
+import CustomLink from '../../components/portable-text/CustomLink.astro'
+import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
 
@@ -121,7 +133,7 @@ const tierConfig: Record<
 ---
 
 <BaseLayout
-  title={`${electorate.name} | Reignite Democracy`}
+  title={`${electorate.name} | Fusion Party Victoria`}
   description={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
   image={ogImageUrl}
   imageAlt={electorate.candidateName || electorate.name}
@@ -185,8 +197,15 @@ const tierConfig: Record<
                 prose-h2:border-l-4 prose-h2:border-magenta prose-h2:pl-4
                 prose-a:text-magenta prose-a:font-black
                 prose-strong:font-black"
-                set:html={renderPortableText(electorate.body)}
-              />
+              >
+                <PortableText
+                  value={electorate.body}
+                  components={{
+                    mark: { link: CustomLink },
+                    type: { table: TableBlock },
+                  }}
+                />
+              </div>
             ) : (
               <p class="text-base font-bold text-white/60">
                 This electorate has a candidate and commitments — full detail coming soon.
@@ -207,6 +226,7 @@ const tierConfig: Record<
                     .fit('crop')
                     .url()}
                   alt={electorate.candidateName || 'Candidate'}
+                  loading="lazy"
                   class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>

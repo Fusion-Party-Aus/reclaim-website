@@ -1,4 +1,23 @@
 ---
+export const prerender = true
+
+export async function getStaticPaths() {
+  const allPages = await getPages()
+  const paths = (allPages as Page[])
+    .filter((p) => p.slug?.current)
+    .map((p) => {
+      const segments = [p.slug.current]
+      let currentParent = (p as any).parent
+      while (currentParent) {
+        segments.unshift(currentParent.slug.current)
+        currentParent = currentParent.parent
+      }
+      const fullPath = segments.join('/')
+      return { params: { slug: fullPath } }
+    })
+  return paths
+}
+
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Hero } from '@/components/layout/Hero'
@@ -89,7 +108,7 @@ const ogImageUrl =
 ---
 
 <BaseLayout
-  title={`${page.title} | Reignite Democracy`}
+  title={`${page.title} | Fusion Party Victoria`}
   description={page.metaDescription || page.subtitle}
   image={ogImageUrl}
   imageAlt={page.title}

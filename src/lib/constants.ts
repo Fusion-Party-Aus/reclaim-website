@@ -126,6 +126,7 @@ export const EXTERNAL_LINKS = {
   TWITTER: 'https://twitter.com/FusionPartyAus',
   INSTAGRAM: 'https://www.instagram.com/fusionpartyaus',
   TIKTOK: 'https://www.tiktok.com/@fusionpartyaus',
+  YOUTUBE: 'https://www.youtube.com/c/fusionpartyaus',
   MASTODON: 'https://mastodon.au/@FusionPartyAus',
 } as const
 

@@ -1,12 +1,25 @@
 ---
-export const prerender = false
+export const prerender = true
+
+export async function getStaticPaths() {
+  const blogPosts = await getDocuments<BlogPost>('blogPost')
+  return blogPosts
+    .filter((post) => post.slug?.current)
+    .map((post) => ({
+      params: { slug: post.slug.current },
+    }))
+}
+
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { TechArticleSchema } from '@adkinn/astro-ai-readiness/components'
 import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
 import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
-import { renderPortableText } from '../../lib/portableText'
+import { PortableText } from 'astro-portabletext'
+import CustomLink from '../../components/portable-text/CustomLink.astro'
+import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
 
@@ -86,12 +99,25 @@ const pageDescription = post.seoDescription || post.excerpt
 ---
 
 <BaseLayout
-  title={`${pageTitle} | Fusion Blog`}
+  title={`${pageTitle} | Fusion Party Victoria`}
   description={pageDescription}
   image={ogImageUrl}
   imageAlt={post.featuredImage?.alt || post.title}
 >
   <Header />
+
+  <!-- Article JSON-LD Structured Data -->
+  <TechArticleSchema
+    headline={post.title}
+    description={post.excerpt || pageDescription}
+    datePublished={post.publishedAt}
+    dateModified={post.publishedAt}
+    {...post.author?.name ? { author: { name: post.author.name } } : {}}
+    {...imageUrl ? { image: { url: imageUrl } } : {}}
+    {...post.category ? { articleSection: post.category } : {}}
+    {...post.tags && post.tags.length > 0 ? { keywords: post.tags } : {}}
+  />
+
   <main id="main-content">
     <!-- Breadcrumbs -->
     <div class="bg-surface-base pt-28 pb-4">
@@ -153,6 +179,7 @@ const pageDescription = post.seoDescription || post.excerpt
                     <img
                       src={authorImageUrl}
                       alt={post.author.name}
+                      loading="lazy"
                       class="w-12 h-12 rounded-full"
                     />
                   )}
@@ -193,6 +220,7 @@ const pageDescription = post.seoDescription || post.excerpt
                 <img
                   src={imageUrl}
                   alt={post.featuredImage?.alt || post.title}
+                  loading="lazy"
                   class="w-full h-auto rounded-sm"
                 />
               </div>
@@ -200,7 +228,15 @@ const pageDescription = post.seoDescription || post.excerpt
           }
 
           <!-- Article Body -->
-          <div class="prose-brutal max-w-none" set:html={renderPortableText(post.body)} />
+          <div class="prose-brutal max-w-none">
+            <PortableText
+              value={post.body}
+              components={{
+                mark: { link: CustomLink },
+                type: { table: TableBlock },
+              }}
+            />
+          </div>
 
           <!-- Share Section -->
           <div class="mt-12 pt-8 border-t border-white/10">
@@ -260,6 +296,7 @@ const pageDescription = post.seoDescription || post.excerpt
                         <img
                           src={relatedImageUrl}
                           alt={relatedPost.featuredImage?.alt || relatedPost.title}
+                          loading="lazy"
                           class="w-full h-40 object-cover"
                         />
                       </a>

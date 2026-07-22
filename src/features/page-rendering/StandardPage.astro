@@ -1,6 +1,7 @@
 ---
 import DynamicSidebar from './DynamicSidebar.astro'
 import type { Page } from '@/types/sanity'
+import type { PortableTextBlock } from '@/lib/portableText'
 
 interface Props {
   page: Page
@@ -23,12 +24,39 @@ const breadcrumbs = segments.map((seg, i) => {
   }
 })
 
-import { renderPortableText } from '@/lib/portableText'
-import { wrapSectionsInBoxes } from '@/lib/sectionWrapper'
+import { PortableText } from 'astro-portabletext'
+import CustomLink from '../../components/portable-text/CustomLink.astro'
+import TableBlock from '../../components/portable-text/TableBlock.astro'
 import { urlFor } from '@/lib/sanity'
 import { BrutalCard, BrutalBadge, CTA, BrutalButton } from '@/components/ui'
 
-const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) : ''
+const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
+
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+
+// Split blocks into h2-delimited sections
+const bodySections: Array<{ title: string; id: string; blocks: PortableTextBlock[] }> = []
+const preamble: PortableTextBlock[] = []
+let currentSection: { title: string; id: string; blocks: PortableTextBlock[] } | null = null
+
+if (page.body) {
+  for (const block of page.body) {
+    if (block._type === 'block' && block.style === 'h2') {
+      const title = block.children?.map((c: any) => c.text).join('') || ''
+      const id = slugify(title)
+      currentSection = { title, id, blocks: [block] }
+      bodySections.push(currentSection)
+    } else if (currentSection) {
+      currentSection.blocks.push(block)
+    } else {
+      preamble.push(block)
+    }
+  }
+}
 ---
 
 <div
@@ -89,7 +117,34 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
         prose-strong:font-black
         prose-blockquote:border-l-8 prose-blockquote:border-yellow prose-blockquote:bg-yellow/10 prose-blockquote:not-italic prose-blockquote:font-bold"
         >
-          <div set:html={pageHtml} />
+          {preamble.length > 0 && (
+            <PortableText
+              value={preamble}
+              components={{
+                mark: { link: CustomLink },
+                type: { table: TableBlock },
+              }}
+            />
+          )}
+          {bodySections.map((section, i) => {
+            const bgColor = sectionColors[i % sectionColors.length]
+            return (
+              <div class="brutal-section mb-12">
+                <h2 class={`brutal-section-header ${bgColor}`} id={section.id}>
+                  {section.title}
+                </h2>
+                <div class="brutal-section-content">
+                  <PortableText
+                    value={section.blocks}
+                    components={{
+                      mark: { link: CustomLink },
+                      type: { table: TableBlock },
+                    }}
+                  />
+                </div>
+              </div>
+            )
+          })}
         </article>
       ) : (
         <BrutalCard variant="surface" shadow="yellow" padding="lg">
@@ -137,6 +192,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                           <img
                             src={imageUrl}
                             alt={child.page.title}
+                            loading="lazy"
                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
                           />
                         ) : (

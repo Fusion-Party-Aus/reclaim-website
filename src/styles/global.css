@@ -404,7 +404,7 @@
   /* Accent highlights for strong tags */
   .prose strong {
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 600;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }

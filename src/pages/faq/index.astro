@@ -5,14 +5,20 @@ import { Hero } from '@/components/layout/Hero';
 import { Footer } from '@/components/layout/Footer';
 import { FaqSidebar } from '@/features/faq';
 import { getDocuments } from '../../lib/sanity';
-import { renderPortableText } from '../../lib/portableText';
+import { portableTextToPlainText } from '../../lib/portableText';
+import { PortableText } from 'astro-portabletext';
+import CustomLink from '../../components/portable-text/CustomLink.astro';
+import TableBlock from '../../components/portable-text/TableBlock.astro';
 import { Icon } from 'astro-icon/components';
+import { FAQPageSchema } from '@adkinn/astro-ai-readiness/components';
+import type { FAQItem } from '@adkinn/astro-ai-readiness/components';
 import { BrutalBadge, CTA, BrutalButton } from '@/components/ui';
 import type { PortableTextBlock } from '../../lib/portableText';
 import '../../styles/global.css';
 
 interface FAQ {
   _id: string;
+  _updatedAt?: string;
   slug: { current: string };
   category: string;
   question: string;
@@ -61,11 +67,19 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 ---
 
 <BaseLayout
-  title="FAQ | Reignite Democracy"
+  title="FAQ | Fusion Party Victoria"
   description="Got questions? We've got answers. Straight talk on policy, debt, and how we're different from the major parties."
   image="/og/faq.png"
 >
   <Header />
+
+  <!-- FAQPage JSON-LD Structured Data -->
+  <FAQPageSchema
+    items={allFaqs.map((faq): FAQItem => ({
+      question: faq.question,
+      answer: portableTextToPlainText(faq.answer),
+    }))}
+  />
 
   <Hero
     title="Frequently Asked Questions"
@@ -150,9 +164,22 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
                         <h3 class="text-lg font-display font-black uppercase text-white leading-tight">
                           {faq.question}
                         </h3>
+                        {
+                          faq._updatedAt && (
+                            <p class="mt-1 text-[10px] font-black uppercase tracking-widest text-white/40">
+                              Updated: {new Date(faq._updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                            </p>
+                          )
+                        }
                       </div>
                       <div class="p-6 md:p-8 faq-answer">
-                        <div set:html={renderPortableText(faq.answer)} />
+                        <PortableText
+                          value={faq.answer}
+                          components={{
+                            mark: { link: CustomLink },
+                            type: { table: TableBlock },
+                          }}
+                        />
                       </div>
                     </article>
                   ))}
