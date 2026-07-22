@@ -57,6 +57,10 @@ if (!electorate) {
   return Astro.redirect('/404')
 }
 
+const ogImageUrl = electorate.candidateImage
+  ? urlFor(electorate.candidateImage).width(1200).height(630).fit('crop').url()
+  : '/og/electorates.png'
+
 // HTV Sorting
 const hasHTV = Array.isArray(electorate.htv) && electorate.htv.length > 0
 const htvArray = electorate.htv || []
@@ -116,7 +120,12 @@ const tierConfig: Record<
 }
 ---
 
-<BaseLayout title={`${electorate.name} | Reignite Democracy`}>
+<BaseLayout
+  title={`${electorate.name} | Reignite Democracy`}
+  description={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
+  image={ogImageUrl}
+  imageAlt={electorate.candidateName || electorate.name}
+>
   <Header />
 
   <Hero

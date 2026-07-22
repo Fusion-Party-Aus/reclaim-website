@@ -88,7 +88,11 @@ const movementMetrics = hp.movementMetrics || defaultMetrics
 const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSection.cards || []
 ---
 
-<BaseLayout title={hp.seo?.metaTitle || hp.title} description={hp.seo?.metaDescription || ''}>
+<BaseLayout
+  title={hp.seo?.metaTitle || hp.title}
+  description={hp.seo?.metaDescription || ''}
+  image="/og/default.png"
+>
   <Header />
   <main id="main-content">
     <DeveloperMessages />

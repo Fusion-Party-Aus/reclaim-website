@@ -52,6 +52,7 @@ export default [
       '*.config.mjs',
       '*.config.cjs',
       'scripts/migration/**',
+      'scripts/og/**',
     ],
   },
 ]
