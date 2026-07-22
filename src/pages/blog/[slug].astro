@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
 import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
+import { TechArticleSchema } from '@adkinn/astro-ai-readiness/components'
 import { renderPortableText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
@@ -92,6 +93,19 @@ const pageDescription = post.seoDescription || post.excerpt
   imageAlt={post.featuredImage?.alt || post.title}
 >
   <Header />
+
+  <!-- Article JSON-LD Structured Data -->
+  <TechArticleSchema
+    headline={post.title}
+    description={post.excerpt || pageDescription}
+    datePublished={post.publishedAt}
+    dateModified={post.publishedAt}
+    {...post.author?.name ? { author: { name: post.author.name } } : {}}
+    {...imageUrl ? { image: { url: imageUrl } } : {}}
+    {...post.category ? { articleSection: post.category } : {}}
+    {...post.tags && post.tags.length > 0 ? { keywords: post.tags } : {}}
+  />
+
   <main id="main-content">
     <!-- Breadcrumbs -->
     <div class="bg-surface-base pt-28 pb-4">

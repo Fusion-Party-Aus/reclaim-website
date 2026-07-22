@@ -5,6 +5,7 @@ import { KonamiCode } from '@/features/engagement'
 import { VisualEditing } from '@sanity/astro/visual-editing'
 import { stegaClean } from '@sanity/client/stega'
 import { Icon } from 'astro-icon/components'
+import { OrganizationSchema, WebSiteSchema } from '@adkinn/astro-ai-readiness/components'
 import { BrutalCard } from '@/components/ui'
 
 interface Props {
@@ -72,6 +73,10 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
     <link rel="icon" href="/icons/favicon.ico" />
 
+    <!-- JSON-LD Structured Data -->
+    <OrganizationSchema />
+    <WebSiteSchema />
+
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#D428D4" />
@@ -79,6 +84,12 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Fusion Party Victoria" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Fusion Party Victoria"
+      href="/rss.xml"
+    />
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js"
     ></script>
