@@ -72,6 +72,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
               <img
                 src={urlFor(page.profileImage).width(800).height(900).url()}
                 alt={page.title}
+                loading="lazy"
                 class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 block"
               />
             </div>
@@ -205,6 +206,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
                         <img
                           src={imageUrl}
                           alt={child.page.title}
+                          loading="lazy"
                           class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
                         />
                       ) : (

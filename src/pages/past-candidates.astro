@@ -120,6 +120,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
                             <img
                               src={imageUrl}
                               alt={bio.title}
+                              loading="lazy"
                               class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
                             />
                           ) : (

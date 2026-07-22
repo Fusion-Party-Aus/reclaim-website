@@ -107,6 +107,7 @@ function formatDate(date: string) {
                 <img
                   src={urlFor(featuredPost.featuredImage).width(800).height(500).url()}
                   alt={featuredPost.featuredImage.alt || featuredPost.title}
+                  loading="lazy"
                   class="w-full h-full object-cover rounded-sm transition-all hover:brightness-90"
                 />
               </a>
@@ -179,6 +180,7 @@ function formatDate(date: string) {
                     <img
                       src={imageUrl}
                       alt={post.featuredImage?.alt || post.title}
+                      loading="lazy"
                       class="w-full h-48 object-cover"
                     />
                   </a>
