@@ -140,7 +140,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
       {/* Stand-out quote card */}
       <BrutalCard variant="mint" shadow="black" padding="md">
         <p
-          class="font-black text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
+          class="font-bold text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
         >
           {page.subtitle || '"Fighting for a fairer Victoria through evidence-based policy."'}
         </p>
@@ -150,22 +150,12 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
     {/* ── Right column: biography ── */}
     <div class="flex-1 min-w-0 space-y-8">
       <BrutalCard variant="surface" shadow="black" padding="xl">
-        <div
-          class="prose prose-lg max-w-none
-          prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
-          prose-h2:text-2xl prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4 prose-h2:mt-10
-          prose-h3:text-lg prose-h3:border-l-4 prose-h3:border-mint prose-h3:pl-3
-          prose-a:text-magenta prose-a:font-black prose-a:no-underline hover:prose-a:underline
-          prose-strong:font-black
-          prose-p:first:text-xl prose-p:first:font-black"
-        >
+        <div class="prose prose-lg max-w-none">
           {
             page.body ? (
               <div set:html={pageHtml} />
             ) : (
-              <p class="text-lg font-black uppercase text-white/40">
-                Full biography coming soon...
-              </p>
+              <p class="text-lg font-bold uppercase text-white/60">Full biography coming soon...</p>
             )
           }
         </div>
@@ -257,7 +247,7 @@ const pageHtml = page.body ? wrapSectionsInBoxes(renderPortableText(page.body)) 
   .prose p:first-of-type {
     font-size: 1.2rem;
     line-height: 1.65;
-    font-weight: 700;
+    font-weight: 500;
   }
 </style>
 

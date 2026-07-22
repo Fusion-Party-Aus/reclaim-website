@@ -112,6 +112,30 @@ const detailSections = [
   { id: 'implementation', title: 'Implementation Outline', content: policy.implementationOutline },
 ].filter((s) => !!s.content)
 
+// Source content is often a single unbroken block. Fall back to grouping
+// sentences into short paragraphs so the detail dropdowns don't render as
+// one wall of text when the CMS field has no blank-line breaks.
+const splitIntoParagraphs = (text: string): string[] => {
+  const byBlankLine = text
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+  if (byBlankLine.length > 1) return byBlankLine
+
+  // A period isn't a sentence break when it's a decimal point (e.g. "$1.2-1.5 billion").
+  const sentences = text.match(/(?:[^.!?]|\.(?=\d))+[.!?]+(?:\s+|$)/g) || [text]
+  const paragraphs: string[] = []
+  for (let i = 0; i < sentences.length; i += 2) {
+    paragraphs.push(
+      sentences
+        .slice(i, i + 2)
+        .join('')
+        .trim()
+    )
+  }
+  return paragraphs.filter(Boolean)
+}
+
 const sidebarSections = [
   { id: 'top', title: policy.title },
   ...(policy.hook ? [{ id: 'the-problem', title: 'The Problem' }] : []),
@@ -176,7 +200,7 @@ const metaDescription = policy.seoDescription || policy.summary
 
       {/* Summary */}
       <p
-        class={`text-xl md:text-2xl font-black text-white/80 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
+        class={`text-lg md:text-xl font-semibold text-white/85 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
       >
         {policy.summary}
       </p>
@@ -215,9 +239,9 @@ const metaDescription = policy.seoDescription || policy.summary
         policy.hook && (
           <section id="the-problem" class="mb-8 scroll-mt-28">
             <div class="border-l-4 border-magenta bg-black/40 px-6 py-5 rounded-r-sm">
-              <p class="text-xl md:text-2xl font-black text-white leading-snug">{policy.hook}</p>
+              <p class="text-lg md:text-xl font-bold text-white leading-snug">{policy.hook}</p>
               {policy.villain && (
-                <p class="mt-3 text-sm font-semibold text-white/65 leading-relaxed">
+                <p class="mt-3 text-sm font-semibold text-white/75 leading-relaxed">
                   {policy.villain}
                 </p>
               )}
@@ -238,7 +262,7 @@ const metaDescription = policy.seoDescription || policy.summary
                 {policy.proofStat.label}
               </p>
               {policy.proofStat.source && (
-                <p class="text-xs text-white/40 mt-1 italic">{policy.proofStat.source}</p>
+                <p class="text-xs text-white/60 mt-1 italic">{policy.proofStat.source}</p>
               )}
             </div>
           </div>
@@ -289,7 +313,7 @@ const metaDescription = policy.seoDescription || policy.summary
               <p class="font-black text-2xl text-white leading-tight">{policy.cost}</p>
             )}
             {policy.funding && (
-              <p class="text-sm font-bold text-white/80 mt-1 border-l-4 border-white/40 pl-3">
+              <p class="text-sm font-semibold text-white/80 mt-1 border-l-4 border-white/40 pl-3">
                 Paid for by: {policy.funding}
               </p>
             )}
@@ -323,7 +347,7 @@ const metaDescription = policy.seoDescription || policy.summary
                         {kp.point}
                       </p>
                       {kp.description && (
-                        <p class="text-sm font-semibold text-white/60 leading-snug">
+                        <p class="text-sm font-normal text-white/70 leading-snug">
                           {kp.description}
                         </p>
                       )}
@@ -387,11 +411,9 @@ const metaDescription = policy.seoDescription || policy.summary
                           class="w-5 h-5 text-white/40 transition-transform group-open:rotate-180 shrink-0"
                         />
                       </summary>
-                      <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-3">
-                        {section.content.split(/\n\n+/).map((para: string) => (
-                          <p class="text-base font-semibold text-white/70 leading-relaxed">
-                            {para.trim()}
-                          </p>
+                      <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-4">
+                        {splitIntoParagraphs(section.content).map((para: string) => (
+                          <p class="text-base font-normal text-white/75 leading-relaxed">{para}</p>
                         ))}
                       </div>
                     </details>
