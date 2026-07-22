@@ -122,3 +122,17 @@ Plus a direct `Edit` to `convince-your-friends.astro` line 102.
 
 The script is run once against the live `production` dataset after review, same as the existing
 one-off scripts in `scripts/migration/`.
+
+## Resolution note
+
+Of the six long analytical fields originally listed above for reword, only three
+(`designRationale`, `implementationOutline`, `riskAndFailureModes`) were actually changed by the
+implementation. This narrowing was intentional, not an oversight: `economicLogic`,
+`evidenceAndPrecedent`, and `systemInteraction` don't make any claim about Fusion's certainty of
+winning a seat or about GVT abolition being settled or enacted — they're neutral descriptions of
+transparency economics, historical/international precedent, and the Electoral Act's legal
+mechanisms, respectively, none of which hinge on the staleness issue this spec addresses. An
+independent review pass read the live content of all three fields and confirmed no overclaim
+language is present in any of them. The original six-field list in the section above is left as
+written for historical accuracy of the plan as drafted; this note documents the deliberate
+scope reduction applied during implementation.
