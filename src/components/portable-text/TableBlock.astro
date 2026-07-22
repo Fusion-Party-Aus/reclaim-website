@@ -1,0 +1,36 @@
+---
+interface TableBlock {
+  _type: 'table'
+  rows?: Array<{ _type: string; cells: string[] }>
+}
+
+const block = Astro.props.node as TableBlock
+const rows = block.rows || []
+---
+
+<div class="table-wrapper" style="overflow-x: auto; margin-bottom: 2rem;">
+  <table
+    class="w-full text-left border-collapse border border-white/10 rounded-sm"
+    style="min-width: 600px;"
+  >
+    <tbody>
+      {
+        rows.map((row, rowIndex) => (
+          <tr>
+            {row.cells.map((cellText) =>
+              rowIndex === 0 ? (
+                <th class="border border-white/10 bg-yellow p-4 font-black uppercase text-lg text-white">
+                  {cellText || ''}
+                </th>
+              ) : (
+                <td class="border border-white/10 p-4 bg-grey-dark text-white font-medium">
+                  {cellText || ''}
+                </td>
+              )
+            )}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

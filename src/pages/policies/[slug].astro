@@ -1,14 +1,25 @@
 ---
-export const prerender = false
+export const prerender = true
+
+export async function getStaticPaths() {
+  const policies = await getPolicies()
+  return policies
+    .filter((policy) => policy.slug?.current)
+    .map((policy) => ({
+      params: { slug: policy.slug.current },
+    }))
+}
+
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug } from '../../lib/sanity'
-import { renderPortableText } from '../../lib/portableText'
-import { wrapSectionsInBoxes } from '../../lib/sectionWrapper'
+import { getDocumentBySlug, getPolicies } from '../../lib/sanity'
+import { PortableText } from 'astro-portabletext'
+import CustomLink from '../../components/portable-text/CustomLink.astro'
+import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import type { PolicyKeyPoint } from '../../types/sanity'
 import '../../styles/global.css'
@@ -41,6 +52,7 @@ interface Policy {
   evidenceAndPrecedent?: string
   implementationOutline?: string
   // Metadata
+  _updatedAt?: string
   cost?: string
   funding?: string
   body?: PortableTextBlock[]
@@ -58,14 +70,35 @@ if (!policy) {
   return Astro.redirect('/404')
 }
 
-const bodyHtml = policy.body ? wrapSectionsInBoxes(renderPortableText(policy.body)) : ''
+const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
 
-const applyHash = (text: string) =>
+const slugify = (text: string) =>
   text
     .toLowerCase()
-    .replace(/<[^>]*>/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '')
+
+// Split blocks into h2-delimited sections
+const bodySections: Array<{ title: string; id: string; blocks: PortableTextBlock[] }> = []
+const preamble: PortableTextBlock[] = []
+let currentSection: { title: string; id: string; blocks: PortableTextBlock[] } | null = null
+
+if (policy.body) {
+  for (const block of policy.body) {
+    if (block._type === 'block' && block.style === 'h2') {
+      const title = block.children?.map((c: any) => c.text).join('') || ''
+      const id = slugify(title)
+      currentSection = { title, id, blocks: [block] }
+      bodySections.push(currentSection)
+    } else if (currentSection) {
+      currentSection.blocks.push(block)
+    } else {
+      preamble.push(block)
+    }
+  }
+}
+
+const applyHash = slugify
 
 const getPolicyIcon = (icon?: string) => {
   if (!icon) return null
@@ -209,6 +242,18 @@ const metaDescription = policy.seoDescription || policy.summary
       >
         {policy.summary}
       </p>
+      {
+        policy._updatedAt && (
+          <p class="mt-3 text-xs font-black uppercase tracking-widest text-white/50">
+            Updated:{' '}
+            {new Date(policy._updatedAt).toLocaleDateString('en-AU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </p>
+        )
+      }
     </div>
   </div>
 
@@ -432,11 +477,38 @@ const metaDescription = policy.seoDescription || policy.summary
 
       {/* ── Body (portable text) ── */}
       {
-        bodyHtml && (
+        bodySections.length > 0 || preamble.length > 0 ? (
           <article class="prose prose-lg max-w-none">
-            <div set:html={bodyHtml} />
+            {preamble.length > 0 && (
+              <PortableText
+                value={preamble}
+                components={{
+                  mark: { link: CustomLink },
+                  type: { table: TableBlock },
+                }}
+              />
+            )}
+            {bodySections.map((section, i) => {
+              const bgColor = sectionColors[i % sectionColors.length]
+              return (
+                <div class="brutal-section mb-12">
+                  <h2 class={`brutal-section-header ${bgColor}`} id={section.id}>
+                    {section.title}
+                  </h2>
+                  <div class="brutal-section-content">
+                    <PortableText
+                      value={section.blocks}
+                      components={{
+                        mark: { link: CustomLink },
+                        type: { table: TableBlock },
+                      }}
+                    />
+                  </div>
+                </div>
+              )
+            })}
           </article>
-        )
+        ) : null
       }
 
       {/* ── Back / CTA row ── */}
