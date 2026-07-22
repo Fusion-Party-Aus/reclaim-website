@@ -15,6 +15,18 @@ export interface PortableTextBlock {
 }
 
 /**
+ * Extract plain text from Portable Text blocks (strips all marks/formatting).
+ */
+export function portableTextToPlainText(blocks: PortableTextBlock[] | undefined | null): string {
+  if (blocks == null || !Array.isArray(blocks)) return ''
+  return blocks
+    .filter((b) => b._type === 'block' && b.children)
+    .map((b) => b.children!.map((c) => c.text).join(''))
+    .join(' ')
+    .trim()
+}
+
+/**
  * Render a child span with marks (bold, italic, links, etc.)
  */
 function renderSpan(
