@@ -75,9 +75,13 @@ export default defineConfig({
         studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
       },
     }),
-    indexNow({
-      key: process.env.INDEXNOW_KEY,
-    }),
+    ...(process.env.INDEXNOW_KEY?.trim()
+      ? [
+          indexNow({
+            key: process.env.INDEXNOW_KEY.trim(),
+          }),
+        ]
+      : []),
     astroNoIndex({
       allow: ['vic.fusionparty.org.au', 'fusionparty.org.au'],
     }),
