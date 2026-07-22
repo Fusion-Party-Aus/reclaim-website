@@ -13,6 +13,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
+  site: process.env.SITE_URL || 'https://vic.fusionparty.org.au',
   integrations: [
     icon({
       include: {
