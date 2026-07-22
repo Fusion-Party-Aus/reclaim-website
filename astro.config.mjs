@@ -24,7 +24,11 @@ export default defineConfig({
       },
     }),
     agentsSummary(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !['/403/', '/404/', '/500/', '/503/', '/slides/', '/coming-soon/', '/no-results/', '/offline/', '/letterhead/', '/design-system/', '/login/']
+          .some((path) => page.endsWith(path)),
+    }),
     aiReadiness({
       site: 'https://vic.fusionparty.org.au',
       organization: {
