@@ -180,7 +180,7 @@ Where exploitation is carried through labour hire, subcontracting, franchising, 
 
 **Residual risks**
 
-Even with stronger legal protections, some workers will still be hard to reach where exploitation is tied to debt, coercive relationships, language barriers, or trafficking. The reform reduces silence as a business tool, but it cannot remove every barrier that keeps people from seeking help.
+Even with stronger legal protections, some workers will still be hard to reach where exploitation is tied to debt, coercive relationships, language barriers, or trafficking. Those protections reduce silence as a business tool, but it cannot remove every barrier that keeps people from seeking help.
 
 **Implementation outline**
 
@@ -324,11 +324,11 @@ Health systems do not fail only because funding is too low. They also fail when 
 
 **Planning basis**
 
-This reform is about tying health workforce and service-capacity planning to projected demand. That means using regular demand projections, training and placement targets, service-capacity benchmarks, and funding agreements that reflect where growth is occurring and what kinds of care will be needed. The point is not to predict the future perfectly. It is to stop growth in health demand being treated as a surprise each time fast-growing areas fall behind.
+This ties health workforce and service-capacity planning to projected demand. That means using regular demand projections, training and placement targets, service-capacity benchmarks, and funding agreements that reflect where growth is occurring and what kinds of care will be needed. The point is not to predict the future perfectly. It is to stop growth in health demand being treated as a surprise each time fast-growing areas fall behind.
 
 **Federal role**
 
-The federal government does not run every part of the health system, but it shapes the national workforce and service picture through Medicare, university and training settings, primary care policy, and intergovernmental funding agreements. That makes it the right level of government to require a planning framework that links workforce supply, training pipelines, and service benchmarks to projected population demand. The National Health Reform Agreement already provides a federal-state structure for public hospital funding and roles; this reform would make demand-linked planning a more explicit part of that structure.
+The federal government does not run every part of the health system, but it shapes the national workforce and service picture through Medicare, university and training settings, primary care policy, and intergovernmental funding agreements. That makes it the right level of government to require a planning framework that links workforce supply, training pipelines, and service benchmarks to projected population demand. The National Health Reform Agreement already provides a federal-state structure for public hospital funding and roles; this would make demand-linked planning a more explicit part of that structure.
 
 **Geographic distribution**
 
@@ -336,7 +336,7 @@ A national headcount is not enough. Capacity pressure is often felt first in out
 
 **Residual risks**
 
-Even with stronger planning, workforce and service growth will not move evenly across all places and specialties. Training pipelines are slow, local conditions vary, and sudden shifts in population or illness patterns can still create pressure faster than the system can respond. This reform makes those gaps easier to see and address earlier, but it cannot remove every lag built into a large national health system.
+Even with stronger planning, workforce and service growth will not move evenly across all places and specialties. Training pipelines are slow, local conditions vary, and sudden shifts in population or illness patterns can still create pressure faster than the system can respond. This makes those gaps easier to see and address earlier, but it cannot remove every lag built into a large national health system.
 
 **Implementation outline**
 
@@ -1245,7 +1245,7 @@ Budget legislation and tax law amendments identify, catalogue, and repeal define
 
 Australia already requires major facilities to account for emissions but there are weaknesses and liability is not total. In a proper full-liability system, every tonne emitted must be matched with a credit. The strength of the system depends entirely on the integrity and scarcity of those credits.
 
-If credits do not represent real and lasting emissions reductions, compliance becomes cheap without pollution falling. This reform protects the integrity and discipline of the credit supply.
+If credits do not represent real and lasting emissions reductions, compliance becomes cheap without pollution falling. This protects the integrity and discipline of the credit supply.
 
 **Core integrity rules**
 
@@ -1314,7 +1314,7 @@ Making Australia a country where small businesses can compete, grow, and innovat
 
 **Design rationale**
 
-Small businesses typically have limited pricing power, limited access to hedging, and limited capacity to absorb rapid cost increases. This reform is intended as a temporary counter-cyclical stabiliser that increases fiscal pressure on large firms when inflation is above the target band, with the aim of reducing inflation persistence and volatility that disproportionately disrupts small business operations.
+Small businesses typically have limited pricing power, limited access to hedging, and limited capacity to absorb rapid cost increases. Thise temporary uplift would function as a counter-cyclical stabiliser, increasing fiscal pressure on large firms when inflation is above the target band, with the aim of reducing inflation persistence and volatility that disproportionately disrupts small business operations.
 
 **Key design questions for scrutiny**
 
@@ -1366,7 +1366,7 @@ Legislation would define corporate coverage, group treatment, the reference infl
 
 **Design rationale**
 
-Small businesses often deliver labour, goods, or services well before they are paid, while larger customers can use delayed payment as a de facto source of working capital. This reform shifts financing responsibility back onto the party with greater balance-sheet capacity by making payment timing a binding obligation rather than a discretionary commercial practice.
+Small businesses often deliver labour, goods, or services well before they are paid, while larger customers can use delayed payment as a de facto source of working capital. This shifts financing responsibility back onto the party with greater balance-sheet capacity by making payment timing a binding obligation rather than a discretionary commercial practice.
 
 **Payment discipline framework**
 
@@ -1415,17 +1415,17 @@ Legislation would define the covered large-customer class, protected small-busin
 
 **Design rationale**
 
-In concentrated consumer-facing markets, large firms can often increase profits through market control more easily than through better products, lower costs, or improved service. This reform is designed to alter that incentive by making excess market dominance progressively less attractive as a profit strategy, so returns are more closely tied to innovation and competitive performance rather than scale alone.
+In concentrated consumer-facing markets, large firms can often increase profits through market control more easily than through better products, lower costs, or improved service. We would alter that incentive by making excess market dominance progressively less attractive as a profit strategy, so returns are more closely tied to innovation and competitive performance rather than scale alone.
 
 **Market share discipline**
 
-1. The reform works by linking additional company tax liability to the extent that a firm exceeds a competitive market share threshold within its sector, rather than applying a flat penalty once a threshold is crossed. This matters because it creates a graduated incentive to avoid further concentration without treating every firm above the line as if it posed the same competitive risk.
+1. This works by linking additional company tax liability to the extent that a firm exceeds a competitive market share threshold within its sector, rather than applying a flat penalty once a threshold is crossed. This matters because it creates a graduated incentive to avoid further concentration without treating every firm above the line as if it posed the same competitive risk.
 2. ACCC-defined sector thresholds matter because competitive market structure varies across industries, and a single universal share cap would not reflect the same level of concentration risk in every market. The rule therefore depends on whether sector boundaries and competitive thresholds are defined consistently enough to avoid arbitrary treatment across comparable firms.
 
 **Innovation and competitive behaviour**
 
-1. Dominant firms may be expected to respond by seeking higher margins through internal productivity gains, service improvements, or more efficient operations rather than simply expanding market share further. That change in incentive is the central purpose of the reform, because profits become easier to grow through better business performance than through continued concentration once the additional tax rate begins to scale upward.
-2. The reform can also create pressure for large firms to shed underperforming assets or avoid acquisitions that add scale without improving productivity, because growth that pushes further past the competitive threshold carries a rising tax cost. Where that occurs, market space opens more readily for smaller competitors and new entrants without requiring constant case-by-case intervention to produce the same effect.
+1. Dominant firms may be expected to respond by seeking higher margins through internal productivity gains, service improvements, or more efficient operations rather than simply expanding market share further. That change in incentive is the point: profits become easier to grow through better business performance than through continued concentration once the additional tax rate begins to scale upward.
+2. This can also create pressure for large firms to shed underperforming assets or avoid acquisitions that add scale without improving productivity, because growth that pushes further past the competitive threshold carries a rising tax cost. Where that occurs, market space opens more readily for smaller competitors and new entrants without requiring constant case-by-case intervention to produce the same effect.
 
 **System interaction**
 
@@ -1434,7 +1434,7 @@ This measure interacts closely with merger control, misuse of market power rules
 **Risk and failure modes**
 
 1. Firms may be expected to challenge sector definitions, restructure across related entities, or diversify across adjacent markets in ways that reduce their measured exposure without materially changing underlying market power. Integrity depends on whether the rule follows substantive economic control and market position rather than narrow corporate form or convenient classification.
-2. The reform can also underperform if competitive thresholds are set too high to change behaviour, too low to distinguish genuine dominance from ordinary scale, or too inconsistently across sectors to sustain confidence in the system. In practice, the discipline of the tax depends less on the headline mechanism than on credible threshold-setting and review processes.
+2. The tax can also underperform if competitive thresholds are set too high to change behaviour, too low to distinguish genuine dominance from ordinary scale, or too inconsistently across sectors to sustain confidence in the system. In practice, the discipline of the tax depends less on the headline mechanism than on credible threshold-setting and review processes.
 
 **Implementation outline**
 
@@ -1462,7 +1462,7 @@ Legislation would define the covered corporate class, require sector allocation 
 
 **Design rationale**
 
-Australia has largely maintained de facto net neutrality through market incentives, existing telecommunications settings, and commercial expectations of open internet access rather than through a dedicated statutory guarantee. That has helped keep providers from overtly discriminating between lawful services in practice, but it leaves neutrality dependent on conditions that can change as markets consolidate, vertically integrate, or develop stronger incentives to monetise network control. This reform is intended to turn a market norm into an enforceable baseline so internet access remains a general-purpose service rather than a gatekeeping tool shaped by commercial preference.
+Australia has largely maintained de facto net neutrality through market incentives, existing telecommunications settings, and commercial expectations of open internet access rather than through a dedicated statutory guarantee. That has helped keep providers from overtly discriminating between lawful services in practice, but it leaves neutrality dependent on conditions that can change as markets consolidate, vertically integrate, or develop stronger incentives to monetise network control. We would turn that market norm into an enforceable baseline so internet access remains a general-purpose service rather than a gatekeeping tool shaped by commercial preference.
 
 **Network neutrality framework**
 
@@ -1476,7 +1476,7 @@ Australia has largely maintained de facto net neutrality through market incentiv
 
 **Risk and failure modes**
 
-The reform can underperform if it assumes today’s relatively neutral market behaviour will continue without recognising that current restraint is not grounded in a clear legislative framework. Internet providers may still be expected to shift discriminatory behaviour into technical classifications, interconnection arrangements, zero-rating structures, or quality-of-service categories that preserve commercial preference without obvious blocking or throttling. Integrity therefore depends on whether the rule follows practical effect rather than only overt forms of discrimination, and whether exceptions for congestion, safety, or specialised services are kept narrow enough that future incentives cannot erode neutrality through indirect means.
+The rules can underperform if they assume today’s relatively neutral market behaviour will continue without recognising that current restraint is not grounded in a clear legislative framework. Internet providers may still be expected to shift discriminatory behaviour into technical classifications, interconnection arrangements, zero-rating structures, or quality-of-service categories that preserve commercial preference without obvious blocking or throttling. Integrity therefore depends on whether the rule follows practical effect rather than only overt forms of discrimination, and whether exceptions for congestion, safety, or specialised services are kept narrow enough that future incentives cannot erode neutrality through indirect means.
 
 **System interaction**
 
@@ -1508,12 +1508,12 @@ Legislation would define prohibited discriminatory treatment, set narrow technic
 
 **Design rationale**
 
-Large digital platforms derive structural advantage from collecting and retaining far more personal information than is needed to provide the service the user actually requested. This reform is intended to shift digital markets away from surveillance-based competition by limiting excess data extraction and giving users enforceable control over the information platforms hold about them.
+Large digital platforms derive structural advantage from collecting and retaining far more personal information than is needed to provide the service the user actually requested. We would shift digital markets away from surveillance-based competition by limiting excess data extraction and giving users enforceable control over the information platforms hold about them.
 
 **Data minimisation framework**
 
 1. The central rule is that collection, retention, and commercial use of personal data must be limited to what is strictly necessary to deliver the requested service. This matters because many current platform advantages are built not on better core services but on the ability to convert broad user monitoring into advertising, profiling, and behavioural leverage.
-2. User rights to access, correction, portability, and deletion matter because limiting data extraction alone is not enough where large platforms already hold extensive information and can use retention or lock-in to preserve advantage. The reform therefore combines forward limits on data use with rights that let users contest and reduce existing informational asymmetries.
+2. User rights to access, correction, portability, and deletion matter because limiting data extraction alone is not enough where large platforms already hold extensive information and can use retention or lock-in to preserve advantage. The package therefore combines forward limits on data use with rights that let users contest and reduce existing informational asymmetries.
 
 **Platform power and competitive effects**
 
@@ -1523,7 +1523,7 @@ Large digital platforms derive structural advantage from collecting and retainin
 **Risk and failure modes**
 
 1. Large platforms may be expected to reclassify optional data collection as “necessary”, rely on bundled consent, or fragment services so surveillance functions appear operationally indispensable. Integrity depends on whether necessity is defined objectively and enforced against the real function of the service rather than the platform’s preferred business model.
-2. The reform can also underperform if access, portability, correction, or deletion rights exist formally but are slowed, obscured, or made technically incomplete in practice. Effective privacy reform therefore depends on enforceable standards for response time, data format, scope, and regulator-backed remedies rather than rights that users must negotiate alone.
+2. Those rights can also underperform if access, portability, correction, or deletion rights exist formally but are slowed, obscured, or made technically incomplete in practice. Effective privacy reform therefore depends on enforceable standards for response time, data format, scope, and regulator-backed remedies rather than rights that users must negotiate alone.
 
 **System interaction**
 
@@ -1555,7 +1555,7 @@ Legislation would define necessity-based collection limits, regulate retention a
 
 **Design rationale**
 
-Small businesses are often protected on paper from unfair contract terms, but those protections can be weak in practice where challenging a term requires legal costs, delay, and procedural effort far beyond what a smaller firm can safely absorb. This reform is intended to make unfair contract protections usable in real commercial relationships by creating a faster and lower-cost pathway that matches the scale of the businesses affected. This direction is consistent with ASBFEO’s access-to-justice work, which identified the absence of a cost-effective and timely binding pathway as a major weakness in small business enforcement.
+Small businesses are often protected on paper from unfair contract terms, but those protections can be weak in practice where challenging a term requires legal costs, delay, and procedural effort far beyond what a smaller firm can safely absorb. We would make unfair contract protections usable in real commercial relationships by creating a faster and lower-cost pathway that matches the scale of the businesses affected. This direction is consistent with ASBFEO’s access-to-justice work, which identified the absence of a cost-effective and timely binding pathway as a major weakness in small business enforcement.
 
 **Dispute access framework**
 
@@ -1567,7 +1567,7 @@ This approach aligns with ASBFEO’s recommendation that small businesses need a
 **Commercial discipline and bargaining effects**
 
 1. A credible low-cost dispute pathway can alter behaviour before disputes even arise, because large firms become less able to assume that one-sided terms will go unchallenged simply because the supplier cannot afford to contest them.
-2. The reform is not intended to turn every contract disagreement into a formal proceeding, but to create a realistic enforcement backstop that improves bargaining discipline around standard form agreements and repeat supplier relationships.
+2. The pathway is an enforcement backstop, not a route for turning every contract disagreement into a formal proceeding, and should improve bargaining discipline around standard form agreements and repeat supplier relationships.
 
 **Risk and failure modes**
 
@@ -1604,7 +1604,7 @@ Legislation would define the covered small-business class, eligible contract dis
 
 **Design rationale**
 
-Many small businesses enter standard form agreements without affordable legal support, even where the contract governs critical issues such as payment timing, liability allocation, termination rights, or dispute pathways. This reform is intended to reduce preventable contract harm by making basic compliance support available before businesses commit themselves to terms they may not fully understand or be well placed to resist. It builds on the existing preventive logic already reflected in ACCC small-business contract guidance and ASBFEO’s advice that businesses should seek help early rather than only after problems escalate.
+Many small businesses enter standard form agreements without affordable legal support, even where the contract governs critical issues such as payment timing, liability allocation, termination rights, or dispute pathways. We would reduce preventable contract harm by making basic compliance support available before businesses commit themselves to terms they may not fully understand or be well placed to resist. It builds on the existing preventive logic already reflected in ACCC small-business contract guidance and ASBFEO’s advice that businesses should seek help early rather than only after problems escalate.
 
 **Preventive compliance framework**
 
@@ -1614,12 +1614,12 @@ Many small businesses enter standard form agreements without affordable legal su
 **Commercial capability and market effects**
 
 1. Preventive support can improve bargaining outcomes even where the small business does not have equal negotiating power, because the stronger party is less able to rely on confusion, time pressure, or legal opacity as a substitute for fair dealing.
-2. The reform also helps smaller firms participate more confidently in routine commercial contracting without requiring every agreement to be escalated to full private legal advice, which is often unaffordable relative to the value of the contract.
+2. This also helps smaller firms participate more confidently in routine commercial contracting without requiring every agreement to be escalated to full private legal advice, which is often unaffordable relative to the value of the contract.
 
 **Risk and failure modes**
 
-1. The reform can underperform if templates become outdated, guidance remains too generic, or review services are too slow, too narrow, or too oversubscribed to be useful at real commercial speed. In practice, the value of preventive compliance support depends on whether it is current, accessible, and responsive enough to match business decision timelines.
-2. It can also underperform if stronger counterparties treat regulator-issued templates as optional while continuing to impose take-it-or-leave-it agreements built around terms that small suppliers still cannot realistically refuse. The reform therefore works best as a complement to dispute rights and unfair contract enforcement rather than as a substitute for them.
+1. Preventive support can underperform can underperform if templates become outdated, guidance remains too generic, or review services are too slow, too narrow, or too oversubscribed to be useful at real commercial speed. In practice, the value of preventive compliance support depends on whether it is current, accessible, and responsive enough to match business decision timelines.
+2. It can also underperform if stronger counterparties treat regulator-issued templates as optional while continuing to impose take-it-or-leave-it agreements built around terms that small suppliers still cannot realistically refuse. This support therefore works best as a complement to dispute rights and unfair contract enforcement rather than as a substitute for them.
 
 **System interaction**
 
@@ -1651,7 +1651,7 @@ Legislation or intergovernmental agreements would define agency responsibilities
 
 **Design rationale**
 
-Intellectual property law is intended to reward innovation and disclosure, but it can also be used to entrench market power where rights are too broad, too long, too detached from active use, or too expensive to challenge. This reform is intended to narrow the gap between the formal purpose of intellectual property and the way it is sometimes used in practice against smaller firms that lack the resources to contest overreach. Part of this direction is consistent with existing Australian policy work, including the Productivity Commission’s recommendation that Australia adopt a fair use exception.
+Intellectual property law is intended to reward innovation and disclosure, but it can also be used to entrench market power where rights are too broad, too long, too detached from active use, or too expensive to challenge. We would narrow the gap between the formal purpose of intellectual property and the way it is sometimes used in practice against smaller firms that lack the resources to contest overreach. Part of this direction is consistent with existing Australian policy work, including the Productivity Commission’s recommendation that Australia adopt a fair use exception.
 
 **Innovation and disclosure discipline**
 
@@ -1667,7 +1667,7 @@ The fair-use component is consistent with prior Productivity Commission advice t
 
 **Risk and failure modes**
 
-1. The reform can underperform if rights are narrowed unevenly across different forms of intellectual property, leaving broad exclusionary leverage intact through adjacent regimes, licensing structures, or portfolio-based enforcement strategies. Its practical effect therefore depends on whether the package operates coherently across patents, copyright, and related commercial control mechanisms.
+1. This reform package can underperform if rights are narrowed unevenly across different forms of intellectual property, leaving broad exclusionary leverage intact through adjacent regimes, licensing structures, or portfolio-based enforcement strategies. Its practical effect therefore depends on whether the package operates coherently across patents, copyright, and related commercial control mechanisms.
 2. It can also underperform if active-use requirements, fair-use protections, or capped-cost procedures are drafted narrowly enough that sophisticated rights-holders can comply formally while preserving most of the same strategic advantage in practice. The discipline of the reform depends on whether the law targets functional overreach rather than only the most explicit forms of abuse.
 
 **System interaction**
@@ -1714,7 +1714,7 @@ Australia’s House of Representatives currently combines preferential voting wi
 
 **Representation framework**
 
-1. Five-member electorates matter because they create space for meaningful local pluralism without dissolving representation into a purely national list system. The reform is intended to keep representation anchored to recognisable communities while allowing more than one political view to win representation from the same electorate.
+1. Five-member electorates matter because they create space for meaningful local pluralism without dissolving representation into a purely national list system. The aim is to keep representation anchored to recognisable communities while allowing more than one political view to win representation from the same electorate.
 2. Candidate-block voting matters because it allows parties and independents to present coherent electoral offerings while still using preferential voting to express ranking between alternatives. This preserves the Australian preference for ranked choice while avoiding the sharper vote-wasting pressures created by single-seat contests.
 3. National corrective seats matter because local multi-member contests alone can still leave meaningful support under-represented when it is broad but unevenly distributed. The second stage exists to reduce that residual distortion rather than to replace the local basis of representation.
 
@@ -1725,7 +1725,7 @@ Australia’s House of Representatives currently combines preferential voting wi
 
 **Risk and failure modes**
 
-1. A system like this can underperform if electorate boundaries are drawn too broadly for communities to recognise their representatives, or too narrowly for the system to generate meaningful pluralism within seats. Its practical success therefore depends on electorate design that balances community identity, population equality, and sufficient district magnitude. This policy recommends electorates be drawn such that a single member of parliament does not represent more than 100,000 voters.
+1. A system like this can underperform if electorate boundaries are drawn too broadly for communities to recognise their representatives, or too narrowly for the system to generate meaningful pluralism within seats. Its practical success therefore depends on electorate design that balances community identity, population equality, and sufficient district magnitude. A ceiling of around 100,000 voters per member is a useful starting point, balancing local representation against district magnitude while allowing adjustment for geography and population distribution.
 2. It can also underperform if the national corrective stage is too weak to meaningfully reduce under-representation or so expansive that it overrides the local character of the system and turns representation into a detached national list in all but name. The corrective stage therefore needs to remain limited to clear under-representation rather than becoming a general top-up mechanism. Under the Wolfendale System, additional representatives are assigned only while a party remains under-represented by more than one whole representative’s worth of the national primary vote, and that broader correction step is switched off if every elected party would receive one corrective representative before any party receives a second.
 3. Grouped candidacies can raise concerns about whether party insiders will shape representation through internal ordering decisions rather than open voter choice between individual candidates. In this system, that risk is controlled by requiring the internal order of each candidate block to be fixed and published at nomination, while the order of blocks on the ballot remains subject to existing public ballot processes. If voters object to how a party orders its block, that becomes a matter of electoral accountability because parties are easier to reward or punish under this system.
 
@@ -1922,7 +1922,7 @@ Amendments to the National Anti-Corruption Commission Act establish expanded jur
 
 **Design rationale**
 
-Whistleblowers are often the point at which hidden corruption, unlawful conduct, or serious institutional failure becomes visible at all. In practice, however, the personal cost of disclosure is frequently so severe that silence becomes the safer option even where wrongdoing is substantial. This reform is intended to change that calculation by making whistleblowing legally clearer, materially survivable, and institutionally supported across the whole economy rather than treating protection as a narrow or fragmented exception.
+Whistleblowers are often the point at which hidden corruption, unlawful conduct, or serious institutional failure becomes visible at all. In practice, however, the personal cost of disclosure is frequently so severe that silence becomes the safer option even where wrongdoing is substantial. We would change that calculation by making whistleblowing legally clearer, materially survivable, and institutionally supported across the whole economy rather than treating protection as a narrow or fragmented exception.
 
 **Unified protection framework**
 
@@ -1983,11 +1983,11 @@ A single national framework would consolidate existing protections, define prote
 
 **Design rationale**
 
-Media concentration carries political and cultural power beyond ordinary commercial scale because control over information channels shapes what audiences see, what issues remain visible, and which voices can reach the public at all. This reform is intended to stop ownership concentration itself from becoming a durable source of influence regardless of journalistic quality or public trust.
+Media concentration carries political and cultural power beyond ordinary commercial scale because control over information channels shapes what audiences see, what issues remain visible, and which voices can reach the public at all. We would stop ownership concentration itself from becoming a durable source of influence regardless of journalistic quality or public trust.
 
 **Ownership control framework**
 
-1. The reform depends on defined national and regional concentration thresholds because media influence can accumulate differently across broadcast, print, and digital news markets, and because dominance in a regional market can be as significant as broad national reach.
+1. The framework depends on defined national and regional concentration thresholds because media influence can accumulate differently across broadcast, print, and digital news markets, and because dominance in a regional market can be as significant as broad national reach.
 2. Divestiture and structural separation matter because the underlying problem is concentrated ownership and coordinated control, not merely isolated anti-competitive conduct. Once concentration exceeds the permitted level, the market structure itself must change rather than being managed only through ongoing behavioural conditions.
 
 **Pluralism and democratic resilience**
@@ -1998,7 +1998,7 @@ Media concentration carries political and cultural power beyond ordinary commerc
 **Risk and failure modes**
 
 1. Media groups may be expected to use cross-holdings, affiliates, licensing arrangements, or platform partnerships to preserve effective control while appearing to comply formally with ownership limits. Integrity depends on whether the rule follows substantive control and influence rather than narrow legal ownership alone.
-2. The reform can also underperform if concentration thresholds are set too loosely, if digital news distribution is excluded from meaningful assessment, or if divested assets are transferred into nominally separate entities that remain commercially dependent on the original group. Effective structural separation depends on strong control tests and credible post-separation independence requirements.
+2. The framework can also underperform if concentration thresholds are set too loosely, if digital news distribution is excluded from meaningful assessment, or if divested assets are transferred into nominally separate entities that remain commercially dependent on the original group. Effective structural separation depends on strong control tests and credible post-separation independence requirements.
 
 **System interaction**
 
@@ -2030,7 +2030,7 @@ Legislation would define the covered media classes, concentration metrics for na
 
 **Design rationale**
 
-Digital news markets now combine two separate problems: concentrated ownership in some parts of the sector and high access friction across the rest of it. Readers who want to compare reporting across multiple outlets often face repeated paywalls, repeated payment entry, and subscription structures designed to convert occasional reading into ongoing lock-in. This reform is intended to create a common payment rail for journalism so paid access remains commercially viable without requiring each outlet to trap readers inside its own closed billing system.
+Digital news markets now combine two separate problems: concentrated ownership in some parts of the sector and high access friction across the rest of it. Readers who want to compare reporting across multiple outlets often face repeated paywalls, repeated payment entry, and subscription structures designed to convert occasional reading into ongoing lock-in. We would create a common payment rail for journalism so paid access remains commercially viable without requiring each outlet to trap readers inside its own closed billing system.
 
 **Common payment rail**
 
@@ -2039,12 +2039,12 @@ Digital news markets now combine two separate problems: concentrated ownership i
 
 **Reader access and publisher incentives**
 
-1. The reform allows publishers to keep charging for journalism while making occasional cross-outlet reading easier, which is particularly important where readers want to compare reporting or access one article without entering a recurring payment relationship.
+1. The payment rail allows publishers to keep charging for journalism while making occasional cross-outlet reading easier, which is particularly important where readers want to compare reporting or access one article without entering a recurring payment relationship.
 2. Smaller publishers stand to benefit where article-level access becomes easier, because they can reach readers who are unwilling to take out another full subscription but are willing to pay for individual reporting when the transaction cost is low.
 
 **Risk and failure modes**
 
-1. Large publishers may be expected to preserve subscription lock-in through pricing structures, token-unfriendly design, delayed token access, or premium features reserved for direct subscribers. The reform is therefore only effective if token access is functionally equivalent for ordinary paid content rather than being nominally available but commercially marginalised.
+1. Large publishers may be expected to preserve subscription lock-in through pricing structures, token-unfriendly design, delayed token access, or premium features reserved for direct subscribers. The system is therefore only effective if token access is functionally equivalent for ordinary paid content rather than being nominally available but commercially marginalised.
 2. The system can also underperform if token purchasing, redemption, or article unlocking is cumbersome enough that readers continue to default to existing subscription silos. In practice, the value of the payment rail depends on whether it is simpler than current fragmented payment pathways rather than merely more standardised on paper.
 
 **System interaction**
@@ -2087,7 +2087,7 @@ This reform focuses on the parts of the gambling system that operate nationally 
 
 **Advertising and inducements**
 
-Advertising and inducements do different jobs for the same business model. Advertising makes betting feel normal, familiar, and constantly present in sport and everyday media. Inducements such as bonus bets, deposit matches, odds boosts, and similar offers are used to push people into starting, returning, or chasing losses. A partial ad regime still leaves room for gambling to stay culturally present and commercially aggressive. That is why this reform bans both: the wider promotion that normalises betting, and the direct offers that are designed to trigger more of it.
+Advertising and inducements do different jobs for the same business model. Advertising makes betting feel normal, familiar, and constantly present in sport and everyday media. Inducements such as bonus bets, deposit matches, odds boosts, and similar offers are used to push people into starting, returning, or chasing losses. A partial ad regime still leaves room for gambling to stay culturally present and commercially aggressive. That is why the ban covers both: the wider promotion that normalises betting, and the direct offers that are designed to trigger more of it.
 
 **Consumer protection architecture**
 
@@ -2099,7 +2099,7 @@ The main enforcement model should be a national regulator with strong monitoring
 
 **Residual trade-offs**
 
-Even with the system working as intended, some gambling harm will still occur because this reform reduces and interrupts harm rather than prohibiting online wagering altogether. A second residual trade-off is privacy: identity checks, behaviour monitoring, self-exclusion, and complaints handling all require strong safeguards around sensitive personal data. These are the remaining trade-offs of a regulated market, not failures of the enforcement architecture.
+Even with the system working as intended, some gambling harm will still occur because these controls reduce and interrupt harm rather than prohibiting online wagering altogether. A second residual trade-off is privacy: identity checks, behaviour monitoring, self-exclusion, and complaints handling all require strong safeguards around sensitive personal data. These are the remaining trade-offs of a regulated market, not failures of the enforcement architecture.
 
 **Implementation outline**
 
@@ -2311,7 +2311,7 @@ Humanitarian settlement works best when support is organised locally and early, 
 
 **Settlement model**
 
-This reform builds on the fact that Australia already settles humanitarian entrants through recognised locations and community-linked models. The change is to make local readiness more deliberate, more visible, and more coordinated, so placements are tied to places where the main support systems are actually able to work together.
+The model builds on the fact that Australia already settles humanitarian entrants through recognised locations and community-linked arrangements. The change is to make local readiness more deliberate, more visible, and more coordinated, so placements are tied to places where the main support systems are actually able to work together.
 
 **Local readiness**
 
@@ -2517,14 +2517,277 @@ Federal law would create the office with defined functions in standard-setting c
 
 ## Update Our Schools
 
-- Deliver Gonski reforms now
-- Fund education properly
-- Teach critical thinking in every classroom
-- Teach democracy in high school
-- Provide skills training for changing industries
-- Keep HECS/HELP accessible
-- Cut university bureaucracy
-- Give researchers funding security
+### **Deliver Full Funding for Public Schools**
+
+1. Public-school funding levels will reach at least 100% of a periodically reviewed Schooling Resource Standard by 2030, with earlier existing deadlines retained, binding annual federal and state contribution milestones, indirect expenditure excluded from funding shares, and independent annual compliance review.
+
+   1. Public schools will have the recurrent resources assessed as necessary to meet their students’ educational needs.
+   2. Students with greater educational needs will have more resources available to support their learning.
+   3. Teachers and school leaders will have greater certainty to plan staffing, specialist support, and learning programs over multiple years.
+   4. Families and communities will have a clearer basis for holding governments to their school-funding commitments.
+   5. Public education will have a more stable funding foundation across election cycles.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+The Better and Fairer Schools Agreement puts every public-school system on a path to full Schooling Resource Standard funding, but the transition is uneven and parts of the national funding framework continue through to 2034. Some jurisdictions have already reached, or are scheduled to reach, headline 100% SRS funding much earlier, while the newer agreements also phase out indirect expenditure and strengthen what counts toward full funding. Earlier milestones would be preserved, while the complete funding transition would be finished nationally by 2030. Binding annual milestones and independent compliance review would then make that funding path harder for future governments to delay or unwind.
+
+**Funding benchmark**
+
+The Schooling Resource Standard (SRS) would remain the national recurrent-funding benchmark, combining a base amount with additional loadings for student and school needs. Its base, loadings and indexation settings would be periodically reviewed so full funding continues to reflect a current estimate of educational resource needs rather than simply perpetuating an inherited benchmark. The present base amounts derive from a benchmark established in 2018, and the current agreement already provides for a review of the SRS base and loading methodology.
+
+**Funding integrity**
+
+Annual federal and state contribution schedules would be set through school-funding law and bilateral agreements, while any jurisdiction already due to reach full funding before 2030 would retain that earlier date. Only eligible recurrent school expenditure would count towards the required funding shares. Existing independent scrutiny of state and territory contribution requirements would continue through the National School Resourcing Board or its successor.
+
+**System-level allocation**
+
+Full SRS funding is a commitment to adequately resource each public-school system, not to require every school to receive its individually calculated SRS as a direct cash allocation. States and territories may continue to redistribute resources between their schools through transparent needs-based funding arrangements and provide services at a system level where that better meets student needs.
+
+**Residual variation**
+
+No national formula can perfectly capture every school’s circumstances. States and territories would retain needs-based discretion to respond to unusual local costs, while independent SRS reviews would examine whether recurring funding gaps reveal deficiencies in the base amount, loadings, or indexation. Persistent patterns would therefore feed back into later recalibration of the national benchmark rather than accumulating unnoticed.
+
+**Implementation outline**
+
+Federal funding legislation and bilateral agreements would be updated so public-school systems not already reaching 100% of the SRS earlier do so by 2030. Annual contribution schedules and the phase-out of indirect expenditure would be aligned with that timetable, using the existing funding, compliance, and independent-review framework rather than creating a parallel system.
+
+**Reference**
+
+[Better and Fairer Schools Agreement 2025–2034 — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/resources/heads-agreement-better-and-fairer-schools-agreement-full-and-fair-funding-20252034)
+[Schooling Resource Standard — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/schooling-resource-standard)
+[How Australian Government funding for schools is distributed according to need — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/fact-sheets/how-australian-government-funding-schools-distributed-according-need)
+
+---
+
+</details>
+
+### **Free Teachers to Teach**
+
+1. School staffing and workload standards will move routine administration and other duties that do not require teacher expertise to dedicated support staff, set needs-based staffing benchmarks for education support officers, special education teachers, counsellors, specialist support, and administrative staff, and protect teacher time for teaching, planning, collaboration, and professional development through national school-funding agreements.
+
+   1. Teachers will spend more of their working time teaching, planning lessons, and supporting students.
+   2. Education support, counselling, administrative, and specialist staff will have clearer responsibility for work matched to their roles.
+   3. Students will have more reliable access to specialist, learning, and wellbeing support within their school.
+   4. Schools will have greater workforce stability as experienced teachers are more able to remain in the profession.
+   5. Teachers will have more capacity to keep their skills current and improve their practice with colleagues.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Teachers are increasingly expected to combine teaching with administration, compliance, student support, coordination, and other work that does not always require a qualified teacher. Where schools lack sufficient administrative, education-support, counselling, and specialist staff, those functions fall back onto teachers and school leaders, reducing the time available for teaching, preparation, collaboration, and professional development. The National Teacher Workforce Action Plan similarly identifies unnecessary workload as a contributor to teacher retention problems.
+
+**Staffing model**
+
+National staffing benchmarks would reflect student numbers and needs, including disability, additional learning needs, language needs, and wellbeing needs, rather than prescribe the same staffing mix for every school. Education support officers, special education teachers, counsellors, administrative staff, and other specialists could be provided directly within schools or through shared regional services where that better suits smaller or remote communities.
+
+**Workload boundary**
+
+Work should move away from teachers where it does not require their teaching qualifications or professional judgement. Curriculum, pedagogy, assessment, and the educational relationship with students would remain teacher responsibilities, while routine administration and specialist non-teaching functions would be assigned to staff trained for those roles.
+
+**Existing workforce reforms**
+
+The National Teacher Workforce Action Plan already includes workload reduction as a national priority. Its Workload Reduction Fund is supporting 27 pilots, including projects that add administrative and support staff or centralise work currently performed by teachers and school leaders. We would turn that approach into an enduring staffing and workload standard rather than a collection of pilots.
+
+**Residual boundary**
+
+Some school responsibilities naturally cross teaching, wellbeing, administration, and family engagement, so they cannot always be cleanly divided between professions. Better staffing can reduce unnecessary teacher workload, but some coordination between teachers and support staff will remain part of running a school well.
+
+**Implementation outline**
+
+National staffing and workload standards would be incorporated into federal-state school funding and reform agreements, with states and territories retaining responsibility for employment structures and local deployment. Evidence from the existing workload-reduction pilots would inform the initial staffing benchmarks and task boundaries.
+
+**Reference**
+
+[National Teacher Workforce Action Plan — Australian Government Department of Education](https://www.education.gov.au/national-teacher-workforce-action-plan)
+[Workload Reduction Fund Pilots — Australian Government Department of Education](https://www.education.gov.au/workload-reduction-pilots)
+
+---
+
+</details>
+
+### **Teach Students How Australia Works**
+
+1. Civics and citizenship education will become a mandatory, nationally aligned secondary-school course sequence with minimum teaching time, a practical pre-voting module before students leave school, and politically neutral curriculum and assessment standards covering Australian institutions and law, elections and preferential voting, rights and responsibilities, civic participation, critical reasoning, and media and information literacy.
+
+   1. Students will leave school with a working understanding of how Australian government, elections, and law operate.
+   2. First-time voters will be better prepared to enrol, vote preferentially, and participate in democratic processes.
+   3. Young Australians will be better able to assess political claims, evidence, and information sources for themselves.
+   4. Students will gain more experience reasoning through contested questions and engaging constructively with different views.
+   5. Australians will enter adulthood better equipped to use democratic institutions and hold public power to account.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Civics and Citizenship already exists within the Australian Curriculum and critical thinking is already intended to operate through it, but inclusion on paper has not produced consistent civic knowledge. In the 2024 national assessment, only 43% of Year 6 students and 28% of Year 10 students reached the proficient standard, both significantly below the 2019 results. A recent parliamentary inquiry also found substantial variation in how civics is actually delivered between jurisdictions and schools.
+
+**National curriculum**
+
+The curriculum would provide an identifiable and protected civics sequence rather than relying on civic knowledge to emerge incidentally across other subjects. It would cover how Parliament, government, courts, federalism, elections, preferential voting, and law work; the rights and responsibilities people hold; and the practical mechanisms available to participate in civic life.
+
+Critical reasoning, media literacy, and information literacy would be taught within that civic context so students practise evaluating evidence, competing claims, sources, persuasion, and misinformation rather than treating critical thinking as an abstract capability.
+
+**Teaching requirement**
+
+Years 9 and 10 would receive a minimum of 10 hours of civics and citizenship education each year, consistent with the recommendation of the 2025 parliamentary inquiry. Senior secondary students would also complete a practical civic module before leaving school, covering enrolment, voting, electoral systems, and the main ways citizens can engage with public institutions.
+
+**Political neutrality**
+
+Civics education should teach students how to think about public questions, not what political conclusions to reach. Curriculum and assessment would test knowledge, reasoning, use of evidence, and understanding of competing perspectives rather than agreement with a preferred political position. Contemporary contested issues can be used for learning where they are presented in a way that allows genuine examination and disagreement.
+
+**Delivery and assessment**
+
+Jurisdictions would report annually on how the national civics requirement is being delivered. Existing national Civics and Citizenship assessment would continue to measure proficiency, while nationally aligned teaching resources and professional development would support teachers in delivering the curriculum consistently. This follows the broad architecture recommended by the parliamentary inquiry without turning civics into another high-stakes individual testing regime.
+
+**Implementation outline**
+
+The next Australian Curriculum review would establish the nationally aligned civics sequence, minimum teaching requirements, and senior secondary module. Federal-state education agreements would support consistent implementation, reporting, teacher resources, and professional development while states and territories retain ordinary responsibility for school delivery.
+
+**Reference**
+
+[From Classroom to Community: Civics education and political participation in Australia — Joint Standing Committee on Electoral Matters](https://www.aph.gov.au/Parliamentary_Business/Committees/Joint/Electoral_Matters/Civicseducation/From_Classroom_to_Community/List_of_recommendations)
+[National Assessment Program — Civics and Citizenship results — ACARA.](https://www.acara.edu.au/reporting/national-report-on-schooling-in-australia/national-report-on-schooling-in-australia-2024)
+
+---
+
+</details>
+
+### **Make NAPLAN Help Students, Not Rank Schools**
+
+1. NAPLAN data-use and reporting rules will be refocused on student diagnosis and system monitoring, with public school comparisons limited to student progress measures, proficiency reporting retained, and students’ absolute achievement levels prohibited as a measure of individual teacher performance.
+
+   1. Students will receive a consistent national check of their literacy and numeracy strengths and needs.
+   2. Teachers will have assessment data they can use alongside classroom evidence to target learning support.
+   3. Teachers will be assessed through professional practice and multiple sources of evidence rather than a single cohort’s test scores.
+   4. Parents will have clearer information about how effectively schools help students progress.
+   5. Public accountability will focus more closely on student growth and proficiency than on headline school averages.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+NAPLAN provides a common national measure of literacy and numeracy in Years 3, 5, 7 and 9, and its earlier reporting now gives schools more useful diagnostic information during the school year. ACARA explicitly states that NAPLAN is a snapshot, should be considered alongside other assessment evidence, and is not designed to measure teacher or school performance in isolation.
+
+My School nevertheless publishes school-average NAPLAN results and comparisons with students of similar backgrounds and national results. ACARA itself warns that NAPLAN represents only one aspect of school performance and has repeatedly criticised out-of-context school league tables as misleading. The problem is therefore not national testing or school comparison itself, but treating students’ absolute achievement as a measure of what a school has contributed to their learning.
+
+**Assessment purpose**
+
+NAPLAN would remain a national literacy and numeracy assessment, with individual results available to students, families, teachers, and schools. Education authorities would retain the data needed to identify learning gaps, allocate support, evaluate programs, and monitor performance across regions and demographic groups.
+
+**Teacher assessment**
+
+NAPLAN results could contribute to teacher performance and development where they provide relevant evidence about student learning. This may include growth by the same students between successive NAPLAN assessments, but may never rely on students’ absolute achievement levels.
+
+Longitudinal growth still cannot be attributed cleanly to an individual teacher. Students pass through multiple teachers between NAPLAN assessments, literacy and numeracy develop across subjects and school-wide programs, and factors outside a teacher’s control continue to affect progress. NAPLAN growth data may therefore contribute to teacher assessment only alongside classroom assessment, professional practice, observation, student work, and other evidence of learning, and must never be converted into an automatic teacher-performance score. This is consistent with the existing Australian Teacher Performance and Development Framework, which requires teacher evaluation to draw on multiple sources of evidence.
+
+**Public reporting**
+
+My School would continue to provide comparable information about school performance, but public comparisons would be limited to student progress measures. Absolute proficiency information would remain available to show whether students are meeting national standards, but would not be used to rank schools.
+
+Progress comparisons would account for students’ starting achievement and relevant background characteristics, building on the matched-student progress measures My School already uses.
+
+**Residual limits**
+
+NAPLAN measures literacy and numeracy at particular points in time and cannot capture the full educational progress of a student or the overall quality of a school. Even contextualised progress measures cannot perfectly isolate the contribution of teaching from family circumstances, student characteristics, attendance, and other influences. National testing should therefore remain one source of evidence rather than becoming a complete measure of educational quality.
+
+**Implementation outline**
+
+National assessment and reporting arrangements would be updated through the Education Ministers Meeting and ACARA so public school comparisons use student progress measures rather than average achievement scores, while individual and system-level diagnostic uses of NAPLAN are retained. Teacher performance frameworks and funding agreements would prohibit the use of students’ absolute achievement levels as a measure of individual teacher performance.
+
+**Reference**
+
+[National Assessment Program: Literacy and Numeracy](https://www.education.gov.au/national-assessment-program/national-assessment-program-literacy-and-numeracy)
+[Australian Teacher Performance and Development Framework](https://www.aitsl.edu.au/tools-resources/resource/australian-teacher-performance-and-development-framework)
+[Using value-added measures to identify school contributions to student learning](https://myschool.edu.au/see-whats-changed/)
+
+---
+
+</details>
+
+### **Make Your Skills Count**
+
+1. Assessment-only pathways to nationally recognised VET qualifications will be available to people who can demonstrate existing competence, including skills gained through overseas qualifications, employment, or previous study, with training required only for identified gaps in competency or Australian-specific requirements.
+
+   1. Experienced workers will gain formal recognition for skills they can already demonstrate.
+   2. Overseas-trained workers will face fewer unnecessary barriers to using skills they already possess.
+   3. Workers with some existing competencies will be able to reach full qualification more quickly.
+   4. Employers will have access to more workers whose existing skills have been formally verified.
+   5. Australia will make better use of skills already present in its workforce.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia's VET system already allows Recognition of Prior Learning (RPL) to assess skills gained through previous training, work, and life experience against nationally recognised competencies. Existing RPL can reduce the training needed for a qualification, while current federal programs are already using RPL and gap training to fast-track experienced but unqualified workers.
+
+Access remains centred on provider-based RPL processes rather than a clear general pathway built around assessment before training. Overseas skills assessment also demonstrates that competence can be tested through documentary evidence, technical interviews, and practical assessment, even though a migration skills assessment does not itself necessarily confer the corresponding Australian qualification.
+
+We would make direct assessment of existing competence a normal route to a nationally recognised VET qualification, rather than requiring people who already possess the relevant skills to undertake equivalent training again.
+
+**Competency assessment**
+
+Assessment-only does not mean exam-only. The form of assessment would depend on the competency being demonstrated and could include documentary evidence, technical questioning, practical demonstration, direct observation, or other valid forms of competency assessment.
+
+The same competency requirements would apply whether someone reaches them through training or through existing skills and experience. Where every required competency can be demonstrated, completing a training course would not be required merely to obtain the qualification.
+
+**Overseas skills**
+
+An overseas qualification would provide evidence of previous learning rather than being either automatically accepted or automatically disregarded. Applicants could demonstrate their actual competence against the requirements of the relevant Australian qualification, including through practical or technical assessment where appropriate.
+
+Trades Recognition Australia already uses this general approach in parts of its overseas skills assessment system, combining documentary evidence with technical interviews and, for some occupations, compulsory practical assessment.
+
+**Gap training**
+
+Where assessment identifies only part of the required competency, training would be limited to the remaining gaps rather than requiring the person to complete the entire course. Existing federal RPL guidance already recognises gap training as the appropriate response where demonstrated skills do not fully satisfy a qualification.
+
+Australian-specific requirements could therefore still be taught where necessary without forcing someone to repeat competencies they have already demonstrated.
+
+**Qualification integrity**
+
+Assessment-only pathways would apply the same competency standard as training-based pathways. Qualifications could not be awarded merely because an applicant possesses experience, an overseas certificate, or documentary evidence; the required competencies must actually be demonstrated.
+
+This distinction is important because ASQA identifies inadequate and fraudulent RPL assessment as an existing integrity risk. Rigorous competency assessment is therefore a condition of recognising existing skills, not something relaxed in order to accelerate qualification.
+
+**Licensing and registration**
+
+A VET qualification would not override separate occupational licensing, registration, supervised-practice, or migration requirements. Where an occupation legitimately requires Australian-specific regulatory, safety, or workplace knowledge, those requirements would remain.
+
+Existing overseas trade arrangements already distinguish between demonstrated technical competence and Australian-specific requirements in licensed occupations, including supervised work and local licensing requirements.
+
+**Implementation outline**
+
+National VET standards and federal-state skills agreements would establish assessment-only pathways for qualifications where competency can validly be demonstrated without prescribed training. Existing RPL assessment systems would provide the foundation, with training providers continuing to assess competence against nationally recognised qualification requirements and provide training only where gaps remain.
+
+The existing Advanced Entry Trades Training program provides a current model for combining formal recognition of existing competence with targeted gap training rather than requiring experienced workers to begin a qualification from scratch.
+
+**References**
+
+[Australian Skills Quality Authority — Credit transfer and recognition of prior learning](https://www.asqa.gov.au/for-students/credit-transfer-and-recognition-prior-learning)
+[Australian Government Department of Employment and Workplace Relations — Recognition of Prior Learning](https://www.dewr.gov.au/newsroom/articles/recognition-prior-learning)
+[Australian Government Department of Employment and Workplace Relations — Advanced Entry Trades Training program](https://www.dewr.gov.au/advanced-entry-trades-training-program)
+[Trades Recognition Australia — Offshore Skills Assessment Program](https://www.tradesrecognitionaustralia.gov.au/help/offshore-skills-assessment-program-osap-faqs)
+
+---
+
+</details>
 
 ### **End University Dependence on Mass Student Migration**
 
@@ -2554,7 +2817,7 @@ A transition levy on international education revenue can support the shift away 
 
 **System interaction**
 
-This reform sits where university funding, international education, and migration settings overlap. It works best when paired with tighter provider standards, clearer course-integrity rules, and visa settings that treat student pathways as education pathways rather than as an open-ended revenue and migration valve. The Managed Growth Funding system already points toward a more planned and transparent domestic funding structure; this reform would push the sector further away from fee-growth dependence.
+This reform sits where university funding, international education, and migration settings overlap. It works best when paired with tighter provider standards, clearer course-integrity rules, and visa settings that treat student pathways as education pathways rather than as an open-ended revenue and migration valve. The Managed Growth Funding system already points toward a more planned and transparent domestic funding structure; together, these changes would push the sector further away from fee-growth dependence.
 
 **Residual risks**
 
@@ -2567,6 +2830,54 @@ The federal government would establish the contribution-credit system in higher-
 **Reference**
 
 [Australia's universities under sustained financial strain ...](https://universitiesaustralia.edu.au/media-item/australias-universities-under-sustained-financial-strain-new-report-warns)
+
+---
+
+</details>
+
+### **Fund Research for the Long Term**
+
+1. Major federal competitive research programs will use longer multi-year funding periods matched to project scale, published multi-year funding envelopes and grant schedules, and independently reviewed continuation pathways for long-running research programs.
+
+   1. Researchers will spend less time repeatedly seeking funding for work that is already progressing.
+   2. Research teams will be better able to retain skilled staff between funding decisions.
+   3. Long-horizon projects will be able to plan experiments, infrastructure, and data collection over realistic research periods.
+   4. Early- and mid-career researchers will have more viable opportunities to build sustained research careers in Australia.
+   5. Australian research institutions will preserve more capability in fields where major discoveries depend on sustained work over time.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Competitive research funding is often structured around grant periods that are shorter than the research programs they support, requiring successful teams to repeatedly compete for continuation while projects, staff, and research infrastructure remain dependent on uncertain future rounds. This creates avoidable administrative work and makes sustained research capability harder to maintain. The Australian Research Council's 2026 redesign of the National Competitive Grants Program is moving in a similar direction through fewer schemes, streamlined administration, more project-based funding, and dedicated support for major long-term research. We would would apply long-horizon funding and continuation arrangements across federal competitive research programs rather than leaving them dependent on the design of individual schemes.
+
+**Funding horizon**
+
+Grant periods would vary with the scale and expected duration of the research rather than forcing substantially different projects into similarly short funding cycles. Funding bodies would publish multi-year funding availability and grant schedules far enough ahead for research institutions to plan recruitment, facilities, and project continuity.
+
+**Continuation and competition**
+
+Long-running research could seek continuation through independent review focused on progress, remaining research value, and the case for further work rather than repeatedly rebuilding a full proposal from the beginning. Continuation would not be automatic, and funding programs would retain open competition for new researchers, projects, and exploratory ideas.
+
+**System interaction**
+
+The redesigned National Competitive Grants Program will progressively introduce new schemes between 2027 and 2029, including support for exploratory research, early-career researchers, collaboration, and major long-term projects. The funding-security model should complement that structure rather than recreate another parallel grants system.
+
+**Residual trade-off**
+
+Longer funding commitments inevitably reduce some flexibility to redirect research budgets when new opportunities emerge. Independent review and continued open grant rounds can preserve room for new work, but a system that provides genuine long-term certainty cannot also keep every future funding decision completely open.
+
+**Implementation outline**
+
+Federal competitive research programs would progressively adopt longer scale-appropriate grant periods, multi-year forward funding schedules, and continuation review as existing schemes are renewed. The ARC's current NCGP transition provides the immediate opportunity to embed these settings without disrupting grants already underway.
+
+**Reference**
+
+[Australian Research Council — New NCGP Schemes: Overview](https://www.arc.gov.au/funding-research/applying-grant/new-ncgp-schemes-overview)
+[Australian Research Council — Release of the National Competitive Grants Program Policy Review Final Report](https://www.arc.gov.au/news-and-publications/media/release-national-competitive-grants-program-policy-review-final-report)
 
 ---
 
@@ -2609,7 +2920,7 @@ Skilled migration is most defensible when it fills real capability gaps that mat
 
 **Evidence base**
 
-The reform should use independent shortage assessment and national workforce evidence as the starting point for skilled migration settings. That matters because employer demand alone does not always tell you whether the problem is a genuine shortage, a pay and conditions problem, a training failure, or a regional distribution issue.
+Skilled migration settings should use independent shortage assessment and national workforce evidence as their starting point. That matters because employer demand alone does not always tell you whether the problem is a genuine shortage, a pay and conditions problem, a training failure, or a regional distribution issue.
 
 **Capability focus**
 
@@ -2621,7 +2932,7 @@ This reform works best when skilled migration settings are tied to occupation sh
 
 **Residual risks**
 
-Even with stronger evidence settings, shortage assessment will never be perfectly current. Labour markets shift, and some sectors will continue to argue for wider access than the evidence supports. The reform improves the basis for judgement, but it does not remove the need for judgement altogether.
+Even with stronger evidence settings, shortage assessment will never be perfectly current. Labour markets shift, and some sectors will continue to argue for wider access than the evidence supports. This improves the basis for judgement, but does not remove the need for judgement altogether.
 
 **Implementation outline**
 

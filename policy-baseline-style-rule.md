@@ -40,7 +40,32 @@ Prefer direct constructions:
   - **Federal legislation would...** over **Commonwealth legislation would...**
   - **National standards would...** over **Commonwealth standards would...**
 
-The test is not whether the sentence names the actor. The test is whether it states the action plainly. Avoid both clunky actor-led phrasing and compressed bureaucratic noun stacks.
+The test is not whether the sentence names the actor. The test is whether the chosen subject makes the action or explanation as clear and direct as possible. Avoid both clunky actor-led phrasing and compressed bureaucratic noun stacks.
+
+### Action and Explanatory Voice Rule
+
+Choose the sentence subject according to the function the sentence is performing. Use the shortest construction that keeps the actor, mechanism, or referent clear.
+
+- **Commitments and pursued objectives:** use **“We would…”** where the platform is taking ownership of an objective and no more specific institutional actor is needed.
+- **Institutional actions:** name the responsible actor where responsibility or authority matters.
+- **Mechanism descriptions:** make the affected rule, system, or mechanism the subject where this most clearly explains how the policy works.
+- **Explanatory continuations:** where the immediately preceding sentence or clause already establishes the subject, use concise references such as **“this”**, **“that”**, **“these”**, **“together…”**, or **“in practice…”** rather than unnecessarily restating it.
+- **Whole-policy analysis:** use **“this reform”**, **“the policy”**, **“the framework”**, or similar language where the policy as a whole genuinely is the analytical subject, particularly when discussing scope, boundaries, system interaction, or overall behaviour.
+
+Do not default to abstract policy labels such as **“this reform”** or **“this policy”** merely because the sentence is discussing the policy. They should identify the whole policy only when doing so adds clarity.
+
+Likewise, do not repeat a named actor or mechanism when the preceding text already makes the referent unambiguous. Direct language should reduce conceptual distance, not introduce unnecessary repetition.
+
+**Examples**
+
+- **We would reduce preventable contract harm by making basic compliance support available before agreements are signed.**
+- **The federal government would publish national demand projections.**
+- **A binding payment period shifts financing responsibility back onto the larger customer.**
+- **This protects the integrity of the credit supply.**
+- **Together, these changes would reduce dependence on fee growth.**
+- **This reform interacts with competition law and existing merger controls.**
+
+Where the policy deliberately distinguishes between permitted, required, and prohibited uses or circumstances, match the language to that boundary. Do not express a categorical prohibition as merely a preference between alternatives. For example, use “may contribute to…” for permitted uses and “must not be used…” where a use is prohibited.
 
 ---
 
@@ -638,6 +663,28 @@ Tier-4 exists to support scrutiny rather than persuasion.
 - It must not introduce persuasive or normative arguments for the reform.
 - It may describe the structural problem the reform addresses, but should focus on institutional design, implementation constraints, and system behaviour rather than advocacy.
 
+### T4 Standalone Design Rationale Rule
+
+**Design rationale must justify the policy from the structural problem itself, not from the platform’s development history or previous Fusion positions.**
+
+A Design rationale should be understandable to a reader encountering the policy for the first time.
+
+Do not use:
+
+* previous Fusion policy as evidence that the reform is warranted;
+* statements such as **“Fusion already supports…”**, **“we have previously committed to…”**, or **“this continues our existing policy…”**;
+* internal policy lineage, drafting history, or consistency with earlier platform positions as substantive justification.
+
+Existing Fusion policies may be mentioned only where another retained policy creates a **material system interaction or boundary** that the reader needs to understand.
+
+The rationale should instead establish:
+
+1. the structural problem or deficiency;
+2. why the existing system produces or preserves it; and
+3. the design consideration that motivates the chosen intervention.
+
+Previous party policy may inform development, but it is not evidence for the finished policy.
+
 ### T4 Scope Control
 
 Tier-4 should describe institutional design rather than engineering implementation.
@@ -865,6 +912,7 @@ _(Optional depth & scrutiny support)_
 - Present-tense claims implying current success
 - Slogans or campaign messaging
 - Nested tiers or additional heading levels
+- Design rationale relies on previous Fusion policy, platform history, or internal policy lineage as justification.
 
 ### Tier-4 Content Boundary Check
 
@@ -909,6 +957,7 @@ _(Stack discipline)_
 - ☐ Tier-1 still makes sense on its own
 - ☐ Tier-1 scope must not be broader than the legislative or institutional domain defined in Tier-2
 - ☐ Government-level terms are used consistently: **federal** for plain public-facing national action, **national** for Australia-wide systems or standards, and **Commonwealth** only where legal or institutional precision is needed
+- ☐ Commitments and explanations use the subject appropriate to their function: ownership language for commitments, concise anaphoric language for immediately preceding mechanisms, and named actors or mechanisms where identification adds clarity. Generic **“this reform/policy”** constructions are avoided where a shorter or more precise referent is available.
 
 **AUTO-FAIL if ANY are present:**
 
