@@ -2955,6 +2955,14 @@ Skilled migration pathways and occupation access would be tied to independent sh
 
 ---
 
+
+
+
+# BEYOND RECLAIM
+
+## Other Policy Stuff
+
+
 ---
 
 Policy items that are "New" and need voting on:
@@ -2965,3 +2973,7 @@ Policy items that are "New" and need voting on:
 - Support Small Businesses to Stay Compliant
 - Build a Parliament That Reflects the People
 - Open Up Access to Australian News
+- Make NAPLAN Help Students, Not Rank Schools
+- Make Your Skills Count
+
+
