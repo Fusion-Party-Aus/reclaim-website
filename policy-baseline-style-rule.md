@@ -50,7 +50,7 @@ Choose the sentence subject according to the function the sentence is performing
 - **Institutional actions:** name the responsible actor where responsibility or authority matters.
 - **Mechanism descriptions:** make the affected rule, system, or mechanism the subject where this most clearly explains how the policy works.
 - **Explanatory continuations:** where the immediately preceding sentence or clause already establishes the subject, use concise references such as **“this”**, **“that”**, **“these”**, **“together…”**, or **“in practice…”** rather than unnecessarily restating it.
-- **Whole-policy analysis:** use **“this reform”**, **“the policy”**, **“the framework”**, or similar language where the policy as a whole genuinely is the analytical subject, particularly when discussing scope, boundaries, system interaction, or overall behaviour.
+- **Whole-policy analysis:** use **“this reform”**, **“the policy”**, **“the framework”**, or similar language **only where the policy as a whole genuinely is the analytical subject**, particularly when discussing scope, boundaries, system interaction, or overall behaviour. **Do not use these terms to avoid “We would…” when describing a commitment or proposed action.**
 
 Do not default to abstract policy labels such as **“this reform”** or **“this policy”** merely because the sentence is discussing the policy. They should identify the whole policy only when doing so adds clarity.
 
@@ -329,6 +329,19 @@ A Tier-2 sentence should be split if removing one clause would leave a complete 
 
 Mechanisms may remain bundled when the additional clauses only make the primary reform enforceable, measurable, or operational.
 
+### T2 Detail Threshold Rule
+
+Tier-2 should state the core mechanism at the lowest level of detail needed for a lay reader to understand what structurally changes.
+
+Calibration settings, measurement methods, evidentiary rules, thresholds, exceptions, technical classifications, and secondary scoring factors should remain in Tier-4 unless they materially change the basic operation or scope of the reform.
+
+Ask:
+
+> If this detail were removed, would a reasonable reader misunderstand what the policy fundamentally does?
+
+If yes, it belongs in Tier-2.
+If no, and it instead explains how the stated mechanism is calibrated, evidenced, bounded, or applied in particular circumstances, it normally belongs in Tier-4.
+
 ### T2 Outcome Cohesion Rule
 
 Tier-2 mechanisms should not be separated into multiple reforms if doing so would produce substantially overlapping Tier-3 outcomes.
@@ -458,8 +471,8 @@ Every Tier-3 dotpoint must:
 - Be **future-oriented** (describing outcomes that will occur)
 - Use **benefit-first construction**
   _(state the outcome before the cause wherever possible)_
-- Use **positive framing**
-  _(describe what is created or enabled, not what is prevented or avoided)_
+- Use **positive/constructive outcome framing**
+  _(describe what is created or enabled, not what is prevented or avoided, unless the reduction of a concrete harm, burden, risk, or constraint is itself the clearest politically salient outcome)_
 
 ## T3 Prohibited Content
 
@@ -488,6 +501,7 @@ Avoid:
 - Repetitive sentence leads (e.g. beginning every point with “Will”)
 - Negative framing (“prevent”, “stop”, “avoid”)
 - Adjectives that signal persuasion rather than explanation
+- Negative framing that merely restates prohibited conduct, assigns blame, or campaigns against an actor
 
 ### T3 Actor Anchoring
 
@@ -522,14 +536,14 @@ If two outcomes appear in the same sentence, the dotpoint must be split.
 
 Tier-3 outcomes must be ordered to reflect the causal progression of effects produced by the reform.
 
-The list should move from **closest operational impact** to **widest systemic impact**.
+The list should move from **closest functional impact** to **widest systemic impact**.
 
 This ordering helps readers understand how the reform produces downstream consequences.
 
 When multiple outcomes are present, apply the following sequence wherever applicable:
 
-1. **Direct operational effects**
-   - Immediate changes experienced by the primary affected actor.
+1. **Direct concrete effects**
+   - The smallest-scale or most direct concrete effect on people or other directly affected actors, not necessarily the first actor in the policy mechanism or supply chain.
    - Examples: costs, obligations, inputs, capacity, or constraints.
 
 2. **Behavioural or planning effects**
@@ -572,7 +586,7 @@ A Tier-3 dotpoint is valid if:
 - It does not require another dotpoint to make sense
 - It does not persuade by emotion alone
 - Removing the sentence does not affect the operational meaning of Tier-2
-- The first outcome must describe a direct effect on the primary affected actor.
+- The first outcome must describe the most direct concrete effect of the reform, anchored to an affected actor where clearly identifiable, before moving outward to more consequential or systemic effects.
 - Each outcome must represent a new causal step rather than a restatement of the previous outcome.
 - Apply the **Reverse Test**:
   Ask whether the first outcome could plausibly occur before the reform has affected individual actors.  
@@ -749,7 +763,41 @@ These lenses guide analysis but should normally be expressed through **policy-sp
 
 When multiple analytical lenses are used, authors should normally introduce them in an order that moves from core system design to enforcement and integrity safeguards, and then to residual risks and failure modes, before addressing broader system effects and implementation context.
 
+### T4 Reference Rule
+
+Where external evidence or current institutional settings materially support a Tier-4 analysis, include a reference block at the end of the Tier-4 content and before the closing divider.
+
+- Use **Reference** for one source and **References** for multiple sources.
+- Format each source as a standard Markdown link:
+
+  `[Source or publication title](https://example.com/source)`
+
+- Where the title alone does not clearly identify the source, use:
+
+  `[Institution — Publication or page title](https://example.com/source)`
+
+- For federal departments, use the department name directly without an "Australian Government" prefix.
+- Place each reference on a separate line.
+- Prefer primary, authoritative, and current sources: legislation, government agencies, statutory bodies, official inquiries, original research, and institutional reports.
+- Include only sources that materially substantiate the policy's factual premises, institutional design, evidence base, or implementation context. References are not intended to be an exhaustive bibliography.
+- Prefer the most direct source for a claim over secondary reporting or commentary.
+- Remove tracking parameters and other unnecessary URL additions from final links.
+- References must support claims made in Tier-4 and must not introduce new policy arguments or commitments.
+- References belong inside the `<details>` block and after all substantive Tier-4 sections.
+- Where Tier-4 explicitly relies on or discusses a named review, report, inquiry, or precedent, reference that source directly even where its underlying factual claims are also supported by more primary sources.
+
+Example:
+
+**References**
+
+[Department of Agriculture, Fisheries and Forestry — Fertiliser Supply Working Group](https://www.agriculture.gov.au/biosecurity-trade/middle-east-conflict/fertiliser-supply-working-group)
+[Perdaman Chemicals & Fertilisers — Project Ceres](https://perdamanchemicalsandfertilisers.com/project/ceres/)
+
 ## T4 Supporting Elements Rule
+
+Tier-4 may contain subordinate detail needed to explain how the Tier-2 mechanism operates under scrutiny, provided that detail does not establish a separate policy instrument, objective, or expansion of scope.
+
+### T4 Minor Enabling Elements
 
 Where minor enabling mechanisms are necessary for completeness but are not core to the reform, they may be included in concise parenthetical form.
 
@@ -758,6 +806,20 @@ Where minor enabling mechanisms are necessary for completeness but are not core 
 - They must remain brief and non-operational.
 
 Parenthetical support notes must clarify implementation context without elevating ancillary detail to policy status.
+
+### T4 Detail Threshold
+
+Where subordinate detail is needed it may include measurement methods, eligibility rules, evidentiary standards, thresholds, category treatment, safeguards, exceptions, and system-interaction rules.
+
+Ask:
+
+> If this detail were removed, would a reasonable reader misunderstand what the policy fundamentally does?
+
+If yes, it belongs in Tier-2.
+
+If no, and it instead explains how the stated mechanism is calibrated, evidenced, bounded, or applied in particular circumstances, it normally belongs in Tier-4.
+
+Such detail must not introduce a separate policy instrument, expand the affected class beyond Tier-2, create an independent regulatory objective, or materially change what a reasonable reader would understand the Tier-2 commitment to mean.
 
 ## T4 Language Rules
 
@@ -772,6 +834,7 @@ Avoid:
 - Rhetorical devices
 - Value judgements
 - Present-tense claims of success
+- Unnecessary conditional or hedged language for committed elements; reserve conditional language for genuine contingencies, later stages, or unresolved uncertainty
 
 ## T4 Acceptance Test
 

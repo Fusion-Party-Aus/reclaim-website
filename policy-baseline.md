@@ -344,7 +344,7 @@ Demand projections, workforce and service benchmarks, training targets, placemen
 
 **Reference**
 
-[Workforce intelligence report 2025](https://www.health.gov.au/sites/default/files/2026-04/workforce-intelligence-report-2025.pdf)
+[Workforce intelligence report 2025](https://www.health.gov.au/sites/default/files/2026-04/workforce-intelligence-report-2025.pdf) | 
 [National Health Reform Agreement](https://www.health.gov.au/our-work/national-health-reform-agreement-nhra)
 
 ---
@@ -1209,7 +1209,7 @@ Subsidies and concessional tax treatments reduce the effective cost of fossil fu
 **Transition considerations**
 
 1. Reform sequencing recognises existing contractual arrangements and defined notice periods.
-2. Adjustment support mechanisms for affected workers and regions are addressed in industry transformation sections, not embedded here.
+2. Adjustment support for affected workers and regions would operate through the Net Zero Economy Authority and existing workforce-transition arrangements rather than being embedded in subsidy reform.
 
 **Interaction with climate pricing reform**
 
@@ -2520,7 +2520,6 @@ Federal law would create the office with defined functions in standard-setting c
 ### **Deliver Full Funding for Public Schools**
 
 1. Public-school funding levels will reach at least 100% of a periodically reviewed Schooling Resource Standard by 2030, with earlier existing deadlines retained, binding annual federal and state contribution milestones, indirect expenditure excluded from funding shares, and independent annual compliance review.
-
    1. Public schools will have the recurrent resources assessed as necessary to meet their students’ educational needs.
    2. Students with greater educational needs will have more resources available to support their learning.
    3. Teachers and school leaders will have greater certainty to plan staffing, specialist support, and learning programs over multiple years.
@@ -2558,8 +2557,8 @@ Federal funding legislation and bilateral agreements would be updated so public-
 
 **Reference**
 
-[Better and Fairer Schools Agreement 2025–2034 — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/resources/heads-agreement-better-and-fairer-schools-agreement-full-and-fair-funding-20252034)
-[Schooling Resource Standard — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/schooling-resource-standard)
+[Better and Fairer Schools Agreement 2025–2034 — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/resources/heads-agreement-better-and-fairer-schools-agreement-full-and-fair-funding-20252034) | 
+[Schooling Resource Standard — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/schooling-resource-standard) | 
 [How Australian Government funding for schools is distributed according to need — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/fact-sheets/how-australian-government-funding-schools-distributed-according-need)
 
 ---
@@ -2569,7 +2568,6 @@ Federal funding legislation and bilateral agreements would be updated so public-
 ### **Free Teachers to Teach**
 
 1. School staffing and workload standards will move routine administration and other duties that do not require teacher expertise to dedicated support staff, set needs-based staffing benchmarks for education support officers, special education teachers, counsellors, specialist support, and administrative staff, and protect teacher time for teaching, planning, collaboration, and professional development through national school-funding agreements.
-
    1. Teachers will spend more of their working time teaching, planning lessons, and supporting students.
    2. Education support, counselling, administrative, and specialist staff will have clearer responsibility for work matched to their roles.
    3. Students will have more reliable access to specialist, learning, and wellbeing support within their school.
@@ -2607,7 +2605,7 @@ National staffing and workload standards would be incorporated into federal-stat
 
 **Reference**
 
-[National Teacher Workforce Action Plan — Australian Government Department of Education](https://www.education.gov.au/national-teacher-workforce-action-plan)
+[National Teacher Workforce Action Plan — Australian Government Department of Education](https://www.education.gov.au/national-teacher-workforce-action-plan) | 
 [Workload Reduction Fund Pilots — Australian Government Department of Education](https://www.education.gov.au/workload-reduction-pilots)
 
 ---
@@ -2617,7 +2615,6 @@ National staffing and workload standards would be incorporated into federal-stat
 ### **Teach Students How Australia Works**
 
 1. Civics and citizenship education will become a mandatory, nationally aligned secondary-school course sequence with minimum teaching time, a practical pre-voting module before students leave school, and politically neutral curriculum and assessment standards covering Australian institutions and law, elections and preferential voting, rights and responsibilities, civic participation, critical reasoning, and media and information literacy.
-
    1. Students will leave school with a working understanding of how Australian government, elections, and law operate.
    2. First-time voters will be better prepared to enrol, vote preferentially, and participate in democratic processes.
    3. Young Australians will be better able to assess political claims, evidence, and information sources for themselves.
@@ -2657,7 +2654,7 @@ The next Australian Curriculum review would establish the nationally aligned civ
 
 **Reference**
 
-[From Classroom to Community: Civics education and political participation in Australia — Joint Standing Committee on Electoral Matters](https://www.aph.gov.au/Parliamentary_Business/Committees/Joint/Electoral_Matters/Civicseducation/From_Classroom_to_Community/List_of_recommendations)
+[From Classroom to Community: Civics education and political participation in Australia — Joint Standing Committee on Electoral Matters](https://www.aph.gov.au/Parliamentary_Business/Committees/Joint/Electoral_Matters/Civicseducation/From_Classroom_to_Community/List_of_recommendations) | 
 [National Assessment Program — Civics and Citizenship results — ACARA.](https://www.acara.edu.au/reporting/national-report-on-schooling-in-australia/national-report-on-schooling-in-australia-2024)
 
 ---
@@ -2667,7 +2664,6 @@ The next Australian Curriculum review would establish the nationally aligned civ
 ### **Make NAPLAN Help Students, Not Rank Schools**
 
 1. NAPLAN data-use and reporting rules will be refocused on student diagnosis and system monitoring, with public school comparisons limited to student progress measures, proficiency reporting retained, and students’ absolute achievement levels prohibited as a measure of individual teacher performance.
-
    1. Students will receive a consistent national check of their literacy and numeracy strengths and needs.
    2. Teachers will have assessment data they can use alongside classroom evidence to target learning support.
    3. Teachers will be assessed through professional practice and multiple sources of evidence rather than a single cohort’s test scores.
@@ -2711,8 +2707,8 @@ National assessment and reporting arrangements would be updated through the Educ
 
 **Reference**
 
-[National Assessment Program: Literacy and Numeracy](https://www.education.gov.au/national-assessment-program/national-assessment-program-literacy-and-numeracy)
-[Australian Teacher Performance and Development Framework](https://www.aitsl.edu.au/tools-resources/resource/australian-teacher-performance-and-development-framework)
+[National Assessment Program: Literacy and Numeracy](https://www.education.gov.au/national-assessment-program/national-assessment-program-literacy-and-numeracy) | 
+[Australian Teacher Performance and Development Framework](https://www.aitsl.edu.au/tools-resources/resource/australian-teacher-performance-and-development-framework) | 
 [Using value-added measures to identify school contributions to student learning](https://myschool.edu.au/see-whats-changed/)
 
 ---
@@ -2722,7 +2718,6 @@ National assessment and reporting arrangements would be updated through the Educ
 ### **Make Your Skills Count**
 
 1. Assessment-only pathways to nationally recognised VET qualifications will be available to people who can demonstrate existing competence, including skills gained through overseas qualifications, employment, or previous study, with training required only for identified gaps in competency or Australian-specific requirements.
-
    1. Experienced workers will gain formal recognition for skills they can already demonstrate.
    2. Overseas-trained workers will face fewer unnecessary barriers to using skills they already possess.
    3. Workers with some existing competencies will be able to reach full qualification more quickly.
@@ -2780,9 +2775,9 @@ The existing Advanced Entry Trades Training program provides a current model for
 
 **References**
 
-[Australian Skills Quality Authority — Credit transfer and recognition of prior learning](https://www.asqa.gov.au/for-students/credit-transfer-and-recognition-prior-learning)
-[Australian Government Department of Employment and Workplace Relations — Recognition of Prior Learning](https://www.dewr.gov.au/newsroom/articles/recognition-prior-learning)
-[Australian Government Department of Employment and Workplace Relations — Advanced Entry Trades Training program](https://www.dewr.gov.au/advanced-entry-trades-training-program)
+[Australian Skills Quality Authority — Credit transfer and recognition of prior learning](https://www.asqa.gov.au/for-students/credit-transfer-and-recognition-prior-learning) | 
+[Australian Government Department of Employment and Workplace Relations — Recognition of Prior Learning](https://www.dewr.gov.au/newsroom/articles/recognition-prior-learning) | 
+[Australian Government Department of Employment and Workplace Relations — Advanced Entry Trades Training program](https://www.dewr.gov.au/advanced-entry-trades-training-program) | 
 [Trades Recognition Australia — Offshore Skills Assessment Program](https://www.tradesrecognitionaustralia.gov.au/help/offshore-skills-assessment-program-osap-faqs)
 
 ---
@@ -2838,7 +2833,6 @@ The federal government would establish the contribution-credit system in higher-
 ### **Fund Research for the Long Term**
 
 1. Major federal competitive research programs will use longer multi-year funding periods matched to project scale, published multi-year funding envelopes and grant schedules, and independently reviewed continuation pathways for long-running research programs.
-
    1. Researchers will spend less time repeatedly seeking funding for work that is already progressing.
    2. Research teams will be better able to retain skilled staff between funding decisions.
    3. Long-horizon projects will be able to plan experiments, infrastructure, and data collection over realistic research periods.
@@ -2876,7 +2870,7 @@ Federal competitive research programs would progressively adopt longer scale-app
 
 **Reference**
 
-[Australian Research Council — New NCGP Schemes: Overview](https://www.arc.gov.au/funding-research/applying-grant/new-ncgp-schemes-overview)
+[Australian Research Council — New NCGP Schemes: Overview](https://www.arc.gov.au/funding-research/applying-grant/new-ncgp-schemes-overview) | 
 [Australian Research Council — Release of the National Competitive Grants Program Policy Review Final Report](https://www.arc.gov.au/news-and-publications/media/release-national-competitive-grants-program-policy-review-final-report)
 
 ---
@@ -2885,29 +2879,556 @@ Federal competitive research programs would progressively adopt longer scale-app
 
 ## Transform Our Industries
 
-- Green Lightning Nitrogen Technology
-- Create hundreds of thousands of green jobs
-- Declare a climate emergency now
-- Build 800% renewable energy capacity
-- Reach negative emissions within 10 years
-- Cut rogue emissions from mining
-- Build green hydrogen for heavy transport
-- Modernise agriculture with precision fermentation
-- Build closed-loop manufacturing
-- Invest in fusion energy research
+Making Australia a country where good ideas become productive industries, essential capabilities are built here, and more of the value created from our skills and resources stays in Australia.
 
-### **Build a Circular Economy** <-Relocate here?
+### **Turn Good Ideas Into Productivity**
 
-1. Introduce mandatory product stewardship requirements that assign end-of-life responsibility to producers for defined material categories, including recovery, reuse, and recycling obligations.
+1. Unify federal commercialisation and industrial scale-up programs into a single staged innovation-commercialisation pathway, with one intake process, specialist assessment, scale-appropriate funding, separate governance for each funding stream, and project assessments carried forward between stages.
+   1. Researchers and businesses will have a clearer path from workable ideas to commercial-scale production.
+   2. Capital-intensive technologies will be able to prove their performance at the scale required for commercial investment.
+   3. Applicants will spend less time navigating disconnected programs and repeatedly establishing the same evidence.
+   4. Projects spanning multiple technical fields will be less likely to fall between program boundaries.
+   5. Public industrial funding will remain traceable to the purposes and conditions attached to each funding stream.
+   6. More Australian-developed technologies will reach commercial scale and build productive capability in Australia.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Federal support for research, commercialisation, demonstration, and industrial development is divided across programs with different application processes, eligibility rules, funding limits, and institutional responsibilities. The 2026 *Ambitious Australia* review identified more than 150 federal research, development, and innovation programs across 13 portfolios and found that fragmentation creates duplication and makes the system particularly difficult for smaller businesses to navigate.
+
+The existing system also provides uneven support between proving an idea and reaching commercial scale. The Industry Growth Program supports early commercialisation and growth but is limited to comparatively small projects. ARENA can support much larger demonstrations and first-of-a-kind deployment, but its remit is concentrated on renewable energy and low-emissions technologies. Australia's Economic Accelerator provided stage-gated proof-of-concept and proof-of-scale support for university research, but funding for new projects ended after 2025–26.
+
+The unified pathway would retain different forms of funding where their purposes differ while removing the need for applicants to navigate separate commercialisation systems.
+
+**Unified pathway and specialist assessment**
+
+ARENA would be broadened and reconstituted as the institutional base for federal commercialisation and industrial scale-up support. Its existing expertise in assessing and managing complex technology projects would be retained and expanded beyond its current energy-focused remit.
+
+Applicants would enter through a common intake process and maintain a single project record as they progress. Projects would be assigned to specialist teams organised around broad fields of technical expertise, with additional specialists involved where projects cross sector or technology boundaries.
+
+Specialist teams would assess technical maturity, commercialisation risk, proposed scale, and the evidence required for progression. Earlier assessments, milestones, and project evidence would carry forward where they remain relevant rather than being recreated for each funding stage.
+
+**Funding governance**
+
+Individual funding streams would retain separate purposes, eligibility requirements, funding allocations, accounts, approval authorities, and reporting obligations.
+
+Specialist teams would assess projects and identify potentially applicable funding streams but would not control or reallocate the money attached to those streams. Funding decisions would pass through a separate program-governance function responsible for applying the rules and approval requirements attached to each source of funding.
+
+A project could draw on different funding streams as it develops where it independently satisfies their requirements. Consolidating the applicant-facing pathway would not permit money allocated for one purpose to be redirected to another outside the legal and governance processes applying to that funding.
+
+**Program consolidation**
+
+The Industry Growth Program would be subsumed into the unified pathway. Its adviser network, commercialisation expertise, and early-stage funding functions would be retained within the expanded institution rather than operating as a separate application system.
+
+Existing Australia's Economic Accelerator commitments would continue under their existing agreements. Its stage-gated commercialisation functions would be incorporated into the unified pathway rather than recreated as a separate university-specific program after existing funding concludes.
+
+ARENA-administered programs such as the Advancing Renewables Program and Future Made in Australia Innovation Fund would become separately governed funding streams within the unified system. Their dedicated purposes and funding conditions would remain, while applicants would access them through the common pathway rather than separate program-facing processes.
+
+Programs whose defining purpose is collaborative research or research capability, including Cooperative Research Centres, CRC Projects, and existing Trailblazer university capabilities, would remain distinct. Projects emerging from them could enter the commercialisation pathway with relevant technical evidence carried forward.
+
+**Scale and funding discipline**
+
+Funding would be matched to the cost, maturity, and unresolved commercialisation risk of each project rather than applying a common grant ceiling across technologies with substantially different capital requirements. Larger industrial-scale support would require evidence that a project has progressed beyond ordinary research but still faces technical or scale risk that prevents conventional financing.
+
+Projects would be assessed against defined national industrial priorities and require a material Australian productive or capability benefit. Support would be milestone-based, with continued funding dependent on evidence produced as projects progress through pilot, demonstration, proof-of-scale, and first commercial deployment where those stages are required.
+
+Grant-based support would end once the remaining challenge is financing an established commercial proposition rather than proving its technology or industrial scalability. First-of-a-kind projects would be expected to carry genuine uncertainty, and failure at demonstration stage would not by itself indicate program failure. Performance would therefore be assessed across the pathway as a portfolio as well as through controls on individual projects.
+
+**System boundaries**
+
+Projects reaching commercial investibility would graduate from grant-based support into appropriate public or private financing without requiring the commercialisation pathway to reproduce those financing functions.
+
+The National Reconstruction Fund Corporation would remain institutionally separate, preserving its investment mandate and independent assessment of debt, equity, and guarantee investments. The Clean Energy Finance Corporation and other specialist government financing institutions would likewise retain their separate investment mandates.
+
+The Investor Front Door would remain a parallel major-project facilitation service. Projects within the commercialisation pathway that become nationally significant or encounter complex regulatory and investment-coordination requirements could be referred into its case-management process while remaining within the pathway for any continuing commercialisation support. The Investor Front Door could similarly refer suitable projects to the pathway where unresolved commercialisation or scale-up risk is identified.
+
+Research grants and research infrastructure would remain upstream of the pathway rather than being absorbed into it.
+
+Federal procurement would remain a separate institutional surface under **Build a Pro-Innovation Government**, allowing government first-customer support to complement commercialisation funding where public demand exists.
+
+**Illustrative applications**
+
+The innovation-commercialisation pathway would be technology-neutral. Technologies that could benefit include precision fermentation and alternative proteins, fusion energy, quantum and biological computing, space technologies, new medicines and healthy-ageing technologies, carbon-removal and climate-repair technologies, advanced zero-emissions fuels, and emerging cybersecurity technologies.
+
+These examples are illustrative rather than preferred industries. Support would depend on the same technical, commercial, scale-up, and strategic tests as other projects.
+
+**References**
+
+[Department of Industry, Science and Resources — Ambitious Australia: Strategic Examination of Research and Development final report](https://www.industry.gov.au/publications/ambitious-australia-strategic-examination-research-and-development-final-report) | 
+[Department of Industry, Science and Resources — Industry Growth Program](https://www.industry.gov.au/science-technology-and-innovation/industry-innovation/industry-growth-program) | 
+[Australia's Economic Accelerator — Program Update](https://www.aea.gov.au/australias-economic-accelerator-program-update) | 
+[Australian Renewable Energy Agency — Future Made in Australia Innovation Fund](https://arena.gov.au/funding/future-made-in-australia-innovation-fund/) | 
+[Department of Industry, Science and Resources — Investor Front Door](https://www.industry.gov.au/investor-front-door) | 
+[National Reconstruction Fund Corporation — What we do](https://www.nrf.gov.au/what-we-do)
+
+---
+
+</details>
+
+### **Build a Pro-Innovation Government**
+
+1. Create a permanent first-customer procurement pathway that allows federal agencies to commission and trial new solutions through competitive challenges and progress qualifying products into pre-defined purchase stages, with central sharing of first-of-a-kind costs and an "if not, why not" requirement for relevant procurements to consider Australian-developed solutions.
+   1. Australian innovators and small businesses will have more opportunities to turn promising products into proven commercial successes.
+   2. Growing businesses will be better able to establish themselves against larger incumbents by demonstrating what their products can actually do.
+   3. Australian-developed products will gain stronger credentials for winning wider domestic and export markets.
+   4. Workers will gain more opportunities in businesses that grow by developing and producing new technologies in Australia.
+   5. Australians will benefit from public services that can adopt better-performing technologies as they emerge.
+   6. Taxpayers will gain more lasting economic value when government demand helps establish productive capability that can serve wider markets.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Commonwealth Procurement Rules already provide substantial flexibility for innovative purchasing. Value-for-money assessment can consider innovation, adaptability, whole-of-life costs, and broader economic benefits; open tenders can use multiple stages; and specific provisions already accommodate research and development, prototypes, and first products intended for trial. Smaller procurements also receive specific Australian-business and SME access under the current rules.
+
+The principal gap is therefore not a general legal prohibition on government buying innovation. It is the absence of a dependable pathway that connects a government problem to competitive development, operational testing, and an actual first purchase.
+
+The 2026 *Ambitious Australia* review identified government procurement as a major underused innovation lever and described existing pathways as risk-averse, complex, slow, and costly. It recommended greater use of challenge-based procurement, expanded pathways for innovative startups and SMEs, and an "if not, why not" approach to Australian research and innovation.
+
+The Business Research and Innovation Initiative already demonstrates part of this model. Agencies nominate problems, selected businesses receive staged support for feasibility and proof of concept, and successful projects develop working solutions around genuine government needs. However, the sponsoring agency is only given the option to negotiate a subsequent purchase and is under no obligation to become the customer. The first-customer pathway would extend the challenge model through to conditional deployment rather than ending at proof of concept.
+
+**First-customer pathway**
+
+Government entities would nominate genuine operational or service-delivery problems where existing products do not adequately meet their needs and where competitive development of new solutions is appropriate. Challenges would specify the outcome or capability required rather than prescribing a particular technology or supplier.
+
+The initial competitive process would define the stages through which successful proposals could progress. Depending on the challenge, these could include feasibility, development, prototype demonstration, operational trial, and an initial deployment or purchase.
+
+Multiple suppliers could progress through early stages where maintaining competition is useful, with subsequent stages narrowing the field against published technical, operational, safety, delivery, and value-for-money requirements.
+
+The potential purchase stage and its conditions would be established when the challenge is first competed. A supplier meeting the published conditions could therefore progress from successful trial into the initial deployment contemplated by that process without being required to win an unrelated procurement from the beginning.
+
+Where no solution satisfies the published conditions, no purchase would be required.
+
+**Shared first-customer risk**
+
+First-customer risk would be shared between the sponsoring entity and a central funding mechanism, allowing agencies to test emerging solutions without placing the full additional cost and risk of first deployment on the individual procuring entity.
+
+A sponsoring entity would need to demonstrate a genuine need for the challenge and commit an appropriate share of the resources required for an initial deployment before the challenge proceeds. The pathway would not provide agencies with cost-free opportunities to commission speculative development for products they have no intention or capacity to use.
+
+A central first-customer funding mechanism would share the additional cost and risk associated with development, testing, and initial deployment of an unproven solution. The procuring entity would continue to bear the ordinary cost associated with meeting its underlying operational need, while central support could meet an appropriate share of costs arising specifically because government is acting as the first serious customer.
+
+Purchase commitments would remain conditional on requirements established at the beginning of the process, including performance, safety, regulatory compliance, delivery capability, and value for money. Where those requirements are satisfied and the underlying government need remains, the initial purchase or deployment stage would proceed under the terms established through the original competition.
+
+First-customer support would decline or end once the product has established its performance and the relevant risk becomes ordinary commercial or procurement risk. Subsequent routine purchases would normally occur through ordinary procurement arrangements rather than continuing to receive first-customer support.
+
+Some trials would be expected to fail to reach deployment. Innovation procurement necessarily tests solutions whose performance is not completely known in advance, and the pathway would therefore be evaluated across its portfolio as well as against the management and results of individual challenges.
+
+**Australian innovation in ordinary procurement**
+
+Relevant federal procurements would apply an "if not, why not" principle to Australian-developed solutions. Where Australian research, technology, or innovative productive capability could plausibly meet a government requirement, procurement planning would include reasonable market engagement to identify that capability and allow it to compete.
+
+The requirement would create an obligation to consider and explain rather than an automatic right to receive a contract. Agencies could select another solution where it provides better value for money or better satisfies the requirement, but Australian capability would not be excluded merely because an established overseas or incumbent product is easier to identify.
+
+Assessment of Australian innovation should reflect substantive research, development, or productive capability undertaken in Australia rather than relying solely on the registered location or ownership of the supplier.
+
+The requirement would operate within Australia's procurement agreements and existing non-discrimination obligations. It would not establish a blanket local-content mandate or displace value for money as the core procurement rule.
+
+Aggregate reporting would track the use of innovation procurement, participation by Australian research-and-development-active businesses, progression from trials to deployment, and the reasons relevant Australian options do not proceed. This would provide accountability without setting procurement quotas that could encourage purchasing for the purpose of meeting a numerical target.
+
+**Procurement integrity**
+
+Challenge processes would retain the normal federal procurement requirements for competition, probity, transparency, conflicts of interest, and value for money. Challenges would be framed around government needs rather than technologies tailored to a preferred supplier, and supplier-selection criteria would be established before proposals are assessed.
+
+Where an open multi-stage procurement is used, the potential value and scope of later purchase stages would be accounted for from the beginning rather than splitting a procurement or adding an undeclared future contract to avoid normal competitive requirements.
+
+Initial first-customer deployment would not create an indefinite preference for the successful supplier. Once the first-of-a-kind barrier has been crossed, later purchases would return to ordinary competitive procurement unless an existing lawful basis for another procurement method applies.
+
+Contracting arrangements would normally preserve the supplier's ability to commercialise its technology beyond government while giving the Commonwealth the intellectual-property, licensing, data, interoperability, and usage rights reasonably required for the products it purchases. Different arrangements could remain necessary where national security, sovereign capability, or the nature of commissioned development creates a specific public interest in broader government rights.
+
+Ministers and agencies could determine priority problems for innovation procurement, but individual suppliers would continue to be selected through merit-based procurement processes rather than political direction.
+
+**Institutional implementation**
+
+The Business Research and Innovation Initiative would be subsumed into the permanent first-customer pathway. Its challenge-identification, feasibility, and proof-of-concept experience would provide the foundation for the system, while the redesigned pathway would extend beyond proof of concept into pre-defined trial and purchase stages. Existing BRII commitments would continue under their existing agreements.
+
+The Department of Finance would retain responsibility for the Commonwealth Procurement Rules and broader procurement framework governing the pathway. Procuring entities would remain responsible for identifying their operational needs, participating in trials, and purchasing solutions that satisfy their pre-agreed requirements. Central first-customer funding and procurement support would carry the additional risk associated with early deployment without transferring responsibility for the underlying purchasing decision away from the entity that will use the product.
+
+Technical expertise could be drawn from relevant federal institutions where required. Evidence produced through **Turn Good Ideas Into Productivity** could inform a procurement assessment where the same technology enters a government challenge, but commercialisation funding and government purchasing would remain separately governed. A project requiring further technical or industrial scale-up could likewise be referred from the procurement pathway into the commercialisation pathway without converting procurement into an open-ended development subsidy.
+
+Specialist national-security and Defence innovation systems, including the Advanced Strategic Capabilities Accelerator, would remain separate where their security, capability, and contracting requirements justify specialised processes. Equivalent challenge-based procurement undertaken through those systems would not need to be duplicated through the civilian first-customer pathway.
+
+The pathway would apply only where government has a genuine need for the resulting good or service. Technologies whose prospective markets lie elsewhere would continue to rely on the commercialisation pathway and private or other public demand rather than manufacturing a government customer for the purpose of supporting them.
+
+**References**
+
+[Department of Industry, Science and Resources — Ambitious Australia: Strategic Examination of Research and Development final report](https://www.industry.gov.au/publications/ambitious-australia-strategic-examination-research-and-development-final-report) [(Direct PDF Link)](https://www.industry.gov.au/sites/default/files/2026-03/ambitious-australia-strategic-examination-of-research-and-development-final-report.pdf) | 
+[Department of Finance — Commonwealth Procurement Rules](https://www.finance.gov.au/sites/default/files/2024-06/Commonwealth-Procurement-Rules_1-July-2024.pdf) | 
+[Department of Industry, Science and Resources — Business Research and Innovation Initiative](https://www.industry.gov.au/science-technology-and-innovation/industry-innovation/business-research-and-innovation-initiative)
+
+---
+
+</details>
+
+### **Secure Australia's Fertiliser Supply**
+
+1. Invest in commercial-scale Australian production of next-generation nitrogen fertilisers made from air, water, and electricity, guided by national fertiliser-security benchmarks that identify where domestic capacity, diversified supply, or strategic reserves are needed.
+   1. Farmers will have more dependable access to critical fertilisers when overseas supply is disrupted.
+   2. Regional communities will gain new opportunities to produce essential agricultural inputs closer to where they are used.
+   3. Australian innovators will have a pathway to turn emerging nitrogen technologies into large-scale productive capability.
+   4. Agriculture will become less dependent on imported fertiliser and concentrated fossil-fuel supply chains.
+   5. Farmers will gain more diverse sources of nitrogen fertiliser alongside large-scale conventional domestic production.
+   6. Australia's food supply will become more resilient to geopolitical and international shipping disruptions.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia's agricultural production depends heavily on internationally traded nitrogen fertiliser. Australia entered the 2026 Middle East supply disruption entirely reliant on imports for urea, with much of its fertiliser supply either sourced from the Middle East or dependent on Middle Eastern gas. Emergency sourcing and underwriting have helped maintain supply, while Project Ceres is expected to restore substantial domestic urea production.
+
+Ceres materially strengthens domestic capability, but conventional urea production remains dependent on natural gas and large centralised facilities. At the same time, Australian researchers and businesses are developing alternative ways to produce ammonia and nitrogen fertilisers from air, water, and electricity, including renewable-ammonia, plasma, and electrochemical processes.
+
+We would use Australia's fertiliser-security needs as a practical opportunity to develop and deploy these emerging production technologies at commercial scale, while maintaining conventional domestic production, diversified imports, and strategic supply measures where they remain necessary.
+
+**Next-generation nitrogen production**
+
+Commercial-scale demonstration and deployment support would prioritise nitrogen-production technologies that can reduce dependence on imported fertiliser and concentrated feedstock supply chains.
+
+Eligible technologies could include renewable ammonia, plasma nitrogen fixation, electrochemical processes, and other methods capable of producing useful nitrogen fertilisers from widely available domestic inputs. Support would remain technology-neutral and would not depend on adopting any particular proprietary system.
+
+Distributed and regional production would receive particular consideration where it can combine commercially credible production with additional supply resilience. Smaller production facilities located closer to agricultural users could complement large centralised plants by diversifying production locations, energy inputs, and transport requirements.
+
+The objective would not be to replace conventional fertiliser production before alternatives are technically and economically capable of doing so. New technologies would progressively add to Australia's productive capacity as their performance is demonstrated.
+
+**Fertiliser security framework**
+
+National fertiliser-security benchmarks would identify where additional domestic production, supply diversification, or strategic inventories are justified. Assessments would consider the importance of individual fertilisers to agricultural production, available substitutes, seasonal demand, domestic production, feedstock exposure, import concentration, shipping routes, inventories, storage characteristics, and the time required to establish alternative supply.
+
+Domestic production would form one part of this system rather than an absolute self-sufficiency requirement. Imports would remain appropriate where international supply is sufficiently diverse and dependable, while greater domestic capability would carry additional value where critical products depend on concentrated suppliers, feedstocks, or transport routes.
+
+Existing conventional production, including Project Ceres, would contribute to these benchmarks alongside emerging production technologies. Strategic inventories, alternative import arrangements, and emergency supply measures could address risks for which constructing additional permanent production capacity would not be proportionate.
+
+The framework would be reviewed against changing production, demand, trade, and technology conditions. Existing fertiliser monitoring and government-industry data collection could provide the basis for identifying structural vulnerabilities before a disruption requires emergency intervention.
+
+**Technology and investment discipline**
+
+New production technologies would need to demonstrate their performance progressively rather than receive support on the basis of technological promise alone. Assessment would consider production cost, energy requirements, reliability, agricultural suitability, scalability, expected operating life, and the degree of supply diversification created.
+
+Commercialisation and first-of-a-kind scale-up would occur through the unified innovation-commercialisation pathway. Fertiliser security would establish the strategic capability case for eligible projects, while continued support would depend on demonstrated technical and commercial progress.
+
+Projects would not be required to match the short-term cost of established imported fertiliser at every development stage. First commercial deployments can carry costs associated with proving technology and establishing supply chains that mature production would not retain. Continued support would instead depend on credible evidence that these costs can fall sufficiently for the technology to contribute economically at commercial scale.
+
+Technologies that fail to demonstrate a credible pathway to competitive production or material supply resilience would not continue receiving support solely because they offer lower emissions or domestic production.
+
+**System interaction**
+
+Established commercial fertiliser projects would remain able to seek appropriate investment through the National Reconstruction Fund Corporation and private finance. The innovation-commercialisation pathway would concentrate on unresolved technology and industrial-scale risk rather than replacing ordinary financing for proven production.
+
+Emergency supply measures would remain separately available for temporary disruptions. The Fuel and Fertiliser Security Facility demonstrated the value of underwriting alternative shipments when abnormal market risk prevented sufficient supply reaching Australia, but emergency import support would not substitute for addressing persistent structural vulnerabilities identified by the security framework.
+
+Large conventional plants and emerging distributed technologies would therefore perform different roles within the same supply system. Additional domestic production would be assessed by the resilience it contributes rather than requiring one production technology, feedstock, or facility to carry Australia's fertiliser security alone.
+
+**Residual trade-off**
+
+Greater supply resilience can cost more than relying exclusively on the cheapest available international source. New production technologies may also remain more expensive than conventional fertiliser for substantial periods while their technical and commercial performance develops.
+
+The framework would therefore distinguish the value of resilience and technology development from permanent protection of uneconomic production. It could reduce Australia's exposure to major supply disruptions and concentrated feedstocks, but would not insulate farmers from global fertiliser prices or justify maintaining domestic production at any cost.
+
+**References**
+
+[Department of Agriculture, Fisheries and Forestry — Fertiliser Supply Working Group](https://www.agriculture.gov.au/biosecurity-trade/middle-east-conflict/fertiliser-supply-working-group) | 
+[Department of Agriculture, Fisheries and Forestry — Fuel and Fertiliser Security Facility: fertiliser price-risk support](https://www.agriculture.gov.au/biosecurity-trade/middle-east-conflict/explainer-fuel-fertiliser-security-facility) | 
+[National Reconstruction Fund Corporation — Economic Resilience Program](https://www.nrf.gov.au/what-we-do/investment-sub-funds/economic-resilience-program) | 
+[Perdaman Chemicals & Fertilisers — Project Ceres](https://perdamanchemicalsandfertilisers.com/project/ceres/) | 
+[Woodside — Long-term domestic gas sale between Woodside and Perdaman becomes unconditional](https://www.woodside.com/docs/default-source/media-releases/long-term-domestic-gas-sale-between-woodside-and-perdaman-becomes-unconditional.pdf) | 
+[Hort Innovation Frontiers — PlasmaLeap funding shows appetite for safeguarding fertiliser supply](https://www.frontiers.au/plasmaleap-funding-shows-appetite-for-safeguarding-fertiliser-supply/)
+
+---
+
+</details>
+
+### **Unlock Regional Manufacturing with Hemp**
+
+1. Create a nationally consistent industrial-hemp framework, recognise compliant hemp materials and products in national standards, and support regional processing capacity where viable supply chains are blocked by missing first-stage infrastructure.
+   1. Farmers will have clearer and more consistent pathways to grow and sell industrial hemp.
+   2. Regional processors will have greater confidence to invest in first-stage processing facilities.
+   3. Manufacturers and builders will gain more reliable access to standardised Australian hemp materials.
+   4. Regional communities will retain more value from agricultural production through local processing and manufacturing.
+   5. Australian hemp products will have stronger opportunities to compete in domestic and export markets.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Industrial hemp is already legally cultivated in Australia and used in food, fibre, clothing, and building products, but cultivation and processing remain governed through overlapping state, territory, and federal rules. Definitions, licensing, permitted uses, and regulatory treatment vary between jurisdictions, increasing compliance costs and fragmenting national supply chains.
+
+The 2026 Senate inquiry into opportunities for an Australian hemp industry found that regulatory fragmentation, limited processing capacity, and uncertain end markets are preventing the sector from reaching sufficient scale. In particular, growers are reluctant to commit substantial crop volumes without reliable processors, while processors are reluctant to invest without dependable feedstock and customers.
+
+We would address these connected barriers as an industrial-development problem: normalise the legal treatment of low-THC industrial hemp, establish the standards needed for downstream products, and help viable regional supply chains overcome the missing processing link between farms and manufacturers.
+
+**National hemp framework**
+
+We would establish a consistent federal definition of industrial hemp and work through National Cabinet to harmonise state and territory licensing, including mutual recognition of cultivation licences and reduced duplication between jurisdictions.
+
+Low-THC industrial hemp would be regulated as an agricultural and manufacturing commodity wherever narcotics controls are not substantively required. Licensing, testing, reporting, transport, and other controls would reflect the actual risks of compliant industrial-hemp production rather than automatically inherit rules designed for intoxicating cannabis.
+
+Any change to THC thresholds would be coordinated with relevant drug-control obligations and evidence, with a consistent threshold adopted across jurisdictions where responsibilities permit.
+
+Economically useful parts of compliant industrial-hemp plants could be used where the resulting product satisfies the separate regulatory system applying to that use. Food, therapeutic goods, agricultural and veterinary products, controlled cannabinoids, and other regulated products would remain subject to their existing safety and approval requirements.
+
+Clear national classification would help banks, insurers, payment providers, advertisers, and online platforms distinguish industrial-hemp businesses and products from cannabis activities subject to drug-control regulation. It would not require any provider to accept a customer or product contrary to ordinary commercial or risk requirements.
+
+**Regional processing capacity**
+
+Raw hemp is bulky and generally needs first-stage processing close to where it is grown, making processing capacity a central coordination barrier. Farmers require confidence that harvested crops can be processed, while investment in processing facilities depends on sufficient prospective crop volumes and downstream demand.
+
+Targeted support would assist regional processing projects where credible growers and customers exist but missing processing capacity prevents the supply chain from forming. Projects would need to demonstrate plausible feedstock supply, downstream markets, suitable location, and a credible path to commercially sustainable operation.
+
+Support would be matched to the actual barrier. Established processing technologies would use industrial finance, co-investment, or regional infrastructure support rather than innovation funding simply because the sector is emerging. Genuinely novel processing technologies could instead use the innovation-commercialisation pathway where unresolved technical or scale-up risk remains.
+
+Public support would not guarantee continuing utilisation or protect facilities from ordinary changes in crop supply and market demand. Projects would remain responsible for securing commercially credible grower and customer relationships.
+
+**Product standards and market access**
+
+National standards would be developed where the absence of recognised specifications materially prevents hemp products from entering established markets.
+
+Construction is the clearest immediate case. Hempcrete and other hemp-based building products currently face additional approval, certification, and insurance barriers because they are not comprehensively recognised through national building standards. Fire, structural, durability, and other relevant testing would support product standards and National Construction Code recognition.
+
+Comparable standards would be developed for other hemp materials where a standards gap is preventing otherwise compliant products from being manufactured, insured, specified, or traded at scale.
+
+Standards would regulate products according to demonstrated performance rather than creating preferential treatment for hemp as a material. Once recognised, compliant hemp products could compete with conventional alternatives under the same safety, performance, procurement, and value-for-money requirements.
+
+**System interaction**
+
+New hemp products, processing technologies, and manufacturing methods facing genuine technical or industrial scale-up risk could progress through the unified innovation-commercialisation pathway. Established processing equipment or ordinary business expansion would remain outside that pathway where the remaining challenge is conventional finance rather than commercialisation.
+
+Government could act as an early customer for suitable new hemp products through the first-customer procurement pathway where a genuine public purchasing need exists. Mature hemp products would otherwise compete through ordinary procurement rather than receiving a permanent purchasing preference.
+
+Industrial-hemp reform would remain separate from the regulation of medicinal and personal-use cannabis. Products entering therapeutic-goods, food-safety, drug-control, or other specialised regulatory systems would continue to be governed through those systems according to their actual use and composition.
+
+Hemp production or hemp-based materials would not receive automatic carbon credits. Any eligibility would depend on the same requirements for additional, measurable, and sufficiently durable abatement as other activities.
+
+**References**
+
+[Parliament of Australia — Opportunities for the development of a hemp industry in Australia](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/Hempindustry_48/Report) | 
+[Parliament of Australia — Opportunities for the development of a hemp industry in Australia: List of recommendations](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/Hempindustry_48/Report/List_of_recommendations) | 
+[Parliament of Australia — Trade, economic, and regional development](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/Hempindustry_48/Report/Chapter_5_-_Trade_economic_and_regional_development) | 
+[Food Standards Australia New Zealand — Hemp seeds as food](https://www.foodstandards.gov.au/consumer/our-safe-food-supply/hemp-seeds-food) | 
+[Legalise Cannabis Party — Party Policy: Hemp Policy](https://www.legalisecannabis.org.au/party-policy/) | 
+[Legalise Cannabis Party — Sowing the Seeds of a Green Industrial Revolution](https://www.legalisecannabis.org.au/sowing_the_seeds_of_a_green_industrial_revolution)
+
+---
+
+</details>
+
+### **Make More From What We Mine**
+
+1. Build an advanced zirconium and hafnium processing industry at Portland for high-value refining, using shared infrastructure and a strategic-processing-node model that can be applied to other mineral value chains.
+   1. More skilled jobs will be created in advanced minerals processing and manufacturing.
+   2. New opportunities for processing and manufacturing businesses will be created in strategic locations.
+   3. Australian mineral producers will gain more domestic pathways into higher-value processing.
+   4. Australian manufacturers will gain stronger access to strategically important zirconium and hafnium materials.
+   5. Regional economies will become more attractive locations for future high-value industry.
+   6. Australia will retain more of the value created from its mineral resources.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia has the world's largest identified economic resources of zircon and is one of the world's largest producers, but much of the higher-value zirconium and hafnium processing chain remains offshore.
+
+Western Victoria is also developing a substantial new mineral-sands industry. The approved Donald project will mine and process 7.5 million tonnes of mineral sands annually and transport its products to the Port of Portland, while the proposed Avonbank project would also transport mineral-sands products to Portland.
+
+We would use this emerging mineral flow to build downstream processing at Portland rather than treating the port solely as an export point.
+
+**Portland processing node**
+
+Portland combines an emerging regional mineral-sands supply with Victoria's only naturally deep-water commercial port, existing mineral-sands storage, national road and standard-gauge rail connections, an established aluminium-smelting industry, major electricity infrastructure, and substantial land suitable for additional heavy industry.
+
+Federal and Victorian co-investment would focus on shared infrastructure needed to establish and expand the processing node, including electricity, water, freight, port capacity, and common industrial services where these are shared constraints rather than requirements of a single plant.
+
+Existing Victorian supply chains could provide bulk chemicals and other process inputs where local production is unnecessary. Portland is connected through the national standard-gauge freight network to metropolitan intermodal facilities, allowing specialised inputs to be brought into the precinct without requiring every supporting industry to be co-located there.
+
+Additional industrial water demand would be supplied without relying on municipal water required by the surrounding community. Open-ocean desalination could provide additional supply where required, with its capital and electricity requirements incorporated into the economics of the processing node.
+
+Public investment in shared infrastructure would favour assets that remain useful to multiple processors or future industries rather than bespoke infrastructure whose value depends on the continued operation of a single company.
+
+**Zirconium and hafnium processing**
+
+Processing at Portland would include mineral separation and zirconium-hafnium separation, creating a local pathway from Victorian mineral sands into high-value refined products.
+
+Australia already has substantial technical capability in zirconium and hafnium separation. ANSTO has undertaken extensive process and pilot-scale development covering zirconium and hafnium separation, zirconium compounds, zirconia, and high-purity separated zirconium and hafnium products.
+
+The objective is to extend Australian production beyond separated compounds into zirconium and hafnium metals, alloys, and other advanced materials. Expansion into these downstream stages would proceed as the required technology, customer qualification, and commercial demand are established.
+
+Western Victorian mineral sands would provide the regional feedstock base, while Portland could also accept suitable zirconium and hafnium intermediates from elsewhere in Australia. This would allow upstream producers to specialise in the processing stages suited to their operations while supporting a broader domestic downstream industry.
+
+**Strategic processing nodes**
+
+Portland would demonstrate a broader model for identifying where Australian minerals should move to their next stage of processing.
+
+Strategic processing nodes would be selected according to the economics of each processing stage, including freight flows, material value and volume, energy and water requirements, reagent supply, waste management, industrial land, workforce, port access, and customer markets.
+
+Where a node meets this test, we would co-invest with states and territories in shared enabling infrastructure that can serve multiple processors or future industries. The same approach would be used to develop other Australian mineral value chains where shared infrastructure is the barrier to further domestic processing.
+
+**Investment and system interaction**
+
+Novel separation, metallisation, or advanced-material processes facing unresolved technical or industrial scale-up risk would progress through the unified innovation-commercialisation pathway. Proven commercial operations would instead rely on private investment and appropriate industrial-finance institutions.
+
+Individual processing businesses would remain responsible for establishing credible feedstock arrangements, customers, and commercially sustainable operations. Public investment in the processing node would not protect producers from ordinary commodity, technology, or market risk.
+
+Public support would be staged with downstream expansion rather than committed to the entire value chain upfront.
+
+**Residual trade-offs**
+
+Shared infrastructure is long-lived while mineral markets and processing technologies can change quickly. Even with multiple users, staged investment, and credible customer demand, infrastructure built for a processing node could become underused if the industries it supports later lose their competitive position. However, Portland's deep-water port, major electricity connection, rail access, established metallurgical workforce, and access to scalable open-ocean desalination make it a strong location for alternative industries that could reuse that infrastructure if mineral-processing demand declines.
+
+**References**
+
+[Resources Victoria — Donald Mineral Sands Project](https://resources.vic.gov.au/landholders-and-community/key-site-updates/donald-mineral-sands-project) | 
+[Resources Victoria — Avonbank Mineral Sands Project](https://resources.vic.gov.au/landholders-and-community/key-site-updates/avonbank-mineral-sands-project) | 
+[Port of Portland — Port Storage & Facilities](https://www.portofportland.com.au/port-operations/services-facilities/port-storage-facilities/) | 
+[Glenelg Shire Council — Portland Industrial Investment Prospectus](https://www.glenelg.vic.gov.au/files/assets/public/v/2/our-services/planning-and-building/planning-documents/current-amendments-and-projects/strategic-team-docs-for-reference/portland-industrial-investment-prospectus.pdf) | 
+[Geoscience Australia — Australia's Identified Mineral Resources 2025: Commodity Summaries](https://www.ga.gov.au/aimr2025/commodity-summaries) | 
+[ANSTO — Minerals Capability Statement](https://www.ansto.gov.au/media/1441/download) | 
+[Australian Energy Market Operator — Heywood to Alcoa Portland 500 kV transmission line](https://www.aemo.com.au/consultations/current-and-closed-consultations/ausnet-services-pacr-tower-replacement-on-the-heywood-to-alcoa-portland-500kv-line) | 
+[Victorian Government — About Victoria's rail freight network](https://www.vic.gov.au/about-victorias-rail-freight-network) | 
+[Australian Strategic Materials — The Dubbo Project](https://asm-au.com/mines/the-dubbo-project/)
+
+---
+
+</details>
+
+### **Build a Circular Economy**
+
+1. Apply a sliding tax or credit to products sold in Australia, including imports, based on how much of their material is demonstrably recovered and made ready for productive reuse, and direct net revenue into domestic recycling capacity.
+   1. Businesses that keep more of their materials in productive use will gain a financial advantage over competitors that leave them as waste.
+   2. Recycling and reprocessing businesses will gain more dependable demand as producers seek practical ways to recover their materials.
+   3. Manufacturers will gain more reliable access to locally recovered materials as reclamation capacity expands.
+   4. Australian manufacturers will compete on fairer terms when imported goods face the same circularity incentives.
+   5. More usable materials will remain in productive circulation instead of being lost to landfill or low-value disposal.
+   6. Australia will retain more value from the resources already circulating through its economy while reducing demand for new raw materials.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+A circular economy requires more than products being technically recyclable. Materials must actually be recovered and reprocessed into a form ready for productive reuse.
+
+Australia already has product-stewardship arrangements covering parts of the economy and a national objective to increase circularity, but existing arrangements vary between voluntary, co-regulatory, and mandatory approaches. The federal Circular Economy Framework aims to double Australia's circularity by 2035 and safely recover 80% of resources.
+
+We would create a standing economic incentive for businesses to close their material loops rather than relying on separate regulatory intervention each time a waste stream becomes problematic.
+
+**Demonstrated circularity**
+
+Circularity would be based on material demonstrably recovered and processed into a form ready for productive reuse, rather than whether a product is technically recyclable or merely collected for recycling.
+
+Producers and importers would not need to trace individual products where materials enter shared recycling systems. Established systems could instead use independently audited mass-balance accounting comparing material entering the relevant market or recovery stream with usable recovered material produced from that stream.
+
+Reuse and remanufacture could qualify directly, while recycled materials would qualify once processing produces material suitable for use as an industrial input. Subsequent sale or consumption of that material would not be required. This prevents falling production or consumption from artificially reducing circularity simply because recovered material temporarily exceeds demand.
+
+Producers and importers could also participate in accredited collective schemes or establish their own recovery and reprocessing arrangements. Businesses that create or co-invest in higher-performing systems would therefore be able to improve their circularity score beyond the ordinary market rate.
+
+Collection, sorting, stockpiling of untreated waste, or processing that does not produce a usable secondary material would not establish full circularity.
+
+**Circularity levy and credit**
+
+Each covered product or material category would have a reference circularity charge appropriate to that category.
+
+Liability would change linearly with demonstrated circularity. Every additional percentage point of material successfully recovered and made ready for productive reuse would produce the same incremental improvement in the applicable rate.
+
+At a defined high level of circularity, liability would reach zero. Performance beyond that point would generate an increasing circularity credit, up to a capped maximum.
+
+The initial linear structure would provide a simple and predictable incentive while industries build recovery capability.
+
+**Collective recovery systems**
+
+Businesses would not need to recover their own products individually.
+
+Producers and importers could establish their own systems, contract with independent reclamation businesses, or participate in collective industry schemes. Their circularity assessment would reflect verified material actually recovered and made ready for reuse through those arrangements.
+
+It is expected that industries using similar materials would generally share collection, sorting, and reprocessing infrastructure rather than duplicating facilities simply to qualify for the incentive.
+
+**Imported goods**
+
+The circularity system would apply to goods supplied into the Australian market rather than only to goods manufactured here.
+
+Importers would therefore face equivalent liability for imported goods and could receive equivalent reductions or credits where those products participate in demonstrated recovery and reprocessing systems.
+
+This prevents Australian manufacturers from being placed at a competitive disadvantage for improving their circularity while imported competitors avoid the same cost. Structuring the measure as an equivalent internal charge on domestic and imported goods would also avoid making the mechanism dependent on discriminatory tariff treatment.
+
+**Building reclamation capacity**
+
+Net levy revenue would support shared collection, sorting, reclamation, and reprocessing capacity where missing infrastructure prevents industries from improving their demonstrated circularity.
+
+Support would favour infrastructure that can serve multiple producers, materials, or future users rather than facilities dependent on the continued operation of a single company.
+
+As new recovery capability becomes available, producers would have an incentive to use or co-invest in it because doing so would directly improve their circularity performance and reduce future liability.
+
+**Category calibration**
+
+Different products have different useful lives, material compositions, recovery costs, and practical recycling pathways. Reference charges, measurement periods, qualifying recovery methods, and the point at which liability becomes a credit would therefore be established by product or material category rather than applying one arbitrary rate to every good.
+
+Measurement would reflect product life. Short-lived goods would generally use material placed on market and subsequent recovery flows, while long-lived goods would be assessed against material reaching end of life rather than current-year sales.
+
+The financial endpoints would be calibrated so that incentives are commercially meaningful without allowing circularity credits to become disproportionate to the material consequences of the product itself.
+
+**Use of recovered materials**
+
+Where suitable recycled material is demonstrably available, continued use of equivalent new material would reduce a product's circularity score. Availability would account for material specification, quantity, location, safety, and technical suitability rather than assuming that any recycled material can substitute for any new input.
+
+This would create demand for recovered materials without penalising recycling systems simply because overall production or consumption has fallen.
+
+**System interaction**
+
+The existing *Recycling and Waste Reduction Act 2020* already provides federal mechanisms for voluntary, co-regulatory, and mandatory product stewardship and covers manufacturers and importers, product reuse, remanufacture, recycling, recovery, and lifecycle responsibility. The circularity system would build on this regulatory architecture rather than create an unrelated parallel waste regime.
+
+Current product-stewardship priorities also demonstrate that voluntary industry action does not always produce sufficient recovery, with the federal government already able to move toward mandatory regulation where voluntary progress is inadequate.
+
+International extended-producer-responsibility systems increasingly use modulated fees and bonus-malus arrangements to strengthen incentives for circular product design and material recovery.
+
+**Residual trade-off**
+
+Demonstrated material circularity is not a complete measure of a product's environmental impact. A product can perform strongly under this system while still carrying significant impacts through energy use, emissions, toxicity, or other parts of its lifecycle. The circularity mechanism would therefore remain focused on the specific problem it is designed to solve — keeping material resources in productive use — rather than attempting to replace environmental, emissions, or product-safety regulation.
+
+**Implementation outline**
+
+We would establish covered product and material categories progressively, beginning with high-volume waste streams where material flows can be measured reliably and meaningful recovery pathways already exist or can be developed.
+
+Category rules would establish the reference charge, linear circularity scale, credit threshold and cap, acceptable recovery pathways, evidence requirements, and audit standards. Financial liability would be administered using independently verified circularity performance, with equivalent treatment for domestic producers and importers.
+
+Existing stewardship arrangements could be recognised where they provide the evidence and recovery outcomes required by the new system rather than being unnecessarily duplicated.
+
+**References**
+
+[Department of Climate Change, Energy, the Environment and Water — Australia's Circular Economy Framework](https://www.dcceew.gov.au/environment/protection/circular-economy/framework) | 
+[Department of Climate Change, Energy, the Environment and Water — Minister's Product Stewardship Priority List](https://www.dcceew.gov.au/environment/protection/waste/product-stewardship/ministers-priority-list) | 
+[Recycling and Waste Reduction Act 2020](https://www.legislation.gov.au/C2020A00119/latest/text) | 
+[OECD — Modulated Fees for Extended Producer Responsibility Schemes](https://www.oecd.org/en/publications/modulated-fees-for-extended-producer-responsibility-schemes-epr_2a42f54b-en.html) | 
+[French Ministry for Ecological Transition — General Framework for Extended Producer Responsibility Sectors](https://www.ecologie.gouv.fr/politiques-publiques/cadre-general-filieres-responsabilite-elargie-producteurs) | 
+[World Trade Organization — GATT Article III: National Treatment on Internal Taxation and Regulation](https://www.wto.org/english/res_e/booksp_e/gatt_ai_e/art3_e.pdf)
+
+---
+
+</details>
 
 ### **Match Skilled Migration to Genuine National Need**
 
 1. Align skilled migration settings to independently assessed shortage evidence and national capability priorities, with occupation access, visa pathways, and intake levels tied to current shortage data and strategic sector needs rather than routine employer demand alone.
-   1. Skilled migration will be more clearly directed to areas where Australia genuinely lacks the workers or capabilities it needs.
-   2. Employers will face stronger pressure to justify skilled migration through real shortage evidence instead of using it as a shortcut around training and workforce development.
-   3. Critical sectors will have a clearer pathway to fill gaps that cannot yet be met domestically.
-   4. Communities will have stronger confidence that skilled migration is being used to solve real problems rather than to suppress wages or avoid reform.
-   5. Migration planning will better reflect long-term national capability rather than short-term labour demand alone.
+   1. Australian workers will face less downward pressure from businesses using skilled migration instead of improving pay, conditions, or training.
+   2. Skilled migration will be more clearly directed to areas where Australia genuinely lacks the workers or capabilities it needs.
+   3. Employers will face stronger pressure to justify skilled migration through evidence of genuine shortages instead of using it as a shortcut around training and workforce development.
+   4. Critical sectors will have a clearer pathway to fill skills gaps that cannot yet be met domestically.
+   5. Communities will have stronger confidence that skilled migration is being used to solve real problems rather than to suppress wages or avoid reform.
+   6. Migration planning will better reflect long-term national capability rather than short-term labour demand alone.
 
 <details>
 <summary><strong>Further Detail</strong></summary>
@@ -2938,6 +3459,11 @@ Even with stronger evidence settings, shortage assessment will never be perfectl
 
 Skilled migration pathways and occupation access would be tied to independent shortage evidence and national capability priorities, with regular review so visa settings follow genuine need rather than stale lists or routine employer demand.
 
+**References**
+
+[Jobs and Skills Australia — Occupation Shortage](https://www.jobsandskills.gov.au/data/occupation-shortage) | 
+[Jobs and Skills Australia — 2025 Core Skills Occupations List Consultations](https://www.jobsandskills.gov.au/consultations/2025-core-skills-occupations-list-csol-consultations)
+
 ---
 
 </details>
@@ -2952,6 +3478,9 @@ Skilled migration pathways and occupation access would be tied to independent sh
 - Restore wetlands and ocean ecosystems
 - Promote regenerative agriculture
 - Invest in immediate cooling research
+- Declare a climate emergency now
+- Achieve negative emissions
+- Cut rogue emissions from mining
 
 ---
 
@@ -2975,5 +3504,10 @@ Policy items that are "New" and need voting on:
 - Open Up Access to Australian News
 - Make NAPLAN Help Students, Not Rank Schools
 - Make Your Skills Count
+- Build a Pro-Innovation Government
+- Secure Australia's Fertiliser Supply
+- Unlock Regional Manufacturing with Hemp
+- Make More From What We Mine
+- Build a Circular Economy
 
 
