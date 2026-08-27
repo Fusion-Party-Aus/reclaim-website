@@ -33,6 +33,7 @@ _It is the only way._
 ## Solve the Housing Crisis
 ## Fix the Tax Exploits
 ## Build up Small Businesses
+## Grow a Clean Economy
 
 # RECLAIM OUR FUTURE
 
@@ -1681,6 +1682,97 @@ Legislation would define revised protection periods, tighten claim-scope rules, 
 ---
 
 </details>
+
+## Grow a Clean Economy
+
+### **Redesign the Energy Market for Stable Power**
+
+1. Separate electricity reliability from consumption pricing by allowing consumers to choose a standard level of reliability, with reliability charges pooled and distributed among grid-scale storage providers in proportion to the electricity they supply back to the grid.
+   1. Households will pay for the level of grid reliability that matches their actual needs.
+   2. Battery operators will earn directly from providing reliable stored power instead of depending primarily on large wholesale price swings.
+   3. Consumers with their own storage or flexible electricity needs will have new opportunities to reduce their power bills.
+   4. Wholesale electricity prices will become more stable as storage operators compete to buy electricity when it is abundant and return it when supply is tighter.
+   5. Efficient storage providers will remain competitive as additional operators divide the same reliability revenue pool.
+   6. Reliable electricity supply will become less dependent on maintaining periods of very high wholesale prices to finance storage investment.
+   7. More variable low-emissions generation will be able to enter the grid without making increasing price volatility a necessary part of the electricity system.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Electricity consumption and electricity reliability are related but distinct services. Consumers primarily pay for electricity used, while the system must also maintain enough stored energy to deliver that electricity when generation is unavailable or insufficient.
+
+At present, grid-scale batteries rely heavily on differences between low and high wholesale prices to recover their investment. As more storage enters the market and smooths those price differences, successful storage can weaken the price volatility on which further storage investment depends.
+
+Separating reliability revenue from energy pricing allows storage to earn from making electricity dependable without requiring wholesale prices to remain highly volatile.
+
+**Market structure and fund flows**
+
+A household or business would continue receiving a single electricity bill, but the bill would contain three conceptually distinct components:
+
+1. **Energy Usage** — payment for the electricity consumed, with retailers continuing to purchase electricity through the wholesale market and generators and storage operators continuing to buy and sell electricity through AEMO's existing settlement system.
+2. **Network Connection** — payment for the transmission and distribution infrastructure used to deliver electricity, passed through by retailers to the relevant network managers.
+3. **Reliability** — payment for the consumer's selected level of dependable grid supply, passed through by retailers to AEMO for administration through a national reliability pool.
+
+AEMO would distribute reliability-pool revenue among eligible grid-scale storage and firming providers according to their share of electricity supplied back into the grid.
+
+Storage operators would therefore continue participating normally in the wholesale electricity market when charging and discharging, while also earning reliability revenue for shifting electricity from times of abundance to times when dependable supply is needed.
+
+**Reliability choices**
+
+Standard reliability classes would allow consumers to select the level of grid reliability appropriate to their circumstances.
+
+Ordinary household service would continue to provide a high level of reliability. Consumers with substantial household batteries, backup systems, or genuinely flexible electricity needs could select lower-cost reliability classes because they require less guaranteed supply from the wider grid.
+
+Each reliability class would carry corresponding service conditions so the amount charged reflects the reliability the electricity system is actually required to provide. Retailers could compete in the products and prices they offer around these standard classes without redefining the underlying reliability service.
+
+**Reliability pool and storage incentives**
+
+Reliability charges would form a fixed revenue pool distributed among eligible grid-scale storage providers. Each operator's share would be determined directly by its share of electricity discharged back into the grid.
+
+The pool would not increase because more storage operators enter the market or because an individual operator incurs higher costs. Additional competition would instead divide the available reliability revenue across a larger amount of supplied storage.
+
+This creates pressure for storage investment to expand while returns remain attractive and moderate as the market becomes more crowded. Operators with lower capital costs, better efficiency, lower degradation, or more effective operating strategies would be better able to remain profitable as competition increases.
+
+Storage operators would still bear the wholesale cost of charging, round-trip energy losses, degradation, and operating costs. Cycling storage solely to increase its share of the reliability pool would therefore carry real costs while also increasing the total output across which the fixed pool is divided, acting as a natural disincentive to prevent "gaming" the system.
+
+**Interaction with the wholesale market**
+
+Storage operators would continue buying electricity when wholesale prices are lower and selling it when prices are higher, progressively smoothing differences between periods of abundant and scarce supply.
+
+As storage competition expands, those wholesale price differences should narrow. In a highly effective system, storage would shift enough electricity through time that wholesale prices become substantially flatter, while reliability revenue continues supporting the storage capacity that makes that price stability possible.
+
+This separates the commercial value of storage from the persistence of wholesale price volatility: batteries can succeed by reducing price swings rather than depending on those swings remaining large.
+
+**Behind-the-meter storage**
+
+Household and business batteries would primarily provide private reliability by reducing how much dependable grid supply their owners need. Consumers with sufficient backup capacity could therefore choose a lower-cost reliability class without giving up the reliability they personally value.
+
+Owners could also choose to make their batteries available to the wider electricity system through an eligible retailer or aggregated virtual power plant. Verified stored-energy discharge that either supplies electricity to the grid or reduces grid demand when reliability support is required would contribute to that aggregator's share of the reliability pool.
+
+Participation in grid reliability would remain voluntary. A consumer could use a battery entirely for their own needs, make some capacity available to the grid, or participate more extensively where the resulting payments made that worthwhile.
+
+**Residual risks and implementation**
+
+A throughput-based reliability pool may favour storage that cycles frequently over storage whose value lies principally in covering rare, long-duration shortages. The system may therefore still need to demonstrate that market incentives sustain an appropriate mix of storage duration as generation becomes more variable.
+
+Reliability choices could also produce different levels of interruption exposure between households. Standard service conditions would need to ensure that consumers understand the reliability product they select and that lower-cost options represent genuine choice rather than nominally equivalent services with hidden differences.
+
+The reform would require electricity settlement and retail billing to distinguish energy, network, and reliability charges, establish nationally consistent reliability classes, and transition existing grid-scale storage arrangements into the new settlement framework without duplicating reliability payments.
+
+**References**
+
+[Australian Energy Regulator — Wholesale electricity market performance report 2026] |  
+[Australian Energy Market Commission — 2026 Reliability Standard and Settings Review] |  
+[Australian Energy Market Commission — New rule to make the invisible visible across the distribution network]
+
+---
+
+</details>
+
 
 ---
 
