@@ -777,7 +777,8 @@ Where external evidence or current institutional settings materially support a T
   `[Institution — Publication or page title](https://example.com/source)`
 
 - For federal departments, use the department name directly without an "Australian Government" prefix.
-- Place each reference on a separate line.
+- Place each reference on a separate source line.
+- Where multiple references are included, append ` | ` to every reference except the final one so references remain visually delineated when Markdown renders consecutive lines as a compressed paragraph.
 - Prefer primary, authoritative, and current sources: legislation, government agencies, statutory bodies, official inquiries, original research, and institutional reports.
 - Include only sources that materially substantiate the policy's factual premises, institutional design, evidence base, or implementation context. References are not intended to be an exhaustive bibliography.
 - Prefer the most direct source for a claim over secondary reporting or commentary.
@@ -790,7 +791,7 @@ Example:
 
 **References**
 
-[Department of Agriculture, Fisheries and Forestry — Fertiliser Supply Working Group](https://www.agriculture.gov.au/biosecurity-trade/middle-east-conflict/fertiliser-supply-working-group)
+[Department of Agriculture, Fisheries and Forestry — Fertiliser Supply Working Group](https://www.agriculture.gov.au/biosecurity-trade/middle-east-conflict/fertiliser-supply-working-group) | 
 [Perdaman Chemicals & Fertilisers — Project Ceres](https://perdamanchemicalsandfertilisers.com/project/ceres/)
 
 ## T4 Supporting Elements Rule
