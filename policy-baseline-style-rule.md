@@ -42,7 +42,7 @@ Prefer direct constructions:
 
 The test is not whether the sentence names the actor. The test is whether the chosen subject makes the action or explanation as clear and direct as possible. Avoid both clunky actor-led phrasing and compressed bureaucratic noun stacks.
 
-### Action and Explanatory Voice Rule
+## Action and Explanatory Voice Rule
 
 Choose the sentence subject according to the function the sentence is performing. Use the shortest construction that keeps the actor, mechanism, or referent clear.
 
@@ -66,6 +66,14 @@ Likewise, do not repeat a named actor or mechanism when the preceding text alrea
 - **This reform interacts with competition law and existing merger controls.**
 
 Where the policy deliberately distinguishes between permitted, required, and prohibited uses or circumstances, match the language to that boundary. Do not express a categorical prohibition as merely a preference between alternatives. For example, use “may contribute to…” for permitted uses and “must not be used…” where a use is prohibited.
+
+## Concrete Description Rule
+
+Describe the real-world action, condition, or constraint directly wherever this preserves the relevant meaning. Do not reproduce an institution's administrative terminology, category structure, or procedural framing merely because that is how the underlying source describes it.
+
+Use the institutional term only where removing it would lose a legally, structurally, or analytically important distinction.
+
+> Prefer describing what the system actually does over describing the administrative category through which it does it.
 
 ---
 

@@ -860,7 +860,7 @@ Federal legislation defines payment amounts, uplift criteria, indexing method, a
 
 ### **Supply Integrated Public Housing at Scale**
 
-1. Establish a Public Housing Acquisition Program that has enduring first right of purchase for a one defined floor of dwellings within new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
+1. Establish a Public Housing Acquisition Program that has enduring first right of purchase over the dwellings on one defined floor of new multi-unit residential developments, prioritising centrally located buildings and major transport corridors.
    1. Access to and usage of transport, services, and employment will improve when public housing is located in well-serviced centres.
    2. Public housing residents will not be isolated in service deserts where they have extra costs for living that maintain poverty traps.
    3. Mixed-tenure buildings will support social stability and reduce concentrated disadvantage.
@@ -880,10 +880,10 @@ Traditional estate-style public housing concentrates disadvantage, isolates resi
 
 **Acquisition structure**
 
-1. A defined percentage of total dwellings within eligible multi-storey developments is acquired at market price upon completion.
-2. Acquisition prioritises rail catchments, activity centres, and transport corridors defined in the Production phase.
-3. Dwellings are purchased rather than mandated as in-kind developer contributions, preserving construction viability.
-4. Ownership is consolidated under a public housing authority rather than distributed through third-party social housing entities.
+1. The public housing authority receives first right of purchase over all dwellings on one defined residential floor within eligible multi-storey developments.
+2. Acquisition prioritises rail catchments, activity centres, transport corridors, and any other priority locations defined by the housing supply reforms.
+3. Dwellings are purchased at market price rather than mandated as in-kind developer contributions, preserving construction viability.
+4. Ownership remains consolidated under a public housing authority rather than distributed through third-party social housing entities.
 
 **Scale expectation**
 
@@ -895,7 +895,7 @@ If applied consistently to medium and high-density developments in priority geog
 2. Mixed-tenure buildings operate under standard strata governance arrangements.
 3. Tenancy management is centralised under public authorities with national quality standards.
 
-**Interaction with Production reforms**
+**Interaction with housing supply reforms**
 
 Minimum Housing Permissions and the Housing Delivery Accelerator increase eligible development volume in transit-connected areas, expanding acquisition opportunity without requiring additional rezoning.
 
@@ -1234,7 +1234,7 @@ Budget legislation and tax law amendments identify, catalogue, and repeal define
    1. Every tonne of pollution will carry a real and unavoidable cost.
    2. Only credits backed by genuine, measurable, and lasting carbon sequestration will count for compliance.
    3. Companies will not be able to create credits within their own corporate group and use them to cancel out their own pollution.
-   4. The total number of credits issued will be tightly controlled so supply reflects real emissions cuts.
+   4. Credit supply will grow only when additional carbon is genuinely removed and durably stored.
    5. The carbon market will reward real decarbonisation instead of accounting workarounds.
 
 <details>
@@ -1246,7 +1246,7 @@ Budget legislation and tax law amendments identify, catalogue, and repeal define
 
 Australia already requires major facilities to account for emissions but there are weaknesses and liability is not total. In a proper full-liability system, every tonne emitted must be matched with a credit. The strength of the system depends entirely on the integrity and scarcity of those credits.
 
-If credits do not represent real and lasting emissions reductions, compliance becomes cheap without pollution falling. This protects the integrity and discipline of the credit supply.
+If credits do not represent real and lasting carbon sequestration, polluters can meet their liability without an equivalent amount of carbon being removed from the atmosphere.
 
 **Core integrity rules**
 
@@ -1268,7 +1268,7 @@ This creates compounding cost pressure for non-compliance while preserving the i
 
 **Protecting system discipline**
 
-1. Credit issuance must align with verified emissions reductions and cannot expand independently of real abatement outcomes.
+1. Credit issuance must align with verified carbon sequestration and cannot expand independently of real atmospheric carbon removal.
 2. Credit origin, ownership history, and surrender use must be publicly disclosed each quarter.
 3. The shortfall charge is not tax-deductible.
 
@@ -1293,7 +1293,7 @@ Amend safeguard and carbon credit legislation to:
 
 </details>
 
-## Build Up Small Businesses
+## Build up Small Businesses
 
 Making Australia a country where small businesses can compete, grow, and innovate on fair terms, without being squeezed out by concentrated market power, delayed payments, exploitative contracts, or structural disadvantage.
 
@@ -1693,6 +1693,8 @@ Legislation would define revised protection periods, tighten claim-scope rules, 
 
 ## Grow a Clean Economy
 
+Making Australia a country where clean energy is abundant and affordable, every sector has a practical path to cut emissions, and climate solutions become sources of Australian industry, innovation, and exports.
+
 ### **Redesign the Energy Market for Stable Power**
 
 1. Separate electricity reliability from consumption pricing by allowing consumers to choose a standard level of reliability, with reliability charges pooled and distributed among grid-scale storage providers in proportion to the electricity they supply back to the grid.
@@ -1996,9 +1998,11 @@ Success would be judged by commercially usable reductions in methane rather than
 
 The same productivity test would apply to other production emissions.
 
-Precision fertiliser application can reduce excess nitrogen fertiliser use, and the associated nitrous oxide emissions, while lowering input costs and maintaining crop nutrition. Improved fertiliser-use efficiency, appropriate crop rotations, and other agronomic practices can similarly reduce emissions where they allow producers to obtain more useful production from each unit of input.
+Precision fertiliser application can reduce excess nitrogen fertiliser use, and the associated nitrous oxide emissions, while lowering input costs and maintaining crop nutrition. Improved fertiliser-use efficiency, appropriate crop rotations, and other regenerative agriculture practices can similarly reduce emissions where they allow producers to obtain more useful production from each unit of input.
 
 Manure management can create comparable opportunities where captured methane can be converted into useful energy or other products. Where an emissions-control measure produces no corresponding commercial value, the development pathway should focus on reducing its cost rather than assuming farmers will adopt it voluntarily.
+
+Biochar may also have agricultural value where suitable products improve soil water or nutrient retention, reduce fertiliser requirements or nitrous oxide emissions, or improve farm productivity. Its use would be assessed on demonstrated farm and emissions performance rather than treated as a universal soil treatment. Any durable carbon stored in biochar would be accounted for separately through the carbon-removal framework rather than being treated as a reduction in the farm's production emissions.
 
 Different agricultural systems would therefore use different combinations of technology and practice rather than being required to follow a single prescribed pathway.
 
@@ -2055,11 +2059,13 @@ Broader competition policy would separately address concentrated purchasing powe
 
 **Design rationale**
 
+Achieving negative emissions requires removing carbon dioxide already in the atmosphere and storing it durably, not merely reducing the rate of new emissions.
+
 Nature-based sequestration through forests, soils, and other ecosystems will remain important, particularly as stronger carbon compliance increases demand for genuine sequestration.
 
 However, biological carbon stores can be reversed by bushfire, drought, flood, ecosystem decline, and other disturbances. Engineered carbon removal can complement them with mineral, geological, and other forms of storage that are less exposed to worsening climate risks.
 
-Australia has particular opportunities through its geology, mining industry, renewable-energy resources, and existing industrial infrastructure. The aim is not to permanently subsidise carbon removal, but to establish the measurement, certification, resource knowledge, and shared infrastructure needed for emerging methods to compete in the carbon market.
+Australia has particular opportunities through its geology, mining and agricultural industries, renewable-energy resources, and existing industrial infrastructure. The aim is not to permanently subsidise carbon removal, but to establish the measurement, certification, resource knowledge, and shared infrastructure needed for emerging methods to compete in the carbon market.
 
 **What counts as carbon removal**
 
@@ -2080,6 +2086,8 @@ The opportunity depends heavily on local mineralogy, reaction rates, water and p
 Mineralisation would receive particular attention because of Australia's mining strengths, while remaining in competition with other engineered-removal technologies.
 
 **Other removal pathways**
+
+Biochar can convert suitable biomass residues and wastes into a durable carbon store while also producing a useful soil amendment. Credit eligibility would depend on sustainable feedstocks, the stability of the stored carbon, lifecycle emissions, and an end use that preserves the carbon over the credited period.
 
 Direct air capture offers highly measurable removal but currently requires substantial energy and capital.
 
@@ -2579,9 +2587,79 @@ Legislation would define the covered Australian news publisher class, require to
 
 </details>
 
-### Restore ABC and SBS funding <- Add new in this section somewhere
+### **Reinforce ABC and SBS Funding**
+
+1. Make each announced five-year funding allocation for the ABC and SBS a statutory minimum that cannot be reduced during that term, while allowing governments to provide additional funding.
+   1. The ABC and SBS will have greater certainty that their committed funding will remain available across each full five-year term.
+   2. The national broadcasters will be better able to plan staffing, programming, technology, and infrastructure over realistic multi-year periods.
+   3. Journalists and editors will face less indirect political pressure from the threat of mid-term funding cuts.
+   4. Regional, emergency, multilingual, educational, and other public-interest broadcasting will have a more stable financial foundation.
+   5. Australians will have stronger confidence that the national broadcasters can make editorial decisions independently of short-term budget politics.
+   6. Governments seeking to reduce protected funding will have to do so through an explicit and publicly accountable legislative decision.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Five-year funding terms give the ABC and SBS greater planning certainty than short budget cycles, but that protection is incomplete if a government can announce funding for the term and later reduce it through subsequent budgets.
+
+The reform would make the announced funding commitment itself meaningful. Once a five-year funding term begins, the amount committed to the ABC and SBS for that term would become a statutory minimum rather than a funding intention that remains open to later reduction.
+
+This protects the broadcasters from funding being used as a short-term political pressure point while preserving Parliament's ability to determine funding for each future term.
+
+**Statutory funding floor**
+
+At the beginning of each five-year term, the published funding schedule for the ABC and SBS would establish the statutory minimum for that period.
+
+The protected floor would apply to the announced annual funding profile as well as the overall funding commitment, preventing later budgets from cutting, deferring, or otherwise reducing scheduled base funding during the term.
+
+Governments could increase funding above the floor at any time. Additional funding could support new services, capital investment, emergency requirements, technological change, or other priorities without permanently altering the minimum unless incorporated into the next five-year funding term.
+
+The protection would apply to ordinary budget decisions. A future Parliament could still amend the governing legislation, but reducing funding within an existing term would therefore require an explicit legislative decision rather than a quiet change through a later appropriation.
+
+**Future funding terms**
+
+The reform would not permanently fix ABC or SBS funding at any particular level.
+
+Before each new five-year term, government and Parliament would continue to determine an appropriate funding allocation through the normal budget and legislative process. Once that allocation is announced and the new term begins, however, it would become the protected minimum for the duration of that term.
+
+This preserves democratic control over future expenditure while preventing governments from making a five-year commitment and subsequently withdrawing part of it.
+
+**Editorial independence**
+
+Funding protection would not give the ABC or SBS immunity from public accountability, nor would additional funding give ministers greater authority over programming or editorial decisions.
+
+The ABC and SBS Boards would retain responsibility for using their funding to fulfil their statutory Charters and manage their organisations. Governments would determine the resources available, but not use the timing or withdrawal of those resources to influence particular editorial decisions.
+
+A national broadcaster remains publicly funded without becoming a government broadcaster.
+
+**Public-interest broadcasting**
+
+More reliable funding allows the ABC and SBS to maintain services whose public value does not necessarily produce a corresponding commercial return.
+
+These include regional and remote journalism, emergency broadcasting, Australian news and current affairs, children's and educational programming, multilingual and multicultural services, accessibility services, and Australian-produced content.
+
+**Residual trade-off**
+
+A statutory funding floor reduces government flexibility to cut public-broadcasting expenditure during an existing five-year term, including where wider fiscal circumstances change unexpectedly.
+
+That constraint is inherent to meaningful funding certainty. Governments would retain full discretion over additional funding and over the funding level established for the next five-year term.
+
+**References**
+
+[Australian Government — Supporting the independence of our national broadcasters](https://minister.infrastructure.gov.au/rowland/media-release/supporting-independence-our-national-broadcasters) |  
+[Department of Infrastructure — Review of options to support the independence of the national broadcasters](https://www.infrastructure.gov.au/sites/default/files/documents/review-of-options-to-support-the-independence-of-the-national-broadcasters-public-consultation-paper-july2023.pdf)
+
+---
+
+</details>
 
 ## Rebuild Our Communities
+
+Making Australia a country where communities are safe, cohesive, and humane, essential services serve the public, and shared civic standards protect people from exploitation, exclusion, and avoidable harm.
 
 ### **Rein In Online Gambling Harm**
 
@@ -3037,6 +3115,8 @@ Federal law would create the office with defined functions in standard-setting c
 
 ## Update Our Schools
 
+Making Australia a country where every student has the resources to learn, teachers have the time and support to teach well, and education turns talent into skills, knowledge, and research that strengthen our future.
+
 ### **Deliver Full Funding for Public Schools**
 
 1. Public-school funding levels will reach at least 100% of a periodically reviewed Schooling Resource Standard by 2030, with earlier existing deadlines retained, binding annual federal and state contribution milestones, indirect expenditure excluded from funding shares, and independent annual compliance review.
@@ -3366,7 +3446,9 @@ The federal government would establish the contribution-credit system in higher-
 
 **Design rationale**
 
-Competitive research funding is often structured around grant periods that are shorter than the research programs they support, requiring successful teams to repeatedly compete for continuation while projects, staff, and research infrastructure remain dependent on uncertain future rounds. This creates avoidable administrative work and makes sustained research capability harder to maintain. The Australian Research Council's 2026 redesign of the National Competitive Grants Program is moving in a similar direction through fewer schemes, streamlined administration, more project-based funding, and dedicated support for major long-term research. We would would apply long-horizon funding and continuation arrangements across federal competitive research programs rather than leaving them dependent on the design of individual schemes.
+Competitive research funding is often structured around grant periods that are shorter than the research programs they support, requiring successful teams to repeatedly compete for continuation while projects, staff, and research infrastructure remain dependent on uncertain future rounds. This creates avoidable administrative work and makes sustained research capability harder to maintain.
+
+The Australian Research Council's 2026 redesign of the National Competitive Grants Program is moving in a similar direction through fewer schemes, streamlined administration, more project-based funding, and dedicated support for major long-term research. We would apply long-horizon funding and continuation arrangements across federal competitive research programs rather than leaving them dependent on the design of individual schemes.
 
 **Funding horizon**
 
@@ -3992,20 +4074,417 @@ Skilled migration pathways and occupation access would be tied to independent sh
 
 ## Repair Our Environment
 
-- Enrich soil carbon
-- Regenerate degraded farmland
-- End native logging now
-- Restore wetlands and ocean ecosystems
-- Promote regenerative agriculture
-- Invest in immediate cooling research
-- Declare a climate emergency now
-- Achieve negative emissions
-- Cut rogue emissions from mining
+Making Australia a country where native ecosystems are protected, damaged landscapes and threatened species can recover, and our rivers, wetlands, and oceans remain healthy for generations to come.
+
+### **End Native Logging and Broadscale Land Clearing**
+
+1. Prohibit commercial harvesting of native forests and broadscale clearing of native vegetation for conversion to other land uses, while retaining narrow exemptions for ecological management, public safety, cultural land management, and other genuinely essential works.
+   1. More native forests, woodlands, and other established ecosystems will remain intact rather than being commercially harvested or converted to other uses.
+   2. Habitat loss and fragmentation will decline as expansion of agriculture, development, and other land uses shifts away from remaining native vegetation.
+   3. Native species will retain more of the habitat and ecological connections they need to survive.
+   4. Commercial timber production will shift further towards plantations rather than relying on repeated harvesting of native forests.
+   5. Restoration efforts will be less frequently offset by the continuing destruction of established ecosystems elsewhere.
+   6. Necessary land management, cultural practices, safety work, and unavoidable infrastructure will remain possible without creating broad exemptions for commercial clearing.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
 
 ---
 
+**Design rationale**
 
+Clearing and fragmentation of native vegetation remain a widespread and deteriorating pressure on Australian biodiversity. Restoring damaged ecosystems cannot compensate efficiently for continuing to remove established habitat elsewhere.
 
+National environmental law already regulates clearing where it significantly affects nationally protected environmental matters, and recent reforms have narrowed exemptions for clearing long-undisturbed vegetation. From July 2027, native forestry in Regional Forest Agreement areas will also become subject to the same national environmental requirements as other industries.
+
+This reform would take the remaining step from assessing whether major native-vegetation loss may proceed to establishing that commercial native logging and broadscale conversion of native vegetation are generally not permitted.
+
+**Native forest harvesting**
+
+Commercial harvesting would end in native forests regardless of whether the land remains classified as forest afterwards.
+
+This would not prevent timber being recovered incidentally from ecological thinning, safety work, cultural land management, or other permitted activities whose purpose is managing the ecosystem rather than producing commercial timber.
+
+Plantation forestry would remain unaffected. Victoria and Western Australia have already ended commercial logging in state-owned native forests, with Western Australia retaining ecological thinning and shifting future timber supply towards plantations.
+
+**Broadscale land clearing**
+
+The prohibition would apply where native vegetation is cleared at scale to establish or expand another land use, including agriculture, urban development, resource projects, or other commercial activity.
+
+It would not turn ordinary management of already developed land into prohibited clearing. Routine maintenance, weed control, existing firebreaks, individual hazardous trees, fences, and similar activities would remain outside the broadscale conversion rule where they do not substantially remove an established native ecosystem.
+
+The rule would apply to the ecological effect of the clearing rather than depend only on how a state or territory classifies the land.
+
+**Limited exemptions**
+
+Removal of native vegetation would remain permissible for ecological management, public safety, cultural land management, and essential public infrastructure.
+
+These exemptions would be interpreted according to their purpose. The infrastructure exemption would apply only where the infrastructure is necessary and no practicable alternative location, route, or design avoids the clearing.
+
+Higher costs or commercial convenience alone would not justify clearing native vegetation. Clearing would need to be minimised for essential works, not treated as an ordinary development option when practical alternatives exist.
+
+**Residual risks**
+
+Distinguishing legitimate ecological management from disguised commercial harvesting will sometimes require judgement, particularly where permitted vegetation removal produces timber with substantial commercial value.
+
+Ending domestic native-forest harvesting could increase demand for imported timber, shifting some environmental pressure overseas where logging remains legal but environmental protections are weaker.
+
+**References**
+
+[Department of Climate Change, Energy, the Environment and Water — Forests](https://www.dcceew.gov.au/environment/land/forests) |  
+[Department of Climate Change, Energy, the Environment and Water — Stronger environmental protection and restoration](https://www.dcceew.gov.au/environment/epbc/epbc-act-reform/stronger-environmental-protection-restoration) |  
+[National Environmental Protection Agency — Reforms to land clearing exemptions](https://www.nationalepa.gov.au/epbc-act/reforms-land-clearing-exemptions) |  
+[Australia State of the Environment — Biodiversity: Industry pressures](https://soe.dcceew.gov.au/biodiversity/pressures/industry) |  
+[Western Australian Government — Commercial native logging ends in Western Australia](https://www.wa.gov.au/government/media-statements/Cook-Labor-Government/Commercial-native-logging-ends-in-Western-Australia-20240101)
+
+---
+
+</details>
+
+### **Reward More Types of Nature Repair**
+
+1. Expand the Nature Repair Market with scientifically robust methods for restoring degraded ecosystems, improving existing habitat, and protecting areas of biodiversity value, with competitive federal purchases of verified nature-repair outcomes providing reliable demand alongside private investment.
+   1. Landholders will gain more opportunities to earn income by repairing and protecting ecologically valuable land.
+   2. Damaged but still vegetated landscapes will become more worthwhile to restore rather than being overlooked in favour of fully cleared land.
+   3. Farmers and other landholders will have stronger economic reasons to restore habitat alongside productive land uses.
+   4. Public environmental spending will increasingly reward demonstrated ecological improvement rather than prescribed activities alone.
+   5. Private investors will have clearer and more trustworthy ways to finance genuine biodiversity recovery.
+   6. Restoration funding will be able to respond to the different ecological needs of different landscapes rather than favouring a single restoration technique.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Restoring ecosystems can create substantial public benefits, including biodiversity, habitat connectivity, healthier soils, cleaner water, and greater ecological resilience, while much of the cost and foregone alternative land use is carried by the landholder.
+
+The Nature Repair Market already provides a national framework for recognising verified biodiversity outcomes. We would build on that system rather than create another environmental market, expanding the range of ecological improvements that can qualify while establishing a dependable source of demand alongside voluntary private investment.
+
+**Nature-repair methods**
+
+Nature Repair methods would progressively cover restoration, enhancement, and protection where ecological outcomes can be measured with sufficient integrity.
+
+Methods would assess ecological improvement rather than prescribe a preferred restoration technique. Depending on the landscape, effective repair could involve revegetation, assisted regeneration, soil rehabilitation, erosion control, habitat reconstruction, changed grazing or fire management, invasive-species control, or combinations of interventions.
+
+This would allow the Nature Repair Market to reward improvements across a wider range of damaged and partially intact ecosystems as suitable methods are developed, rather than remaining limited to only replanting native forest and woodland on land that has been cleared and no longer has native forest cover.
+
+**Reliable demand**
+
+Federal biodiversity-restoration spending would be able to purchase verified Nature Repair outcomes competitively where an applicable method can represent the environmental objective being funded.
+
+Purchases would consider ecological benefit, durability, cost, location, habitat connectivity, and relevant conservation priorities rather than treating biodiversity outcomes as interchangeable units.
+
+Government purchasing would provide anchor demand alongside businesses, conservation organisations, philanthropy, and other buyers. Nature Repair outcomes purchased as additional environmental investment would not be used to excuse or offset unrelated environmental damage.
+
+**Interaction with other environmental markets**
+
+A project may produce more than one genuine environmental benefit. Biodiversity improvement, carbon sequestration, water-quality improvement, and other outcomes should remain separately measured and valued where separate markets or funding mechanisms exist.
+
+Receiving value for one outcome would not prevent a project receiving value for another distinct outcome, provided the same environmental benefit is not counted twice.
+
+**Biochar as a restoration tool**
+
+Suitable biochar can contribute to ecological restoration where it improves degraded soil, water or nutrient retention, vegetation establishment, or other measurable aspects of ecosystem condition.
+
+Nature Repair support would reward the resulting ecological improvement rather than the use of biochar itself. Any durable atmospheric carbon stored in the biochar would remain separately accounted for through the carbon-removal framework.
+
+**Residual risks**
+
+Biodiversity is inherently location-specific, so different ecological outcomes cannot be reduced perfectly to a single comparable measure. Some judgement will remain when buyers compare otherwise valid projects.
+
+**References**
+
+[Department of Climate Change, Energy, the Environment and Water — Nature Repair Market](https://www.dcceew.gov.au/environment/environmental-markets/nature-repair-market) | 
+[Department of Climate Change, Energy, the Environment and Water — Methods for the Nature Repair Market](https://www.dcceew.gov.au/environment/environmental-markets/nature-repair-market/methods-for-the-nature-repair-market) | 
+[Department of Climate Change, Energy, the Environment and Water — Biodiversity Assessment Instrument](https://www.dcceew.gov.au/environment/environmental-markets/nature-repair-market/biodiversity-assessment-instrument) | 
+[Clean Energy Regulator — Biodiversity certificates](https://cer.gov.au/markets/biodiversity-certificates) | 
+[Department of Climate Change, Energy, the Environment and Water — Australian Bushland Program](https://www.dcceew.gov.au/environment/land/australian-bushland-program)
+
+---
+
+</details>
+
+### **Give Restored Land Lasting Returns**
+
+1. Allow Nature Repair projects facing credible pressure from competing land uses to begin earning carbon credits after restoration has begun, using the carbon already stored at entry as their baseline and issuing credits only for additional atmospheric carbon stored from that point onwards.
+   1. Restored landscapes will be able to keep generating income after their one-off Nature Repair payment.
+   2. Land managers will have stronger financial reasons to keep recovering ecosystems healthy over the long term.
+   3. Damaged but still vegetated land will gain a carbon-market pathway even where it could not have qualified as newly planted forest.
+   4. Restored green spaces near expanding towns and other competing land uses will become more economically valuable to retain and manage.
+   5. Carbon income will help support the continuing stewardship of ecosystems while they remain actively accumulating carbon.
+   6. Carbon credits will remain backed only by additional atmospheric carbon actually stored after a project enters the carbon market.
+   7. The same landscape will be able to generate separate biodiversity and carbon returns without double-counting either outcome.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Nature Repair projects can restore landscapes that were degraded without ever having been fully cleared, including remnant vegetation, damaged riparian corridors, fragmented habitat, and other partially functioning ecosystems.
+
+Selling a biodiversity certificate typically generates a one-off payment, but does not provide an ongoing stream of returns simply for maintaining the repaired ecosystem. Its long-term protection may therefore still depend on public funding, volunteer management, or regulatory protections.
+
+Existing planting-based carbon-credit methods are poorly suited to some of these landscapes because eligibility is generally established before restoration begins and may depend on the land having previously been cleared. Prospective carbon crediting would allow continued sequestration by these recovering ecosystems to generate income without retrospectively crediting earlier restoration.
+
+**Protection from competing land uses**
+
+As an exception to normal carbon-credit eligibility, Nature Repair projects could enter later where repaired land is exposed to a credible economic incentive for clearing, conversion, or other use that would substantially compromise the recovering ecosystem.
+
+This could include development around expanding towns, conversion to more intensive agriculture, infrastructure or resource development, or other commercially valuable land uses. The competing use would need to be credible rather than hypothetical, supported by circumstances such as surrounding land-use change, planning or zoning settings, development pressure, land values, or existing rights or approvals.
+
+Existing statutory, contractual, or Nature Repair protections would not automatically remove eligibility. Such protections can remain dependent on continuing policy, administration, funding, or land management, while carbon income creates an additional economic interest in maintaining the restored ecosystem.
+
+**Entry and carbon accounting**
+
+A registered Nature Repair project could begin earning carbon credits after restoration has begun where:
+
+1. the repaired land faces a credible competing land use that would materially threaten the restored ecosystem; and
+2. continued protection and management materially strengthen the ecosystem against that pressure; and
+3. the ecosystem remains capable of additional net carbon sequestration.
+
+The carbon stock present at entry would establish the starting baseline. Carbon already stored, earlier sequestration, and carbon merely retained by preventing clearing or degradation would not generate credits.
+
+Only additional net atmospheric carbon stored from that point onwards could be credited, subject to the measurement, verification, and permanence requirements applying to other sequestration methods.
+
+Protection therefore establishes eligibility for the pathway; additional sequestration determines the credits issued.
+
+**Interaction with Nature Repair**
+
+Nature Repair creates a single biodiversity certificate from the project's ecological outcome, while carbon crediting can issue additional credits over time as further atmospheric carbon is stored.
+
+The late-entry pathway would allow a recovering Nature Repair project to supplement that one-off biodiversity value with ongoing carbon-credit income while the ecosystem continues accumulating carbon.
+
+The two returns would remain tied to different outcomes. Nature Repair would reward the project's ecological and biodiversity improvement, while carbon credits would be issued only for additional atmospheric carbon stored after entry.
+
+**Residual risks**
+
+Changes in carbon stocks within existing, heterogeneous vegetation can be harder to measure precisely than growth in newly established plantings. Applicable methods may therefore require conservative crediting where uncertainty cannot be eliminated.
+
+**References**
+
+[Clean Energy Regulator — Reforestation by environmental or mallee plantings FullCAM method 2024](https://cer.gov.au/schemes/australian-carbon-credit-unit-scheme/accu-scheme-methods/reforestation-environmental-or-mallee-plantings-fullcam-method-2024) | 
+[Clean Energy Regulator — Newness, regulatory additionality and government program requirements](https://cer.gov.au/schemes/australian-carbon-credit-unit-scheme/how-to-participate/apply-to-participate/newness-regulatory-additionality-and-government-program-requirements) | 
+[Clean Energy Regulator — Biodiversity certificates](https://cer.gov.au/markets/biodiversity-certificates) | 
+[Clean Energy Regulator — Replanting native forest and woodland ecosystems method](https://cer.gov.au/schemes/nature-repair-market-scheme/replanting-native-forest-and-woodland-ecosystems-method) | 
+[Department of Climate Change, Energy, the Environment and Water — Nature Repair Market](https://www.dcceew.gov.au/environment/environmental-markets/nature-repair-market)
+
+---
+
+</details>
+
+### **Restore Murray-Darling Rivers and Wetlands**
+
+1. Make CSIRO's independently determined environmental water needs binding across the Murray-Darling Basin, bring Commonwealth environmental water and enforcement of individual extraction rules into a consolidated MDBA, and allow the Authority to retain water-management and penalty revenue for Basin management and restoration.
+   1. The water needed to keep the Basin's rivers, wetlands, and floodplains functioning will become a binding requirement for water management.
+   2. Commonwealth environmental water and Basin-wide water management will be brought under one authority.
+   3. Individual water extraction rules will be enforced consistently across the Basin rather than by separate state systems.
+   4. Strong enforcement will increase the resources available for future monitoring, investigation, and enforcement.
+   5. Water-management revenue and enforcement penalties will remain available to support the Basin rather than flowing into general government revenue.
+   6. Surplus revenue will provide an ongoing source of funding for riparian, wetland, and other Basin restoration.
+   7. Successful environmental restoration will be able to generate further Nature Repair and carbon-credit revenue for reinvestment in the Basin.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Responsibility for Murray-Darling water is currently divided between institutions. The MDBA manages Basin planning and parts of river operations, the Commonwealth Environmental Water Holder separately manages federal environmental water, and state agencies administer allocations, metering, and most enforcement against individual water users. The Inspector-General of Water Compliance independently oversees compliance with the Basin Plan and water resource plans.
+
+This divides responsibility for planning, environmental water, and actual water use even though they form parts of the same Basin-wide system.
+
+The reform would consolidate operational responsibility in the MDBA while separating the two functions that benefit from independence: scientific determination of environmental needs would sit with CSIRO, and scrutiny of the MDBA would remain with the Inspector-General.
+
+**Binding environmental water needs**
+
+The CSIRO would independently determine and update the water needed to sustain the Basin's rivers, wetlands, floodplains, and other water-dependent ecosystems, using the best available hydrological and ecological science while allowing requirements to vary with conditions across the Basin.
+
+Those requirements would bind the MDBA's allocation and river-management decisions. The MDBA could allocate water for irrigation, industry, and other consumptive uses only after the requirements are met.
+
+**Consolidated Basin management**
+
+The Commonwealth Environmental Water Holder's functions and water holdings would be brought into the MDBA, allowing Basin planning, environmental water management, and consumptive water management to operate within the same institution.
+
+The MDBA would also become responsible for Basin-wide water accounting, monitoring, and enforcement of individual extraction rules, replacing separate state enforcement systems within the Basin.
+
+This would establish one operational authority responsible for whether water is available, how it is managed, and whether individual users remain within their lawful allocations.
+
+**Water for new irrigated uses**
+
+The MDBA could restrict the use of Basin water for new irrigated developments where their water demand, drought resilience, or effects on the wider water system make them unsuitable for reliable supply.
+
+These restrictions would apply to access to Basin water rather than what landowners may grow or develop. A landowner could proceed with an otherwise lawful development, but doing so would not create any entitlement to Basin water or justify preferential treatment during future shortages.
+
+Any water taken outside the project's lawful entitlement would remain subject to the normal Basin-wide enforcement and penalty regime.
+
+**Enforcement and independent oversight**
+
+The MDBA would receive secure base funding and directly investigate and enforce individual extraction offences across the Basin.
+
+Financial penalties would be retained for Basin purposes, allowing successful enforcement to increase the resources available for monitoring, metering, investigation, legal action, and other water-management functions.
+
+The Inspector-General of Water Compliance would remain institutionally separate. Rather than duplicating frontline enforcement, it would independently audit whether the MDBA is accurately accounting for water, meeting the environmental requirements determined by CSIRO, enforcing extraction rules consistently, and properly exercising its powers.
+
+**Reinvesting Basin revenue**
+
+The consolidated MDBA would retain income generated through environmental water management, building on the existing ability to trade Commonwealth environmental water where doing so improves environmental outcomes.
+
+Revenue retained from water management and enforcement would remain available for Basin functions. Surplus funds could be reinvested in environmental water and restoration of riparian areas, wetlands, floodplains, and other water-dependent ecosystems.
+
+Where these projects qualify for Nature Repair certificates or subsequently generate eligible carbon credits, those proceeds could also be retained and reinvested in further Basin management and restoration.
+
+This allows successful water management, enforcement, and ecological repair to progressively increase the resources available for further Basin recovery.
+
+**Residual risks**
+
+Future rainfall, runoff, and ecological responses cannot be forecast perfectly, particularly as the climate changes. Even with regular scientific updates, binding environmental water requirements may temporarily over- or underestimate the needs of particular parts of the Basin.
+
+**References**
+
+[CSIRO — Murray-Darling Basin Sustainable Yields](https://www.csiro.au/en/research/natural-environment/water/murray-darling-basin/murray-darling-basin-sustainable-yields) |  
+[Murray-Darling Basin Authority — 2026 Basin Plan Review: What we heard](https://files.mdba.gov.au/asset/resources/e20f67a1-fc23-453f-ad3a-136a4029e933/2026-bpr-what-we-heard-report.pdf) |  
+[Inspector-General of Water Compliance — How we work](https://www.igwc.gov.au/what-we-do/how-we-work) |  
+[Inspector-General of Water Compliance — Annual Report 2024–25](https://www.igwc.gov.au/sites/default/files/documents/2025-10/annual-report-2024-25.pdf) |  
+[Department of Climate Change, Energy, the Environment and Water — Commonwealth environmental water trading framework](https://www.dcceew.gov.au/cewh/manage-water/water-trading/publications/water-trading-framework-dec25) |  
+[Water Act 2007](https://www.legislation.gov.au/C2007A00137/latest/text)
+
+---
+
+</details>
+
+### **Overhaul Invasive Species Controls**
+
+1. Revamp invasive species management by establishing species-specific agencies with joint federal-state funding arrangements, recognised as authorised biosecurity agents under the laws of each sponsoring jurisdiction.
+   1. Invasive species control will be able to follow infestations across state, property, and land-management boundaries.
+   2. Major invasive threats will have dedicated organisations responsible for controlling them rather than relying on coordination between separate programs.
+   3. Governments will be able to share the cost of control according to the scale of the problem they are managing.
+   4. Eradication efforts will be easier to sustain where invasive species can still realistically be eliminated.
+   5. Established pests that cannot be eradicated will be managed through coordinated containment and long-term suppression.
+   6. Landholders and environmental managers will be less vulnerable to reinvasion from neighbouring jurisdictions or land tenures.
+   7. Restored ecosystems and threatened native species will receive more durable protection from invasive animals, plants, and other pests.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia already uses national taskforces, coordinators, strategies, and jointly funded programs to manage major invasive species. The arrangements differ substantially between threats, while much on-ground control remains divided between governments, land managers, and individual projects.
+
+The National Fire Ant Eradication Program demonstrates a stronger model: governments jointly fund a dedicated program pursuing one invasive species across the whole affected area. This approach would be formalised and extended to other major invasive species, giving governments access to shared specialist agencies instead of requiring separate state-by-state control systems.
+
+**Species-specific agencies**
+
+Dedicated agencies would be established for invasive species that require sustained control across multiple jurisdictions or land tenures. Closely related invasive species could share an agency where their surveillance, control, biosecurity, and operational requirements substantially overlap.
+
+Each agency would concentrate the specialist surveillance, control, research, data, and operational expertise shared across the threats it manages, while maintaining separate programs where differences in biology, distribution, or management needs require them.
+
+Program objectives would depend on what is realistically achievable: eradication where the species can still be eliminated, containment where further spread can be stopped, and sustained suppression where eradication is no longer practical.
+
+Existing national plans, scientific work, and control programs would be incorporated into the relevant agency rather than duplicated alongside it.
+
+**Shared specialist capacity**
+
+Each species-specific agency would operate as a shared specialist service for its sponsoring governments. Rather than every jurisdiction needing to maintain separate expertise, surveillance systems, control programs, and operational capacity for the same invasive species, participating governments would jointly maintain one dedicated capability that can operate wherever it is needed.
+
+Funding contributions could rise or fall with the scale of surveillance, treatment, containment, or suppression required within each jurisdiction.
+
+**Joint jurisdiction**
+
+The federal government and affected states and territories would sponsor each agency and recognise its authorised personnel under their respective biosecurity laws.
+
+This would allow a control program to operate across the jurisdictions and land tenures covered by its sponsors rather than stopping at administrative boundaries. Government land would form part of the same control program as surrounding private land, while access to private property and biosecurity directions would operate through the ordinary statutory powers applying within each jurisdiction.
+
+Governments outside the affected area could participate where preventing further spread provides a substantial benefit to their jurisdiction.
+
+**Shared funding**
+
+Participating governments would share the cost of each agency according to the control burden within their jurisdictions.
+
+Funding arrangements could account for the extent and intensity of infestation, surveillance requirements, treatment costs, and the work needed to prevent spread rather than relying on population or land area alone.
+
+This would allow funding shares to change as an invasion expands, contracts, or is eradicated from particular regions.
+
+**Landscape-scale control**
+
+This would allow species control to be planned around the geography of the invasion rather than individual properties or government boundaries.
+
+This is particularly important where isolated treatment provides only temporary relief because surrounding populations repeatedly reinvade controlled land. Coordinated programs could instead treat adjoining private land, protected areas, public land, and other tenures as parts of the same control landscape.
+
+Nature Repair projects and other restoration work could use these programs to control invasive pressures without having to establish separate species-management systems for each project.
+
+**Residual risks**
+
+Some invasive species still lack control methods that are effective and practical at landscape scale, limiting what coordinated agencies can achieve until better tools are developed.
+
+Some control methods can affect non-target species or ecological relationships. Species-specific expertise and targeted control can reduce these effects, but cannot eliminate them in every circumstance.
+
+**References**
+
+[Department of Agriculture, Fisheries and Forestry — Established pests and weeds](https://www.agriculture.gov.au/pests-diseases-weeds/pest-animals-and-weeds) |  
+[Department of Agriculture, Fisheries and Forestry — Environment and Invasives Committee](https://www.agriculture.gov.au/pests-diseases-weeds/pest-animals-and-weeds/eic) |  
+[Department of Climate Change, Energy, the Environment and Water — Feral Cat Taskforce](https://www.dcceew.gov.au/environment/invasive-species/feral-animals-australia/feral-cats/feral-cat-taskforce) |  
+[Department of Agriculture, Fisheries and Forestry — Supporting Communities Manage Pest Animals and Weeds Program](https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/pest-animals-and-weeds/supporting-communities) |  
+[Department of Agriculture, Fisheries and Forestry — Pest animals in Australia](https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/pest-animals-and-weeds/priority-pest-animals) |  
+[National Fire Ant Eradication Program — Program activities](https://www.fireants.org.au/treat/program/planned-activities)
+
+---
+
+</details>
+
+### **Protect Every Australian Marine Region**
+
+1. Require at least 30% of each Australian marine bioregion to be protected within highly protected no-take marine areas.
+   1. Every major type of Australian marine ecosystem will receive substantial protection rather than relying on large protected areas concentrated in remote waters.
+   2. Coastal, continental-shelf, and other heavily used marine ecosystems will gain stronger protection where they are currently underrepresented.
+   3. Native marine species will retain larger areas free from extractive pressure.
+   4. Protected ecosystems will provide stronger refuges from fishing pressure and other extractive activities.
+   5. Marine protection targets will reflect ecological representation rather than national area alone.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+Australia already protects more than half of its marine area, but protection is unevenly distributed between marine ecosystems. Large remote marine parks can allow national percentage targets to be met while other marine regions remain comparatively exposed.
+
+Requiring high protection within each marine bioregion would shift the target from protecting a percentage of Australia's total ocean area to protecting a representative share of the different ecosystems within it.
+
+**Protection across marine bioregions**
+
+At least 30% of each marine bioregion would be placed within highly protected no-take areas.
+
+Marine park boundaries would continue to reflect ecological features rather than simply dividing each region geometrically. Protection could therefore concentrate on areas that best represent important habitats, ecological connections, breeding grounds, and other features within the bioregion while still meeting the minimum overall coverage.
+
+Existing highly protected areas would count towards the requirement where they fall within the relevant bioregion.
+
+**Highly protected areas**
+
+The 30% requirement would apply to highly protected no-take zones rather than marine-park designation alone.
+
+This would prevent the target being met through areas that remain open to substantial extractive activity while still allowing lower-protection marine-park zones to operate outside the minimum highly protected share.
+
+**References**
+
+[Department of Climate Change, Energy, the Environment and Water — Achieving 30 by 30](https://www.dcceew.gov.au/environment/land/achieving-30-by-30) |  
+[Biodiversity Council — Securing a Resilient Future for Australia's Oceans](https://biodiversitycouncil.org.au/resources/securing-resilient-future-for-australias-oceans-scientific-consensus-statement-on-federal-commonwealth-marine-park-review) |  
+[Department of Climate Change, Energy, the Environment and Water — Australian Marine Park management plan review](https://consult.dcceew.gov.au/six-draft-mgt-plans-for-44-australian-marine-parks)
+
+---
+
+</details>
+
+---
+
+---
 
 # BEYOND RECLAIM
 
@@ -4035,5 +4514,8 @@ Policy items that are "New" and need voting on:
 - Unlock Regional Manufacturing with Hemp
 - Make More From What We Mine
 - Build a Circular Economy
-
+- Reward More Types of Nature Repair
+- Give Restored Land Lasting Returns
+- Restore Murray-Darling Rivers and Wetlands
+- Overhaul Invasive Species Controls
 
