@@ -454,6 +454,54 @@ Phased expansion includes:
 
 </details>
 
+### **Guarantee Veterans Service-Related Health Care**
+
+1. Health care for service-related conditions will be funded according to clinical need without routine expenditure caps, and veterans will retain choice of qualified treating providers and continuity with established providers.
+
+   1. Veterans with long-term or complex service-related conditions will experience fewer interruptions to ongoing care.
+   2. Established treatment relationships will remain more stable across extended periods of care.
+   3. Veterans will have greater practical choice among qualified health providers.
+
+<details>
+<summary><strong>Further Detail</strong></summary>
+
+---
+
+**Design rationale**
+
+DVA currently manages ongoing allied-health care through a Treatment Cycle, under which referrals generally last for 12 sessions or one year before another referral is required. From 1 July 2027, DVA plans to remove that cycle and instead introduce a $5,000 annual expenditure point at which allied-health treatment is reviewed. Treatment above the threshold can continue where clinical need is demonstrated.
+
+Replacing repeated referrals with less routine administration is useful, but cumulative expenditure is a poor trigger for additional scrutiny. Long-term or intensive care can legitimately cost more without becoming clinically unusual. The review system should instead distinguish ordinary clinically indicated care from treatment whose clinical basis, price, or billing pattern gives a specific reason for review.
+
+**Treatment review**
+
+Routine clinically indicated treatment will continue without additional approval for exceeding an annual expenditure threshold.
+
+Crossing the threshold will trigger a review to distinguish genuinely high-cost care from over-servicing, inflated charges, or inappropriate treatment, to ensure veterans are not exploited by unscrupulous providers.
+
+**Provider access**
+
+Veterans will be able to remain with a qualified treating provider whose ordinary fees are within prevailing market rates, rather than changing providers because the DVA fee schedule does not cover their usual fee.
+
+Currently, providers who accept a Veteran Card must accept the DVA scheduled fee as full payment; where a provider does not accept the card, veterans generally have to find another participating provider.
+
+DVA will regularly benchmark its fee schedules against comparable care and provider participation, adjusting rates or targeted loadings where existing payments are limiting access to qualified providers, in line with Recommendation 71 of the Royal Commission into Defence and Veteran Suicide.
+
+**Existing entitlements**
+
+Existing DVA health entitlements that extend beyond service-related conditions will continue under their current eligibility rules, including Veteran Card – All Conditions coverage, Non-Liability Health Care, and provisional treatment arrangements.
+
+**References**
+
+[Department of Veterans' Affairs — Changes for allied health from July 2027](https://www.dva.gov.au/about-us/publications/budgets/budget-2026-27/changes-for-allied-health-from-july-2027) |
+[Department of Veterans' Affairs — Veteran Cards, prior approval and referrals](https://www.dva.gov.au/providers/veteran-cards-prior-approval-and-referrals) |
+[Department of Veterans' Affairs — Finding a health provider](https://www.dva.gov.au/what-we-help-with/health-support/finding-a-health-provider) |
+[Royal Commission into Defence and Veteran Suicide — Final Report — Volume 4](https://defenceveteransuicide.royalcommission.gov.au/publications/final-report-volume-4)
+
+---
+
+</details>
+
 ## Solve the Housing Crisis
 
 Making Australia a country where housing is a right, not an investment. Where ordinary Australians can find a secure, well-located home without being locked out by speculation, scarcity, or postcode privilege.

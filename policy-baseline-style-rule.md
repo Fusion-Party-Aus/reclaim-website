@@ -75,6 +75,15 @@ Use the institutional term only where removing it would lose a legally, structur
 
 > Prefer describing what the system actually does over describing the administrative category through which it does it.
 
+## Audience Continuity Rule
+
+The platform is written for the public at every tier.
+
+- Tier-4 permits greater depth, not a different audience.
+- Explanations should remain intelligible to an ordinary interested voter without specialist knowledge.
+- Technical language should be used only where it adds necessary precision and should be explained through its practical meaning.
+- Where a policy directly affects an identifiable group, explanations should describe the system from the perspective of how that group encounters it rather than defaulting to the perspective of government administration.
+
 ---
 
 # Tier-0 Style Rule — Categories & Slogans
@@ -655,6 +664,11 @@ Tier-4 **must** be implemented using a native HTML disclosure block:
 - Each internal label should correspond to a single analytical topic or design question. Avoid compound labels that merge multiple topics (e.g. “Compliance and Market Effects”). If two distinct issues need explanation, they should appear under separate labels.
 - Use as few internal labels as possible while remaining clear under scrutiny; prefer no more than 6 labels unless necessary for clarity, and group related numbered items under broader topical labels rather than creating a label for each micro-issue.
 - Internal section names must be formatted as a single bolded label on its own line (e.g. **Design rationale**), followed immediately by plain paragraph text or a numbered list; do not use markdown headings (e.g. #, ##, ###) for internal structure. Within paragraphs and numbered lists, bold must not be used except for the exact name of a Named Category or Mechanism that functions as a label in the form **Label** — description or **Label**: description; bold must not be used for emphasis.
+- Each internal section should lead with the substantive point the reader needs to understand before giving qualifications, exclusions, or secondary context.
+- Where a section explains a change from the existing system, state the relevant current arrangement and the change before discussing limits or edge cases.
+- Do not lead with what a policy does not mean when the positive rule can be stated directly.
+- Each paragraph should make one primary explanatory point. If adjacent sentences or sections explain the same rationale, combine them or remove the weaker repetition.
+- Do not add explanatory material merely to restate, defend, or qualify a point that is already clear.
 
 ## T4 Content Rules
 
@@ -693,9 +707,9 @@ A Design rationale should be understandable to a reader encountering the policy 
 
 Do not use:
 
-* previous Fusion policy as evidence that the reform is warranted;
-* statements such as **“Fusion already supports…”**, **“we have previously committed to…”**, or **“this continues our existing policy…”**;
-* internal policy lineage, drafting history, or consistency with earlier platform positions as substantive justification.
+- previous Fusion policy as evidence that the reform is warranted;
+- statements such as **“Fusion already supports…”**, **“we have previously committed to…”**, or **“this continues our existing policy…”**;
+- internal policy lineage, drafting history, or consistency with earlier platform positions as substantive justification.
 
 Existing Fusion policies may be mentioned only where another retained policy creates a **material system interaction or boundary** that the reader needs to understand.
 
@@ -706,6 +720,16 @@ The rationale should instead establish:
 3. the design consideration that motivates the chosen intervention.
 
 Previous party policy may inform development, but it is not evidence for the finished policy.
+
+### T4 Retained or Repurposed Mechanisms
+
+Where a reform retains an existing mechanism but changes its purpose or operation, explain the change explicitly.
+
+- State the mechanism's relevant current function.
+- State the function it will perform under the reform.
+- State the practical reason for retaining that function, expressed in terms of the people or system directly affected.
+- Where the mechanism becomes a safeguard, identify the specific harm, abuse, or failure it is intended to detect or constrain.
+- Do not treat retention itself as something requiring defensive justification; explain the changed function directly.
 
 ### T4 Scope Control
 
@@ -770,6 +794,16 @@ When drafting Tier-4, authors should consider the following analytical lenses to
 These lenses guide analysis but should normally be expressed through **policy-specific topical headings rather than repeated verbatim lens names**. Not every policy item will require all of these sections. Authors should include only those necessary to explain the policy clearly and withstand scrutiny.
 
 When multiple analytical lenses are used, authors should normally introduce them in an order that moves from core system design to enforcement and integrity safeguards, and then to residual risks and failure modes, before addressing broader system effects and implementation context.
+
+### T4 Inline Attribution Rule
+
+Where a named commission, inquiry, or review contains a recommendation that directly corresponds to a policy design choice, it should be identified briefly within the sentence describing that choice.
+
+- Keep the policy mechanism or commitment as the primary subject of the sentence.
+- Use the attribution to identify provenance or correspondence, not as a substitute for explaining the policy.
+- Prefer concise appended attribution over a separate sentence that merely repeats the same policy content.
+- Do not use external authority as the substantive justification for a policy choice where the underlying reasoning can be stated directly.
+- Any source identified inline must also appear in the Reference block.
 
 ### T4 Reference Rule
 
@@ -973,6 +1007,7 @@ _(Optional depth & scrutiny support)_
 - ☐ Expands confidence or understanding rather than attempting persuasion
 - ☐ Contains only contextual, analytical, or explanatory material
 - ☐ Uses bold labels (not markdown headings) for internal sections
+- ☐ Each section leads with its operative point and does not repeat the same explanation elsewhere in Tier-4
 
 **AUTO-FAIL if ANY are present:**
 
