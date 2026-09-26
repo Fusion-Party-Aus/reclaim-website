@@ -2,7 +2,7 @@
 /**
  * Konami Code Easter Egg
  * Sequence: ↑ ↑ ↓ ↓ ← → ← → B A
- * Triggers: Confetti explosion + hidden policy files download
+ * Triggers: Confetti and public policy links
  */
 import { BrutalCard, BrutalButton } from '@/components/ui'
 import { Icon } from 'astro-icon/components'
@@ -33,7 +33,7 @@ const content = {
   manifestoDescription:
     konami?.manifestoDescription ||
     'Read the published policies and evidence summaries. Detailed research will follow in FusionPolicy.',
-  githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website-poc',
+  githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website',
   githubLabel: konami?.githubLabel || 'View on GitHub',
   zeroTrackingTitle: konami?.zeroTrackingTitle || 'SITE ANALYTICS',
   zeroTrackingDescription:
