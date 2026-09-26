@@ -202,7 +202,7 @@ describe('Portable Text Rendering', () => {
   })
 
   describe('renderPolicyPortableText', () => {
-    it('should wrap "The Problem" section with white background', () => {
+    it('should wrap "The Problem" section with dark surface', () => {
       const blocks: PortableTextBlock[] = [
         {
           _type: 'block',
@@ -217,13 +217,13 @@ describe('Portable Text Rendering', () => {
       ]
 
       const result = renderPolicyPortableText(blocks)
-      expect(result).toContain('bg-white')
+      expect(result).toContain('bg-grey-dark')
       expect(result).toContain('<h2')
       expect(result).toContain('The Problem')
       expect(result).toContain('Description of problem')
     })
 
-    it('should wrap "Our Solution" section with white background', () => {
+    it('should wrap "Our Solution" section with dark surface', () => {
       const blocks: PortableTextBlock[] = [
         {
           _type: 'block',
@@ -238,7 +238,7 @@ describe('Portable Text Rendering', () => {
       ]
 
       const result = renderPolicyPortableText(blocks)
-      expect(result).toContain('bg-white')
+      expect(result).toContain('bg-grey-dark')
       expect(result).toContain('Our Solution')
       expect(result).toContain('Solution details')
     })
