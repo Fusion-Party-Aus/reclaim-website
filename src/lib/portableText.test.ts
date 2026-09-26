@@ -1,8 +1,48 @@
 import { describe, it, expect } from 'vitest'
-import { renderPortableText, renderPolicyPortableText } from './portableText'
+import {
+  portableTextToPlainText,
+  renderPortableText,
+  renderPolicyPortableText,
+} from './portableText'
 import type { PortableTextBlock } from './portableText'
 
 describe('Portable Text Rendering', () => {
+  it('extracts readable text for FAQ structured data', () => {
+    expect(portableTextToPlainText(null)).toBe('')
+    expect(
+      portableTextToPlainText([
+        {
+          _type: 'block',
+          children: [
+            { _type: 'span', text: 'Human' },
+            { _type: 'span', text: ' review' },
+          ],
+        },
+        { _type: 'image' },
+        { _type: 'block', children: [{ _type: 'span', text: 'before publication.' }] },
+      ])
+    ).toBe('Human review before publication.')
+  })
+
+  it('renders a table and links from CMS blocks', () => {
+    const html = renderPortableText([
+      {
+        _type: 'table',
+        rows: [
+          { _type: 'row', cells: ['Option', 'Cost'] },
+          { _type: 'row', cells: ['Public', 'Appraise'] },
+        ],
+      },
+      {
+        _type: 'block',
+        children: [{ _type: 'span', text: 'Read sources', marks: ['source'] }],
+        markDefs: [{ _key: 'source', _type: 'link', href: 'https://example.org' }],
+      },
+    ])
+    expect(html).toContain('<th')
+    expect(html).toContain('<td')
+    expect(html).toContain('href="https://example.org" target="_blank" rel="noopener noreferrer"')
+  })
   describe('renderPortableText', () => {
     it('should render simple paragraph', () => {
       const blocks: PortableTextBlock[] = [
