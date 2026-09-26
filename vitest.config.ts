@@ -1,12 +1,14 @@
 import { defineConfig } from 'vitest/config'
-import { getViteConfig } from 'astro/config'
 import { fileURLToPath } from 'url'
 
-export default defineConfig(async (env) => {
+export default defineConfig(() => {
   const userConfig = {
     resolve: {
       alias: {
         cookie: fileURLToPath(new URL('./src/test/cookie-shim.ts', import.meta.url)),
+        'virtual:astro-icon': fileURLToPath(
+          new URL('./src/test/astro-icon-shim.ts', import.meta.url)
+        ),
       },
     },
     ssr: {
@@ -41,6 +43,5 @@ export default defineConfig(async (env) => {
     },
   }
 
-  const getAstroConfig = getViteConfig(userConfig)
-  return getAstroConfig(env)
+  return userConfig
 })
