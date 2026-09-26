@@ -29,17 +29,16 @@ const content = {
   description:
     konami?.description ||
     "True democracy rewards the curious. Here's something special for developers, gamers, and people who actually read the code...",
-  manifestoTitle: konami?.manifestoTitle || 'THE ANNOTATED POLICY FILES',
+  manifestoTitle: konami?.manifestoTitle || 'POLICY RESEARCH',
   manifestoDescription:
     konami?.manifestoDescription ||
-    'Every policy with the design rationale, evidence, and risk assessment behind it. This is the behind-the-scenes version our policy team uses internally.',
+    'Read the public omnibus for evidence, assumptions and open questions.',
   githubUrl: konami?.githubUrl || 'https://github.com/Fusion-Party-Aus/reclaim-website-poc',
   githubLabel: konami?.githubLabel || 'View on GitHub',
-  zeroTrackingTitle: konami?.zeroTrackingTitle || 'ZERO TRACKING',
+  zeroTrackingTitle: konami?.zeroTrackingTitle || 'SITE ANALYTICS',
   zeroTrackingDescription:
-    konami?.zeroTrackingDescription ||
-    'Check your browser dev tools. Major parties have 15+ tracking scripts. We have zero.',
-  downloadButtonLabel: konami?.downloadButtonLabel || 'Download Annotated Policy Files',
+    konami?.zeroTrackingDescription || 'This site uses Plausible to measure visits.',
+  downloadButtonLabel: konami?.downloadButtonLabel || 'Read the policy research',
   footerMessage:
     konami?.footerMessage ||
     'P.S. Share this with other curious people. Democracy needs more of them.',
@@ -48,6 +47,10 @@ const content = {
 
 <div
   id="konami-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Fusion research links"
+  inert
   class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300"
 >
   <BrutalCard
@@ -117,7 +120,13 @@ const content = {
         </div>
       </div>
 
-      <BrutalButton id="download-policy-files" variant="primary" size="lg">
+      <BrutalButton
+        href="https://github.com/finneh4249/state-budget/tree/policy/homes-stations-japan-rail-modular/victoria-omnibus"
+        variant="primary"
+        size="lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {content.downloadButtonLabel}
       </BrutalButton>
 
@@ -212,6 +221,8 @@ const content = {
     const modal = document.getElementById('konami-modal')
     if (modal) {
       modal.classList.remove('opacity-0', 'pointer-events-none')
+      modal.inert = false
+      document.getElementById('konami-close')?.focus()
     }
 
     // Track in console
@@ -225,12 +236,14 @@ const content = {
   if (closeBtn && modal) {
     closeBtn.addEventListener('click', () => {
       modal.classList.add('opacity-0', 'pointer-events-none')
+      modal.inert = true
     })
 
     // Close on background click
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.add('opacity-0', 'pointer-events-none')
+        modal.inert = true
       }
     })
 
@@ -238,23 +251,7 @@ const content = {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
         modal.classList.add('opacity-0', 'pointer-events-none')
-      }
-    })
-  }
-
-  // Download policy files button
-  const downloadBtn = document.getElementById('download-policy-files')
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
-      // For now, just log (you'd link to actual PDF)
-      console.log('Downloading annotated policy files...')
-      alert(
-        'In production, this would download the annotated policy PDF.\n\nFor this concept demo, imagine a 50-page PDF with:\n• Research citations\n• Policy team notes\n• Implementation timeline\n• Costing breakdowns\n• Risk assessments'
-      )
-
-      // Track the download
-      if (window.plausible) {
-        window.plausible('Konami Code - Policy Files Download')
+        modal.inert = true
       }
     })
   }

@@ -1,14 +1,5 @@
 ---
-export const prerender = true
-
-export async function getStaticPaths() {
-  const policies = await getPolicies()
-  return policies
-    .filter((policy) => policy.slug?.current)
-    .map((policy) => ({
-      params: { slug: policy.slug.current },
-    }))
-}
+export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
@@ -16,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug, getPolicies } from '../../lib/sanity'
+import { getDocumentBySlug } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
@@ -176,7 +167,9 @@ const sidebarSections = [
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
   ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
-  ...contentSections,
+  ...contentSections.filter(
+    (section): section is { id: string; title: string } => section !== null
+  ),
 ]
 
 const metaDescription = policy.seoDescription || policy.summary
@@ -285,6 +278,29 @@ const metaDescription = policy.seoDescription || policy.summary
       </nav>
 
       {/* ── Hook Block (Populist accusation) ── */}
+      {
+        policy.slug.current === 'build-housing-at-stations' && (
+          <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+            <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
+              Fusion Victoria policy
+            </p>
+            <h2 class="text-xl font-display font-black uppercase text-white mb-2">
+              Homes and Stations Code
+            </h2>
+            <p class="text-sm text-white/80 leading-relaxed mb-3">
+              The Code allows modest infill housing across serviced suburbs and more homes near
+              high-capacity stations. Affordable housing rules and public costs need legal,
+              infrastructure and viability tests.
+            </p>
+            <a
+              class="font-bold text-[#a9c8ff] underline underline-offset-4"
+              href="/policies/homes-and-stations-code"
+            >
+              Explore the policy
+            </a>
+          </aside>
+        )
+      }
       {
         policy.hook && (
           <section id="the-problem" class="mb-8 scroll-mt-28">
@@ -462,7 +478,7 @@ const metaDescription = policy.seoDescription || policy.summary
                         />
                       </summary>
                       <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-4">
-                        {splitIntoParagraphs(section.content).map((para: string) => (
+                        {splitIntoParagraphs(section.content || '').map((para: string) => (
                           <p class="text-base font-normal text-white/75 leading-relaxed">{para}</p>
                         ))}
                       </div>

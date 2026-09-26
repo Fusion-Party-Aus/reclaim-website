@@ -37,14 +37,15 @@ const pageData = await getPoliciesPage()
 
 const title = pageData?.title || 'Our Policies'
 const subtitle =
-  pageData?.subtitle || "Evidence-based solutions. We've done the maths. No bullshit."
+  pageData?.subtitle ||
+  'Bold policy, open evidence and honest costings. See what is settled and what still needs appraisal.'
 const seoDescription =
   pageData?.seoDescription ||
-  "Victoria is being ripped off. See Fusion Party Victoria's fully costed policy platform to fix housing, transport, tax, and democracy."
+  "Explore Fusion Party Victoria's policies and research on housing, transport, tax, and democracy. Detailed costings and delivery settings vary by proposal."
 const manifesto = pageData?.manifesto || {
   heading: 'They built the system to take from you.',
   body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
-  punchline: 'The fix is below. Fully costed. No bullshit.',
+  punchline: 'The proposals are below. Check the evidence and costing status.',
 }
 const proofStats: ProofStat[] = pageData?.proofStats || [
   {
@@ -273,6 +274,28 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                       </div>
                     )}
 
+                    {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
+                      <aside class="mb-10 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+                        <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
+                          Fusion Victoria policy · detailed design in progress
+                        </p>
+                        <h3 class="text-xl font-display font-black uppercase text-white mb-2">
+                          Homes and Stations Code
+                        </h3>
+                        <p class="text-sm text-white/80 leading-relaxed mb-3">
+                          Allow duplexes, terraces, small apartments and local shops across serviced
+                          suburbs. Plan more homes around major stations. Test affordable housing
+                          rules, infrastructure and costs site by site.
+                        </p>
+                        <a
+                          class="font-bold text-[#a9c8ff] underline underline-offset-4"
+                          href="/policies/homes-and-stations-code"
+                        >
+                          Explore the policy
+                        </a>
+                      </aside>
+                    )}
+
                     {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
                       <div
                         id={applyHash(`${pillar}-${category}`)}
@@ -280,7 +303,9 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                       >
                         {/* Category header */}
                         <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                          <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
+                          <h3>
+                            <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
+                          </h3>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -321,14 +346,15 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
                                 <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
                                   {policy.cost && (
-                                    <span class="text-xs font-black uppercase rounded-sm bg-yellow text-white px-2 py-1 flex items-center gap-1">
+                                    <span class="text-sm font-black uppercase rounded-sm bg-[#234080] text-white px-2 py-1 flex items-center gap-1">
                                       <span class="opacity-80">Cost:</span>
                                       {policy.cost}
                                     </span>
                                   )}
                                   <a
                                     href={`/policies/${policy.slug.current}`}
-                                    class="ml-auto inline-flex items-center gap-1 text-xs font-black uppercase text-magenta hover:gap-2 transition-all"
+                                    aria-label={`Read ${policy.title}`}
+                                    class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
                                   >
                                     Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
                                   </a>
@@ -362,7 +388,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
               Get Involved
             </BrutalButton>
             <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
-              We've Done the Maths
+              See the Costings
             </BrutalButton>
             <BrutalButton variant="black" href="/electorate" icon="mdi:map-marker">
               Find Your Electorate

@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
       NATIONBUILDER_CLIENT_SECRET: clientSecret,
       NATIONBUILDER_TOKENS: cfEnv.NATIONBUILDER_TOKENS,
     },
-    data
+    { ...data, expires_in: data.expires_in ?? 0 }
   )
 
   return new Response(

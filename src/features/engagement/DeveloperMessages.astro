@@ -188,25 +188,6 @@
     )
   }, 5000)
 
-  // Track if they check the network tab
-  if (performance && performance.getEntriesByType) {
-    const resources = performance.getEntriesByType('resource')
-    const trackingScripts = resources.filter((r: any) =>
-      /track|analytics|google-analytics|facebook|pixel|tag|gtm/i.test(r.name)
-    )
-
-    if (trackingScripts.length === 0) {
-      console.log(
-        '%c✅ ZERO TRACKING SCRIPTS',
-        'color: #00DDB8; font-size: 16px; font-weight: bold; background: #000; padding: 8px;'
-      )
-      console.log(
-        "%cWe told you. Major parties track you. We don't.",
-        'color: #4A7AEB; font-size: 13px;'
-      )
-    }
-  }
-
   // Add a fun property that developers might discover
   Object.defineProperty(window, 'democracy', {
     get() {

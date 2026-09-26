@@ -164,6 +164,9 @@ export interface Page extends SanityDocument {
   slug: SanitySlug
   parent?: SanityReference
   pageType?: 'standard' | 'bio' | 'landing'
+  isArchived?: boolean
+  electionGrouping?: string
+  metaDescription?: string
   profileImage?: SanityImageAsset
   role?: string
   socialLinks?: Array<{

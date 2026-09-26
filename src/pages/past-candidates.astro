@@ -18,6 +18,7 @@ const archivedBios = (pages as Page[])
     slug: p.slug?.current,
     profileImage: p.profileImage,
     role: p.role || p.subtitle,
+    electionGrouping: p.electionGrouping || 'Historical Archive',
   }))
 
 const archivedElecs = archivedElectorates.map((e: Electorate) => ({

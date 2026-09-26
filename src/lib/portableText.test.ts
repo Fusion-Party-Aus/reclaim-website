@@ -1,8 +1,48 @@
 import { describe, it, expect } from 'vitest'
-import { renderPortableText, renderPolicyPortableText } from './portableText'
+import {
+  portableTextToPlainText,
+  renderPortableText,
+  renderPolicyPortableText,
+} from './portableText'
 import type { PortableTextBlock } from './portableText'
 
 describe('Portable Text Rendering', () => {
+  it('extracts readable text for FAQ structured data', () => {
+    expect(portableTextToPlainText(null)).toBe('')
+    expect(
+      portableTextToPlainText([
+        {
+          _type: 'block',
+          children: [
+            { _type: 'span', text: 'Human' },
+            { _type: 'span', text: ' review' },
+          ],
+        },
+        { _type: 'image' },
+        { _type: 'block', children: [{ _type: 'span', text: 'before publication.' }] },
+      ])
+    ).toBe('Human review before publication.')
+  })
+
+  it('renders a table and links from CMS blocks', () => {
+    const html = renderPortableText([
+      {
+        _type: 'table',
+        rows: [
+          { _type: 'row', cells: ['Option', 'Cost'] },
+          { _type: 'row', cells: ['Public', 'Appraise'] },
+        ],
+      },
+      {
+        _type: 'block',
+        children: [{ _type: 'span', text: 'Read sources', marks: ['source'] }],
+        markDefs: [{ _key: 'source', _type: 'link', href: 'https://example.org' }],
+      },
+    ])
+    expect(html).toContain('<th')
+    expect(html).toContain('<td')
+    expect(html).toContain('href="https://example.org" target="_blank" rel="noopener noreferrer"')
+  })
   describe('renderPortableText', () => {
     it('should render simple paragraph', () => {
       const blocks: PortableTextBlock[] = [
@@ -202,7 +242,7 @@ describe('Portable Text Rendering', () => {
   })
 
   describe('renderPolicyPortableText', () => {
-    it('should wrap "The Problem" section with white background', () => {
+    it('should wrap "The Problem" section with dark surface', () => {
       const blocks: PortableTextBlock[] = [
         {
           _type: 'block',
@@ -217,13 +257,13 @@ describe('Portable Text Rendering', () => {
       ]
 
       const result = renderPolicyPortableText(blocks)
-      expect(result).toContain('bg-white')
+      expect(result).toContain('bg-grey-dark')
       expect(result).toContain('<h2')
       expect(result).toContain('The Problem')
       expect(result).toContain('Description of problem')
     })
 
-    it('should wrap "Our Solution" section with white background', () => {
+    it('should wrap "Our Solution" section with dark surface', () => {
       const blocks: PortableTextBlock[] = [
         {
           _type: 'block',
@@ -238,7 +278,7 @@ describe('Portable Text Rendering', () => {
       ]
 
       const result = renderPolicyPortableText(blocks)
-      expect(result).toContain('bg-white')
+      expect(result).toContain('bg-grey-dark')
       expect(result).toContain('Our Solution')
       expect(result).toContain('Solution details')
     })
