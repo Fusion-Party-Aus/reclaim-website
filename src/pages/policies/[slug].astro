@@ -167,7 +167,7 @@ const sidebarSections = [
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
   ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
-  ...contentSections,
+  ...contentSections.filter((section): section is { id: string; title: string } => section !== null),
 ]
 
 const metaDescription = policy.seoDescription || policy.summary
@@ -477,7 +477,7 @@ const metaDescription = policy.seoDescription || policy.summary
                         />
                       </summary>
                       <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-4">
-                        {splitIntoParagraphs(section.content).map((para: string) => (
+                        {splitIntoParagraphs(section.content || '').map((para: string) => (
                           <p class="text-base font-normal text-white/75 leading-relaxed">{para}</p>
                         ))}
                       </div>
