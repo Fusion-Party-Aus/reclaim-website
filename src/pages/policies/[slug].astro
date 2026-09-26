@@ -167,7 +167,9 @@ const sidebarSections = [
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
   ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
-  ...contentSections.filter((section): section is { id: string; title: string } => section !== null),
+  ...contentSections.filter(
+    (section): section is { id: string; title: string } => section !== null
+  ),
 ]
 
 const metaDescription = policy.seoDescription || policy.summary
@@ -280,16 +282,15 @@ const metaDescription = policy.seoDescription || policy.summary
         policy.slug.current === 'build-housing-at-stations' && (
           <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
             <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
-              Fusion Victoria policy · detailed design in progress
+              Fusion Victoria policy
             </p>
             <h2 class="text-xl font-display font-black uppercase text-white mb-2">
               Homes and Stations Code
             </h2>
             <p class="text-sm text-white/80 leading-relaxed mb-3">
-              The Code sets a direction for clear rights for modest infill housing across serviced
-              suburbs, with greater mapped capacity at high-capacity stations. Affordable housing
-              obligations and infrastructure funding need legal, fiscal and site viability tests to
-              set the final rules.
+              The Code allows modest infill housing across serviced suburbs and more homes near
+              high-capacity stations. Affordable housing rules and public costs need legal,
+              infrastructure and viability tests.
             </p>
             <a
               class="font-bold text-[#a9c8ff] underline underline-offset-4"
