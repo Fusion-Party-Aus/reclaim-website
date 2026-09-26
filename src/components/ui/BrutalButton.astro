@@ -24,6 +24,9 @@ interface Props {
   icon?: string
   iconPosition?: 'left' | 'right'
   class?: string
+  id?: string
+  target?: string
+  rel?: string
 }
 
 const {
@@ -35,6 +38,9 @@ const {
   icon,
   iconPosition = 'left',
   class: className = '',
+  id,
+  target,
+  rel,
 } = Astro.props
 
 // Variant styles — flat fills, no heavy border, brighten on hover (never darken)
@@ -71,6 +77,9 @@ const Element = href ? 'a' : 'button'
 
 <Element
   href={href}
+  id={id}
+  target={href ? target : undefined}
+  rel={href ? rel : undefined}
   type={!href ? type : undefined}
   class={baseClasses}
   style="font-family: 'Barlow Condensed', sans-serif;"
