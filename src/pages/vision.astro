@@ -19,7 +19,7 @@ interface Policy {
   category?: string
   summary: string
   hook?: string
-  keyPoints?: string[]
+  keyPoints?: unknown[]
   cost?: string
   funding?: string
   body?: unknown
@@ -279,7 +279,9 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                       >
                         {/* Category header */}
                         <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                          <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
+                          <h3>
+                            <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
+                          </h3>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -319,14 +321,15 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
                                 <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
                                   {policy.cost && (
-                                    <span class="text-xs font-black uppercase rounded-sm bg-yellow text-white px-2 py-1 flex items-center gap-1">
+                                    <span class="text-sm font-black uppercase rounded-sm bg-[#234080] text-white px-2 py-1 flex items-center gap-1">
                                       <span class="opacity-80">Cost:</span>
                                       {policy.cost}
                                     </span>
                                   )}
                                   <a
                                     href={`/policies/${policy.slug.current}`}
-                                    class="ml-auto inline-flex items-center gap-1 text-xs font-black uppercase text-magenta hover:gap-2 transition-all"
+                                    aria-label={`Read ${policy.title}`}
+                                    class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
                                   >
                                     Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
                                   </a>
