@@ -56,7 +56,7 @@ const manifesto = (
   visionPage as { manifesto?: { heading: string; body: string; punchline: string } }
 ).manifesto || {
   heading: 'This is what Victoria could look like.',
-  body: 'The policies on this page require more than a single crossbench seat. They require a mandate. But they are fully designed, fully costed, and ready to legislate the day we have the numbers. Every number here is sourced. Every mechanism is real. This is the long game.',
+  body: 'The policies on this page require more than a single crossbench seat. They require a mandate. Costings and legal designs vary by proposal; the housing and rail options under research still need independent appraisal and party approval. This is the long game.',
   punchline: 'The detail is below.',
 }
 
@@ -68,8 +68,8 @@ const proofStats: ProofStat[] = (visionPage as { proofStats?: ProofStat[] }).pro
     variant: 'magenta',
   },
   {
-    number: '$1B/yr',
-    label: 'Efficiency dividend from bringing public transport back into public hands',
+    number: 'Audit first',
+    label: 'Compare public operation and regulated alternatives before booking transport savings',
     icon: 'mdi:train',
     variant: 'mint',
   },
@@ -211,6 +211,25 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     {/* ── Content + Sidebar ── */}
     <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
       <div class="min-w-0">
+        <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+          <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">
+            Fusion Victoria policy direction
+          </p>
+          <h2 class="text-xl font-display font-black uppercase text-white mb-2">
+            Homes and Stations Code
+          </h2>
+          <p class="text-sm text-white/80 leading-relaxed mb-3">
+            The Homes and Stations Code would allow modest infill housing and planning larger
+            mixed-use station precincts. Its affordable housing settings and public costs need legal
+            review, infrastructure plans and site viability testing. It has not been adopted as
+            party policy.
+          </p>
+          <a
+            class="font-bold text-yellow underline underline-offset-4"
+            href="https://github.com/finneh4249/state-budget/blob/policy/homes-stations-japan-rail-modular/victoria-omnibus/volume-1-homes-land-transport/land/04-homes-and-stations-code.md"
+            >Read the research and sources</a
+          >
+        </aside>
         {/* ── Evidence Credibility Strip ── */}
         <div
           class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-black/20 px-5 py-4"
