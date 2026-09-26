@@ -1,14 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
 ---
-export const prerender = true
-
-export async function getStaticPaths() {
-  const policies = await getPolicies()
-  return policies
-    .filter((policy) => policy.slug?.current)
-    .map((policy) => ({
-      params: { slug: policy.slug.current },
-    }))
-}
+export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
@@ -16,7 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug, getPolicies } from '../../lib/sanity'
+import { getDocumentBySlug } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
