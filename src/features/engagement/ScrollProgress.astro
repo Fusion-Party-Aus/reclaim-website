@@ -83,7 +83,7 @@ const colorMap = {
     }
   }
 
-  function checkMilestones(percent: number) {
+  function checkMilestones(percent) {
     const nextMilestone = milestones[currentMilestone]
     if (!nextMilestone) return
 
@@ -93,7 +93,7 @@ const colorMap = {
     }
   }
 
-  function triggerMilestone(milestone: any) {
+  function triggerMilestone(milestone) {
     const celebration = document.getElementById('milestone-celebration')
     const emoji = document.getElementById('milestone-emoji')
     const text = document.getElementById('milestone-text')
@@ -122,7 +122,7 @@ const colorMap = {
     }
   }
 
-  function createMilestoneConfetti(color: string) {
+  function createMilestoneConfetti(color) {
     const colors = [color, '#000000', '#FFFFFF']
     const confettiCount = 50
 
