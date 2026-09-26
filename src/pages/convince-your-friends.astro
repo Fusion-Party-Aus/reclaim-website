@@ -876,7 +876,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
       collapseBtn?.addEventListener('click', (e) => {
         e.stopPropagation()
         body?.classList.add('hidden')
-        expandBtn!.innerHTML =
+        expandBtn.innerHTML =
           '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg> OPEN'
       })
 
@@ -907,7 +907,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
     // Channel filter functionality
     const channelFilters = document.querySelectorAll('.channel-filter')
-    let activeChannel: string | null = null
+    let activeChannel = null
 
     channelFilters.forEach((filter) => {
       filter.addEventListener('click', () => {
@@ -917,7 +917,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         if (activeChannel === channel) {
           activeChannel = null
           channelFilters.forEach((f) => f.classList.remove('bg-yellow'))
-          cards.forEach((card) => ((card as HTMLElement).style.display = 'block'))
+          cards.forEach((card) => (card.style.display = 'block'))
         } else {
           activeChannel = channel
           channelFilters.forEach((f) => f.classList.remove('bg-yellow'))
@@ -926,7 +926,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
           // Filter cards
           cards.forEach((card) => {
             const cardChannel = card.getAttribute('data-channel')
-            ;(card as HTMLElement).style.display = cardChannel === channel ? 'block' : 'none'
+            card.style.display = cardChannel === channel ? 'block' : 'none'
           })
         }
       })
