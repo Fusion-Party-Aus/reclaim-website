@@ -1486,7 +1486,7 @@
         slides[current].classList.remove('active')
         current = (n + slides.length) % slides.length
         slides[current].classList.add('active')
-        counter.textContent = `${current + 1} / ${slides.length}`
+        if (counter) counter.textContent = `${current + 1} / ${slides.length}`
       }
 
       document.addEventListener('keydown', (e) => {
@@ -1501,7 +1501,7 @@
       })
 
       // Click anywhere on right half = next, left half = prev
-      document.getElementById('deck').addEventListener('click', (e) => {
+      document.getElementById('deck')?.addEventListener('click', (e) => {
         if (e.clientX > window.innerWidth / 2) go(current + 1)
         else go(current - 1)
       })
