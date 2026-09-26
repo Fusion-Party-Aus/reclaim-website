@@ -98,10 +98,14 @@ import { BrutalButton } from '@/components/ui'
 
 <script>
   const navLinks = Array.from(document.querySelectorAll('.sidebar [data-nav]'))
-  const sectionIds = navLinks.map((link) => link.getAttribute('data-nav')).filter(Boolean)
-  const sections = sectionIds.map((id) => document.getElementById(id)).filter((el) => el)
+  const sectionIds = navLinks
+    .map((link) => link.getAttribute('data-nav'))
+    .filter((id): id is string => Boolean(id))
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => Boolean(el))
 
-  const setActive = (id) => {
+  const setActive = (id: string) => {
     navLinks.forEach((link) => {
       const isActive = link.getAttribute('data-nav') === id
       link.classList.toggle('is-active', isActive)
@@ -138,7 +142,7 @@ import { BrutalButton } from '@/components/ui'
     overflow-y: auto;
   }
   .sidebar a.is-active {
-    background-color: #4a7aeb !important;
+    background-color: #234080 !important;
     color: #ffffff !important;
   }
   .sidebar a.is-active[href^='#'] {
