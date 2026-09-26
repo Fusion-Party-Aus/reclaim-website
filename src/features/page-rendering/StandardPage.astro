@@ -48,7 +48,7 @@ if (page.body) {
     if (block._type === 'block' && block.style === 'h2') {
       const title = block.children?.map((c: any) => c.text).join('') || ''
       const id = slugify(title)
-      currentSection = { title, id, blocks: [block] }
+      currentSection = { title, id, blocks: [] }
       bodySections.push(currentSection)
     } else if (currentSection) {
       currentSection.blocks.push(block)
