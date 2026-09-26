@@ -81,11 +81,11 @@ const logo = navigation?.logo || {
         <div class="flex flex-col leading-none">
           <span class="font-display font-black text-white text-lg tracking-tight uppercase">
             {logo.mainText}
-            {logo.subText && <span class="text-white/50 font-bold ml-1">{logo.subText}</span>}
+            {logo.subText && <span class="text-white font-bold ml-1">{logo.subText}</span>}
           </span>
           {
             logo.tagline && (
-              <span class="text-[10px] font-medium text-white/40 tracking-wide mt-0.5">
+              <span class="text-xs font-medium text-white/90 tracking-wide mt-0.5">
                 {logo.tagline}
               </span>
             )
@@ -95,8 +95,8 @@ const logo = navigation?.logo || {
 
       {/* ── Mobile menu toggle ── */}
       <button
-        class="md:hidden text-white/70 hover:text-white p-2 cursor-pointer transition-colors"
-        aria-label="Toggle menu"
+        class="md:hidden text-white hover:text-white p-3 min-w-11 min-h-11 cursor-pointer transition-colors"
+        aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
         id="mobile-menu-toggle"
@@ -118,7 +118,7 @@ const logo = navigation?.logo || {
               return (
                 <div class="nav-dropdown-wrapper relative group">
                   <button
-                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/60 border-transparent hover:text-white'}`}
+                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`}
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
@@ -137,11 +137,11 @@ const logo = navigation?.logo || {
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
-                          class="block px-3.5 py-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-sm text-sm font-medium"
+                          class="block px-3.5 py-2.5 text-white hover:bg-white/10 transition-all rounded-sm text-sm font-medium"
                         >
                           {child.label}
                           {child.description && (
-                            <div class="text-xs mt-0.5 text-white/60">{child.description}</div>
+                            <div class="text-xs mt-0.5 text-white/85">{child.description}</div>
                           )}
                         </a>
                       ))}
@@ -154,7 +154,7 @@ const logo = navigation?.logo || {
             return (
               <a
                 href={item.href}
-                class={`nav-link text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/60 border-transparent hover:text-white'}`}
+                class={`nav-link text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`}
               >
                 {item.label}
               </a>
@@ -167,8 +167,9 @@ const logo = navigation?.logo || {
           href={ctaButton.href}
           class:list={[
             'ml-2 px-4 py-2 text-sm font-semibold rounded-sm transition-shadow',
-            ctaButton.style === 'primary' && 'bg-magenta text-white hover:shadow-brutal-magenta',
-            ctaButton.style === 'yellow' && 'bg-yellow text-white hover:shadow-brutal-yellow',
+            ctaButton.style === 'primary' &&
+              'bg-magenta-darker text-white hover:shadow-brutal-magenta',
+            ctaButton.style === 'yellow' && 'bg-[#234080] text-white hover:shadow-brutal-yellow',
             ctaButton.style === 'mint' && 'bg-mint text-black hover:shadow-brutal-mint',
             !['primary', 'yellow', 'mint'].includes(ctaButton.style) &&
               'bg-mint text-black hover:shadow-brutal-mint',
@@ -194,7 +195,7 @@ const logo = navigation?.logo || {
               return (
                 <div class="mobile-dropdown">
                   <button
-                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-colors flex justify-between items-center"
+                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white hover:text-white transition-colors flex justify-between items-center"
                     aria-expanded="false"
                   >
                     {item.label}
@@ -204,7 +205,7 @@ const logo = navigation?.logo || {
                     {item.children?.map((child) => (
                       <a
                         href={child.href}
-                        class="block px-2 py-2 text-sm text-white/60 hover:text-white transition-colors"
+                        class="block px-2 py-2 text-sm text-white hover:text-white transition-colors"
                       >
                         {child.label}
                       </a>
@@ -218,7 +219,7 @@ const logo = navigation?.logo || {
               <a
                 href={item.href}
                 class={`block px-2 py-2.5 text-sm font-medium transition-colors ${
-                  isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                  isActive ? 'text-white' : 'text-white/90 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -229,8 +230,12 @@ const logo = navigation?.logo || {
         <a
           href={ctaButton.href}
           class:list={[
-            'mt-2 block px-4 py-2.5 text-center text-sm font-semibold rounded-sm text-white',
-            ctaButton.style === 'mint' ? 'bg-mint text-black' : 'bg-magenta',
+            'mt-2 block px-4 py-2.5 text-center text-sm font-semibold rounded-sm',
+            ctaButton.style === 'mint'
+              ? 'bg-mint text-black'
+              : ctaButton.style === 'yellow'
+                ? 'bg-[#234080] text-white'
+                : 'bg-magenta-darker text-white',
           ]}
         >
           {ctaButton.label}
@@ -283,12 +288,14 @@ const logo = navigation?.logo || {
   toggle?.addEventListener('click', () => {
     const isHidden = mobileNav?.classList.toggle('hidden')
     toggle.setAttribute('aria-expanded', String(!isHidden))
+    toggle.setAttribute('aria-label', isHidden ? 'Open menu' : 'Close menu')
   })
 
   mobileNav?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileNav?.classList.add('hidden')
       toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.setAttribute('aria-label', 'Open menu')
     })
   })
 
@@ -311,6 +318,7 @@ const logo = navigation?.logo || {
     if (!mobileNav?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
       mobileNav?.classList.add('hidden')
       toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.setAttribute('aria-label', 'Open menu')
     }
   })
 
@@ -319,6 +327,7 @@ const logo = navigation?.logo || {
     if (e.key === 'Escape' && !mobileNav?.classList.contains('hidden')) {
       mobileNav?.classList.add('hidden')
       toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.setAttribute('aria-label', 'Open menu')
       toggle?.focus()
     }
   })
