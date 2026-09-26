@@ -40,12 +40,12 @@ Object.keys(faqsByCategory).forEach(category => {
 });
 
 const categoryInfo: Record<string, { title: string; description: string; bg: string; textColor: string; icon: string }> = {
-  'debt':         { title: 'Debt & Fiscal Policy',  description: "Questions about Victoria's debt, our spending plans, and fiscal responsibility.", bg: '#D428D4', textColor: '#fff', icon: 'mdi:currency-usd' },
+  'debt':         { title: 'Debt & Fiscal Policy',  description: "Victoria's debt, spending and fiscal choices.", bg: '#681268', textColor: '#fff', icon: 'mdi:currency-usd' },
   'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:arrow-left-bold' },
-  'right-attacks':{ title: 'From the Right',         description: 'Responding to conservative critiques and Liberal Party talking points.',          bg: '#4A7AEB', textColor: '#fff', icon: 'mdi:arrow-right-bold' },
+  'right-attacks':{ title: 'From the Right',         description: 'Answers to conservative critiques.',          bg: '#234080', textColor: '#fff', icon: 'mdi:arrow-right-bold' },
   'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: '#2E004D',    textColor: '#fff', icon: 'mdi:information' },
   'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:vote' },
-  'policy':       { title: 'Policy Details',         description: 'Deep dives into specific policies and implementation.',                           bg: '#4A7AEB', textColor: '#fff', icon: 'mdi:file-document' },
+  'policy':       { title: 'Policy Details',         description: 'How proposals work and what remains to be costed.',                           bg: '#234080', textColor: '#fff', icon: 'mdi:file-document' },
 };
 
 const categoryOrder = ['general', 'debt', 'policy', 'electoral', 'left-attacks', 'right-attacks'];
@@ -68,7 +68,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 
 <BaseLayout
   title="FAQ | Fusion Party Victoria"
-  description="Got questions? We've got answers. Straight talk on policy, debt, and how we're different from the major parties."
+  description="Answers about Fusion's policies, funding, elections and use of AI."
   image="/og/faq.png"
 >
   <Header />
@@ -83,7 +83,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 
   <Hero
     title="Frequently Asked Questions"
-    subtitle="Got questions? We've got answers. No spin, no dodge, just straight talk."
+    subtitle="How our policies work, what they cost and who makes the decisions."
   />
 
   <main id="main-content" class="bg-surface-base py-12 pb-24">
@@ -145,7 +145,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
                       style={`color: ${info.textColor};`}>
                       {info.title}
                     </h2>
-                    <p class="text-xs font-black uppercase mt-0.5" style={`color: ${info.textColor}; opacity: 0.7;`}>
+                    <p class="text-sm font-bold mt-0.5" style={`color: ${info.textColor};`}>
                       {info.description}
                     </p>
                   </div>
@@ -166,7 +166,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
                         </h3>
                         {
                           faq._updatedAt && (
-                            <p class="mt-1 text-[10px] font-black uppercase tracking-widest text-white/40">
+                            <p class="mt-1 text-sm font-bold text-white/85">
                               Updated: {new Date(faq._updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
                             </p>
                           )
@@ -194,8 +194,8 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
             <h2 class="text-2xl md:text-3xl font-display font-black uppercase mb-2 leading-tight">
               Still Have Questions?
             </h2>
-            <p class="text-sm font-black text-white/65 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
-              Can't find what you're looking for? Email us at{' '}
+            <p class="text-sm font-black text-white mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+              Ask us at{' '}
               <a href="mailto:hello@fusionparty.org.au" class="text-mint font-black hover:underline">
                 hello@fusionparty.org.au
               </a>
@@ -217,5 +217,3 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 
   <Footer />
 </BaseLayout>
-
-
