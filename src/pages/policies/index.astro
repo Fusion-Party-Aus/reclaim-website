@@ -37,7 +37,8 @@ const pageData = await getPoliciesPage()
 
 const title = pageData?.title || 'Our Policies'
 const subtitle =
-  pageData?.subtitle || "Evidence-based solutions. We've done the maths. No bullshit."
+  pageData?.subtitle ||
+  'Bold policy, open evidence and honest costings. See what is settled and what still needs appraisal.'
 const seoDescription =
   pageData?.seoDescription ||
   "Explore Fusion Party Victoria's policies and research on housing, transport, tax, and democracy. Detailed costings and delivery settings vary by proposal."
@@ -389,7 +390,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
               Get Involved
             </BrutalButton>
             <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
-              We've Done the Maths
+              See the Costings
             </BrutalButton>
             <BrutalButton variant="black" href="/electorate" icon="mdi:map-marker">
               Find Your Electorate
