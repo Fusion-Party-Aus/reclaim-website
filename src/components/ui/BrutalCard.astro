@@ -24,6 +24,7 @@ interface Props {
   hover?: boolean
   class?: string
   id?: string
+  style?: string
 }
 
 const {
@@ -34,6 +35,7 @@ const {
   hover = true,
   class: className = '',
   id,
+  style: customStyle,
 } = Astro.props
 
 // Background colors. 'surface' is the dark raised panel used everywhere by default.
@@ -69,7 +71,7 @@ const resolvedAccent = accentColors[shadow] ?? shadow
 // Calculate rotation style
 const rotationStyle = rotation !== 0 ? `rotate(${rotation}deg)` : 'rotate(0deg)'
 
-const cardStyle = `border-top: 2px solid ${resolvedAccent}; transform: ${rotationStyle};`
+const cardStyle = `border-top: 2px solid ${resolvedAccent}; transform: ${rotationStyle}; ${customStyle || ''}`
 ---
 
 <div
