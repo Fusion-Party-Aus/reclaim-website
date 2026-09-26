@@ -1482,7 +1482,7 @@
       let current = 0
       const counter = document.getElementById('counter')
 
-      function go(n) {
+      function go(n: number) {
         slides[current].classList.remove('active')
         current = (n + slides.length) % slides.length
         slides[current].classList.add('active')
