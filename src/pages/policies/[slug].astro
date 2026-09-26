@@ -286,6 +286,30 @@ const metaDescription = policy.seoDescription || policy.summary
 
       {/* ── Hook Block (Populist accusation) ── */}
       {
+        policy.slug.current === 'build-housing-at-stations' && (
+          <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+            <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">
+              Fusion Victoria policy · detailed design in progress
+            </p>
+            <h2 class="text-xl font-display font-black uppercase text-white mb-2">
+              Homes and Stations Code
+            </h2>
+            <p class="text-sm text-white/80 leading-relaxed mb-3">
+              The Code sets a direction for clear rights for modest infill housing across serviced
+              suburbs, with greater mapped capacity at high-capacity stations. Affordable housing
+              obligations and infrastructure funding need legal, fiscal and site viability tests
+              before adoption.
+            </p>
+            <a
+              class="font-bold text-yellow underline underline-offset-4"
+              href="https://github.com/finneh4249/state-budget/blob/policy/homes-stations-japan-rail-modular/victoria-omnibus/volume-1-homes-land-transport/land/04-homes-and-stations-code.md"
+            >
+              Read the full chapter and sources
+            </a>
+          </aside>
+        )
+      }
+      {
         policy.hook && (
           <section id="the-problem" class="mb-8 scroll-mt-28">
             <div class="border-l-4 border-magenta bg-black/40 px-6 py-5 rounded-r-sm">
