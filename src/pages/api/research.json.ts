@@ -39,6 +39,7 @@ export const GET: APIRoute = async () => {
       license: resource.license || null,
       doi: resource.doi || null,
       topics: resource.tags || [],
+      key_findings: resource.keyFindings || [],
       methodology_text: portableTextToPlainText(resource.methodology || []),
       limitations_text: portableTextToPlainText(resource.limitations || []),
       body_text: portableTextToPlainText(resource.body || []),
