@@ -137,6 +137,7 @@ export interface ResearchResource extends SanityDocument {
   title: string
   slug: SanitySlug
   resourceType: 'dataset' | 'methodology' | 'submission' | 'briefing' | 'report' | 'model' | 'register'
+  researchArea: string
   abstract: string
   authors?: ResearchAuthor[]
   publishedAt: string
