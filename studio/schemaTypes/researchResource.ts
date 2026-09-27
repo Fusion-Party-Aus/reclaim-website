@@ -27,6 +27,14 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'researchArea',
+      title: 'Research Area',
+      type: 'string',
+      group: 'basic',
+      description: 'Primary public-facing topic used to organise the Research & Data library. Free text so new areas do not require a code change.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'resourceType',
       title: 'Resource Type',
       type: 'string',
