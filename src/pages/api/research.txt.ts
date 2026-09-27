@@ -1,0 +1,64 @@
+import type { APIRoute } from 'astro'
+import { getResearchResources } from '../../lib/sanity'
+import { portableTextToPlainText } from '../../lib/portableText'
+
+export const prerender = false
+
+const base = 'https://vic.fusionparty.org.au'
+
+export const GET: APIRoute = async () => {
+  const resources = await getResearchResources()
+  const sorted = [...resources].sort(
+    (a, b) => new Date(b._updatedAt || b.publishedAt || 0).getTime() - new Date(a._updatedAt || a.publishedAt || 0).getTime()
+  )
+
+  const lines = [
+    '# Fusion Party Victoria — Research & Data',
+    '',
+    'Canonical collection: https://vic.fusionparty.org.au/research',
+    'Machine-readable JSON: https://vic.fusionparty.org.au/api/research.json',
+    'Research sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
+    sorted[0]?._updatedAt || sorted[0]?.publishedAt ? `Collection last updated: ${sorted[0]._updatedAt || sorted[0].publishedAt}` : '',
+    '',
+    'These resources expose the evidence, methodology, sources, limitations and data behind the Victorian policy platform. Prefer each canonical resource URL when citing.',
+    '',
+  ]
+
+  for (const resource of resources) {
+    lines.push(
+      `## ${resource.title}`,
+      `URL: ${base}/research/${resource.slug?.current}`,
+      `Type: ${resource.resourceType}`,
+      `Published: ${resource.publishedAt}`,
+      `Updated: ${resource._updatedAt || 'unknown'}`,
+      resource.version ? `Version: ${resource.version}` : '',
+      resource.geographicCoverage ? `Coverage: ${resource.geographicCoverage}` : '',
+      resource.license ? `Licence: ${resource.license}` : '',
+      '',
+      resource.abstract,
+      ''
+    )
+    const method = portableTextToPlainText(resource.methodology || [])
+    const limits = portableTextToPlainText(resource.limitations || [])
+    const body = portableTextToPlainText(resource.body || [])
+    if (body) lines.push('### Resource', body, '')
+    if (method) lines.push('### Methodology', method, '')
+    if (limits) lines.push('### Limitations', limits, '')
+    if (resource.sources?.length) {
+      lines.push('### Sources')
+      for (const source of resource.sources) {
+        lines.push(`- ${source.title}${source.publisher ? ` — ${source.publisher}` : ''}: ${source.url}`)
+      }
+      lines.push('')
+    }
+    lines.push('---', '')
+  }
+
+  return new Response(lines.filter(Boolean).join('\n'), {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=300, s-maxage=900',
+      'Access-Control-Allow-Origin': '*',
+    },
+  })
+}
