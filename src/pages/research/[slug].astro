@@ -68,7 +68,8 @@ const formatDate = (date?: string) =>
         <h1 class="text-4xl md:text-6xl font-display font-black uppercase text-white leading-tight mb-5">{resource.title}</h1>
         <p class="text-xl text-white/75 font-semibold leading-relaxed max-w-4xl">{resource.abstract}</p>
         <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50 font-semibold">
-          <span>Published {formatDate(resource.publishedAt)}</span>
+          <span>Published ${formatDate(resource.publishedAt)}</span>
+          {resource.researchFirstDocumentedAt && <span>Research first documented ${formatDate(resource.researchFirstDocumentedAt)}</span>}
           {resource._updatedAt && <span>Updated {formatDate(resource._updatedAt)}</span>}
           {resource.geographicCoverage && <span>{resource.geographicCoverage}</span>}
           {resource.license && <span>Licence: {resource.license}</span>}
@@ -77,6 +78,13 @@ const formatDate = (date?: string) =>
     </section>
 
     <div class="max-w-5xl mx-auto px-4 md:px-8 py-10 space-y-8">
+      {resource.researchProvenance && (
+        <BrutalCard variant="surface" shadow="mint" padding="md">
+          <p class="text-xs font-black uppercase tracking-widest text-mint mb-2">Research provenance</p>
+          <p class="text-sm text-white/75">{resource.researchProvenance}</p>
+        </BrutalCard>
+      )}
+
       <BrutalCard variant="surface" shadow="yellow" padding="md">
         <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">Cite this resource</p>
         <p class="font-mono text-sm text-white/80 leading-relaxed break-words">{citation}</p>
