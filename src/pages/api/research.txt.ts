@@ -30,6 +30,8 @@ export const GET: APIRoute = async () => {
       `URL: ${base}/research/${resource.slug?.current}`,
       `Type: ${resource.resourceType}`,
       `Published: ${resource.publishedAt}`,
+      resource.researchFirstDocumentedAt ? `Research first documented: ${resource.researchFirstDocumentedAt}` : '',
+      resource.researchProvenance ? `Research provenance: ${resource.researchProvenance}` : '',
       `Updated: ${resource._updatedAt || 'unknown'}`,
       resource.version ? `Version: ${resource.version}` : '',
       resource.geographicCoverage ? `Coverage: ${resource.geographicCoverage}` : '',
