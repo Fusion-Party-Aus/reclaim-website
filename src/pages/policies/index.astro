@@ -3,184 +3,177 @@ export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import type { Policy } from '../../types/sanity'
 import { getPolicies, getPoliciesPage } from '../../lib/sanity'
 import '../../styles/global.css'
 import '../../styles/platform-pages.css'
 
 const policies = await getPolicies()
 const pageData = await getPoliciesPage()
-const pillars = [...new Set(policies.map((policy) => policy.pillar || 'Other'))]
-const slug = (value: string) =>
-  value
+const groups = new Map<string, Map<string, Policy[]>>()
+for (const policy of policies) {
+  const pillar = policy.pillar || 'Other policies'
+  const category = policy.category || 'General'
+  if (!groups.has(pillar)) groups.set(pillar, new Map())
+  const categories = groups.get(pillar)!
+  if (!categories.has(category)) categories.set(category, [])
+  categories.get(category)!.push(policy)
+}
+const idFor = (text: string) =>
+  text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
-const descriptions: Record<string, string> = {
+const pillarDescriptions: Record<string, string> = {
   'RECLAIM OUR INFRASTRUCTURE':
-    'Homes, transport and public assets that work for the people who pay for them.',
-  'RECLAIM OUR DEMOCRACY': 'Power you can see, question and share.',
-  'RECLAIM OUR ECONOMY': 'Keep the value Victoria creates in Victorian hands.',
+    'Build useful networks and neighbourhoods. Keep the public value they create.',
+  'RECLAIM OUR DEMOCRACY': 'Put decisions, influence and public contracts in plain sight.',
+  'RECLAIM OUR ECONOMY': 'Make public investment pay a public return.',
 }
 ---
 
 <BaseLayout
-  title={`${pageData?.title || 'Policies'} | Fusion Party Victoria`}
-  description={pageData?.seoDescription ||
-    'Explore Fusion Party Victoria’s policy platform and long-term direction.'}
+  title={`${pageData?.title || 'Our Policies'} | Fusion Party Victoria`}
+  description={pageData?.seoDescription || 'Explore Fusion Victoria’s full policy platform.'}
   image="/og/policies.png"
 >
   <Header />
-  <main id="main-content" class="platform-page">
-    <section class="platform-hero platform-hero--policy" aria-labelledby="policy-heading">
-      <div class="platform-wrap platform-hero__inner">
-        <div class="platform-hero__copy">
-          <p class="platform-kicker">Fusion Victoria / The platform</p>
-          <h1 id="policy-heading">Build it.<br /><em>Keep it.</em><br />Share the return.</h1>
-          <p class="platform-lede">
-            Victoria can build homes and better transport, keep public value in public hands, and
-            give people a real say in what comes next.
-          </p>
-          <div class="platform-hero__actions">
-            <a href="#explore" class="platform-button"
-              >Explore the policies <span aria-hidden="true">↘</span></a
-            ><a href="/vision" class="platform-text-link"
-              >See the vision <span aria-hidden="true">↗</span></a
-            >
-          </div>
-        </div>
-        <div class="platform-hero__mark" aria-hidden="true">
-          <span>PUBLIC<br />VALUE</span><span>↗</span>
-        </div>
+  <main id="main-content" class="reclaim-platform">
+    <div class="platform-spectrum" aria-hidden="true"></div>
+    <header class="platform-header platform-container">
+      <p class="platform-eyebrow">Fusion Party Victoria</p>
+      <h1>Our policies</h1>
+      <p class="platform-intro">
+        Make power visible. Build homes and transport that work. Keep the value Victoria creates in
+        public hands.
+      </p>
+      <div class="platform-header__links">
+        <a class="platform-primary-link" href="#browse"
+          >Explore the platform <span aria-hidden="true">↓</span></a
+        ><a href="/vision" class="platform-secondary-link"
+          >Our vision <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="platform-hero__footer platform-wrap">
-        <span>01 / The case</span><span>02 / The platform</span><span>03 / Your part</span>
+    </header>
+
+    <section class="platform-frame" aria-labelledby="policy-frame-title">
+      <div class="platform-container platform-frame__grid">
+        <div>
+          <p class="platform-eyebrow">The idea</p><h2 id="policy-frame-title">
+            Public investment.<br /><span>Public return.</span>
+          </h2>
+        </div><div>
+          <p>
+            Victoria needs more than another list of promises. These proposals start with the
+            systems that shape everyday life: where homes can be built, how people move, who holds
+            power and who benefits when the public pays.
+          </p><p>
+            Each policy sets out the change, its expected effect and the case behind it. Costs and
+            evidence belong with the individual proposal, where they can be checked.
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="platform-thesis platform-wrap" aria-labelledby="thesis-heading">
-      <p class="platform-section-label">The case for change / 01</p>
-      <div>
-        <h2 id="thesis-heading">The public pays.<br /><span>Who gets the return?</span></h2><p>
-          Victoria has built valuable infrastructure while handing away too much of its upside. Our
-          answer is to scrutinise the deals, build where services already exist, and make public
-          investment deliver lasting public benefit.
-        </p><p class="platform-small">
-          Each proposal has its own detail page. Read the evidence and qualifications there before
-          treating any estimate as a settled return.
+    <section id="browse" class="platform-browse platform-container" aria-labelledby="browse-title">
+      <div class="platform-browse__heading">
+        <div>
+          <p class="platform-eyebrow">Explore the platform</p><h2 id="browse-title">
+            Find a policy
+          </h2>
+        </div><p>
+          Browse the full platform by pillar and category. The time filter shows delivery horizon;
+          longer-term proposals are still part of the platform.
         </p>
       </div>
-    </section>
-
-    <section class="platform-index" id="explore" aria-labelledby="explore-heading">
-      <div class="platform-wrap">
-        <div class="platform-index__head">
-          <div>
-            <p class="platform-section-label">The platform / 02</p><h2 id="explore-heading">
-              Find the change<br />you came for.
-            </h2>
-          </div><p>
-            One platform, across immediate priorities and longer-term reforms. Browse by theme or
-            narrow the delivery horizon.
-          </p>
-        </div>
-        <div class="platform-controls">
-          <div class="platform-tabs" role="group" aria-label="Filter policies by delivery horizon">
-            <button type="button" data-horizon-filter="all" aria-pressed="true"
-              >All policies <span>{policies.length}</span></button
-            >
-            <button type="button" data-horizon-filter="current" aria-pressed="false"
-              >This term <span>{policies.filter((p) => p.thisTerm === true).length}</span></button
-            >
-            <button type="button" data-horizon-filter="long" aria-pressed="false"
-              >Long-term <span>{policies.filter((p) => p.thisTerm !== true).length}</span></button
-            >
-          </div>
-          <label class="platform-search"
-            ><span class="sr-only">Search policies</span><input
-              id="policy-search"
-              type="search"
-              placeholder="Search the platform"
-              autocomplete="off"
-            /><span aria-hidden="true">⌕</span></label
+      <div class="platform-tools">
+        <div class="platform-filters" role="group" aria-label="Filter by delivery horizon">
+          <button type="button" data-horizon-filter="all" aria-pressed="true"
+            >All policies <span>{policies.length}</span></button
+          ><button type="button" data-horizon-filter="current" aria-pressed="false"
+            >This term <span>{policies.filter((p) => p.thisTerm === true).length}</span></button
+          ><button type="button" data-horizon-filter="long" aria-pressed="false"
+            >Long-term <span>{policies.filter((p) => p.thisTerm !== true).length}</span></button>
+        </div><label class="platform-search"
+          ><span class="sr-only">Search policies</span><input
+            type="search"
+            id="policy-search"
+            placeholder="Search policies"
+            autocomplete="off"
+          /><span aria-hidden="true">⌕</span></label>
+      </div>
+      <nav class="platform-pillar-nav" aria-label="Policy pillars">
+        {[...groups.keys()].map((pillar) => <a href={`#${idFor(pillar)}`}>{pillar}</a>)}
+      </nav>
+      <p class="platform-result-count" id="policy-results" role="status" aria-live="polite"></p>
+      {
+        [...groups].map(([pillar, categories]) => (
+          <section
+            class="platform-pillar"
+            id={idFor(pillar)}
+            data-policy-pillar
+            aria-labelledby={`${idFor(pillar)}-title`}
           >
-        </div>
-        <nav class="platform-jump" aria-label="Jump to policy themes">
-          {
-            pillars.map((pillar, index) => (
-              <a href={`#${slug(pillar)}`}>
-                <span>0{index + 1}</span> {pillar.replace('RECLAIM OUR ', '')}
-              </a>
-            ))
-          }
-        </nav>
-        <p id="policy-results" class="platform-results" role="status" aria-live="polite"></p>
-        {
-          pillars.map((pillar, index) => (
-            <section
-              class="platform-chapter"
-              id={slug(pillar)}
-              data-policy-pillar
-              aria-labelledby={`${slug(pillar)}-heading`}
-            >
-              <div class="platform-chapter__intro">
-                <p>{descriptions[pillar] || 'Explore the proposals and the case behind them.'}</p>
-                {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
-                  <a href="https://transportscore.fusionparty.org.au" class="platform-inline-link">
-                    Check your local transport score ↗
-                  </a>
-                )}
-              </div>
-              <div class="platform-chapter__list">
-                {policies
-                  .filter((policy) => (policy.pillar || 'Other') === pillar)
-                  .map((policy, itemIndex) => (
+            <div class="platform-pillar__heading">
+              <p>
+                {pillarDescriptions[pillar] ||
+                  'Explore the proposals in this part of the platform.'}
+              </p>
+              {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
+                <a href="https://transportscore.fusionparty.org.au" class="platform-inline-link">
+                  Check your local transport score ↗
+                </a>
+              )}
+            </div>
+            {[...categories].map(([category, items]) => (
+              <section
+                class="platform-category"
+                data-policy-category
+                aria-labelledby={`${idFor(pillar)}-${idFor(category)}`}
+              >
+                <h4 id={`${idFor(pillar)}-${idFor(category)}`}>{category}</h4>
+                <div class="platform-policy-grid">
+                  {items.map((policy) => (
                     <article
                       class="platform-policy"
                       data-policy-card
                       data-horizon={policy.thisTerm === true ? 'current' : 'long'}
-                      data-search={`${policy.title} ${policy.summary || ''} ${policy.category || ''}`.toLowerCase()}
+                      data-search={`${pillar} ${category} ${policy.title} ${policy.hook || ''} ${policy.summary || ''}`.toLocaleLowerCase()}
                     >
                       <a
                         href={`/policies/${policy.slug.current}`}
-                        class="platform-policy__link"
                         aria-label={`Read ${policy.title}`}
                       >
-                        <span class="platform-policy__number">
-                          {String(itemIndex + 1).padStart(2, '0')}
+                        <span class="platform-policy__horizon">
+                          {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
                         </span>
-                        <span class="platform-policy__body">
-                          <span class="platform-policy__meta">
-                            {policy.category || 'Policy'} <span aria-hidden="true">/</span>{' '}
-                            {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
-                          </span>
-                          <strong>{policy.title}</strong>
-                          <span class="platform-policy__summary">{policy.summary}</span>
-                        </span>
-                        <span class="platform-policy__arrow" aria-hidden="true">
-                          ↗
+                        <h5>{policy.title}</h5>
+                        {policy.hook && <p class="platform-policy__hook">{policy.hook}</p>}
+                        <p class="platform-policy__summary">{policy.summary}</p>
+                        <span class="platform-policy__more">
+                          Read the policy <span aria-hidden="true">↗</span>
                         </span>
                       </a>
                     </article>
                   ))}
-              </div>
-            </section>
-          ))
-        }
-        <p class="platform-empty" id="policy-empty" hidden>
-          No policies match that search. Try another term or clear the filter.
-        </p>
-      </div>
+                </div>
+              </section>
+            ))}
+          </section>
+        ))
+      }
+      <p id="policy-empty" class="platform-empty" hidden>
+        No policies match. Try another search or delivery horizon.
+      </p>
     </section>
-    <section class="platform-end">
-      <div class="platform-wrap platform-end__inner">
-        <div>
-          <p class="platform-section-label">The next step / 03</p><h2>
-            This is a plan<br />to argue for.
-          </h2><p>Read it. Challenge it. Help make it better.</p>
-        </div><div class="platform-end__links">
-          <a href="/get-involved">Get involved <span>↗</span></a><a href="/costings"
-            >Examine the costings <span>↗</span></a
-          ><a href="/vision">See the long view <span>↗</span></a>
+    <section class="platform-next">
+      <div class="platform-container">
+        <p class="platform-eyebrow">Keep going</p><h2>Read the detail.<br />Make the case.</h2><p>
+          Scrutinise the proposals, explore the long view, or help make this platform stronger.
+        </p><div>
+          <a class="platform-primary-link" href="/vision">See the vision ↗</a><a
+            class="platform-secondary-link"
+            href="/get-involved">Get involved ↗</a
+          ><a class="platform-secondary-link" href="/costings">Examine the costings ↗</a>
         </div>
       </div>
     </section>
@@ -190,38 +183,42 @@ const descriptions: Record<string, string> = {
     ;(() => {
       const buttons = [...document.querySelectorAll('[data-horizon-filter]')]
       const cards = [...document.querySelectorAll('[data-policy-card]')]
-      const chapters = [...document.querySelectorAll('[data-policy-pillar]')]
+      const categories = [...document.querySelectorAll('[data-policy-category]')]
+      const pillars = [...document.querySelectorAll('[data-policy-pillar]')]
       const search = document.querySelector('#policy-search')
-      const results = document.querySelector('#policy-results')
+      const result = document.querySelector('#policy-results')
       const empty = document.querySelector('#policy-empty')
-      let filter = new URL(location.href).searchParams.get('horizon')
-      if (filter !== 'current' && filter !== 'long') filter = 'all'
+      let horizon = new URL(location.href).searchParams.get('horizon')
+      if (horizon !== 'current' && horizon !== 'long') horizon = 'all'
       const update = () => {
         const query = search.value.trim().toLocaleLowerCase()
         let count = 0
         cards.forEach((card) => {
           const visible =
-            (filter === 'all' || card.dataset.horizon === filter) &&
+            (horizon === 'all' || card.dataset.horizon === horizon) &&
             (!query || card.dataset.search.includes(query))
           card.hidden = !visible
           if (visible) count++
         })
-        chapters.forEach((chapter) => {
-          chapter.hidden = !chapter.querySelector('[data-policy-card]:not([hidden])')
+        categories.forEach((category) => {
+          category.hidden = !category.querySelector('[data-policy-card]:not([hidden])')
+        })
+        pillars.forEach((pillar) => {
+          pillar.hidden = !pillar.querySelector('[data-policy-card]:not([hidden])')
         })
         buttons.forEach((button) =>
-          button.setAttribute('aria-pressed', String(button.dataset.horizonFilter === filter))
+          button.setAttribute('aria-pressed', String(button.dataset.horizonFilter === horizon))
         )
-        results.textContent = `${count} ${count === 1 ? 'policy' : 'policies'} shown`
+        result.textContent = `${count} ${count === 1 ? 'policy' : 'policies'} shown`
         empty.hidden = count !== 0
         const url = new URL(location.href)
-        if (filter === 'all') url.searchParams.delete('horizon')
-        else url.searchParams.set('horizon', filter)
+        if (horizon === 'all') url.searchParams.delete('horizon')
+        else url.searchParams.set('horizon', horizon)
         history.replaceState({}, '', url)
       }
       buttons.forEach((button) =>
         button.addEventListener('click', () => {
-          filter = button.dataset.horizonFilter
+          horizon = button.dataset.horizonFilter
           update()
         })
       )
