@@ -2,474 +2,231 @@
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
-import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
-import { Sidebar } from '@/features/page-rendering'
-import { Icon } from 'astro-icon/components'
-import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
 import { getPolicies, getPoliciesPage } from '../../lib/sanity'
 import '../../styles/global.css'
-
-interface Policy {
-  _id: string
-  title: string
-  slug: { current: string }
-  icon?: string
-  pillar?: string
-  category?: string
-  summary: string
-  hook?: string
-  keyPoints?: unknown[]
-  cost?: string
-  funding?: string
-  body?: unknown
-  thisTerm?: boolean
-}
-
-interface ProofStat {
-  number: string
-  label: string
-  icon?: string
-  variant?: 'magenta' | 'mint' | 'yellow'
-}
+import '../../styles/platform-pages.css'
 
 const policies = await getPolicies()
 const pageData = await getPoliciesPage()
-
-const title = pageData?.title || 'Policy Platform'
-const subtitle =
-  pageData?.subtitle ||
-  'One platform, from what we can push now to the structural reforms Victoria needs next.'
-const seoDescription =
-  pageData?.seoDescription ||
-  "Explore Fusion Party Victoria's complete policy platform, including current-term priorities and long-term structural reform."
-const manifesto = pageData?.manifesto || {
-  heading: 'They built the system to take from you.',
-  body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
-  punchline: 'The proposals are below. Check the evidence and costing status.',
+const pillars = [...new Set(policies.map((policy) => policy.pillar || 'Other'))]
+const slug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+const descriptions: Record<string, string> = {
+  'RECLAIM OUR INFRASTRUCTURE':
+    'Homes, transport and public assets that work for the people who pay for them.',
+  'RECLAIM OUR DEMOCRACY': 'Power you can see, question and share.',
+  'RECLAIM OUR ECONOMY': 'Keep the value Victoria creates in Victorian hands.',
 }
-const proofStats: ProofStat[] = pageData?.proofStats || [
-  {
-    number: '$2M/day',
-    label: 'Flowing to Transurban from Victorian roads',
-    icon: 'mdi:cash-remove',
-    variant: 'magenta',
-  },
-  {
-    number: '42 years',
-    label: 'Of lottery revenue sold to a private operator in one deal',
-    icon: 'mdi:clock-alert',
-    variant: 'yellow',
-  },
-  {
-    number: '$199B',
-    label: 'State debt — while private operators keep the income',
-    icon: 'mdi:trending-up',
-    variant: 'mint',
-  },
-  {
-    number: '30,000',
-    label: 'Homes we can build and keep — without selling the upside',
-    icon: 'mdi:home-city',
-    variant: 'magenta',
-  },
-]
-const currentTermCount = policies.filter((policy) => policy.thisTerm === true).length
-const longTermCount = policies.length - currentTermCount
-
-const ctaSection = pageData?.ctaSection || {
-  title: 'These Policies Can Win',
-  body: "But only if we build a movement that can't be ignored. Join us.",
-}
-
-// Group by Pillar → Category
-const groupedPolicies: Record<string, Record<string, Policy[]>> = {}
-policies.forEach((policy) => {
-  const pillar = policy.pillar || 'Other'
-  const category = policy.category || 'General'
-  if (!groupedPolicies[pillar]) groupedPolicies[pillar] = {}
-  if (!groupedPolicies[pillar][category]) groupedPolicies[pillar][category] = []
-  groupedPolicies[pillar][category].push(policy)
-})
-
-const PILLAR_ORDER = Object.keys(groupedPolicies).filter(
-  (p) => Object.keys(groupedPolicies[p]).length > 0
-)
-
-const pillarConfig: Record<
-  string,
-  { icon: string; variant: 'magenta' | 'mint' | 'yellow'; textColor: string }
-> = {
-  'RECLAIM OUR ECONOMY': {
-    icon: 'mdi:cash-multiple',
-    variant: 'magenta',
-    textColor: 'text-white',
-  },
-  'RECLAIM OUR INFRASTRUCTURE': {
-    icon: 'mdi:train',
-    variant: 'mint',
-    textColor: 'text-black',
-  },
-  'RECLAIM OUR DEMOCRACY': {
-    icon: 'mdi:vote',
-    variant: 'yellow',
-    textColor: 'text-white',
-  },
-}
-const getConfig = (pillar: string) =>
-  pillarConfig[pillar] || {
-    icon: 'mdi:file-document',
-    variant: 'magenta' as const,
-    textColor: 'text-white',
-  }
-
-const cardAccents = ['magenta', 'mint', 'yellow'] as const
-
-const toIconName = (icon?: string) => {
-  if (!icon) return 'mdi:file-document'
-  if (icon.includes(':')) return icon
-  if (/^[a-z0-9-]+$/i.test(icon)) return `mdi:${icon}`
-  return 'mdi:file-document'
-}
-
-const applyHash = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-
-const sidebarSections = PILLAR_ORDER.map((pillar) => ({
-  id: applyHash(pillar),
-  title: pillar,
-  children: Object.keys(groupedPolicies[pillar]).map((category) => ({
-    id: applyHash(`${pillar}-${category}`),
-    title: category,
-  })),
-}))
 ---
 
 <BaseLayout
-  title={`${title} | Fusion Party Victoria`}
-  description={seoDescription}
+  title={`${pageData?.title || 'Policies'} | Fusion Party Victoria`}
+  description={pageData?.seoDescription ||
+    'Explore Fusion Party Victoria’s policy platform and long-term direction.'}
   image="/og/policies.png"
 >
   <Header />
-  <main id="main-content">
-    <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
-
-    {/* ── Manifesto Strip ── */}
-    <div class="bg-black border-b-4 border-magenta">
-      <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
-        <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
-          <div class="max-w-3xl">
-            <h2
-              class="text-2xl md:text-4xl font-display font-black uppercase text-white leading-tight mb-5"
-            >
-              {manifesto.heading}
-            </h2>
-            <p
-              class="text-base md:text-lg font-semibold text-white/75 leading-relaxed border-l-4 border-magenta pl-5 mb-5"
-            >
-              {manifesto.body}
-            </p>
-            <p class="text-sm font-black uppercase tracking-widest text-magenta">
-              {manifesto.punchline}
-            </p>
-          </div>
-          <div
-            class="hidden lg:flex flex-col items-center justify-center w-32 h-32 bg-magenta rounded-sm shrink-0 self-center"
-          >
-            <Icon name="mdi:fist" class="w-16 h-16 text-white" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* ── Proof Stats Strip ── */}
-    <div class="bg-surface-base border-b border-white/10">
-      <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
-        <div
-          class={`grid gap-3 ${proofStats.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}
-        >
-          {
-            proofStats.map((stat) => (
-              <StatCard
-                value={stat.number}
-                label={stat.label}
-                icon={stat.icon}
-                variant={stat.variant || 'magenta'}
-                size="sm"
-              />
-            ))
-          }
-        </div>
-      </div>
-    </div>
-
-    {/* ── Content + Sidebar ── */}
-    <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
-      <div class="min-w-0">
-        {/* ── Unified platform horizon filter ── */}
-        <section class="mb-8 border border-white/10 rounded-sm bg-black/20 p-5" aria-labelledby="platform-filter-heading">
-          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p class="text-xs font-black uppercase tracking-widest text-yellow mb-1">One platform</p>
-              <h2 id="platform-filter-heading" class="text-xl md:text-2xl font-display font-black uppercase text-white">
-                Policy and vision, together
-              </h2>
-              <p class="text-sm text-white/65 mt-2 max-w-2xl">
-                “Vision” is a delivery horizon, not a different kind of idea. Every proposal is part of the policy platform; use the filters to see what we can push now or what needs a broader mandate.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter policies by delivery horizon">
-              <button type="button" data-horizon-filter="all" aria-pressed="true" class="policy-filter border-2 border-white bg-white text-black px-3 py-2 text-xs font-black uppercase tracking-wide">
-                All platform ({policies.length})
-              </button>
-              <button type="button" data-horizon-filter="current" aria-pressed="false" class="policy-filter border-2 border-mint text-mint px-3 py-2 text-xs font-black uppercase tracking-wide">
-                This term ({currentTermCount})
-              </button>
-              <button type="button" data-horizon-filter="long" aria-pressed="false" class="policy-filter border-2 border-yellow text-yellow px-3 py-2 text-xs font-black uppercase tracking-wide">
-                Long-term direction ({longTermCount})
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Evidence Credibility Strip ── */}
-        <div
-          class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-black/20 px-5 py-4"
-        >
-          <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
-          {
-            [
-              'Victorian Budget 2026-27',
-              'Parliamentary Budget Office',
-              "Auditor-General's Reports",
-              'NYC Mamdani Budget',
-            ].map((src) => (
-              <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
-                {src}
-              </span>
-            ))
-          }
-        </div>
-
-        {
-          PILLAR_ORDER.map((pillar) => {
-            const cfg = getConfig(pillar)
-            return (
-              <section id={applyHash(pillar)} data-policy-pillar class="mb-12 scroll-mt-28">
-                <BrutalCard
-                  variant="surface"
-                  shadow={cfg.variant}
-                  padding="md"
-                  class="!p-0 overflow-hidden"
-                >
-                  {/* Pillar header bar */}
-                  <div
-                    class={`bg-${cfg.variant} border-b border-white/10 px-8 py-6 flex items-center gap-5`}
-                  >
-                    <div class="p-3 bg-black/20 rounded-sm">
-                      <Icon name={cfg.icon} class={`w-8 h-8 ${cfg.textColor}`} />
-                    </div>
-                    <h2
-                      class={`text-2xl md:text-3xl font-display font-black uppercase leading-tight ${cfg.textColor}`}
-                    >
-                      {pillar}
-                    </h2>
-                  </div>
-
-                  <div class="p-6 md:p-8">
-                    {pillar === 'RECLAIM OUR DEMOCRACY' && (
-                      <aside class="mb-10 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
-                        <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">
-                          Reignite Democracy
-                        </p>
-                        <h3 class="text-xl font-display font-black uppercase text-white mb-2">
-                          Make power visible. Make participation normal.
-                        </h3>
-                        <p class="text-sm text-white/80 leading-relaxed">
-                          Democracy is more than voting every four years. Reignite it by making government legible, representatives reachable, corruption harder, whistleblowers safer and public participation part of ordinary decision-making.
-                        </p>
-                      </aside>
-                    )}
-
-                    {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
-                      <div class="mb-10 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
-                        <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
-                          <Icon name="mdi:train" class="w-32 h-32 text-mint" />
-                        </div>
-                        <div class="relative z-10 max-w-2xl">
-                          <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
-                            📊 Check Your Local Transport Score
-                          </h3>
-                          <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
-                            How does your electorate stack up? Use our Victoria-wide transport
-                            scoring tool to see how your local public transport frequency, coverage,
-                            and connectivity rate.
-                          </p>
-                          <BrutalButton
-                            href="https://transportscore.fusionparty.org.au"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variant="mint"
-                            size="sm"
-                            icon="mdi:launch"
-                          >
-                            Go to Transport Score Tool
-                          </BrutalButton>
-                        </div>
-                      </div>
-                    )}
-
-                    {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
-                      <div
-                        id={applyHash(`${pillar}-${category}`)}
-                        data-policy-category
-                        class="mb-12 last:mb-0 scroll-mt-24"
-                      >
-                        {/* Category header */}
-                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                          <h3>
-                            <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
-                          </h3>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {catPolicies.map((policy, index) => {
-                            const accent = cardAccents[index % cardAccents.length]
-                            return (
-                              <div data-policy-card data-horizon={policy.thisTerm === true ? 'current' : 'long'}>
-                              <BrutalCard
-                                id={policy.slug.current}
-                                variant="surface"
-                                shadow={accent}
-                                padding="sm"
-                                class="flex flex-col"
-                              >
-                                <div class="flex items-start justify-between gap-3 mb-3">
-                                  <div class="min-w-0">
-                                    <span class={`inline-flex mb-2 px-2 py-1 text-[10px] font-black uppercase tracking-widest border ${policy.thisTerm === true ? 'border-mint/40 bg-mint/10 text-mint' : 'border-yellow/40 bg-yellow/10 text-yellow'}`}>
-                                      {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
-                                    </span>
-                                  <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
-                                    {policy.title}
-                                  </h4>
-                                  </div>
-                                  <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
-                                    <Icon
-                                      name={toIconName(policy.icon) as string}
-                                      class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-white'}`}
-                                    />
-                                  </div>
-                                </div>
-
-                                {/* Hook — shown if available, falls back to summary */}
-                                {policy.hook ? (
-                                  <p
-                                    class={`text-sm font-black text-${accent} mb-2 leading-snug italic`}
-                                  >
-                                    "{policy.hook}"
-                                  </p>
-                                ) : null}
-
-                                <p class="text-sm font-semibold text-white/70 mb-4 flex-1 leading-snug">
-                                  {policy.summary}
-                                </p>
-
-                                <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
-                                  {policy.cost && (
-                                    <span class="text-sm font-black uppercase rounded-sm bg-[#234080] text-white px-2 py-1 flex items-center gap-1">
-                                      <span class="opacity-80">Cost:</span>
-                                      {policy.cost}
-                                    </span>
-                                  )}
-                                  <a
-                                    href={`/policies/${policy.slug.current}`}
-                                    aria-label={`Read ${policy.title}`}
-                                    class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
-                                  >
-                                    Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
-                                  </a>
-                                </div>
-                              </BrutalCard>
-                              </div>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </BrutalCard>
-              </section>
-            )
-          })
-        }
-
-        {/* ── CTA ── */}
-        <BrutalCard variant="black" shadow="mint" padding="lg" class="mt-4 border border-white/10">
-          <BrutalBadge variant="magenta" class="mb-4">Get involved</BrutalBadge>
-          <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
-            {ctaSection.title}
-          </h2>
-          <p
-            class="text-base font-semibold text-white/75 mb-8 border-l-4 border-yellow pl-4 max-w-lg"
-          >
-            {ctaSection.body}
+  <main id="main-content" class="platform-page">
+    <section class="platform-hero platform-hero--policy" aria-labelledby="policy-heading">
+      <div class="platform-wrap platform-hero__inner">
+        <div class="platform-hero__copy">
+          <p class="platform-kicker">Fusion Victoria / The platform</p>
+          <h1 id="policy-heading">Build it.<br /><em>Keep it.</em><br />Share the return.</h1>
+          <p class="platform-lede">
+            Victoria can build homes and better transport, keep public value in public hands, and
+            give people a real say in what comes next.
           </p>
-          <div class="flex flex-wrap gap-3">
-            <BrutalButton variant="magenta" href="/get-involved" icon="mdi:account-plus">
-              Get Involved
-            </BrutalButton>
-            <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
-              See the Costings
-            </BrutalButton>
-            <BrutalButton variant="black" href="/electorate" icon="mdi:map-marker">
-              Find Your Electorate
-            </BrutalButton>
+          <div class="platform-hero__actions">
+            <a href="#explore" class="platform-button"
+              >Explore the policies <span aria-hidden="true">↘</span></a
+            ><a href="/vision" class="platform-text-link"
+              >See the vision <span aria-hidden="true">↗</span></a
+            >
           </div>
-        </BrutalCard>
+        </div>
+        <div class="platform-hero__mark" aria-hidden="true">
+          <span>PUBLIC<br />VALUE</span><span>↗</span>
+        </div>
       </div>
+      <div class="platform-hero__footer platform-wrap">
+        <span>01 / The case</span><span>02 / The platform</span><span>03 / Your part</span>
+      </div>
+    </section>
 
-      {/* Sidebar */}
-      <Sidebar sections={sidebarSections} page="policies" />
-    </div>
+    <section class="platform-thesis platform-wrap" aria-labelledby="thesis-heading">
+      <p class="platform-section-label">The case for change / 01</p>
+      <div>
+        <h2 id="thesis-heading">The public pays.<br /><span>Who gets the return?</span></h2><p>
+          Victoria has built valuable infrastructure while handing away too much of its upside. Our
+          answer is to scrutinise the deals, build where services already exist, and make public
+          investment deliver lasting public benefit.
+        </p><p class="platform-small">
+          Each proposal has its own detail page. Read the evidence and qualifications there before
+          treating any estimate as a settled return.
+        </p>
+      </div>
+    </section>
+
+    <section class="platform-index" id="explore" aria-labelledby="explore-heading">
+      <div class="platform-wrap">
+        <div class="platform-index__head">
+          <div>
+            <p class="platform-section-label">The platform / 02</p><h2 id="explore-heading">
+              Find the change<br />you came for.
+            </h2>
+          </div><p>
+            One platform, across immediate priorities and longer-term reforms. Browse by theme or
+            narrow the delivery horizon.
+          </p>
+        </div>
+        <div class="platform-controls">
+          <div class="platform-tabs" role="group" aria-label="Filter policies by delivery horizon">
+            <button type="button" data-horizon-filter="all" aria-pressed="true"
+              >All policies <span>{policies.length}</span></button
+            >
+            <button type="button" data-horizon-filter="current" aria-pressed="false"
+              >This term <span>{policies.filter((p) => p.thisTerm === true).length}</span></button
+            >
+            <button type="button" data-horizon-filter="long" aria-pressed="false"
+              >Long-term <span>{policies.filter((p) => p.thisTerm !== true).length}</span></button
+            >
+          </div>
+          <label class="platform-search"
+            ><span class="sr-only">Search policies</span><input
+              id="policy-search"
+              type="search"
+              placeholder="Search the platform"
+              autocomplete="off"
+            /><span aria-hidden="true">⌕</span></label
+          >
+        </div>
+        <nav class="platform-jump" aria-label="Jump to policy themes">
+          {
+            pillars.map((pillar, index) => (
+              <a href={`#${slug(pillar)}`}>
+                <span>0{index + 1}</span> {pillar.replace('RECLAIM OUR ', '')}
+              </a>
+            ))
+          }
+        </nav>
+        <p id="policy-results" class="platform-results" role="status" aria-live="polite"></p>
+        {
+          pillars.map((pillar, index) => (
+            <section
+              class="platform-chapter"
+              id={slug(pillar)}
+              data-policy-pillar
+              aria-labelledby={`${slug(pillar)}-heading`}
+            >
+              <div class="platform-chapter__intro">
+                <p>{descriptions[pillar] || 'Explore the proposals and the case behind them.'}</p>
+                {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
+                  <a href="https://transportscore.fusionparty.org.au" class="platform-inline-link">
+                    Check your local transport score ↗
+                  </a>
+                )}
+              </div>
+              <div class="platform-chapter__list">
+                {policies
+                  .filter((policy) => (policy.pillar || 'Other') === pillar)
+                  .map((policy, itemIndex) => (
+                    <article
+                      class="platform-policy"
+                      data-policy-card
+                      data-horizon={policy.thisTerm === true ? 'current' : 'long'}
+                      data-search={`${policy.title} ${policy.summary || ''} ${policy.category || ''}`.toLowerCase()}
+                    >
+                      <a
+                        href={`/policies/${policy.slug.current}`}
+                        class="platform-policy__link"
+                        aria-label={`Read ${policy.title}`}
+                      >
+                        <span class="platform-policy__number">
+                          {String(itemIndex + 1).padStart(2, '0')}
+                        </span>
+                        <span class="platform-policy__body">
+                          <span class="platform-policy__meta">
+                            {policy.category || 'Policy'} <span aria-hidden="true">/</span>{' '}
+                            {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
+                          </span>
+                          <strong>{policy.title}</strong>
+                          <span class="platform-policy__summary">{policy.summary}</span>
+                        </span>
+                        <span class="platform-policy__arrow" aria-hidden="true">
+                          ↗
+                        </span>
+                      </a>
+                    </article>
+                  ))}
+              </div>
+            </section>
+          ))
+        }
+        <p class="platform-empty" id="policy-empty" hidden>
+          No policies match that search. Try another term or clear the filter.
+        </p>
+      </div>
+    </section>
+    <section class="platform-end">
+      <div class="platform-wrap platform-end__inner">
+        <div>
+          <p class="platform-section-label">The next step / 03</p><h2>
+            This is a plan<br />to argue for.
+          </h2><p>Read it. Challenge it. Help make it better.</p>
+        </div><div class="platform-end__links">
+          <a href="/get-involved">Get involved <span>↗</span></a><a href="/costings"
+            >Examine the costings <span>↗</span></a
+          ><a href="/vision">See the long view <span>↗</span></a>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
   <script is:inline>
-    (() => {
-      const buttons = Array.from(document.querySelectorAll('[data-horizon-filter]'))
-      const cards = Array.from(document.querySelectorAll('[data-policy-card]'))
-      const categories = Array.from(document.querySelectorAll('[data-policy-category]'))
-      const pillars = Array.from(document.querySelectorAll('[data-policy-pillar]'))
-
-      const applyFilter = (filter) => {
+    ;(() => {
+      const buttons = [...document.querySelectorAll('[data-horizon-filter]')]
+      const cards = [...document.querySelectorAll('[data-policy-card]')]
+      const chapters = [...document.querySelectorAll('[data-policy-pillar]')]
+      const search = document.querySelector('#policy-search')
+      const results = document.querySelector('#policy-results')
+      const empty = document.querySelector('#policy-empty')
+      let filter = new URL(location.href).searchParams.get('horizon')
+      if (filter !== 'current' && filter !== 'long') filter = 'all'
+      const update = () => {
+        const query = search.value.trim().toLocaleLowerCase()
+        let count = 0
         cards.forEach((card) => {
-          const show = filter === 'all' || card.dataset.horizon === filter
-          card.hidden = !show
+          const visible =
+            (filter === 'all' || card.dataset.horizon === filter) &&
+            (!query || card.dataset.search.includes(query))
+          card.hidden = !visible
+          if (visible) count++
         })
-
-        categories.forEach((category) => {
-          category.hidden = !category.querySelector('[data-policy-card]:not([hidden])')
+        chapters.forEach((chapter) => {
+          chapter.hidden = !chapter.querySelector('[data-policy-card]:not([hidden])')
         })
-
-        pillars.forEach((pillar) => {
-          pillar.hidden = !pillar.querySelector('[data-policy-card]:not([hidden])')
-        })
-
-        buttons.forEach((button) => {
-          const active = button.dataset.horizonFilter === filter
-          button.setAttribute('aria-pressed', String(active))
-          button.classList.toggle('bg-white', active)
-          button.classList.toggle('text-black', active)
-        })
-
-        const url = new URL(window.location.href)
+        buttons.forEach((button) =>
+          button.setAttribute('aria-pressed', String(button.dataset.horizonFilter === filter))
+        )
+        results.textContent = `${count} ${count === 1 ? 'policy' : 'policies'} shown`
+        empty.hidden = count !== 0
+        const url = new URL(location.href)
         if (filter === 'all') url.searchParams.delete('horizon')
         else url.searchParams.set('horizon', filter)
         history.replaceState({}, '', url)
       }
-
-      buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.horizonFilter || 'all')))
-
-      const requested = new URL(window.location.href).searchParams.get('horizon')
-      applyFilter(requested === 'current' || requested === 'long' ? requested : 'all')
+      buttons.forEach((button) =>
+        button.addEventListener('click', () => {
+          filter = button.dataset.horizonFilter
+          update()
+        })
+      )
+      search.addEventListener('input', update)
+      update()
     })()
   </script>
 </BaseLayout>
