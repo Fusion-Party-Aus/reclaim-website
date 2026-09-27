@@ -45,6 +45,8 @@ const resources = [
     abstract: 'A research brief on shifting Victorian transparency from request-driven disclosure toward proactive publication, faster ministerial diary disclosure, more legible contracts and reusable public data.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T14:30:00Z',
+    researchFirstDocumentedAt: '2026-09-27T13:43:14Z',
+    researchProvenance: 'Open Government by Default entered the modular Victorian omnibus in commit c6beb68 on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -81,6 +83,8 @@ const resources = [
     abstract: 'A research brief on Victoria’s public-interest disclosure framework, reprisal risk, independent advice, no-wrong-door referrals and remedies for people who report serious wrongdoing.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T14:05:00Z',
+    researchFirstDocumentedAt: '2026-09-27T13:15:38Z',
+    researchProvenance: 'Whistleblower protection research entered the modular Victorian omnibus in commit 0efb851 on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -116,6 +120,8 @@ const resources = [
     abstract: 'A public-safety research brief separating evidence-supported prevention, diversion and place-based interventions from claims the evidence does not justify.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T13:21:00Z',
+    researchFirstDocumentedAt: '2026-09-27T13:00:25Z',
+    researchProvenance: 'The prevention-first public-safety framework entered the modular Victorian omnibus in commit d4caa35 on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -153,6 +159,8 @@ const resources = [
     abstract: 'A research brief on independent police-misconduct oversight, use-of-power transparency, body-worn camera governance, internal reporting and procedural fairness.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T13:45:00Z',
+    researchFirstDocumentedAt: '2026-09-27T13:11:20Z',
+    researchProvenance: 'Police integrity and independent-accountability research entered the modular Victorian omnibus in commit 169fbe1 on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -183,6 +191,8 @@ const resources = [
     abstract: 'A comparative research brief on small neighbourhood police posts, foot and bicycle patrols, remote assistance and the safeguards needed to adapt kōban-style local presence to Victoria.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T12:55:00Z',
+    researchFirstDocumentedAt: '2026-09-27T12:53:51Z',
+    researchProvenance: 'Neighbourhood police-post research entered the modular Victorian omnibus in commit 4eb37fb on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -213,6 +223,8 @@ const resources = [
     abstract: 'A comparative planning brief on cumulative land-use permissions, distributed daily needs, public-transport sequencing and the risks of building single-use dormitory suburbs.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-27T13:20:00Z',
+    researchFirstDocumentedAt: '2026-09-27T13:03:20Z',
+    researchProvenance: 'Complete Neighbourhoods entered the modular Victorian omnibus in commit dd32fd9 on 27 September 2026.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia',
     license: 'CC-BY-4.0',
@@ -247,6 +259,8 @@ const resources = [
     abstract: 'A comparative planning report on Japan’s cumulative use zones, Victorian planning capacity and what can—and cannot—be inferred about housing supply, approvals and station-area development.',
     authors: [{ _key: 'a1', _type: 'researchAuthor', name: 'Fusion Party Victoria', role: 'Policy research' }],
     publishedAt: '2026-09-26T12:00:00Z',
+    researchFirstDocumentedAt: '2026-09-25T08:48:35Z',
+    researchProvenance: 'The Homes and Stations Code planning research is first documented in the omnibus repository by commit d6428ec on 25 September 2026, with further Japan-comparison refinement in later commits.',
     version: '1.0',
     geographicCoverage: 'Victoria, Australia; comparative evidence from Japan',
     license: 'CC-BY-4.0',
@@ -286,8 +300,8 @@ async function run() {
   }
 
   for (const resource of resources) {
-    const result = await client.createOrReplace(resource)
-    console.log(`Seeded ${result._id}: ${result.title}`)
+    const result = await client.createIfNotExists(resource)
+    console.log(`Seed present ${result._id}: ${result.title}`)
   }
 }
 
