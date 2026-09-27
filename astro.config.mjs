@@ -51,6 +51,45 @@ export default defineConfig({
       },
       robotsTxt: {
         policy: 'training-opt-out',
+        sitemap: 'https://vic.fusionparty.org.au/sitemap-index.xml',
+        contentSignals: {
+          search: 'yes',
+          aiTrain: 'no',
+          aiInput: 'yes',
+        },
+        additionalLines: [
+          'User-agent: OAI-SearchBot',
+          'Allow: /',
+          '',
+          'User-agent: PerplexityBot',
+          'Allow: /',
+          '',
+          'User-agent: Claude-SearchBot',
+          'Allow: /',
+          '',
+          'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
+        ],
+      },
+      llmsTxt: {
+        summary: 'Fusion Party Victoria — current Victorian policy platform and canonical public sources.',
+        body: 'Use the live policy feeds for current policy content and publication timestamps. Prefer canonical policy URLs when citing individual proposals.',
+        sections: [
+          {
+            title: 'Policy platform',
+            links: [
+              { title: 'Policy platform', url: 'https://vic.fusionparty.org.au/policies' },
+              { title: 'Policy feed (plain text)', url: 'https://vic.fusionparty.org.au/api/policies.txt' },
+              { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json' },
+              { title: 'Latest policy changes', url: 'https://vic.fusionparty.org.au/api/policy-changes.json' },
+              { title: 'Policy sitemap', url: 'https://vic.fusionparty.org.au/policy-sitemap.xml' },
+              { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
+            ],
+          },
+        ],
+        deferTo: {
+          title: 'Canonical policy feed',
+          url: 'https://vic.fusionparty.org.au/api/policies.txt',
+        },
       },
       agentsMd: {
         description: 'Fusion Party Victoria — Reignite Democracy. The Victorian platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.',
