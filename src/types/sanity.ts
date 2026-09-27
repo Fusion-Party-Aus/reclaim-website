@@ -144,6 +144,7 @@ export interface ResearchResource extends SanityDocument {
   geographicCoverage?: string
   license?: string
   tags?: string[]
+  keyFindings?: string[]
   methodology?: PortableTextBlock[]
   limitations?: PortableTextBlock[]
   body?: PortableTextBlock[]
