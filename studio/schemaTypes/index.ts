@@ -16,6 +16,7 @@ import letterhead from './letterhead'
 import contactPage from './contactPage'
 import visionPage from './visionPage'
 import manifestoPage from './manifestoPage'
+import researchResource from './researchResource'
 
 export const schemaTypes = [
   page,
@@ -36,4 +37,5 @@ export const schemaTypes = [
   contactPage,
   visionPage,
   manifestoPage,
+  researchResource,
 ]
