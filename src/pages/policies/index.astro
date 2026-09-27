@@ -276,6 +276,20 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                   </div>
 
                   <div class="p-6 md:p-8">
+                    {pillar === 'RECLAIM OUR DEMOCRACY' && (
+                      <aside class="mb-10 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+                        <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">
+                          Reignite Democracy
+                        </p>
+                        <h3 class="text-xl font-display font-black uppercase text-white mb-2">
+                          Make power visible. Make participation normal.
+                        </h3>
+                        <p class="text-sm text-white/80 leading-relaxed">
+                          Democracy is more than voting every four years. Reignite it by making government legible, representatives reachable, corruption harder, whistleblowers safer and public participation part of ordinary decision-making.
+                        </p>
+                      </aside>
+                    )}
+
                     {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
                       <div class="mb-10 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
                         <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
