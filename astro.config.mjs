@@ -31,7 +31,7 @@ export default defineConfig({
         name: 'Fusion Party Victoria',
         url: 'https://vic.fusionparty.org.au',
         logo: 'https://vic.fusionparty.org.au/logo.png',
-        description: 'Fusion Party Victoria — a grassroots political movement fighting to reclaim Victoria from a broken two-party system. We champion personal liberty, social justice, environmental responsibility, and evidence-based policy.',
+        description: 'Fusion Party Victoria — Reignite Democracy. A Victorian policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.',
         sameAs: [
           'https://www.facebook.com/FusionPartyAus',
           'https://twitter.com/FusionPartyAus',
@@ -47,18 +47,59 @@ export default defineConfig({
         },
       },
       webSite: {
-        description: 'Fusion Party Victoria - Taking back what they stole. Learn about our policies, candidates, and how to get involved in the movement to reclaim Victoria.',
+        description: 'Fusion Party Victoria — Reignite Democracy. Explore the complete Victorian policy platform, manifesto, evidence, and ways to get involved.',
       },
       robotsTxt: {
         policy: 'training-opt-out',
+        sitemap: 'https://vic.fusionparty.org.au/sitemap-index.xml',
+        contentSignals: {
+          search: 'yes',
+          aiTrain: 'no',
+          aiInput: 'yes',
+        },
+        additionalLines: [
+          'User-agent: OAI-SearchBot',
+          'Allow: /',
+          '',
+          'User-agent: PerplexityBot',
+          'Allow: /',
+          '',
+          'User-agent: Claude-SearchBot',
+          'Allow: /',
+          '',
+          'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
+        ],
+      },
+      llmsTxt: {
+        summary: 'Fusion Party Victoria — current Victorian policy platform and canonical public sources.',
+        body: 'Use the live policy feeds for current policy content and publication timestamps. Prefer canonical policy URLs when citing individual proposals.',
+        sections: [
+          {
+            title: 'Policy platform',
+            links: [
+              { title: 'Policy platform', url: 'https://vic.fusionparty.org.au/policies' },
+              { title: 'Policy feed (plain text)', url: 'https://vic.fusionparty.org.au/api/policies.txt' },
+              { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json' },
+              { title: 'Latest policy changes', url: 'https://vic.fusionparty.org.au/api/policy-changes.json' },
+              { title: 'Policy sitemap', url: 'https://vic.fusionparty.org.au/policy-sitemap.xml' },
+              { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
+            ],
+          },
+        ],
+        deferTo: {
+          title: 'Canonical policy feed',
+          url: 'https://vic.fusionparty.org.au/api/policies.txt',
+        },
       },
       agentsMd: {
-        description: 'Fusion Party Victoria is a grassroots political movement fighting to reclaim Victoria from a broken two-party system. We champion personal liberty, social justice, environmental responsibility, and evidence-based policy.',
+        description: 'Fusion Party Victoria — Reignite Democracy. The Victorian platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.',
         audience: 'Voters, journalists, political analysts, AI agents, and anyone researching the Victorian political landscape or Fusion Party policies.',
         contact: 'contact@fusionparty.org.au',
         links: [
           { title: 'Policy', url: 'https://vic.fusionparty.org.au/policies', description: 'Full policy platform and detailed policy pages' },
-          { title: 'Candidates', url: 'https://vic.fusionparty.org.au/electorates', description: 'Meet our executive team and candidates' },
+          { title: 'Policy feed (text)', url: 'https://vic.fusionparty.org.au/api/policies.txt', description: 'Canonical LLM-friendly plain-text policy corpus' },
+          { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json', description: 'Structured machine-readable policy corpus with canonical URLs and publication metadata' },
+          { title: 'Candidates', url: 'https://vic.fusionparty.org.au/electorates', description: 'Current Victorian candidates and electorate information' },
           { title: 'Take Action', url: 'https://vic.fusionparty.org.au/get-involved', description: 'Volunteer, donate, or join the movement' },
           { title: 'Governance', url: 'https://vic.fusionparty.org.au/code-of-conduct', description: 'Our code of conduct and governance documents' },
           { title: 'FAQ', url: 'https://vic.fusionparty.org.au/faq', description: 'Frequently asked questions about Fusion Party Victoria' },

@@ -26,6 +26,9 @@ interface Policy {
   title: string
   slug: { current: string }
   pillar?: string
+  category?: string
+  thisTerm?: boolean
+  publishedAt?: string
   icon?: string
   summary: string
   keyPoints?: PolicyKeyPoint[]
@@ -173,6 +176,32 @@ const sidebarSections = [
 ]
 
 const metaDescription = policy.seoDescription || policy.summary
+const canonicalUrl = `https://vic.fusionparty.org.au/policies/${policy.slug.current}`
+const policyStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': canonicalUrl,
+  url: canonicalUrl,
+  name: policy.title,
+  description: metaDescription,
+  inLanguage: 'en-AU',
+  datePublished: policy.publishedAt || undefined,
+  dateModified: policy._updatedAt || policy.publishedAt || undefined,
+  isPartOf: {
+    '@type': 'CollectionPage',
+    '@id': 'https://vic.fusionparty.org.au/policies',
+    url: 'https://vic.fusionparty.org.au/policies',
+    name: 'Fusion Party Victoria Policy Platform',
+  },
+  about: [
+    policy.pillar,
+    policy.category,
+    policy.thisTerm === true ? 'Current-term policy priority' : policy.thisTerm === false ? 'Long-term policy direction' : null,
+  ].filter(Boolean),
+  publisher: {
+    '@id': 'https://vic.fusionparty.org.au#organization',
+  },
+}
 ---
 
 <BaseLayout
@@ -181,6 +210,7 @@ const metaDescription = policy.seoDescription || policy.summary
   image={`/og/policies/${policy.slug.current}.png`}
   imageAlt={policy.title}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(policyStructuredData).replace(/</g, '\\u003c')} />
   <Header />
 
   {/* ── HERO ── */}
