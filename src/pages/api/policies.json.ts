@@ -26,7 +26,9 @@ export const GET: APIRoute = async () => {
       title: policy.title,
       canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
       published_at: policy.publishedAt || policy._createdAt || null,
-      updated_at: policy._updatedAt || null,
+      substantive_updated_at: policy.substantiveUpdatedAt || null,
+      change_summary: policy.changeSummary || null,
+      cms_revision_at: policy._updatedAt || null,
     })),
     organization: {
       name: 'Fusion Party Victoria',
