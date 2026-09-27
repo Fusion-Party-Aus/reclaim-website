@@ -302,6 +302,21 @@ export default defineType({
       type: 'datetime',
       group: 'meta',
     }),
+    defineField({
+      name: 'substantiveUpdatedAt',
+      title: 'Substantive policy update',
+      type: 'datetime',
+      group: 'meta',
+      description: 'Set only when policy substance changes. Do not update for formatting, metadata, republishing or routine CMS touches.',
+    }),
+    defineField({
+      name: 'changeSummary',
+      title: 'Public change summary',
+      type: 'string',
+      group: 'meta',
+      description: 'One-sentence explanation of the substantive policy change. Published in machine-readable change feeds.',
+      validation: (Rule) => Rule.max(240),
+    }),
   ],
   preview: {
     select: {
