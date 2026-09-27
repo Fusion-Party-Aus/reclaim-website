@@ -31,6 +31,8 @@ export const GET: APIRoute = async () => {
       abstract: resource.abstract,
       authors: resource.authors || [],
       published_at: resource.publishedAt,
+      research_first_documented_at: resource.researchFirstDocumentedAt || null,
+      research_provenance: resource.researchProvenance || null,
       updated_at: resource._updatedAt || null,
       version: resource.version || null,
       geographic_coverage: resource.geographicCoverage || null,
