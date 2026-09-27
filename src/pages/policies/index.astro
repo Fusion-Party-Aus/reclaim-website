@@ -23,6 +23,7 @@ interface Policy {
   cost?: string
   funding?: string
   body?: unknown
+  thisTerm?: boolean
 }
 
 interface ProofStat {
@@ -32,16 +33,16 @@ interface ProofStat {
   variant?: 'magenta' | 'mint' | 'yellow'
 }
 
-const policies = await getPolicies({ thisTerm: true })
+const policies = await getPolicies()
 const pageData = await getPoliciesPage()
 
-const title = pageData?.title || 'Our Policies'
+const title = pageData?.title || 'Policy Platform'
 const subtitle =
   pageData?.subtitle ||
-  'Bold policy, open evidence and honest costings. See what is settled and what still needs appraisal.'
+  'One platform, from what we can push now to the structural reforms Victoria needs next.'
 const seoDescription =
   pageData?.seoDescription ||
-  "Explore Fusion Party Victoria's policies and research on housing, transport, tax, and democracy. Detailed costings and delivery settings vary by proposal."
+  "Explore Fusion Party Victoria's complete policy platform, including current-term priorities and long-term structural reform."
 const manifesto = pageData?.manifesto || {
   heading: 'They built the system to take from you.',
   body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
@@ -73,6 +74,9 @@ const proofStats: ProofStat[] = pageData?.proofStats || [
     variant: 'magenta',
   },
 ]
+const currentTermCount = policies.filter((policy) => policy.thisTerm === true).length
+const longTermCount = policies.length - currentTermCount
+
 const ctaSection = pageData?.ctaSection || {
   title: 'These Policies Can Win',
   body: "But only if we build a movement that can't be ignored. Join us.",
@@ -201,6 +205,32 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     {/* ── Content + Sidebar ── */}
     <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
       <div class="min-w-0">
+        {/* ── Unified platform horizon filter ── */}
+        <section class="mb-8 border border-white/10 rounded-sm bg-black/20 p-5" aria-labelledby="platform-filter-heading">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-xs font-black uppercase tracking-widest text-yellow mb-1">One platform</p>
+              <h2 id="platform-filter-heading" class="text-xl md:text-2xl font-display font-black uppercase text-white">
+                Policy and vision, together
+              </h2>
+              <p class="text-sm text-white/65 mt-2 max-w-2xl">
+                “Vision” is a delivery horizon, not a different kind of idea. Every proposal is part of the policy platform; use the filters to see what we can push now or what needs a broader mandate.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter policies by delivery horizon">
+              <button type="button" data-horizon-filter="all" aria-pressed="true" class="policy-filter border-2 border-white bg-white text-black px-3 py-2 text-xs font-black uppercase tracking-wide">
+                All platform ({policies.length})
+              </button>
+              <button type="button" data-horizon-filter="current" aria-pressed="false" class="policy-filter border-2 border-mint text-mint px-3 py-2 text-xs font-black uppercase tracking-wide">
+                This term ({currentTermCount})
+              </button>
+              <button type="button" data-horizon-filter="long" aria-pressed="false" class="policy-filter border-2 border-yellow text-yellow px-3 py-2 text-xs font-black uppercase tracking-wide">
+                Long-term direction ({longTermCount})
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* ── Evidence Credibility Strip ── */}
         <div
           class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-black/20 px-5 py-4"
@@ -224,7 +254,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           PILLAR_ORDER.map((pillar) => {
             const cfg = getConfig(pillar)
             return (
-              <section id={applyHash(pillar)} class="mb-12 scroll-mt-28">
+              <section id={applyHash(pillar)} data-policy-pillar class="mb-12 scroll-mt-28">
                 <BrutalCard
                   variant="surface"
                   shadow={cfg.variant}
@@ -274,31 +304,10 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                       </div>
                     )}
 
-                    {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
-                      <aside class="mb-10 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
-                        <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
-                          Fusion Victoria policy · detailed design in progress
-                        </p>
-                        <h3 class="text-xl font-display font-black uppercase text-white mb-2">
-                          Homes and Stations Code
-                        </h3>
-                        <p class="text-sm text-white/80 leading-relaxed mb-3">
-                          Allow duplexes, terraces, small apartments and local shops across serviced
-                          suburbs. Plan more homes around major stations. Test affordable housing
-                          rules, infrastructure and costs site by site.
-                        </p>
-                        <a
-                          class="font-bold text-[#a9c8ff] underline underline-offset-4"
-                          href="/policies/homes-and-stations-code"
-                        >
-                          Explore the policy
-                        </a>
-                      </aside>
-                    )}
-
                     {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
                       <div
                         id={applyHash(`${pillar}-${category}`)}
+                        data-policy-category
                         class="mb-12 last:mb-0 scroll-mt-24"
                       >
                         {/* Category header */}
@@ -312,6 +321,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                           {catPolicies.map((policy, index) => {
                             const accent = cardAccents[index % cardAccents.length]
                             return (
+                              <div data-policy-card data-horizon={policy.thisTerm === true ? 'current' : 'long'}>
                               <BrutalCard
                                 id={policy.slug.current}
                                 variant="surface"
@@ -320,9 +330,14 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                 class="flex flex-col"
                               >
                                 <div class="flex items-start justify-between gap-3 mb-3">
+                                  <div class="min-w-0">
+                                    <span class={`inline-flex mb-2 px-2 py-1 text-[10px] font-black uppercase tracking-widest border ${policy.thisTerm === true ? 'border-mint/40 bg-mint/10 text-mint' : 'border-yellow/40 bg-yellow/10 text-yellow'}`}>
+                                      {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
+                                    </span>
                                   <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
                                     {policy.title}
                                   </h4>
+                                  </div>
                                   <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
                                     <Icon
                                       name={toIconName(policy.icon) as string}
@@ -360,6 +375,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                   </a>
                                 </div>
                               </BrutalCard>
+                              </div>
                             )
                           })}
                         </div>
@@ -402,4 +418,44 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     </div>
   </main>
   <Footer />
+  <script is:inline>
+    (() => {
+      const buttons = Array.from(document.querySelectorAll('[data-horizon-filter]'))
+      const cards = Array.from(document.querySelectorAll('[data-policy-card]'))
+      const categories = Array.from(document.querySelectorAll('[data-policy-category]'))
+      const pillars = Array.from(document.querySelectorAll('[data-policy-pillar]'))
+
+      const applyFilter = (filter) => {
+        cards.forEach((card) => {
+          const show = filter === 'all' || card.dataset.horizon === filter
+          card.hidden = !show
+        })
+
+        categories.forEach((category) => {
+          category.hidden = !category.querySelector('[data-policy-card]:not([hidden])')
+        })
+
+        pillars.forEach((pillar) => {
+          pillar.hidden = !pillar.querySelector('[data-policy-card]:not([hidden])')
+        })
+
+        buttons.forEach((button) => {
+          const active = button.dataset.horizonFilter === filter
+          button.setAttribute('aria-pressed', String(active))
+          button.classList.toggle('bg-white', active)
+          button.classList.toggle('text-black', active)
+        })
+
+        const url = new URL(window.location.href)
+        if (filter === 'all') url.searchParams.delete('horizon')
+        else url.searchParams.set('horizon', filter)
+        history.replaceState({}, '', url)
+      }
+
+      buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.horizonFilter || 'all')))
+
+      const requested = new URL(window.location.href).searchParams.get('horizon')
+      applyFilter(requested === 'current' || requested === 'long' ? requested : 'all')
+    })()
+  </script>
 </BaseLayout>
