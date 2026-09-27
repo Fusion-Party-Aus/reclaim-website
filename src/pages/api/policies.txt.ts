@@ -11,13 +11,16 @@ const section = (label: string, value?: string | null) =>
 
 export const GET: APIRoute = async () => {
   const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
-  const sortedByUpdated = [...policies].sort(
-    (a, b) =>
-      new Date(b._updatedAt || b.publishedAt || b._createdAt || 0).getTime() -
-      new Date(a._updatedAt || a.publishedAt || a._createdAt || 0).getTime()
-  )
+  const recentSubstantiveChanges = [...policies]
+    .filter((policy) => policy.substantiveUpdatedAt && policy.changeSummary)
+    .sort((a, b) => new Date(b.substantiveUpdatedAt || 0).getTime() - new Date(a.substantiveUpdatedAt || 0).getTime())
   const platformUpdatedAt =
-    sortedByUpdated[0]?._updatedAt || sortedByUpdated[0]?.publishedAt || sortedByUpdated[0]?._createdAt || null
+    recentSubstantiveChanges[0]?.substantiveUpdatedAt ||
+    [...policies]
+      .map((policy) => policy.publishedAt || policy._createdAt)
+      .filter(Boolean)
+      .sort((a, b) => new Date(b!).getTime() - new Date(a!).getTime())[0] ||
+    null
 
   const lines = [
     '# Fusion Party Victoria — Policy Platform',
@@ -34,11 +37,13 @@ export const GET: APIRoute = async () => {
     '',
     platformUpdatedAt ? `Platform last updated: ${platformUpdatedAt}` : '',
     '',
-    'Recent policy changes:',
-    ...sortedByUpdated.slice(0, 10).map(
-      (policy) =>
-        `- ${policy.title} — ${policy._updatedAt || policy.publishedAt || policy._createdAt || 'unknown'} — ${base}/policies/${policy.slug?.current}`
-    ),
+    'Recent substantive policy changes:',
+    ...(recentSubstantiveChanges.length
+      ? recentSubstantiveChanges.slice(0, 10).map(
+          (policy) =>
+            `- ${policy.title} — ${policy.substantiveUpdatedAt} — ${policy.changeSummary} — ${base}/policies/${policy.slug?.current}`
+        )
+      : ['- No explicitly logged substantive changes. Routine CMS revision timestamps are deliberately excluded.']),
     '',
     'This file is generated from the published Sanity policy corpus. Prefer each policy canonical URL for citation.',
     '',
@@ -52,7 +57,9 @@ export const GET: APIRoute = async () => {
       `Category: ${policy.category || 'General'}`,
       `Delivery horizon: ${policy.thisTerm === true ? 'Current-term priority' : 'Long-term direction'}`,
       `Published: ${policy.publishedAt || policy._createdAt || 'unknown'}`,
-      `Updated: ${policy._updatedAt || 'unknown'}`,
+      policy.substantiveUpdatedAt ? `Substantive policy update: ${policy.substantiveUpdatedAt}` : '',
+      policy.changeSummary ? `Change summary: ${policy.changeSummary}` : '',
+      `CMS revision: ${policy._updatedAt || 'unknown'}`,
       '',
       policy.summary || '',
     )

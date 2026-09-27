@@ -102,6 +102,8 @@ export interface Policy extends SanityDocument {
   funding?: string
   body?: PortableTextBlock[]
   publishedAt?: string
+  substantiveUpdatedAt?: string
+  changeSummary?: string
   seo?: SEOMetadata
 }
 
@@ -138,10 +140,13 @@ export interface ResearchResource extends SanityDocument {
   abstract: string
   authors?: ResearchAuthor[]
   publishedAt: string
+  researchFirstDocumentedAt?: string
+  researchProvenance?: string
   version?: string
   geographicCoverage?: string
   license?: string
   tags?: string[]
+  keyFindings?: string[]
   methodology?: PortableTextBlock[]
   limitations?: PortableTextBlock[]
   body?: PortableTextBlock[]
