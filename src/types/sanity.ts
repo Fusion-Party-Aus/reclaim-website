@@ -75,15 +75,15 @@ export interface Policy extends SanityDocument {
   _type: 'policy'
   pillar?:
     | 'RECLAIM OUR ECONOMY'
-    | 'SOLVE THE HOUSING CRISIS'
-    | 'FIX THE TAX EXPLOITS'
-    | 'RECLAIM OUR FUTURE'
+    | 'RECLAIM OUR INFRASTRUCTURE'
+    | 'RECLAIM OUR DEMOCRACY'
   category?: string
   title: string
   slug: SanitySlug
   icon?: string // MDI icon name (e.g., 'mdi:home')
   summary: string
   keyPoints?: PolicyKeyPoint[]
+  /** Delivery horizon only: true = current-term priority; false = longer-term direction. */
   thisTerm?: boolean
   // Further Detail fields
   designRationale?: string
