@@ -1,0 +1,476 @@
+/* Policy and vision pages use the Reclaim design tokens and type system. */
+.reclaim-platform {
+  background: var(--color-surface-base);
+  color: #fff;
+  overflow-x: clip;
+}
+.reclaim-platform [hidden] {
+  display: none !important;
+}
+.platform-container {
+  width: min(100% - 2rem, 1160px);
+  margin-inline: auto;
+}
+.platform-spectrum {
+  height: 3px;
+  background: linear-gradient(90deg, #d428d4, #7b3fe4, #4a7aeb, #0bb8d4, #00ddb8);
+}
+.platform-eyebrow {
+  font:
+    700 0.7rem/1.4 'Space Mono',
+    monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-mint);
+}
+.platform-header {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.platform-header h1 {
+  font:
+    900 clamp(3.4rem, 8vw, 6rem)/1 'Barlow Condensed',
+    sans-serif;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+  margin: 0.65rem 0 1rem;
+  max-width: 100%;
+}
+.platform-intro {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.42;
+  max-width: 42rem;
+  color: #eee5f2;
+}
+.platform-header__links,
+.platform-next .platform-container > div:last-child {
+  display: flex;
+  gap: 1rem 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.platform-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--color-magenta);
+  border: 1px solid var(--color-magenta);
+  border-radius: 3px;
+  color: #fff;
+  font:
+    800 1rem/1.15 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+.platform-primary-link:hover {
+  background: var(--color-magenta-bright);
+}
+.platform-secondary-link,
+.platform-inline-link {
+  color: var(--color-mint);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.platform-secondary-link:hover,
+.platform-inline-link:hover {
+  color: #fff;
+}
+.platform-frame {
+  background: var(--color-surface-raised);
+  border-block: 1px solid #ffffff24;
+}
+.platform-frame__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+.platform-frame h2,
+.platform-next h2 {
+  font:
+    900 clamp(2.6rem, 5vw, 4.5rem)/1 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  margin-top: 0.7rem;
+  letter-spacing: -0.015em;
+}
+.platform-frame h2 span {
+  color: var(--color-mint);
+}
+.platform-frame__grid > div:last-child p {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: #e5ddec;
+  max-width: 37rem;
+}
+.platform-frame__grid > div:last-child p + p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #c7b7d2;
+}
+.platform-browse {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+.platform-browse__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.platform-browse__heading h2,
+.vision-direction h2 {
+  font:
+    900 clamp(2.4rem, 4vw, 3.5rem)/1 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  margin-top: 0.6rem;
+}
+.platform-browse__heading > p {
+  font-size: 0.95rem;
+  color: #d1c4dc;
+  max-width: 29rem;
+}
+.platform-tools {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  border-block: 1px solid #ffffff36;
+  margin-top: 2rem;
+  padding-block: 1rem;
+}
+.platform-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.platform-filters button {
+  background: transparent;
+  border: 1px solid #ffffff58;
+  border-radius: 3px;
+  color: #fff;
+  padding: 0.7rem 0.9rem;
+  font:
+    800 0.95rem/1 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.platform-filters button span {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  color: #d1c4dc;
+}
+.platform-filters button[aria-pressed='true'] {
+  background: var(--color-magenta);
+  border-color: var(--color-magenta);
+}
+.platform-search {
+  display: flex;
+  align-items: center;
+  min-width: min(100%, 230px);
+  border-bottom: 1px solid #ffffff8a;
+}
+.platform-search input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 0.65rem 0.2rem;
+  font:
+    500 0.95rem 'Barlow',
+    sans-serif;
+}
+.platform-search input::placeholder {
+  color: #cec0d7;
+}
+.platform-search span {
+  font-size: 1.5rem;
+}
+.platform-pillar-nav,
+.vision-direction__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.4rem;
+}
+.platform-pillar-nav a,
+.vision-direction__nav a {
+  border: 1px solid #ffffff3b;
+  border-radius: 3px;
+  color: #fff;
+  padding: 0.55rem 0.8rem;
+  font:
+    700 0.76rem/1.25 'Space Mono',
+    monospace;
+  text-transform: uppercase;
+}
+.platform-pillar-nav a:hover,
+.vision-direction__nav a:hover {
+  border-color: var(--color-mint);
+  color: var(--color-mint);
+}
+.platform-result-count {
+  font:
+    700 0.7rem 'Space Mono',
+    monospace;
+  text-transform: uppercase;
+  color: #bfaece;
+  margin-top: 2rem;
+}
+.platform-pillar {
+  padding-block: 3.5rem;
+  border-bottom: 1px solid #ffffff35;
+  scroll-margin-top: 6rem;
+}
+.platform-pillar__heading {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0.5rem 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+.platform-pillar__heading h3 {
+  font:
+    900 clamp(2.4rem, 4vw, 3.7rem)/1 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.platform-pillar__heading p {
+  font-size: 1.05rem;
+  color: #d9cde2;
+  max-width: 30rem;
+}
+.platform-pillar__heading .platform-inline-link {
+  grid-column: 2;
+}
+.platform-category {
+  margin-top: 2.5rem;
+}
+.platform-category h4,
+.vision-theme__category h3 {
+  font:
+    800 1.4rem/1.2 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ffffff3b;
+  padding-bottom: 0.55rem;
+  margin-bottom: 1rem;
+  color: var(--color-mint);
+}
+.platform-policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.platform-policy {
+  min-width: 0;
+  background: var(--color-surface-raised);
+  border: 1px solid #ffffff24;
+  border-top: 2px solid var(--color-magenta);
+  border-radius: 3px;
+}
+.platform-policy:hover {
+  border-color: #ffffff65;
+  border-top-color: var(--color-magenta-bright);
+}
+.platform-policy > a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.3rem;
+  color: #fff;
+}
+.platform-policy__horizon {
+  font:
+    700 0.68rem/1.3 'Space Mono',
+    monospace;
+  color: var(--color-mint);
+  text-transform: uppercase;
+}
+.platform-policy h5 {
+  font:
+    800 1.7rem/1.08 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  margin: 0.8rem 0;
+}
+.platform-policy__hook {
+  font-weight: 700;
+  line-height: 1.35;
+  color: #f4d6f4;
+  margin-bottom: 0.75rem;
+}
+.platform-policy__summary {
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: #e1d5e9;
+}
+.platform-policy__more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.3rem;
+  color: var(--color-mint);
+  font:
+    800 1rem 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+}
+.platform-policy__more span {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.2rem;
+}
+.platform-empty {
+  padding: 1.5rem;
+  border: 1px solid #ffffff55;
+  margin-top: 2rem;
+}
+.platform-next {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background: var(--color-surface-overlay);
+}
+.platform-next p:not(.platform-eyebrow) {
+  font-size: 1.05rem;
+  color: #e3d7e9;
+  max-width: 42rem;
+  margin-top: 1rem;
+}
+.vision-direction {
+  padding-block: 3.5rem;
+}
+.vision-theme {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid #ffffff32;
+}
+.vision-theme:nth-of-type(even) {
+  background: #230038;
+}
+.vision-theme__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+.vision-theme__story h2 {
+  font:
+    900 clamp(2.6rem, 5vw, 4.5rem)/1 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0;
+}
+.vision-theme__story > p:last-child {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #e4d8eb;
+  max-width: 32rem;
+}
+.vision-theme__label {
+  font:
+    700 0.75rem 'Space Mono',
+    monospace;
+  text-transform: uppercase;
+  color: #c5b4d1;
+  margin-bottom: 1.5rem;
+}
+.vision-theme__category {
+  margin-bottom: 2rem;
+}
+.vision-theme__category ul {
+  list-style: none;
+}
+.vision-theme__category li {
+  border-bottom: 1px solid #ffffff2c;
+}
+.vision-theme__category li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  padding: 0.85rem 0.2rem;
+  color: #fff;
+}
+.vision-theme__category li a:hover {
+  color: var(--color-mint);
+}
+.vision-theme__category li a span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.vision-theme__category strong {
+  font:
+    800 1.25rem/1.15 'Barlow Condensed',
+    sans-serif;
+  text-transform: uppercase;
+}
+.vision-theme__category small {
+  font:
+    0.88rem/1.4 'Barlow',
+    sans-serif;
+  color: #d7c7e0;
+}
+.vision-theme__category li a > span:last-child {
+  font-size: 1.3rem;
+  color: var(--color-mint);
+}
+.reclaim-platform a:focus-visible,
+.reclaim-platform button:focus-visible,
+.reclaim-platform input:focus-visible {
+  outline: 3px solid var(--color-mint);
+  outline-offset: 3px;
+}
+@media (max-width: 750px) {
+  .platform-frame__grid,
+  .platform-pillar__heading,
+  .vision-theme__layout {
+    grid-template-columns: 1fr;
+  }
+  .platform-browse__heading {
+    display: block;
+  }
+  .platform-browse__heading > p {
+    margin-top: 1rem;
+  }
+  .platform-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .platform-search {
+    width: 100%;
+    min-width: 0;
+  }
+  .platform-pillar__heading .platform-inline-link {
+    grid-column: 1;
+  }
+  .platform-policy-grid {
+    grid-template-columns: 1fr;
+  }
+  .platform-header {
+    padding-block: 3.5rem;
+  }
+  .platform-pillar {
+    padding-block: 2.8rem;
+  }
+  .vision-theme__story h2 {
+    max-width: 16ch;
+  }
+}
+@media (max-width: 420px) {
+  .platform-filters button {
+    padding: 0.65rem 0.6rem;
+    font-size: 0.85rem;
+  }
+  .platform-filters button span {
+    font-size: 0.72rem;
+  }
+  .platform-header h1 {
+    font-size: 3.5rem;
+  }
+}
