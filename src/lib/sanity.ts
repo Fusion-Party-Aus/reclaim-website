@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import type { Policy, Electorate, FAQ, Page, HomePage } from '../types/sanity'
+import type { Policy, Electorate, FAQ, Page, HomePage, ResearchResource } from '../types/sanity'
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 
@@ -177,4 +177,38 @@ export async function getVisionPage(): Promise<any | null> {
 export async function getManifestoPage(): Promise<any | null> {
   const query = `*[_type == "manifestoPage"][0]`
   return await client.fetch(query)
+}
+
+export async function getResearchResources(): Promise<ResearchResource[]> {
+  const query = `*[_type == "researchResource"] | order(featured desc, publishedAt desc) {
+    ...,
+    "downloads": downloads[]{
+      ...,
+      "fileUrl": file.asset->url
+    },
+    "relatedPolicies": relatedPolicies[]->{
+      _id,
+      title,
+      slug,
+      summary
+    }
+  }`
+  return await client.fetch(query)
+}
+
+export async function getResearchResourceBySlug(slug: string): Promise<ResearchResource | null> {
+  const query = `*[_type == "researchResource" && slug.current == $slug][0] {
+    ...,
+    "downloads": downloads[]{
+      ...,
+      "fileUrl": file.asset->url
+    },
+    "relatedPolicies": relatedPolicies[]->{
+      _id,
+      title,
+      slug,
+      summary
+    }
+  }`
+  return await client.fetch(query, { slug })
 }
