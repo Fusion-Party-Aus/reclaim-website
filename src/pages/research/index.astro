@@ -1,0 +1,125 @@
+---
+export const prerender = false
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BrutalCard, BrutalBadge } from '@/components/ui'
+import { getResearchResources } from '../../lib/sanity'
+import '../../styles/global.css'
+
+const resources = await getResearchResources()
+
+const typeLabels: Record<string, string> = {
+  dataset: 'Dataset',
+  methodology: 'Methodology',
+  submission: 'Submission',
+  briefing: 'Research Brief',
+  report: 'Report',
+  model: 'Model / Calculator',
+  register: 'Public Register',
+}
+
+const formatDate = (date?: string) =>
+  date ? new Date(date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }) : null
+
+const featured = resources.filter((resource) => resource.featured)
+const regular = resources.filter((resource) => !resource.featured)
+---
+
+<BaseLayout
+  title="Research & Data | Fusion Party Victoria"
+  description="Public research, datasets, methodology, submissions and evidence behind Fusion Party Victoria's policy platform."
+>
+  <Header />
+  <main id="main-content">
+    <section class="bg-surface-base border-b border-mint/30 pt-28 pb-14 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto">
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-mint mb-3">Evidence you can inspect</p>
+        <h1 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-none mb-6">
+          Research & Data
+        </h1>
+        <p class="max-w-3xl text-lg md:text-xl font-semibold text-white/75 leading-relaxed">
+          The evidence behind the platform: research briefs, methodology, datasets, public submissions and open questions.
+          Use it, scrutinise it, cite it.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+          <a href="/api/research.json" class="underline underline-offset-4 text-mint">JSON feed</a>
+          <a href="/api/research.txt" class="underline underline-offset-4 text-mint">LLM/plain-text feed</a>
+          <a href="/research-sitemap.xml" class="underline underline-offset-4 text-mint">Research sitemap</a>
+        </div>
+      </div>
+    </section>
+
+    {featured.length > 0 && (
+      <section class="bg-surface-raised py-12 px-4 md:px-8 border-b border-white/10">
+        <div class="max-w-7xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-white mb-6">Featured research</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            {featured.map((resource) => (
+              <BrutalCard variant="surface" shadow="mint" padding="md">
+                <div class="mb-3">
+                  <BrutalBadge variant="mint">{typeLabels[resource.resourceType] || resource.resourceType}</BrutalBadge>
+                </div>
+                <h3 class="text-2xl font-display font-black uppercase text-white mb-3">
+                  <a href={`/research/${resource.slug.current}`} class="hover:text-mint">{resource.title}</a>
+                </h3>
+                <p class="text-white/70 leading-relaxed mb-4">{resource.abstract}</p>
+                <div class="text-xs font-bold uppercase tracking-wide text-white/45">
+                  {formatDate(resource.publishedAt)}
+                  {resource.version ? ` · v${resource.version}` : ''}
+                </div>
+              </BrutalCard>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="bg-surface-base py-14 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-end justify-between gap-6 mb-8">
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">Public evidence library</p>
+            <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white">All resources</h2>
+          </div>
+          <p class="hidden md:block text-sm text-white/50 max-w-md text-right">
+            Stable URLs, source lists, publication dates, limitations and reusable citation metadata.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...featured, ...regular].map((resource) => (
+            <article>
+              <BrutalCard variant="surface" shadow="lavender" padding="md" class="h-full">
+                <div class="flex items-center justify-between gap-3 mb-4">
+                  <BrutalBadge variant="lavender">{typeLabels[resource.resourceType] || resource.resourceType}</BrutalBadge>
+                  <span class="text-xs font-bold text-white/40">{formatDate(resource.publishedAt)}</span>
+                </div>
+                <h3 class="text-xl font-display font-black uppercase text-white leading-tight mb-3">
+                  <a href={`/research/${resource.slug.current}`} class="hover:text-mint">{resource.title}</a>
+                </h3>
+                <p class="text-sm text-white/65 leading-relaxed mb-5">{resource.abstract}</p>
+                {resource.tags?.length ? (
+                  <div class="flex flex-wrap gap-1.5">
+                    {resource.tags.slice(0, 4).map((tag) => (
+                      <span class="text-[10px] uppercase font-black tracking-wide bg-white/5 border border-white/10 px-2 py-1">{tag}</span>
+                    ))}
+                  </div>
+                ) : null}
+              </BrutalCard>
+            </article>
+          ))}
+        </div>
+
+        {resources.length === 0 && (
+          <div class="border border-white/10 bg-white/5 p-8 rounded-sm">
+            <h2 class="text-xl font-display font-black uppercase text-white mb-2">Research library is being populated</h2>
+            <p class="text-white/65">The public research layer is live; evidence briefs and datasets are being migrated from the Victorian policy omnibus.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

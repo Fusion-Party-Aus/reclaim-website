@@ -1,0 +1,168 @@
+---
+export const prerender = false
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
+import { PortableText } from 'astro-portabletext'
+import CustomLink from '../../components/portable-text/CustomLink.astro'
+import TableBlock from '../../components/portable-text/TableBlock.astro'
+import { getResearchResourceBySlug } from '../../lib/sanity'
+import { portableTextToPlainText } from '../../lib/portableText'
+import '../../styles/global.css'
+
+const { slug } = Astro.params
+if (!slug) return Astro.redirect('/404')
+
+const resource = await getResearchResourceBySlug(slug)
+if (!resource) return Astro.redirect('/404')
+
+const base = 'https://vic.fusionparty.org.au'
+const canonicalUrl = `${base}/research/${resource.slug.current}`
+const authors = resource.authors?.map((author) => author.name).filter(Boolean) || ['Fusion Party Victoria']
+const citationTitle = resource.citationTitle || resource.title
+const year = new Date(resource.publishedAt).getFullYear()
+const citation = `${authors.join(', ')} (${year}). ${citationTitle}. Fusion Party Victoria${resource.version ? `, version ${resource.version}` : ''}. ${canonicalUrl}`
+
+const typeLabels: Record<string, string> = {
+  dataset: 'Dataset', methodology: 'Methodology', submission: 'Submission',
+  briefing: 'Research Brief', report: 'Report', model: 'Model / Calculator', register: 'Public Register',
+}
+
+const plainMethodology = portableTextToPlainText(resource.methodology || [])
+const plainLimitations = portableTextToPlainText(resource.limitations || [])
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': resource.resourceType === 'dataset' ? 'Dataset' : 'Report',
+  '@id': canonicalUrl,
+  url: canonicalUrl,
+  name: resource.title,
+  description: resource.abstract,
+  datePublished: resource.publishedAt,
+  dateModified: resource._updatedAt || resource.publishedAt,
+  version: resource.version,
+  spatialCoverage: resource.geographicCoverage,
+  license: resource.license,
+  author: authors.map((name) => ({ '@type': 'Person', name })),
+  publisher: { '@type': 'Organization', name: 'Fusion Party Victoria', url: base },
+  keywords: resource.tags?.join(', '),
+  isBasedOn: resource.sources?.map((source) => source.url),
+  sameAs: resource.doi ? [resource.doi] : undefined,
+}
+
+const formatDate = (date?: string) =>
+  date ? new Date(date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
+---
+
+<BaseLayout title={`${resource.title} | Research | Fusion Party Victoria`} description={resource.abstract} type="article">
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\u003c')} />
+  <Header />
+  <main id="main-content" class="bg-surface-base min-h-screen">
+    <section class="pt-28 pb-12 px-4 md:px-8 border-b border-mint/30">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <BrutalBadge variant="mint">{typeLabels[resource.resourceType] || resource.resourceType}</BrutalBadge>
+          {resource.version && <span class="text-xs font-black uppercase tracking-widest text-white/50">Version {resource.version}</span>}
+        </div>
+        <h1 class="text-4xl md:text-6xl font-display font-black uppercase text-white leading-tight mb-5">{resource.title}</h1>
+        <p class="text-xl text-white/75 font-semibold leading-relaxed max-w-4xl">{resource.abstract}</p>
+        <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/50 font-semibold">
+          <span>Published {formatDate(resource.publishedAt)}</span>
+          {resource._updatedAt && <span>Updated {formatDate(resource._updatedAt)}</span>}
+          {resource.geographicCoverage && <span>{resource.geographicCoverage}</span>}
+          {resource.license && <span>Licence: {resource.license}</span>}
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-5xl mx-auto px-4 md:px-8 py-10 space-y-8">
+      <BrutalCard variant="surface" shadow="yellow" padding="md">
+        <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">Cite this resource</p>
+        <p class="font-mono text-sm text-white/80 leading-relaxed break-words">{citation}</p>
+        {resource.doi && <p class="text-sm text-white/60 mt-3">Persistent identifier: {resource.doi}</p>}
+      </BrutalCard>
+
+      {(resource.downloads?.length || resource.externalProjectUrl || resource.repositoryUrl) && (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Data & downloads</h2>
+          <div class="flex flex-wrap gap-3">
+            {resource.externalProjectUrl && <BrutalButton variant="mint" href={resource.externalProjectUrl}>Open interactive resource</BrutalButton>}
+            {resource.repositoryUrl && <BrutalButton variant="black" href={resource.repositoryUrl}>Source repository</BrutalButton>}
+            {resource.downloads?.map((download) => {
+              const href = download.url || download.fileUrl
+              return href ? <BrutalButton variant="black" href={href}>{download.label}{download.format ? ` (${download.format})` : ''}</BrutalButton> : null
+            })}
+          </div>
+        </section>
+      )}
+
+      {resource.body?.length ? (
+        <article class="prose prose-lg max-w-none">
+          <PortableText value={resource.body} components={{ mark: { link: CustomLink }, type: { table: TableBlock } }} />
+        </article>
+      ) : null}
+
+      {resource.methodology?.length ? (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Methodology</h2>
+          <BrutalCard variant="surface" shadow="mint" padding="md">
+            <div class="prose prose-lg max-w-none">
+              <PortableText value={resource.methodology} components={{ mark: { link: CustomLink }, type: { table: TableBlock } }} />
+            </div>
+          </BrutalCard>
+        </section>
+      ) : null}
+
+      {resource.limitations?.length ? (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Limitations & open questions</h2>
+          <BrutalCard variant="surface" shadow="magenta" padding="md">
+            <div class="prose prose-lg max-w-none">
+              <PortableText value={resource.limitations} components={{ mark: { link: CustomLink }, type: { table: TableBlock } }} />
+            </div>
+          </BrutalCard>
+        </section>
+      ) : null}
+
+      {resource.sources?.length ? (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Sources</h2>
+          <ol class="space-y-3">
+            {resource.sources.map((source, index) => (
+              <li class="border border-white/10 bg-white/5 p-4 rounded-sm">
+                <div class="text-xs font-black text-white/40 mb-1">{index + 1}</div>
+                <a href={source.url} class="font-bold text-mint underline underline-offset-4">{source.title}</a>
+                {source.publisher && <span class="text-white/55"> — {source.publisher}</span>}
+                {source.note && <p class="text-sm text-white/60 mt-2">{source.note}</p>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+
+      {resource.relatedPolicies?.length ? (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Related policy</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {resource.relatedPolicies.map((policy) => (
+              <BrutalCard variant="surface" shadow="lavender" padding="md">
+                <h3 class="font-display font-black uppercase text-white mb-2">
+                  <a href={`/policies/${policy.slug.current}`} class="hover:text-mint">{policy.title}</a>
+                </h3>
+                {policy.summary && <p class="text-sm text-white/65">{policy.summary}</p>}
+              </BrutalCard>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(plainMethodology || plainLimitations) && (
+        <p class="text-xs text-white/35 border-t border-white/10 pt-5">
+          This resource separates methodology and limitations from advocacy copy so claims can be assessed on their own terms.
+        </p>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

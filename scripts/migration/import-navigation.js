@@ -69,9 +69,15 @@ const navigationData = {
       highlight: false
     },
     {
+      label: 'Research',
+      href: '/research',
+      order: 5,
+      highlight: false
+    },
+    {
       label: 'FAQ',
       href: '/faq',
-      order: 5,
+      order: 6,
       highlight: false
     }
   ],

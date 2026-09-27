@@ -1,0 +1,70 @@
+name: Deploy Sanity Schema
+
+on:
+  workflow_dispatch:
+    inputs:
+      import_research:
+        description: 'Seed/update omnibus-derived Research & Data resources after schema deploy'
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-schema:
+    name: Deploy schema and optional research seed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
+
+      - name: Install site dependencies
+        run: npm ci
+
+      - name: Install Studio dependencies
+        working-directory: studio
+        run: npm ci
+
+      - name: Validate Sanity schema
+        working-directory: studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: npx sanity schemas validate --workspace default
+
+      - name: Deploy Sanity schema
+        working-directory: studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: npx sanity schemas deploy --workspace default --verbose
+
+      - name: Seed Research & Data resources
+        if: ${{ inputs.import_research }}
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+        run: |
+          if [ -z "$SANITY_WRITE_TOKEN" ]; then
+            echo "::warning::SANITY_WRITE_TOKEN is not configured; schema deployment succeeded but research import was skipped."
+            exit 0
+          fi
+          npm run import:research
+
+      - name: Summary
+        run: |
+          echo "### Sanity deployment complete" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Schema: deployed to workspace `default`" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ inputs.import_research }}" = "true" ]; then
+            echo "- Research seed: requested (runs when `SANITY_WRITE_TOKEN` is configured)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Research seed: skipped by operator" >> "$GITHUB_STEP_SUMMARY"
+          fi

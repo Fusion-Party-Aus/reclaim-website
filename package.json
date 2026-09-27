@@ -40,7 +40,8 @@
     "generate:og": "node scripts/og/generate-static-images.mjs && node scripts/og/generate-policy-images.mjs",
     "generate:og:static": "node scripts/og/generate-static-images.mjs",
     "generate:og:policies": "node scripts/og/generate-policy-images.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "import:research": "node scripts/migration/import-research-resources.js"
   },
   "lint-staged": {
     "*.{js,ts,tsx,astro}": [
