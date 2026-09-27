@@ -102,6 +102,8 @@ export interface Policy extends SanityDocument {
   funding?: string
   body?: PortableTextBlock[]
   publishedAt?: string
+  substantiveUpdatedAt?: string
+  changeSummary?: string
   seo?: SEOMetadata
 }
 
