@@ -72,8 +72,23 @@ export default defineType({
       title: 'Published at',
       type: 'datetime',
       group: 'meta',
+      description: 'Date this public research resource was first published on the Victorian website.',
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'researchFirstDocumentedAt',
+      title: 'Research first documented',
+      type: 'datetime',
+      group: 'meta',
+      description: 'Earliest defensible date this research/evidence strand is documented in the policy corpus or its version history.',
+    }),
+    defineField({
+      name: 'researchProvenance',
+      title: 'Research provenance',
+      type: 'string',
+      group: 'meta',
+      description: 'Short provenance note, such as the omnibus file and Git commit where the research first appears.',
     }),
     defineField({
       name: 'version',
