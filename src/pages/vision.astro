@@ -3,31 +3,34 @@ export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import type { Policy } from '../types/sanity'
 import { getPolicies, getVisionPage } from '../lib/sanity'
 import '../styles/global.css'
 import '../styles/platform-pages.css'
 
 const policies = await getPolicies({ thisTerm: false })
 const visionPage = await getVisionPage()
-const pillars = [...new Set(policies.map((policy) => policy.pillar || 'Other'))]
-const chapters: Record<string, { title: string; promise: string; text: string; number: string }> = {
+const groups = new Map<string, Map<string, Policy[]>>()
+for (const policy of policies) {
+  const pillar = policy.pillar || 'Other policies'
+  const category = policy.category || 'General'
+  if (!groups.has(pillar)) groups.set(pillar, new Map())
+  const categories = groups.get(pillar)!
+  if (!categories.has(category)) categories.set(category, [])
+  categories.get(category)!.push(policy)
+}
+const narratives: Record<string, { heading: string; body: string }> = {
   'RECLAIM OUR INFRASTRUCTURE': {
-    number: '01',
-    title: 'A city that makes room.',
-    promise: 'More homes. More ways to move. More life between them.',
-    text: 'Let people live near jobs, services and stations. Make the network useful before arguing over fares. Build public assets so their value stays with the public.',
+    heading: 'Room to live. Ways to move.',
+    body: 'More homes near the places people need to reach. A transport network that works across operators and suburbs. Public land and investment used for lasting public benefit.',
   },
   'RECLAIM OUR DEMOCRACY': {
-    number: '02',
-    title: 'A government you can reach.',
-    promise: 'Decisions in daylight, with people in the room.',
-    text: 'Make contracts and influence visible. Give residents meaningful ways to shape major decisions between elections, and make it easier to hold power to account.',
+    heading: 'Power within reach.',
+    body: 'A government people can see into, question and help shape. Public decisions should be open to scrutiny between elections, not just at the ballot box.',
   },
   'RECLAIM OUR ECONOMY': {
-    number: '03',
-    title: 'A return we all share.',
-    promise: 'When Victoria creates value, Victoria should benefit.',
-    text: 'Capture more of the gains from public investment and put them to work on services, homes and transport. Test the numbers in public before promising a dividend.',
+    heading: 'Value that stays here.',
+    body: 'When public decisions create wealth, the public should share in it. That means testing the deals, keeping useful assets and reinvesting the returns.',
   },
 }
 ---
@@ -35,102 +38,111 @@ const chapters: Record<string, { title: string; promise: string; text: string; n
 <BaseLayout
   title={visionPage?.seo?.metaTitle || 'Our Vision | Fusion Party Victoria'}
   description={visionPage?.seo?.metaDescription ||
-    'A long-term direction for Victoria: homes, transport, public value and democratic power.'}
+    'Explore Fusion Victoria’s longer-term direction and the policies behind it.'}
 >
   <Header />
-  <main id="main-content" class="platform-page vision-page">
-    <section class="platform-hero platform-hero--vision" aria-labelledby="vision-heading">
-      <div class="platform-wrap platform-hero__inner">
-        <div class="platform-hero__copy">
-          <p class="platform-kicker">Fusion Victoria / The long view</p><h1 id="vision-heading">
-            A state<br />worth <em>sharing.</em>
-          </h1><p class="platform-lede">
-            Set the floor. Protect the commons. Regulate harm. Otherwise, get out of the way.
-          </p><div class="platform-hero__actions">
-            <a href="#future" class="platform-button"
-              >Picture the future <span aria-hidden="true">↘</span></a
-            ><a href="/policies" class="platform-text-link"
-              >Browse every policy <span aria-hidden="true">↗</span></a>
-          </div>
-        </div><div class="vision-graphic" aria-hidden="true">
-          <div class="vision-graphic__rail"></div><div class="vision-graphic__home"></div><div
-            class="vision-graphic__sun"
-          >
-          </div><span>ROOM TO<br />GROW</span>
+  <main id="main-content" class="reclaim-platform reclaim-vision">
+    <div class="platform-spectrum" aria-hidden="true"></div>
+    <header class="platform-header platform-container">
+      <p class="platform-eyebrow">Fusion Party Victoria</p><h1>Our vision</h1><p
+        class="platform-intro"
+      >
+        A Victoria with more room to live, a real say in decisions and a public return on what we
+        build together.
+      </p><div class="platform-header__links">
+        <a class="platform-primary-link" href="#direction">Explore the direction ↓</a><a
+          class="platform-secondary-link"
+          href="/policies">See all policies ↗</a>
+      </div>
+    </header>
+    <section class="platform-frame" aria-labelledby="vision-frame-title">
+      <div class="platform-container platform-frame__grid">
+        <div>
+          <p class="platform-eyebrow">The principle</p><h2 id="vision-frame-title">
+            Set the floor.<br /><span>Open the future.</span>
+          </h2>
+        </div><div>
+          <p>
+            Protect the commons. Regulate harm. Give people the foundation to choose their own
+            lives, then get out of their way.
+          </p><p>
+            This page draws out the longer-term direction behind the platform. Each linked proposal
+            has its own case, evidence and qualifications.
+          </p>
         </div>
-      </div><div class="platform-hero__footer platform-wrap">
-        <span>Homes within reach</span><span>Power within reach</span><span>Value kept here</span>
       </div>
     </section>
-
-    <section class="vision-intro platform-wrap">
-      <p class="platform-section-label">The principle</p><div>
-        <h2>Freedom needs<br /><em>foundations.</em></h2><p>
-          A secure home, a useful way to get around and a government that listens give people real
-          choices. Our long-term direction starts there. The policies below turn that direction into
-          proposals you can inspect and debate.
-        </p>
+    <section
+      id="direction"
+      class="vision-direction platform-container"
+      aria-labelledby="direction-title"
+    >
+      <p class="platform-eyebrow">The direction</p><h2 id="direction-title">
+        What changes in practice
+      </h2><div class="vision-direction__nav">
+        {
+          [...groups.keys()].map((pillar) => (
+            <a href={`#vision-${pillar.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{pillar}</a>
+          ))
+        }
       </div>
     </section>
-
-    <div id="future" class="vision-chapters">
-      {
-        pillars.map((pillar, index) => {
-          const chapter = chapters[pillar] || {
-            number: String(index + 1).padStart(2, '0'),
-            title: pillar.toLowerCase(),
-            promise: 'A better future is built in public.',
-            text: 'Explore the longer-term proposals in this part of the platform.',
-          }
-          const items = policies.filter((policy) => (policy.pillar || 'Other') === pillar)
-          return (
-            <section class="vision-chapter" aria-labelledby={`vision-chapter-${index}`}>
-              <div class="platform-wrap vision-chapter__layout">
-                <>
-                  <div class="vision-chapter__statement">
-                    <>
-                      <p class="platform-section-label">
-                        {chapter.number} / {pillar.replace('RECLAIM OUR ', '')}
-                      </p>
-                      <h2 id={`vision-chapter-${index}`}>{chapter.title}</h2>
-                      <p class="vision-chapter__promise">{chapter.promise}</p>
-                      <p>{chapter.text}</p>
-                    </>
-                  </div>
-                  <div class="vision-chapter__policies">
-                    <p class="vision-chapter__label">
-                      The proposals <span>{String(items.length).padStart(2, '0')}</span>
-                    </p>
-                    {items.map((policy) => (
-                      <a href={`/policies/${policy.slug.current}`} class="vision-policy">
-                        <span>
-                          <small>{policy.category || 'Policy'}</small>
-                          <strong>{policy.title}</strong>
-                        </span>
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                    ))}
-                  </div>
-                </>
-              </div>
-            </section>
-          )
-        })
-      }
-    </div>
-
-    <section class="vision-bridge">
-      <div class="platform-wrap vision-bridge__inner">
-        <p class="platform-section-label">Direction into action</p><h2>
-          The long view<br />starts <em>now.</em>
+    {
+      [...groups].map(([pillar, categories]) => {
+        const narrative = narratives[pillar] || {
+          heading: pillar,
+          body: 'Explore this part of the longer-term platform.',
+        }
+        const anchor = `vision-${pillar.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+        return (
+          <section class="vision-theme" id={anchor} aria-labelledby={`${anchor}-title`}>
+            <div class="platform-container vision-theme__layout">
+              <>
+                <div class="vision-theme__story">
+                  <>
+                    <p class="platform-eyebrow">{pillar}</p>
+                    <h2 id={`${anchor}-title`}>{narrative.heading}</h2>
+                    <p>{narrative.body}</p>
+                  </>
+                </div>
+                <div class="vision-theme__details">
+                  <p class="vision-theme__label">The policies behind this direction</p>
+                  {[...categories].map(([category, items]) => (
+                    <div class="vision-theme__category">
+                      <h3>{category}</h3>
+                      <ul>
+                        {items.map((policy) => (
+                          <li>
+                            <a href={`/policies/${policy.slug.current}`}>
+                              <span>
+                                <strong>{policy.title}</strong>
+                                <small>{policy.summary}</small>
+                              </span>
+                              <span aria-hidden="true">↗</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </>
+            </div>
+          </section>
+        )
+      })
+    }
+    <section class="platform-next">
+      <div class="platform-container">
+        <p class="platform-eyebrow">From direction to detail</p><h2>
+          One platform.<br />Many steps.
         </h2><p>
-          Some reforms take a term. Others take a generation. They belong to the same platform, and
-          each proposal should stand up to scrutiny on its own merits.
+          Long-term direction and this-term priorities belong together. Explore the whole platform,
+          then read the evidence for the proposals that matter to you.
         </p><div>
-          <a href="/policies?horizon=current" class="platform-button"
-            >See this-term policies <span aria-hidden="true">↗</span></a
-          ><a href="/policies?horizon=long" class="platform-text-link"
-            >Explore the long-term platform ↗</a>
+          <a class="platform-primary-link" href="/policies">Browse every policy ↗</a><a
+            class="platform-secondary-link"
+            href="/policies?horizon=current">See this-term priorities ↗</a>
         </div>
       </div>
     </section>
