@@ -105,6 +105,61 @@ export interface Policy extends SanityDocument {
   seo?: SEOMetadata
 }
 
+/** Research / evidence resource */
+export interface ResearchAuthor {
+  name: string
+  role?: string
+}
+
+export interface ResearchSource {
+  _key?: string
+  title: string
+  publisher?: string
+  url: string
+  publishedAt?: string
+  accessedAt?: string
+  note?: string
+}
+
+export interface ResearchDownload {
+  _key?: string
+  label: string
+  format?: string
+  url?: string
+  fileUrl?: string
+  description?: string
+}
+
+export interface ResearchResource extends SanityDocument {
+  _type: 'researchResource'
+  title: string
+  slug: SanitySlug
+  resourceType: 'dataset' | 'methodology' | 'submission' | 'briefing' | 'report' | 'model' | 'register'
+  abstract: string
+  authors?: ResearchAuthor[]
+  publishedAt: string
+  version?: string
+  geographicCoverage?: string
+  license?: string
+  tags?: string[]
+  methodology?: PortableTextBlock[]
+  limitations?: PortableTextBlock[]
+  body?: PortableTextBlock[]
+  sources?: ResearchSource[]
+  downloads?: ResearchDownload[]
+  externalProjectUrl?: string
+  repositoryUrl?: string
+  relatedPolicies?: Array<{
+    _id: string
+    title: string
+    slug: SanitySlug
+    summary?: string
+  }>
+  citationTitle?: string
+  doi?: string
+  featured?: boolean
+}
+
 /**
  * Electorate Document
  */
