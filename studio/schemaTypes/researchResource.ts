@@ -121,6 +121,15 @@ export default defineType({
       initialValue: 'CC-BY-4.0',
     }),
     defineField({
+      name: 'keyFindings',
+      title: 'Key Findings',
+      type: 'array',
+      group: 'basic',
+      description: 'Three to six concise findings for journalists, candidates, search snippets and AI retrieval. These should be factual conclusions, not slogans.',
+      of: [{type: 'string'}],
+      validation: (Rule) => Rule.max(6),
+    }),
+    defineField({
       name: 'tags',
       title: 'Topics',
       type: 'array',
