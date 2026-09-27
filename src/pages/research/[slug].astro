@@ -85,6 +85,32 @@ const formatDate = (date?: string) =>
         </BrutalCard>
       )}
 
+      {resource.reasonRightsResults && (resource.reasonRightsResults.reason || resource.reasonRightsResults.rights || resource.reasonRightsResults.results) ? (
+        <section>
+          <p class="text-xs font-black uppercase tracking-[0.2em] text-white/45 mb-3">Reason · Rights · Results</p>
+          <div class="grid md:grid-cols-3 gap-4">
+            {resource.reasonRightsResults.reason && (
+              <BrutalCard variant="surface" shadow="mint" padding="md">
+                <h2 class="text-lg font-display font-black uppercase text-mint mb-2">Reason</h2>
+                <p class="text-sm text-white/75 leading-relaxed">{resource.reasonRightsResults.reason}</p>
+              </BrutalCard>
+            )}
+            {resource.reasonRightsResults.rights && (
+              <BrutalCard variant="surface" shadow="lavender" padding="md">
+                <h2 class="text-lg font-display font-black uppercase text-white mb-2">Rights</h2>
+                <p class="text-sm text-white/75 leading-relaxed">{resource.reasonRightsResults.rights}</p>
+              </BrutalCard>
+            )}
+            {resource.reasonRightsResults.results && (
+              <BrutalCard variant="surface" shadow="yellow" padding="md">
+                <h2 class="text-lg font-display font-black uppercase text-yellow mb-2">Results</h2>
+                <p class="text-sm text-white/75 leading-relaxed">{resource.reasonRightsResults.results}</p>
+              </BrutalCard>
+            )}
+          </div>
+        </section>
+      ) : null}
+
       {resource.keyFindings?.length ? (
         <BrutalCard variant="surface" shadow="mint" padding="md">
           <p class="text-xs font-black uppercase tracking-widest text-mint mb-3">Key findings</p>
