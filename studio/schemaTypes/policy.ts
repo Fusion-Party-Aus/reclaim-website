@@ -49,9 +49,10 @@ export default defineType({
     }),
     defineField({
       name: 'thisTerm',
-      title: 'This Term (Crossbench-Realistic)',
+      title: 'Current-Term Priority',
       type: 'boolean',
       group: 'basic',
+      description: 'Delivery horizon only. False means the policy needs a broader mandate or longer implementation horizon; it remains part of the policy platform.',
       initialValue: false,
     }),
     defineField({

@@ -9,7 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Page Title',
       type: 'string',
-      initialValue: 'Victoria Belongs To Victorians',
+      initialValue: 'A Government That Does Its Job. Then Gets Out of the Way.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -82,7 +82,7 @@ export default defineType({
 
     defineField({
       name: 'lieBlock',
-      title: 'The Lie Pull-Quote',
+      title: 'Governing Rule',
       type: 'object',
       fields: [
         {name: 'eyebrow', title: 'Eyebrow', type: 'string'},
@@ -98,7 +98,7 @@ export default defineType({
 
     defineField({
       name: 'promises',
-      title: "What We're Actually Going To Do",
+      title: 'Core Principles',
       type: 'array',
       description: 'Scannable promise cards — icon, short headline, 2-3 line body.',
       of: [
@@ -132,14 +132,14 @@ export default defineType({
 
     defineField({
       name: 'whyNobody',
-      title: 'Why Nobody Else Will Do This',
+      title: 'Integrity + Urban Form',
       type: 'object',
       fields: [
         {
           name: 'badge',
           title: 'Badge Label',
           type: 'string',
-          initialValue: 'Why Nobody Else Will Do This',
+          initialValue: 'Two Lenses: Integrity + Urban Form',
         },
         {name: 'body', title: 'Body', type: 'text', rows: 4},
       ],
@@ -147,7 +147,7 @@ export default defineType({
 
     defineField({
       name: 'notPromising',
-      title: "What We're Not Promising",
+      title: 'Role of Government',
       type: 'object',
       fields: [
         {name: 'intro', title: 'Intro', type: 'text', rows: 2},
@@ -171,14 +171,14 @@ export default defineType({
 
     defineField({
       name: 'oneSeat',
-      title: 'One Seat Can Start This',
+      title: 'The Method',
       type: 'object',
       fields: [
         {
           name: 'heading',
           title: 'Heading',
           type: 'string',
-          initialValue: 'One Seat Can Start This',
+          initialValue: 'The Method',
         },
         {name: 'body', title: 'Body', type: 'text', rows: 3},
       ],
