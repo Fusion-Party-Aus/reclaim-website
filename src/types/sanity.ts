@@ -147,6 +147,11 @@ export interface ResearchResource extends SanityDocument {
   license?: string
   tags?: string[]
   keyFindings?: string[]
+  reasonRightsResults?: {
+    reason?: string
+    rights?: string
+    results?: string
+  }
   methodology?: PortableTextBlock[]
   limitations?: PortableTextBlock[]
   body?: PortableTextBlock[]
