@@ -11,17 +11,34 @@ const section = (label: string, value?: string | null) =>
 
 export const GET: APIRoute = async () => {
   const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
+  const sortedByUpdated = [...policies].sort(
+    (a, b) =>
+      new Date(b._updatedAt || b.publishedAt || b._createdAt || 0).getTime() -
+      new Date(a._updatedAt || a.publishedAt || a._createdAt || 0).getTime()
+  )
+  const platformUpdatedAt =
+    sortedByUpdated[0]?._updatedAt || sortedByUpdated[0]?.publishedAt || sortedByUpdated[0]?._createdAt || null
 
   const lines = [
     '# Fusion Party Victoria — Policy Platform',
     '',
     'Canonical source: https://vic.fusionparty.org.au/policies',
     'Machine-readable JSON: https://vic.fusionparty.org.au/api/policies.json',
+    'Latest policy changes: https://vic.fusionparty.org.au/api/policy-changes.json',
+    'Policy sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
     'Manifesto: https://vic.fusionparty.org.au/manifesto',
     '',
     'Campaign through-line: Reignite Democracy.',
     manifesto?.subtitle ? `Governing philosophy: ${manifesto.subtitle}` : '',
     manifesto?.lieBlock?.headline ? `Governing rule: ${manifesto.lieBlock.headline}` : '',
+    '',
+    platformUpdatedAt ? `Platform last updated: ${platformUpdatedAt}` : '',
+    '',
+    'Recent policy changes:',
+    ...sortedByUpdated.slice(0, 10).map(
+      (policy) =>
+        `- ${policy.title} — ${policy._updatedAt || policy.publishedAt || policy._createdAt || 'unknown'} — ${base}/policies/${policy.slug?.current}`
+    ),
     '',
     'This file is generated from the published Sanity policy corpus. Prefer each policy canonical URL for citation.',
     '',
