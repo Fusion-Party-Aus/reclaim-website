@@ -29,6 +29,7 @@ export const GET: APIRoute = async () => {
       `## ${resource.title}`,
       `URL: ${base}/research/${resource.slug?.current}`,
       `Type: ${resource.resourceType}`,
+      resource.researchArea ? `Research area: ${resource.researchArea}` : '',
       `Published: ${resource.publishedAt}`,
       resource.researchFirstDocumentedAt ? `Research first documented: ${resource.researchFirstDocumentedAt}` : '',
       resource.researchProvenance ? `Research provenance: ${resource.researchProvenance}` : '',
@@ -40,6 +41,13 @@ export const GET: APIRoute = async () => {
       resource.abstract,
       ''
     )
+    if (resource.reasonRightsResults && (resource.reasonRightsResults.reason || resource.reasonRightsResults.rights || resource.reasonRightsResults.results)) {
+      lines.push('### Reason · Rights · Results')
+      if (resource.reasonRightsResults.reason) lines.push(`Reason: ${resource.reasonRightsResults.reason}`)
+      if (resource.reasonRightsResults.rights) lines.push(`Rights: ${resource.reasonRightsResults.rights}`)
+      if (resource.reasonRightsResults.results) lines.push(`Results: ${resource.reasonRightsResults.results}`)
+      lines.push('')
+    }
     if (resource.keyFindings?.length) {
       lines.push('### Key findings')
       for (const finding of resource.keyFindings) lines.push(`- ${finding}`)
