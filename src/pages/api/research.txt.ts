@@ -40,6 +40,11 @@ export const GET: APIRoute = async () => {
       resource.abstract,
       ''
     )
+    if (resource.keyFindings?.length) {
+      lines.push('### Key findings')
+      for (const finding of resource.keyFindings) lines.push(`- ${finding}`)
+      lines.push('')
+    }
     const method = portableTextToPlainText(resource.methodology || [])
     const limits = portableTextToPlainText(resource.limitations || [])
     const body = portableTextToPlainText(resource.body || [])
