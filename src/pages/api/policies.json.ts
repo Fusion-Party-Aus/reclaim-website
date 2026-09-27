@@ -9,10 +9,25 @@ const canonicalBase = 'https://vic.fusionparty.org.au'
 export const GET: APIRoute = async () => {
   const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
   const generatedAt = new Date().toISOString()
+  const sortedByUpdated = [...policies].sort(
+    (a, b) =>
+      new Date(b._updatedAt || b.publishedAt || b._createdAt || 0).getTime() -
+      new Date(a._updatedAt || a.publishedAt || a._createdAt || 0).getTime()
+  )
+  const platformUpdatedAt =
+    sortedByUpdated[0]?._updatedAt || sortedByUpdated[0]?.publishedAt || sortedByUpdated[0]?._createdAt || null
 
   const payload = {
     schema_version: 1,
     generated_at: generatedAt,
+    platform_updated_at: platformUpdatedAt,
+    policy_count: policies.length,
+    latest_changes: sortedByUpdated.slice(0, 20).map((policy) => ({
+      title: policy.title,
+      canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
+      published_at: policy.publishedAt || policy._createdAt || null,
+      updated_at: policy._updatedAt || null,
+    })),
     organization: {
       name: 'Fusion Party Victoria',
       jurisdiction: 'Victoria, Australia',
