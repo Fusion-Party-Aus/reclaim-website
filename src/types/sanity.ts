@@ -138,6 +138,8 @@ export interface ResearchResource extends SanityDocument {
   abstract: string
   authors?: ResearchAuthor[]
   publishedAt: string
+  researchFirstDocumentedAt?: string
+  researchProvenance?: string
   version?: string
   geographicCoverage?: string
   license?: string
