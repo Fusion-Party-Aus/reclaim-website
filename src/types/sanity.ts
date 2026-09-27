@@ -82,6 +82,11 @@ export interface Policy extends SanityDocument {
   slug: SanitySlug
   icon?: string // MDI icon name (e.g., 'mdi:home')
   summary: string
+  hook?: string
+  villain?: string
+  proofStat?: { number: string; label: string; source?: string }
+  shareableQuote?: string
+  seoDescription?: string
   keyPoints?: PolicyKeyPoint[]
   /** Delivery horizon only: true = current-term priority; false = longer-term direction. */
   thisTerm?: boolean
