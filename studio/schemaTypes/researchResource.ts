@@ -27,6 +27,14 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'researchArea',
+      title: 'Research Area',
+      type: 'string',
+      group: 'basic',
+      description: 'Primary public-facing topic used to organise the Research & Data library. Free text so new areas do not require a code change.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'resourceType',
       title: 'Resource Type',
       type: 'string',
@@ -119,6 +127,18 @@ export default defineType({
         ],
       },
       initialValue: 'CC-BY-4.0',
+    }),
+    defineField({
+      name: 'reasonRightsResults',
+      title: 'Reason · Rights · Results',
+      type: 'object',
+      group: 'basic',
+      description: 'A concise policy-quality lens: evidence/mechanism, rights/safeguards, and measurable outcomes. Keep descriptive rather than campaign-like.',
+      fields: [
+        {name: 'reason', title: 'Reason', type: 'text', rows: 3, description: 'What evidence and mechanism support the approach? What would change the conclusion?'},
+        {name: 'rights', title: 'Rights', type: 'text', rows: 3, description: 'Which rights, safeguards, liberties, accessibility or distributional effects constrain the design?'},
+        {name: 'results', title: 'Results', type: 'text', rows: 3, description: 'What measurable outcome should improve, and what would count as failure?'},
+      ],
     }),
     defineField({
       name: 'keyFindings',
