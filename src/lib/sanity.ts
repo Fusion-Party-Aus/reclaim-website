@@ -212,3 +212,20 @@ export async function getResearchResourceBySlug(slug: string): Promise<ResearchR
   }`
   return await client.fetch(query, { slug })
 }
+
+export async function getResearchForPolicy(policyId: string): Promise<ResearchResource[]> {
+  const query = `*[_type == "researchResource" && references($policyId)] | order(featured desc, publishedAt desc) {
+    ...,
+    "downloads": downloads[]{
+      ...,
+      "fileUrl": file.asset->url
+    },
+    "relatedPolicies": relatedPolicies[]->{
+      _id,
+      title,
+      slug,
+      summary
+    }
+  }`
+  return await client.fetch(query, { policyId })
+}

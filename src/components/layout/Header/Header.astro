@@ -155,7 +155,10 @@ const logo = navigation?.logo || {
             return (
               <a
                 href={item.href}
-                class={`nav-link text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`}
+                class={`nav-link text-sm font-medium transition-colors ${item.highlight
+                  ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-mint hover:bg-mint hover:text-black'
+                  : `py-1 border-b ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`
+                }`}
               >
                 {item.label}
               </a>
@@ -219,8 +222,10 @@ const logo = navigation?.logo || {
             return (
               <a
                 href={item.href}
-                class={`block px-2 py-2.5 text-sm font-medium transition-colors ${
-                  isActive ? 'text-white' : 'text-white/90 hover:text-white'
+                class={`block text-sm font-medium transition-colors ${
+                  item.highlight
+                    ? 'mx-2 my-1 px-3 py-2.5 border border-mint/40 bg-mint/10 text-mint'
+                    : `px-2 py-2.5 ${isActive ? 'text-white' : 'text-white/90 hover:text-white'}`
                 }`}
               >
                 {item.label}

@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug } from '../../lib/sanity'
+import { getDocumentBySlug, getResearchForPolicy } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
@@ -63,6 +63,8 @@ const policy = await getDocumentBySlug<Policy>('policy', slug)
 if (!policy) {
   return Astro.redirect('/404')
 }
+
+const relatedResearch = await getResearchForPolicy(policy._id)
 
 const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
 
@@ -169,6 +171,7 @@ const sidebarSections = [
   ...(policy.keyPoints && policy.keyPoints.length > 0
     ? [{ id: 'key-points', title: 'Key Points' }]
     : []),
+  ...(relatedResearch.length > 0 ? [{ id: 'research', title: 'Research' }] : []),
   ...(detailSections.length > 0 ? [{ id: 'further-detail', title: 'Further Detail' }] : []),
   ...contentSections.filter(
     (section): section is { id: string; title: string } => section !== null
@@ -452,6 +455,59 @@ const policyStructuredData = {
                 ))}
               </ul>
             </BrutalCard>
+          </section>
+        )
+      }
+
+      {/* ── Research behind this policy ── */}
+      {
+        relatedResearch.length > 0 && (
+          <section id="research" class="mb-8 scroll-mt-28">
+            <div class="border border-mint/30 bg-mint/[0.04] rounded-sm overflow-hidden">
+              <div class="px-6 py-4 border-b border-mint/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.18em] text-mint mb-1">Show the work</p>
+                  <h2 class="text-xl font-display font-black uppercase text-white">Research behind this policy</h2>
+                </div>
+                <a
+                  href="/research"
+                  class="text-xs font-black uppercase tracking-wide text-white/50 hover:text-mint"
+                >
+                  Full research library →
+                </a>
+              </div>
+              <div class="divide-y divide-white/10">
+                {relatedResearch.slice(0, 4).map((resource) => (
+                  <a
+                    href={`/research/${resource.slug.current}`}
+                    class="group block px-6 py-5 hover:bg-white/[0.03] transition-colors"
+                  >
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-3">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                          <span class="text-[10px] font-black uppercase tracking-widest text-mint">
+                            {resource.researchArea || resource.resourceType}
+                          </span>
+                          {resource.version && (
+                            <span class="text-[10px] font-mono text-white/30">v{resource.version}</span>
+                          )}
+                        </div>
+                        <h3 class="text-lg font-display font-black uppercase text-white group-hover:text-mint leading-tight">
+                          {resource.title}
+                        </h3>
+                        <p class="mt-2 text-sm text-white/60 leading-relaxed">{resource.abstract}</p>
+                        {resource.keyFindings?.[0] && (
+                          <p class="mt-3 text-xs text-white/42 border-l-2 border-yellow/50 pl-3 leading-relaxed">
+                            {resource.keyFindings[0]}
+                          </p>
+                        )}
+                      </div>
+                      <Icon name="mdi:arrow-right" class="w-5 h-5 text-mint shrink-0 mt-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </section>
         )
       }
