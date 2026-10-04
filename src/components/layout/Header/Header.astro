@@ -43,6 +43,15 @@ const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
   { href: '/research', label: 'Research', order: 4 },
 ]
 
+// Blog is now a first-class publishing surface. Keep it visible even if the
+// current Sanity navigation document predates frequent Signal articles.
+if (!rawNavItems.some((item) => item.href === '/blog')) {
+  const researchIndex = rawNavItems.findIndex((item) => item.href === '/research')
+  rawNavItems.splice(researchIndex >= 0 ? researchIndex + 1 : rawNavItems.length, 0, {
+    href: '/blog', label: 'News & Analysis', order: 4.5, highlight: true,
+  })
+}
+
 const navItems = rawNavItems.map((item) => ({
   ...item,
   href: item.href ? ensureRootRelative(item.href) : item.href,
