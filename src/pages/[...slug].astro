@@ -3,7 +3,6 @@ export const prerender = false
 
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
-import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { StandardPage } from '@/features/page-rendering'
 import { BioPage } from '@/features/page-rendering'
@@ -101,7 +100,13 @@ const ogImageUrl =
 
   {
     page.pageType !== 'bio' && (
-      <Hero title={page.title} subtitle={page.subtitle || ''} compact={true} bgImage={bgImage} />
+      <header class="editorial-masthead">
+        <div class="editorial-shell">
+          <div class="editorial-kicker">Fusion Party Victoria</div>
+          <h1 class="editorial-title">{page.title}</h1>
+          {page.subtitle && <p class="editorial-deck">{page.subtitle}</p>}
+        </div>
+      </header>
     )
   }
 
