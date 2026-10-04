@@ -22,6 +22,7 @@ import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 interface BlogPost {
   _id: string
@@ -127,7 +128,7 @@ const pageDescription = post.seoDescription || post.excerpt
     {...post.tags && post.tags.length > 0 ? { keywords: post.tags } : {}}
   />
 
-  <main id="main-content">
+  <main id="main-content" class="editorial-page">
     <!-- Breadcrumbs -->
     <div class="bg-surface-base pt-28 pb-4">
       <div class="max-w-5xl mx-auto px-4">
@@ -140,7 +141,7 @@ const pageDescription = post.seoDescription || post.excerpt
           <a
             href="/blog"
             class="px-2 py-1 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black"
-            >Blog</a
+            >News & Analysis</a
           >
           <span class="opacity-60 text-white">/</span>
           <span
@@ -154,10 +155,8 @@ const pageDescription = post.seoDescription || post.excerpt
     </div>
 
     <!-- Article Header -->
-    <article class="bg-surface-base py-6 px-4 md:px-8 pb-24">
-      <div class="max-w-5xl mx-auto">
-        <!-- Main card -->
-        <BrutalCard variant="surface" shadow="magenta" padding="lg">
+    <article class="bg-surface-base pb-24">
+      <div class="editorial-document editorial-rule">
           <!-- Category Badge -->
           <div class="mb-6">
             <BrutalBadge variant={colors.variant} size="lg">{post.category}</BrutalBadge>
@@ -165,7 +164,7 @@ const pageDescription = post.seoDescription || post.excerpt
 
           <!-- Title -->
           <h1
-            class="text-4xl md:text-6xl font-display font-black mb-6 uppercase leading-tight text-magenta"
+            class="text-4xl md:text-6xl font-display font-black mb-6 leading-tight text-white"
           >
             {post.title}
           </h1>
@@ -288,7 +287,7 @@ const pageDescription = post.seoDescription || post.excerpt
       </div>
     </article>
 
-    <!-- Related Posts -->
+    <!-- More from News & Analysis -->
     {
       relatedPosts.length > 0 && (
         <section class="bg-surface-raised py-16 px-4 md:px-8 border-t border-white/10">
@@ -342,7 +341,7 @@ const pageDescription = post.seoDescription || post.excerpt
                         {formatDate(relatedPost.publishedAt)}
                       </time>
                     </div>
-                  </BrutalCard>
+                </div>
                 )
               })}
             </div>
