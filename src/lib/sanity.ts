@@ -9,7 +9,9 @@ export const client = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-29',
-  useCdn: !visualEditingEnabled,
+  // Signal publishes directly to Content Lake; SSR routes must see new documents immediately.
+  // Sanity's CDN is appropriate for static/build-time content, but can serve stale query results here.
+  useCdn: false,
   perspective: visualEditingEnabled ? 'drafts' : 'published',
   stega: { enabled: visualEditingEnabled },
   ...(visualEditingEnabled ? { token: import.meta.env.SANITY_API_READ_TOKEN } : {}),

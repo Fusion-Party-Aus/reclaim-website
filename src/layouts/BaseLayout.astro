@@ -6,7 +6,7 @@ import { VisualEditing } from '@sanity/astro/visual-editing'
 import { stegaClean } from '@sanity/client/stega'
 import { Icon } from 'astro-icon/components'
 import { OrganizationSchema, WebSiteSchema } from '@adkinn/astro-ai-readiness/components'
-import { BrutalCard } from '@/components/ui'
+import '../styles/editorial.css'
 
 interface Props {
   title: string
@@ -16,15 +16,20 @@ interface Props {
   imageAlt?: string
   type?: 'website' | 'article'
   noindex?: boolean
+  publishedAt?: string
+  modifiedAt?: string
 }
 
 const {
   title: rawTitle,
-  description: rawDescription = 'Fusion Party Victoria - Taking back what they stole.',
+  description:
+    rawDescription = 'Fusion Party Victoria — Reignite Democracy. Explore our policies, research and practical plans for housing, transport, integrity and civil liberties.',
   image = '/og/default.png',
-  imageAlt = 'Fusion Party Victoria - Taking back what they stole.',
+  imageAlt = 'Fusion Party Victoria — Reignite Democracy.',
   type = 'website',
   noindex = false,
+  publishedAt,
+  modifiedAt,
 } = Astro.props
 
 // Sanity stega-encodes editable strings with invisible characters; strip them
@@ -34,7 +39,44 @@ const description = stegaClean(rawDescription)
 const siteConfig = await getSiteConfig()
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 
-const canonicalImage = new URL(image, Astro.site ?? Astro.url)
+const siteUrl = Astro.site ?? new URL('https://vic.fusionparty.org.au')
+const canonicalUrl = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', siteUrl).href
+const canonicalImage = new URL(stegaClean(image), siteUrl)
+const utilityPages = new Set([
+  '/404',
+  '/403',
+  '/500',
+  '/503',
+  '/offline',
+  '/login',
+  '/slides',
+  '/letterhead',
+  '/design-system',
+  '/no-results',
+  '/coming-soon',
+])
+const isUtilityPage = utilityPages.has(Astro.url.pathname.replace(/\/$/, ''))
+const shouldNoindex = noindex || isUtilityPage || visualEditingEnabled
+const breadcrumbs = Astro.url.pathname
+  .split('/')
+  .filter(Boolean)
+  .map((segment, index, segments) => ({
+    '@type': 'ListItem',
+    position: index + 2,
+    name:
+      index === segments.length - 1
+        ? title.split(' | ')[0]
+        : segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+    item: new URL('/' + segments.slice(0, index + 1).join('/'), siteUrl).href,
+  }))
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl.href },
+    ...breadcrumbs,
+  ],
+}
 ---
 
 <html lang="en-AU">
@@ -44,12 +86,14 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <SEO
       title={title}
       description={description}
-      noindex={noindex}
+      canonical={canonicalUrl}
+      noindex={shouldNoindex}
       openGraph={{
         basic: {
           title,
           type,
           image: canonicalImage.href,
+          url: canonicalUrl,
         },
         optional: {
           description,
@@ -71,6 +115,24 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
         imageAlt,
       }}
     />
+    {
+      type === 'article' && publishedAt && (
+        <meta property="article:published_time" content={publishedAt} />
+      )
+    }
+    {
+      type === 'article' && modifiedAt && (
+        <meta property="article:modified_time" content={modifiedAt} />
+      )
+    }
+    {
+      breadcrumbs.length > 0 && !shouldNoindex && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(breadcrumbSchema).replace(/</g, '\\u003c')}
+        />
+      )
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
@@ -101,7 +163,7 @@ const canonicalImage = new URL(image, Astro.site ?? Astro.url)
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
-  <body>
+  <body class:list={{ 'public-editorial': !isUtilityPage }}>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#234080] focus:text-white focus:px-4 focus:py-2 focus:border focus:border-white focus:font-black focus:uppercase focus:text-sm"

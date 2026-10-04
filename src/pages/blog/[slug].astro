@@ -1,19 +1,9 @@
 ---
-export const prerender = true
-
-export async function getStaticPaths() {
-  const blogPosts = await getDocuments<BlogPost>('blogPost')
-  return blogPosts
-    .filter((post) => post.slug?.current)
-    .map((post) => ({
-      params: { slug: post.slug.current },
-    }))
-}
+export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { TechArticleSchema } from '@adkinn/astro-ai-readiness/components'
 import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
 import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
@@ -25,6 +15,7 @@ import '../../styles/global.css'
 import '../../styles/editorial.css'
 
 interface BlogPost {
+  _updatedAt?: string
   _id: string
   title: string
   slug: { current: string }
@@ -111,26 +102,36 @@ const pageDescription = post.seoDescription || post.excerpt
 <BaseLayout
   title={`${pageTitle} | Fusion Party Victoria`}
   description={pageDescription}
+  type="article"
+  publishedAt={post.publishedAt}
+  modifiedAt={post._updatedAt || post.publishedAt}
   image={ogImageUrl}
   imageAlt={post.featuredImage?.alt || post.title}
 >
   <Header />
 
   <!-- Article JSON-LD Structured Data -->
-  <TechArticleSchema
-    headline={post.title}
-    description={post.excerpt || pageDescription}
-    datePublished={post.publishedAt}
-    dateModified={post.publishedAt}
-    {...post.author?.name ? { author: { name: post.author.name } } : {}}
-    {...imageUrl ? { image: { url: imageUrl } } : {}}
-    {...post.category ? { articleSection: post.category } : {}}
-    {...post.tags && post.tags.length > 0 ? { keywords: post.tags } : {}}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: pageDescription,
+      mainEntityOfPage: new URL(`/blog/${post.slug.current}`, Astro.site).href,
+      datePublished: post.publishedAt,
+      dateModified: post._updatedAt || post.publishedAt,
+      image: new URL(ogImageUrl, Astro.site).href,
+      author: post.author?.name
+        ? { '@type': 'Person', name: post.author.name }
+        : { '@type': 'Organization', name: 'Fusion Party Victoria', url: Astro.site?.href },
+      publisher: { '@type': 'Organization', name: 'Fusion Party Victoria', url: Astro.site?.href },
+    }).replace(/</g, '\\u003c')}
   />
 
   <main id="main-content" class="editorial-page">
     <!-- Breadcrumbs -->
-    <div class="bg-surface-base pt-28 pb-4">
+    <div class="bg-surface-base pt-8 pb-4">
       <div class="max-w-5xl mx-auto px-4">
         <nav class="text-xs font-mono uppercase tracking-wide flex items-center gap-2">
           <a
@@ -157,133 +158,141 @@ const pageDescription = post.seoDescription || post.excerpt
     <!-- Article Header -->
     <article class="bg-surface-base pb-24">
       <div class="editorial-document editorial-rule">
-          <!-- Category Badge -->
-          <div class="mb-6">
-            <BrutalBadge variant={colors.variant} size="lg">{post.category}</BrutalBadge>
-          </div>
+        <!-- Category Badge -->
+        <div class="mb-6">
+          <BrutalBadge variant={colors.variant} size="lg">{post.category}</BrutalBadge>
+        </div>
 
-          <!-- Title -->
-          <h1
-            class="text-4xl md:text-6xl font-display font-black mb-6 leading-tight text-white"
-          >
-            {post.title}
-          </h1>
+        <!-- Title -->
+        <h1 class="text-4xl md:text-6xl font-display font-black mb-6 leading-tight text-white">
+          {post.title}
+        </h1>
 
-          <!-- Excerpt -->
+        <!-- Excerpt -->
+        {
+          post.excerpt && (
+            <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-white/80">
+              {post.excerpt}
+            </p>
+          )
+        }
+
+        <!-- Meta Info -->
+        <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-white/10">
           {
-            post.excerpt && (
-              <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-white/80">
-                {post.excerpt}
-              </p>
-            )
-          }
-
-          <!-- Meta Info -->
-          <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-white/10">
-            {
-              post.author && (
-                <div class="flex items-center gap-4">
-                  {authorImageUrl && (
-                    <img
-                      src={authorImageUrl}
-                      alt={post.author.name}
-                      loading="lazy"
-                      class="w-12 h-12 rounded-full"
-                    />
-                  )}
-                  <div>
-                    <div class="font-black text-lg">{post.author.name}</div>
-                    {post.author.role && (
-                      <div class="font-bold text-sm text-white/60">{post.author.role}</div>
-                    )}
-                  </div>
-                </div>
-              )
-            }
-
-            <div class="h-8 w-px bg-white/20"></div>
-
-            <time class="font-bold text-white/70">{formatDate(post.publishedAt)}</time>
-
-            {
-              post.tags && post.tags.length > 0 && (
-                <>
-                  <div class="h-8 w-px bg-white/20" />
-                  <div class="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span class="px-3 py-1 bg-white/10 rounded-sm text-xs font-black uppercase">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )
-            }
-          </div>
-
-          {
-            post.signalProvenance?.aiAssisted && (
-              <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-white/70">
-                <strong class="text-white">Editorial transparency:</strong> This article was drafted with assistance from Fusion Signal and reviewed by Fusion Party Victoria before publication.
-                {post.signalProvenance.sourceUrl && (
-                  <> <a href={post.signalProvenance.sourceUrl} rel="nofollow noopener">View the source that triggered this analysis.</a></>
+            post.author && (
+              <div class="flex items-center gap-4">
+                {authorImageUrl && (
+                  <img
+                    src={authorImageUrl}
+                    alt={post.author.name}
+                    loading="lazy"
+                    class="w-12 h-12 rounded-full"
+                  />
                 )}
-              </aside>
+                <div>
+                  <div class="font-black text-lg">{post.author.name}</div>
+                  {post.author.role && (
+                    <div class="font-bold text-sm text-white/60">{post.author.role}</div>
+                  )}
+                </div>
+              </div>
             )
           }
 
-          <!-- Featured Image -->
+          <div class="h-8 w-px bg-white/20"></div>
+
+          <time datetime={post.publishedAt} class="font-bold text-white/70"
+            >{formatDate(post.publishedAt)}</time
+          >
+
           {
-            imageUrl && (
-              <div class="mb-12">
-                <img
-                  src={imageUrl}
-                  alt={post.featuredImage?.alt || post.title}
-                  loading="lazy"
-                  class="w-full h-auto rounded-sm"
-                />
-              </div>
+            post.tags && post.tags.length > 0 && (
+              <>
+                <div class="h-8 w-px bg-white/20" />
+                <div class="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span class="px-3 py-1 bg-white/10 rounded-sm text-xs font-black uppercase">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </>
             )
           }
+        </div>
 
-          <!-- Article Body -->
-          <div class="prose-brutal max-w-none">
-            <PortableText
-              value={post.body}
-              components={{
-                mark: { link: CustomLink },
-                type: { table: TableBlock },
-              }}
-            />
-          </div>
+        {
+          post.signalProvenance?.aiAssisted && (
+            <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-white/70">
+              <strong class="text-white">Editorial transparency:</strong> This article was drafted
+              with assistance from Fusion Signal and reviewed by Fusion Party Victoria before
+              publication.
+              {post.signalProvenance.sourceUrl && (
+                <>
+                  {' '}
+                  <a href={post.signalProvenance.sourceUrl} rel="nofollow noopener">
+                    View the source that triggered this analysis.
+                  </a>
+                </>
+              )}
+            </aside>
+          )
+        }
 
-          <!-- Share Section -->
-          <div class="mt-12 pt-8 border-t border-white/10">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-              <div class="font-black text-xl uppercase">Share this post:</div>
-              <div class="flex gap-3">
-                <BrutalButton
-                  variant="black"
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
-                >
-                  Twitter
-                </BrutalButton>
-                <BrutalButton
-                  variant="black"
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
-                >
-                  Facebook
-                </BrutalButton>
-                <button
-                  onclick={`navigator.clipboard.writeText('${Astro.url.href}'); alert('Link copied!')`}
-                  class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-white border border-white/20 hover:bg-white/10"
-                >
-                  Copy Link
-                </button>
-              </div>
+        <!-- Featured Image -->
+        {
+          imageUrl && (
+            <div class="mb-12">
+              <img
+                src={imageUrl}
+                alt={post.featuredImage?.alt || post.title}
+                loading="eager"
+                width="1200"
+                height="600"
+                class="w-full h-auto rounded-sm"
+              />
+            </div>
+          )
+        }
+
+        <!-- Article Body -->
+        <div class="prose-brutal max-w-none">
+          <PortableText
+            value={post.body}
+            components={{
+              mark: { link: CustomLink },
+              type: { table: TableBlock },
+            }}
+          />
+        </div>
+
+        <!-- Share Section -->
+        <div class="mt-12 pt-8 border-t border-white/10">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="font-black text-xl uppercase">Share this post:</div>
+            <div class="flex gap-3">
+              <BrutalButton
+                variant="black"
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
+              >
+                Twitter
+              </BrutalButton>
+              <BrutalButton
+                variant="black"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+              >
+                Facebook
+              </BrutalButton>
+              <button
+                onclick={`navigator.clipboard.writeText('${Astro.url.href}'); alert('Link copied!')`}
+                class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-white border border-white/20 hover:bg-white/10"
+              >
+                Copy Link
+              </button>
             </div>
           </div>
-        </BrutalCard>
+        </div>
       </div>
     </article>
 
@@ -341,7 +350,7 @@ const pageDescription = post.seoDescription || post.excerpt
                         {formatDate(relatedPost.publishedAt)}
                       </time>
                     </div>
-                </div>
+                  </BrutalCard>
                 )
               })}
             </div>
