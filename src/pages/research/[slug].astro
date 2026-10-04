@@ -11,6 +11,7 @@ import TableBlock from '../../components/portable-text/TableBlock.astro'
 import { getResearchResourceBySlug } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 const { slug } = Astro.params
 if (!slug) return Astro.redirect('/404')
@@ -58,7 +59,7 @@ const formatDate = (date?: string) =>
 <BaseLayout title={`${resource.title} | Research | Fusion Party Victoria`} description={resource.abstract} type="article">
   <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\u003c')} />
   <Header />
-  <main id="main-content" class="bg-surface-base min-h-screen">
+  <main id="main-content" class="site-editorial bg-surface-base min-h-screen">
     <section class="pt-28 pb-12 px-4 md:px-8 border-b border-mint/30">
       <div class="max-w-5xl mx-auto">
         <div class="flex flex-wrap items-center gap-3 mb-5">
