@@ -14,6 +14,7 @@ import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import type { PolicyKeyPoint } from '../../types/sanity'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 interface ProofStat {
   number: string
@@ -257,7 +258,7 @@ const policyStructuredData = {
             </span>
           )
         }
-        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+        <h1 class="text-4xl md:text-7xl font-display font-black text-white leading-[1]">
           {policy.title}
         </h1>
       </div>
@@ -317,7 +318,7 @@ const policyStructuredData = {
             <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
               Fusion Victoria policy
             </p>
-            <h2 class="text-xl font-display font-black uppercase text-white mb-2">
+            <h2 class="text-xl font-display font-black text-white mb-2">
               Homes and Stations Code
             </h2>
             <p class="text-sm text-white/80 leading-relaxed mb-3">
@@ -376,7 +377,7 @@ const policyStructuredData = {
               <Icon name="mdi:train" class="w-32 h-32 text-mint" />
             </div>
             <div class="relative z-10 max-w-2xl">
-              <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
+              <h3 class="text-xl font-display font-black text-mint mb-2 tracking-tight">
                 📊 Check Your Local Transport Score
               </h3>
               <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
@@ -431,7 +432,7 @@ const policyStructuredData = {
               class="!p-0 overflow-hidden"
             >
               <div class="bg-magenta border-b border-white/10 px-6 py-4">
-                <h2 class="text-xl font-display font-black uppercase text-white tracking-tight">
+                <h2 class="text-xl font-display font-black text-white tracking-tight">
                   What it does
                 </h2>
               </div>
@@ -467,7 +468,7 @@ const policyStructuredData = {
               <div class="px-6 py-4 border-b border-mint/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <p class="text-[10px] font-black uppercase tracking-[0.18em] text-mint mb-1">Show the work</p>
-                  <h2 class="text-xl font-display font-black uppercase text-white">Research behind this policy</h2>
+                  <h2 class="text-xl font-display font-black text-white">Research behind this policy</h2>
                 </div>
                 <a
                   href="/research"
@@ -492,7 +493,7 @@ const policyStructuredData = {
                             <span class="text-[10px] font-mono text-white/30">v{resource.version}</span>
                           )}
                         </div>
-                        <h3 class="text-lg font-display font-black uppercase text-white group-hover:text-mint leading-tight">
+                        <h3 class="text-lg font-display font-black text-white group-hover:text-mint leading-tight">
                           {resource.title}
                         </h3>
                         <p class="mt-2 text-sm text-white/60 leading-relaxed">{resource.abstract}</p>
@@ -543,7 +544,7 @@ const policyStructuredData = {
             <BrutalCard variant="surface" shadow="mint" padding="md" class="!p-0 overflow-hidden">
               <div class="bg-black/30 border-b border-white/10 px-6 py-4 flex items-center gap-3">
                 <Icon name="mdi:book-open-variant" class="w-6 h-6 text-mint" />
-                <h2 class="text-xl font-display font-black uppercase text-white">Further Detail</h2>
+                <h2 class="text-xl font-display font-black text-white">Further Detail</h2>
               </div>
               <div class="divide-y divide-white/10">
                 {detailSections.map((section, idx) => {
@@ -620,7 +621,7 @@ const policyStructuredData = {
             This policy won't pass itself.
           </p>
           <h3
-            class="text-xl md:text-2xl font-display font-black uppercase text-white mb-4 leading-tight"
+            class="text-xl md:text-2xl font-display font-black text-white mb-4 leading-tight"
           >
             Every vote we get is a vote against the system that's taking from you.
           </h3>
