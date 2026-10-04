@@ -1,0 +1,19 @@
+/* Editorial content language shared by policy, vision and publication pages. */
+.editorial-page{background:#100d13;color:#f7f3f8;min-height:100vh}
+.editorial-page .editorial-shell{max-width:1180px;margin:0 auto;padding-left:1.25rem;padding-right:1.25rem}
+.editorial-page .editorial-masthead{padding:8rem 0 2.25rem;border-bottom:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,#160d19,#100d13)}
+.editorial-page .editorial-kicker{font:800 .75rem/1 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#00ddb8;margin-bottom:1rem}
+.editorial-page .editorial-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:900;line-height:.88;letter-spacing:-.035em;color:#fff;margin:0}
+.editorial-page .editorial-deck{font-size:1.15rem;line-height:1.55;color:rgba(255,255,255,.66);max-width:48rem;margin:1.25rem 0 0}
+.editorial-page .brutal-card{box-shadow:none!important;border:0!important;border-radius:0!important;background:transparent!important}
+.editorial-page .brutal-card>[class*="bg-magenta"],.editorial-page .brutal-card>[class*="bg-mint"],.editorial-page .brutal-card>[class*="bg-yellow"]{background:transparent!important;border-top:3px solid #d428d4!important;border-bottom:1px solid rgba(255,255,255,.14)!important;padding-left:0!important;padding-right:0!important}
+.editorial-page .brutal-card>[class*="bg-mint"]{border-top-color:#00ddb8!important}.editorial-page .brutal-card>[class*="bg-yellow"]{border-top-color:#e7c44a!important}
+.editorial-page .brutal-card h2,.editorial-page .brutal-card h3,.editorial-page .brutal-card h4{text-transform:none}
+.editorial-page [data-policy-card] .brutal-card{padding:1.35rem 0!important;border-bottom:1px solid rgba(255,255,255,.12)!important;height:100%}
+.editorial-page [data-policy-card] h4{font-size:1.45rem;line-height:1.05}
+.editorial-page .editorial-document{max-width:860px;margin:0 auto;padding:3rem 1.25rem 6rem}
+.editorial-page .editorial-rule{border-top:3px solid #d428d4}
+.editorial-page .editorial-meta{font:700 .72rem/1.4 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.5)}
+.editorial-page .prose,.editorial-page .prose-brutal{font-size:1.12rem;line-height:1.75}
+.editorial-page .prose h2,.editorial-page .prose-brutal h2{font-size:2.15rem;text-transform:none!important;border-left:0!important;padding-left:0!important;border-top:1px solid rgba(255,255,255,.15);padding-top:2rem}
+@media(max-width:760px){.editorial-page .editorial-masthead{padding-top:6.5rem}.editorial-page .editorial-document{padding-top:2rem}.editorial-page [data-policy-card] h4{font-size:1.3rem}}
