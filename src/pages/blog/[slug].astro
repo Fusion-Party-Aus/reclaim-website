@@ -40,6 +40,12 @@ interface BlogPost {
   body: PortableTextBlock[]
   seoTitle?: string
   seoDescription?: string
+  signalProvenance?: {
+    articleId?: string
+    sourceUrl?: string
+    generatedAt?: string
+    aiAssisted?: boolean
+  }
 }
 
 const { slug } = Astro.params
@@ -215,6 +221,17 @@ const pageDescription = post.seoDescription || post.excerpt
               )
             }
           </div>
+
+          {
+            post.signalProvenance?.aiAssisted && (
+              <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-white/70">
+                <strong class="text-white">Editorial transparency:</strong> This article was drafted with assistance from Fusion Signal and reviewed by Fusion Party Victoria before publication.
+                {post.signalProvenance.sourceUrl && (
+                  <> <a href={post.signalProvenance.sourceUrl} rel="nofollow noopener">View the source that triggered this analysis.</a></>
+                )}
+              </aside>
+            )
+          }
 
           <!-- Featured Image -->
           {
