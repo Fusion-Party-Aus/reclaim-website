@@ -10,6 +10,7 @@ import { BioPage } from '@/features/page-rendering'
 import { getPages, urlFor } from '../lib/sanity'
 import type { Page } from '../types/sanity'
 import '../styles/global.css'
+import '../styles/editorial.css'
 
 const pages = await getPages()
 
@@ -104,7 +105,7 @@ const ogImageUrl =
     )
   }
 
-  <main id="main-content" class="bg-surface-base py-8 pb-16">
+  <main id="main-content" class="site-editorial bg-surface-base py-8 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         page.pageType === 'bio' ? (
