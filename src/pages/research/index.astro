@@ -8,6 +8,7 @@ import { Icon } from 'astro-icon/components'
 import { BrutalBadge } from '@/components/ui'
 import { getResearchResources } from '../../lib/sanity'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 const resources = await getResearchResources()
 
@@ -53,7 +54,7 @@ const latestPublished = [...resources]
   description="Public research, datasets, methodology, submissions and evidence behind Fusion Party Victoria's policy platform."
 >
   <Header />
-  <main id="main-content" class="bg-surface-base">
+  <main id="main-content" class="site-editorial bg-surface-base">
     <section class="relative overflow-hidden border-b border-white/10 pt-28">
       <div class="absolute inset-x-0 top-0 h-2 bg-magenta"></div>
       <div class="absolute inset-x-0 top-2 h-1 bg-mint"></div>
