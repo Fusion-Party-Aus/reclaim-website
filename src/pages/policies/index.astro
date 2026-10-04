@@ -9,6 +9,7 @@ import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
 import { getPolicies, getPoliciesPage } from '../../lib/sanity'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 interface Policy {
   _id: string
@@ -150,10 +151,15 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
   image="/og/policies.png"
 >
   <Header />
-  <main id="main-content">
-    <Hero title={title} subtitle={subtitle} compact={true} bgImage="/color_panel_rally.jpg" />
-
-    {/* ── Manifesto Strip ── */}
+  <main id="main-content" class="editorial-page">
+    <header class="editorial-masthead">
+      <div class="editorial-shell">
+        <div class="editorial-kicker">Fusion Party Victoria</div>
+        <h1 class="editorial-title">{title}</h1>
+        <p class="editorial-deck">{subtitle}</p>
+      </div>
+    </header>
+{/* ── Manifesto Strip ── */}
     <div class="bg-black border-b-4 border-magenta">
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
         <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
