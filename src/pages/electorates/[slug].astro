@@ -21,6 +21,7 @@ import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 
 interface CommitmentDetail {
   detail: string
@@ -145,7 +146,7 @@ const tierConfig: Record<
     subtitle={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
   />
 
-  <main id="main-content" class="bg-surface-base pb-24">
+  <main id="main-content" class="site-editorial bg-surface-base pb-24">
     <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10">
       {/* ── Breadcrumbs ── */}
       <nav
