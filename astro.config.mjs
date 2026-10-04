@@ -119,7 +119,9 @@ export default defineConfig({
     sanity({
       projectId: 'qwl3f8jb',
       dataset: 'production',
-      useCdn: true,
+      // Keep Astro's Sanity integration consistent with src/lib/sanity.ts.
+      // Signal publishes live content, so stale CDN reads are not acceptable here.
+      useCdn: false,
       stega: {
         studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
       },
