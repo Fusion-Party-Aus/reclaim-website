@@ -17,3 +17,14 @@
 .editorial-page .prose,.editorial-page .prose-brutal{font-size:1.12rem;line-height:1.75}
 .editorial-page .prose h2,.editorial-page .prose-brutal h2{font-size:2.15rem;text-transform:none!important;border-left:0!important;padding-left:0!important;border-top:1px solid rgba(255,255,255,.15);padding-top:2rem}
 @media(max-width:760px){.editorial-page .editorial-masthead{padding-top:6.5rem}.editorial-page .editorial-document{padding-top:2rem}.editorial-page [data-policy-card] h4{font-size:1.3rem}}
+
+/* Site-wide consolidation */
+.site-editorial{background:#100d13;color:#f7f3f8}
+.site-editorial .content-section{border-bottom:1px solid rgba(255,255,255,.12);padding:4rem 0}
+.site-editorial .section-kicker{font:800 .72rem/1 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#00ddb8;margin-bottom:.8rem}
+.site-editorial .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.94;letter-spacing:-.025em;text-transform:none}
+.site-editorial .section-deck{color:rgba(255,255,255,.64);font-size:1.05rem;line-height:1.6;max-width:46rem}
+.site-editorial .editorial-list{border-top:3px solid #d428d4}
+.site-editorial .editorial-list>*{border-bottom:1px solid rgba(255,255,255,.12)}
+.site-editorial .quiet-card{background:transparent;border:1px solid rgba(255,255,255,.13);box-shadow:none}
+.site-editorial .quiet-card:hover{border-color:rgba(0,221,184,.45)}
