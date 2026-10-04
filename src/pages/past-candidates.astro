@@ -6,6 +6,7 @@ import { BrutalBadge, BrutalCard } from '@/components/ui'
 import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
 import type { Page, Electorate } from '../types/sanity'
 import '../styles/global.css'
+import '../styles/editorial.css'
 
 const pages = await getPages()
 const archivedElectorates = await getArchivedElectorates()
@@ -87,7 +88,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
   </section>
 
   <!-- ARCHIVE GRID -->
-  <main id="main-content" class="bg-surface-raised py-16 min-h-screen">
+  <main id="main-content" class="site-editorial bg-surface-raised py-16 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         sortedGroups.length > 0 ? (
