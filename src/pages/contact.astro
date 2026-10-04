@@ -6,6 +6,7 @@ import { Icon } from 'astro-icon/components'
 import { BrutalButton } from '@/components/ui'
 import { getDocuments } from '../lib/sanity'
 import '../styles/global.css'
+import '../styles/editorial.css'
 
 interface SocialLink {
   platform: string
@@ -151,7 +152,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
     </nav>
   </div>
 
-  <main id="main-content" class="bg-surface-base">
+  <main id="main-content" class="site-editorial bg-surface-base">
     {/* ===== GENERAL ENQUIRIES: Mint full-bleed block ===== */}
     <section class="bg-mint border-b border-black/10 relative overflow-hidden">
       {/* Big rotated label */}
