@@ -166,6 +166,14 @@ export interface ResearchResource extends SanityDocument {
     slug: SanitySlug
     summary?: string
   }>
+  relatedResearch?: Array<{
+    _id: string
+    title: string
+    slug: SanitySlug
+    abstract?: string
+    researchArea?: string
+    resourceType?: ResearchResource['resourceType']
+  }>
   citationTitle?: string
   doi?: string
   featured?: boolean
