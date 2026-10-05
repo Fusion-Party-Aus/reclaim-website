@@ -40,11 +40,6 @@ export default defineConfig({
           'https://www.youtube.com/c/fusionpartyaus',
           'https://mastodon.au/@FusionPartyAus',
         ],
-        founder: {
-          name: 'Fusion Party Australia',
-          jobTitle: 'Founding Movement',
-          sameAs: ['https://fusionparty.org.au'],
-        },
       },
       webSite: {
         description: 'Fusion Party Victoria — Reignite Democracy. Explore the complete Victorian policy platform, manifesto, evidence, and ways to get involved.',
@@ -69,6 +64,7 @@ export default defineConfig({
           '',
           'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
+          'Sitemap: https://vic.fusionparty.org.au/blog-sitemap.xml',
         ],
       },
       llmsTxt: {
@@ -87,6 +83,8 @@ export default defineConfig({
               { title: 'Research feed (plain text)', url: 'https://vic.fusionparty.org.au/api/research.txt' },
               { title: 'Research feed (JSON)', url: 'https://vic.fusionparty.org.au/api/research.json' },
               { title: 'Research sitemap', url: 'https://vic.fusionparty.org.au/research-sitemap.xml' },
+              { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog' },
+              { title: 'News sitemap', url: 'https://vic.fusionparty.org.au/blog-sitemap.xml' },
               { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
             ],
           },
@@ -111,7 +109,7 @@ export default defineConfig({
           { title: 'Take Action', url: 'https://vic.fusionparty.org.au/get-involved', description: 'Volunteer, donate, or join the movement' },
           { title: 'Governance', url: 'https://vic.fusionparty.org.au/code-of-conduct', description: 'Our code of conduct and governance documents' },
           { title: 'FAQ', url: 'https://vic.fusionparty.org.au/faq', description: 'Frequently asked questions about Fusion Party Victoria' },
-          { title: 'Blog', url: 'https://vic.fusionparty.org.au/blog', description: 'News, analysis, and updates from the campaign' },
+          { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog', description: 'Current Victorian news, policy explainers and analysis published by Fusion Party Victoria' },
         ],
       },
     }),
