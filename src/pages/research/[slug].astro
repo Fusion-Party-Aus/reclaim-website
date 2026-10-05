@@ -184,6 +184,23 @@ const formatDate = (date?: string) =>
         </section>
       ) : null}
 
+      {resource.relatedResearch?.length ? (
+        <section>
+          <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Related research</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {resource.relatedResearch.map((related) => (
+              <BrutalCard variant="surface" shadow="mint" padding="md">
+                <p class="text-xs font-black uppercase tracking-widest text-mint mb-2">{related.researchArea || 'Research'}</p>
+                <h3 class="font-display font-black uppercase text-white mb-2">
+                  <a href={`/research/${related.slug.current}`} class="hover:text-mint">{related.title}</a>
+                </h3>
+                {related.abstract && <p class="text-sm text-white/65">{related.abstract}</p>}
+              </BrutalCard>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {resource.relatedPolicies?.length ? (
         <section>
           <h2 class="text-2xl font-display font-black uppercase text-white mb-4">Related policy</h2>
