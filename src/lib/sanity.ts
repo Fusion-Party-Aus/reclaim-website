@@ -193,6 +193,14 @@ export async function getResearchResources(): Promise<ResearchResource[]> {
       title,
       slug,
       summary
+    },
+    "relatedResearch": relatedResearch[]->{
+      _id,
+      title,
+      slug,
+      abstract,
+      researchArea,
+      resourceType
     }
   }`
   return await client.fetch(query)
@@ -210,6 +218,14 @@ export async function getResearchResourceBySlug(slug: string): Promise<ResearchR
       title,
       slug,
       summary
+    },
+    "relatedResearch": relatedResearch[]->{
+      _id,
+      title,
+      slug,
+      abstract,
+      researchArea,
+      resourceType
     }
   }`
   return await client.fetch(query, { slug })
@@ -227,6 +243,14 @@ export async function getResearchForPolicy(policyId: string): Promise<ResearchRe
       title,
       slug,
       summary
+    },
+    "relatedResearch": relatedResearch[]->{
+      _id,
+      title,
+      slug,
+      abstract,
+      researchArea,
+      resourceType
     }
   }`
   return await client.fetch(query, { policyId })
