@@ -5,7 +5,6 @@ import { KonamiCode } from '@/features/engagement'
 import { VisualEditing } from '@sanity/astro/visual-editing'
 import { stegaClean } from '@sanity/client/stega'
 import { Icon } from 'astro-icon/components'
-import { OrganizationSchema, WebSiteSchema } from '@adkinn/astro-ai-readiness/components'
 import '../styles/editorial.css'
 
 interface Props {
@@ -77,6 +76,47 @@ const breadcrumbSchema = {
     ...breadcrumbs,
   ],
 }
+const organizationId = 'https://vic.fusionparty.org.au/#organization'
+const nationalOrganizationId = 'https://fusionparty.org.au/#organization'
+const organizationStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': organizationId,
+  name: 'Fusion Party Victoria',
+  alternateName: ['Fusion Victoria', 'Fusion Party VIC'],
+  url: 'https://vic.fusionparty.org.au/',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://vic.fusionparty.org.au/logo.png',
+  },
+  description:
+    'The Victorian branch of Fusion Party Australia, publishing current Victorian policy, research, news and analysis.',
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Victoria, Australia',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    '@id': nationalOrganizationId,
+    name: 'Fusion Party Australia',
+    url: 'https://fusionparty.org.au/',
+  },
+  sameAs: [
+    'https://www.facebook.com/FusionPartyAus',
+    'https://www.instagram.com/fusionpartyaus',
+    'https://www.youtube.com/c/fusionpartyaus',
+    'https://mastodon.au/@FusionPartyAus',
+  ],
+}
+const webSiteStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://vic.fusionparty.org.au/#website',
+  url: 'https://vic.fusionparty.org.au/',
+  name: 'Fusion Party Victoria',
+  inLanguage: 'en-AU',
+  publisher: { '@id': organizationId },
+}
 ---
 
 <html lang="en-AU">
@@ -138,9 +178,19 @@ const breadcrumbSchema = {
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
     <link rel="icon" href="/icons/favicon.ico" />
 
-    <!-- JSON-LD Structured Data -->
-    <OrganizationSchema />
-    <WebSiteSchema />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Canonical entity graph. Keep this explicit so policy/article publisher IDs resolve
+         to a stable Victorian organisation rather than an inferred or historical entity. -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationStructuredData).replace(/</g, '\\u003c')}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(webSiteStructuredData).replace(/</g, '\\u003c')}
+    />
 
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />

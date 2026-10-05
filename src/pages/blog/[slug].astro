@@ -15,12 +15,12 @@ import '../../styles/global.css'
 import '../../styles/editorial.css'
 
 interface BlogPost {
-  _updatedAt?: string
   _id: string
   title: string
   slug: { current: string }
   excerpt: string
   publishedAt: string
+  _updatedAt?: string
   category: string
   featuredImage?: any
   author?: {
@@ -97,6 +97,32 @@ const ogImageUrl = post.featuredImage
 
 const pageTitle = post.seoTitle || post.title
 const pageDescription = post.seoDescription || post.excerpt
+const canonicalUrl = `https://vic.fusionparty.org.au/blog/${post.slug.current}`
+const articleType = post.category === 'news' ? 'NewsArticle' : 'Article'
+const articleStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': articleType,
+  '@id': canonicalUrl,
+  url: canonicalUrl,
+  mainEntityOfPage: canonicalUrl,
+  headline: post.title,
+  description: pageDescription,
+  datePublished: post.publishedAt,
+  dateModified: post._updatedAt || post.publishedAt,
+  inLanguage: 'en-AU',
+  articleSection: post.category,
+  keywords: post.tags,
+  image: imageUrl ? [imageUrl] : [`https://vic.fusionparty.org.au${ogImageUrl}`],
+  author: post.author?.name
+    ? { '@type': 'Person', name: post.author.name }
+    : { '@id': 'https://vic.fusionparty.org.au/#organization' },
+  publisher: { '@id': 'https://vic.fusionparty.org.au/#organization' },
+  isPartOf: {
+    '@type': 'CollectionPage',
+    '@id': 'https://vic.fusionparty.org.au/blog',
+    name: 'Fusion Party Victoria News & Analysis',
+  },
+}
 ---
 
 <BaseLayout
@@ -107,26 +133,14 @@ const pageDescription = post.seoDescription || post.excerpt
   modifiedAt={post._updatedAt || post.publishedAt}
   image={ogImageUrl}
   imageAlt={post.featuredImage?.alt || post.title}
+  type="article"
 >
   <Header />
 
-  <!-- Article JSON-LD Structured Data -->
+  <!-- Search/answer-engine schema: these are political news and analysis, not technical articles. -->
   <script
     type="application/ld+json"
-    set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: pageDescription,
-      mainEntityOfPage: new URL(`/blog/${post.slug.current}`, Astro.site).href,
-      datePublished: post.publishedAt,
-      dateModified: post._updatedAt || post.publishedAt,
-      image: new URL(ogImageUrl, Astro.site).href,
-      author: post.author?.name
-        ? { '@type': 'Person', name: post.author.name }
-        : { '@type': 'Organization', name: 'Fusion Party Victoria', url: Astro.site?.href },
-      publisher: { '@type': 'Organization', name: 'Fusion Party Victoria', url: Astro.site?.href },
-    }).replace(/</g, '\\u003c')}
+    set:html={JSON.stringify(articleStructuredData).replace(/</g, '\\u003c')}
   />
 
   <main id="main-content" class="editorial-page">

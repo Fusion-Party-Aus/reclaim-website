@@ -51,11 +51,6 @@ export default defineConfig({
           'https://www.youtube.com/c/fusionpartyaus',
           'https://mastodon.au/@FusionPartyAus',
         ],
-        founder: {
-          name: 'Fusion Party Australia',
-          jobTitle: 'Founding Movement',
-          sameAs: ['https://fusionparty.org.au'],
-        },
       },
       webSite: {
         description:
@@ -82,6 +77,8 @@ export default defineConfig({
           'Sitemap: https://vic.fusionparty.org.au/content-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
+          'Sitemap: https://vic.fusionparty.org.au/blog-sitemap.xml',
+          'Sitemap: https://vic.fusionparty.org.au/news-sitemap.xml',
         ],
       },
       llmsTxt: {
@@ -107,18 +104,12 @@ export default defineConfig({
               },
               { title: 'Policy sitemap', url: 'https://vic.fusionparty.org.au/policy-sitemap.xml' },
               { title: 'Research & Data', url: 'https://vic.fusionparty.org.au/research' },
-              {
-                title: 'Research feed (plain text)',
-                url: 'https://vic.fusionparty.org.au/api/research.txt',
-              },
-              {
-                title: 'Research feed (JSON)',
-                url: 'https://vic.fusionparty.org.au/api/research.json',
-              },
-              {
-                title: 'Research sitemap',
-                url: 'https://vic.fusionparty.org.au/research-sitemap.xml',
-              },
+              { title: 'Research feed (plain text)', url: 'https://vic.fusionparty.org.au/api/research.txt' },
+              { title: 'Research feed (JSON)', url: 'https://vic.fusionparty.org.au/api/research.json' },
+              { title: 'Research sitemap', url: 'https://vic.fusionparty.org.au/research-sitemap.xml' },
+              { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog' },
+              { title: 'News sitemap', url: 'https://vic.fusionparty.org.au/blog-sitemap.xml' },
+              { title: 'Google News sitemap', url: 'https://vic.fusionparty.org.au/news-sitemap.xml' },
               { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
             ],
           },
@@ -135,64 +126,17 @@ export default defineConfig({
           'Voters, journalists, political analysts, AI agents, and anyone researching the Victorian political landscape or Fusion Party policies.',
         contact: 'contact@fusionparty.org.au',
         links: [
-          {
-            title: 'Policy',
-            url: 'https://vic.fusionparty.org.au/policies',
-            description: 'Full policy platform and detailed policy pages',
-          },
-          {
-            title: 'Policy feed (text)',
-            url: 'https://vic.fusionparty.org.au/api/policies.txt',
-            description: 'Canonical LLM-friendly plain-text policy corpus',
-          },
-          {
-            title: 'Policy feed (JSON)',
-            url: 'https://vic.fusionparty.org.au/api/policies.json',
-            description:
-              'Structured machine-readable policy corpus with canonical URLs and publication metadata',
-          },
-          {
-            title: 'Research & Data',
-            url: 'https://vic.fusionparty.org.au/research',
-            description:
-              'Public research briefs, datasets, methodology, submissions and evidence behind the Victorian platform',
-          },
-          {
-            title: 'Research feed (text)',
-            url: 'https://vic.fusionparty.org.au/api/research.txt',
-            description: 'Canonical LLM-friendly research corpus with sources and limitations',
-          },
-          {
-            title: 'Research feed (JSON)',
-            url: 'https://vic.fusionparty.org.au/api/research.json',
-            description:
-              'Structured research corpus with citation metadata, sources and downloadable artefacts',
-          },
-          {
-            title: 'Candidates',
-            url: 'https://vic.fusionparty.org.au/electorates',
-            description: 'Current Victorian candidates and electorate information',
-          },
-          {
-            title: 'Take Action',
-            url: 'https://vic.fusionparty.org.au/get-involved',
-            description: 'Volunteer, donate, or join the movement',
-          },
-          {
-            title: 'Governance',
-            url: 'https://vic.fusionparty.org.au/code-of-conduct',
-            description: 'Our code of conduct and governance documents',
-          },
-          {
-            title: 'FAQ',
-            url: 'https://vic.fusionparty.org.au/faq',
-            description: 'Frequently asked questions about Fusion Party Victoria',
-          },
-          {
-            title: 'Blog',
-            url: 'https://vic.fusionparty.org.au/blog',
-            description: 'News, analysis, and updates from the campaign',
-          },
+          { title: 'Policy', url: 'https://vic.fusionparty.org.au/policies', description: 'Full policy platform and detailed policy pages' },
+          { title: 'Policy feed (text)', url: 'https://vic.fusionparty.org.au/api/policies.txt', description: 'Canonical LLM-friendly plain-text policy corpus' },
+          { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json', description: 'Structured machine-readable policy corpus with canonical URLs and publication metadata' },
+          { title: 'Research & Data', url: 'https://vic.fusionparty.org.au/research', description: 'Public research briefs, datasets, methodology, submissions and evidence behind the Victorian platform' },
+          { title: 'Research feed (text)', url: 'https://vic.fusionparty.org.au/api/research.txt', description: 'Canonical LLM-friendly research corpus with sources and limitations' },
+          { title: 'Research feed (JSON)', url: 'https://vic.fusionparty.org.au/api/research.json', description: 'Structured research corpus with citation metadata, sources and downloadable artefacts' },
+          { title: 'Candidates', url: 'https://vic.fusionparty.org.au/electorates', description: 'Current Victorian candidates and electorate information' },
+          { title: 'Take Action', url: 'https://vic.fusionparty.org.au/get-involved', description: 'Volunteer, donate, or join the movement' },
+          { title: 'Governance', url: 'https://vic.fusionparty.org.au/code-of-conduct', description: 'Our code of conduct and governance documents' },
+          { title: 'FAQ', url: 'https://vic.fusionparty.org.au/faq', description: 'Frequently asked questions about Fusion Party Victoria' },
+          { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog', description: 'Current Victorian news, policy explainers and analysis published by Fusion Party Victoria' },
         ],
       },
     }),
