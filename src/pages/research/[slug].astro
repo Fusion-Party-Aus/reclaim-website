@@ -45,7 +45,7 @@ const structuredData = {
   spatialCoverage: resource.geographicCoverage,
   license: resource.license,
   author: authors.map((name) => ({ '@type': 'Person', name })),
-  publisher: { '@type': 'Organization', name: 'Fusion Party Victoria', url: base },
+  publisher: { '@id': 'https://vic.fusionparty.org.au/#organization' },
   keywords: resource.tags?.join(', '),
   isBasedOn: resource.sources?.map((source) => source.url),
   sameAs: resource.doi ? [resource.doi] : undefined,
