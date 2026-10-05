@@ -65,6 +65,7 @@ export default defineConfig({
           'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/blog-sitemap.xml',
+          'Sitemap: https://vic.fusionparty.org.au/news-sitemap.xml',
         ],
       },
       llmsTxt: {
@@ -85,6 +86,7 @@ export default defineConfig({
               { title: 'Research sitemap', url: 'https://vic.fusionparty.org.au/research-sitemap.xml' },
               { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog' },
               { title: 'News sitemap', url: 'https://vic.fusionparty.org.au/blog-sitemap.xml' },
+              { title: 'Google News sitemap', url: 'https://vic.fusionparty.org.au/news-sitemap.xml' },
               { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
             ],
           },
