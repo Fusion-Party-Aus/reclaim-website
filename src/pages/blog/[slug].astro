@@ -4,7 +4,6 @@ export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { TechArticleSchema } from '@adkinn/astro-ai-readiness/components'
 import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
 import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
 import { urlFor } from '../../lib/sanity'
@@ -20,6 +19,7 @@ interface BlogPost {
   slug: { current: string }
   excerpt: string
   publishedAt: string
+  _updatedAt?: string
   category: string
   featuredImage?: any
   author?: {
@@ -96,6 +96,32 @@ const ogImageUrl = post.featuredImage
 
 const pageTitle = post.seoTitle || post.title
 const pageDescription = post.seoDescription || post.excerpt
+const canonicalUrl = `https://vic.fusionparty.org.au/blog/${post.slug.current}`
+const articleType = post.category === 'news' ? 'NewsArticle' : 'Article'
+const articleStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': articleType,
+  '@id': canonicalUrl,
+  url: canonicalUrl,
+  mainEntityOfPage: canonicalUrl,
+  headline: post.title,
+  description: pageDescription,
+  datePublished: post.publishedAt,
+  dateModified: post._updatedAt || post.publishedAt,
+  inLanguage: 'en-AU',
+  articleSection: post.category,
+  keywords: post.tags,
+  image: imageUrl ? [imageUrl] : [`https://vic.fusionparty.org.au${ogImageUrl}`],
+  author: post.author?.name
+    ? { '@type': 'Person', name: post.author.name }
+    : { '@id': 'https://vic.fusionparty.org.au/#organization' },
+  publisher: { '@id': 'https://vic.fusionparty.org.au/#organization' },
+  isPartOf: {
+    '@type': 'CollectionPage',
+    '@id': 'https://vic.fusionparty.org.au/blog',
+    name: 'Fusion Party Victoria News & Analysis',
+  },
+}
 ---
 
 <BaseLayout
@@ -103,20 +129,12 @@ const pageDescription = post.seoDescription || post.excerpt
   description={pageDescription}
   image={ogImageUrl}
   imageAlt={post.featuredImage?.alt || post.title}
+  type="article"
 >
   <Header />
 
-  <!-- Article JSON-LD Structured Data -->
-  <TechArticleSchema
-    headline={post.title}
-    description={post.excerpt || pageDescription}
-    datePublished={post.publishedAt}
-    dateModified={post.publishedAt}
-    {...post.author?.name ? { author: { name: post.author.name } } : {}}
-    {...imageUrl ? { image: { url: imageUrl } } : {}}
-    {...post.category ? { articleSection: post.category } : {}}
-    {...post.tags && post.tags.length > 0 ? { keywords: post.tags } : {}}
-  />
+  <!-- Search/answer-engine schema: these are political news and analysis, not technical articles. -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleStructuredData).replace(/</g, '\\u003c')} />
 
   <main id="main-content">
     <!-- Breadcrumbs -->
