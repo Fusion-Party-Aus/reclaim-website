@@ -252,6 +252,15 @@ export default defineType({
       of: [{type: 'reference', to: [{type: 'policy'}]}],
     }),
     defineField({
+      name: 'relatedResearch',
+      title: 'Related Research',
+      type: 'array',
+      group: 'meta',
+      description: 'Research resources that directly support, extend, qualify or contextualise this resource.',
+      of: [{type: 'reference', to: [{type: 'researchResource'}]}],
+      validation: (Rule) => Rule.unique(),
+    }),
+    defineField({
       name: 'citationTitle',
       title: 'Citation Title Override',
       type: 'string',

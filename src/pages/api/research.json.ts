@@ -28,6 +28,13 @@ export const GET: APIRoute = async () => {
       slug: resource.slug?.current,
       canonical_url: `${base}/research/${resource.slug?.current}`,
       resource_type: resource.resourceType,
+      authority: {
+        publisher: 'Fusion Party Victoria',
+        jurisdiction: 'Victoria, Australia',
+        status: 'research/evidence',
+        adopted_policy: false,
+        collection: `${base}/research`,
+      },
       research_area: resource.researchArea || null,
       abstract: resource.abstract,
       authors: resource.authors || [],
@@ -49,6 +56,10 @@ export const GET: APIRoute = async () => {
       downloads: resource.downloads || [],
       external_project_url: resource.externalProjectUrl || null,
       repository_url: resource.repositoryUrl || null,
+      related_research: resource.relatedResearch?.map((related) => ({
+        title: related.title,
+        canonical_url: `${base}/research/${related.slug.current}`,
+      })) || [],
       related_policies: resource.relatedPolicies?.map((policy) => ({
         title: policy.title,
         canonical_url: `${base}/policies/${policy.slug.current}`,
