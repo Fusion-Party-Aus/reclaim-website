@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { getPolicies, getManifestoPage } from '../../lib/sanity'
+import { getPolicies, getManifestoPage, getResearchForPolicy } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
@@ -15,7 +15,10 @@ export const GET: APIRoute = async () => {
       new Date(a._updatedAt || a.publishedAt || a._createdAt || 0).getTime()
   )
   const platformUpdatedAt =
-    sortedByUpdated[0]?._updatedAt || sortedByUpdated[0]?.publishedAt || sortedByUpdated[0]?._createdAt || null
+    sortedByUpdated[0]?._updatedAt ||
+    sortedByUpdated[0]?.publishedAt ||
+    sortedByUpdated[0]?._createdAt ||
+    null
 
   const payload = {
     schema_version: 1,
@@ -44,30 +47,45 @@ export const GET: APIRoute = async () => {
       governing_rule: manifesto?.lieBlock?.headline || null,
       method: manifesto?.oneSeat?.body || null,
     },
-    policies: policies.map((policy) => ({
-      id: policy._id,
-      title: policy.title,
-      slug: policy.slug?.current,
-      canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
-      pillar: policy.pillar || null,
-      category: policy.category || null,
-      delivery_horizon: policy.thisTerm === true ? 'current-term' : 'long-term',
-      summary: policy.summary,
-      hook: policy.hook || null,
-      key_points: policy.keyPoints || [],
-      shareable_quote: policy.shareableQuote || null,
-      design_rationale: policy.designRationale || null,
-      system_interaction: policy.systemInteraction || null,
-      economic_logic: policy.economicLogic || null,
-      risks_and_failure_modes: policy.riskAndFailureModes || null,
-      evidence_and_precedent: policy.evidenceAndPrecedent || null,
-      implementation_outline: policy.implementationOutline || null,
-      cost: policy.cost || null,
-      funding: policy.funding || null,
-      additional_content_text: portableTextToPlainText(policy.body || []),
-      published_at: policy.publishedAt || policy._createdAt || null,
-      updated_at: policy._updatedAt || null,
-    })),
+    policies: await Promise.all(
+      policies.map(async (policy) => ({
+        id: policy._id,
+        title: policy.title,
+        authority: {
+          publisher: 'Fusion Party Victoria',
+          jurisdiction: 'Victoria, Australia',
+          status: 'current policy',
+          adopted_policy: true,
+          part_of: `${canonicalBase}/policies`,
+        },
+        slug: policy.slug?.current,
+        canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
+        pillar: policy.pillar || null,
+        category: policy.category || null,
+        delivery_horizon: policy.thisTerm === true ? 'current-term' : 'long-term',
+        summary: policy.summary,
+        hook: policy.hook || null,
+        key_points: policy.keyPoints || [],
+        shareable_quote: policy.shareableQuote || null,
+        design_rationale: policy.designRationale || null,
+        system_interaction: policy.systemInteraction || null,
+        economic_logic: policy.economicLogic || null,
+        risks_and_failure_modes: policy.riskAndFailureModes || null,
+        evidence_and_precedent: policy.evidenceAndPrecedent || null,
+        implementation_outline: policy.implementationOutline || null,
+        cost: policy.cost || null,
+        funding: policy.funding || null,
+        additional_content_text: portableTextToPlainText(policy.body || []),
+        published_at: policy.publishedAt || policy._createdAt || null,
+        substantive_updated_at: policy.substantiveUpdatedAt || null,
+        change_summary: policy.changeSummary || null,
+        supporting_research: (await getResearchForPolicy(policy._id)).map((resource) => ({
+          title: resource.title,
+          canonical_url: `${canonicalBase}/research/${resource.slug.current}`,
+        })),
+        updated_at: policy._updatedAt || null,
+      }))
+    ),
   }
 
   return new Response(JSON.stringify(payload, null, 2), {

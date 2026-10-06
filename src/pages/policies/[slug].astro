@@ -210,6 +210,21 @@ const policyStructuredData = {
   publisher: {
     '@id': 'https://vic.fusionparty.org.au/#organization',
   },
+  mainEntity: {
+    '@type': 'CreativeWork',
+    '@id': `${canonicalUrl}#policy`,
+    name: policy.title,
+    additionalType: 'https://schema.org/Legislation',
+    description: metaDescription,
+    creator: { '@id': 'https://vic.fusionparty.org.au/#organization' },
+    isPartOf: { '@id': 'https://vic.fusionparty.org.au/policies' },
+    subjectOf: relatedResearch.map((resource) => ({
+      '@type': 'CreativeWork',
+      '@id': `https://vic.fusionparty.org.au/research/${resource.slug.current}`,
+      url: `https://vic.fusionparty.org.au/research/${resource.slug.current}`,
+      name: resource.title,
+    })),
+  },
 }
 ---
 
@@ -231,20 +246,89 @@ const policyStructuredData = {
     eyebrow={policy.pillar || 'Victorian policy'}
     compact
   >
-    {
-      policy._updatedAt && (
-        <p class="editorial-meta mt-5">
-          Updated{' '}
-          <time datetime={policy._updatedAt}>
-            {new Date(policy._updatedAt).toLocaleDateString('en-AU', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
-          </time>
-        </p>
-      )
-    }
+    {/* Triple stripe */}
+    <div class="absolute top-0 left-0 w-full h-3 bg-magenta z-20"></div>
+    <div class="absolute top-3 left-0 w-full h-2 bg-mint z-20"></div>
+    <div class="absolute top-5 left-0 w-full h-1 bg-yellow z-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      {/* Pillar badge */}
+      {
+        policy.pillar && (
+          <BrutalBadge variant={pillarCfg.variant} size="lg" class="mb-4">
+            {policy.pillar}
+          </BrutalBadge>
+        )
+      }
+
+      {/* Icon + Title */}
+      <div class="flex items-start gap-5 mb-5">
+        {
+          getPolicyIcon(policy.icon)?.type === 'icon' && (
+            <div
+              class={`hidden md:flex items-center justify-center w-20 h-20 rounded-sm shrink-0 bg-${pillarCfg.variant}`}
+            >
+              <Icon
+                name={getPolicyIcon(policy.icon)?.value as string}
+                class={`w-10 h-10 ${pillarCfg.textColor}`}
+              />
+            </div>
+          )
+        }
+        {
+          getPolicyIcon(policy.icon)?.type === 'emoji' && (
+            <span class="hidden md:block text-6xl shrink-0">
+              {getPolicyIcon(policy.icon)?.value}
+            </span>
+          )
+        }
+        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+          {policy.title}
+        </h1>
+      </div>
+
+      {/* Summary */}
+      <p
+        class={`text-lg md:text-xl font-semibold text-white/85 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
+      >
+        {policy.summary}
+      </p>
+      <div
+        class="mt-6 border border-mint/25 bg-mint/[0.04] rounded-sm p-4 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/65 font-semibold max-w-3xl"
+      >
+        <span><strong class="text-white">Publisher:</strong> Fusion Party Victoria</span>
+        <span><strong class="text-white">Jurisdiction:</strong> Victoria, Australia</span>
+        <span><strong class="text-white">Status:</strong> Current policy</span>
+        <span
+          ><strong class="text-white">Part of:</strong>
+          <a href="/policies" class="text-mint underline underline-offset-4"
+            >Fusion Party Victoria Current Policy Platform</a
+          ></span
+        >
+        <span
+          ><strong class="text-white">Supporting research:</strong>
+          {
+            relatedResearch.length
+              ? `${relatedResearch.length} linked resource${relatedResearch.length === 1 ? '' : 's'}`
+              : 'None linked yet'
+          }</span
+        >
+      </div>
+      {
+        policy._updatedAt && (
+          <p class="mt-3 text-xs font-black uppercase tracking-widest text-white/50">
+            Updated:{' '}
+            <time datetime={policy._updatedAt}>
+              {new Date(policy._updatedAt).toLocaleDateString('en-AU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </time>
+          </p>
+        )
+      }
+    </div>
   </Hero>
 
   <main

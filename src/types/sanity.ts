@@ -73,10 +73,7 @@ export interface PolicyKeyPoint {
 
 export interface Policy extends SanityDocument {
   _type: 'policy'
-  pillar?:
-    | 'RECLAIM OUR ECONOMY'
-    | 'RECLAIM OUR INFRASTRUCTURE'
-    | 'RECLAIM OUR DEMOCRACY'
+  pillar?: 'RECLAIM OUR ECONOMY' | 'RECLAIM OUR INFRASTRUCTURE' | 'RECLAIM OUR DEMOCRACY'
   category?: string
   title: string
   slug: SanitySlug
@@ -136,7 +133,14 @@ export interface ResearchResource extends SanityDocument {
   _type: 'researchResource'
   title: string
   slug: SanitySlug
-  resourceType: 'dataset' | 'methodology' | 'submission' | 'briefing' | 'report' | 'model' | 'register'
+  resourceType:
+    | 'dataset'
+    | 'methodology'
+    | 'submission'
+    | 'briefing'
+    | 'report'
+    | 'model'
+    | 'register'
   researchArea: string
   abstract: string
   authors?: ResearchAuthor[]
@@ -165,6 +169,14 @@ export interface ResearchResource extends SanityDocument {
     title: string
     slug: SanitySlug
     summary?: string
+  }>
+  relatedResearch?: Array<{
+    _id: string
+    title: string
+    slug: SanitySlug
+    abstract?: string
+    researchArea?: string
+    resourceType?: ResearchResource['resourceType']
   }>
   citationTitle?: string
   doi?: string

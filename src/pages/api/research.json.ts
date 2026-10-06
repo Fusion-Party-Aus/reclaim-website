@@ -9,7 +9,9 @@ const base = 'https://vic.fusionparty.org.au'
 export const GET: APIRoute = async () => {
   const resources = await getResearchResources()
   const sorted = [...resources].sort(
-    (a, b) => new Date(b._updatedAt || b.publishedAt || 0).getTime() - new Date(a._updatedAt || a.publishedAt || 0).getTime()
+    (a, b) =>
+      new Date(b._updatedAt || b.publishedAt || 0).getTime() -
+      new Date(a._updatedAt || a.publishedAt || 0).getTime()
   )
 
   const payload = {
@@ -28,6 +30,13 @@ export const GET: APIRoute = async () => {
       slug: resource.slug?.current,
       canonical_url: `${base}/research/${resource.slug?.current}`,
       resource_type: resource.resourceType,
+      authority: {
+        publisher: 'Fusion Party Victoria',
+        jurisdiction: 'Victoria, Australia',
+        status: 'research/evidence',
+        adopted_policy: false,
+        collection: `${base}/research`,
+      },
       research_area: resource.researchArea || null,
       abstract: resource.abstract,
       authors: resource.authors || [],
@@ -49,10 +58,16 @@ export const GET: APIRoute = async () => {
       downloads: resource.downloads || [],
       external_project_url: resource.externalProjectUrl || null,
       repository_url: resource.repositoryUrl || null,
-      related_policies: resource.relatedPolicies?.map((policy) => ({
-        title: policy.title,
-        canonical_url: `${base}/policies/${policy.slug.current}`,
-      })) || [],
+      related_research:
+        resource.relatedResearch?.map((related) => ({
+          title: related.title,
+          canonical_url: `${base}/research/${related.slug.current}`,
+        })) || [],
+      related_policies:
+        resource.relatedPolicies?.map((policy) => ({
+          title: policy.title,
+          canonical_url: `${base}/policies/${policy.slug.current}`,
+        })) || [],
     })),
   }
 

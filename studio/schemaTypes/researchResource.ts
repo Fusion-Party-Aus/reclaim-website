@@ -31,7 +31,8 @@ export default defineType({
       title: 'Research Area',
       type: 'string',
       group: 'basic',
-      description: 'Primary public-facing topic used to organise the Research & Data library. Free text so new areas do not require a code change.',
+      description:
+        'Primary public-facing topic used to organise the Research & Data library. Free text so new areas do not require a code change.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -66,21 +67,24 @@ export default defineType({
       title: 'Authors / Contributors',
       type: 'array',
       group: 'meta',
-      of: [{
-        type: 'object',
-        name: 'researchAuthor',
-        fields: [
-          {name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()},
-          {name: 'role', title: 'Role / affiliation', type: 'string'},
-        ],
-      }],
+      of: [
+        {
+          type: 'object',
+          name: 'researchAuthor',
+          fields: [
+            {name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()},
+            {name: 'role', title: 'Role / affiliation', type: 'string'},
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
       group: 'meta',
-      description: 'Date this public research resource was first published on the Victorian website.',
+      description:
+        'Date this public research resource was first published on the Victorian website.',
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
     }),
@@ -89,14 +93,16 @@ export default defineType({
       title: 'Research first documented',
       type: 'datetime',
       group: 'meta',
-      description: 'Earliest defensible date this research/evidence strand is documented in the policy corpus or its version history.',
+      description:
+        'Earliest defensible date this research/evidence strand is documented in the policy corpus or its version history.',
     }),
     defineField({
       name: 'researchProvenance',
       title: 'Research provenance',
       type: 'string',
       group: 'meta',
-      description: 'Short provenance note, such as the omnibus file and Git commit where the research first appears.',
+      description:
+        'Short provenance note, such as the omnibus file and Git commit where the research first appears.',
     }),
     defineField({
       name: 'version',
@@ -133,11 +139,32 @@ export default defineType({
       title: 'Reason · Rights · Results',
       type: 'object',
       group: 'basic',
-      description: 'A concise policy-quality lens: evidence/mechanism, rights/safeguards, and measurable outcomes. Keep descriptive rather than campaign-like.',
+      description:
+        'A concise policy-quality lens: evidence/mechanism, rights/safeguards, and measurable outcomes. Keep descriptive rather than campaign-like.',
       fields: [
-        {name: 'reason', title: 'Reason', type: 'text', rows: 3, description: 'What evidence and mechanism support the approach? What would change the conclusion?'},
-        {name: 'rights', title: 'Rights', type: 'text', rows: 3, description: 'Which rights, safeguards, liberties, accessibility or distributional effects constrain the design?'},
-        {name: 'results', title: 'Results', type: 'text', rows: 3, description: 'What measurable outcome should improve, and what would count as failure?'},
+        {
+          name: 'reason',
+          title: 'Reason',
+          type: 'text',
+          rows: 3,
+          description:
+            'What evidence and mechanism support the approach? What would change the conclusion?',
+        },
+        {
+          name: 'rights',
+          title: 'Rights',
+          type: 'text',
+          rows: 3,
+          description:
+            'Which rights, safeguards, liberties, accessibility or distributional effects constrain the design?',
+        },
+        {
+          name: 'results',
+          title: 'Results',
+          type: 'text',
+          rows: 3,
+          description: 'What measurable outcome should improve, and what would count as failure?',
+        },
       ],
     }),
     defineField({
@@ -145,7 +172,8 @@ export default defineType({
       title: 'Key Findings',
       type: 'array',
       group: 'basic',
-      description: 'Three to six concise findings for journalists, candidates, search snippets and AI retrieval. These should be factual conclusions, not slogans.',
+      description:
+        'Three to six concise findings for journalists, candidates, search snippets and AI retrieval. These should be factual conclusions, not slogans.',
       of: [{type: 'string'}],
       validation: (Rule) => Rule.max(6),
     }),
@@ -169,7 +197,8 @@ export default defineType({
       title: 'Limitations',
       type: 'array',
       group: 'evidence',
-      description: 'Known caveats, uncertainty and what the resource should not be used to conclude.',
+      description:
+        'Known caveats, uncertainty and what the resource should not be used to conclude.',
       of: [{type: 'block'}],
     }),
     defineField({
@@ -181,12 +210,14 @@ export default defineType({
         {
           type: 'block',
           marks: {
-            annotations: [{
-              name: 'link',
-              type: 'object',
-              title: 'Link',
-              fields: [{name: 'href', type: 'url', title: 'URL'}],
-            }],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [{name: 'href', type: 'url', title: 'URL'}],
+              },
+            ],
           },
         },
         {
@@ -201,42 +232,57 @@ export default defineType({
       title: 'Sources',
       type: 'array',
       group: 'evidence',
-      of: [{
-        type: 'object',
-        name: 'researchSource',
-        fields: [
-          {name: 'title', title: 'Source title', type: 'string', validation: (Rule) => Rule.required()},
-          {name: 'publisher', title: 'Publisher / institution', type: 'string'},
-          {name: 'url', title: 'URL', type: 'url', validation: (Rule) => Rule.required()},
-          {name: 'publishedAt', title: 'Source date', type: 'date'},
-          {name: 'accessedAt', title: 'Accessed date', type: 'date'},
-          {name: 'note', title: 'How it is used', type: 'text', rows: 2},
-        ],
-      }],
+      of: [
+        {
+          type: 'object',
+          name: 'researchSource',
+          fields: [
+            {
+              name: 'title',
+              title: 'Source title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {name: 'publisher', title: 'Publisher / institution', type: 'string'},
+            {name: 'url', title: 'URL', type: 'url', validation: (Rule) => Rule.required()},
+            {name: 'publishedAt', title: 'Source date', type: 'date'},
+            {name: 'accessedAt', title: 'Accessed date', type: 'date'},
+            {name: 'note', title: 'How it is used', type: 'text', rows: 2},
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'downloads',
       title: 'Downloads / Data',
       type: 'array',
       group: 'files',
-      of: [{
-        type: 'object',
-        name: 'researchDownload',
-        fields: [
-          {name: 'label', title: 'Label', type: 'string', validation: (Rule) => Rule.required()},
-          {name: 'format', title: 'Format', type: 'string', description: 'CSV, JSON, PDF, XLSX, GeoJSON, etc.'},
-          {name: 'url', title: 'External URL', type: 'url'},
-          {name: 'file', title: 'Uploaded file', type: 'file'},
-          {name: 'description', title: 'Description', type: 'text', rows: 2},
-        ],
-      }],
+      of: [
+        {
+          type: 'object',
+          name: 'researchDownload',
+          fields: [
+            {name: 'label', title: 'Label', type: 'string', validation: (Rule) => Rule.required()},
+            {
+              name: 'format',
+              title: 'Format',
+              type: 'string',
+              description: 'CSV, JSON, PDF, XLSX, GeoJSON, etc.',
+            },
+            {name: 'url', title: 'External URL', type: 'url'},
+            {name: 'file', title: 'Uploaded file', type: 'file'},
+            {name: 'description', title: 'Description', type: 'text', rows: 2},
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'externalProjectUrl',
       title: 'External Project / Interactive Tool',
       type: 'url',
       group: 'files',
-      description: 'Optional canonical interactive tool, dashboard or repository associated with this resource.',
+      description:
+        'Optional canonical interactive tool, dashboard or repository associated with this resource.',
     }),
     defineField({
       name: 'repositoryUrl',
@@ -250,6 +296,16 @@ export default defineType({
       type: 'array',
       group: 'meta',
       of: [{type: 'reference', to: [{type: 'policy'}]}],
+    }),
+    defineField({
+      name: 'relatedResearch',
+      title: 'Related Research',
+      type: 'array',
+      group: 'meta',
+      description:
+        'Research resources that directly support, extend, qualify or contextualise this resource.',
+      of: [{type: 'reference', to: [{type: 'researchResource'}]}],
+      validation: (Rule) => Rule.unique(),
     }),
     defineField({
       name: 'citationTitle',
@@ -276,11 +332,20 @@ export default defineType({
   preview: {
     select: {title: 'title', type: 'resourceType', date: 'publishedAt'},
     prepare({title, type, date}) {
-      return {title, subtitle: [type, date ? new Date(date).toLocaleDateString() : null].filter(Boolean).join(' • ')}
+      return {
+        title,
+        subtitle: [type, date ? new Date(date).toLocaleDateString() : null]
+          .filter(Boolean)
+          .join(' • '),
+      }
     },
   },
   orderings: [
-    {title: 'Published Date, New', name: 'publishedDesc', by: [{field: 'publishedAt', direction: 'desc'}]},
+    {
+      title: 'Published Date, New',
+      name: 'publishedDesc',
+      by: [{field: 'publishedAt', direction: 'desc'}],
+    },
     {title: 'Title, A-Z', name: 'titleAsc', by: [{field: 'title', direction: 'asc'}]},
   ],
 })
