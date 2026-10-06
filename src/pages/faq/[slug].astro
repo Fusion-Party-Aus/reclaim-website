@@ -1,5 +1,7 @@
 ---
 export const prerender = true
+import '../../styles/global.css'
+import { Hero } from '@/components/layout/Hero'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -9,6 +11,7 @@ import { getDocuments } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
+import { portableTextToPlainText } from '../../lib/portableText'
 import type { PortableTextBlock } from '../../lib/portableText'
 
 interface FAQ {
@@ -46,36 +49,45 @@ const categoryLabels: Record<string, string> = {
 const categoryLabel = categoryLabels[faq.category] || faq.category
 ---
 
-<BaseLayout title={`${faq.question} | Fusion Party Victoria`} image="/og/faq.png">
+<BaseLayout
+  title={`${faq.question} | Fusion Party Victoria`}
+  image="/og/faq.png"
+  description={portableTextToPlainText(faq.answer).slice(0, 160)}
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: portableTextToPlainText(faq.answer) },
+        },
+      ],
+    }).replace(/</g, '\\u003c')}
+  />
   <Header />
 
-  <main id="main-content" class="bg-surface-base min-h-screen pb-24">
-    {/* Hero bar */}
-    <div class="bg-grey-dark border-b border-white/10 pt-6 pb-10 px-4 md:px-8">
-      <div class="h-1 bg-magenta mb-0.5"></div>
-      <div class="h-1 bg-mint mb-0.5"></div>
-      <div class="h-1 bg-yellow mb-6"></div>
-      <div class="max-w-4xl mx-auto">
-        <BrutalBadge variant="mint" class="mb-4">
-          {categoryLabel}
-        </BrutalBadge>
-        <h1 class="text-3xl md:text-5xl font-display font-black uppercase text-white leading-tight">
-          {faq.question}
-        </h1>
-        {
-          faq._updatedAt && (
-            <p class="mt-3 text-xs font-black uppercase tracking-widest text-white/50">
-              Updated:{' '}
+  <main id="main-content" class="site-editorial bg-surface-base min-h-screen pb-24">
+    <Hero title={faq.question} eyebrow={categoryLabel} compact>
+      {
+        faq._updatedAt && (
+          <p class="editorial-meta mt-5">
+            Updated{' '}
+            <time datetime={faq._updatedAt}>
               {new Date(faq._updatedAt).toLocaleDateString('en-AU', {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric',
               })}
-            </p>
-          )
-        }
-      </div>
-    </div>
+            </time>
+          </p>
+        )
+      }
+    </Hero>
 
     <div class="max-w-4xl mx-auto px-4 md:px-8 pt-10">
       {/* Breadcrumbs */}

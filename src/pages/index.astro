@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
-import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { getElectorates, getHomePage, getResearchResources, urlFor } from '../lib/sanity'
 import { Icon } from 'astro-icon/components'
 import '../styles/global.css'
+import '../styles/editorial.css'
 
 import { MovementMetrics, BrutalButton, BrutalCard, StatCard } from '@/components/ui'
 import { DeveloperMessages, ScrollProgress } from '@/features/engagement'
@@ -20,7 +20,9 @@ if (!homePage) {
 const electorates = await getElectorates()
 const researchResources = await getResearchResources()
 const featuredResearch = researchResources.filter((resource) => resource.featured)
-const homepageResearch = (featuredResearch.length >= 3 ? featuredResearch : researchResources).slice(0, 3)
+const homepageResearch = (
+  featuredResearch.length >= 3 ? featuredResearch : researchResources
+).slice(0, 3)
 const researchSourceCount = researchResources.reduce(
   (total, resource) => total + (resource.sources?.length || 0),
   0
@@ -102,7 +104,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
   image="/og/default.png"
 >
   <Header />
-  <main id="main-content">
+  <main id="main-content" class="site-editorial">
     <DeveloperMessages />
     <ScrollProgress showMilestones={true} color="magenta" />
 
@@ -119,13 +121,47 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       )
     }
 
-    <!-- HERO -->
-    <Hero
-      title={hp.hero.title}
-      subtitle={hp.hero.subtitle}
-      stats={hp.hero.stats}
-      showCTA={hp.hero.showCTA}
-    />
+    <!-- Editorial campaign masthead -->
+    <header class="editorial-masthead home-masthead">
+      <div class="editorial-shell">
+        <div class="editorial-kicker">{hp.hero.eyebrow || 'Fusion Party Victoria'}</div>
+        <div class="home-masthead-grid">
+          <div>
+            <h1 class="editorial-title">{hp.hero.title}</h1>
+            {hp.hero.subtitle && <p class="editorial-deck">{hp.hero.subtitle}</p>}
+          </div>
+          <aside class="home-brief">
+            <span>Reason · Rights · Results</span>
+            <p>Evidence-led policy, civil liberties and practical reform for Victoria.</p>
+            <div class="home-actions">
+              <a href="/policies">Explore the platform →</a>
+              <a href="/research">See the evidence →</a>
+            </div>
+          </aside>
+        </div>
+        {
+          hp.hero.showCTA && (
+            <div class="home-actions">
+              <a class="editorial-action" href="/get-involved">
+                Get involved →
+              </a>
+            </div>
+          )
+        }
+        {
+          hp.hero.stats?.length && (
+            <dl class="home-stats">
+              {hp.hero.stats.map((stat) => (
+                <div>
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.number}</dd>
+                </div>
+              ))}
+            </dl>
+          )
+        }
+      </div>
+    </header>
 
     <!-- ═══════════════════════════════════════════════════════
        SECTION 1: MOVEMENT METRICS — dark surface, left-aligned header
@@ -133,19 +169,11 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
     <section
       class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8 relative overflow-hidden"
     >
-      {/* Watermark */}
-      <div class="absolute inset-0 flex items-end justify-end pointer-events-none overflow-hidden">
-        <span
-          class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
-          style="opacity: 0.03; transform: translateY(20%);">NOW</span
-        >
-      </div>
-
       <div class="max-w-7xl mx-auto relative z-10">
         <!-- Section header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[1]">
+            <h2 class="text-5xl md:text-7xl font-display font-black leading-[1]">
               Movement<br /><span class="text-magenta">In Motion</span>
             </h2>
           </div>
@@ -165,20 +193,10 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       id="policies"
       class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
     >
-      {/* Watermark */}
-      <div
-        class="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden"
-      >
-        <span
-          class="text-[18rem] font-display font-black uppercase leading-none select-none text-white"
-          style="opacity: 0.04; transform: rotate(-4deg) translateX(-5%);">FIX</span
-        >
-      </div>
-
       <div class="max-w-7xl mx-auto relative z-10">
         <!-- Section header -->
         <div class="mb-16">
-          <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[1]">
+          <h2 class="text-5xl md:text-7xl font-display font-black leading-[1]">
             {hp.theftSection.heading}
           </h2>
           <p class="text-xl font-bold text-white/70 mt-4 max-w-2xl">
@@ -280,77 +298,97 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
     >
       <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <span
-          class="absolute right-[-3rem] top-[-2rem] text-[14rem] md:text-[20rem] font-display font-black uppercase leading-none select-none text-white"
-          style="opacity: 0.025;"
-        >PROVE</span>
+          class="absolute right-[-3rem] top-[-2rem] text-[14rem] md:text-[20rem] font-display font-black leading-none select-none text-white"
+          style="opacity: 0.025;">PROVE</span
+        >
       </div>
 
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-end mb-12">
           <div>
-            <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-3">Show the work.</p>
-            <h2 class="text-5xl md:text-7xl font-display font-black uppercase leading-[0.95] text-white">
+            <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-3">
+              Show the work.
+            </p>
+            <h2 class="text-5xl md:text-7xl font-display font-black leading-[0.95] text-white">
               Don’t take the<br /><span class="text-mint">policy on faith.</span>
             </h2>
             <p class="mt-6 text-lg md:text-xl font-bold text-white/68 max-w-3xl leading-relaxed">
-              Read the evidence underneath it: sources, methodology, limitations, corrections and the tests that would make us change course.
+              Read the evidence underneath it: sources, methodology, limitations, corrections and
+              the tests that would make us change course.
             </p>
           </div>
 
           <aside class="border-l-4 border-yellow pl-5">
-            <p class="text-xs font-black uppercase tracking-[0.18em] text-yellow mb-2">Reason · Rights · Results</p>
+            <p class="text-xs font-black uppercase tracking-[0.18em] text-yellow mb-2">
+              Reason · Rights · Results
+            </p>
             <p class="text-sm text-white/65 leading-relaxed">
               Evidence and mechanism. Rights and safeguards. Outcomes that can actually be measured.
             </p>
             <div class="grid grid-cols-2 gap-4 mt-5">
               <div>
-                <div class="text-3xl font-mono font-black text-white">{researchResources.length}</div>
-                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">Resources</div>
+                <div class="text-3xl font-mono font-black text-white">
+                  {researchResources.length}
+                </div>
+                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">
+                  Resources
+                </div>
               </div>
               <div>
                 <div class="text-3xl font-mono font-black text-mint">{researchSourceCount}</div>
-                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">Sources</div>
+                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">
+                  Sources
+                </div>
               </div>
             </div>
           </aside>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
-          {homepageResearch.map((resource, index) => {
-            const accents = ['text-magenta', 'text-mint', 'text-yellow']
-            return (
-              <a
-                href={`/research/${resource.slug.current}`}
-                class="group bg-surface-raised p-6 md:p-7 hover:bg-white/[0.04] transition-colors"
-              >
-                <div class="flex items-center justify-between gap-3 mb-4">
-                  <span class={`text-[10px] font-black uppercase tracking-widest ${accents[index % accents.length]}`}>
-                    {resource.researchArea || resource.resourceType}
+          {
+            homepageResearch.map((resource, index) => {
+              const accents = ['text-magenta', 'text-mint', 'text-yellow']
+              return (
+                <a
+                  href={`/research/${resource.slug.current}`}
+                  class="group bg-surface-raised p-6 md:p-7 hover:bg-white/[0.04] transition-colors"
+                >
+                  <div class="flex items-center justify-between gap-3 mb-4">
+                    <span
+                      class={`text-[10px] font-black uppercase tracking-widest ${accents[index % accents.length]}`}
+                    >
+                      {resource.researchArea || resource.resourceType}
+                    </span>
+                    <span class="text-[10px] font-mono text-white/30">
+                      v{resource.version || '1.0'}
+                    </span>
+                  </div>
+                  <h3 class="text-xl md:text-2xl font-display font-black text-white leading-tight group-hover:text-mint transition-colors">
+                    {resource.title}
+                  </h3>
+                  <p class="mt-3 text-sm text-white/58 leading-relaxed">{resource.abstract}</p>
+                  {resource.keyFindings?.[0] && (
+                    <p class="mt-5 border-l-2 border-white/15 pl-3 text-xs text-white/42 leading-relaxed">
+                      {resource.keyFindings[0]}
+                    </p>
+                  )}
+                  <span class="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide text-white/70 group-hover:text-mint">
+                    Read the evidence <Icon name="mdi:arrow-right" class="w-4 h-4" />
                   </span>
-                  <span class="text-[10px] font-mono text-white/30">v{resource.version || '1.0'}</span>
-                </div>
-                <h3 class="text-xl md:text-2xl font-display font-black uppercase text-white leading-tight group-hover:text-mint transition-colors">
-                  {resource.title}
-                </h3>
-                <p class="mt-3 text-sm text-white/58 leading-relaxed">{resource.abstract}</p>
-                {resource.keyFindings?.[0] && (
-                  <p class="mt-5 border-l-2 border-white/15 pl-3 text-xs text-white/42 leading-relaxed">
-                    {resource.keyFindings[0]}
-                  </p>
-                )}
-                <span class="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide text-white/70 group-hover:text-mint">
-                  Read the evidence <Icon name="mdi:arrow-right" class="w-4 h-4" />
-                </span>
-              </a>
-            )
-          })}
+                </a>
+              )
+            })
+          }
         </div>
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <BrutalButton variant="mint" size="lg" href="/research" icon="mdi:flask-outline">
             Explore Research & Data
           </BrutalButton>
-          <a href="/research/policy-evidence-methodology" class="text-xs font-black uppercase tracking-widest text-white/45 hover:text-white">
+          <a
+            href="/research/policy-evidence-methodology"
+            class="text-xs font-black uppercase tracking-widest text-white/45 hover:text-white"
+          >
             How we test claims →
           </a>
         </div>
@@ -369,7 +407,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
         class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
       >
         <span
-          class="text-[14rem] font-display font-black uppercase leading-none select-none text-white"
+          class="text-[14rem] font-display font-black leading-none select-none text-white"
           style="opacity: 0.03; transform: rotate(8deg) translateX(10%);">VOTE</span
         >
       </div>
@@ -378,9 +416,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
         <!-- Section header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <h2
-              class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[1]"
-            >
+            <h2 class="text-5xl md:text-7xl font-display font-black text-white leading-[1]">
               {hp.electoratesSection.heading}
             </h2>
           </div>
@@ -398,7 +434,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
               class="text-center max-w-2xl mx-auto"
             >
               <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-white" />
-              <h3 class="text-3xl font-display font-black uppercase mb-3">Campaigns Incoming</h3>
+              <h3 class="text-3xl font-display font-black mb-3">Campaigns Incoming</h3>
               <p class="text-lg font-bold mb-8">
                 We are currently finalising our candidates for the upcoming election. Stay tuned!
               </p>
@@ -453,7 +489,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                             >
                               {electorate.house === 'upper' ? 'Upper House' : 'Lower House'}
                             </div>
-                            <h3 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+                            <h3 class="text-2xl font-display font-black leading-tight mb-1 text-white">
                               {electorate.name}
                             </h3>
                             {electorate.candidateName && (
@@ -502,7 +538,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                         >
                           {electorate.house === 'upper' ? 'UPR' : 'LWR'}
                         </span>
-                        <span class="font-display font-black uppercase text-white text-sm truncate">
+                        <span class="font-display font-black text-white text-sm truncate">
                           {electorate.name}
                         </span>
                       </div>
@@ -552,7 +588,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
         <!-- CTA -->
         <BrutalCard variant="mint" shadow="black" padding="lg" class="mt-12 max-w-2xl">
-          <h3 class="text-2xl font-display font-black uppercase mb-2">
+          <h3 class="text-2xl font-display font-black mb-2">
             {hp.electoratesSection.callToAction.heading}
           </h3>
           <p class="font-bold mb-6 text-black/70">
@@ -598,10 +634,14 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
 
     <!-- PHILOSOPHY — deliberately secondary to Policies + Research -->
     <section class="border-b border-white/10 bg-surface-raised px-4 md:px-8 py-10">
-      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div
+        class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+      >
         <div class="max-w-3xl">
-          <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 mb-2">How we think</p>
-          <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-white">
+          <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 mb-2">
+            How we think
+          </p>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white">
             {hp.manifestoSection.heading}
           </h2>
           <p class="mt-2 text-sm md:text-base text-white/58 leading-relaxed">
@@ -630,7 +670,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
         class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
       >
         <span
-          class="text-[16rem] font-display font-black uppercase leading-none select-none text-white"
+          class="text-[16rem] font-display font-black leading-none select-none text-white"
           style="opacity: 0.05; transform: rotate(5deg) translateX(15%);">JOIN</span
         >
       </div>
@@ -638,7 +678,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
       <div class="max-w-7xl mx-auto relative z-10">
         <!-- Section header -->
         <div class="mb-16">
-          <h2 class="text-5xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+          <h2 class="text-5xl md:text-7xl font-display font-black text-white leading-[1]">
             {hp.joinSection.heading}
           </h2>
           <p class="text-xl font-bold text-white/70 mt-4 max-w-xl">
@@ -658,7 +698,7 @@ const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSec
                       <Icon name={card.icon} class="w-12 h-12" />
                     </div>
                   )}
-                  <h3 class="text-2xl font-display font-black uppercase mb-3">{card.title}</h3>
+                  <h3 class="text-2xl font-display font-black mb-3">{card.title}</h3>
                   <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
                   <BrutalButton
                     variant={buttonVariants[index % 3]}

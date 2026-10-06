@@ -25,21 +25,26 @@ export const GET: APIRoute = async () => {
         `    <loc>${escapeXml(loc)}</loc>`,
         lastmod ? `    <lastmod>${escapeXml(new Date(lastmod).toISOString())}</lastmod>` : '',
         '  </url>',
-      ].filter(Boolean).join('\n')
+      ]
+        .filter(Boolean)
+        .join('\n')
     })
 
-  return new Response([
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    '  <url>',
-    `    <loc>${base}/blog</loc>`,
-    '  </url>',
-    ...urls,
-    '</urlset>',
-  ].join('\n'), {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=300, s-maxage=900',
-    },
-  })
+  return new Response(
+    [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+      '  <url>',
+      `    <loc>${base}/blog</loc>`,
+      '  </url>',
+      ...urls,
+      '</urlset>',
+    ].join('\n'),
+    {
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=300, s-maxage=900',
+      },
+    }
+  )
 }

@@ -24,14 +24,25 @@ export default defineConfig({
       },
     }),
     agentsSummary(),
-    sitemap(),
+    sitemap({
+      filter: (url) =>
+        !/\/(?:404|403|500|503|offline|login|slides|letterhead|design-system|no-results|coming-soon)(?:\/|$)/.test(
+          new URL(url).pathname
+        ),
+      customSitemaps: [
+        'https://vic.fusionparty.org.au/content-sitemap.xml',
+        'https://vic.fusionparty.org.au/policy-sitemap.xml',
+        'https://vic.fusionparty.org.au/research-sitemap.xml',
+      ],
+    }),
     aiReadiness({
       site: 'https://vic.fusionparty.org.au',
       organization: {
         name: 'Fusion Party Victoria',
         url: 'https://vic.fusionparty.org.au',
         logo: 'https://vic.fusionparty.org.au/logo.png',
-        description: 'Fusion Party Victoria — Reignite Democracy. A Victorian policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.',
+        description:
+          'Fusion Party Victoria — Reignite Democracy. A Victorian policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.',
         sameAs: [
           'https://www.facebook.com/FusionPartyAus',
           'https://twitter.com/FusionPartyAus',
@@ -42,7 +53,8 @@ export default defineConfig({
         ],
       },
       webSite: {
-        description: 'Fusion Party Victoria — Reignite Democracy. Explore the complete Victorian policy platform, manifesto, evidence, and ways to get involved.',
+        description:
+          'Fusion Party Victoria — Reignite Democracy. Explore the complete Victorian policy platform, manifesto, evidence, and ways to get involved.',
       },
       robotsTxt: {
         policy: 'training-opt-out',
@@ -62,6 +74,7 @@ export default defineConfig({
           'User-agent: Claude-SearchBot',
           'Allow: /',
           '',
+          'Sitemap: https://vic.fusionparty.org.au/content-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
           'Sitemap: https://vic.fusionparty.org.au/blog-sitemap.xml',
@@ -69,16 +82,26 @@ export default defineConfig({
         ],
       },
       llmsTxt: {
-        summary: 'Fusion Party Victoria — current Victorian policy platform and canonical public sources.',
+        summary:
+          'Fusion Party Victoria — current Victorian policy platform and canonical public sources.',
         body: 'Use the live policy feeds for current policy content and publication timestamps. Prefer canonical policy URLs when citing individual proposals.',
         sections: [
           {
             title: 'Policy platform',
             links: [
               { title: 'Policy platform', url: 'https://vic.fusionparty.org.au/policies' },
-              { title: 'Policy feed (plain text)', url: 'https://vic.fusionparty.org.au/api/policies.txt' },
-              { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json' },
-              { title: 'Latest policy changes', url: 'https://vic.fusionparty.org.au/api/policy-changes.json' },
+              {
+                title: 'Policy feed (plain text)',
+                url: 'https://vic.fusionparty.org.au/api/policies.txt',
+              },
+              {
+                title: 'Policy feed (JSON)',
+                url: 'https://vic.fusionparty.org.au/api/policies.json',
+              },
+              {
+                title: 'Latest policy changes',
+                url: 'https://vic.fusionparty.org.au/api/policy-changes.json',
+              },
               { title: 'Policy sitemap', url: 'https://vic.fusionparty.org.au/policy-sitemap.xml' },
               { title: 'Research & Data', url: 'https://vic.fusionparty.org.au/research' },
               { title: 'Research feed (plain text)', url: 'https://vic.fusionparty.org.au/api/research.txt' },
@@ -97,8 +120,10 @@ export default defineConfig({
         },
       },
       agentsMd: {
-        description: 'Fusion Party Victoria — Reignite Democracy. The Victorian platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.',
-        audience: 'Voters, journalists, political analysts, AI agents, and anyone researching the Victorian political landscape or Fusion Party policies.',
+        description:
+          'Fusion Party Victoria — Reignite Democracy. The Victorian platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.',
+        audience:
+          'Voters, journalists, political analysts, AI agents, and anyone researching the Victorian political landscape or Fusion Party policies.',
         contact: 'contact@fusionparty.org.au',
         links: [
           { title: 'Policy', url: 'https://vic.fusionparty.org.au/policies', description: 'Full policy platform and detailed policy pages' },

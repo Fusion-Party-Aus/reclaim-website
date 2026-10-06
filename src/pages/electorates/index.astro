@@ -8,6 +8,7 @@ import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
 import { getElectorates, getElectoratesPage, urlFor } from '../../lib/sanity'
 import '../../styles/global.css'
+import '../../styles/editorial.css'
 import type { Electorate } from '../../types/sanity'
 
 const electorates = await getElectorates()
@@ -229,7 +230,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
     </div>
   </section>
 
-  <main id="main-content" class="bg-surface-base py-16 px-4 md:px-8">
+  <main id="main-content" class="site-editorial bg-surface-base py-16 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
       {
         electorates.length === 0 ? (

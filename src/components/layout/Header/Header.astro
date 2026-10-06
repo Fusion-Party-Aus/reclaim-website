@@ -47,10 +47,13 @@ const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
 // current Sanity navigation document predates frequent Signal articles.
 if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/blog')) {
   const researchIndex = rawNavItems.findIndex(
-    (item) => item.href && ensureRootRelative(item.href) === '/research',
+    (item) => item.href && ensureRootRelative(item.href) === '/research'
   )
   rawNavItems.splice(researchIndex >= 0 ? researchIndex + 1 : rawNavItems.length, 0, {
-    href: '/blog', label: 'News & Analysis', order: 4.5, highlight: true,
+    href: '/blog',
+    label: 'News & Analysis',
+    order: 4.5,
+    highlight: true,
   })
 }
 
@@ -76,7 +79,9 @@ const logo = navigation?.logo || {
 }
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-md bg-surface-base/85 border-b border-white/10">
+<header
+  class="publication-header sticky top-0 z-50 backdrop-blur-md bg-surface-base/85 border-b border-white/10"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       {/* ── Logo ── */}
@@ -107,7 +112,7 @@ const logo = navigation?.logo || {
 
       {/* ── Mobile menu toggle ── */}
       <button
-        class="md:hidden text-white hover:text-white p-3 min-w-11 min-h-11 cursor-pointer transition-colors"
+        class="xl:hidden text-white hover:text-white p-3 min-w-11 min-h-11 cursor-pointer transition-colors"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -117,7 +122,7 @@ const logo = navigation?.logo || {
       </button>
 
       {/* ── Desktop nav ── */}
-      <nav class="hidden md:flex items-center gap-7" id="main-nav" aria-label="Primary">
+      <nav class="hidden xl:flex items-center gap-5" id="main-nav" aria-label="Primary">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -166,9 +171,10 @@ const logo = navigation?.logo || {
             return (
               <a
                 href={item.href}
-                class={`nav-link text-sm font-medium transition-colors ${item.highlight
-                  ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-mint hover:bg-mint hover:text-black'
-                  : `py-1 border-b ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`
+                class={`nav-link text-sm font-medium transition-colors ${
+                  item.highlight
+                    ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-mint hover:bg-mint hover:text-black'
+                    : `py-1 border-b ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`
                 }`}
               >
                 {item.label}
@@ -196,7 +202,7 @@ const logo = navigation?.logo || {
     </div>
 
     {/* ── Mobile navigation ── */}
-    <nav class="mobile-nav hidden" id="mobile-nav" aria-label="Mobile">
+    <nav class="mobile-nav hidden xl:hidden" id="mobile-nav" aria-label="Mobile">
       <div class="flex flex-col gap-1 py-4 border-t border-white/10">
         {
           navItems.map((item) => {

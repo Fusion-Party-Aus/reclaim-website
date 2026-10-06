@@ -80,10 +80,13 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!response.ok && response.status !== 202) {
     const detail = await response.text().catch(() => '')
-    return new Response(JSON.stringify({ error: 'IndexNow notification failed', status: response.status, detail }), {
-      status: 502,
-      headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    })
+    return new Response(
+      JSON.stringify({ error: 'IndexNow notification failed', status: response.status, detail }),
+      {
+        status: 502,
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      }
+    )
   }
 
   return new Response(JSON.stringify({ notified: true, urls }), {
