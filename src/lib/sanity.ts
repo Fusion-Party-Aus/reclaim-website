@@ -194,7 +194,7 @@ export async function getResearchResources(): Promise<ResearchResource[]> {
       slug,
       summary
     },
-    "relatedResearch": relatedResearch[]->{
+    "relatedResearch": relatedResearch[]->[defined(@)]{
       _id,
       title,
       slug,
@@ -219,7 +219,7 @@ export async function getResearchResourceBySlug(slug: string): Promise<ResearchR
       slug,
       summary
     },
-    "relatedResearch": relatedResearch[]->{
+    "relatedResearch": relatedResearch[]->[defined(@)]{
       _id,
       title,
       slug,
@@ -244,7 +244,7 @@ export async function getResearchForPolicy(policyId: string): Promise<ResearchRe
       slug,
       summary
     },
-    "relatedResearch": relatedResearch[]->{
+    "relatedResearch": relatedResearch[]->[defined(@)]{
       _id,
       title,
       slug,
