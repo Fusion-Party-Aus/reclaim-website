@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { getPolicies, getManifestoPage } from '../../lib/sanity'
+import { getPolicies, getManifestoPage, getResearchForPolicy } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
@@ -44,9 +44,16 @@ export const GET: APIRoute = async () => {
       governing_rule: manifesto?.lieBlock?.headline || null,
       method: manifesto?.oneSeat?.body || null,
     },
-    policies: policies.map((policy) => ({
+    policies: await Promise.all(policies.map(async (policy) => ({
       id: policy._id,
       title: policy.title,
+      authority: {
+        publisher: 'Fusion Party Victoria',
+        jurisdiction: 'Victoria, Australia',
+        status: 'current policy',
+        adopted_policy: true,
+        part_of: `${canonicalBase}/policies`,
+      },
       slug: policy.slug?.current,
       canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
       pillar: policy.pillar || null,
@@ -66,8 +73,14 @@ export const GET: APIRoute = async () => {
       funding: policy.funding || null,
       additional_content_text: portableTextToPlainText(policy.body || []),
       published_at: policy.publishedAt || policy._createdAt || null,
+      substantive_updated_at: policy.substantiveUpdatedAt || null,
+      change_summary: policy.changeSummary || null,
+      supporting_research: (await getResearchForPolicy(policy._id)).map((resource) => ({
+        title: resource.title,
+        canonical_url: `${canonicalBase}/research/${resource.slug.current}`,
+      })),
       updated_at: policy._updatedAt || null,
-    })),
+    }))),
   }
 
   return new Response(JSON.stringify(payload, null, 2), {
