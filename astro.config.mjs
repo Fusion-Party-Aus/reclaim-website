@@ -33,6 +33,8 @@ export default defineConfig({
         'https://vic.fusionparty.org.au/content-sitemap.xml',
         'https://vic.fusionparty.org.au/policy-sitemap.xml',
         'https://vic.fusionparty.org.au/research-sitemap.xml',
+        'https://vic.fusionparty.org.au/blog-sitemap.xml',
+        'https://vic.fusionparty.org.au/news-sitemap.xml',
       ],
     }),
     aiReadiness({
