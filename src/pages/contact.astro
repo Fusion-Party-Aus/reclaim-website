@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -53,7 +54,7 @@ const general = data.generalContact ?? {
   heading: 'General Enquiries',
   description: 'For feedback or questions about the party or this website:',
   email: 'contact@fusionparty.org.au',
-  phone: '0410 249 574',
+  phone: DEPLOYMENT.slug === 'vic' ? '0410 249 574' : '',
   discordUrl: 'https://www.fusionparty.org.au/discord',
 }
 
@@ -66,7 +67,7 @@ const media = data.mediaContact ?? {
 const address = data.mailingAddress ?? {
   heading: 'Mailing Address',
   description: 'Legal correspondence only:',
-  address: '254 McLeod Lane\nMansfield VIC 3722\nAustralia',
+  address: DEPLOYMENT.slug === 'vic' ? '254 McLeod Lane\nMansfield VIC 3722\nAustralia' : '',
 }
 
 const socialLinks: SocialLink[] = data.socialLinks ?? [
@@ -89,7 +90,7 @@ const socialLinks: SocialLink[] = data.socialLinks ?? [
 ]
 ---
 
-<BaseLayout title={`${title} | Fusion Party Victoria`} description={intro}>
+<BaseLayout title={`${title} | ${DEPLOYMENT.label}`} description={intro}>
   <Header />
   <main id="main-content" class="site-editorial">
     <Hero title={title} subtitle={intro} eyebrow="Get in touch" compact />

@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -8,7 +9,7 @@ import '../styles/global.css'
 ---
 
 <BaseLayout
-  title="Coming Soon | Fusion Party Victoria"
+  title={`Coming Soon | ${DEPLOYMENT.label}`}
   description="Exciting new features are on the way! Stay tuned."
 >
   <Header />
@@ -48,7 +49,7 @@ import '../styles/global.css'
         </div>
 
         <h1
-          class="text-6xl md:text-8xl font-black uppercase mb-6 text-white leading-tight font-display"
+          class="text-6xl md:text-8xl font-black uppercase mb-6 text-fg leading-tight font-display"
           style="animation: pulse 3s ease-in-out infinite;"
         >
           COMING SOON
@@ -97,10 +98,10 @@ import '../styles/global.css'
                 class="w-16 h-16 mx-auto mb-3 text-yellow"
                 style="animation: wiggle 2s ease-in-out infinite;"
               />
-              <h3 class="font-black uppercase text-lg mb-2 text-white font-display">
+              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">
                 New Features
               </h3>
-              <p class="text-sm font-bold text-white/70">Game-changing functionality</p>
+              <p class="text-sm font-bold text-fg/70">Game-changing functionality</p>
             </div>
 
             <div
@@ -111,8 +112,8 @@ import '../styles/global.css'
                 class="w-16 h-16 mx-auto mb-3 text-mint"
                 style="animation: spin 4s linear infinite;"
               />
-              <h3 class="font-black uppercase text-lg mb-2 text-white font-display">Better UX</h3>
-              <p class="text-sm font-bold text-white/70">Sleeker, faster, smoother</p>
+              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">Better UX</h3>
+              <p class="text-sm font-bold text-fg/70">Sleeker, faster, smoother</p>
             </div>
 
             <div
@@ -123,23 +124,23 @@ import '../styles/global.css'
                 class="w-16 h-16 mx-auto mb-3 text-magenta"
                 style="animation: pulse 2s ease-in-out infinite;"
               />
-              <h3 class="font-black uppercase text-lg mb-2 text-white font-display">
+              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">
                 More Content
               </h3>
-              <p class="text-sm font-bold text-white/70">Expanded resources</p>
+              <p class="text-sm font-bold text-fg/70">Expanded resources</p>
             </div>
           </div>
 
           <!-- Call to action -->
           <div class="text-center pt-6 border-t border-white/10">
-            <p class="text-white font-bold mb-4">Want to be the first to know when we launch?</p>
+            <p class="text-fg font-bold mb-4">Want to be the first to know when we launch?</p>
             <form id="coming-soon-newsletter-form" class="max-w-md mx-auto flex gap-3">
               <input
                 type="email"
                 required
                 placeholder="your@email.com"
                 aria-label="Email address"
-                class="flex-1 px-4 py-3 border border-white/15 rounded-sm bg-black/30 text-white font-bold focus:outline-none focus:border-yellow"
+                class="flex-1 px-4 py-3 border border-white/15 rounded-sm bg-black/30 text-fg font-bold focus:outline-none focus:border-yellow"
               />
               <button
                 type="submit"
@@ -159,7 +160,7 @@ import '../styles/global.css'
 
       <!-- Sneak Peek Features -->
       <div class="mb-16">
-        <h3 class="text-4xl font-black uppercase text-center text-white mb-10 font-display">
+        <h3 class="text-4xl font-black uppercase text-center text-fg mb-10 font-display">
           Sneak Peek
         </h3>
 
@@ -178,7 +179,7 @@ import '../styles/global.css'
               </div>
               <h4 class="text-2xl font-black uppercase font-display">Stay Updated</h4>
             </div>
-            <p class="text-lg font-bold text-white/70 mb-4">
+            <p class="text-lg font-bold text-fg/70 mb-4">
               Follow us on social media for behind-the-scenes updates and launch announcements!
             </p>
             <div class="flex gap-3">
@@ -187,21 +188,21 @@ import '../styles/global.css'
                 target="_blank"
                 class="w-12 h-12 bg-white/5 border border-white/15 rounded-sm flex items-center justify-center hover:bg-yellow hover:text-black transition-all"
               >
-                <Icon name="mdi:twitter" class="w-7 h-7 text-white" />
+                <Icon name="mdi:twitter" class="w-7 h-7 text-fg" />
               </a>
               <a
                 href="https://facebook.com/fusionparty"
                 target="_blank"
                 class="w-12 h-12 bg-white/5 border border-white/15 rounded-sm flex items-center justify-center hover:bg-yellow hover:text-black transition-all"
               >
-                <Icon name="mdi:facebook" class="w-7 h-7 text-white" />
+                <Icon name="mdi:facebook" class="w-7 h-7 text-fg" />
               </a>
               <a
                 href="https://instagram.com/fusionparty"
                 target="_blank"
                 class="w-12 h-12 bg-white/5 border border-white/15 rounded-sm flex items-center justify-center hover:bg-yellow hover:text-black transition-all"
               >
-                <Icon name="mdi:instagram" class="w-7 h-7 text-white" />
+                <Icon name="mdi:instagram" class="w-7 h-7 text-fg" />
               </a>
             </div>
           </BrutalCard>
@@ -220,7 +221,7 @@ import '../styles/global.css'
               </div>
               <h4 class="text-2xl font-black uppercase font-display">In The Works</h4>
             </div>
-            <p class="text-lg font-bold text-white/70 mb-4">
+            <p class="text-lg font-bold text-fg/70 mb-4">
               Our team is working around the clock to bring you something truly special. Worth the
               wait!
             </p>
@@ -234,7 +235,7 @@ import '../styles/global.css'
                 >
                 </div>
               </div>
-              <span class="font-black text-lg text-white">73%</span>
+              <span class="font-black text-lg text-fg">73%</span>
             </div>
           </BrutalCard>
         </div>

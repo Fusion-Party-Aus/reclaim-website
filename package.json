@@ -41,7 +41,12 @@
     "generate:og:static": "node scripts/og/generate-static-images.mjs",
     "generate:og:policies": "node scripts/og/generate-policy-images.mjs",
     "prepare": "husky",
-    "import:research": "node scripts/migration/import-research-resources.js"
+    "import:research": "node scripts/migration/import-research-resources.js",
+    "dev:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld astro dev",
+    "build:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld npm run build",
+    "dev:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity dev --port 3334",
+    "build:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity build",
+    "seed:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld node --env-file-if-exists=.env scripts/sanity/seed-branch.mjs"
   },
   "lint-staged": {
     "*.{js,ts,tsx,astro}": [

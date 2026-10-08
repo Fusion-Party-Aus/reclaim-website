@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -41,7 +42,7 @@ if (Astro.request.method === 'POST') {
 ---
 
 <BaseLayout
-  title="Sign In | Fusion Party Victoria"
+  title={`Sign In | ${DEPLOYMENT.label}`}
   description="Sign in to access restricted areas."
 >
   <Header />
@@ -56,17 +57,17 @@ if (Astro.request.method === 'POST') {
           <div class="inline-block bg-magenta/10 border border-magenta rounded-sm p-4 mb-4">
             <Icon name="mdi:lock" class="w-12 h-12 text-magenta" />
           </div>
-          <h1 class="text-4xl font-black uppercase text-white font-display">
+          <h1 class="text-4xl font-black uppercase text-fg font-display">
             AUTHORISED ACCESS ONLY
           </h1>
-          <p class="text-white/50 mt-2 font-bold uppercase tracking-wider text-sm">
+          <p class="text-fg/50 mt-2 font-bold uppercase tracking-wider text-sm">
             Please enter your passphrase
           </p>
         </div>
 
         {
           errorMessage && (
-            <div class="bg-magenta/10 border border-magenta rounded-sm p-4 mb-6 text-white font-bold animate-pulse-gentle">
+            <div class="bg-magenta/10 border border-magenta rounded-sm p-4 mb-6 text-fg font-bold animate-pulse-gentle">
               <Icon name="mdi:alert-circle" class="w-5 h-5 inline mr-2" />
               {errorMessage}
             </div>
@@ -75,7 +76,7 @@ if (Astro.request.method === 'POST') {
 
         <form method="POST" class="space-y-6">
           <div>
-            <label for="password" class="block font-black uppercase text-sm mb-2 text-white">
+            <label for="password" class="block font-black uppercase text-sm mb-2 text-fg">
               Passphrase
             </label>
             <input
@@ -83,7 +84,7 @@ if (Astro.request.method === 'POST') {
               id="password"
               name="password"
               required
-              class="w-full border border-white/15 rounded-sm p-4 font-mono text-white bg-black/30 focus:outline-none focus:ring-2 focus:ring-magenta transition-all"
+              class="w-full border border-white/15 rounded-sm p-4 font-mono text-fg bg-black/30 focus:outline-none focus:ring-2 focus:ring-magenta transition-all"
               placeholder="Enter passphrase..."
             />
           </div>

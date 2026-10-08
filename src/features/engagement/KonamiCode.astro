@@ -62,7 +62,7 @@ const content = {
   >
     <button
       id="konami-close"
-      class="absolute top-4 right-4 text-white hover:text-magenta transition-colors"
+      class="absolute top-4 right-4 text-fg hover:text-magenta transition-colors"
       aria-label="Close"
     >
       <Icon name="mdi:close" class="w-8 h-8" />
@@ -72,7 +72,7 @@ const content = {
       <h2 class="text-4xl font-black uppercase text-magenta mb-4">
         {content.title}
       </h2>
-      <p class="text-xl font-bold text-white mb-6">
+      <p class="text-xl font-bold text-fg mb-6">
         {content.description}
       </p>
 
@@ -82,8 +82,8 @@ const content = {
         <div class="flex items-start gap-3 mb-4">
           <Icon name="mdi:file-document-outline" class="w-8 h-8 text-mint shrink-0" />
           <div>
-            <h3 class="font-black text-xl text-white mb-2">{content.manifestoTitle}</h3>
-            <p class="text-sm font-bold text-white/70">
+            <h3 class="font-black text-xl text-fg mb-2">{content.manifestoTitle}</h3>
+            <p class="text-sm font-bold text-fg/70">
               {content.manifestoDescription}
             </p>
           </div>
@@ -95,8 +95,8 @@ const content = {
           class="bg-yellow/10 border border-white/10 border-t-2 border-t-yellow rounded-sm p-4 text-left"
         >
           <Icon name="mdi:laptop" class="w-6 h-6 text-yellow mb-2" />
-          <h4 class="font-black text-white mb-2">{content.githubLabel}</h4>
-          <p class="text-sm font-bold text-white/70">
+          <h4 class="font-black text-fg mb-2">{content.githubLabel}</h4>
+          <p class="text-sm font-bold text-fg/70">
             This entire site is open source. Fork it, learn from it, improve it.
           </p>
           <a
@@ -113,8 +113,8 @@ const content = {
           class="bg-magenta/10 border border-white/10 border-t-2 border-t-magenta rounded-sm p-4 text-left"
         >
           <Icon name="mdi:magnify" class="w-6 h-6 text-magenta mb-2" />
-          <h4 class="font-black text-white mb-2">{content.zeroTrackingTitle}</h4>
-          <p class="text-sm font-bold text-white/70">
+          <h4 class="font-black text-fg mb-2">{content.zeroTrackingTitle}</h4>
+          <p class="text-sm font-bold text-fg/70">
             {content.zeroTrackingDescription}
           </p>
         </div>
@@ -124,7 +124,7 @@ const content = {
         {content.downloadButtonLabel}
       </BrutalButton>
 
-      <p class="text-sm text-white/60 mt-6 font-bold">
+      <p class="text-sm text-fg/60 mt-6 font-bold">
         {content.footerMessage}
       </p>
     </div>

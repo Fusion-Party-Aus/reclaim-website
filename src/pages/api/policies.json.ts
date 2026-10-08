@@ -1,10 +1,11 @@
+import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getPolicies, getManifestoPage, getResearchForPolicy } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const canonicalBase = 'https://vic.fusionparty.org.au'
+const canonicalBase = DEPLOYMENT.siteUrl
 
 export const GET: APIRoute = async () => {
   const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
@@ -34,12 +35,12 @@ export const GET: APIRoute = async () => {
       cms_revision_at: policy._updatedAt || null,
     })),
     organization: {
-      name: 'Fusion Party Victoria',
-      jurisdiction: 'Victoria, Australia',
+      name: DEPLOYMENT.label,
+      jurisdiction: DEPLOYMENT.jurisdiction,
       canonical_url: canonicalBase,
       policy_platform_url: `${canonicalBase}/policies`,
       manifesto_url: `${canonicalBase}/manifesto`,
-      tagline: 'Reignite Democracy',
+      tagline: DEPLOYMENT.tagline,
     },
     governing_philosophy: {
       title: manifesto?.title || null,
@@ -52,8 +53,8 @@ export const GET: APIRoute = async () => {
         id: policy._id,
         title: policy.title,
         authority: {
-          publisher: 'Fusion Party Victoria',
-          jurisdiction: 'Victoria, Australia',
+          publisher: DEPLOYMENT.label,
+          jurisdiction: DEPLOYMENT.jurisdiction,
           status: 'current policy',
           adopted_policy: true,
           part_of: `${canonicalBase}/policies`,

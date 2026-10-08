@@ -1,0 +1,289 @@
+/* ============================================================
+   BRANCH THEME — FUSION QUEENSLAND
+
+   This file is one instance of the branch-theme pattern. A branch
+   theme is a single self-contained file that re-points the shared
+   semantic role tokens; it never forks a component.
+
+   To add a branch:
+     1. Copy this file to src/styles/themes/<slug>.css and edit the
+        values under `:root[data-theme='<slug>']`.
+     2. Import it from src/styles/themes/index.css.
+     3. Add the branch to the `branches` registry in config/deployment.mjs
+        (slug, label, themeColor, siteUrl).
+     4. Deploy with PUBLIC_BRANCH=<slug>.
+
+   No changes to BaseLayout or to any shared component are needed.
+   The theme applies to the whole site, not to individual pages.
+
+   Activated by <html data-theme="qld">. Typography, components,
+   accessibility and the evidence-forward rules stay shared.
+
+   Overrides are intentionally unlayered: they must sit above
+   Tailwind's `utilities` layer so a themed rule can beat a
+   hardcoded utility class in a shared component.
+   ============================================================ */
+
+/* Queensland brand tokens. Declared globally so `bg-maroon`,
+   `text-gold`, `border-eucalyptus` etc. exist for any Queensland
+   surface. Nothing in the shared Victoria system references these,
+   so declaring them is inert outside the QLD theme. */
+@theme {
+  --color-maroon: #731e32;
+  --color-maroon-deep: #5e1628;
+  --color-maroon-darker: #4a1120;
+  --color-maroon-bright: #8e2a42;
+  --color-gold: #f4c66a;
+  --color-gold-bright: #f9d68c;
+  --color-gold-deep: #8f6119; /* ochre: the text-safe gold */
+  --color-ivory: #fff7ec;
+  --color-paper: #fffdf8;
+  --color-eucalyptus: #233d3a;
+  --color-eucalyptus-mid: #3a5b56;
+  --color-bottlebrush: #a34a38;
+  --color-warm-line: #e5dccb;
+}
+
+/* ---- Shared role tokens, re-pointed for Queensland ----
+   Left column is the Victoria role; right column is the
+   Queensland value that inherits it. */
+:root[data-theme='qld'] {
+  /* Primary — Maroon replaces magenta */
+  --color-magenta: #731e32;
+  --color-magenta-dark: #5e1628;
+  --color-magenta-darker: #4a1120;
+  --color-magenta-bright: #8e2a42;
+
+  /* Secondary — Eucalyptus Ink replaces mint */
+  --color-mint: #233d3a;
+  --color-mint-dark: #1a2e2c;
+  --color-mint-bright: #3a5b56;
+  --color-mint-hover: #345550;
+
+  /* Emphasis — Ochre replaces the functional blue.
+     Ochre is the dark, text-safe member of the gold family: 5.1:1 on ivory,
+     where brand gold is only 1.5:1 and must never set type on a light surface. */
+  --color-yellow: #8f6119;
+  --color-yellow-bright: #a97a2a;
+
+  /* Tertiary — Bottlebrush replaces violet */
+  --color-lavender: #a34a38;
+  --color-lavender-light: #bf6a55;
+  --color-lavender-bright: #bf6a55;
+
+  /* Neutrals — inverted to a light-first canvas */
+  --color-grey: #8a7e78;
+  --color-grey-dark: #fffdf8; /* raised panel = paper */
+  --color-grey-light: #6b6259; /* muted ink */
+  --color-black: #233d3a; /* dark neutral = eucalyptus ink */
+  --color-white: #fffdf8; /* light neutral = paper */
+
+  /* Functional */
+  --color-red: #b3261e;
+  --color-orange: #b5651d;
+  --color-blue: #3e6b62;
+  --color-green: #2f6b4f;
+
+  /* Semantic foregrounds + fills */
+  --color-fg: #233d3a;
+  --color-muted: rgba(35, 61, 58, 0.72);
+  --color-on-primary: #fff7ec;
+  --color-on-secondary: #fff7ec;
+  --color-on-accent: #fff7ec;
+  --color-on-tertiary: #fff7ec;
+  --color-line: #e5dccb;
+  --color-line-mid: #ddd0b8;
+  --color-line-strong: #c9b99a;
+  --color-chalk: #233d3a;
+  --color-focus: #233d3a;
+
+  /* Surface ladder */
+  --color-surface-base: #fff7ec; /* ivory canvas */
+  --color-surface-raised: #fffdf8; /* paper panel */
+  --color-surface-overlay: #f3e7d5; /* warm mid */
+  --color-surface-brand: #731e32; /* maroon structural */
+
+  /* Depth: warm and soft, maroon-tinted. No neon glow on a light canvas. */
+  --shadow-brutal: 0 10px 30px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-sm: 0 4px 14px rgba(74, 34, 24, 0.08);
+  --shadow-brutal-lg: 0 14px 38px rgba(74, 34, 24, 0.12);
+  --shadow-brutal-xl: 0 20px 48px rgba(74, 34, 24, 0.14);
+  --shadow-brutal-magenta: 0 10px 26px rgba(115, 30, 50, 0.22);
+  --shadow-brutal-mint: 0 10px 26px rgba(35, 61, 58, 0.16);
+  --shadow-brutal-yellow: 0 10px 26px rgba(154, 107, 31, 0.18);
+  --shadow-brutal-red: 0 10px 26px rgba(179, 38, 30, 0.18);
+  --shadow-brutal-orange: 0 10px 26px rgba(181, 101, 29, 0.18);
+  --shadow-brutal-inverted: 0 -8px 32px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-asymmetric-1: 0 10px 30px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-asymmetric-2: 0 10px 30px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-asymmetric-3: 0 10px 30px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-double: 0 0 16px rgba(115, 30, 50, 0.14), 0 10px 30px rgba(74, 34, 24, 0.1);
+  --shadow-brutal-triple:
+    0 0 12px rgba(154, 107, 31, 0.12), 0 0 20px rgba(115, 30, 50, 0.1),
+    0 10px 30px rgba(74, 34, 24, 0.1);
+}
+
+/* ---- Base layer overrides (utilities still win over these) ---- */
+@layer base {
+  /* Warmth rule: Queensland headlines are sentence case. Caps are reserved
+     for short labels, kickers and data. Victoria keeps all-caps display. */
+  [data-theme='qld'] h1,
+  [data-theme='qld'] h2,
+  [data-theme='qld'] h3,
+  [data-theme='qld'] h4,
+  [data-theme='qld'] h5,
+  [data-theme='qld'] h6 {
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ---- Component overrides ---- */
+
+/* Button labels are sentence case in Queensland: sturdy, not shouted. */
+[data-theme='qld'] .ui-button {
+  text-transform: none;
+  letter-spacing: 0.015em;
+  font-weight: 800;
+}
+
+/* On a light canvas a 0.5-alpha black drop shadow reads as grime, not depth. */
+[data-theme='qld'] .btn {
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+[data-theme='qld'] .btn-primary:hover {
+  box-shadow: var(--shadow-brutal-magenta);
+}
+
+[data-theme='qld'] .btn-secondary:hover {
+  box-shadow: var(--shadow-brutal-mint);
+}
+
+/* The alert bar sits on maroon, so its link needs a light, high-contrast tone. */
+[data-theme='qld'] .alert-bar a {
+  color: var(--color-gold);
+  border-bottom-color: var(--color-gold);
+}
+
+[data-theme='qld'] .alert-bar a:hover {
+  color: var(--color-on-primary);
+  border-bottom-color: var(--color-on-primary);
+}
+
+/* ---- Dark-band helper ----
+   Apply `.qld-on-dark` to any maroon or eucalyptus band. It switches the
+   focus ring to gold, which is the only accent that clears contrast on both
+   dark fills (gold on maroon = 6.7:1, gold on eucalyptus = 7.3:1). */
+[data-theme='qld'] .qld-on-dark :focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/* Editorial roles retain Victoria defaults in editorial.css. */
+:root[data-theme='qld'] {
+  --editorial-base: #fff7ec;
+  --editorial-header: #fff7ecf5;
+  --editorial-panel: #fffdf8;
+  --editorial-overlay: #eee4d4;
+  --editorial-hover: #f4ecdf;
+  --editorial-gradient-start: #fffdf8;
+  --editorial-glow: #eee4d4;
+  --editorial-fg: #233d3a;
+  --editorial-title: #233d3a;
+  --editorial-line: #e5dccb;
+  --editorial-line-strong: #c9b99a;
+  --editorial-muted: #61716c;
+  --editorial-muted-mid: #61716c;
+  --editorial-muted-light: #3a5b56;
+  --editorial-light: #233d3a;
+  --editorial-secondary: #233d3a;
+  --editorial-primary: #731e32;
+  --editorial-secondary-line: #c9b99a;
+  --editorial-white-12: #e5dccb;
+  --editorial-white-13: #e5dccb;
+  --editorial-white-14: #e5dccb;
+  --editorial-white-15: #e5dccb;
+  --editorial-white-5: #61716c;
+  --editorial-white-64: #61716c;
+  --editorial-white-66: #61716c;
+}
+
+:root[data-theme='qld'] {
+  --color-accent-deep: #8f6119;
+  --color-neutral-panel: #fffdf8;
+  --branch-surface: #fff7ec;
+  --branch-surface-gradient: #fffdf8;
+  --branch-panel: #fffdf8;
+  --branch-ink: #233d3a;
+  --branch-muted: #61716c;
+  --branch-line: #e5dccb;
+  --branch-primary: #731e32;
+  --branch-secondary: #233d3a;
+  --branch-accent: #8f6119;
+  --branch-accent-deep: #8f6119;
+  --branch-tertiary: #a34a38;
+}
+/* Full-colour bands establish their own foreground, inherited by descendants. */
+:root[data-theme='qld']
+  :is(
+    .bg-black,
+    .bg-mint,
+    .bg-mint-dark,
+    .bg-magenta,
+    .bg-magenta-dark,
+    .bg-magenta-darker,
+    .bg-yellow,
+    .bg-accent-deep,
+    .bg-lavender
+  ),
+:root[data-theme='qld'] [class~='hover:bg-magenta']:hover,
+:root[data-theme='qld'] [class~='hover:bg-mint']:hover {
+  --color-fg: #fff7ec;
+  --color-muted: #e5dccb;
+  --branch-ink: #fff7ec;
+  --branch-muted: #e5dccb;
+  --editorial-title: #fff7ec;
+  --editorial-fg: #fff7ec;
+  --editorial-muted: #e5dccb;
+  --editorial-muted-light: #e5dccb;
+  color: var(--color-fg);
+}
+:root[data-theme='qld'] :is(.bg-black, .bg-mint) {
+  --editorial-primary: #f4c66a;
+  --editorial-secondary: #f4c66a;
+}
+:root[data-theme='qld'] :is(.bg-white, .bg-grey-dark, .bg-surface-raised, .bg-neutral-panel) {
+  --color-fg: #233d3a;
+  --color-muted: #61716c;
+  --branch-ink: #233d3a;
+  --branch-muted: #61716c;
+  --editorial-title: #233d3a;
+  --editorial-fg: #233d3a;
+  --editorial-primary: #731e32;
+  --editorial-secondary: #233d3a;
+  color: var(--color-fg);
+}
+:root[data-theme='qld'] :is(.bg-black, .bg-mint) :is(.text-magenta, .text-yellow, .text-mint) {
+  color: #f4c66a;
+}
+:root[data-theme='qld'] :is(.bg-mint, .bg-mint-dark).text-black {
+  color: var(--color-on-secondary);
+}
+:root[data-theme='qld'] :is(.publication-header, .publication-footer) img {
+  filter: brightness(0) saturate(100%);
+}
+/* The editorial footer banner is a light panel, even though its utility name is magenta. */
+:root[data-theme='qld'] .public-editorial .publication-footer > .bg-magenta {
+  --color-fg: #233d3a;
+  --branch-ink: #233d3a;
+}
+/* Alpha white was designed for Victoria's dark canvas. Use an opaque muted role
+   for small secondary text so it stays legible on either Queensland surface. */
+:root[data-theme='qld'] [class*='text-fg/'] {
+  color: var(--color-muted);
+}
+:root[data-theme='qld']
+  :is(.bg-magenta, .bg-magenta-dark, .bg-magenta-darker, .bg-yellow, .bg-accent-deep)
+  .text-black {
+  color: var(--color-on-primary);
+}

@@ -1,3 +1,4 @@
+import { DEPLOYMENT } from '../lib/deployment'
 import rss from '@astrojs/rss'
 import { getDocuments } from '../lib/sanity'
 
@@ -17,10 +18,9 @@ export async function GET() {
   )
 
   return rss({
-    title: 'Fusion Party Victoria',
-    description:
-      'Campaign updates, policy announcements, and stories from the movement to reclaim Victoria.',
-    site: 'https://vic.fusionparty.org.au',
+    title: DEPLOYMENT.label,
+    description: `Campaign updates, policy announcements, and stories from the movement to reclaim ${DEPLOYMENT.state}.`,
+    site: DEPLOYMENT.siteUrl,
     items: sorted.map((post) => ({
       title: post.title,
       pubDate: new Date(post.publishedAt),

@@ -1,9 +1,35 @@
+import {resolveDeployment} from '../config/deployment.mjs'
+const deployment = resolveDeployment({
+  SANITY_STUDIO_BRANCH: process.env.SANITY_STUDIO_BRANCH,
+  SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
+  SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
+})
 import {defineConfig, type ConfigContext} from 'sanity'
 import {structureTool, type StructureBuilder} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {table} from '@sanity/table'
 import {presentationTool} from 'sanity/presentation'
 import {schemaTypes} from './schemaTypes'
+import {starterContent} from '../config/starter-content.mjs'
+
+// New branches must never inherit Victorian campaign claims from schema defaults.
+function withoutDefaults(field: any): any {
+  const {initialValue: _initialValue, ...rest} = field
+  return {
+    ...rest,
+    ...(field.fields ? {fields: field.fields.map(withoutDefaults)} : {}),
+    ...(field.of ? {of: field.of.map(withoutDefaults)} : {}),
+  }
+}
+const starters = starterContent(deployment)
+const branchSchemaTypes =
+  deployment.slug === 'vic'
+    ? schemaTypes
+    : schemaTypes.map((schema) => {
+        const starter = starters.find((document) => document._type === schema.name)
+        const {_id, _type, ...initialValue} = starter || {}
+        return {...withoutDefaults(schema), ...(starter ? {initialValue} : {})}
+      })
 
 // The Astro site origin this Studio's Presentation tool previews against.
 // Run the Astro dev server with PUBLIC_SANITY_VISUAL_EDITING_ENABLED=true
@@ -42,10 +68,10 @@ const getPageStructure = (S: StructureBuilder, parentId?: string): any => {
 
 export default defineConfig({
   name: 'default',
-  title: 'Reignite Democracy Website',
+  title: deployment.label,
 
-  projectId: 'qwl3f8jb',
-  dataset: 'production',
+  projectId: deployment.projectId,
+  dataset: deployment.dataset,
 
   plugins: [
     structureTool({
@@ -85,17 +111,29 @@ export default defineConfig({
                     S.listItem()
                       .title('🏠 Home Page')
                       .child(
-                        S.document().schemaType('homePage').documentId('DYZVAW4yRUmcIv7eyyqoTp'),
+                        S.document()
+                          .schemaType('homePage')
+                          .documentId(
+                            deployment.slug === 'vic' ? 'DYZVAW4yRUmcIv7eyyqoTp' : 'homePage',
+                          ),
                       ),
                     S.listItem()
                       .title('🧭 Navigation')
                       .child(
-                        S.document().schemaType('navigation').documentId('DYZVAW4yRUmcIv7eyyxqYb'),
+                        S.document()
+                          .schemaType('navigation')
+                          .documentId(
+                            deployment.slug === 'vic' ? 'DYZVAW4yRUmcIv7eyyxqYb' : 'navigation',
+                          ),
                       ),
                     S.listItem()
                       .title('🦶 Footer')
                       .child(
-                        S.document().schemaType('footer').documentId('DYZVAW4yRUmcIv7eyzvQ8T'),
+                        S.document()
+                          .schemaType('footer')
+                          .documentId(
+                            deployment.slug === 'vic' ? 'DYZVAW4yRUmcIv7eyzvQ8T' : 'footer',
+                          ),
                       ),
                     S.listItem()
                       .title('⚙️ Site Configuration')
@@ -103,6 +141,15 @@ export default defineConfig({
                     S.listItem()
                       .title('📬 Contact Page')
                       .child(S.document().schemaType('contactPage').documentId('contactPage')),
+                    ...[
+                      ['policiesPage', 'Policy Platform'],
+                      ['visionPage', 'Vision'],
+                      ['manifestoPage', 'Manifesto'],
+                      ['blogPage', 'News Page'],
+                      ['electoratesPage', 'Electorates Page'],
+                    ].map(([type, title]) =>
+                      S.listItem().title(title).child(S.documentTypeList(type).title(title)),
+                    ),
                   ]),
               ),
 
@@ -289,6 +336,6 @@ export default defineConfig({
   ],
 
   schema: {
-    types: schemaTypes,
+    types: branchSchemaTypes,
   },
 })

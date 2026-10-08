@@ -25,11 +25,11 @@
       }
 
       :root {
-        --magenta: #d428d4;
-        --mint: #00ddb8;
-        --yellow: #4a7aeb;
-        --black: #1a0029;
-        --white: #ffffff;
+        --magenta: var(--branch-primary, #d428d4);
+        --mint: var(--branch-secondary, #00ddb8);
+        --yellow: var(--branch-accent, #4a7aeb);
+        --black: var(--branch-surface, #1a0029);
+        --white: var(--branch-ink, #ffffff);
         --archivo: 'Barlow Condensed', sans-serif;
         --grotesk: 'Barlow', sans-serif;
         --inter: 'Barlow', sans-serif;
@@ -266,7 +266,7 @@
         right: 28px;
         font-family: var(--mono);
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--branch-muted, rgba(255, 255, 255, 0.5));
         z-index: 100;
         letter-spacing: 0.08em;
       }
@@ -278,7 +278,7 @@
         left: 28px;
         font-family: var(--mono);
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.35);
+        color: var(--branch-muted, rgba(255, 255, 255, 0.35));
         z-index: 100;
         letter-spacing: 0.06em;
       }
@@ -415,7 +415,7 @@
         <div class="stripe">
           <div class="stripe-1"></div><div class="stripe-2"></div><div class="stripe-3"></div>
         </div>
-        <div class="watermark" style="color:#fff">F</div>
+        <div class="watermark" style="color:var(--branch-ink, #fff)">F</div>
         <div class="geo-br" style="background:var(--magenta)"></div>
         <div class="content" style="padding-top:100px; justify-content:space-between;">
           <!-- Logo row -->
@@ -457,7 +457,7 @@
 
           <!-- Contact footer -->
           <div
-            style="display:flex;gap:32px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;"
+            style="display:flex;gap:32px;font-family:var(--mono);font-size:13px;color:var(--branch-muted, rgba(255,255,255,0.5));letter-spacing:0.08em;"
           >
             <span>fusionparty.org.au</span>
             <span>contact@fusionparty.org.au</span>
@@ -788,7 +788,7 @@
           </div>
           <div style="margin-top:28px;border-left:8px solid var(--yellow);padding-left:20px;">
             <p
-              style="color:rgba(255,255,255,0.7);font-size:clamp(14px,1.4vw,18px);font-weight:700;"
+              style="color:var(--branch-muted, rgba(255,255,255,0.7));font-size:clamp(14px,1.4vw,18px);font-weight:700;"
             >
               All four operate within Fusion's existing constitutional framework. <span
                 style="color:var(--yellow);">No amendments required.</span
@@ -1077,7 +1077,7 @@
                 Explicit Consent
               </div>
               <p
-                style="font-weight:700;font-size:clamp(13px,1.2vw,16px);color:rgba(255,255,255,0.85);"
+                style="font-weight:700;font-size:clamp(13px,1.2vw,16px);color:var(--branch-muted, rgba(255,255,255,0.85));"
               >
                 All required parties must explicitly approve. Major expenditures, constitutional
                 matters.
@@ -1441,7 +1441,7 @@
           <div style="display:flex;flex-direction:column;gap:20px;">
             <div style="border-left:8px solid var(--yellow);padding-left:20px;">
               <p
-                style="color:rgba(255,255,255,0.85);font-size:clamp(15px,1.6vw,22px);font-weight:700;"
+                style="color:var(--branch-muted, rgba(255,255,255,0.85));font-size:clamp(15px,1.6vw,22px);font-weight:700;"
               >
                 Are we building the engine to stop this future? <span style="color:var(--yellow);"
                   >The answer is in this room.</span
@@ -1464,7 +1464,7 @@
               }
             </div>
             <div
-              style="font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;"
+              style="font-family:var(--mono);font-size:13px;color:var(--branch-muted, rgba(255,255,255,0.4));letter-spacing:0.06em;"
             >
               Ethan Cornwill — National Secretary, Reignite Democracy &nbsp;·&nbsp; Authorised by K.
               Hunt, Reignite Democracy, Mansfield

@@ -1,10 +1,11 @@
+import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getResearchResources } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 
 export const GET: APIRoute = async () => {
   const resources = await getResearchResources()
@@ -20,8 +21,8 @@ export const GET: APIRoute = async () => {
     collection_updated_at: sorted[0]?._updatedAt || sorted[0]?.publishedAt || null,
     canonical_collection_url: `${base}/research`,
     organization: {
-      name: 'Fusion Party Victoria',
-      jurisdiction: 'Victoria, Australia',
+      name: DEPLOYMENT.label,
+      jurisdiction: DEPLOYMENT.jurisdiction,
       canonical_url: base,
     },
     resources: resources.map((resource) => ({
@@ -31,8 +32,8 @@ export const GET: APIRoute = async () => {
       canonical_url: `${base}/research/${resource.slug?.current}`,
       resource_type: resource.resourceType,
       authority: {
-        publisher: 'Fusion Party Victoria',
-        jurisdiction: 'Victoria, Australia',
+        publisher: DEPLOYMENT.label,
+        jurisdiction: DEPLOYMENT.jurisdiction,
         status: 'research/evidence',
         adopted_policy: false,
         collection: `${base}/research`,

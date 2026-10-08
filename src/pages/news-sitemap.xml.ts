@@ -1,9 +1,10 @@
+import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getDocuments } from '../lib/sanity'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 const escapeXml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -32,7 +33,7 @@ export const GET: APIRoute = async () => {
       `    <loc>${escapeXml(`${base}/blog/${post.slug!.current}`)}</loc>`,
       '    <news:news>',
       '      <news:publication>',
-      '        <news:name>Fusion Party Victoria</news:name>',
+      `        <news:name>${escapeXml(DEPLOYMENT.label)}</news:name>`,
       '        <news:language>en</news:language>',
       '      </news:publication>',
       `      <news:publication_date>${escapeXml(new Date(post.publishedAt!).toISOString())}</news:publication_date>`,

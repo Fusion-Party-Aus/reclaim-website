@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { resolveDeployment } from '../../config/deployment.mjs'
+const deployment = resolveDeployment(process.env)
 /**
  * Generates one OG card per policy (public/og/policies/<slug>.png), built
  * from that policy's own title/summary, via satori + @resvg/resvg-js (see
@@ -43,9 +45,24 @@ const satoriFonts = [
 
 async function generatePolicyImages() {
   const { writeFileSync } = await import('node:fs')
+  if (deployment.slug !== 'vic') {
+    const png = await renderPolicyCardPng(
+      {
+        eyebrow: deployment.label,
+        title: deployment.tagline,
+        subline: 'Reason. Rights. Results.',
+        accent: deployment.themeColor,
+        tag: new URL(deployment.siteUrl).hostname.toUpperCase(),
+        branchLabel: deployment.state.toUpperCase(),
+        logoMarkDataUri,
+      },
+      satoriFonts
+    )
+    writeFileSync(path.join(root, 'public/og', `${deployment.slug}-default.png`), png)
+  }
   const client = createClient({
-    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
-    dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
+    projectId: deployment.projectId,
+    dataset: deployment.dataset,
     useCdn: true,
     apiVersion: '2024-01-29',
   })
@@ -62,7 +79,8 @@ async function generatePolicyImages() {
         title: policy.title,
         subline: policy.summary,
         accent,
-        tag: 'VIC.FUSIONPARTY.ORG.AU',
+        tag: new URL(deployment.siteUrl).hostname.toUpperCase(),
+        branchLabel: deployment.state.toUpperCase(),
         logoMarkDataUri,
       },
       satoriFonts

@@ -38,15 +38,16 @@ const {
   style: customStyle,
 } = Astro.props
 
-// Background colors. 'surface' is the dark raised panel used everywhere by default.
+// Background colors. 'surface' is the raised panel used everywhere by default.
+// Text + hairline colours come from semantic tokens so branch themes repaint them.
 const bgColors = {
-  surface: 'bg-grey-dark text-white border border-white/10',
+  surface: 'bg-grey-dark text-fg border border-line',
   white: 'bg-white text-black border border-black/10',
-  magenta: 'bg-magenta text-white border border-white/10',
-  mint: 'bg-mint text-black border border-black/10',
-  yellow: 'bg-yellow text-white border border-white/10',
-  lavender: 'bg-lavender text-white border border-white/10',
-  black: 'bg-black text-white border border-white/10',
+  magenta: 'bg-magenta text-on-primary border border-white/10',
+  mint: 'bg-mint text-on-secondary border border-black/10',
+  yellow: 'bg-yellow text-on-accent border border-white/10',
+  lavender: 'bg-lavender text-on-tertiary border border-white/10',
+  black: 'bg-black text-fg border border-white/10',
 }
 
 // Padding sizes
@@ -57,14 +58,21 @@ const paddingSizes = {
   xl: 'p-10 md:p-12',
 }
 
-// Named accents resolve to brand hex; anything else (a hex/rgba string) passes through.
+// Named accents resolve to the shared role tokens; anything else (a hex/rgba
+// string) passes through, so branch themes can recolour card accents too.
 const accentColors: Record<string, string> = {
-  magenta: '#D428D4',
-  mint: '#00DDB8',
-  yellow: '#4A7AEB',
-  lavender: '#7B3FE4',
-  black: '#0F0018',
-  white: '#FFFFFF',
+  magenta: 'var(--color-magenta)',
+  mint: 'var(--color-mint)',
+  yellow: 'var(--color-yellow)',
+  lavender: 'var(--color-lavender)',
+  black: 'var(--color-black)',
+  white: 'var(--color-white)',
+  /* Queensland branch names */
+  maroon: 'var(--color-maroon)',
+  gold: 'var(--color-gold)',
+  ochre: 'var(--color-gold-deep)',
+  eucalyptus: 'var(--color-eucalyptus)',
+  bottlebrush: 'var(--color-bottlebrush)',
 }
 const resolvedAccent = accentColors[shadow] ?? shadow
 
@@ -82,7 +90,7 @@ const cardStyle = `border-top: 2px solid ${resolvedAccent}; transform: ${rotatio
     'rounded-sm',
     paddingSizes[padding],
     'transition-colors duration-200',
-    { 'hover:border-white/25': hover && variant === 'surface' },
+    { 'hover:border-line-strong': hover && variant === 'surface' },
     className,
   ]}
   style={cardStyle}

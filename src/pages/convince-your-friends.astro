@@ -1,4 +1,6 @@
 ---
+import BranchLanding from '@/components/layout/BranchLanding.astro'
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
@@ -196,561 +198,560 @@ const defaultContrastSection = {
 const contrastSection = pageData?.contrastSection || defaultContrastSection
 ---
 
-<BaseLayout
-  title={`${pageData?.title || 'Convince Your Friends'} | Fusion Party Victoria`}
-  description={pageData?.subtitle ||
-    'Ready-to-send templates to share Fusion policies with your network. Make it easy to spread the word.'}
->
-  <Header />
-
-  <!-- Floating Background Icons -->
-  <div class="fixed inset-0 pointer-events-none overflow-hidden opacity-5 z-0">
-    <FloatingIcon
-      name="mdi:email-fast"
-      position={{ left: '5%', top: '10%' }}
-      delay="0s"
-      size={80}
+{
+  DEPLOYMENT.slug !== 'vic' && !pageData ? (
+    <BranchLanding
+      title="Share our work"
+      description="Read our published policies and share the proposals that matter to you."
     />
-    <FloatingIcon
-      name="mdi:share-variant"
-      position={{ left: '85%', top: '15%' }}
-      delay="2s"
-      size={60}
-    />
-    <FloatingIcon
-      name="mdi:account-group"
-      position={{ left: '10%', top: '60%' }}
-      delay="4s"
-      size={70}
-    />
-    <FloatingIcon name="mdi:bullhorn" position={{ left: '80%', top: '65%' }} delay="3s" size={90} />
-    <FloatingIcon
-      name="mdi:heart-multiple"
-      position={{ left: '50%', top: '80%' }}
-      delay="1s"
-      size={50}
-    />
-  </div>
+  ) : (
+    <BaseLayout
+      title={`${pageData?.title || 'Convince Your Friends'} | ${DEPLOYMENT.label}`}
+      description={
+        pageData?.subtitle ||
+        'Ready-to-send templates to share Fusion policies with your network. Make it easy to spread the word.'
+      }
+    >
+      <Header />
 
-  <main id="main-content" class="site-editorial relative z-10">
-    <!-- Hero Section -->
-    <Section padding="xl" bg="dark" class="pt-32 pb-20">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-block mb-6">
-          <BrutalBadge variant="magenta" size="lg">Grassroots Organizing</BrutalBadge>
-        </div>
-
-        <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-[1]">
-          {pageData?.title || 'Convince Your'}
-          {!pageData?.title && <span class="text-magenta">Friends</span>}
-        </h1>
-
-        <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight text-white/80">
-          {
-            pageData?.subtitle ||
-              "Don't know what to say? Use these pre-written templates to share Fusion policies with your network. One click to copy, customized for different audiences."
-          }
-        </p>
-
-        <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
-          <div
-            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
-          >
-            <Icon name="mdi:rocket-launch" class="w-5 h-5 text-magenta" />
-            <span class="font-black text-sm">READY TO SEND</span>
-          </div>
-          <div
-            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
-          >
-            <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
-            <span class="font-black text-sm">{templates.length} AUDIENCES</span>
-          </div>
-          <div
-            class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2"
-          >
-            <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
-            <span class="font-black text-sm">ONE CLICK COPY</span>
-          </div>
-        </div>
-
-        <!-- Why It Works -->
-        <BrutalCard variant="surface" shadow="magenta" padding="lg" class="text-left">
-          <h3
-            class="text-2xl font-display font-black text-magenta mb-4 uppercase flex items-center gap-3"
-          >
-            <Icon name="mdi:lightbulb-on" class="w-8 h-8" />
-            Why This Works
-          </h3>
-          <ul class="space-y-3 text-lg">
-            {
-              pageData?.whyItWorks?.map((item: any) => (
-                <li class="flex items-start gap-3">
-                  <Icon
-                    name={item.icon || 'mdi:check-bold'}
-                    class="w-6 h-6 text-mint flex-shrink-0 mt-1"
-                  />
-                  <span>
-                    <strong>{item.title}:</strong> {item.description}
-                  </span>
-                </li>
-              )) || (
-                <>
-                  <li class="flex items-start gap-3">
-                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-                    <span>
-                      <strong>Lower Friction:</strong> Don't know what to say? We've written it for
-                      you.
-                    </span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-                    <span>
-                      <strong>Targeted Messaging:</strong> Different approaches for different
-                      audiences.
-                    </span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-                    <span>
-                      <strong>Exponential Growth:</strong> Every person you reach can reach their
-                      network.
-                    </span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
-                    <span>
-                      <strong>Authentic:</strong> Fully customizable - make it your own voice.
-                    </span>
-                  </li>
-                </>
-              )
-            }
-          </ul>
-        </BrutalCard>
+      {/* Floating Background Icons */}
+      <div class="fixed inset-0 pointer-events-none overflow-hidden opacity-5 z-0">
+        <FloatingIcon
+          name="mdi:email-fast"
+          position={{ left: '5%', top: '10%' }}
+          delay="0s"
+          size={80}
+        />
+        <FloatingIcon
+          name="mdi:share-variant"
+          position={{ left: '85%', top: '15%' }}
+          delay="2s"
+          size={60}
+        />
+        <FloatingIcon
+          name="mdi:account-group"
+          position={{ left: '10%', top: '60%' }}
+          delay="4s"
+          size={70}
+        />
+        <FloatingIcon
+          name="mdi:bullhorn"
+          position={{ left: '80%', top: '65%' }}
+          delay="3s"
+          size={90}
+        />
+        <FloatingIcon
+          name="mdi:heart-multiple"
+          position={{ left: '50%', top: '80%' }}
+          delay="1s"
+          size={50}
+        />
       </div>
-    </Section>
 
-    <!-- Channel Filter Section -->
-    <Section padding="lg" bg="dark">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
-          Choose Your Channel
-        </h2>
-        <div class="grid md:grid-cols-4 gap-4 mb-12">
-          {
-            Object.entries(channelInfo).map(([key, info]) => (
-              <button
-                data-channel={key}
-                class="channel-filter bg-grey-dark border border-white/10 rounded-sm p-4 hover:border-yellow/50 transition-all transform hover:scale-105 active:scale-95"
-              >
-                <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-magenta" />
-                <p class="font-black uppercase text-sm mb-1">{info.name}</p>
-                <p class="text-xs text-white/60">{info.tip}</p>
-              </button>
-            ))
-          }
-        </div>
-      </div>
-    </Section>
-
-    <!-- Templates Grid -->
-    <Section padding="xl" bg="dark">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-display font-black uppercase mb-4">Pick Your Template</h2>
-          <p class="text-lg font-bold max-w-2xl mx-auto text-white/70">
-            Click to expand, customize if needed, then copy and send!
-          </p>
-        </div>
-
-        <div class="space-y-6" id="templates-container">
-          {
-            templates.map((template) => (
-              <BrutalCard
-                variant="surface"
-                shadow={template.color}
-                padding="lg"
-                hover={false}
-                class="template-card cursor-pointer"
-                data-channel={template.channel}
-              >
-                {/* Collapsed View */}
-                <div class="template-header flex items-center justify-between">
-                  <div class="flex items-center gap-4 flex-1">
-                    <div
-                      class={`w-16 h-16 bg-${template.color} rounded-sm flex items-center justify-center flex-shrink-0`}
-                    >
-                      <Icon name={template.icon} class="w-8 h-8 text-white" />
-                    </div>
-                    <div class="flex-1">
-                      <h3 class="text-xl font-display font-black uppercase mb-1">
-                        {template.title}
-                      </h3>
-                      <p class="text-sm font-bold text-white/60 mb-2">{template.audience}</p>
-                      <div class="flex flex-wrap gap-2">
-                        {template.tags.map((tag) => (
-                          <span class="text-xs bg-white/10 rounded-sm px-2 py-1 font-bold">
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <BrutalButton variant="magenta" class="expand-btn" icon="mdi:chevron-down">
-                    OPEN
-                  </BrutalButton>
-                </div>
-
-                {/* Expanded View */}
-                <div class="template-body hidden mt-6 pt-6 border-t border-white/10">
-                  {template.subject && (
-                    <div class="mb-4">
-                      <label class="block text-sm font-black uppercase mb-2 text-magenta">
-                        Subject Line:
-                      </label>
-                      <div class="bg-black/30 border border-white/10 rounded-sm p-3 font-bold">
-                        {template.subject}
-                      </div>
-                    </div>
-                  )}
-
-                  <div class="mb-4">
-                    <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
-                      <span>Message:</span>
-                      <span class="text-xs text-white/60 normal-case font-bold">
-                        (Click to edit if you want to personalize)
-                      </span>
-                    </label>
-                    <textarea class="w-full h-64 bg-black/30 border border-white/10 rounded-sm p-4 font-mono text-sm text-white resize-none focus:outline-none focus:border-magenta">
-                      {template.body}
-                    </textarea>
-                  </div>
-
-                  <div class="flex flex-wrap gap-3">
-                    <BrutalButton
-                      variant="magenta"
-                      size="lg"
-                      class="copy-btn"
-                      icon="mdi:content-copy"
-                    >
-                      COPY TO CLIPBOARD
-                    </BrutalButton>
-                    <BrutalButton variant="black" size="lg" class="collapse-btn">
-                      CLOSE
-                    </BrutalButton>
-                  </div>
-
-                  <div class="mt-4 p-4 bg-yellow/10 border border-yellow/30 rounded-sm">
-                    <p class="text-sm font-bold flex items-start gap-2">
-                      <Icon name="mdi:lightbulb" class="w-5 h-5 text-yellow flex-shrink-0 mt-0.5" />
-                      <span>
-                        <strong>Pro tip:</strong> Personalize the template with your own words and
-                        experiences. Authentic messages are more convincing!
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </BrutalCard>
-            ))
-          }
-        </div>
-      </div>
-    </Section>
-
-    <!-- Tips Section -->
-    <Section padding="xl" bg="dark">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
-          Tips for Maximum Impact
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          {
-            tips.map((tip: any) => (
-              <BrutalCard variant="surface" shadow={tip.color} padding="lg">
-                <h3
-                  class={`text-xl font-display font-black text-${tip.color} mb-3 uppercase flex items-center gap-2`}
-                >
-                  <Icon name={tip.icon} class="w-6 h-6" />
-                  {tip.title}
-                </h3>
-                <p class="font-bold text-white/70">{tip.description}</p>
-              </BrutalCard>
-            ))
-          }
-        </div>
-      </div>
-    </Section>
-
-    <!-- Share Your Success Section -->
-    <Section padding="xl" bg="dark">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-          <div class="inline-block mb-6">
-            <BrutalBadge variant="magenta" size="lg" icon="mdi:message-star">
-              Used a Template?
-            </BrutalBadge>
-          </div>
-          <h2 class="text-4xl md:text-5xl font-display font-black uppercase mb-6 leading-tight">
-            Tell Us How It Went!
-          </h2>
-          <p class="text-xl font-bold mb-8 max-w-2xl mx-auto text-white/70">
-            Did it work? Did you customize it? Did your boomer dad actually read it? Your feedback
-            helps us improve these for everyone.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 mb-8">
-          <BrutalCard variant="surface" shadow="magenta" padding="lg">
-            <Icon name="mdi:thumb-up" class="w-12 h-12 text-magenta mb-3" />
-            <h3 class="text-xl font-display font-black uppercase mb-2">Success Stories</h3>
-            <p class="font-bold text-white/70 text-sm">
-              "Used the parent template and my mum actually joined!" - These are gold. Help others
-              see what works.
-            </p>
-          </BrutalCard>
-
-          <BrutalCard variant="surface" shadow="mint" padding="lg">
-            <Icon name="mdi:pencil-box" class="w-12 h-12 text-mint mb-3" />
-            <h3 class="text-xl font-display font-black uppercase mb-2">Your Tweaks</h3>
-            <p class="font-bold text-white/70 text-sm">
-              Changed something that landed better? Share it! Community-sourced improvements make
-              these templates stronger.
-            </p>
-          </BrutalCard>
-        </div>
-
-        <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
-          <!-- Form content (same as before) -->
-          <h3 class="text-2xl font-display font-black uppercase mb-4 text-white">
-            Quick Feedback Form
-          </h3>
-          <form
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
-            class="max-w-xl mx-auto space-y-4"
-          >
-            <!-- TODO: Replace YOUR_FORM_ID with actual Formspree ID or use your own form endpoint -->
-            <input type="hidden" name="_subject" value="Convince Your Friends - Feedback" />
-            <div class="text-left">
-              <label class="block text-white font-black uppercase text-sm mb-2">
-                Which template did you use?
-              </label>
-              <select
-                name="template"
-                required
-                class="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-sm text-white font-bold focus:outline-none focus:border-yellow"
-              >
-                <option value="">Select a template...</option>
-                {templates.map((t) => <option value={t.id}>{t.title}</option>)}
-              </select>
+      <main id="main-content" class="site-editorial relative z-10">
+        {/* Hero Section */}
+        <Section padding="xl" bg="dark" class="pt-32 pb-20">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block mb-6">
+              <BrutalBadge variant="magenta" size="lg">
+                Grassroots Organizing
+              </BrutalBadge>
             </div>
 
-            <div class="text-left">
-              <label class="block text-white font-black uppercase text-sm mb-2">
-                How did it go?
-              </label>
-              <div class="flex gap-3">
-                <label class="flex-1">
-                  <input type="radio" name="result" value="great" class="sr-only peer" required />
-                  <div
-                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint"
-                  >
-                    Great!
-                  </div>
-                </label>
-                <label class="flex-1">
-                  <input type="radio" name="result" value="ok" class="sr-only peer" />
-                  <div
-                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-white peer-checked:border-yellow"
-                  >
-                    OK
-                  </div>
-                </label>
-                <label class="flex-1">
-                  <input type="radio" name="result" value="meh" class="sr-only peer" />
-                  <div
-                    class="bg-black/20 border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-white/40 transition-all peer-checked:bg-white/20 peer-checked:border-white/40"
-                  >
-                    Meh
-                  </div>
-                </label>
+            <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-[1]">
+              {pageData?.title || 'Convince Your'}
+              {!pageData?.title && <span class="text-magenta">Friends</span>}
+            </h1>
+
+            <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight text-fg/80">
+              {pageData?.subtitle ||
+                "Don't know what to say? Use these pre-written templates to share Fusion policies with your network. One click to copy, customized for different audiences."}
+            </p>
+
+            <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
+              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
+                <Icon name="mdi:rocket-launch" class="w-5 h-5 text-magenta" />
+                <span class="font-black text-sm">READY TO SEND</span>
+              </div>
+              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
+                <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
+                <span class="font-black text-sm">{templates.length} AUDIENCES</span>
+              </div>
+              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
+                <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
+                <span class="font-black text-sm">ONE CLICK COPY</span>
               </div>
             </div>
 
-            <div class="text-left">
-              <label class="block text-white font-black uppercase text-sm mb-2">
-                What happened? (Optional but helpful!)
-              </label>
-              <textarea
-                name="feedback"
-                rows="4"
-                placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
-                class="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-sm text-white font-bold resize-none focus:outline-none focus:border-yellow"
-              ></textarea>
-            </div>
-
-            <div class="text-left">
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="can_share"
-                  value="yes"
-                  class="mt-1 w-5 h-5 border border-white/30 rounded-sm bg-black/20"
-                />
-                <span class="text-white font-bold text-sm">
-                  You can share this as a testimonial (we'll keep you anonymous unless you tell us
-                  otherwise)
-                </span>
-              </label>
-            </div>
-
-            <BrutalButton type="submit" variant="yellow" fullWidth icon="mdi:send">
-              Send Feedback
-            </BrutalButton>
-          </form>
-
-          <p class="text-white text-sm font-bold mt-6 opacity-90">
-            Your feedback literally makes these templates better. Thank you! 💛
-          </p>
-        </BrutalCard>
-      </div>
-    </Section>
-
-    <!-- The Contrast Section -->
-    <Section padding="xl" bg="dark">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-display font-black uppercase mb-4">
-            {contrastSection.title}
-          </h2>
-          <p class="text-xl font-bold max-w-3xl mx-auto text-white/70">
-            {contrastSection.subtitle}
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Major Parties Way -->
-          <div>
-            <div class="bg-grey-dark border border-white/10 rounded-sm p-6 mb-4 relative">
-              <div
-                class="absolute -top-3 -right-3 bg-white/20 text-white px-3 py-1 text-xs font-black rounded-sm"
-              >
-                OLD POLITICS
-              </div>
-              <Icon name="mdi:alert-circle" class="w-10 h-10 text-white/50 mb-3" />
-              <h3 class="text-xl font-display font-black uppercase mb-3 text-white/70">
-                {contrastSection.oldWay.title}
+            {/* Why It Works */}
+            <BrutalCard variant="surface" shadow="magenta" padding="lg" class="text-left">
+              <h3 class="text-2xl font-display font-black text-magenta mb-4 uppercase flex items-center gap-3">
+                <Icon name="mdi:lightbulb-on" class="w-8 h-8" />
+                Why This Works
               </h3>
-              <ul class="space-y-2 text-sm font-bold text-white/50">
-                {
-                  contrastSection.oldWay.points.map((point: any) => (
-                    <li class="flex items-start gap-2">
-                      <span class="text-red">✗</span>
-                      <span>{point}</span>
+              <ul class="space-y-3 text-lg">
+                {pageData?.whyItWorks?.map((item: any) => (
+                  <li class="flex items-start gap-3">
+                    <Icon
+                      name={item.icon || 'mdi:check-bold'}
+                      class="w-6 h-6 text-mint flex-shrink-0 mt-1"
+                    />
+                    <span>
+                      <strong>{item.title}:</strong> {item.description}
+                    </span>
+                  </li>
+                )) || (
+                  <>
+                    <li class="flex items-start gap-3">
+                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <span>
+                        <strong>Lower Friction:</strong> Don't know what to say? We've written it
+                        for you.
+                      </span>
                     </li>
-                  ))
-                }
+                    <li class="flex items-start gap-3">
+                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <span>
+                        <strong>Targeted Messaging:</strong> Different approaches for different
+                        audiences.
+                      </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <span>
+                        <strong>Exponential Growth:</strong> Every person you reach can reach their
+                        network.
+                      </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <span>
+                        <strong>Authentic:</strong> Fully customizable - make it your own voice.
+                      </span>
+                    </li>
+                  </>
+                )}
               </ul>
-              <p class="mt-4 text-xs font-black text-white/40 italic">
-                Feels like: {contrastSection.oldWay.feeling}
+            </BrutalCard>
+          </div>
+        </Section>
+
+        {/* Channel Filter Section */}
+        <Section padding="lg" bg="dark">
+          <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
+              Choose Your Channel
+            </h2>
+            <div class="grid md:grid-cols-4 gap-4 mb-12">
+              {Object.entries(channelInfo).map(([key, info]) => (
+                <button
+                  data-channel={key}
+                  class="channel-filter bg-grey-dark border border-white/10 rounded-sm p-4 hover:border-yellow/50 transition-all transform hover:scale-105 active:scale-95"
+                >
+                  <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-magenta" />
+                  <p class="font-black uppercase text-sm mb-1">{info.name}</p>
+                  <p class="text-xs text-fg/60">{info.tip}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Templates Grid */}
+        <Section padding="xl" bg="dark">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-display font-black uppercase mb-4">Pick Your Template</h2>
+              <p class="text-lg font-bold max-w-2xl mx-auto text-fg/70">
+                Click to expand, customize if needed, then copy and send!
               </p>
             </div>
-          </div>
 
-          <!-- Fusion Way -->
-          <div>
-            <BrutalCard variant="surface" shadow="magenta" padding="lg" class="h-full relative">
-              <div
-                class="absolute -top-3 -right-3 bg-magenta text-white px-3 py-1 text-xs font-black rounded-sm"
-              >
-                FUSION WAY
+            <div class="space-y-6" id="templates-container">
+              {templates.map((template) => (
+                <BrutalCard
+                  variant="surface"
+                  shadow={template.color}
+                  padding="lg"
+                  hover={false}
+                  class="template-card cursor-pointer"
+                  data-channel={template.channel}
+                >
+                  {/* Collapsed View */}
+                  <div class="template-header flex items-center justify-between">
+                    <div class="flex items-center gap-4 flex-1">
+                      <div
+                        class={`w-16 h-16 bg-${template.color} rounded-sm flex items-center justify-center flex-shrink-0`}
+                      >
+                        <Icon name={template.icon} class="w-8 h-8 text-fg" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-xl font-display font-black uppercase mb-1">
+                          {template.title}
+                        </h3>
+                        <p class="text-sm font-bold text-fg/60 mb-2">{template.audience}</p>
+                        <div class="flex flex-wrap gap-2">
+                          {template.tags.map((tag) => (
+                            <span class="text-xs bg-white/10 rounded-sm px-2 py-1 font-bold">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <BrutalButton variant="magenta" class="expand-btn" icon="mdi:chevron-down">
+                      OPEN
+                    </BrutalButton>
+                  </div>
+
+                  {/* Expanded View */}
+                  <div class="template-body hidden mt-6 pt-6 border-t border-white/10">
+                    {template.subject && (
+                      <div class="mb-4">
+                        <label class="block text-sm font-black uppercase mb-2 text-magenta">
+                          Subject Line:
+                        </label>
+                        <div class="bg-black/30 border border-white/10 rounded-sm p-3 font-bold">
+                          {template.subject}
+                        </div>
+                      </div>
+                    )}
+
+                    <div class="mb-4">
+                      <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
+                        <span>Message:</span>
+                        <span class="text-xs text-fg/60 normal-case font-bold">
+                          (Click to edit if you want to personalize)
+                        </span>
+                      </label>
+                      <textarea class="w-full h-64 bg-black/30 border border-white/10 rounded-sm p-4 font-mono text-sm text-fg resize-none focus:outline-none focus:border-magenta">
+                        {template.body}
+                      </textarea>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                      <BrutalButton
+                        variant="magenta"
+                        size="lg"
+                        class="copy-btn"
+                        icon="mdi:content-copy"
+                      >
+                        COPY TO CLIPBOARD
+                      </BrutalButton>
+                      <BrutalButton variant="black" size="lg" class="collapse-btn">
+                        CLOSE
+                      </BrutalButton>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-yellow/10 border border-yellow/30 rounded-sm">
+                      <p class="text-sm font-bold flex items-start gap-2">
+                        <Icon
+                          name="mdi:lightbulb"
+                          class="w-5 h-5 text-yellow flex-shrink-0 mt-0.5"
+                        />
+                        <span>
+                          <strong>Pro tip:</strong> Personalize the template with your own words and
+                          experiences. Authentic messages are more convincing!
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </BrutalCard>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Tips Section */}
+        <Section padding="xl" bg="dark">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-display font-black text-center mb-8 uppercase">
+              Tips for Maximum Impact
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {tips.map((tip: any) => (
+                <BrutalCard variant="surface" shadow={tip.color} padding="lg">
+                  <h3
+                    class={`text-xl font-display font-black text-${tip.color} mb-3 uppercase flex items-center gap-2`}
+                  >
+                    <Icon name={tip.icon} class="w-6 h-6" />
+                    {tip.title}
+                  </h3>
+                  <p class="font-bold text-fg/70">{tip.description}</p>
+                </BrutalCard>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Share Your Success Section */}
+        <Section padding="xl" bg="dark">
+          <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+              <div class="inline-block mb-6">
+                <BrutalBadge variant="magenta" size="lg" icon="mdi:message-star">
+                  Used a Template?
+                </BrutalBadge>
               </div>
-              <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
-              <h3 class="text-xl font-display font-black uppercase mb-3 text-magenta">
-                {contrastSection.fusionWay.title}
+              <h2 class="text-4xl md:text-5xl font-display font-black uppercase mb-6 leading-tight">
+                Tell Us How It Went!
+              </h2>
+              <p class="text-xl font-bold mb-8 max-w-2xl mx-auto text-fg/70">
+                Did it work? Did you customize it? Did your boomer dad actually read it? Your
+                feedback helps us improve these for everyone.
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <BrutalCard variant="surface" shadow="magenta" padding="lg">
+                <Icon name="mdi:thumb-up" class="w-12 h-12 text-magenta mb-3" />
+                <h3 class="text-xl font-display font-black uppercase mb-2">Success Stories</h3>
+                <p class="font-bold text-fg/70 text-sm">
+                  "Used the parent template and my mum actually joined!" - These are gold. Help
+                  others see what works.
+                </p>
+              </BrutalCard>
+
+              <BrutalCard variant="surface" shadow="mint" padding="lg">
+                <Icon name="mdi:pencil-box" class="w-12 h-12 text-mint mb-3" />
+                <h3 class="text-xl font-display font-black uppercase mb-2">Your Tweaks</h3>
+                <p class="font-bold text-fg/70 text-sm">
+                  Changed something that landed better? Share it! Community-sourced improvements
+                  make these templates stronger.
+                </p>
+              </BrutalCard>
+            </div>
+
+            <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
+              {/* Form content (same as before) */}
+              <h3 class="text-2xl font-display font-black uppercase mb-4 text-fg">
+                Quick Feedback Form
               </h3>
-              <ul class="space-y-2 text-sm font-bold">
-                {
-                  contrastSection.fusionWay.points.map((point: any) => (
-                    <li class="flex items-start gap-2">
-                      <span class="text-mint">✓</span>
-                      <span>{point}</span>
-                    </li>
-                  ))
-                }
-              </ul>
-              <p class="mt-4 text-xs font-black text-magenta italic">
-                Feels like: {contrastSection.fusionWay.feeling}
+              <form
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST"
+                class="max-w-xl mx-auto space-y-4"
+              >
+                {/* TODO: Replace YOUR_FORM_ID with actual Formspree ID or use your own form endpoint */}
+                <input type="hidden" name="_subject" value="Convince Your Friends - Feedback" />
+                <div class="text-left">
+                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                    Which template did you use?
+                  </label>
+                  <select
+                    name="template"
+                    required
+                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold focus:outline-none focus:border-yellow"
+                  >
+                    <option value="">Select a template...</option>
+                    {templates.map((t) => (
+                      <option value={t.id}>{t.title}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div class="text-left">
+                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                    How did it go?
+                  </label>
+                  <div class="flex gap-3">
+                    <label class="flex-1">
+                      <input
+                        type="radio"
+                        name="result"
+                        value="great"
+                        class="sr-only peer"
+                        required
+                      />
+                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint">
+                        Great!
+                      </div>
+                    </label>
+                    <label class="flex-1">
+                      <input type="radio" name="result" value="ok" class="sr-only peer" />
+                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-fg peer-checked:border-yellow">
+                        OK
+                      </div>
+                    </label>
+                    <label class="flex-1">
+                      <input type="radio" name="result" value="meh" class="sr-only peer" />
+                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-white/40 transition-all peer-checked:bg-white/20 peer-checked:border-white/40">
+                        Meh
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="text-left">
+                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                    What happened? (Optional but helpful!)
+                  </label>
+                  <textarea
+                    name="feedback"
+                    rows="4"
+                    placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
+                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold resize-none focus:outline-none focus:border-yellow"
+                  />
+                </div>
+
+                <div class="text-left">
+                  <label class="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="can_share"
+                      value="yes"
+                      class="mt-1 w-5 h-5 border border-white/30 rounded-sm bg-neutral-panel"
+                    />
+                    <span class="text-fg font-bold text-sm">
+                      You can share this as a testimonial (we'll keep you anonymous unless you tell
+                      us otherwise)
+                    </span>
+                  </label>
+                </div>
+
+                <BrutalButton type="submit" variant="yellow" fullWidth icon="mdi:send">
+                  Send Feedback
+                </BrutalButton>
+              </form>
+
+              <p class="text-fg text-sm font-bold mt-6 opacity-90">
+                Your feedback literally makes these templates better. Thank you! 💛
               </p>
             </BrutalCard>
           </div>
-        </div>
+        </Section>
 
-        <!-- Key Insight -->
-        <div class="mt-12">
-          <BrutalCard variant="yellow" shadow="black" padding="xl" class="text-center">
-            <Icon name="mdi:lightbulb-on" class="w-16 h-16 mx-auto mb-4 text-white" />
-            <h3 class="text-2xl font-display font-black uppercase mb-4">
-              The Message IS the Medium
-            </h3>
-            <p class="text-lg font-bold max-w-2xl mx-auto leading-relaxed">
-              When you use these templates, you're not saying "vote Fusion" - you're having a
-              conversation about:
-            </p>
-            <div class="grid sm:grid-cols-2 gap-3 mt-6 max-w-2xl mx-auto text-left">
-              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
-                <Icon name="mdi:home" class="w-5 h-5 text-white flex-shrink-0" />
-                <span class="font-black text-sm">Why rent is unaffordable</span>
+        {/* The Contrast Section */}
+        <Section padding="xl" bg="dark">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-display font-black uppercase mb-4">
+                {contrastSection.title}
+              </h2>
+              <p class="text-xl font-bold max-w-3xl mx-auto text-fg/70">
+                {contrastSection.subtitle}
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {/* Major Parties Way */}
+              <div>
+                <div class="bg-grey-dark border border-white/10 rounded-sm p-6 mb-4 relative">
+                  <div class="absolute -top-3 -right-3 bg-white/20 text-fg px-3 py-1 text-xs font-black rounded-sm">
+                    OLD POLITICS
+                  </div>
+                  <Icon name="mdi:alert-circle" class="w-10 h-10 text-fg/50 mb-3" />
+                  <h3 class="text-xl font-display font-black uppercase mb-3 text-fg/70">
+                    {contrastSection.oldWay.title}
+                  </h3>
+                  <ul class="space-y-2 text-sm font-bold text-fg/50">
+                    {contrastSection.oldWay.points.map((point: any) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-red">✗</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="mt-4 text-xs font-black text-fg/40 italic">
+                    Feels like: {contrastSection.oldWay.feeling}
+                  </p>
+                </div>
               </div>
-              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
-                <Icon name="mdi:train-car" class="w-5 h-5 text-white flex-shrink-0" />
-                <span class="font-black text-sm">Why commutes suck</span>
-              </div>
-              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
-                <Icon name="mdi:earth" class="w-5 h-5 text-white flex-shrink-0" />
-                <span class="font-black text-sm">Why climate matters</span>
-              </div>
-              <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
-                <Icon name="mdi:account-alert" class="w-5 h-5 text-white flex-shrink-0" />
-                <span class="font-black text-sm">Why politics feels broken</span>
+
+              {/* Fusion Way */}
+              <div>
+                <BrutalCard variant="surface" shadow="magenta" padding="lg" class="h-full relative">
+                  <div class="absolute -top-3 -right-3 bg-magenta text-fg px-3 py-1 text-xs font-black rounded-sm">
+                    FUSION WAY
+                  </div>
+                  <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
+                  <h3 class="text-xl font-display font-black uppercase mb-3 text-magenta">
+                    {contrastSection.fusionWay.title}
+                  </h3>
+                  <ul class="space-y-2 text-sm font-bold">
+                    {contrastSection.fusionWay.points.map((point: any) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-mint">✓</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="mt-4 text-xs font-black text-magenta italic">
+                    Feels like: {contrastSection.fusionWay.feeling}
+                  </p>
+                </BrutalCard>
               </div>
             </div>
-            <p class="text-lg font-bold mt-6 max-w-2xl mx-auto">
-              Fusion policy is packaged inside <strong>personally relevant storytelling</strong>.
-              That's how ideas actually spread.
+
+            {/* Key Insight */}
+            <div class="mt-12">
+              <BrutalCard variant="yellow" shadow="black" padding="xl" class="text-center">
+                <Icon name="mdi:lightbulb-on" class="w-16 h-16 mx-auto mb-4 text-fg" />
+                <h3 class="text-2xl font-display font-black uppercase mb-4">
+                  The Message IS the Medium
+                </h3>
+                <p class="text-lg font-bold max-w-2xl mx-auto leading-relaxed">
+                  When you use these templates, you're not saying "vote Fusion" - you're having a
+                  conversation about:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-3 mt-6 max-w-2xl mx-auto text-left">
+                  <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                    <Icon name="mdi:home" class="w-5 h-5 text-fg flex-shrink-0" />
+                    <span class="font-black text-sm">Why rent is unaffordable</span>
+                  </div>
+                  <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                    <Icon name="mdi:train-car" class="w-5 h-5 text-fg flex-shrink-0" />
+                    <span class="font-black text-sm">Why commutes suck</span>
+                  </div>
+                  <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                    <Icon name="mdi:earth" class="w-5 h-5 text-fg flex-shrink-0" />
+                    <span class="font-black text-sm">Why climate matters</span>
+                  </div>
+                  <div class="flex items-center gap-2 bg-white/10 rounded-sm p-3">
+                    <Icon name="mdi:account-alert" class="w-5 h-5 text-fg flex-shrink-0" />
+                    <span class="font-black text-sm">Why politics feels broken</span>
+                  </div>
+                </div>
+                <p class="text-lg font-bold mt-6 max-w-2xl mx-auto">
+                  Fusion policy is packaged inside <strong>personally relevant storytelling</strong>
+                  . That's how ideas actually spread.
+                </p>
+              </BrutalCard>
+            </div>
+          </div>
+        </Section>
+
+        {/* CTA Section */}
+        <Section padding="xl" bg="dark" class="bg-magenta">
+          <div class="max-w-3xl mx-auto text-center text-fg">
+            <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-yellow" />
+            <h2 class="text-4xl font-display font-black uppercase mb-6">
+              Every Conversation Counts
+            </h2>
+            <p class="text-xl font-bold mb-8 leading-relaxed">
+              The major parties have millions in corporate donations. We have something better: real
+              people having real conversations. You're not just sharing a message - you're building
+              a movement.
             </p>
-          </BrutalCard>
-        </div>
-      </div>
-    </Section>
+            <div class="flex flex-wrap gap-4 justify-center">
+              <BrutalButton variant="yellow" size="lg" href="/get-involved">
+                <Icon name="mdi:hand-heart" class="w-6 h-6" />
+                Join the Movement
+              </BrutalButton>
+              <BrutalButton variant="white" size="lg" href="/policies">
+                <Icon name="mdi:file-document" class="w-6 h-6" />
+                Read All Policies
+              </BrutalButton>
+            </div>
+          </div>
+        </Section>
+      </main>
 
-    <!-- CTA Section -->
-    <Section padding="xl" bg="dark" class="bg-magenta">
-      <div class="max-w-3xl mx-auto text-center text-white">
-        <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-yellow" />
-        <h2 class="text-4xl font-display font-black uppercase mb-6">Every Conversation Counts</h2>
-        <p class="text-xl font-bold mb-8 leading-relaxed">
-          The major parties have millions in corporate donations. We have something better: real
-          people having real conversations. You're not just sharing a message - you're building a
-          movement.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <BrutalButton variant="yellow" size="lg" href="/get-involved">
-            <Icon name="mdi:hand-heart" class="w-6 h-6" />
-            Join the Movement
-          </BrutalButton>
-          <BrutalButton variant="white" size="lg" href="/policies">
-            <Icon name="mdi:file-document" class="w-6 h-6" />
-            Read All Policies
-          </BrutalButton>
-        </div>
-      </div>
-    </Section>
-  </main>
-
-  <Footer />
-</BaseLayout>
+      <Footer />
+    </BaseLayout>
+  )
+}
 
 <script is:inline>
   // Template expand/collapse functionality
@@ -788,12 +789,12 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
             copyBtn.innerHTML =
               '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" /></svg> COPIED!'
             copyBtn.classList.add('bg-mint', 'text-black')
-            copyBtn.classList.remove('bg-magenta', 'text-white')
+            copyBtn.classList.remove('bg-magenta', 'text-fg')
 
             setTimeout(() => {
               copyBtn.innerHTML = originalText
               copyBtn.classList.remove('bg-mint', 'text-black')
-              copyBtn.classList.add('bg-magenta', 'text-white')
+              copyBtn.classList.add('bg-magenta', 'text-fg')
             }, 2000)
           } catch (err) {
             console.error('Failed to copy:', err)
@@ -845,7 +846,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
   textarea:focus {
     outline: none;
-    border-color: #d428d4;
+    border-color: var(--branch-primary, #d428d4);
   }
 
   /* Channel filter hover effect */
@@ -854,7 +855,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
   }
 
   .channel-filter.bg-yellow {
-    border-color: #d428d4;
+    border-color: var(--branch-primary, #d428d4);
   }
 
   /* Template card hover effect */

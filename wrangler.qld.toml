@@ -1,0 +1,25 @@
+# Separate deployment identity. Do not share Victoria's token KV namespace.
+name = "fusion-website-qld"
+compatibility_date = "2025-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+
+[[kv_namespaces]]
+# fusion-website-qld-session: separate from Victoria and reclaim sessions.
+binding = "SESSION"
+id = "0771f9c48b4840bebd5091051a7bbec8"
+
+# Preview KV bindings are not inherited from the production configuration.
+[[previews.kv_namespaces]]
+binding = "SESSION"
+id = "0771f9c48b4840bebd5091051a7bbec8"
+
+[observability]
+enabled = false
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+persist = true

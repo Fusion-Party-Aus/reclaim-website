@@ -16,7 +16,7 @@
 import { Icon } from 'astro-icon/components'
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'yellow' | 'mint' | 'magenta' | 'white' | 'black'
+  variant?: 'primary' | 'secondary' | 'yellow' | 'mint' | 'magenta' | 'lavender' | 'white' | 'black'
   size?: 'sm' | 'md' | 'lg'
   href?: string
   type?: 'button' | 'submit' | 'reset'
@@ -43,15 +43,18 @@ const {
   rel,
 } = Astro.props
 
-// Variant styles — flat fills, no heavy border, brighten on hover (never darken)
+// Variant styles — flat fills, no heavy border, brighten on hover (never darken).
+// Text colours resolve through semantic on-fill tokens so a branch theme can
+// re-point a fill without re-writing the component.
 const variantStyles = {
-  primary: 'bg-magenta text-white hover:bg-magenta-bright',
-  secondary: 'bg-mint text-black hover:bg-mint-bright',
-  yellow: 'bg-yellow text-white hover:bg-yellow-bright',
-  mint: 'bg-mint text-black hover:bg-mint-bright',
-  magenta: 'bg-magenta text-white hover:bg-magenta-bright',
-  white: 'bg-white text-black hover:bg-mint',
-  black: 'bg-black text-white border border-white/20 hover:bg-white/10',
+  primary: 'bg-magenta text-on-primary hover:bg-magenta-bright',
+  secondary: 'bg-mint text-on-secondary hover:bg-mint-bright',
+  yellow: 'bg-yellow text-on-accent hover:bg-yellow-bright',
+  mint: 'bg-mint text-on-secondary hover:bg-mint-bright',
+  magenta: 'bg-magenta text-on-primary hover:bg-magenta-bright',
+  lavender: 'bg-lavender text-on-tertiary hover:bg-lavender-bright',
+  white: 'bg-white text-black hover:bg-mint hover:text-on-secondary',
+  black: 'bg-black text-fg border border-line-mid hover:bg-white/10',
 }
 
 // Size styles
@@ -62,6 +65,7 @@ const sizeStyles = {
 }
 
 const baseClasses = `
+  ui-button
   inline-flex items-center justify-center gap-2
   font-black uppercase tracking-wide rounded-sm
   transition-all duration-200

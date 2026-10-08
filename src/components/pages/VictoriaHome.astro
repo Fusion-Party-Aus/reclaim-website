@@ -1,0 +1,728 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { getElectorates, getHomePage, getResearchResources, urlFor } from '@/lib/sanity'
+import { Icon } from 'astro-icon/components'
+import '@/styles/global.css'
+import '@/styles/editorial.css'
+
+import { MovementMetrics, BrutalButton, BrutalCard, StatCard } from '@/components/ui'
+import { DeveloperMessages, ScrollProgress } from '@/features/engagement'
+import { MemberSignup } from '@/features/members'
+
+const homePage = await getHomePage()
+
+if (!homePage) {
+  throw new Error('Home page not found in Sanity')
+}
+
+const electorates = await getElectorates()
+const researchResources = await getResearchResources()
+const featuredResearch = researchResources.filter((resource) => resource.featured)
+const homepageResearch = (
+  featuredResearch.length >= 3 ? featuredResearch : researchResources
+).slice(0, 3)
+const researchSourceCount = researchResources.reduce(
+  (total, resource) => total + (resource.sources?.length || 0),
+  0
+)
+const featuredPolicies: any[] =
+  (homePage.theftSection as { featuredPolicies?: any[] } | undefined)?.featuredPolicies || []
+
+interface HomePage {
+  title: string
+  seo?: { metaTitle?: string; metaDescription?: string }
+  hero: {
+    eyebrow?: string
+    title: string
+    subtitle?: string
+    showCTA?: boolean
+    stats?: { number: string; label: string }[]
+  }
+  alertBar?: {
+    enabled?: boolean
+    text?: string
+    linkText?: string
+    linkUrl?: string
+  }
+  movementMetrics?: {
+    label: string
+    current: number
+    goal: number
+    icon: string
+    color: 'magenta' | 'mint' | 'yellow'
+    suffix?: string
+    prefix?: string
+  }[]
+  signupCTA: {
+    heading: string
+    description: string
+    buttonText: string
+    footerText: string
+  }
+  theftSection: { heading: string; description: string; cards: any[]; featuredPolicies?: any[] }
+  electoratesSection: {
+    heading: string
+    description: string
+    callToAction: { heading: string; description: string; buttonText: string; buttonLink: string }
+  }
+  manifestoSection: { heading: string; description: string; stats: any[] }
+  joinSection: { heading: string; description: string; cards: any[] }
+}
+
+const hp = homePage as unknown as HomePage
+
+const defaultMetrics = [
+  { label: 'Registered Members', current: 847, goal: 1000, icon: '👥', color: 'magenta' as const },
+  { label: 'Active Volunteers', current: 234, goal: 320, icon: '🙋', color: 'mint' as const },
+  {
+    label: 'Candidates Ready',
+    current: 12,
+    goal: 88,
+    icon: '🗳️',
+    color: 'yellow' as const,
+    suffix: ' electorates',
+  },
+  {
+    label: 'Monthly Donations',
+    current: 4250,
+    goal: 10000,
+    icon: '💰',
+    color: 'magenta' as const,
+    prefix: '$',
+  },
+]
+const movementMetrics = hp.movementMetrics || defaultMetrics
+
+const policyItems = featuredPolicies.length > 0 ? featuredPolicies : hp.theftSection.cards || []
+---
+
+<BaseLayout
+  title={hp.seo?.metaTitle || hp.title}
+  description={hp.seo?.metaDescription || ''}
+  image="/og/default.png"
+>
+  <Header />
+  <main id="main-content" class="site-editorial">
+    <DeveloperMessages />
+    <ScrollProgress showMilestones={true} color="magenta" />
+
+    <!-- ALERT BAR -->
+    {
+      hp.alertBar?.enabled !== false && (
+        <div class="alert-bar">
+          <Icon name="mdi:ballot" class="inline-block w-5 h-5 -mt-1 mr-2" />
+          {hp.alertBar?.text || "Contesting Victoria's 2026 State Election"} |{' '}
+          <a href={hp.alertBar?.linkUrl || '#electorates'}>
+            {hp.alertBar?.linkText || 'Find your electorate'}
+          </a>
+        </div>
+      )
+    }
+
+    <!-- Editorial campaign masthead -->
+    <header class="editorial-masthead home-masthead">
+      <div class="editorial-shell">
+        <div class="editorial-kicker">{hp.hero.eyebrow || 'Fusion Party Victoria'}</div>
+        <div class="home-masthead-grid">
+          <div>
+            <h1 class="editorial-title">{hp.hero.title}</h1>
+            {hp.hero.subtitle && <p class="editorial-deck">{hp.hero.subtitle}</p>}
+          </div>
+          <aside class="home-brief">
+            <span>Reason · Rights · Results</span>
+            <p>Evidence-led policy, civil liberties and practical reform for Victoria.</p>
+            <div class="home-actions">
+              <a href="/policies">Explore the platform →</a>
+              <a href="/research">See the evidence →</a>
+            </div>
+          </aside>
+        </div>
+        {
+          hp.hero.showCTA && (
+            <div class="home-actions">
+              <a class="editorial-action" href="/get-involved">
+                Get involved →
+              </a>
+            </div>
+          )
+        }
+        {
+          hp.hero.stats?.length && (
+            <dl class="home-stats">
+              {hp.hero.stats.map((stat) => (
+                <div>
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.number}</dd>
+                </div>
+              ))}
+            </dl>
+          )
+        }
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 1: MOVEMENT METRICS — dark surface, left-aligned header
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8 relative overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div>
+            <h2 class="text-5xl md:text-7xl font-display font-black leading-[1]">
+              Movement<br /><span class="text-magenta">In Motion</span>
+            </h2>
+          </div>
+          <p class="text-lg font-bold text-white/70 max-w-xs">
+            Members, volunteers and campaign goals.
+          </p>
+        </div>
+
+        <MovementMetrics metrics={movementMetrics} />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 2: FEATURED POLICIES — dark surface
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      id="policies"
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-raised"
+    >
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="mb-16">
+          <h2 class="text-5xl md:text-7xl font-display font-black leading-[1]">
+            {hp.theftSection.heading}
+          </h2>
+          <p class="text-xl font-bold text-white/70 mt-4 max-w-2xl">
+            {hp.theftSection.description}
+          </p>
+        </div>
+
+        <!-- Policy cards — clean grid, no rotation on cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            policyItems.map((item: any, index: number) => {
+              const isPolicy = !!item.slug
+              const imageUrl = item.image
+                ? urlFor(item.image).width(600).height(400).url()
+                : item.imageUrl || null
+              const accents = [
+                {
+                  border: 'border-t-2 border-t-magenta',
+                  hoverBorder: 'hover:border-magenta/40',
+                  tint: 'bg-magenta/10',
+                  text: 'text-magenta',
+                },
+                {
+                  border: 'border-t-2 border-t-yellow',
+                  hoverBorder: 'hover:border-yellow/40',
+                  tint: 'bg-yellow/10',
+                  text: 'text-yellow',
+                },
+                {
+                  border: 'border-t-2 border-t-mint',
+                  hoverBorder: 'hover:border-mint/40',
+                  tint: 'bg-mint/10',
+                  text: 'text-mint',
+                },
+              ]
+              const accent = accents[index % 3]
+              const title = isPolicy ? item.title : item.amount || item.title
+              const description = isPolicy ? item.summary : item.description
+              const category = item.category || (isPolicy ? item.pillar : 'Policy')
+              const icon = item.icon || 'mdi:file-document'
+              const link = isPolicy ? `/policies/${item.slug.current}` : item.link || '#'
+              const linkText = isPolicy ? 'Read Full Policy' : item.linkText || 'Learn More'
+              return (
+                <a
+                  href={link}
+                  class={`group block bg-grey-dark border border-white/10 rounded-sm transition-colors ${accent.border} ${accent.hoverBorder}`}
+                >
+                  {imageUrl ? (
+                    <img
+                      src={imageUrl}
+                      alt=""
+                      loading="lazy"
+                      class="w-full h-48 object-cover group-hover:brightness-90 transition-all"
+                    />
+                  ) : (
+                    <div class={`w-full h-48 flex items-center justify-center ${accent.tint}`}>
+                      <Icon name={icon} class={`w-20 h-20 ${accent.text} opacity-60`} />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <div
+                      class={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider rounded-sm mb-3 ${accent.tint} ${accent.text}`}
+                    >
+                      {category}
+                    </div>
+                    <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight group-hover:text-magenta transition-colors">
+                      {title}
+                    </h3>
+                    <p class="text-sm font-bold text-white/85 leading-snug mb-4">{description}</p>
+                    <span class="inline-flex items-center gap-2 font-black uppercase text-sm border-b border-white/30">
+                      {linkText} <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                    </span>
+                  </div>
+                </a>
+              )
+            })
+          }
+        </div>
+
+        <div class="mt-10">
+          <BrutalButton
+            variant="black"
+            size="lg"
+            href="/policies"
+            icon="mdi:file-document-multiple"
+          >
+            See All Policies
+          </BrutalButton>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       RESEARCH — evidence behind the platform
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      id="research"
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-base"
+    >
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <span
+          class="absolute right-[-3rem] top-[-2rem] text-[14rem] md:text-[20rem] font-display font-black leading-none select-none text-white"
+          style="opacity: 0.025;">PROVE</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-end mb-12">
+          <div>
+            <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-3">
+              Show the work.
+            </p>
+            <h2 class="text-5xl md:text-7xl font-display font-black leading-[0.95] text-white">
+              Don’t take the<br /><span class="text-mint">policy on faith.</span>
+            </h2>
+            <p class="mt-6 text-lg md:text-xl font-bold text-white/68 max-w-3xl leading-relaxed">
+              Read the evidence underneath it: sources, methodology, limitations, corrections and
+              the tests that would make us change course.
+            </p>
+          </div>
+
+          <aside class="border-l-4 border-yellow pl-5">
+            <p class="text-xs font-black uppercase tracking-[0.18em] text-yellow mb-2">
+              Reason · Rights · Results
+            </p>
+            <p class="text-sm text-white/65 leading-relaxed">
+              Evidence and mechanism. Rights and safeguards. Outcomes that can actually be measured.
+            </p>
+            <div class="grid grid-cols-2 gap-4 mt-5">
+              <div>
+                <div class="text-3xl font-mono font-black text-white">
+                  {researchResources.length}
+                </div>
+                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">
+                  Resources
+                </div>
+              </div>
+              <div>
+                <div class="text-3xl font-mono font-black text-mint">{researchSourceCount}</div>
+                <div class="text-[10px] uppercase font-black tracking-widest text-white/35">
+                  Sources
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+          {
+            homepageResearch.map((resource, index) => {
+              const accents = ['text-magenta', 'text-mint', 'text-yellow']
+              return (
+                <a
+                  href={`/research/${resource.slug.current}`}
+                  class="group bg-surface-raised p-6 md:p-7 hover:bg-white/[0.04] transition-colors"
+                >
+                  <div class="flex items-center justify-between gap-3 mb-4">
+                    <span
+                      class={`text-[10px] font-black uppercase tracking-widest ${accents[index % accents.length]}`}
+                    >
+                      {resource.researchArea || resource.resourceType}
+                    </span>
+                    <span class="text-[10px] font-mono text-white/30">
+                      v{resource.version || '1.0'}
+                    </span>
+                  </div>
+                  <h3 class="text-xl md:text-2xl font-display font-black text-white leading-tight group-hover:text-mint transition-colors">
+                    {resource.title}
+                  </h3>
+                  <p class="mt-3 text-sm text-white/58 leading-relaxed">{resource.abstract}</p>
+                  {resource.keyFindings?.[0] && (
+                    <p class="mt-5 border-l-2 border-white/15 pl-3 text-xs text-white/42 leading-relaxed">
+                      {resource.keyFindings[0]}
+                    </p>
+                  )}
+                  <span class="mt-6 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide text-white/70 group-hover:text-mint">
+                    Read the evidence <Icon name="mdi:arrow-right" class="w-4 h-4" />
+                  </span>
+                </a>
+              )
+            })
+          }
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <BrutalButton variant="mint" size="lg" href="/research" icon="mdi:flask-outline">
+            Explore Research & Data
+          </BrutalButton>
+          <a
+            href="/research/policy-evidence-methodology"
+            class="text-xs font-black uppercase tracking-widest text-white/45 hover:text-white"
+          >
+            How we test claims →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 3: ELECTORATES — solid black background
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      id="electorates"
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-mint/30 bg-surface-base"
+    >
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
+      >
+        <span
+          class="text-[14rem] font-display font-black leading-none select-none text-white"
+          style="opacity: 0.03; transform: rotate(8deg) translateX(10%);">VOTE</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <h2 class="text-5xl md:text-7xl font-display font-black text-white leading-[1]">
+              {hp.electoratesSection.heading}
+            </h2>
+          </div>
+          <p class="text-lg font-bold text-mint max-w-xs">
+            {hp.electoratesSection.description}
+          </p>
+        </div>
+
+        {
+          electorates.length === 0 ? (
+            <BrutalCard
+              variant="yellow"
+              shadow="black"
+              padding="xl"
+              class="text-center max-w-2xl mx-auto"
+            >
+              <Icon name="mdi:calendar-clock" class="w-16 h-16 mx-auto mb-4 text-white" />
+              <h3 class="text-3xl font-display font-black mb-3">Campaigns Incoming</h3>
+              <p class="text-lg font-bold mb-8">
+                We are currently finalising our candidates for the upcoming election. Stay tuned!
+              </p>
+              <BrutalButton variant="black" href="/electorates" icon="mdi:archive">
+                View Past Candidates
+              </BrutalButton>
+            </BrutalCard>
+          ) : (
+            <div>
+              {/* Spotlight — up to 3 electorates with candidate images */}
+              {(() => {
+                const spotlight = electorates.filter((e: any) => e.candidateName).slice(0, 3)
+                const spotlightAccents = [
+                  { border: 'border-t-2 border-t-mint', tint: 'bg-mint/10', text: 'text-mint' },
+                  {
+                    border: 'border-t-2 border-t-yellow',
+                    tint: 'bg-yellow/10',
+                    text: 'text-yellow',
+                  },
+                  {
+                    border: 'border-t-2 border-t-magenta',
+                    tint: 'bg-magenta/10',
+                    text: 'text-magenta',
+                  },
+                ]
+                return spotlight.length > 0 ? (
+                  <div
+                    class={`grid gap-6 mb-10 ${spotlight.length === 1 ? 'grid-cols-1 max-w-sm' : spotlight.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-2xl' : 'grid-cols-1 md:grid-cols-3'}`}
+                  >
+                    {spotlight.map((electorate: any, index: number) => {
+                      const accent = spotlightAccents[index % 3]
+                      return (
+                        <a
+                          href={`/electorates/${electorate.slug.current}`}
+                          class={`group bg-grey-dark border border-white/10 rounded-sm block transition-colors hover:border-white/25 ${accent.border}`}
+                        >
+                          {electorate.candidateImage && (
+                            <img
+                              src={urlFor(electorate.candidateImage)
+                                .width(400)
+                                .height(280)
+                                .fit('crop')
+                                .url()}
+                              alt={electorate.candidateName || electorate.name}
+                              loading="lazy"
+                              class="w-full h-52 object-cover group-hover:brightness-90 transition-all"
+                            />
+                          )}
+                          <div class="p-5">
+                            <div
+                              class={`inline-block px-2 py-0.5 text-xs font-black uppercase rounded-sm mb-2 ${accent.tint} ${accent.text}`}
+                            >
+                              {electorate.house === 'upper' ? 'Upper House' : 'Lower House'}
+                            </div>
+                            <h3 class="text-2xl font-display font-black leading-tight mb-1 text-white">
+                              {electorate.name}
+                            </h3>
+                            {electorate.candidateName && (
+                              <div class="flex items-center gap-2 mt-1">
+                                <Icon name="mdi:account" class="w-4 h-4 text-white/50" />
+                                <span class="font-black text-sm uppercase text-white/70">
+                                  {electorate.candidateName}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </a>
+                      )
+                    })}
+                  </div>
+                ) : null
+              })()}
+
+              {/* Search + compact list — all electorates */}
+              <div class="border-4 border-white/20" id="electorate-list-wrapper">
+                {/* Search bar */}
+                <div class="border-b-4 border-white/20 p-3 flex items-center gap-3">
+                  <Icon name="mdi:magnify" class="w-5 h-5 text-white/50 shrink-0" />
+                  <input
+                    id="electorate-search"
+                    type="text"
+                    placeholder="Search electorates or candidates…"
+                    aria-label="Search electorates or candidates"
+                    autocomplete="off"
+                    class="bg-transparent text-white placeholder-white/65 font-bold text-sm w-full outline-none"
+                  />
+                </div>
+
+                {/* Rows */}
+                <div id="electorate-rows">
+                  {electorates.map((electorate: any) => (
+                    <a
+                      href={`/electorates/${electorate.slug.current}`}
+                      class="electorate-row flex items-center justify-between gap-4 px-4 py-3 border-b border-white/10 hover:bg-white/5 transition-colors group"
+                      data-name={electorate.name.toLowerCase()}
+                      data-candidate={(electorate.candidateName || '').toLowerCase()}
+                    >
+                      <div class="flex items-center gap-3 min-w-0">
+                        <span
+                          class={`text-xs font-black uppercase tracking-widest shrink-0 px-2 py-0.5 border border-white/20 ${electorate.house === 'upper' ? 'text-mint' : 'text-yellow'}`}
+                        >
+                          {electorate.house === 'upper' ? 'UPR' : 'LWR'}
+                        </span>
+                        <span class="font-display font-black text-white text-sm truncate">
+                          {electorate.name}
+                        </span>
+                      </div>
+                      <div class="flex items-center gap-3 shrink-0">
+                        {electorate.candidateName ? (
+                          <span class="text-xs font-bold text-white/60 hidden sm:block">
+                            {electorate.candidateName}
+                          </span>
+                        ) : (
+                          <span class="text-xs font-bold text-white/30 hidden sm:block italic">
+                            No candidate yet
+                          </span>
+                        )}
+                        <Icon
+                          name="mdi:arrow-right"
+                          class="w-4 h-4 text-white/30 group-hover:text-mint transition-colors"
+                        />
+                      </div>
+                    </a>
+                  ))}
+                  <p
+                    id="electorate-no-results"
+                    class="hidden text-center text-white/65 font-bold py-8 text-sm"
+                  >
+                    No electorates match your search
+                  </p>
+                </div>
+
+                <div class="px-4 py-2 border-t border-white/10">
+                  <span
+                    id="electorate-count"
+                    class="text-xs font-bold text-white/30 uppercase tracking-widest"
+                  >
+                    {electorates.length} electorate{electorates.length !== 1 ? 's' : ''}
+                  </span>
+                  <a
+                    href="/electorates"
+                    class="text-xs font-black uppercase tracking-widest text-mint hover:underline ml-4"
+                  >
+                    View full candidates page →
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
+        }
+
+        <!-- CTA -->
+        <BrutalCard variant="mint" shadow="black" padding="lg" class="mt-12 max-w-2xl">
+          <h3 class="text-2xl font-display font-black mb-2">
+            {hp.electoratesSection.callToAction.heading}
+          </h3>
+          <p class="font-bold mb-6 text-black/70">
+            {hp.electoratesSection.callToAction.description}
+          </p>
+          <BrutalButton
+            variant="black"
+            href={hp.electoratesSection.callToAction.buttonLink}
+            icon="mdi:email-fast"
+          >
+            {hp.electoratesSection.callToAction.buttonText}
+          </BrutalButton>
+        </BrutalCard>
+      </div>
+    </section>
+
+    <script>
+      const searchInput = document.getElementById('electorate-search') as HTMLInputElement | null
+      const rows = document.querySelectorAll<HTMLElement>('.electorate-row')
+      const noResults = document.getElementById('electorate-no-results')
+      const countEl = document.getElementById('electorate-count')
+
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.toLowerCase().trim()
+          let visible = 0
+          rows.forEach((row) => {
+            const name = row.dataset.name || ''
+            const candidate = row.dataset.candidate || ''
+            const match = !q || name.includes(q) || candidate.includes(q)
+            row.style.display = match ? '' : 'none'
+            if (match) visible++
+          })
+          if (noResults) noResults.classList.toggle('hidden', visible > 0)
+          if (countEl) {
+            countEl.textContent = q
+              ? `${visible} of ${rows.length} electorates`
+              : `${rows.length} electorate${rows.length !== 1 ? 's' : ''}`
+          }
+        })
+      }
+    </script>
+
+    <!-- PHILOSOPHY — deliberately secondary to Policies + Research -->
+    <section class="border-b border-white/10 bg-surface-raised px-4 md:px-8 py-10">
+      <div
+        class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+      >
+        <div class="max-w-3xl">
+          <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 mb-2">
+            How we think
+          </p>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white">
+            {hp.manifestoSection.heading}
+          </h2>
+          <p class="mt-2 text-sm md:text-base text-white/58 leading-relaxed">
+            {hp.manifestoSection.description}
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <BrutalButton variant="black" href="/manifesto" icon="mdi:book-open-page-variant">
+            Read the Manifesto
+          </BrutalButton>
+          <BrutalButton variant="black" href="/vision" icon="mdi:telescope">
+            Long-Term Vision
+          </BrutalButton>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION 5: JOIN / TAKE ACTION — dark surface, accent cards
+       ═══════════════════════════════════════════════════════ -->
+    <section
+      class="relative overflow-hidden py-20 px-4 md:px-8 border-b border-white/10 bg-surface-base"
+    >
+      {/* Watermark */}
+      <div
+        class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden"
+      >
+        <span
+          class="text-[16rem] font-display font-black leading-none select-none text-white"
+          style="opacity: 0.05; transform: rotate(5deg) translateX(15%);">JOIN</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section header -->
+        <div class="mb-16">
+          <h2 class="text-5xl md:text-7xl font-display font-black text-white leading-[1]">
+            {hp.joinSection.heading}
+          </h2>
+          <p class="text-xl font-bold text-white/70 mt-4 max-w-xl">
+            {hp.joinSection.description}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            hp.joinSection.cards.map((card: any, index: number) => {
+              const variants = ['yellow', 'black', 'mint'] as const
+              const buttonVariants = ['black', 'yellow', 'black'] as const
+              return (
+                <BrutalCard variant={variants[index % 3]} padding="lg" class="flex flex-col group">
+                  {card.icon && card.icon.includes(':') && (
+                    <div class="mb-4">
+                      <Icon name={card.icon} class="w-12 h-12" />
+                    </div>
+                  )}
+                  <h3 class="text-2xl font-display font-black mb-3">{card.title}</h3>
+                  <p class="font-bold mb-6 flex-1 opacity-90">{card.description}</p>
+                  <BrutalButton
+                    variant={buttonVariants[index % 3]}
+                    href={card.buttonLink}
+                    icon="mdi:arrow-right-circle"
+                    class="w-fit"
+                  >
+                    {card.buttonText}
+                  </BrutalButton>
+                </BrutalCard>
+              )
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBER SIGNUP -->
+    <MemberSignup
+      heading={hp.signupCTA.heading}
+      description={hp.signupCTA.description}
+      buttonText={hp.signupCTA.buttonText}
+      footerText={hp.signupCTA.footerText}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

@@ -36,13 +36,13 @@ const {
   class: className = '',
 } = Astro.props
 
-// Dark surface panel; the stat figure itself carries the accent colour.
+// Raised surface panel; the stat figure itself carries the accent colour.
 const accentText: Record<string, string> = {
   magenta: 'text-magenta',
   mint: 'text-mint',
   yellow: 'text-yellow',
   lavender: 'text-lavender',
-  white: 'text-white',
+  white: 'text-fg',
 }
 
 // Sizes
@@ -73,11 +73,11 @@ const animationClass = animated && icon ? 'animate-bounce-subtle' : ''
 
 <div
   class={`
-    bg-grey-dark border border-white/10 text-white
+    bg-grey-dark border border-line text-fg
     ${sizeClasses.container}
     rounded-sm
     transition-colors duration-200
-    hover:border-white/25
+    hover:border-line-strong
     ${className}
   `}
 >
@@ -97,7 +97,7 @@ const animationClass = animated && icon ? 'animate-bounce-subtle' : ''
   </div>
 
   <div
-    class={`font-bold uppercase tracking-widest text-white/50 mt-1 ${sizeClasses.label}`}
+    class={`font-bold uppercase tracking-widest text-muted mt-1 ${sizeClasses.label}`}
     style="font-family: 'Space Mono', monospace; font-size: 0.625rem;"
   >
     {label}

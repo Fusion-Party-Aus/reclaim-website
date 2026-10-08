@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -97,7 +98,7 @@ const ogImageUrl = post.featuredImage
 
 const pageTitle = post.seoTitle || post.title
 const pageDescription = post.seoDescription || post.excerpt
-const canonicalUrl = `https://vic.fusionparty.org.au/blog/${post.slug.current}`
+const canonicalUrl = `${DEPLOYMENT.siteUrl}/blog/${post.slug.current}`
 const articleType = post.category === 'news' ? 'NewsArticle' : 'Article'
 const articleStructuredData = {
   '@context': 'https://schema.org',
@@ -112,21 +113,21 @@ const articleStructuredData = {
   inLanguage: 'en-AU',
   articleSection: post.category,
   keywords: post.tags,
-  image: imageUrl ? [imageUrl] : [`https://vic.fusionparty.org.au${ogImageUrl}`],
+  image: imageUrl ? [imageUrl] : [`${DEPLOYMENT.siteUrl}${ogImageUrl}`],
   author: post.author?.name
     ? { '@type': 'Person', name: post.author.name }
-    : { '@id': 'https://vic.fusionparty.org.au/#organization' },
-  publisher: { '@id': 'https://vic.fusionparty.org.au/#organization' },
+    : { '@id': `${DEPLOYMENT.siteUrl}/#organization` },
+  publisher: { '@id': `${DEPLOYMENT.siteUrl}/#organization` },
   isPartOf: {
     '@type': 'CollectionPage',
-    '@id': 'https://vic.fusionparty.org.au/blog',
-    name: 'Fusion Party Victoria News & Analysis',
+    '@id': `${DEPLOYMENT.siteUrl}/blog`,
+    name: `${DEPLOYMENT.label} News & Analysis`,
   },
 }
 ---
 
 <BaseLayout
-  title={`${pageTitle} | Fusion Party Victoria`}
+  title={`${pageTitle} | ${DEPLOYMENT.label}`}
   description={pageDescription}
   type="article"
   publishedAt={post.publishedAt}
@@ -150,17 +151,17 @@ const articleStructuredData = {
         <nav class="text-xs font-mono uppercase tracking-wide flex items-center gap-2">
           <a
             href="/"
-            class="px-2 py-1 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black">Home</a
+            class="px-2 py-1 rounded-sm bg-yellow text-fg hover:bg-mint hover:text-black">Home</a
           >
-          <span class="opacity-60 text-white">/</span>
+          <span class="opacity-60 text-fg">/</span>
           <a
             href="/blog"
-            class="px-2 py-1 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black"
+            class="px-2 py-1 rounded-sm bg-white/10 text-fg hover:bg-mint hover:text-black"
             >News & Analysis</a
           >
-          <span class="opacity-60 text-white">/</span>
+          <span class="opacity-60 text-fg">/</span>
           <span
-            class="px-2 py-1 rounded-sm bg-black/30 text-white max-w-xs truncate"
+            class="px-2 py-1 rounded-sm bg-black/30 text-fg max-w-xs truncate"
             title={post.title}
           >
             {post.title}
@@ -178,14 +179,14 @@ const articleStructuredData = {
         </div>
 
         <!-- Title -->
-        <h1 class="text-4xl md:text-6xl font-display font-black mb-6 leading-tight text-white">
+        <h1 class="text-4xl md:text-6xl font-display font-black mb-6 leading-tight text-fg">
           {post.title}
         </h1>
 
         <!-- Excerpt -->
         {
           post.excerpt && (
-            <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-white/80">
+            <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed border-l-4 border-mint pl-6 text-fg/80">
               {post.excerpt}
             </p>
           )
@@ -207,7 +208,7 @@ const articleStructuredData = {
                 <div>
                   <div class="font-black text-lg">{post.author.name}</div>
                   {post.author.role && (
-                    <div class="font-bold text-sm text-white/60">{post.author.role}</div>
+                    <div class="font-bold text-sm text-fg/60">{post.author.role}</div>
                   )}
                 </div>
               </div>
@@ -216,7 +217,7 @@ const articleStructuredData = {
 
           <div class="h-8 w-px bg-white/20"></div>
 
-          <time datetime={post.publishedAt} class="font-bold text-white/70"
+          <time datetime={post.publishedAt} class="font-bold text-fg/70"
             >{formatDate(post.publishedAt)}</time
           >
 
@@ -238,9 +239,9 @@ const articleStructuredData = {
 
         {
           post.signalProvenance?.aiAssisted && (
-            <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-white/70">
-              <strong class="text-white">Editorial transparency:</strong> This article was drafted
-              with assistance from Fusion Signal and reviewed by Fusion Party Victoria before
+            <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-fg/70">
+              <strong class="text-fg">Editorial transparency:</strong> This article was drafted
+              with assistance from Fusion Signal and reviewed by {DEPLOYMENT.label} before
               publication.
               {post.signalProvenance.sourceUrl && (
                 <>
@@ -300,7 +301,7 @@ const articleStructuredData = {
               </BrutalButton>
               <button
                 onclick={`navigator.clipboard.writeText('${Astro.url.href}'); alert('Link copied!')`}
-                class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-white border border-white/20 hover:bg-white/10"
+                class="inline-flex items-center justify-center gap-2 font-black uppercase rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-fg border border-white/20 hover:bg-white/10"
               >
                 Copy Link
               </button>
@@ -315,7 +316,7 @@ const articleStructuredData = {
       relatedPosts.length > 0 && (
         <section class="bg-surface-raised py-16 px-4 md:px-8 border-t border-white/10">
           <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-display font-black mb-10 uppercase text-white">
+            <h2 class="text-3xl md:text-4xl font-display font-black mb-10 uppercase text-fg">
               Related Posts
             </h2>
 
@@ -351,7 +352,7 @@ const articleStructuredData = {
                         </BrutalBadge>
                       </div>
 
-                      <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight text-white">
+                      <h3 class="text-xl font-display font-black mb-2 uppercase leading-tight text-fg">
                         <a
                           href={`/blog/${relatedPost.slug.current}`}
                           class="hover:text-magenta transition-colors"
@@ -360,7 +361,7 @@ const articleStructuredData = {
                         </a>
                       </h3>
 
-                      <time class="text-sm font-bold text-white/60">
+                      <time class="text-sm font-bold text-fg/60">
                         {formatDate(relatedPost.publishedAt)}
                       </time>
                     </div>
@@ -388,7 +389,7 @@ const articleStructuredData = {
     font-family: 'Barlow', system-ui, sans-serif;
     font-size: 1.125rem;
     line-height: 1.75;
-    color: #f2eef7;
+    color: var(--branch-ink, #f2eef7);
   }
 
   .prose-brutal :global(h2) {
@@ -399,8 +400,8 @@ const articleStructuredData = {
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
     line-height: 1.1;
-    color: #ffffff;
-    border-left: 4px solid #d428d4;
+    color: var(--branch-ink, #ffffff);
+    border-left: 4px solid var(--branch-primary, #d428d4);
     padding-left: 1rem;
   }
 
@@ -412,7 +413,7 @@ const articleStructuredData = {
     margin-top: 2rem;
     margin-bottom: 1rem;
     line-height: 1.2;
-    color: #ffffff;
+    color: var(--branch-ink, #ffffff);
   }
 
   .prose-brutal :global(h4) {
@@ -423,7 +424,7 @@ const articleStructuredData = {
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     line-height: 1.3;
-    color: #ffffff;
+    color: var(--branch-ink, #ffffff);
   }
 
   .prose-brutal :global(p) {
@@ -433,21 +434,21 @@ const articleStructuredData = {
 
   .prose-brutal :global(strong) {
     font-weight: 800;
-    color: #ffffff;
+    color: var(--branch-ink, #ffffff);
   }
 
   .prose-brutal :global(a) {
-    color: #d428d4;
+    color: var(--branch-primary, #d428d4);
     font-weight: 700;
     text-decoration: none;
-    border-bottom: 2px solid #d428d4;
+    border-bottom: 2px solid var(--branch-primary, #d428d4);
     transition: all 0.2s;
   }
 
   .prose-brutal :global(a:hover) {
-    color: #0f0018;
-    border-bottom-color: #00ddb8;
-    background: #00ddb8;
+    color: var(--branch-surface, #0f0018);
+    border-bottom-color: var(--branch-secondary, #00ddb8);
+    background: var(--branch-secondary, #00ddb8);
     padding: 0 4px;
   }
 
@@ -463,10 +464,10 @@ const articleStructuredData = {
   }
 
   .prose-brutal :global(blockquote) {
-    border-left: 4px solid #4a7aeb;
+    border-left: 4px solid var(--branch-accent, #4a7aeb);
     padding: 1.5rem;
     margin: 2rem 0;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--branch-line, rgba(255, 255, 255, 0.05));
     font-weight: 700;
     font-size: 1.25rem;
     border-radius: 4px;
@@ -480,8 +481,8 @@ const articleStructuredData = {
   }
 
   .prose-brutal :global(code) {
-    background: #0f0018;
-    color: #00ddb8;
+    background: var(--branch-surface, #0f0018);
+    color: var(--branch-secondary, #00ddb8);
     padding: 0.25rem 0.5rem;
     font-family: 'Space Mono', monospace;
     font-weight: 700;
@@ -489,8 +490,8 @@ const articleStructuredData = {
   }
 
   .prose-brutal :global(pre) {
-    background: #0f0018;
-    color: #00ddb8;
+    background: var(--branch-surface, #0f0018);
+    color: var(--branch-secondary, #00ddb8);
     padding: 1.5rem;
     margin: 2rem 0;
     border-radius: 4px;

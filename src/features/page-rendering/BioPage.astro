@@ -61,14 +61,14 @@ if (page.body) {
   <nav class="flex items-center flex-wrap gap-1 mb-12 text-xs font-black uppercase tracking-widest">
     <a
       href="/"
-      class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors"
+      class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors"
     >
       Home
     </a>
     {
       breadcrumbs.map((bc, i) => (
         <>
-          <span class="text-white/30 font-black">›</span>
+          <span class="text-fg/30 font-black">›</span>
           {i === breadcrumbs.length - 1 ? (
             <span
               class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
@@ -79,7 +79,7 @@ if (page.body) {
           ) : (
             <a
               href={bc.path}
-              class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-magenta/40 hover:text-magenta transition-all"
+              class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-magenta/40 hover:text-magenta transition-all"
             >
               {bc.label}
             </a>
@@ -105,7 +105,7 @@ if (page.body) {
               />
             </div>
             <div class="p-6 border-t border-white/10">
-              <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+              <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-fg">
                 {page.title}
               </h1>
               {page.role && (
@@ -123,11 +123,11 @@ if (page.body) {
         !page.profileImage && (
           <BrutalCard variant="surface" shadow="magenta" padding="md">
             <div class="w-24 h-24 rounded-sm border border-white/20 bg-white/10 flex items-center justify-center mb-4">
-              <svg class="w-12 h-12 text-white/30" viewBox="0 0 24 24" fill="currentColor">
+              <svg class="w-12 h-12 text-fg/30" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
               </svg>
             </div>
-            <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-white">
+            <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-fg">
               {page.title}
             </h1>
             {page.role && (
@@ -150,7 +150,7 @@ if (page.body) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-white/10 bg-grey-dark text-white hover:bg-magenta hover:text-white hover:border-magenta transition-all px-3 py-2"
+                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-white/10 bg-grey-dark text-fg hover:bg-magenta hover:text-fg hover:border-magenta transition-all px-3 py-2"
                 >
                   <div class="w-6 h-6 flex items-center justify-center shrink-0">
                     <Icon
@@ -213,7 +213,7 @@ if (page.body) {
                 })}
               </>
             ) : (
-              <p class="text-lg font-bold uppercase text-white/60">Full biography coming soon...</p>
+              <p class="text-lg font-bold uppercase text-fg/60">Full biography coming soon...</p>
             )
           }
         </div>
@@ -238,14 +238,18 @@ if (page.body) {
               .replace(/^-|-$/g, '')}
           >
             <div class="mb-8">
-              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-tight">
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg leading-tight">
                 {group.title}
               </h2>
               <div class="h-2 w-24 bg-magenta mt-2" />
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {group.pages.map((child, index) => {
-                const accents = ['#00DDB8', '#4A7AEB', '#D428D4']
+                const accents = [
+                  'var(--branch-secondary, #00DDB8)',
+                  'var(--branch-accent, #4A7AEB)',
+                  'var(--branch-primary, #D428D4)',
+                ]
                 const accent = accents[index % accents.length]
 
                 const imageUrl = child.page.profileImage
@@ -268,18 +272,14 @@ if (page.body) {
                         />
                       ) : (
                         <div class="w-full h-full flex items-center justify-center bg-white/5">
-                          <svg
-                            class="w-20 h-20 text-white/20"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                          >
+                          <svg class="w-20 h-20 text-fg/20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                           </svg>
                         </div>
                       )}
                     </div>
                     <div class="p-4 flex flex-col gap-1">
-                      <h3 class="text-base md:text-lg font-display font-black uppercase text-white leading-tight">
+                      <h3 class="text-base md:text-lg font-display font-black uppercase text-fg leading-tight">
                         {child.page.title}
                       </h3>
                       {(child.page.role || child.page.subtitle) && (

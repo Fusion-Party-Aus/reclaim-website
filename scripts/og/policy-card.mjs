@@ -38,7 +38,15 @@ function headlineSize(title) {
   return 34
 }
 
-function buildTree({ eyebrow, title, subline, tag, accent, logoMarkDataUri }) {
+function buildTree({
+  eyebrow,
+  title,
+  subline,
+  tag,
+  accent,
+  logoMarkDataUri,
+  branchLabel = 'VICTORIA',
+}) {
   const watermarkLetter = title.trim().charAt(0).toUpperCase()
 
   return {
@@ -255,7 +263,7 @@ function buildTree({ eyebrow, title, subline, tag, accent, logoMarkDataUri }) {
                                 fontWeight: 700,
                                 marginLeft: '0.4em',
                               },
-                              children: 'VICTORIA',
+                              children: branchLabel,
                             },
                           },
                         ],

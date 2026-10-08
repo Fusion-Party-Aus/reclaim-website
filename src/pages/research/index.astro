@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -50,8 +51,8 @@ const latestPublished = [...resources]
 ---
 
 <BaseLayout
-  title="Research & Data | Fusion Party Victoria"
-  description="Public research, datasets, methodology, submissions and evidence behind Fusion Party Victoria's policy platform."
+  title={`Research & Data | ${DEPLOYMENT.label}`}
+  description={`Public research, datasets, methodology, submissions and evidence behind ${DEPLOYMENT.label}'s policy platform.`}
 >
   <Header />
   <main id="main-content" class="site-editorial bg-surface-base">
@@ -63,10 +64,10 @@ const latestPublished = [...resources]
         <div class="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-16 items-end">
           <div>
             <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-4">Show the work.</p>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black uppercase text-white leading-[0.9] max-w-5xl">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black uppercase text-fg leading-[0.9] max-w-5xl">
               Research &amp; Data
             </h1>
-            <p class="mt-7 max-w-3xl text-lg md:text-xl font-semibold text-white/72 leading-relaxed">
+            <p class="mt-7 max-w-3xl text-lg md:text-xl font-semibold text-fg/72 leading-relaxed">
               The evidence underneath the platform. What we know, what we are testing, where the numbers come from,
               what would change our minds, and what still needs work.
             </p>
@@ -74,8 +75,8 @@ const latestPublished = [...resources]
 
           <aside class="border-l-4 border-yellow pl-5 lg:mb-1">
             <p class="text-xs font-black uppercase tracking-[0.18em] text-yellow mb-2">The standard</p>
-            <p class="text-xl font-display font-black uppercase text-white leading-tight">Reason. Rights. Results.</p>
-            <p class="mt-3 text-sm text-white/62 leading-relaxed">
+            <p class="text-xl font-display font-black uppercase text-fg leading-tight">Reason. Rights. Results.</p>
+            <p class="mt-3 text-sm text-fg/62 leading-relaxed">
               Evidence and mechanism. Rights and safeguards. Measurable outcomes and a failure test.
             </p>
           </aside>
@@ -86,20 +87,20 @@ const latestPublished = [...resources]
     <section class="border-b border-white/10 bg-black/25">
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
         <div class="bg-surface-base px-4 py-4">
-          <p class="text-2xl md:text-3xl font-black font-mono text-white">{resources.length}</p>
-          <p class="text-[11px] font-black uppercase tracking-widest text-white/45">Public resources</p>
+          <p class="text-2xl md:text-3xl font-black font-mono text-fg">{resources.length}</p>
+          <p class="text-[11px] font-black uppercase tracking-widest text-fg/45">Public resources</p>
         </div>
         <div class="bg-surface-base px-4 py-4">
           <p class="text-2xl md:text-3xl font-black font-mono text-mint">{areas.length}</p>
-          <p class="text-[11px] font-black uppercase tracking-widest text-white/45">Research areas</p>
+          <p class="text-[11px] font-black uppercase tracking-widest text-fg/45">Research areas</p>
         </div>
         <div class="bg-surface-base px-4 py-4">
           <p class="text-2xl md:text-3xl font-black font-mono text-yellow">{sourceCount}</p>
-          <p class="text-[11px] font-black uppercase tracking-widest text-white/45">Source records</p>
+          <p class="text-[11px] font-black uppercase tracking-widest text-fg/45">Source records</p>
         </div>
         <div class="bg-surface-base px-4 py-4">
           <p class="text-2xl md:text-3xl font-black font-mono text-magenta">{revisedCount}</p>
-          <p class="text-[11px] font-black uppercase tracking-widest text-white/45">Revised after publication</p>
+          <p class="text-[11px] font-black uppercase tracking-widest text-fg/45">Revised after publication</p>
         </div>
       </div>
     </section>
@@ -110,9 +111,9 @@ const latestPublished = [...resources]
           <div class="flex items-end justify-between gap-6 mb-7">
             <div>
               <p class="text-xs font-black uppercase tracking-[0.2em] text-magenta mb-2">Start here</p>
-              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white">Evidence worth opening</h2>
+              <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg">Evidence worth opening</h2>
             </div>
-            <a href="#evidence-index" class="hidden md:inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-white/55 hover:text-mint">
+            <a href="#evidence-index" class="hidden md:inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-fg/55 hover:text-mint">
               Browse the full index <Icon name="mdi:arrow-down" class="w-4 h-4" />
             </a>
           </div>
@@ -121,20 +122,20 @@ const latestPublished = [...resources]
             <article class="p-6 md:p-9 bg-black/30 border-b lg:border-b-0 lg:border-r border-white/10">
               <div class="flex flex-wrap items-center gap-3 mb-5">
                 <BrutalBadge variant="mint">{typeLabels[lead.resourceType] || lead.resourceType}</BrutalBadge>
-                <span class="text-xs font-black uppercase tracking-wide text-white/40">{lead.researchArea}</span>
-                {lead.version && <span class="text-xs font-mono text-white/35">v{lead.version}</span>}
+                <span class="text-xs font-black uppercase tracking-wide text-fg/40">{lead.researchArea}</span>
+                {lead.version && <span class="text-xs font-mono text-fg/35">v{lead.version}</span>}
               </div>
-              <h3 class="text-3xl md:text-5xl font-display font-black uppercase text-white leading-[1.02] max-w-4xl">
+              <h3 class="text-3xl md:text-5xl font-display font-black uppercase text-fg leading-[1.02] max-w-4xl">
                 <a href={`/research/${lead.slug.current}`} class="hover:text-mint">{lead.title}</a>
               </h3>
-              <p class="mt-5 text-base md:text-lg text-white/68 leading-relaxed max-w-3xl">{lead.abstract}</p>
+              <p class="mt-5 text-base md:text-lg text-fg/68 leading-relaxed max-w-3xl">{lead.abstract}</p>
 
               {lead.keyFindings?.length ? (
                 <div class="mt-8 border-t border-white/10 pt-6">
                   <p class="text-xs font-black uppercase tracking-widest text-mint mb-3">Key findings</p>
                   <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3">
                     {lead.keyFindings.slice(0, 4).map((finding) => (
-                      <li class="flex gap-3 text-sm text-white/74 leading-relaxed">
+                      <li class="flex gap-3 text-sm text-fg/74 leading-relaxed">
                         <span class="text-mint font-black shrink-0">→</span>
                         <span>{finding}</span>
                       </li>
@@ -143,7 +144,7 @@ const latestPublished = [...resources]
                 </div>
               ) : null}
 
-              <a href={`/research/${lead.slug.current}`} class="mt-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-mint hover:text-white">
+              <a href={`/research/${lead.slug.current}`} class="mt-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-mint hover:text-fg">
                 Read the full report <Icon name="mdi:arrow-right" class="w-5 h-5" />
               </a>
             </article>
@@ -155,13 +156,13 @@ const latestPublished = [...resources]
               <div>
                 {findingResources.map((resource) => (
                   <a href={`/research/${resource.slug.current}`} class="block px-6 py-5 border-b border-white/10 last:border-b-0 group hover:bg-white/[0.03]">
-                    <div class="flex items-center gap-2 mb-2 text-[10px] font-black uppercase tracking-widest text-white/35">
+                    <div class="flex items-center gap-2 mb-2 text-[10px] font-black uppercase tracking-widest text-fg/35">
                       <span>{resource.researchArea}</span>
                       <span>·</span>
                       <span>{typeLabels[resource.resourceType] || resource.resourceType}</span>
                     </div>
-                    <h3 class="text-base font-display font-black uppercase text-white leading-tight group-hover:text-mint">{resource.title}</h3>
-                    {resource.keyFindings?.[0] && <p class="mt-2 text-xs text-white/50 leading-relaxed">{resource.keyFindings[0]}</p>}
+                    <h3 class="text-base font-display font-black uppercase text-fg leading-tight group-hover:text-mint">{resource.title}</h3>
+                    {resource.keyFindings?.[0] && <p class="mt-2 text-xs text-fg/50 leading-relaxed">{resource.keyFindings[0]}</p>}
                   </a>
                 ))}
               </div>
@@ -176,8 +177,8 @@ const latestPublished = [...resources]
         <div class="grid lg:grid-cols-[260px_1fr] gap-8">
           <div>
             <p class="text-xs font-black uppercase tracking-[0.2em] text-yellow mb-2">Browse the questions</p>
-            <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-white">Research areas</h2>
-            <p class="mt-3 text-sm text-white/55 leading-relaxed">Topics come from the research itself, not a fixed site taxonomy.</p>
+            <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-fg">Research areas</h2>
+            <p class="mt-3 text-sm text-fg/55 leading-relaxed">Topics come from the research itself, not a fixed site taxonomy.</p>
           </div>
 
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -185,10 +186,10 @@ const latestPublished = [...resources]
               <button
                 type="button"
                 data-area-jump={area}
-                class="text-left border border-white/10 bg-black/20 px-5 py-4 hover:border-mint/50 hover:bg-mint/[0.04] transition-colors"
+                class="text-left border border-white/10 bg-neutral-panel px-5 py-4 hover:border-mint/50 hover:bg-mint/[0.04] transition-colors"
               >
-                <span class="block text-base font-display font-black uppercase text-white leading-tight">{area}</span>
-                <span class="mt-2 block text-xs font-mono text-white/40">{count} resource{count === 1 ? '' : 's'}</span>
+                <span class="block text-base font-display font-black uppercase text-fg leading-tight">{area}</span>
+                <span class="mt-2 block text-xs font-mono text-fg/40">{count} resource{count === 1 ? '' : 's'}</span>
               </button>
             ))}
           </div>
@@ -201,28 +202,28 @@ const latestPublished = [...resources]
         <div class="grid lg:grid-cols-[260px_1fr] gap-8 lg:gap-12">
           <aside>
             <p class="text-xs font-black uppercase tracking-[0.2em] text-mint mb-2">Public evidence library</p>
-            <h2 class="text-3xl font-display font-black uppercase text-white">Evidence index</h2>
-            <p class="mt-3 text-sm text-white/55 leading-relaxed">
+            <h2 class="text-3xl font-display font-black uppercase text-fg">Evidence index</h2>
+            <p class="mt-3 text-sm text-fg/55 leading-relaxed">
               Search the whole library or narrow it by research area and resource type.
             </p>
 
             <div class="mt-6 space-y-6">
               <div>
-                <label for="research-search" class="block text-[11px] font-black uppercase tracking-widest text-white/45 mb-2">Search</label>
+                <label for="research-search" class="block text-[11px] font-black uppercase tracking-widest text-fg/45 mb-2">Search</label>
                 <input
                   id="research-search"
                   type="search"
                   placeholder="Title, topic, finding…"
-                  class="w-full bg-black/30 border border-white/15 px-3 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-mint"
+                  class="w-full bg-black/30 border border-white/15 px-3 py-3 text-sm text-fg placeholder:text-fg/30 focus:outline-none focus:border-mint"
                 />
               </div>
 
               <div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-white/45 mb-2">Area</p>
+                <p class="text-[11px] font-black uppercase tracking-widest text-fg/45 mb-2">Area</p>
                 <div class="flex lg:flex-col flex-wrap gap-2" data-research-area-filters>
                   <button type="button" data-area-filter="all" aria-pressed="true" class="research-filter text-left border border-mint bg-mint text-black px-3 py-2 text-xs font-black uppercase">All research</button>
                   {areas.map(([area]) => (
-                    <button type="button" data-area-filter={area} aria-pressed="false" class="research-filter text-left border border-white/15 text-white/65 px-3 py-2 text-xs font-black uppercase hover:border-mint/50">
+                    <button type="button" data-area-filter={area} aria-pressed="false" class="research-filter text-left border border-white/15 text-fg/65 px-3 py-2 text-xs font-black uppercase hover:border-mint/50">
                       {area}
                     </button>
                   ))}
@@ -235,13 +236,13 @@ const latestPublished = [...resources]
             <div class="flex flex-wrap items-center gap-2 mb-5" data-research-type-filters>
               <button type="button" data-type-filter="all" aria-pressed="true" class="type-filter border border-white bg-white text-black px-3 py-2 text-xs font-black uppercase">All formats</button>
               {Object.entries(typeLabels).map(([value, label]) => (
-                <button type="button" data-type-filter={value} aria-pressed="false" class="type-filter border border-white/15 text-white/60 px-3 py-2 text-xs font-black uppercase hover:border-yellow/50">
+                <button type="button" data-type-filter={value} aria-pressed="false" class="type-filter border border-white/15 text-fg/60 px-3 py-2 text-xs font-black uppercase hover:border-yellow/50">
                   {label}
                 </button>
               ))}
             </div>
 
-            <p class="text-xs font-mono text-white/35 mb-3"><span data-visible-count>{resources.length}</span> resources shown</p>
+            <p class="text-xs font-mono text-fg/35 mb-3"><span data-visible-count>{resources.length}</span> resources shown</p>
 
             <div class="border-t border-white/15" data-research-list>
               {resources.map((resource) => (
@@ -261,22 +262,22 @@ const latestPublished = [...resources]
                   <div class="grid md:grid-cols-[145px_1fr_auto] gap-3 md:gap-6 items-start">
                     <div>
                       <p class="text-[10px] font-black uppercase tracking-widest text-mint">{resource.researchArea || 'Other Research'}</p>
-                      <p class="mt-1 text-[10px] font-black uppercase tracking-widest text-white/30">{typeLabels[resource.resourceType] || resource.resourceType}</p>
+                      <p class="mt-1 text-[10px] font-black uppercase tracking-widest text-fg/30">{typeLabels[resource.resourceType] || resource.resourceType}</p>
                     </div>
                     <div>
-                      <h3 class="text-lg md:text-xl font-display font-black uppercase text-white leading-tight group-hover:text-mint">
+                      <h3 class="text-lg md:text-xl font-display font-black uppercase text-fg leading-tight group-hover:text-mint">
                         <a href={`/research/${resource.slug.current}`}>{resource.title}</a>
                       </h3>
-                      <p class="mt-2 text-sm text-white/58 leading-relaxed max-w-3xl">{resource.abstract}</p>
+                      <p class="mt-2 text-sm text-fg/58 leading-relaxed max-w-3xl">{resource.abstract}</p>
                       {resource.keyFindings?.[0] && (
-                        <p class="mt-3 text-xs text-white/42 leading-relaxed border-l-2 border-yellow/60 pl-3">
+                        <p class="mt-3 text-xs text-fg/42 leading-relaxed border-l-2 border-yellow/60 pl-3">
                           {resource.keyFindings[0]}
                         </p>
                       )}
                     </div>
                     <div class="md:text-right whitespace-nowrap">
-                      <p class="text-xs font-mono text-white/35">{formatDate(resource.publishedAt)}</p>
-                      {resource.version && <p class="mt-1 text-[10px] font-mono text-white/25">v{resource.version}</p>}
+                      <p class="text-xs font-mono text-fg/35">{formatDate(resource.publishedAt)}</p>
+                      {resource.version && <p class="mt-1 text-[10px] font-mono text-fg/25">v{resource.version}</p>}
                       <a href={`/research/${resource.slug.current}`} aria-label={`Read ${resource.title}`} class="mt-3 inline-flex text-mint group-hover:translate-x-1 transition-transform">
                         <Icon name="mdi:arrow-right" class="w-5 h-5" />
                       </a>
@@ -287,8 +288,8 @@ const latestPublished = [...resources]
             </div>
 
             <div data-no-results hidden class="border border-white/10 bg-white/[0.03] p-8 text-center">
-              <p class="font-display font-black uppercase text-white">Nothing matches that filter.</p>
-              <p class="mt-2 text-sm text-white/50">Clear the search or choose a different research area.</p>
+              <p class="font-display font-black uppercase text-fg">Nothing matches that filter.</p>
+              <p class="mt-2 text-sm text-fg/50">Clear the search or choose a different research area.</p>
             </div>
           </div>
         </div>
@@ -300,27 +301,27 @@ const latestPublished = [...resources]
         <div class="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16">
           <div>
             <p class="text-xs font-black uppercase tracking-[0.2em] text-magenta mb-2">How we work</p>
-            <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white">Reason. Rights. Results.</h2>
+            <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg">Reason. Rights. Results.</h2>
             <div class="mt-7 grid sm:grid-cols-3 gap-px bg-white/10">
               <div class="bg-surface-base p-5">
                 <p class="font-display font-black uppercase text-mint">Reason</p>
-                <p class="mt-2 text-sm text-white/58 leading-relaxed">Show the evidence. Trace the mechanism. Say what would change the conclusion.</p>
+                <p class="mt-2 text-sm text-fg/58 leading-relaxed">Show the evidence. Trace the mechanism. Say what would change the conclusion.</p>
               </div>
               <div class="bg-surface-base p-5">
-                <p class="font-display font-black uppercase text-white">Rights</p>
-                <p class="mt-2 text-sm text-white/58 leading-relaxed">Identify the freedoms, safeguards, accessibility and distributional effects the design has to respect.</p>
+                <p class="font-display font-black uppercase text-fg">Rights</p>
+                <p class="mt-2 text-sm text-fg/58 leading-relaxed">Identify the freedoms, safeguards, accessibility and distributional effects the design has to respect.</p>
               </div>
               <div class="bg-surface-base p-5">
                 <p class="font-display font-black uppercase text-yellow">Results</p>
-                <p class="mt-2 text-sm text-white/58 leading-relaxed">Define the measurable outcome, evaluate it, and change course when the intervention fails.</p>
+                <p class="mt-2 text-sm text-fg/58 leading-relaxed">Define the measurable outcome, evaluate it, and change course when the intervention fails.</p>
               </div>
             </div>
           </div>
 
           <div class="lg:border-l lg:border-white/10 lg:pl-10">
             <p class="text-xs font-black uppercase tracking-[0.2em] text-yellow mb-2">Open by default</p>
-            <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-white">Use the corpus directly.</h2>
-            <p class="mt-4 text-sm text-white/58 leading-relaxed max-w-xl">
+            <h2 class="text-2xl md:text-3xl font-display font-black uppercase text-fg">Use the corpus directly.</h2>
+            <p class="mt-4 text-sm text-fg/58 leading-relaxed max-w-xl">
               The research library is published in human-readable and machine-readable forms. Sources, limitations, publication dates and provenance travel with the resource.
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
@@ -329,19 +330,19 @@ const latestPublished = [...resources]
                   Read the methodology
                 </a>
               )}
-              <a href="/api/research.json" class="border border-white/20 text-white px-4 py-3 text-xs font-black uppercase hover:border-white">JSON corpus</a>
-              <a href="/api/research.txt" class="border border-white/20 text-white px-4 py-3 text-xs font-black uppercase hover:border-white">Plain-text corpus</a>
-              <a href="/research-sitemap.xml" class="border border-white/20 text-white px-4 py-3 text-xs font-black uppercase hover:border-white">Research sitemap</a>
+              <a href="/api/research.json" class="border border-white/20 text-fg px-4 py-3 text-xs font-black uppercase hover:border-white">JSON corpus</a>
+              <a href="/api/research.txt" class="border border-white/20 text-fg px-4 py-3 text-xs font-black uppercase hover:border-white">Plain-text corpus</a>
+              <a href="/research-sitemap.xml" class="border border-white/20 text-fg px-4 py-3 text-xs font-black uppercase hover:border-white">Research sitemap</a>
             </div>
 
             {latestPublished.length > 0 && (
               <div class="mt-8">
-                <p class="text-[11px] font-black uppercase tracking-widest text-white/35 mb-3">Recently published</p>
+                <p class="text-[11px] font-black uppercase tracking-widest text-fg/35 mb-3">Recently published</p>
                 <div class="space-y-2">
                   {latestPublished.map((resource) => (
                     <a href={`/research/${resource.slug.current}`} class="flex items-baseline justify-between gap-4 text-sm group">
-                      <span class="text-white/65 group-hover:text-mint">{resource.title}</span>
-                      <span class="text-[10px] font-mono text-white/30 whitespace-nowrap">{formatDate(resource.publishedAt)}</span>
+                      <span class="text-fg/65 group-hover:text-mint">{resource.title}</span>
+                      <span class="text-[10px] font-mono text-fg/30 whitespace-nowrap">{formatDate(resource.publishedAt)}</span>
                     </a>
                   ))}
                 </div>
