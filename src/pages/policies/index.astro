@@ -475,13 +475,25 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
             {ctaSection.body}
           </p>
           <div class="flex flex-wrap gap-3">
-            <BrutalButton variant="magenta" href="/get-involved" icon="mdi:account-plus">
+            <BrutalButton
+              variant="magenta"
+              href={DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact'}
+              icon="mdi:account-plus"
+            >
               Get Involved
             </BrutalButton>
-            <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
-              See the Costings
-            </BrutalButton>
-            <BrutalButton variant="black" href="/electorate" icon="mdi:map-marker">
+            {
+              DEPLOYMENT.slug === 'vic' && (
+                <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
+                  See the Costings
+                </BrutalButton>
+              )
+            }
+            <BrutalButton
+              variant="black"
+              href={DEPLOYMENT.slug === 'vic' ? '/electorate' : '/electorates'}
+              icon="mdi:map-marker"
+            >
               Find Your Electorate
             </BrutalButton>
           </div>
