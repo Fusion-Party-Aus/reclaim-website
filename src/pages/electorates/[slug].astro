@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = true
 
 export async function getStaticPaths() {
@@ -103,7 +104,7 @@ const tierConfig: Record<
     borderLeft: 'border-l-magenta',
     bg: 'bg-magenta/10',
     badgeBg: 'bg-magenta',
-    badgeText: 'text-white',
+    badgeText: 'text-fg',
     label: 'Vote 1',
   },
   green: {
@@ -119,7 +120,7 @@ const tierConfig: Record<
     borderLeft: 'border-l-yellow',
     bg: 'bg-yellow/10',
     badgeBg: 'bg-yellow',
-    badgeText: 'text-white',
+    badgeText: 'text-fg',
     label: 'Middle',
   },
   red: {
@@ -127,14 +128,14 @@ const tierConfig: Record<
     borderLeft: 'border-l-red',
     bg: 'bg-red/10',
     badgeBg: 'bg-red',
-    badgeText: 'text-white',
+    badgeText: 'text-fg',
     label: 'Vote Last',
   },
 }
 ---
 
 <BaseLayout
-  title={`${electorate.name} | Fusion Party Victoria`}
+  title={`${electorate.name} | ${DEPLOYMENT.label}`}
   description={electorate.subtitle || 'Decades of neglect. A concrete plan to fix it.'}
   image={ogImageUrl}
   imageAlt={electorate.candidateName || electorate.name}
@@ -154,30 +155,30 @@ const tierConfig: Record<
       >
         <a
           href="/"
-          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-yellow text-fg hover:bg-mint hover:text-black transition-colors"
           >Home</a
         >
-        <span class="text-white/30">›</span>
+        <span class="text-fg/30">›</span>
         <a
           href="/electorates"
-          class="px-3 py-1.5 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-white/10 text-fg hover:bg-mint hover:text-black transition-colors"
           >Electorates</a
         >
         {
           electorate.isArchived && (
             <>
-              <span class="text-white/30">›</span>
+              <span class="text-fg/30">›</span>
               <a
                 href="/past-candidates"
-                class="px-3 py-1.5 rounded-sm bg-white/10 text-magenta hover:bg-magenta hover:text-white transition-all"
+                class="px-3 py-1.5 rounded-sm bg-white/10 text-magenta hover:bg-magenta hover:text-fg transition-all"
               >
                 Past Candidates
               </a>
             </>
           )
         }
-        <span class="text-white/30">›</span>
-        <span class="px-3 py-1.5 rounded-sm bg-black/30 text-white max-w-xs truncate"
+        <span class="text-fg/30">›</span>
+        <span class="px-3 py-1.5 rounded-sm bg-black/30 text-fg max-w-xs truncate"
           >{electorate.name}</span
         >
       </nav>
@@ -208,7 +209,7 @@ const tierConfig: Record<
                 />
               </div>
             ) : (
-              <p class="text-base font-bold text-white/60">
+              <p class="text-base font-bold text-fg/60">
                 This electorate has a candidate and commitments — full detail coming soon.
               </p>
             )
@@ -244,15 +245,15 @@ const tierConfig: Record<
                     {electorate.candidateName}
                   </h2>
                   {electorate.candidateBio && (
-                    <p class="text-sm leading-relaxed text-white/75 border-l-4 border-mint pl-3">
+                    <p class="text-sm leading-relaxed text-fg/75 border-l-4 border-mint pl-3">
                       {electorate.candidateBio}
                     </p>
                   )}
                 </>
               ) : (
                 <div>
-                  <p class="text-base font-black uppercase text-white/60 mb-3">Candidate TBA</p>
-                  <p class="text-sm text-white/50 leading-relaxed">
+                  <p class="text-base font-black uppercase text-fg/60 mb-3">Candidate TBA</p>
+                  <p class="text-sm text-fg/50 leading-relaxed">
                     From {electorate.name}? Interested in running?{' '}
                     <a
                       href="mailto:preselection@fusionparty.org.au"
@@ -298,7 +299,7 @@ const tierConfig: Record<
                   >
                     {cfg.label}
                   </div>
-                  <p class="text-xs font-bold text-white/70 leading-snug">
+                  <p class="text-xs font-bold text-fg/70 leading-snug">
                     {tier === 'magenta' && 'Your Reignite Democracy candidate. Number them 1.'}
                     {tier === 'green' && 'Close allies sharing core values.'}
                     {tier === 'orange' && 'Some overlap, but meaningful differences.'}
@@ -312,7 +313,7 @@ const tierConfig: Record<
             <BrutalCard variant="surface" shadow="black" padding="lg">
               <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
-                  <span class="inline-block bg-black/30 text-white px-4 py-2 font-display font-black uppercase tracking-wider text-sm rounded-sm">
+                  <span class="inline-block bg-black/30 text-fg px-4 py-2 font-display font-black uppercase tracking-wider text-sm rounded-sm">
                     Ballot Paper — {electorate.name}
                   </span>
                   <p class="mt-2 font-black uppercase text-xs text-magenta">
@@ -340,7 +341,7 @@ const tierConfig: Record<
                       <div
                         class={`flex-none w-36 md:w-44 flex flex-col items-center gap-3 p-4 rounded-sm border border-white/10 border-t-2 text-center hover:-translate-y-0.5 transition-transform ${cfg.bg} ${cfg.borderTop}`}
                       >
-                        <div class="w-14 h-14 rounded-sm bg-black/20 flex items-center justify-center font-black text-2xl">
+                        <div class="w-14 h-14 rounded-sm bg-neutral-panel flex items-center justify-center font-black text-2xl">
                           {candidate.candidateTier === 'magenta' ? (
                             '1'
                           ) : (
@@ -372,7 +373,7 @@ const tierConfig: Record<
                       <div
                         class={`flex items-center gap-4 p-4 rounded-sm border border-white/10 border-l-2 hover:-translate-x-0.5 transition-transform ${cfg.bg} ${cfg.borderLeft}`}
                       >
-                        <div class="w-12 h-12 rounded-sm bg-black/20 flex items-center justify-center shrink-0 font-black text-xl">
+                        <div class="w-12 h-12 rounded-sm bg-neutral-panel flex items-center justify-center shrink-0 font-black text-xl">
                           {candidate.candidateTier === 'magenta' ? (
                             '1'
                           ) : (
@@ -443,14 +444,14 @@ const tierConfig: Record<
                         <h3 class="text-lg font-display font-black uppercase mb-1">
                           {commitment.title}
                         </h3>
-                        <p class="font-bold text-sm text-white/70">{commitment.highlight}</p>
+                        <p class="font-bold text-sm text-fg/70">{commitment.highlight}</p>
                       </div>
                     </div>
                     {commitment.details && commitment.details.length > 0 && (
                       <ul class="mt-3 space-y-1 border-t border-white/10 pt-3">
                         {commitment.details.map((item) => (
-                          <li class="flex items-start gap-2 text-sm text-white/60 font-semibold">
-                            <span class="font-black text-white shrink-0">→</span>
+                          <li class="flex items-start gap-2 text-sm text-fg/60 font-semibold">
+                            <span class="font-black text-fg shrink-0">→</span>
                             {item.detail}
                           </li>
                         ))}
@@ -470,7 +471,7 @@ const tierConfig: Record<
         <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
           Help Us Win<br /><span class="text-mint">{electorate.name}</span>
         </h2>
-        <p class="text-base font-black text-white/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+        <p class="text-base font-black text-fg/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
           We don't take developer or corporate money. We win by people power — volunteers,
           conversations, and small donations.
         </p>

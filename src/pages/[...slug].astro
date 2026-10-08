@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 
 import BaseLayout from '../layouts/BaseLayout.astro'
@@ -91,7 +92,7 @@ const ogImageUrl =
 ---
 
 <BaseLayout
-  title={`${page.title} | Fusion Party Victoria`}
+  title={`${page.title} | ${DEPLOYMENT.label}`}
   description={page.metaDescription || page.subtitle}
   image={ogImageUrl}
   imageAlt={page.title}
@@ -102,7 +103,7 @@ const ogImageUrl =
     page.pageType !== 'bio' && (
       <header class="editorial-masthead">
         <div class="editorial-shell">
-          <div class="editorial-kicker">Fusion Party Victoria</div>
+          <div class="editorial-kicker">{DEPLOYMENT.label}</div>
           <h1 class="editorial-title">{page.title}</h1>
           {page.subtitle && <p class="editorial-deck">{page.subtitle}</p>}
         </div>

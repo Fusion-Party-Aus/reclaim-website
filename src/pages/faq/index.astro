@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/layout/Hero';
@@ -41,12 +42,12 @@ Object.keys(faqsByCategory).forEach(category => {
 });
 
 const categoryInfo: Record<string, { title: string; description: string; bg: string; textColor: string; icon: string }> = {
-  'debt':         { title: 'Debt & Fiscal Policy',  description: "Victoria's debt, spending and fiscal choices.", bg: '#681268', textColor: '#fff', icon: 'mdi:currency-usd' },
-  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:arrow-left-bold' },
-  'right-attacks':{ title: 'From the Right',         description: 'Answers to conservative critiques.',          bg: '#234080', textColor: '#fff', icon: 'mdi:arrow-right-bold' },
-  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: '#2E004D',    textColor: '#fff', icon: 'mdi:information' },
-  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: '#00DDB8', textColor: '#0F0018', icon: 'mdi:vote' },
-  'policy':       { title: 'Policy Details',         description: 'How proposals work and what remains to be costed.',                           bg: '#234080', textColor: '#fff', icon: 'mdi:file-document' },
+  'debt':         { title: 'Debt & Fiscal Policy',  description: `Debt, spending and fiscal choices in ${DEPLOYMENT.state}.`, bg: 'var(--branch-primary, #681268)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:currency-usd' },
+  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: 'var(--branch-secondary, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:arrow-left-bold' },
+  'right-attacks':{ title: 'From the Right',         description: 'Answers to conservative critiques.',          bg: 'var(--branch-accent-deep, #234080)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:arrow-right-bold' },
+  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: 'var(--branch-secondary, #2E004D)',    textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:information' },
+  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: 'var(--branch-secondary, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:vote' },
+  'policy':       { title: 'Policy Details',         description: 'How proposals work and what remains to be costed.',                           bg: 'var(--branch-accent-deep, #234080)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:file-document' },
 };
 
 const categoryOrder = ['general', 'debt', 'policy', 'electoral', 'left-attacks', 'right-attacks'];
@@ -64,11 +65,11 @@ const sidebarSections = sortedCategories.map(category => {
   };
 });
 
-const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
+const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, #00DDB8)', 'var(--branch-accent, #4A7AEB)'];
 ---
 
 <BaseLayout
-  title="FAQ | Fusion Party Victoria"
+  title={`FAQ | ${DEPLOYMENT.label}`}
   description="Answers about Fusion's policies, funding, elections and use of AI."
   image="/og/faq.png"
 >
@@ -92,8 +93,8 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 
       {/* ── Breadcrumbs ── */}
       <nav class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest">
-        <a href="/" class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors">Home</a>
-        <span class="text-white/30">›</span>
+        <a href="/" class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors">Home</a>
+        <span class="text-fg/30">›</span>
         <span class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta">FAQ</span>
       </nav>
 
@@ -106,10 +107,10 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
 
         <div>
           {/* ── Quick-jump nav ── */}
-          <div class="rounded-sm border border-white/10 bg-grey-dark p-6 mb-10" style="border-top: 2px solid #4A7AEB;">
+          <div class="rounded-sm border border-white/10 bg-grey-dark p-6 mb-10" style="border-top: 2px solid var(--branch-accent, #4A7AEB);">
             <div class="flex items-center gap-3 mb-4">
-              <Icon name="mdi:compass" class="w-6 h-6 text-white" />
-              <h2 class="text-lg font-display font-black uppercase text-white">Jump to Category</h2>
+              <Icon name="mdi:compass" class="w-6 h-6 text-fg" />
+              <h2 class="text-lg font-display font-black uppercase text-fg">Jump to Category</h2>
             </div>
             <div class="flex flex-wrap gap-2">
               {sortedCategories.map(category => {
@@ -138,7 +139,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
                 {/* Category header */}
                 <div class="rounded-sm px-6 py-5 flex items-center gap-4"
                   style={`background: ${info.bg};`}>
-                  <div class="p-2 rounded-sm bg-black/20 shrink-0">
+                  <div class="p-2 rounded-sm bg-neutral-panel shrink-0">
                     <Icon name={info.icon} class="w-6 h-6" style={`color: ${info.textColor};`} />
                   </div>
                   <div>
@@ -162,12 +163,12 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
                     >
                       <div class="border-b border-white/10 px-6 py-4 flex items-start gap-3">
                         <span class="text-magenta font-black text-lg shrink-0 mt-0.5">Q.</span>
-                        <h3 class="text-lg font-display font-black uppercase text-white leading-tight">
+                        <h3 class="text-lg font-display font-black uppercase text-fg leading-tight">
                           {faq.question}
                         </h3>
                         {
                           faq._updatedAt && (
-                            <p class="mt-1 text-sm font-bold text-white/85">
+                            <p class="mt-1 text-sm font-bold text-fg/85">
                               Updated: {new Date(faq._updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
                             </p>
                           )
@@ -195,7 +196,7 @@ const shadowCycle = ['#D428D4', '#00DDB8', '#4A7AEB'];
             <h2 class="text-2xl md:text-3xl font-display font-black uppercase mb-2 leading-tight">
               Still Have Questions?
             </h2>
-            <p class="text-sm font-black text-white mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+            <p class="text-sm font-black text-fg mb-6 border-l-4 border-yellow pl-4 max-w-lg">
               Ask us at{' '}
               <a href="mailto:hello@fusionparty.org.au" class="text-mint font-black hover:underline">
                 hello@fusionparty.org.au

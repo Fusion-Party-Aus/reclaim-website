@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
@@ -35,7 +36,21 @@ interface ProofStat {
 }
 
 const policies = await getPolicies()
-const pageData = await getPoliciesPage()
+const pageData =
+  (await getPoliciesPage()) ||
+  (DEPLOYMENT.slug !== 'vic'
+    ? {
+        title: 'Policy Platform',
+        subtitle: 'Our platform will be published here as proposals are developed and reviewed.',
+        seoDescription: DEPLOYMENT.description,
+        manifesto: {
+          heading: 'Evidence. Rights. Results.',
+          body: 'Read our published proposals below.',
+          punchline: 'Judge us by the work.',
+        },
+        proofStats: [],
+      }
+    : null)
 
 const title = pageData?.title || 'Policy Platform'
 const subtitle =
@@ -104,7 +119,7 @@ const pillarConfig: Record<
   'RECLAIM OUR ECONOMY': {
     icon: 'mdi:cash-multiple',
     variant: 'magenta',
-    textColor: 'text-white',
+    textColor: 'text-fg',
   },
   'RECLAIM OUR INFRASTRUCTURE': {
     icon: 'mdi:train',
@@ -114,14 +129,14 @@ const pillarConfig: Record<
   'RECLAIM OUR DEMOCRACY': {
     icon: 'mdi:vote',
     variant: 'yellow',
-    textColor: 'text-white',
+    textColor: 'text-fg',
   },
 }
 const getConfig = (pillar: string) =>
   pillarConfig[pillar] || {
     icon: 'mdi:file-document',
     variant: 'magenta' as const,
-    textColor: 'text-white',
+    textColor: 'text-fg',
   }
 
 const cardAccents = ['magenta', 'mint', 'yellow'] as const
@@ -146,7 +161,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 ---
 
 <BaseLayout
-  title={`${title} | Fusion Party Victoria`}
+  title={`${title} | ${DEPLOYMENT.label}`}
   description={seoDescription}
   image="/og/policies.png"
 >
@@ -154,23 +169,23 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
   <main id="main-content" class="editorial-page">
     <header class="editorial-masthead">
       <div class="editorial-shell">
-        <div class="editorial-kicker">Fusion Party Victoria</div>
+        <div class="editorial-kicker">{DEPLOYMENT.label}</div>
         <h1 class="editorial-title">{title}</h1>
         <p class="editorial-deck">{subtitle}</p>
       </div>
     </header>
-{/* ── Manifesto Strip ── */}
+    {/* ── Manifesto Strip ── */}
     <div class="bg-black border-b-4 border-magenta">
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
         <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
           <div class="max-w-3xl">
             <h2
-              class="text-2xl md:text-4xl font-display font-black uppercase text-white leading-tight mb-5"
+              class="text-2xl md:text-4xl font-display font-black uppercase text-fg leading-tight mb-5"
             >
               {manifesto.heading}
             </h2>
             <p
-              class="text-base md:text-lg font-semibold text-white/75 leading-relaxed border-l-4 border-magenta pl-5 mb-5"
+              class="text-base md:text-lg font-semibold text-fg/75 leading-relaxed border-l-4 border-magenta pl-5 mb-5"
             >
               {manifesto.body}
             </p>
@@ -181,7 +196,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           <div
             class="hidden lg:flex flex-col items-center justify-center w-32 h-32 bg-magenta rounded-sm shrink-0 self-center"
           >
-            <Icon name="mdi:fist" class="w-16 h-16 text-white" />
+            <Icon name="mdi:file-document" class="w-16 h-16 text-fg" />
           </div>
         </div>
       </div>
@@ -212,25 +227,54 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
       <div class="min-w-0">
         {/* ── Unified platform horizon filter ── */}
-        <section class="mb-8 border border-white/10 rounded-sm bg-black/20 p-5" aria-labelledby="platform-filter-heading">
+        <section
+          class="mb-8 border border-white/10 rounded-sm bg-neutral-panel p-5"
+          aria-labelledby="platform-filter-heading"
+        >
           <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p class="text-xs font-black uppercase tracking-widest text-yellow mb-1">One platform</p>
-              <h2 id="platform-filter-heading" class="text-xl md:text-2xl font-display font-black uppercase text-white">
+              <p class="text-xs font-black uppercase tracking-widest text-yellow mb-1">
+                One platform
+              </p>
+              <h2
+                id="platform-filter-heading"
+                class="text-xl md:text-2xl font-display font-black uppercase text-fg"
+              >
                 Policy and vision, together
               </h2>
-              <p class="text-sm text-white/65 mt-2 max-w-2xl">
-                “Vision” is a delivery horizon, not a different kind of idea. Every proposal is part of the policy platform; use the filters to see what we can push now or what needs a broader mandate.
+              <p class="text-sm text-fg/65 mt-2 max-w-2xl">
+                “Vision” is a delivery horizon, not a different kind of idea. Every proposal is part
+                of the policy platform; use the filters to see what we can push now or what needs a
+                broader mandate.
               </p>
             </div>
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter policies by delivery horizon">
-              <button type="button" data-horizon-filter="all" aria-pressed="true" class="policy-filter border-2 border-white bg-white text-black px-3 py-2 text-xs font-black uppercase tracking-wide">
+            <div
+              class="flex flex-wrap gap-2"
+              role="group"
+              aria-label="Filter policies by delivery horizon"
+            >
+              <button
+                type="button"
+                data-horizon-filter="all"
+                aria-pressed="true"
+                class="policy-filter border-2 border-white bg-white text-black px-3 py-2 text-xs font-black uppercase tracking-wide"
+              >
                 All platform ({policies.length})
               </button>
-              <button type="button" data-horizon-filter="current" aria-pressed="false" class="policy-filter border-2 border-mint text-mint px-3 py-2 text-xs font-black uppercase tracking-wide">
+              <button
+                type="button"
+                data-horizon-filter="current"
+                aria-pressed="false"
+                class="policy-filter border-2 border-mint text-mint px-3 py-2 text-xs font-black uppercase tracking-wide"
+              >
                 This term ({currentTermCount})
               </button>
-              <button type="button" data-horizon-filter="long" aria-pressed="false" class="policy-filter border-2 border-yellow text-yellow px-3 py-2 text-xs font-black uppercase tracking-wide">
+              <button
+                type="button"
+                data-horizon-filter="long"
+                aria-pressed="false"
+                class="policy-filter border-2 border-yellow text-yellow px-3 py-2 text-xs font-black uppercase tracking-wide"
+              >
                 Long-term direction ({longTermCount})
               </button>
             </div>
@@ -239,16 +283,19 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
         {/* ── Evidence Credibility Strip ── */}
         <div
-          class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-black/20 px-5 py-4"
+          class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4"
         >
           <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
           {
-            [
-              'Victorian Budget 2026-27',
-              'Parliamentary Budget Office',
-              "Auditor-General's Reports",
-              'NYC Mamdani Budget',
-            ].map((src) => (
+            (DEPLOYMENT.slug === 'vic'
+              ? [
+                  'Victorian Budget 2026-27',
+                  'Parliamentary Budget Office',
+                  "Auditor-General's Reports",
+                  'NYC Mamdani Budget',
+                ]
+              : []
+            ).map((src) => (
               <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
                 {src}
               </span>
@@ -271,7 +318,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                   <div
                     class={`bg-${cfg.variant} border-b border-white/10 px-8 py-6 flex items-center gap-5`}
                   >
-                    <div class="p-3 bg-black/20 rounded-sm">
+                    <div class="p-3 bg-neutral-panel rounded-sm">
                       <Icon name={cfg.icon} class={`w-8 h-8 ${cfg.textColor}`} />
                     </div>
                     <h2
@@ -287,11 +334,14 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                         <p class="text-xs font-black uppercase tracking-widest text-yellow mb-2">
                           Reignite Democracy
                         </p>
-                        <h3 class="text-xl font-display font-black uppercase text-white mb-2">
+                        <h3 class="text-xl font-display font-black uppercase text-fg mb-2">
                           Make power visible. Make participation normal.
                         </h3>
-                        <p class="text-sm text-white/80 leading-relaxed">
-                          Democracy is more than voting every four years. Reignite it by making government legible, representatives reachable, corruption harder, whistleblowers safer and public participation part of ordinary decision-making.
+                        <p class="text-sm text-fg/80 leading-relaxed">
+                          Democracy is more than voting every four years. Reignite it by making
+                          government legible, representatives reachable, corruption harder,
+                          whistleblowers safer and public participation part of ordinary
+                          decision-making.
                         </p>
                       </aside>
                     )}
@@ -305,7 +355,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                           <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
                             📊 Check Your Local Transport Score
                           </h3>
-                          <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
+                          <p class="text-sm font-semibold text-fg/80 leading-relaxed mb-4">
                             How does your electorate stack up? Use our Victoria-wide transport
                             scoring tool to see how your local public transport frequency, coverage,
                             and connectivity rate.
@@ -341,60 +391,67 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                           {catPolicies.map((policy, index) => {
                             const accent = cardAccents[index % cardAccents.length]
                             return (
-                              <div data-policy-card data-horizon={policy.thisTerm === true ? 'current' : 'long'}>
-                              <BrutalCard
-                                id={policy.slug.current}
-                                variant="surface"
-                                shadow={accent}
-                                padding="sm"
-                                class="flex flex-col"
+                              <div
+                                data-policy-card
+                                data-horizon={policy.thisTerm === true ? 'current' : 'long'}
                               >
-                                <div class="flex items-start justify-between gap-3 mb-3">
-                                  <div class="min-w-0">
-                                    <span class={`inline-flex mb-2 px-2 py-1 text-[10px] font-black uppercase tracking-widest border ${policy.thisTerm === true ? 'border-mint/40 bg-mint/10 text-mint' : 'border-yellow/40 bg-yellow/10 text-yellow'}`}>
-                                      {policy.thisTerm === true ? 'This term' : 'Long-term direction'}
-                                    </span>
-                                  <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
-                                    {policy.title}
-                                  </h4>
+                                <BrutalCard
+                                  id={policy.slug.current}
+                                  variant="surface"
+                                  shadow={accent}
+                                  padding="sm"
+                                  class="flex flex-col"
+                                >
+                                  <div class="flex items-start justify-between gap-3 mb-3">
+                                    <div class="min-w-0">
+                                      <span
+                                        class={`inline-flex mb-2 px-2 py-1 text-[10px] font-black uppercase tracking-widest border ${policy.thisTerm === true ? 'border-mint/40 bg-mint/10 text-mint' : 'border-yellow/40 bg-yellow/10 text-yellow'}`}
+                                      >
+                                        {policy.thisTerm === true
+                                          ? 'This term'
+                                          : 'Long-term direction'}
+                                      </span>
+                                      <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
+                                        {policy.title}
+                                      </h4>
+                                    </div>
+                                    <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
+                                      <Icon
+                                        name={toIconName(policy.icon) as string}
+                                        class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-fg'}`}
+                                      />
+                                    </div>
                                   </div>
-                                  <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
-                                    <Icon
-                                      name={toIconName(policy.icon) as string}
-                                      class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-white'}`}
-                                    />
-                                  </div>
-                                </div>
 
-                                {/* Hook — shown if available, falls back to summary */}
-                                {policy.hook ? (
-                                  <p
-                                    class={`text-sm font-black text-${accent} mb-2 leading-snug italic`}
-                                  >
-                                    "{policy.hook}"
+                                  {/* Hook — shown if available, falls back to summary */}
+                                  {policy.hook ? (
+                                    <p
+                                      class={`text-sm font-black text-${accent} mb-2 leading-snug italic`}
+                                    >
+                                      "{policy.hook}"
+                                    </p>
+                                  ) : null}
+
+                                  <p class="text-sm font-semibold text-fg/70 mb-4 flex-1 leading-snug">
+                                    {policy.summary}
                                   </p>
-                                ) : null}
 
-                                <p class="text-sm font-semibold text-white/70 mb-4 flex-1 leading-snug">
-                                  {policy.summary}
-                                </p>
-
-                                <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
-                                  {policy.cost && (
-                                    <span class="text-sm font-black uppercase rounded-sm bg-[#234080] text-white px-2 py-1 flex items-center gap-1">
-                                      <span class="opacity-80">Cost:</span>
-                                      {policy.cost}
-                                    </span>
-                                  )}
-                                  <a
-                                    href={`/policies/${policy.slug.current}`}
-                                    aria-label={`Read ${policy.title}`}
-                                    class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
-                                  >
-                                    Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
-                                  </a>
-                                </div>
-                              </BrutalCard>
+                                  <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
+                                    {policy.cost && (
+                                      <span class="text-sm font-black uppercase rounded-sm bg-accent-deep text-fg px-2 py-1 flex items-center gap-1">
+                                        <span class="opacity-80">Cost:</span>
+                                        {policy.cost}
+                                      </span>
+                                    )}
+                                    <a
+                                      href={`/policies/${policy.slug.current}`}
+                                      aria-label={`Read ${policy.title}`}
+                                      class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
+                                    >
+                                      Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
+                                    </a>
+                                  </div>
+                                </BrutalCard>
                               </div>
                             )
                           })}
@@ -414,9 +471,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
             {ctaSection.title}
           </h2>
-          <p
-            class="text-base font-semibold text-white/75 mb-8 border-l-4 border-yellow pl-4 max-w-lg"
-          >
+          <p class="text-base font-semibold text-fg/75 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
             {ctaSection.body}
           </p>
           <div class="flex flex-wrap gap-3">
@@ -439,7 +494,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
   </main>
   <Footer />
   <script is:inline>
-    (() => {
+    ;(() => {
       const buttons = Array.from(document.querySelectorAll('[data-horizon-filter]'))
       const cards = Array.from(document.querySelectorAll('[data-policy-card]'))
       const categories = Array.from(document.querySelectorAll('[data-policy-category]'))
@@ -472,7 +527,9 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
         history.replaceState({}, '', url)
       }
 
-      buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.horizonFilter || 'all')))
+      buttons.forEach((button) =>
+        button.addEventListener('click', () => applyFilter(button.dataset.horizonFilter || 'all'))
+      )
 
       const requested = new URL(window.location.href).searchParams.get('horizon')
       applyFilter(requested === 'current' || requested === 'long' ? requested : 'all')

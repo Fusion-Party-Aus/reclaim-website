@@ -1,10 +1,11 @@
+import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getPolicies, getManifestoPage } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 
 const section = (label: string, value?: string | null) =>
   value?.trim() ? `\n### ${label}\n${value.trim()}\n` : ''
@@ -13,7 +14,11 @@ export const GET: APIRoute = async () => {
   const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
   const recentSubstantiveChanges = [...policies]
     .filter((policy) => policy.substantiveUpdatedAt && policy.changeSummary)
-    .sort((a, b) => new Date(b.substantiveUpdatedAt || 0).getTime() - new Date(a.substantiveUpdatedAt || 0).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.substantiveUpdatedAt || 0).getTime() -
+        new Date(a.substantiveUpdatedAt || 0).getTime()
+    )
   const platformUpdatedAt =
     recentSubstantiveChanges[0]?.substantiveUpdatedAt ||
     [...policies]
@@ -23,15 +28,15 @@ export const GET: APIRoute = async () => {
     null
 
   const lines = [
-    '# Fusion Party Victoria — Policy Platform',
+    `# ${DEPLOYMENT.label} — Policy Platform`,
     '',
-    'Canonical source: https://vic.fusionparty.org.au/policies',
-    'Machine-readable JSON: https://vic.fusionparty.org.au/api/policies.json',
-    'Latest policy changes: https://vic.fusionparty.org.au/api/policy-changes.json',
-    'Policy sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
-    'Manifesto: https://vic.fusionparty.org.au/manifesto',
+    `Canonical source: ${DEPLOYMENT.siteUrl}/policies`,
+    `Machine-readable JSON: ${DEPLOYMENT.siteUrl}/api/policies.json`,
+    `Latest policy changes: ${DEPLOYMENT.siteUrl}/api/policy-changes.json`,
+    `Policy sitemap: ${DEPLOYMENT.siteUrl}/policy-sitemap.xml`,
+    `Manifesto: ${DEPLOYMENT.siteUrl}/manifesto`,
     '',
-    'Campaign through-line: Reignite Democracy.',
+    `Campaign through-line: ${DEPLOYMENT.tagline}.`,
     manifesto?.subtitle ? `Governing philosophy: ${manifesto.subtitle}` : '',
     manifesto?.lieBlock?.headline ? `Governing rule: ${manifesto.lieBlock.headline}` : '',
     '',
@@ -39,11 +44,15 @@ export const GET: APIRoute = async () => {
     '',
     'Recent substantive policy changes:',
     ...(recentSubstantiveChanges.length
-      ? recentSubstantiveChanges.slice(0, 10).map(
-          (policy) =>
-            `- ${policy.title} — ${policy.substantiveUpdatedAt} — ${policy.changeSummary} — ${base}/policies/${policy.slug?.current}`
-        )
-      : ['- No explicitly logged substantive changes. Routine CMS revision timestamps are deliberately excluded.']),
+      ? recentSubstantiveChanges
+          .slice(0, 10)
+          .map(
+            (policy) =>
+              `- ${policy.title} — ${policy.substantiveUpdatedAt} — ${policy.changeSummary} — ${base}/policies/${policy.slug?.current}`
+          )
+      : [
+          '- No explicitly logged substantive changes. Routine CMS revision timestamps are deliberately excluded.',
+        ]),
     '',
     'This file is generated from the published Sanity policy corpus. Prefer each policy canonical URL for citation.',
     '',
@@ -57,11 +66,13 @@ export const GET: APIRoute = async () => {
       `Category: ${policy.category || 'General'}`,
       `Delivery horizon: ${policy.thisTerm === true ? 'Current-term priority' : 'Long-term direction'}`,
       `Published: ${policy.publishedAt || policy._createdAt || 'unknown'}`,
-      policy.substantiveUpdatedAt ? `Substantive policy update: ${policy.substantiveUpdatedAt}` : '',
+      policy.substantiveUpdatedAt
+        ? `Substantive policy update: ${policy.substantiveUpdatedAt}`
+        : '',
       policy.changeSummary ? `Change summary: ${policy.changeSummary}` : '',
       `CMS revision: ${policy._updatedAt || 'unknown'}`,
       '',
-      policy.summary || '',
+      policy.summary || ''
     )
     if (policy.hook) lines.push('', `Hook: ${policy.hook}`)
     if (policy.keyPoints?.length) {
@@ -72,11 +83,16 @@ export const GET: APIRoute = async () => {
     }
     if (policy.shareableQuote) lines.push('', `Shareable quote: ${policy.shareableQuote}`)
     if (policy.designRationale) lines.push(section('Design rationale', policy.designRationale))
-    if (policy.systemInteraction) lines.push(section('System interaction', policy.systemInteraction))
-    if (policy.economicLogic) lines.push(section('Economic and institutional logic', policy.economicLogic))
-    if (policy.riskAndFailureModes) lines.push(section('Risks and failure modes', policy.riskAndFailureModes))
-    if (policy.evidenceAndPrecedent) lines.push(section('Evidence and precedent', policy.evidenceAndPrecedent))
-    if (policy.implementationOutline) lines.push(section('Implementation outline', policy.implementationOutline))
+    if (policy.systemInteraction)
+      lines.push(section('System interaction', policy.systemInteraction))
+    if (policy.economicLogic)
+      lines.push(section('Economic and institutional logic', policy.economicLogic))
+    if (policy.riskAndFailureModes)
+      lines.push(section('Risks and failure modes', policy.riskAndFailureModes))
+    if (policy.evidenceAndPrecedent)
+      lines.push(section('Evidence and precedent', policy.evidenceAndPrecedent))
+    if (policy.implementationOutline)
+      lines.push(section('Implementation outline', policy.implementationOutline))
     if (policy.cost) lines.push(`Cost: ${policy.cost}`)
     if (policy.funding) lines.push(`Funding: ${policy.funding}`)
     const body = portableTextToPlainText(policy.body || [])

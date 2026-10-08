@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 export const prerender = false
 
 import { Hero } from '@/components/layout/Hero'
@@ -125,13 +126,13 @@ const contentSections = headingBlocks
 
 const pillarConfig: Record<string, { variant: 'magenta' | 'mint' | 'yellow'; textColor: string }> =
   {
-    'RECLAIM OUR ECONOMY': { variant: 'magenta', textColor: 'text-white' },
+    'RECLAIM OUR ECONOMY': { variant: 'magenta', textColor: 'text-fg' },
     'RECLAIM OUR INFRASTRUCTURE': { variant: 'mint', textColor: 'text-black' },
-    'RECLAIM OUR DEMOCRACY': { variant: 'yellow', textColor: 'text-white' },
+    'RECLAIM OUR DEMOCRACY': { variant: 'yellow', textColor: 'text-fg' },
   }
 const pillarCfg = (policy.pillar && pillarConfig[policy.pillar]) || {
   variant: 'magenta' as const,
-  textColor: 'text-white',
+  textColor: 'text-fg',
 }
 
 const detailSections = [
@@ -181,7 +182,7 @@ const sidebarSections = [
 ]
 
 const metaDescription = policy.seoDescription || policy.summary
-const canonicalUrl = `https://vic.fusionparty.org.au/policies/${policy.slug.current}`
+const canonicalUrl = `${DEPLOYMENT.siteUrl}/policies/${policy.slug.current}`
 const policyStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -194,9 +195,9 @@ const policyStructuredData = {
   dateModified: policy._updatedAt || policy.publishedAt || undefined,
   isPartOf: {
     '@type': 'CollectionPage',
-    '@id': 'https://vic.fusionparty.org.au/policies',
-    url: 'https://vic.fusionparty.org.au/policies',
-    name: 'Fusion Party Victoria Policy Platform',
+    '@id': `${DEPLOYMENT.siteUrl}/policies`,
+    url: `${DEPLOYMENT.siteUrl}/policies`,
+    name: `${DEPLOYMENT.label} Policy Platform`,
   },
   about: [
     policy.pillar,
@@ -208,7 +209,7 @@ const policyStructuredData = {
         : null,
   ].filter(Boolean),
   publisher: {
-    '@id': 'https://vic.fusionparty.org.au/#organization',
+    '@id': `${DEPLOYMENT.siteUrl}/#organization`,
   },
   mainEntity: {
     '@type': 'CreativeWork',
@@ -216,12 +217,12 @@ const policyStructuredData = {
     name: policy.title,
     additionalType: 'https://schema.org/Legislation',
     description: metaDescription,
-    creator: { '@id': 'https://vic.fusionparty.org.au/#organization' },
-    isPartOf: { '@id': 'https://vic.fusionparty.org.au/policies' },
+    creator: { '@id': `${DEPLOYMENT.siteUrl}/#organization` },
+    isPartOf: { '@id': `${DEPLOYMENT.siteUrl}/policies` },
     subjectOf: relatedResearch.map((resource) => ({
       '@type': 'CreativeWork',
-      '@id': `https://vic.fusionparty.org.au/research/${resource.slug.current}`,
-      url: `https://vic.fusionparty.org.au/research/${resource.slug.current}`,
+      '@id': `${DEPLOYMENT.siteUrl}/research/${resource.slug.current}`,
+      url: `${DEPLOYMENT.siteUrl}/research/${resource.slug.current}`,
       name: resource.title,
     })),
   },
@@ -229,7 +230,7 @@ const policyStructuredData = {
 ---
 
 <BaseLayout
-  title={`${policy.title} | Fusion Party Victoria`}
+  title={`${policy.title} | ${DEPLOYMENT.label}`}
   description={metaDescription}
   image={`/og/policies/${policy.slug.current}.png`}
   imageAlt={policy.title}
@@ -282,31 +283,31 @@ const policyStructuredData = {
             </span>
           )
         }
-        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-white leading-[1]">
+        <h1 class="text-4xl md:text-7xl font-display font-black uppercase text-fg leading-[1]">
           {policy.title}
         </h1>
       </div>
 
       {/* Summary */}
       <p
-        class={`text-lg md:text-xl font-semibold text-white/85 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
+        class={`text-lg md:text-xl font-semibold text-fg/85 border-l-4 pl-5 max-w-3xl leading-snug border-${pillarCfg.variant}`}
       >
         {policy.summary}
       </p>
       <div
-        class="mt-6 border border-mint/25 bg-mint/[0.04] rounded-sm p-4 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/65 font-semibold max-w-3xl"
+        class="mt-6 border border-mint/25 bg-mint/[0.04] rounded-sm p-4 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-fg/65 font-semibold max-w-3xl"
       >
-        <span><strong class="text-white">Publisher:</strong> Fusion Party Victoria</span>
-        <span><strong class="text-white">Jurisdiction:</strong> Victoria, Australia</span>
-        <span><strong class="text-white">Status:</strong> Current policy</span>
+        <span><strong class="text-fg">Publisher:</strong> {DEPLOYMENT.label}</span>
+        <span><strong class="text-fg">Jurisdiction:</strong> Victoria, Australia</span>
+        <span><strong class="text-fg">Status:</strong> Current policy</span>
         <span
-          ><strong class="text-white">Part of:</strong>
+          ><strong class="text-fg">Part of:</strong>
           <a href="/policies" class="text-mint underline underline-offset-4"
-            >Fusion Party Victoria Current Policy Platform</a
+            >{DEPLOYMENT.label} Current Policy Platform</a
           ></span
         >
         <span
-          ><strong class="text-white">Supporting research:</strong>
+          ><strong class="text-fg">Supporting research:</strong>
           {
             relatedResearch.length
               ? `${relatedResearch.length} linked resource${relatedResearch.length === 1 ? '' : 's'}`
@@ -316,7 +317,7 @@ const policyStructuredData = {
       </div>
       {
         policy._updatedAt && (
-          <p class="mt-3 text-xs font-black uppercase tracking-widest text-white/50">
+          <p class="mt-3 text-xs font-black uppercase tracking-widest text-fg/50">
             Updated:{' '}
             <time datetime={policy._updatedAt}>
               {new Date(policy._updatedAt).toLocaleDateString('en-AU', {
@@ -342,18 +343,18 @@ const policyStructuredData = {
       >
         <a
           href="/"
-          class="px-3 py-1.5 rounded-sm bg-yellow text-white hover:bg-mint hover:text-black transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-yellow text-fg hover:bg-mint hover:text-black transition-colors"
           >Home</a
         >
-        <span class="text-white/30">›</span>
+        <span class="text-fg/30">›</span>
         <a
           href="/policies"
-          class="px-3 py-1.5 rounded-sm bg-white/10 text-white hover:bg-mint hover:text-black transition-colors"
+          class="px-3 py-1.5 rounded-sm bg-white/10 text-fg hover:bg-mint hover:text-black transition-colors"
           >Policies</a
         >
-        <span class="text-white/30">›</span>
+        <span class="text-fg/30">›</span>
         <span
-          class="px-3 py-1.5 rounded-sm bg-black/30 text-white max-w-xs truncate"
+          class="px-3 py-1.5 rounded-sm bg-black/30 text-fg max-w-xs truncate"
           title={policy.title}>{policy.title}</span
         >
       </nav>
@@ -365,8 +366,8 @@ const policyStructuredData = {
             <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
               Fusion Victoria policy
             </p>
-            <h2 class="text-xl font-display font-black text-white mb-2">Homes and Stations Code</h2>
-            <p class="text-sm text-white/80 leading-relaxed mb-3">
+            <h2 class="text-xl font-display font-black text-fg mb-2">Homes and Stations Code</h2>
+            <p class="text-sm text-fg/80 leading-relaxed mb-3">
               The Code allows modest infill housing across serviced suburbs and more homes near
               high-capacity stations. Affordable housing rules and public costs need legal,
               infrastructure and viability tests.
@@ -384,9 +385,9 @@ const policyStructuredData = {
         policy.hook && (
           <section id="the-problem" class="mb-8 scroll-mt-28">
             <div class="border-l-4 border-magenta bg-black/40 px-6 py-5 rounded-r-sm">
-              <p class="text-lg md:text-xl font-bold text-white leading-snug">{policy.hook}</p>
+              <p class="text-lg md:text-xl font-bold text-fg leading-snug">{policy.hook}</p>
               {policy.villain && (
-                <p class="mt-3 text-sm font-semibold text-white/75 leading-relaxed">
+                <p class="mt-3 text-sm font-semibold text-fg/75 leading-relaxed">
                   {policy.villain}
                 </p>
               )}
@@ -403,11 +404,11 @@ const policyStructuredData = {
               {policy.proofStat.number}
             </div>
             <div>
-              <p class="text-sm font-black uppercase tracking-wide text-white/80 leading-tight">
+              <p class="text-sm font-black uppercase tracking-wide text-fg/80 leading-tight">
                 {policy.proofStat.label}
               </p>
               {policy.proofStat.source && (
-                <p class="text-xs text-white/60 mt-1 italic">{policy.proofStat.source}</p>
+                <p class="text-xs text-fg/60 mt-1 italic">{policy.proofStat.source}</p>
               )}
             </div>
           </div>
@@ -425,7 +426,7 @@ const policyStructuredData = {
               <h3 class="text-xl font-display font-black text-mint mb-2 tracking-tight">
                 📊 Check Your Local Transport Score
               </h3>
-              <p class="text-sm font-semibold text-white/80 leading-relaxed mb-4">
+              <p class="text-sm font-semibold text-fg/80 leading-relaxed mb-4">
                 How does your electorate stack up? Use our Victoria-wide transport scoring tool to
                 check public transport frequency, coverage, and connectivity in your area.
               </p>
@@ -449,16 +450,16 @@ const policyStructuredData = {
         (policy.cost || policy.funding) && (
           <BrutalCard id="top" variant="yellow" padding="md" class="mb-8 scroll-mt-28">
             <div class="flex items-center gap-2 mb-2">
-              <Icon name="mdi:currency-usd" class="w-5 h-5 text-white" />
-              <span class="text-xs font-black uppercase tracking-widest text-white/70">
+              <Icon name="mdi:currency-usd" class="w-5 h-5 text-fg" />
+              <span class="text-xs font-black uppercase tracking-widest text-fg/70">
                 What it costs
               </span>
             </div>
             {policy.cost && (
-              <p class="font-black text-2xl text-white leading-tight">{policy.cost}</p>
+              <p class="font-black text-2xl text-fg leading-tight">{policy.cost}</p>
             )}
             {policy.funding && (
-              <p class="text-sm font-semibold text-white/80 mt-1 border-l-4 border-white/40 pl-3">
+              <p class="text-sm font-semibold text-fg/80 mt-1 border-l-4 border-white/40 pl-3">
                 Paid for by: {policy.funding}
               </p>
             )}
@@ -477,7 +478,7 @@ const policyStructuredData = {
               class="!p-0 overflow-hidden"
             >
               <div class="bg-magenta border-b border-white/10 px-6 py-4">
-                <h2 class="text-xl font-display font-black text-white tracking-tight">
+                <h2 class="text-xl font-display font-black text-fg tracking-tight">
                   What it does
                 </h2>
               </div>
@@ -488,11 +489,11 @@ const policyStructuredData = {
                       ✓
                     </span>
                     <div>
-                      <p class="font-black text-base uppercase leading-tight text-white mb-1">
+                      <p class="font-black text-base uppercase leading-tight text-fg mb-1">
                         {kp.point}
                       </p>
                       {kp.description && (
-                        <p class="text-sm font-normal text-white/70 leading-snug">
+                        <p class="text-sm font-normal text-fg/70 leading-snug">
                           {kp.description}
                         </p>
                       )}
@@ -515,13 +516,13 @@ const policyStructuredData = {
                   <p class="text-[10px] font-black uppercase tracking-[0.18em] text-mint mb-1">
                     Show the work
                   </p>
-                  <h2 class="text-xl font-display font-black text-white">
+                  <h2 class="text-xl font-display font-black text-fg">
                     Research behind this policy
                   </h2>
                 </div>
                 <a
                   href="/research"
-                  class="text-xs font-black uppercase tracking-wide text-white/50 hover:text-mint"
+                  class="text-xs font-black uppercase tracking-wide text-fg/50 hover:text-mint"
                 >
                   Full research library →
                 </a>
@@ -539,19 +540,19 @@ const policyStructuredData = {
                             {resource.researchArea || resource.resourceType}
                           </span>
                           {resource.version && (
-                            <span class="text-[10px] font-mono text-white/30">
+                            <span class="text-[10px] font-mono text-fg/30">
                               v{resource.version}
                             </span>
                           )}
                         </div>
-                        <h3 class="text-lg font-display font-black text-white group-hover:text-mint leading-tight">
+                        <h3 class="text-lg font-display font-black text-fg group-hover:text-mint leading-tight">
                           {resource.title}
                         </h3>
-                        <p class="mt-2 text-sm text-white/60 leading-relaxed">
+                        <p class="mt-2 text-sm text-fg/60 leading-relaxed">
                           {resource.abstract}
                         </p>
                         {resource.keyFindings?.[0] && (
-                          <p class="mt-3 text-xs text-white/42 border-l-2 border-yellow/50 pl-3 leading-relaxed">
+                          <p class="mt-3 text-xs text-fg/42 border-l-2 border-yellow/50 pl-3 leading-relaxed">
                             {resource.keyFindings[0]}
                           </p>
                         )}
@@ -575,7 +576,7 @@ const policyStructuredData = {
           <div class="mb-8 relative">
             <div class="border border-yellow/30 bg-yellow/5 rounded-sm px-7 py-6">
               <Icon name="mdi:format-quote-open" class="w-8 h-8 text-yellow/40 mb-3" />
-              <p class="text-lg md:text-xl font-black text-white/90 leading-snug italic">
+              <p class="text-lg md:text-xl font-black text-fg/90 leading-snug italic">
                 {policy.shareableQuote}
               </p>
               <div class="mt-4">
@@ -600,7 +601,7 @@ const policyStructuredData = {
             <BrutalCard variant="surface" shadow="mint" padding="md" class="!p-0 overflow-hidden">
               <div class="bg-black/30 border-b border-white/10 px-6 py-4 flex items-center gap-3">
                 <Icon name="mdi:book-open-variant" class="w-6 h-6 text-mint" />
-                <h2 class="text-xl font-display font-black text-white">Further Detail</h2>
+                <h2 class="text-xl font-display font-black text-fg">Further Detail</h2>
               </div>
               <div class="divide-y divide-white/10">
                 {detailSections.map((section, idx) => {
@@ -611,18 +612,18 @@ const policyStructuredData = {
                       <summary class="px-6 py-4 flex items-center justify-between gap-4 cursor-pointer select-none hover:bg-white/5 transition-colors list-none">
                         <div class="flex items-center gap-3">
                           <div class={`w-2 h-6 shrink-0 rounded-sm ${accentClass}`} />
-                          <span class="font-black uppercase text-sm tracking-wide text-white">
+                          <span class="font-black uppercase text-sm tracking-wide text-fg">
                             {section.title}
                           </span>
                         </div>
                         <Icon
                           name="mdi:chevron-down"
-                          class="w-5 h-5 text-white/40 transition-transform group-open:rotate-180 shrink-0"
+                          class="w-5 h-5 text-fg/40 transition-transform group-open:rotate-180 shrink-0"
                         />
                       </summary>
                       <div class="px-6 pb-6 pt-2 border-t border-white/10 space-y-4">
                         {splitIntoParagraphs(section.content || '').map((para: string) => (
-                          <p class="text-base font-normal text-white/75 leading-relaxed">{para}</p>
+                          <p class="text-base font-normal text-fg/75 leading-relaxed">{para}</p>
                         ))}
                       </div>
                     </details>
@@ -673,10 +674,10 @@ const policyStructuredData = {
       {/* ── Back / CTA row ── */}
       <div class="mt-10 border-t border-white/10 pt-8">
         <BrutalCard variant="black" shadow="magenta" padding="md" class="mb-6">
-          <p class="text-sm font-black uppercase tracking-widest text-white/50 mb-2">
+          <p class="text-sm font-black uppercase tracking-widest text-fg/50 mb-2">
             This policy won't pass itself.
           </p>
-          <h3 class="text-xl md:text-2xl font-display font-black text-white mb-4 leading-tight">
+          <h3 class="text-xl md:text-2xl font-display font-black text-fg mb-4 leading-tight">
             Every vote we get is a vote against the system that's taking from you.
           </h3>
           <div class="flex flex-wrap gap-3">

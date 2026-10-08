@@ -1,0 +1,1195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { BrutalButton, BrutalCard, BrutalBadge, CTA, StatCard, IconBadge } from '@/components/ui'
+import { Image } from 'astro:assets'
+import brisbane from '@/assets/qld/brisbane-cbd.jpg'
+import '../../styles/global.css'
+
+const nav = [
+  { href: '#principles', label: 'Principles' },
+  { href: '#colour', label: 'Colour' },
+  { href: '#rules', label: 'Colour Rules' },
+  { href: '#type', label: 'Typography' },
+  { href: '#surfaces', label: 'Surfaces' },
+  { href: '#buttons', label: 'Buttons' },
+  { href: '#components', label: 'Components' },
+  { href: '#imagery', label: 'Imagery' },
+  { href: '#specimen', label: 'Page Example' },
+  { href: '#relationship', label: 'Fusion DNA' },
+]
+
+const principles = [
+  {
+    n: '01',
+    title: 'Shared DNA, local expression',
+    body: 'Queensland uses the same typography, components, accessibility standard and evidence-forward rules as every other branch. What changes is the palette, the surface logic and the tone. Same party, own voice.',
+  },
+  {
+    n: '02',
+    title: 'Light-first and warm',
+    body: 'The canvas is ivory, not black. Maroon carries structure and action, eucalyptus carries depth, gold carries delight. Warmth is a material property here, not a copy adjustment.',
+  },
+  {
+    n: '03',
+    title: 'Evidence over adjective',
+    body: 'Every colour pairing on this page ships with its measured contrast ratio. A claim without a number is a slogan, and slogans do not survive scrutiny.',
+  },
+  {
+    n: '04',
+    title: 'Warm, never soft',
+    body: 'Approachable does not mean weightless. Maroon bands, sharp corners and heavy condensed headlines keep the authority. The warmth is in the light and the spacing, not in blur and rounding.',
+  },
+]
+
+const foundation = [
+  {
+    name: 'Maroon',
+    hex: '#731E32',
+    role: 'Primary identity, CTAs, structural bands',
+    text: 'light',
+  },
+  {
+    name: 'Warm Gold',
+    hex: '#F4C66A',
+    role: 'Accent fills, rules, highlights, stats',
+    text: 'dark',
+  },
+  { name: 'Ivory', hex: '#FFF7EC', role: 'Canvas, text on maroon and eucalyptus', text: 'dark' },
+  {
+    name: 'Eucalyptus Ink',
+    hex: '#233D3A',
+    role: 'Secondary CTA, links, body text, deep bands',
+    text: 'light',
+  },
+]
+
+const supporting = [
+  { name: 'Paper', hex: '#FFFDF8', role: 'Raised panels' },
+  { name: 'Ochre', hex: '#8F6119', role: 'Emphasis type, alerts' },
+  { name: 'Bottlebrush', hex: '#A34A38', role: 'Tertiary accent' },
+  { name: 'Eucalyptus Mid', hex: '#3A5B56', role: 'Deep links, hovers' },
+  { name: 'Warm Line', hex: '#E5DCCB', role: 'Hairline borders' },
+  { name: 'Muted Ink', hex: '#61716C', role: 'Secondary copy' },
+]
+
+const approvedPairs = [
+  { pair: 'Maroon on Ivory', a: '#731E32', b: '#FFF7EC', ratio: '10.08:1', verdict: 'AAA' },
+  { pair: 'Eucalyptus on Ivory', a: '#233D3A', b: '#FFF7EC', ratio: '10.98:1', verdict: 'AAA' },
+  { pair: 'Ivory on Maroon', a: '#FFF7EC', b: '#731E32', ratio: '10.08:1', verdict: 'AAA' },
+  { pair: 'Ivory on Eucalyptus', a: '#FFF7EC', b: '#233D3A', ratio: '10.98:1', verdict: 'AAA' },
+  { pair: 'Gold on Eucalyptus', a: '#F4C66A', b: '#233D3A', ratio: '7.30:1', verdict: 'AAA' },
+  { pair: 'Gold on Maroon', a: '#F4C66A', b: '#731E32', ratio: '6.70:1', verdict: 'AA' },
+  { pair: 'Bottlebrush on Ivory', a: '#A34A38', b: '#FFF7EC', ratio: '5.50:1', verdict: 'AA' },
+  { pair: 'Ochre on Ivory', a: '#8F6119', b: '#FFF7EC', ratio: '5.08:1', verdict: 'AA' },
+  { pair: 'Muted Ink on Ivory', a: '#61716C', b: '#FFF7EC', ratio: '4.84:1', verdict: 'AA' },
+]
+
+const bannedPairs = [
+  { pair: 'Gold on Ivory', a: '#F4C66A', b: '#FFF7EC', ratio: '1.51:1' },
+  { pair: 'Ivory on Gold', a: '#FFF7EC', b: '#F4C66A', ratio: '1.51:1' },
+  { pair: 'Eucalyptus on Maroon', a: '#233D3A', b: '#731E32', ratio: '1.09:1' },
+]
+
+const colourRules = [
+  {
+    situation: 'Primary CTA',
+    examples: 'Join, Volunteer, Donate',
+    hex: '#731E32',
+    name: 'Maroon',
+    why: 'The primary identity. Highest-attention action takes the structural colour.',
+  },
+  {
+    situation: 'Secondary CTA',
+    examples: 'Read the plan, Share, Learn more',
+    hex: '#233D3A',
+    name: 'Eucalyptus',
+    why: 'Signals "proceed" without competing with maroon. Ivory text, 10.98:1.',
+  },
+  {
+    situation: 'Emphasis + stats',
+    examples: 'Key figures, pull quotes, highlights',
+    hex: '#8F6119',
+    name: 'Ochre',
+    why: 'The dark gold. Brand gold cannot set type on ivory, so emphasis uses its text-safe member.',
+  },
+  {
+    situation: 'Tertiary accent',
+    examples: 'Third-level tags, charts, callouts',
+    hex: '#A34A38',
+    name: 'Bottlebrush',
+    why: 'A warm third hue that reads as related to maroon without repeating it.',
+  },
+  {
+    situation: 'Links + inline emphasis',
+    examples: 'Body links, references',
+    hex: '#233D3A',
+    name: 'Eucalyptus',
+    why: 'Functional, dark enough for AA on ivory, no separate "link blue".',
+  },
+]
+
+const tokenMap = [
+  { token: '--color-magenta', vic: '#D428D4 magenta', qld: '#731E32 maroon' },
+  { token: '--color-mint', vic: '#00DDB8 mint', qld: '#233D3A eucalyptus' },
+  { token: '--color-yellow', vic: '#4A7AEB blue', qld: '#8F6119 ochre' },
+  { token: '--color-lavender', vic: '#7B3FE4 violet', qld: '#A34A38 bottlebrush' },
+  { token: '--color-surface-base', vic: '#1A0029 deep purple', qld: '#FFF7EC ivory' },
+  { token: '--color-grey-dark', vic: '#2E004D purple panel', qld: '#FFFDF8 paper panel' },
+  { token: '--color-fg', vic: '#FFFFFF white', qld: '#233D3A eucalyptus' },
+  { token: '--color-on-primary', vic: '#FFFFFF white', qld: '#FFF7EC ivory' },
+  { token: '--color-on-secondary', vic: '#0F0018 near-black', qld: '#FFF7EC ivory' },
+  { token: '--color-line', vic: 'white 10%', qld: '#E5DCCB warm line' },
+  { token: '--color-focus', vic: '#00DDB8 mint', qld: '#233D3A eucalyptus' },
+]
+
+const casing = [
+  {
+    el: 'Display headlines',
+    qld: 'Sentence case',
+    vic: 'ALL CAPS',
+    example: 'A better future for Queensland',
+  },
+  {
+    el: 'Body copy',
+    qld: 'Sentence case',
+    vic: 'Sentence case',
+    example: 'This plan was costed before it was announced.',
+  },
+  {
+    el: 'Kickers / labels',
+    qld: 'ALL CAPS',
+    vic: 'ALL CAPS',
+    example: 'POLICY · TRANSPORT · HOUSING',
+  },
+  { el: 'Buttons', qld: 'Sentence case', vic: 'ALL CAPS', example: 'Read the full plan' },
+  {
+    el: 'Data / stats',
+    qld: 'Numbers + units',
+    vic: 'Numbers + units',
+    example: '$198B · 34% · 4×',
+  },
+]
+
+const surfaces = [
+  { name: 'Ivory canvas', hex: '#FFF7EC', token: '--color-surface-base', note: 'The page itself' },
+  {
+    name: 'Paper panel',
+    hex: '#FFFDF8',
+    token: '--color-grey-dark',
+    note: 'Raised cards and stats',
+  },
+  {
+    name: 'Warm mid',
+    hex: '#F3E7D5',
+    token: '--color-surface-overlay',
+    note: 'Inset blocks, table zebra',
+  },
+  {
+    name: 'Maroon band',
+    hex: '#731E32',
+    token: '--color-surface-brand',
+    note: 'Hero and CTA sections',
+  },
+  {
+    name: 'Eucalyptus band',
+    hex: '#233D3A',
+    token: '--color-mint',
+    note: 'Deep evidence sections',
+  },
+]
+
+const imageDonts = [
+  'No AI-generated imagery of any kind',
+  'No generic stock photography, every photo needs a Queensland purpose',
+  'No brand gold applied as a photo tint, gold is a highlight, not a wash',
+  'No fully desaturated people photos, keep warmth and skin tones readable',
+  'No decorative photo shapes, rectangular crops and the shared diagonal only',
+  'No duotone endpoints outside maroon, gold and eucalyptus',
+]
+---
+
+<BaseLayout
+  title="Fusion Queensland Design System | Fusion Party Queensland"
+  description="The Fusion Queensland design system: maroon, gold and ivory, built on shared Fusion components, typography and accessibility standards."
+  noindex
+>
+  <!-- ═══ MASTHEAD SPECIMEN ═══ -->
+  <header
+    class="sticky top-0 z-50 bg-ivory/90 backdrop-blur border-b border-warm-line"
+    aria-label="Fusion Queensland"
+  >
+    <div class="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-3 no-underline group">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" class="shrink-0">
+          <circle cx="15" cy="15" r="13.5" fill="none" stroke="#731e32" stroke-width="2"></circle>
+          <circle cx="15" cy="15" r="8.5" fill="none" stroke="#731e32" stroke-width="2"></circle>
+          <circle cx="15" cy="15" r="3.6" fill="#f4c66a"></circle>
+        </svg>
+        <span class="flex flex-col leading-none">
+          <span class="font-display font-black text-lg text-eucalyptus uppercase tracking-tight">
+            Fusion <span class="text-maroon">Queensland</span>
+          </span>
+          <span class="text-[11px] font-medium text-eucalyptus/70 tracking-wide mt-0.5">
+            A different kind of politics
+          </span>
+        </span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-4" aria-label="Sections">
+        {
+          nav.slice(1, 6).map((item) => (
+            <a
+              href={item.href}
+              class="font-mono text-[11px] uppercase tracking-widest text-eucalyptus/70 hover:text-maroon transition-colors"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <BrutalButton href="#specimen" variant="primary" size="sm">Join the party</BrutalButton>
+    </div>
+  </header>
+
+  <main id="main-content" class="bg-ivory text-eucalyptus">
+    <!-- ═══ COVER ═══ -->
+    <section id="top" class="border-b border-warm-line">
+      <div
+        class="max-w-6xl mx-auto px-4 md:px-8 pt-16 pb-14 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-end"
+      >
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-maroon mb-6">
+            Fusion Queensland · Internal reference · v1.0
+          </p>
+          <h1
+            class="font-display font-black leading-[0.92] tracking-[-0.02em] text-[clamp(3rem,9vw,6.5rem)]"
+          >
+            Design<br />system
+          </h1>
+          <p class="text-lg text-eucalyptus/75 max-w-2xl leading-relaxed mt-6">
+            The binding system for everything Fusion Queensland makes. Maroon, gold and ivory on a
+            light canvas, rendered through the same components, type and accessibility rules as
+            every other branch.
+          </p>
+          <div
+            class="flex flex-wrap gap-x-10 gap-y-3 mt-8 font-mono text-[10px] uppercase tracking-widest text-eucalyptus/50"
+          >
+            <div>Status<br /><span class="text-eucalyptus">v1.0 · Active</span></div>
+            <div>Updated<br /><span class="text-eucalyptus">2026</span></div>
+            <div>Foundation<br /><span class="text-eucalyptus">Shared with Victoria</span></div>
+          </div>
+        </div>
+
+        <div class="bg-maroon text-ivory rounded-sm p-8 md:p-10 shadow-brutal-lg qld-on-dark">
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-gold mb-4">
+            Our messaging
+          </p>
+          <p class="font-display font-black text-3xl md:text-4xl leading-[1.02]">
+            A better future for Queensland
+          </p>
+          <div class="h-px bg-gold/40 my-6"></div>
+          <p class="text-ivory/75 text-sm leading-relaxed">
+            Maroon establishes the Queensland connection without tropical cliché. Gold and ivory
+            keep it friendly rather than institutional.
+          </p>
+        </div>
+      </div>
+
+      <!-- Foundation strip -->
+      <div class="max-w-6xl mx-auto px-4 md:px-8 pb-10">
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 rounded-sm overflow-hidden border border-warm-line"
+        >
+          {
+            foundation.map((c) => (
+              <div
+                class="p-5 md:p-6"
+                style={`background:${c.hex}; color:${c.text === 'light' ? '#FFF7EC' : '#233D3A'};`}
+              >
+                <p class="font-mono text-[10px] uppercase tracking-widest opacity-70">{c.hex}</p>
+                <p class="font-display font-black text-xl mt-2">{c.name}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <nav
+      class="sticky top-16 z-40 bg-ivory/95 backdrop-blur border-b border-warm-line overflow-x-auto"
+      aria-label="Quick navigation"
+    >
+      <div class="max-w-6xl mx-auto flex items-center gap-1 px-4 md:px-8 py-2">
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class="px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-eucalyptus/60 hover:text-maroon transition-colors whitespace-nowrap"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- ═══ 01 PRINCIPLES ═══ -->
+    <section id="principles" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">01</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-12 max-w-3xl">
+          Four principles that decide everything else
+        </h2>
+        <div class="divide-y divide-warm-line border-t border-warm-line">
+          {
+            principles.map((p) => (
+              <div class="grid md:grid-cols-[120px_1fr] gap-4 md:gap-10 py-8">
+                <span class="font-mono text-3xl md:text-4xl text-gold-deep leading-none">
+                  {p.n}
+                </span>
+                <div class="max-w-3xl">
+                  <h3 class="font-display font-black text-2xl md:text-3xl mb-3">{p.title}</h3>
+                  <p class="text-eucalyptus/70 leading-relaxed">{p.body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 COLOUR ═══ -->
+    <section id="colour" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">02</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Colour</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          Four foundation colours carry the identity. Supporting tones are functional and stay
+          subordinate. Nothing here is decorative: each colour has one job.
+        </p>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+          Foundation
+        </p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {
+            foundation.map((c) => (
+              <div class="rounded-sm overflow-hidden border border-warm-line">
+                <div class="h-36" style={`background:${c.hex};`} />
+                <div class="bg-paper p-4">
+                  <p class="font-display font-black text-xl">{c.name}</p>
+                  <p class="font-mono text-[11px] text-eucalyptus/55 mt-0.5">{c.hex}</p>
+                  <p class="text-xs text-eucalyptus/60 mt-2 leading-snug">{c.role}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+          Supporting
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-14">
+          {
+            supporting.map((c) => (
+              <div>
+                <div
+                  class="h-16 rounded-sm border border-warm-line"
+                  style={`background:${c.hex};`}
+                />
+                <p class="text-sm font-bold mt-2">{c.name}</p>
+                <p class="font-mono text-[10px] text-eucalyptus/50">{c.hex}</p>
+                <p class="text-[11px] text-eucalyptus/55 mt-0.5 leading-snug">{c.role}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+          <!-- Approved pairs -->
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+              Approved pairs · measured
+            </p>
+            <div class="border border-warm-line rounded-sm divide-y divide-warm-line">
+              {
+                approvedPairs.map((p) => (
+                  <div class="flex items-center gap-4 px-4 py-3">
+                    <span
+                      class="w-8 h-8 rounded-sm border border-warm-line shrink-0"
+                      style={`background:${p.a};`}
+                      aria-hidden="true"
+                    />
+                    <span class="text-sm flex-1">{p.pair}</span>
+                    <span class="font-mono text-xs text-eucalyptus/70">{p.ratio}</span>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-gold-deep w-10 text-right">
+                      {p.verdict}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Banned pairs -->
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+              Never pair · measured
+            </p>
+            <div
+              class="border border-bottlebrush/40 rounded-sm divide-y divide-bottlebrush/30 bg-bottlebrush/5"
+            >
+              {
+                bannedPairs.map((p) => (
+                  <div class="flex items-center gap-4 px-4 py-3">
+                    <span class="w-8 h-8 rounded-sm border border-warm-line shrink-0 relative overflow-hidden">
+                      <span class="absolute inset-0" style={`background:${p.a};`} />
+                      <span
+                        class="absolute inset-0"
+                        style={`background:${p.b}; mix-blend-mode:multiply;`}
+                      />
+                    </span>
+                    <span class="text-sm flex-1">{p.pair}</span>
+                    <span class="font-mono text-xs text-bottlebrush">{p.ratio}</span>
+                  </div>
+                ))
+              }
+            </div>
+            <p class="text-xs text-eucalyptus/60 mt-4 leading-relaxed">
+              Gold is a surface, not a text colour. On ivory it measures 1.51:1. Use it for fills,
+              rules and highlights; use Ochre when the gold family has to carry type.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02b COLOUR DECISION RULES ═══ -->
+    <section id="rules" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line bg-paper">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">02b</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Colour decision rules</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          One answer per situation. Ambiguity causes drift, and drift is what a design system exists
+          to prevent.
+        </p>
+
+        <div class="border-t border-warm-line">
+          {
+            colourRules.map((row) => (
+              <div class="grid md:grid-cols-[200px_1fr_160px] gap-4 md:gap-8 py-6 border-b border-warm-line items-center">
+                <div>
+                  <p class="font-bold">{row.situation}</p>
+                  <p class="text-xs text-eucalyptus/55 mt-0.5">{row.examples}</p>
+                </div>
+                <p class="text-sm text-eucalyptus/70 leading-relaxed">{row.why}</p>
+                <div class="flex items-center gap-3">
+                  <span class="w-4 h-4 rounded-full shrink-0" style={`background:${row.hex};`} />
+                  <span class="font-mono text-xs" style={`color:${row.hex};`}>
+                    {row.name}
+                  </span>
+                  <span class="font-mono text-[10px] text-eucalyptus/40">{row.hex}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mt-10">
+          <BrutalCard shadow="gold" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-gold-deep mb-3">
+              Hover rule
+            </p>
+            <p class="text-sm text-eucalyptus/75 leading-relaxed">
+              Hover brightens the fill and adds a warm shadow. Never darken on hover. Press scales
+              to <code class="font-mono text-maroon">0.97</code>.
+            </p>
+          </BrutalCard>
+          <BrutalCard shadow="bottlebrush" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-bottlebrush mb-3">
+              Gold is not for
+            </p>
+            <ul class="text-sm text-eucalyptus/75 space-y-1.5">
+              <li>✕ Type on ivory or paper</li>
+              <li>✕ Body copy of any size</li>
+              <li>✕ Photo washes or full-page backgrounds</li>
+              <li>✕ Borders that need to be seen at 1px on ivory</li>
+            </ul>
+          </BrutalCard>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 03 TYPOGRAPHY ═══ -->
+    <section id="type" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">03</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Typography</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          Three families, three jobs, shared with every branch. Queensland's divergence is casing:
+          display type is sentence case, which reads warm rather than shouted. Caps are reserved for
+          short labels and data.
+        </p>
+
+        <div class="space-y-4 mb-14">
+          <div class="border border-warm-line rounded-sm p-6 md:p-8 bg-paper">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-maroon mb-1">
+              Display · Barlow Condensed Black
+            </p>
+            <p class="text-xs text-eucalyptus/50 mb-6">
+              Sentence case · tracking -0.01em · clamp fluid
+            </p>
+            <p class="font-display font-black leading-[0.98] text-[clamp(2.25rem,6vw,4.25rem)]">
+              A better future for Queensland
+            </p>
+          </div>
+
+          <div class="border border-warm-line rounded-sm p-6 md:p-8 bg-paper">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-maroon mb-1">
+              Body · Barlow Regular / SemiBold
+            </p>
+            <p class="text-xs text-eucalyptus/50 mb-6">
+              Sentence case · line-height 1.65 to 1.75 · max 70ch
+            </p>
+            <p class="text-lg leading-relaxed text-eucalyptus/85 max-w-2xl">
+              Queensland's housing, transport and energy systems were sized for a smaller state. The
+              mechanism that failed you is not the worker at the counter, it is thirty years of
+              deferred maintenance dressed up as frugality.
+            </p>
+          </div>
+
+          <div class="border border-warm-line rounded-sm p-6 md:p-8 bg-eucalyptus text-ivory">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-gold mb-1">
+              Data · Space Mono Bold
+            </p>
+            <p class="text-xs text-ivory/55 mb-6">Labels always uppercase · figures 20 to 40px</p>
+            <div class="flex gap-10 flex-wrap">
+              {
+                [
+                  { value: '$198B', label: 'State debt', color: '#F4C66A' },
+                  { value: '34%', label: 'Renters stressed', color: '#F4C66A' },
+                  { value: '4×', label: 'Cost blowout', color: '#F4C66A' },
+                ].map((s) => (
+                  <div>
+                    <div
+                      class="font-bold text-4xl"
+                      style={`font-family:'Space Mono', monospace; color:${s.color};`}
+                    >
+                      {s.value}
+                    </div>
+                    <div class="font-mono text-[10px] uppercase tracking-widest text-ivory/60 mt-1">
+                      {s.label}
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+          Casing rules
+        </p>
+        <div class="border border-warm-line rounded-sm divide-y divide-warm-line bg-paper">
+          {
+            casing.map((r) => (
+              <div class="grid grid-cols-1 md:grid-cols-[200px_130px_130px_1fr] gap-2 md:gap-6 px-5 py-3.5 items-baseline">
+                <span class="text-sm font-bold">{r.el}</span>
+                <span class="font-mono text-xs text-maroon">{r.qld}</span>
+                <span class="font-mono text-[11px] text-eucalyptus/40">VIC: {r.vic}</span>
+                <span class="text-sm text-eucalyptus/60 italic">{r.example}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 SURFACES & DEPTH ═══ -->
+    <section id="surfaces" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">04</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Surfaces and depth</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          Light-first means the default is ivory, and surfaces rise through paper toward maroon and
+          eucalyptus for structure. Depth is warm and soft, never a neon glow.
+        </p>
+
+        <div class="grid lg:grid-cols-[1fr_1fr] gap-10 mb-12">
+          <div>
+            <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+              Surface ladder
+            </p>
+            <div class="rounded-sm overflow-hidden border border-warm-line">
+              {
+                surfaces.map((s) => (
+                  <div
+                    class="flex items-center justify-between gap-4 px-5 py-4"
+                    style={`background:${s.hex}; color:${['#FFFDF8', '#F3E7D5', '#FFF7EC'].includes(s.hex) ? '#233D3A' : '#FFF7EC'};`}
+                  >
+                    <div>
+                      <p class="font-bold text-sm">{s.name}</p>
+                      <p class="font-mono text-[10px] opacity-70 mt-0.5">{s.token}</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-mono text-[11px] opacity-80">{s.hex}</p>
+                      <p class="text-[11px] opacity-70 mt-0.5">{s.note}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="grid grid-cols-3 gap-4">
+              {
+                [
+                  { label: 'Panel shadow', shadow: 'var(--shadow-brutal-sm)' },
+                  { label: 'Maroon accent', shadow: 'var(--shadow-brutal-magenta)' },
+                  { label: 'Eucalyptus accent', shadow: 'var(--shadow-brutal-mint)' },
+                ].map((s) => (
+                  <div
+                    class="h-28 rounded-sm bg-paper border border-warm-line flex items-end p-3"
+                    style={`box-shadow:${s.shadow};`}
+                  >
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/60">
+                      {s.label}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+            <BrutalCard shadow="eucalyptus" padding="lg">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus mb-3">
+                Radius and shadow
+              </p>
+              <p class="text-sm text-eucalyptus/75 leading-relaxed">
+                Corners stay sharp at 4px, shared with every branch. Shadows are maroon-tinted at 8
+                to 14% opacity, so panels lift off ivory without grime.
+              </p>
+            </BrutalCard>
+            <BrutalCard shadow="maroon" padding="lg" class="qld-on-dark bg-maroon text-ivory">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-gold mb-3">
+                Focus on dark bands
+              </p>
+              <p class="text-sm text-ivory/80 leading-relaxed">
+                The focus ring is eucalyptus on light and gold on maroon or eucalyptus bands, the
+                only accent that clears both. Add <code class="font-mono text-gold"
+                  >qld-on-dark</code
+                > to the band.
+              </p>
+            </BrutalCard>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 05 BUTTONS ═══ -->
+    <section id="buttons" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line bg-paper">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">05</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Buttons</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          The shared button component, repainted by Queensland tokens. Maroon leads, eucalyptus
+          supports, gold is the special-occasion accent.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10">
+          <BrutalButton variant="primary">Join the party</BrutalButton>
+          <BrutalButton variant="secondary">Read the plan</BrutalButton>
+          <BrutalButton variant="yellow">Volunteer</BrutalButton>
+          <BrutalButton variant="lavender">Share</BrutalButton>
+          <BrutalButton variant="black">Find your seat</BrutalButton>
+          <BrutalButton variant="white">Secondary light</BrutalButton>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-10">
+          <div class="border border-warm-line rounded-sm p-5 bg-ivory">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-maroon mb-3">Sizes</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <BrutalButton variant="primary" size="sm">Small</BrutalButton>
+              <BrutalButton variant="primary" size="md">Medium</BrutalButton>
+              <BrutalButton variant="primary" size="lg">Large</BrutalButton>
+            </div>
+          </div>
+          <div class="border border-warm-line rounded-sm p-5 bg-ivory">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-maroon mb-3">
+              With icon
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <BrutalButton variant="primary" icon="mdi:account-plus">Join</BrutalButton>
+              <BrutalButton variant="secondary" icon="mdi:file-document" iconPosition="right">
+                Read
+              </BrutalButton>
+            </div>
+          </div>
+          <div class="border border-warm-line rounded-sm p-5 bg-maroon text-ivory qld-on-dark">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-gold mb-3">
+              On a maroon band
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <BrutalButton variant="white">Join the party</BrutalButton>
+              <BrutalButton variant="yellow">Donate</BrutalButton>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <BrutalCard shadow="eucalyptus" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus mb-3">Do</p>
+            <ul class="text-sm text-eucalyptus/75 space-y-1.5">
+              <li>→ One primary maroon button per view</li>
+              <li>→ Sentence-case labels: "Read the plan"</li>
+              <li>→ Brighten the fill on hover</li>
+            </ul>
+          </BrutalCard>
+          <BrutalCard shadow="bottlebrush" padding="lg">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-bottlebrush mb-3">
+              Don't
+            </p>
+            <ul class="text-sm text-eucalyptus/75 space-y-1.5">
+              <li>✕ Gold buttons with gold text</li>
+              <li>✕ All-caps labels, that reads as Victoria</li>
+              <li>✕ Two maroon buttons competing in one block</li>
+            </ul>
+          </BrutalCard>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 06 COMPONENTS ═══ -->
+    <section id="components" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">06</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Cards and data</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          The same card, badge and stat components used everywhere in Fusion. The accent shifts by
+          role; the structure never does.
+        </p>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">Cards</p>
+        <div class="grid md:grid-cols-3 gap-4 mb-12">
+          <BrutalCard shadow="maroon">
+            <p class="font-display font-black text-xl text-maroon mb-2">Surface card</p>
+            <p class="text-sm text-eucalyptus/70 leading-relaxed">
+              Paper panel, warm hairline, maroon top accent. The default for policy and candidate
+              content.
+            </p>
+          </BrutalCard>
+          <BrutalCard shadow="gold">
+            <p class="font-display font-black text-xl text-gold-deep mb-2">Gold accent</p>
+            <p class="text-sm text-eucalyptus/70 leading-relaxed">
+              For an optimistic callout: an announcement, a milestone, a piece of good news.
+            </p>
+          </BrutalCard>
+          <BrutalCard variant="magenta" shadow="gold">
+            <p class="font-display font-black text-xl text-ivory mb-2">Solid maroon</p>
+            <p class="text-sm text-ivory/85 leading-relaxed">
+              One bold-fill card per section, maximum. For the single most important idea.
+            </p>
+          </BrutalCard>
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+          Badges
+        </p>
+        <div class="flex flex-wrap gap-3 mb-12">
+          <BrutalBadge variant="magenta">Housing</BrutalBadge>
+          <BrutalBadge variant="mint">Transport</BrutalBadge>
+          <BrutalBadge variant="yellow">New</BrutalBadge>
+          <BrutalBadge variant="lavender">Energy</BrutalBadge>
+          <BrutalBadge variant="black">Governance</BrutalBadge>
+          <BrutalBadge variant="white">Archive</BrutalBadge>
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">Stats</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <StatCard value="$198B" label="State debt" variant="magenta" animated={false} />
+          <StatCard value="34%" label="Renters stressed" variant="mint" animated={false} />
+          <StatCard value="4×" label="Cost blowout" variant="yellow" animated={false} />
+          <StatCard value="100+" label="Policies costed" variant="lavender" animated={false} />
+        </div>
+
+        <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+          Icon badges
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <IconBadge name="mdi:home-city" variant="magenta" />
+          <IconBadge name="mdi:train" variant="mint" />
+          <IconBadge name="mdi:hospital-box" variant="yellow" />
+          <IconBadge name="mdi:school" variant="lavender" />
+          <IconBadge name="mdi:hand-heart" variant="black" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07 IMAGERY ═══ -->
+    <section id="imagery" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line bg-paper">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">07</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Imagery</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          Real Queensland places and people. Warmth is kept in the highlights; the maroon and gold
+          treatment is reserved for places and infrastructure, never applied to faces.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          <figure class="m-0">
+            <div class="qld-warm rounded-sm overflow-hidden border border-warm-line">
+              <Image
+                src={brisbane}
+                alt="Brisbane's skyline rising above the river at Kangaroo Point"
+                widths={[640, 960, 1280]}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                class="w-full h-64 md:h-80 object-cover block"
+              />
+            </div>
+            <figcaption class="mt-3">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-maroon">
+                Places · warm natural
+              </p>
+              <p class="text-sm text-eucalyptus/65 mt-1 leading-relaxed">
+                Saturation held at 0.92, a whisper of warmth, no duotone. Queensland reads as
+                itself.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure class="m-0">
+            <div class="qld-duo rounded-sm overflow-hidden border border-warm-line">
+              <Image
+                src={brisbane}
+                alt="Brisbane's skyline rendered in the maroon and gold duotone"
+                widths={[640, 960, 1280]}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                class="w-full h-64 md:h-80 object-cover block"
+              />
+            </div>
+            <figcaption class="mt-3">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-maroon">
+                Infrastructure · maroon and gold
+              </p>
+              <p class="text-sm text-eucalyptus/65 mt-1 leading-relaxed">
+                A gradient map from maroon shadows to gold highlights, applied with a color blend.
+                Keeps the shared diagonal option for section breaks.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <BrutalCard padding="md">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/50 mb-3">
+            Photography don'ts
+          </p>
+          <div class="grid md:grid-cols-2 gap-1.5">
+            {imageDonts.map((rule) => <p class="text-xs text-eucalyptus/60">✕ {rule}</p>)}
+          </div>
+        </BrutalCard>
+      </div>
+    </section>
+
+    <!-- ═══ 08 PAGE EXAMPLE ═══ -->
+    <section id="specimen" class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">08</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">Page example</h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          The system applied end to end. Everything below is built from the shared components on
+          this page, nothing bespoke.
+        </p>
+
+        <!-- Specimen: homepage -->
+        <div class="rounded-sm border border-warm-line overflow-hidden shadow-brutal-lg">
+          <!-- hero -->
+          <div class="relative qld-on-dark">
+            <div class="absolute inset-0">
+              <Image
+                src={brisbane}
+                alt=""
+                widths={[960, 1600, 1920]}
+                sizes="100vw"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-maroon/85"></div>
+            </div>
+            <div class="relative px-6 md:px-12 py-14 md:py-20 max-w-2xl">
+              <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-gold mb-4">
+                A different kind of politics
+              </p>
+              <p
+                class="font-display font-black text-ivory text-4xl md:text-5xl leading-[0.98] mb-4"
+              >
+                A better future for Queensland
+              </p>
+              <p class="text-ivory/80 leading-relaxed mb-8 max-w-xl">
+                Evidence-based policy, written down, costed, and open to scrutiny. Join the people
+                building it.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <BrutalButton variant="white" size="lg">Join the party</BrutalButton>
+                <BrutalButton variant="yellow" size="lg">Read our policies</BrutalButton>
+              </div>
+            </div>
+          </div>
+
+          <!-- stat band -->
+          <div class="bg-ivory px-6 md:px-12 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <StatCard value="12/93" label="Seats filled" variant="magenta" animated={false} />
+            <StatCard value="2,400" label="Members" variant="mint" animated={false} />
+            <StatCard value="100+" label="Costed policies" variant="yellow" animated={false} />
+            <StatCard value="0" label="Corporate donors" variant="lavender" animated={false} />
+          </div>
+
+          <!-- policy cards -->
+          <div class="bg-paper px-6 md:px-12 py-10 border-t border-warm-line">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-maroon mb-6">
+              Where we start
+            </p>
+            <div class="grid md:grid-cols-3 gap-4">
+              <BrutalCard shadow="maroon">
+                <div class="mb-3"><BrutalBadge variant="magenta">Housing</BrutalBadge></div>
+                <p class="font-display font-black text-xl mb-2">Homes people can afford</p>
+                <p class="text-sm text-eucalyptus/70 leading-relaxed">
+                  Upzoning near transport, a public builder, and no tax break for leaving land
+                  empty.
+                </p>
+              </BrutalCard>
+              <BrutalCard shadow="eucalyptus">
+                <div class="mb-3"><BrutalBadge variant="mint">Transport</BrutalBadge></div>
+                <p class="font-display font-black text-xl mb-2">A network, not a showcase</p>
+                <p class="text-sm text-eucalyptus/70 leading-relaxed">
+                  Frequent buses and rail to the places people actually travel, before the marquee
+                  line.
+                </p>
+              </BrutalCard>
+              <BrutalCard shadow="gold">
+                <div class="mb-3"><BrutalBadge variant="yellow">Energy</BrutalBadge></div>
+                <p class="font-display font-black text-xl mb-2">Cheap, clean, reliable</p>
+                <p class="text-sm text-eucalyptus/70 leading-relaxed">
+                  Storage and transmission first, so the grid keeps the lights on through the
+                  afternoon peak.
+                </p>
+              </BrutalCard>
+            </div>
+          </div>
+
+          <!-- CTA band -->
+          <div class="qld-on-dark">
+            <CTA variant="secondary" size="lg" shadow="none" centered>
+              <p class="font-display font-black text-2xl md:text-3xl mb-2">
+                A better future for Queensland
+              </p>
+              <p class="text-ivory/80 text-sm max-w-xl mx-auto">
+                It gets built by people who show up. Add your name.
+              </p>
+            </CTA>
+          </div>
+
+          <!-- footer strip -->
+          <div
+            class="bg-maroon text-ivory px-6 md:px-12 py-8 flex flex-col md:flex-row gap-4 md:items-center md:justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true">
+                <circle cx="15" cy="15" r="13.5" fill="none" stroke="#F4C66A" stroke-width="2"
+                ></circle>
+                <circle cx="15" cy="15" r="8.5" fill="none" stroke="#F4C66A" stroke-width="2"
+                ></circle>
+                <circle cx="15" cy="15" r="3.6" fill="#F4C66A"></circle>
+              </svg>
+              <span class="font-display font-black uppercase tracking-tight">Fusion Queensland</span
+              >
+            </div>
+            <p class="text-xs text-ivory/60">
+              A different kind of politics · Authorised by Fusion Queensland
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 09 RELATIONSHIP ═══ -->
+    <section
+      id="relationship"
+      class="px-4 md:px-8 py-16 md:py-20 border-b border-warm-line bg-paper"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="font-mono text-xs text-maroon tracking-widest">09</span>
+          <span class="h-px flex-1 bg-warm-line"></span>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-3">
+          One party, two expressions
+        </h2>
+        <p class="text-eucalyptus/70 max-w-2xl leading-relaxed mb-12">
+          Queensland should read as part of the same organisation as Victoria, not a subsidiary of
+          it. The differences below are deliberate; everything not listed is shared.
+        </p>
+
+        <div class="grid md:grid-cols-[200px_1fr_1fr] border-t border-warm-line">
+          <div
+            class="hidden md:block py-3 font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45"
+          >
+            Element
+          </div>
+          <div
+            class="hidden md:block py-3 font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45"
+          >
+            Fusion Victoria
+          </div>
+          <div
+            class="hidden md:block py-3 font-mono text-[10px] uppercase tracking-widest text-maroon"
+          >
+            Fusion Queensland
+          </div>
+          {
+            [
+              { el: 'Primary identity', vic: 'Reclaim spectrum', qld: 'Queensland maroon' },
+              {
+                el: 'Supporting colour',
+                vic: 'Purple, cyan, magenta',
+                qld: 'Gold, ivory, eucalyptus',
+              },
+              { el: 'Canvas', vic: 'Dark purple, dark-first', qld: 'Ivory, light-first' },
+              {
+                el: 'Personality',
+                vic: 'Bold, reformist, energetic',
+                qld: 'Warm, grounded, optimistic',
+              },
+              { el: 'Messaging', vic: 'Reignite Democracy', qld: 'A better future for Queensland' },
+              { el: 'Display casing', vic: 'All caps', qld: 'Sentence case' },
+              {
+                el: 'Shared foundation',
+                vic: 'Typography, components, a11y, brand assets',
+                qld: 'Same foundations',
+              },
+            ].map((row) => (
+              <>
+                <div class="py-4 border-t border-warm-line font-bold text-sm">{row.el}</div>
+                <div class="py-4 border-t border-warm-line text-sm text-eucalyptus/65">
+                  {row.vic}
+                </div>
+                <div class="py-4 border-t border-warm-line text-sm text-eucalyptus">{row.qld}</div>
+              </>
+            ))
+          }
+        </div>
+
+        <div class="mt-12">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45 mb-4">
+            Token translation · the mechanism
+          </p>
+          <p class="text-sm text-eucalyptus/70 leading-relaxed mb-5 max-w-3xl">
+            Components never name a brand colour directly. They render against shared role tokens,
+            and a branch theme re-points those tokens. Adding Queensland was a token file, not a
+            component fork.
+          </p>
+          <div
+            class="border border-warm-line rounded-sm divide-y divide-warm-line bg-ivory overflow-x-auto"
+          >
+            <div
+              class="grid grid-cols-[minmax(220px,1fr)_1fr_1fr] min-w-[640px] px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-eucalyptus/45"
+            >
+              <span>Token</span><span>Victoria</span><span>Queensland</span>
+            </div>
+            {
+              tokenMap.map((row) => (
+                <div class="grid grid-cols-[minmax(220px,1fr)_1fr_1fr] min-w-[640px] px-4 py-2.5 items-center">
+                  <code class="font-mono text-xs text-maroon">{row.token}</code>
+                  <span class="text-sm text-eucalyptus/60">{row.vic}</span>
+                  <span class="text-sm">{row.qld}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BOTTOM ═══ -->
+    <section class="px-4 md:px-8 py-16 md:py-20 text-center">
+      <div class="max-w-xl mx-auto">
+        <h2 class="font-display font-black text-4xl md:text-5xl mb-4">
+          Warm, grounded, unmistakably Queensland
+        </h2>
+        <p class="text-eucalyptus/70 mb-8 leading-relaxed">
+          Apply the system consistently. Every deviation spends brand equity the branch has not
+          earned yet.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <BrutalButton href="#top" variant="primary" icon="mdi:arrow-up">Back to top</BrutalButton>
+          <BrutalButton href="/policies" variant="secondary" icon="mdi:file-document">
+            Read our policies
+          </BrutalButton>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ivory border-t border-warm-line px-4 md:px-8 py-8">
+    <div
+      class="max-w-6xl mx-auto flex flex-col md:flex-row gap-3 md:items-center md:justify-between"
+    >
+      <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/50">
+        Fusion Queensland · Design System v1.0
+      </p>
+      <p class="font-mono text-[10px] uppercase tracking-widest text-eucalyptus/50">
+        Shared foundation · locally differentiated expression
+      </p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  /* Warm natural treatment: keep the place as itself. */
+  .qld-warm :global(img) {
+    filter: saturate(0.92) contrast(1.03) sepia(0.06);
+  }
+
+  /* Maroon-to-gold duotone: a gradient map applied with a color blend. */
+  .qld-duo {
+    position: relative;
+    isolation: isolate;
+  }
+  .qld-duo :global(img) {
+    filter: grayscale(1) contrast(1.05) brightness(1.02);
+  }
+  .qld-duo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(140deg, #731e32 0%, #a34a38 48%, #f4c66a 100%);
+    mix-blend-mode: color;
+    opacity: 0.92;
+    pointer-events: none;
+  }
+</style>

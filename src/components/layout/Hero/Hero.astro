@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import { Icon } from 'astro-icon/components'
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const {
-  eyebrow = 'Fusion Party Victoria',
+  eyebrow = DEPLOYMENT.label,
   title,
   subtitle,
   stats,
@@ -57,7 +58,7 @@ const {
       !compact && bgImage && (
         <figure class="editorial-hero-image" aria-hidden="true">
           <img src={bgImage} alt="" width="960" height="720" loading="eager" fetchpriority="high" />
-          <figcaption>Victoria · A better common future</figcaption>
+          <figcaption>{DEPLOYMENT.state} · A better common future</figcaption>
         </figure>
       )
     }

@@ -1,9 +1,10 @@
+import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getPolicies } from '../lib/sanity'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 
 const escapeXml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -21,7 +22,9 @@ export const GET: APIRoute = async () => {
         lastmod ? `    <lastmod>${escapeXml(new Date(lastmod).toISOString())}</lastmod>` : '',
         '    <changefreq>weekly</changefreq>',
         '  </url>',
-      ].filter(Boolean).join('\n')
+      ]
+        .filter(Boolean)
+        .join('\n')
     })
 
   const xml = [

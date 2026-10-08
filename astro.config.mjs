@@ -1,3 +1,5 @@
+import { loadEnv } from 'vite'
+import { resolveDeployment } from './config/deployment.mjs'
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import aiReadiness from '@adkinn/astro-ai-readiness'
@@ -12,11 +14,15 @@ import sanity from '@sanity/astro'
 import react from '@astrojs/react'
 import { fileURLToPath } from 'node:url'
 
+const deployment = resolveDeployment({
+  ...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''),
+  ...process.env,
+})
 const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://vic.fusionparty.org.au',
+  site: process.env.SITE_URL || deployment.siteUrl,
   integrations: [
     icon({
       include: {
@@ -30,21 +36,20 @@ export default defineConfig({
           new URL(url).pathname
         ),
       customSitemaps: [
-        'https://vic.fusionparty.org.au/content-sitemap.xml',
-        'https://vic.fusionparty.org.au/policy-sitemap.xml',
-        'https://vic.fusionparty.org.au/research-sitemap.xml',
-        'https://vic.fusionparty.org.au/blog-sitemap.xml',
-        'https://vic.fusionparty.org.au/news-sitemap.xml',
+        `${deployment.siteUrl}/content-sitemap.xml`,
+        `${deployment.siteUrl}/policy-sitemap.xml`,
+        `${deployment.siteUrl}/research-sitemap.xml`,
+        `${deployment.siteUrl}/blog-sitemap.xml`,
+        `${deployment.siteUrl}/news-sitemap.xml`,
       ],
     }),
     aiReadiness({
-      site: 'https://vic.fusionparty.org.au',
+      site: deployment.siteUrl,
       organization: {
-        name: 'Fusion Party Victoria',
-        url: 'https://vic.fusionparty.org.au',
-        logo: 'https://vic.fusionparty.org.au/logo.png',
-        description:
-          'Fusion Party Victoria — Reignite Democracy. A Victorian policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.',
+        name: deployment.label,
+        url: deployment.siteUrl,
+        logo: `${deployment.siteUrl}/logo.png`,
+        description: `${deployment.label} — ${deployment.tagline}. A ${deployment.adjective} policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.`,
         sameAs: [
           'https://www.facebook.com/FusionPartyAus',
           'https://twitter.com/FusionPartyAus',
@@ -55,12 +60,11 @@ export default defineConfig({
         ],
       },
       webSite: {
-        description:
-          'Fusion Party Victoria — Reignite Democracy. Explore the complete Victorian policy platform, manifesto, evidence, and ways to get involved.',
+        description: `${deployment.label} — ${deployment.tagline}. Explore the complete ${deployment.adjective} policy platform, manifesto, evidence, and ways to get involved.`,
       },
       robotsTxt: {
         policy: 'training-opt-out',
-        sitemap: 'https://vic.fusionparty.org.au/sitemap-index.xml',
+        sitemap: `${deployment.siteUrl}/sitemap-index.xml`,
         contentSignals: {
           search: 'yes',
           aiTrain: 'no',
@@ -76,76 +80,122 @@ export default defineConfig({
           'User-agent: Claude-SearchBot',
           'Allow: /',
           '',
-          'Sitemap: https://vic.fusionparty.org.au/content-sitemap.xml',
-          'Sitemap: https://vic.fusionparty.org.au/policy-sitemap.xml',
-          'Sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
-          'Sitemap: https://vic.fusionparty.org.au/blog-sitemap.xml',
-          'Sitemap: https://vic.fusionparty.org.au/news-sitemap.xml',
+          `Sitemap: ${deployment.siteUrl}/content-sitemap.xml`,
+          `Sitemap: ${deployment.siteUrl}/policy-sitemap.xml`,
+          `Sitemap: ${deployment.siteUrl}/research-sitemap.xml`,
+          `Sitemap: ${deployment.siteUrl}/blog-sitemap.xml`,
+          `Sitemap: ${deployment.siteUrl}/news-sitemap.xml`,
         ],
       },
       llmsTxt: {
-        summary:
-          'Fusion Party Victoria — current Victorian policy platform and canonical public sources.',
+        summary: `${deployment.label} — current ${deployment.adjective} policy platform and canonical public sources.`,
         body: 'Use the live policy feeds for current policy content and publication timestamps. Prefer canonical policy URLs when citing individual proposals.',
         sections: [
           {
             title: 'Policy platform',
             links: [
-              { title: 'Policy platform', url: 'https://vic.fusionparty.org.au/policies' },
+              { title: 'Policy platform', url: `${deployment.siteUrl}/policies` },
               {
                 title: 'Policy feed (plain text)',
-                url: 'https://vic.fusionparty.org.au/api/policies.txt',
+                url: `${deployment.siteUrl}/api/policies.txt`,
               },
               {
                 title: 'Policy feed (JSON)',
-                url: 'https://vic.fusionparty.org.au/api/policies.json',
+                url: `${deployment.siteUrl}/api/policies.json`,
               },
               {
                 title: 'Latest policy changes',
-                url: 'https://vic.fusionparty.org.au/api/policy-changes.json',
+                url: `${deployment.siteUrl}/api/policy-changes.json`,
               },
-              { title: 'Policy sitemap', url: 'https://vic.fusionparty.org.au/policy-sitemap.xml' },
-              { title: 'Research & Data', url: 'https://vic.fusionparty.org.au/research' },
-              { title: 'Research feed (plain text)', url: 'https://vic.fusionparty.org.au/api/research.txt' },
-              { title: 'Research feed (JSON)', url: 'https://vic.fusionparty.org.au/api/research.json' },
-              { title: 'Research sitemap', url: 'https://vic.fusionparty.org.au/research-sitemap.xml' },
-              { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog' },
-              { title: 'News sitemap', url: 'https://vic.fusionparty.org.au/blog-sitemap.xml' },
-              { title: 'Google News sitemap', url: 'https://vic.fusionparty.org.au/news-sitemap.xml' },
-              { title: 'Manifesto', url: 'https://vic.fusionparty.org.au/manifesto' },
+              { title: 'Policy sitemap', url: `${deployment.siteUrl}/policy-sitemap.xml` },
+              { title: 'Research & Data', url: `${deployment.siteUrl}/research` },
+              {
+                title: 'Research feed (plain text)',
+                url: `${deployment.siteUrl}/api/research.txt`,
+              },
+              { title: 'Research feed (JSON)', url: `${deployment.siteUrl}/api/research.json` },
+              { title: 'Research sitemap', url: `${deployment.siteUrl}/research-sitemap.xml` },
+              { title: 'News & Analysis', url: `${deployment.siteUrl}/blog` },
+              { title: 'News sitemap', url: `${deployment.siteUrl}/blog-sitemap.xml` },
+              { title: 'Google News sitemap', url: `${deployment.siteUrl}/news-sitemap.xml` },
+              { title: 'Manifesto', url: `${deployment.siteUrl}/manifesto` },
             ],
           },
         ],
         deferTo: {
           title: 'Canonical policy feed',
-          url: 'https://vic.fusionparty.org.au/api/policies.txt',
+          url: `${deployment.siteUrl}/api/policies.txt`,
         },
       },
       agentsMd: {
-        description:
-          'Fusion Party Victoria — Reignite Democracy. The Victorian platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.',
-        audience:
-          'Voters, journalists, political analysts, AI agents, and anyone researching the Victorian political landscape or Fusion Party policies.',
+        description: `${deployment.label} — ${deployment.tagline}. The ${deployment.adjective} platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.`,
+        audience: `Voters, journalists, political analysts, AI agents, and anyone researching the ${deployment.adjective} political landscape or Fusion Party policies.`,
         contact: 'contact@fusionparty.org.au',
         links: [
-          { title: 'Policy', url: 'https://vic.fusionparty.org.au/policies', description: 'Full policy platform and detailed policy pages' },
-          { title: 'Policy feed (text)', url: 'https://vic.fusionparty.org.au/api/policies.txt', description: 'Canonical LLM-friendly plain-text policy corpus' },
-          { title: 'Policy feed (JSON)', url: 'https://vic.fusionparty.org.au/api/policies.json', description: 'Structured machine-readable policy corpus with canonical URLs and publication metadata' },
-          { title: 'Research & Data', url: 'https://vic.fusionparty.org.au/research', description: 'Public research briefs, datasets, methodology, submissions and evidence behind the Victorian platform' },
-          { title: 'Research feed (text)', url: 'https://vic.fusionparty.org.au/api/research.txt', description: 'Canonical LLM-friendly research corpus with sources and limitations' },
-          { title: 'Research feed (JSON)', url: 'https://vic.fusionparty.org.au/api/research.json', description: 'Structured research corpus with citation metadata, sources and downloadable artefacts' },
-          { title: 'Candidates', url: 'https://vic.fusionparty.org.au/electorates', description: 'Current Victorian candidates and electorate information' },
-          { title: 'Take Action', url: 'https://vic.fusionparty.org.au/get-involved', description: 'Volunteer, donate, or join the movement' },
-          { title: 'Governance', url: 'https://vic.fusionparty.org.au/code-of-conduct', description: 'Our code of conduct and governance documents' },
-          { title: 'FAQ', url: 'https://vic.fusionparty.org.au/faq', description: 'Frequently asked questions about Fusion Party Victoria' },
-          { title: 'News & Analysis', url: 'https://vic.fusionparty.org.au/blog', description: 'Current Victorian news, policy explainers and analysis published by Fusion Party Victoria' },
+          {
+            title: 'Policy',
+            url: `${deployment.siteUrl}/policies`,
+            description: 'Full policy platform and detailed policy pages',
+          },
+          {
+            title: 'Policy feed (text)',
+            url: `${deployment.siteUrl}/api/policies.txt`,
+            description: 'Canonical LLM-friendly plain-text policy corpus',
+          },
+          {
+            title: 'Policy feed (JSON)',
+            url: `${deployment.siteUrl}/api/policies.json`,
+            description:
+              'Structured machine-readable policy corpus with canonical URLs and publication metadata',
+          },
+          {
+            title: 'Research & Data',
+            url: `${deployment.siteUrl}/research`,
+            description: `Public research briefs, datasets, methodology, submissions and evidence behind the ${deployment.adjective} platform`,
+          },
+          {
+            title: 'Research feed (text)',
+            url: `${deployment.siteUrl}/api/research.txt`,
+            description: 'Canonical LLM-friendly research corpus with sources and limitations',
+          },
+          {
+            title: 'Research feed (JSON)',
+            url: `${deployment.siteUrl}/api/research.json`,
+            description:
+              'Structured research corpus with citation metadata, sources and downloadable artefacts',
+          },
+          {
+            title: 'Candidates',
+            url: `${deployment.siteUrl}/electorates`,
+            description: `Current ${deployment.adjective} candidates and electorate information`,
+          },
+          {
+            title: 'Take Action',
+            url: `${deployment.siteUrl}/get-involved`,
+            description: 'Volunteer, donate, or join the movement',
+          },
+          {
+            title: 'Governance',
+            url: `${deployment.siteUrl}/code-of-conduct`,
+            description: 'Our code of conduct and governance documents',
+          },
+          {
+            title: 'FAQ',
+            url: `${deployment.siteUrl}/faq`,
+            description: `Frequently asked questions about ${deployment.label}`,
+          },
+          {
+            title: 'News & Analysis',
+            url: `${deployment.siteUrl}/blog`,
+            description: `Current ${deployment.adjective} news, policy explainers and analysis published by ${deployment.label}`,
+          },
         ],
       },
     }),
     react(),
     sanity({
-      projectId: 'qwl3f8jb',
-      dataset: 'production',
+      projectId: deployment.projectId,
+      dataset: deployment.dataset,
       // Keep Astro's Sanity integration consistent with src/lib/sanity.ts.
       // Signal publishes live content, so stale CDN reads are not acceptable here.
       useCdn: false,
@@ -161,7 +211,7 @@ export default defineConfig({
         ]
       : []),
     astroNoIndex({
-      allow: ['vic.fusionparty.org.au', 'fusionparty.org.au'],
+      allow: [new URL(deployment.siteUrl).hostname, 'fusionparty.org.au'],
     }),
   ],
 
@@ -183,6 +233,7 @@ export default defineConfig({
     ? node({ mode: 'standalone' })
     : cloudflare({
         imageService: 'passthrough',
+        ...(deployment.slug === 'qld' ? { configPath: './wrangler.qld.toml' } : {}),
         platformProxy: { enabled: false },
       }),
   output: 'server',

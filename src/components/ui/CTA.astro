@@ -33,14 +33,15 @@ const {
   class: className = '',
 } = Astro.props
 
-// Color variants — flat fills, no border, used sparingly for splash moments
+// Color variants — flat fills, no border, used sparingly for splash moments.
+// On-fill text colours are semantic tokens, so branch themes can re-point a fill.
 const variants = {
-  primary: 'bg-magenta text-white',
-  secondary: 'bg-mint text-black',
-  magenta: 'bg-magenta text-white',
-  mint: 'bg-mint text-black',
-  yellow: 'bg-yellow text-white',
-  lavender: 'bg-lavender text-white',
+  primary: 'bg-magenta text-on-primary',
+  secondary: 'bg-mint text-on-secondary',
+  magenta: 'bg-magenta text-on-primary',
+  mint: 'bg-mint text-on-secondary',
+  yellow: 'bg-yellow text-on-accent',
+  lavender: 'bg-lavender text-on-tertiary',
 }
 
 // Sizes

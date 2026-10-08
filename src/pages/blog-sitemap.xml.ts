@@ -1,9 +1,10 @@
+import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getDocuments } from '../lib/sanity'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 const escapeXml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 

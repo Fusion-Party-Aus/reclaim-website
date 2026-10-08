@@ -1,0 +1,15 @@
+# Separate deployment identity. Do not share Victoria's token KV namespace.
+name = "fusion-website-qld"
+compatibility_date = "2025-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+
+[observability]
+enabled = false
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+persist = true

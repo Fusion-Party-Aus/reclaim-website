@@ -1,24 +1,29 @@
+import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getResearchResources } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 
 export const GET: APIRoute = async () => {
   const resources = await getResearchResources()
   const sorted = [...resources].sort(
-    (a, b) => new Date(b._updatedAt || b.publishedAt || 0).getTime() - new Date(a._updatedAt || a.publishedAt || 0).getTime()
+    (a, b) =>
+      new Date(b._updatedAt || b.publishedAt || 0).getTime() -
+      new Date(a._updatedAt || a.publishedAt || 0).getTime()
   )
 
   const lines = [
-    '# Fusion Party Victoria — Research & Data',
+    `# ${DEPLOYMENT.label} — Research & Data`,
     '',
-    'Canonical collection: https://vic.fusionparty.org.au/research',
-    'Machine-readable JSON: https://vic.fusionparty.org.au/api/research.json',
-    'Research sitemap: https://vic.fusionparty.org.au/research-sitemap.xml',
-    sorted[0]?._updatedAt || sorted[0]?.publishedAt ? `Collection last updated: ${sorted[0]._updatedAt || sorted[0].publishedAt}` : '',
+    `Canonical collection: ${DEPLOYMENT.siteUrl}/research`,
+    `Machine-readable JSON: ${DEPLOYMENT.siteUrl}/api/research.json`,
+    `Research sitemap: ${DEPLOYMENT.siteUrl}/research-sitemap.xml`,
+    sorted[0]?._updatedAt || sorted[0]?.publishedAt
+      ? `Collection last updated: ${sorted[0]._updatedAt || sorted[0].publishedAt}`
+      : '',
     '',
     'These resources expose the evidence, methodology, sources, limitations and data behind the Victorian policy platform. Prefer each canonical resource URL when citing.',
     '',
@@ -31,7 +36,9 @@ export const GET: APIRoute = async () => {
       `Type: ${resource.resourceType}`,
       resource.researchArea ? `Research area: ${resource.researchArea}` : '',
       `Published: ${resource.publishedAt}`,
-      resource.researchFirstDocumentedAt ? `Research first documented: ${resource.researchFirstDocumentedAt}` : '',
+      resource.researchFirstDocumentedAt
+        ? `Research first documented: ${resource.researchFirstDocumentedAt}`
+        : '',
       resource.researchProvenance ? `Research provenance: ${resource.researchProvenance}` : '',
       `Updated: ${resource._updatedAt || 'unknown'}`,
       resource.version ? `Version: ${resource.version}` : '',
@@ -41,11 +48,19 @@ export const GET: APIRoute = async () => {
       resource.abstract,
       ''
     )
-    if (resource.reasonRightsResults && (resource.reasonRightsResults.reason || resource.reasonRightsResults.rights || resource.reasonRightsResults.results)) {
+    if (
+      resource.reasonRightsResults &&
+      (resource.reasonRightsResults.reason ||
+        resource.reasonRightsResults.rights ||
+        resource.reasonRightsResults.results)
+    ) {
       lines.push('### Reason · Rights · Results')
-      if (resource.reasonRightsResults.reason) lines.push(`Reason: ${resource.reasonRightsResults.reason}`)
-      if (resource.reasonRightsResults.rights) lines.push(`Rights: ${resource.reasonRightsResults.rights}`)
-      if (resource.reasonRightsResults.results) lines.push(`Results: ${resource.reasonRightsResults.results}`)
+      if (resource.reasonRightsResults.reason)
+        lines.push(`Reason: ${resource.reasonRightsResults.reason}`)
+      if (resource.reasonRightsResults.rights)
+        lines.push(`Rights: ${resource.reasonRightsResults.rights}`)
+      if (resource.reasonRightsResults.results)
+        lines.push(`Results: ${resource.reasonRightsResults.results}`)
       lines.push('')
     }
     if (resource.keyFindings?.length) {
@@ -62,7 +77,9 @@ export const GET: APIRoute = async () => {
     if (resource.sources?.length) {
       lines.push('### Sources')
       for (const source of resource.sources) {
-        lines.push(`- ${source.title}${source.publisher ? ` — ${source.publisher}` : ''}: ${source.url}`)
+        lines.push(
+          `- ${source.title}${source.publisher ? ` — ${source.publisher}` : ''}: ${source.url}`
+        )
       }
       lines.push('')
     }

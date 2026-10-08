@@ -33,14 +33,15 @@ const {
   class: className = '',
 } = Astro.props
 
-// Color variants
+// Color variants — on-fill text colours are semantic tokens so a branch theme
+// can re-point a fill without touching this component.
 const variants = {
-  magenta: 'bg-magenta text-white',
-  mint: 'bg-mint text-black',
-  yellow: 'bg-yellow text-white',
-  lavender: 'bg-lavender text-white',
+  magenta: 'bg-magenta text-on-primary',
+  mint: 'bg-mint text-on-secondary',
+  yellow: 'bg-yellow text-on-accent',
+  lavender: 'bg-lavender text-on-tertiary',
   white: 'bg-white text-black border border-black/10',
-  black: 'bg-black text-white border border-white/15',
+  black: 'bg-black text-fg border border-white/15',
 }
 
 // Sizes

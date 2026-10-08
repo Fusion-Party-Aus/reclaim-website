@@ -1,3 +1,4 @@
+import { DEPLOYMENT } from './deployment'
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
@@ -6,8 +7,8 @@ import type { Policy, Electorate, FAQ, Page, HomePage, ResearchResource } from '
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 
 export const client = createClient({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'qwl3f8jb',
-  dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
+  projectId: DEPLOYMENT.projectId,
+  dataset: DEPLOYMENT.dataset,
   apiVersion: '2024-01-29',
   // Signal publishes directly to Content Lake; SSR routes must see new documents immediately.
   // Sanity's CDN is appropriate for static/build-time content, but can serve stale query results here.

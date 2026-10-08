@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
@@ -41,19 +42,26 @@ interface Footer {
 
 const footers = await getDocuments<Footer>('footer')
 const electorates = await getElectorates()
-const footerData = footers[0]
+const footerData: Footer = footers[0] || {
+  logo: { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
+  tagline: DEPLOYMENT.tagline,
+  socialLinks: [],
+  resourceLinks: [],
+  banner: { text: DEPLOYMENT.tagline, rotation: 0 },
+  authorization: '',
+}
 ---
 
-<footer class="publication-footer bg-surface-base text-white">
+<footer class="publication-footer bg-surface-base text-fg">
   {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
   <div class="bg-magenta py-4 px-4">
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"
     >
-      <p class="text-lg md:text-xl font-display font-black uppercase text-white tracking-tight">
+      <p class="text-lg md:text-xl font-display font-black uppercase text-fg tracking-tight">
         {footerData.banner.text}
       </p>
-      <p class="text-xs font-semibold text-white/80">
+      <p class="text-xs font-semibold text-fg/80">
         {footerData.banner.subtext}
       </p>
     </div>
@@ -68,12 +76,12 @@ const footerData = footers[0]
           {/* Campaign Branding */}
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <Image src={logoMonoWhite} alt="Fusion Party Victoria" class="h-8 w-auto" />
+              <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
               <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="font-display font-black text-white text-2xl tracking-tight uppercase">
+                <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
                   {footerData.logo.mainText}
                 </span>
-                <span class="text-sm font-medium text-white/40 uppercase tracking-wide">
+                <span class="text-sm font-medium text-fg/40 uppercase tracking-wide">
                   {footerData.logo.subText}
                 </span>
               </div>
@@ -81,7 +89,7 @@ const footerData = footers[0]
 
             {
               footerData.tagline && (
-                <p class="text-sm text-white/50 mt-3 max-w-xs leading-relaxed">
+                <p class="text-sm text-fg/50 mt-3 max-w-xs leading-relaxed">
                   {footerData.tagline}
                 </p>
               )
@@ -101,7 +109,7 @@ const footerData = footers[0]
                 >
                   <Icon
                     name={social.icon}
-                    class="w-4 h-4 text-white/60 transition-colors duration-150"
+                    class="w-4 h-4 text-fg/60 transition-colors duration-150"
                   />
                 </a>
               ))
@@ -109,32 +117,38 @@ const footerData = footers[0]
           </div>
 
           {/* Newsletter Signup Card */}
-          <div class="border border-white/10 rounded-sm p-6">
-            <h4 class="text-sm font-semibold text-white mb-1.5">
-              {footerData.newsletter?.heading}
-            </h4>
-            <p class="text-xs text-white/50 mb-4 leading-relaxed">
-              {footerData.newsletter?.description}
-            </p>
+          {
+            footerData.newsletter && (
+              <div class="border border-white/10 rounded-sm p-6">
+                <h4 class="text-sm font-semibold text-fg mb-1.5">
+                  {footerData.newsletter?.heading}
+                </h4>
+                <p class="text-xs text-fg/50 mb-4 leading-relaxed">
+                  {footerData.newsletter?.description}
+                </p>
 
-            <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
-              <label for="footer-newsletter-email" class="sr-only">Email address</label>
-              <input
-                id="footer-newsletter-email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                class="flex-1 px-3 py-2 text-sm rounded-sm border border-white/15 bg-surface-raised text-white placeholder-white/30 focus:outline-none focus:border-magenta transition-colors"
-              />
-              <button
-                type="submit"
-                class="px-4 py-2 bg-magenta text-white rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {footerData.newsletter?.buttonText}
-              </button>
-            </form>
-            <div id="footer-newsletter-message" class="hidden text-xs font-medium mt-2"></div>
-          </div>
+                <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
+                  <label for="footer-newsletter-email" class="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="footer-newsletter-email"
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                    class="flex-1 px-3 py-2 text-sm rounded-sm border border-white/15 bg-surface-raised text-fg placeholder-white/30 focus:outline-none focus:border-magenta transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    class="px-4 py-2 bg-magenta text-fg rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {footerData.newsletter?.buttonText}
+                  </button>
+                </form>
+                <div id="footer-newsletter-message" class="hidden text-xs font-medium mt-2" />
+              </div>
+            )
+          }
         </div>
 
         {/* Right Column (Navigation Grid) — Spans 7 columns on large screen */}
@@ -152,7 +166,7 @@ const footerData = footers[0]
                         href={link.url}
                         target={link.external ? '_blank' : undefined}
                         rel={link.external ? 'noopener' : undefined}
-                        class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                        class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
                       >
                         {link.label}
                       </a>
@@ -163,7 +177,7 @@ const footerData = footers[0]
                       <li>
                         <a
                           href={`/electorates/${electorate.slug.current}`}
-                          class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                          class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
                         >
                           {electorate.name}
                         </a>
@@ -180,17 +194,21 @@ const footerData = footers[0]
               {footerData.resourceLinksLabel}
             </h4>
             <ul class="space-y-2.5">
-              <li>
-                <a
-                  href="https://transportscore.fusionparty.org.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="footer-link text-sm text-mint hover:text-white transition-colors font-bold flex items-center gap-1"
-                >
-                  <Icon name="mdi:train" class="w-4 h-4" />
-                  Transport Score Tool
-                </a>
-              </li>
+              {
+                DEPLOYMENT.slug === 'vic' && (
+                  <li>
+                    <a
+                      href="https://transportscore.fusionparty.org.au"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="footer-link text-sm text-mint hover:text-fg transition-colors font-bold flex items-center gap-1"
+                    >
+                      <Icon name="mdi:train" class="w-4 h-4" />
+                      Transport Score Tool
+                    </a>
+                  </li>
+                )
+              }
               {
                 footerData.resourceLinks.map((link) => (
                   <li>
@@ -198,7 +216,7 @@ const footerData = footers[0]
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="footer-link text-sm text-white/50 hover:text-white transition-colors"
+                      class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
                     >
                       {link.label}
                     </a>
@@ -230,7 +248,7 @@ const footerData = footers[0]
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div
       class="h-px w-full"
-      style="background: linear-gradient(90deg, #D428D4, #7B3FE4, #4A7AEB, #0BB8D4, #00DDB8);"
+      style="background: linear-gradient(90deg, var(--branch-primary, #D428D4), var(--branch-tertiary, #7B3FE4), var(--branch-accent, #4A7AEB), #0BB8D4, var(--branch-secondary, #00DDB8));"
     >
     </div>
   </div>
@@ -240,19 +258,19 @@ const footerData = footers[0]
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
     >
-      <p class="text-xs font-mono text-white/60">
-        © {footerData.copyrightText || '2024–2026 Fusion Party Victoria. All rights reserved.'}
+      <p class="text-xs font-mono text-fg/60">
+        © {footerData.copyrightText || `2024–2026 ${DEPLOYMENT.label}. All rights reserved.`}
       </p>
-      <p class="text-xs font-mono text-white/60 max-w-md">
+      <p class="text-xs font-mono text-fg/60 max-w-md">
         {footerData.authorization}
       </p>
-      <p class="text-xs font-mono text-white/60">
+      <p class="text-xs font-mono text-fg/60">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-white/70 hover:text-mint transition-colors"
+          class="text-fg/70 hover:text-mint transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>
@@ -272,10 +290,10 @@ const footerData = footers[0]
     transition: background-color 0.15s ease;
   }
   .social-icon:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: var(--branch-line, rgba(255, 255, 255, 0.06));
   }
   .social-icon:hover :global(svg) {
-    color: #ffffff;
+    color: var(--branch-ink, #ffffff);
   }
 </style>
 

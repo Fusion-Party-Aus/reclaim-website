@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -25,7 +26,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
 ---
 
 <BaseLayout
-  title="404 - Page Not Found | Fusion Party Victoria"
+  title={`404 - Page Not Found | ${DEPLOYMENT.label}`}
   description="Oops! This page doesn't exist. Let's get you back on track."
   noindex={true}
 >
@@ -96,7 +97,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
         <h1
           class="text-[12rem] md:text-[20rem] font-black uppercase leading-none mb-0 select-none font-display"
           style="
-            background: linear-gradient(45deg, #D428D4, #00DDB8, #4A7AEB, #D428D4);
+            background: linear-gradient(45deg, var(--branch-primary, #D428D4), var(--branch-secondary, #00DDB8), var(--branch-accent, #4A7AEB), var(--branch-primary, #D428D4));
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -111,7 +112,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
         <!-- Glitchy subtitle -->
         <div class="relative inline-block mb-8">
           <h2
-            class="text-4xl md:text-6xl font-black uppercase text-white relative z-10 font-display"
+            class="text-4xl md:text-6xl font-black uppercase text-fg relative z-10 font-display"
             style="animation: glitch 2s infinite;"
           >
             PAGE NOT FOUND
@@ -164,7 +165,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
             class="absolute -bottom-4 -left-4 w-16 h-16 bg-magenta border border-white/20 rounded-sm -rotate-12 flex items-center justify-center"
             style="animation: bounce 2s ease-in-out infinite;"
           >
-            <Icon name="mdi:help" class="w-10 h-10 text-white" />
+            <Icon name="mdi:help" class="w-10 h-10 text-fg" />
           </div>
           <p
             class="text-2xl md:text-4xl font-black uppercase text-center leading-tight relative z-10 font-display"
@@ -190,12 +191,12 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
             <div
               class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white/10 border border-white/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:home" class="w-12 h-12 text-white" />
+              <Icon name="mdi:home" class="w-12 h-12 text-fg" />
             </div>
-            <h3 class="text-3xl font-black uppercase mb-2 text-white text-center font-display">
+            <h3 class="text-3xl font-black uppercase mb-2 text-fg text-center font-display">
               Go Home
             </h3>
-            <p class="text-sm font-bold text-white text-center">Escape this madness!</p>
+            <p class="text-sm font-bold text-fg text-center">Escape this madness!</p>
           </div>
         </a>
 
@@ -211,7 +212,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black/20 border border-black/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-neutral-panel border border-black/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
               <Icon name="mdi:file-document-multiple" class="w-12 h-12 text-black" />
             </div>
@@ -236,12 +237,12 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
             <div
               class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-magenta/20 border border-white/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:newspaper-variant" class="w-12 h-12 text-white" />
+              <Icon name="mdi:newspaper-variant" class="w-12 h-12 text-fg" />
             </div>
-            <h3 class="text-3xl font-black uppercase mb-2 text-white text-center font-display">
+            <h3 class="text-3xl font-black uppercase mb-2 text-fg text-center font-display">
               The Blog
             </h3>
-            <p class="text-sm font-bold text-white text-center">News that matters!</p>
+            <p class="text-sm font-bold text-fg text-center">News that matters!</p>
           </div>
         </a>
       </div>
@@ -283,11 +284,11 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
               name="q"
               placeholder="Type anything..."
               aria-label="Search"
-              class="flex-1 px-4 py-4 border border-white/15 rounded-sm bg-black/30 text-white font-bold text-lg focus:outline-none focus:border-mint transition-all"
+              class="flex-1 px-4 py-4 border border-white/15 rounded-sm bg-black/30 text-fg font-bold text-lg focus:outline-none focus:border-mint transition-all"
             />
             <button
               type="submit"
-              class="px-8 py-4 bg-magenta border border-white/10 rounded-sm text-white font-black uppercase hover:bg-magenta-bright transition-all relative group overflow-hidden font-display"
+              class="px-8 py-4 bg-magenta border border-white/10 rounded-sm text-fg font-black uppercase hover:bg-magenta-bright transition-all relative group overflow-hidden font-display"
             >
               <span class="relative z-10 flex items-center gap-2">
                 <Icon name="mdi:rocket-launch" class="w-5 h-5" />
@@ -325,13 +326,13 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
             <BrutalBadge variant="magenta">Fun Fact</BrutalBadge>
           </div>
           <Icon name="mdi:format-quote-open" class="w-12 h-12 text-magenta mb-4" />
-          <blockquote class="text-white text-xl font-black mb-4 leading-tight">
+          <blockquote class="text-fg text-xl font-black mb-4 leading-tight">
             "Not all who wander are lost... but this page definitely is. Unlike our policies, which
             are crystal clear!"
           </blockquote>
           <div class="flex items-center gap-3">
             <div class="w-8 h-1 bg-magenta"></div>
-            <p class="text-sm font-bold text-white/50 uppercase">Ancient Internet Proverb</p>
+            <p class="text-sm font-bold text-fg/50 uppercase">Ancient Internet Proverb</p>
           </div>
         </BrutalCard>
       </div>
@@ -361,7 +362,7 @@ const chaosMessages = ['OOPS!', 'YOO-HOO!', 'UH OH!', 'WHOOPS!', 'YIKES!', 'BONK
         </a>
         <button
           onclick="window.history.back()"
-          class="bg-white/5 border border-white/20 rounded-sm p-4 text-center font-black uppercase text-white hover:bg-white/10 transition-colors transform hover:scale-105 font-display"
+          class="bg-white/5 border border-white/20 rounded-sm p-4 text-center font-black uppercase text-fg hover:bg-white/10 transition-colors transform hover:scale-105 font-display"
         >
           <Icon name="mdi:arrow-left-bold" class="w-8 h-8 mx-auto mb-2" />
           Go Back

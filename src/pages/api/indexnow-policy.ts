@@ -1,8 +1,9 @@
+import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 
 export const prerender = false
 
-const base = 'https://vic.fusionparty.org.au'
+const base = DEPLOYMENT.siteUrl
 
 export const POST: APIRoute = async ({ request }) => {
   const webhookSecret = import.meta.env.SANITY_REINDEX_SECRET
@@ -71,7 +72,7 @@ export const POST: APIRoute = async ({ request }) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify({
-      host: 'vic.fusionparty.org.au',
+      host: new URL(DEPLOYMENT.siteUrl).hostname,
       key: indexNowKey,
       keyLocation: `${base}/${indexNowKey}.txt`,
       urlList: urls,

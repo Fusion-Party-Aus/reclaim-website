@@ -40,3 +40,11 @@ skills-lock.json
 # Per-policy OG images are regenerated from live Sanity content before every
 # build (see the `prebuild` script) — committing them would just go stale.
 public/og/policies/
+
+# Local state-specific environment credentials
+.env.*
+!.env.example
+!.env.sanity.example
+
+# Generated deployment-specific social cards
+public/og/qld-default.png

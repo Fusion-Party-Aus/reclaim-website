@@ -77,14 +77,14 @@ if (page.body) {
     >
       <a
         href="/"
-        class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-mint/40 transition-colors"
+        class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors"
       >
         Home
       </a>
       {
         breadcrumbs.map((bc, i) => (
           <>
-            <span class="text-white/30 font-black">›</span>
+            <span class="text-fg/30 font-black">›</span>
             {i === breadcrumbs.length - 1 ? (
               <span
                 class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
@@ -95,7 +95,7 @@ if (page.body) {
             ) : (
               <a
                 href={bc.path}
-                class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-white hover:border-magenta/40 hover:text-magenta transition-all"
+                class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-magenta/40 hover:text-magenta transition-all"
               >
                 {bc.label}
               </a>
@@ -167,14 +167,18 @@ if (page.body) {
                 .replace(/^-|-$/g, '')}
             >
               <div class="mb-8">
-                <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white leading-tight">
+                <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg leading-tight">
                   {group.title}
                 </h2>
                 <div class="h-2 w-24 bg-magenta mt-2" />
               </div>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                 {group.pages.map((child, index) => {
-                  const accents = ['#00DDB8', '#4A7AEB', '#D428D4']
+                  const accents = [
+                    'var(--branch-secondary, #00DDB8)',
+                    'var(--branch-accent, #4A7AEB)',
+                    'var(--branch-primary, #D428D4)',
+                  ]
                   const accent = accents[index % accents.length]
 
                   const imageUrl = child.page.profileImage
@@ -198,7 +202,7 @@ if (page.body) {
                         ) : (
                           <div class="w-full h-full flex items-center justify-center bg-white/5">
                             <svg
-                              class="w-20 h-20 text-white/20"
+                              class="w-20 h-20 text-fg/20"
                               viewBox="0 0 24 24"
                               fill="currentColor"
                             >
@@ -208,7 +212,7 @@ if (page.body) {
                         )}
                       </div>
                       <div class="p-4 flex flex-col gap-1">
-                        <h3 class="text-base md:text-lg font-display font-black uppercase text-white leading-tight">
+                        <h3 class="text-base md:text-lg font-display font-black uppercase text-fg leading-tight">
                           {child.page.title}
                         </h3>
                         {(child.page.role || child.page.subtitle) && (
@@ -244,7 +248,7 @@ if (page.body) {
               <span class="text-mint">the Movement?</span>
             </>
           </h2>
-          <p class="text-base font-black text-white/70 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+          <p class="text-base font-black text-fg/70 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
             We don't take corporate donations. We answer to you, not donors.
           </p>
           <div class="flex flex-wrap gap-3">

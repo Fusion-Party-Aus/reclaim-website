@@ -62,7 +62,7 @@ const currentPath = Astro.url.pathname
   headings.length > 0 && (
     <aside
       class="sidebar-container bg-grey-dark border border-white/10 rounded-sm p-6 sticky top-24"
-      style="border-top: 2px solid #00DDB8;"
+      style="border-top: 2px solid var(--branch-secondary, #00DDB8);"
     >
       <h3 class="text-xl font-display font-black uppercase mb-6 pb-3 border-b border-white/10 text-mint">
         {title}
@@ -79,7 +79,7 @@ const currentPath = Astro.url.pathname
               href={`#${heading.id}`}
               class={`sidebar-link font-display block py-2 font-bold text-sm transition-all border-l-4 border-transparent hover:border-yellow hover:bg-yellow/10 hover:text-yellow ${
                 isH2
-                  ? 'pl-3 text-white'
+                  ? 'pl-3 text-fg'
                   : isH3
                     ? 'pl-6 text-mint text-xs'
                     : 'pl-9 text-lavender text-xs'
@@ -130,16 +130,16 @@ const currentPath = Astro.url.pathname
   }
 
   .sidebar-container::-webkit-scrollbar-track {
-    background: #1a0029;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--branch-surface, #1a0029);
+    border: 1px solid var(--branch-line, rgba(255, 255, 255, 0.1));
   }
 
   .sidebar-container::-webkit-scrollbar-thumb {
-    background: #d428d4;
+    background: var(--branch-primary, #d428d4);
   }
 
   .sidebar-container::-webkit-scrollbar-thumb:hover {
-    background: #00ddb8;
+    background: var(--branch-secondary, #00ddb8);
   }
 
   /* Smooth scroll behavior */

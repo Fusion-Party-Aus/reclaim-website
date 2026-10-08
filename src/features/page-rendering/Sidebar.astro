@@ -25,7 +25,7 @@ import { BrutalButton } from '@/components/ui'
   <div class="sticky-sidebar">
     <div
       class="bg-grey-dark border border-white/10 rounded-sm p-5"
-      style="border-top: 2px solid #D428D4;"
+      style="border-top: 2px solid var(--branch-primary, #D428D4);"
     >
       <div class="mb-5 pb-3 border-b border-white/10">
         <h3 class="text-xl font-display font-black text-magenta uppercase">Jump To</h3>
@@ -48,7 +48,7 @@ import { BrutalButton } from '@/components/ui'
                     <a
                       href={`#${child.id}`}
                       data-nav={child.id}
-                      class="block py-2 px-2 font-bold text-sm uppercase tracking-wide text-white hover:text-mint hover:bg-white/10 transition-all"
+                      class="block py-2 px-2 font-bold text-sm uppercase tracking-wide text-fg hover:text-mint hover:bg-white/10 transition-all"
                     >
                       {child.title}
                     </a>
@@ -81,7 +81,7 @@ import { BrutalButton } from '@/components/ui'
           </a>
           <a
             href="https://fusionparty.org.au/donate"
-            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm bg-[#234080] text-white hover:bg-magenta-darker transition-colors"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm bg-accent-deep text-fg hover:bg-magenta-darker transition-colors"
           >
             <Icon name="mdi:currency-usd" class="w-4 h-4" />
             Donate
@@ -142,8 +142,8 @@ import { BrutalButton } from '@/components/ui'
     overflow-y: auto;
   }
   .sidebar a.is-active {
-    background-color: #234080 !important;
-    color: #ffffff !important;
+    background-color: var(--branch-accent-deep, #234080) !important;
+    color: var(--branch-ink, #ffffff) !important;
   }
   .sidebar a.is-active[href^='#'] {
     transform: translateX(2px) !important;

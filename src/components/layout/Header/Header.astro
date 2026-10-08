@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import { getDocuments } from '@/lib/sanity'
 import { Image } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
@@ -35,13 +36,21 @@ const navigation = navigations[0]
 const ensureRootRelative = (href: string) =>
   href && !href.startsWith('/') && !href.startsWith('http') ? `/${href}` : href
 
-const rawNavItems = navigation?.mainNav?.sort((a, b) => a.order - b.order) || [
-  { href: '/', label: 'Home', order: 0 },
-  { href: '/about', label: 'About', order: 1 },
-  { href: '/policies', label: 'Policies', order: 2 },
-  { href: '/vision', label: 'Vision', order: 3 },
-  { href: '/research', label: 'Research', order: 4 },
-]
+const rawNavItems =
+  navigation?.mainNav?.sort((a, b) => a.order - b.order) ||
+  (DEPLOYMENT.slug !== 'vic'
+    ? [
+        { href: '/', label: 'Home', order: 0 },
+        { href: '/policies', label: 'Policies', order: 1 },
+        { href: '/contact', label: 'Contact', order: 2 },
+      ]
+    : [
+        { href: '/', label: 'Home', order: 0 },
+        { href: '/about', label: 'About', order: 1 },
+        { href: '/policies', label: 'Policies', order: 2 },
+        { href: '/vision', label: 'Vision', order: 3 },
+        { href: '/research', label: 'Research', order: 4 },
+      ])
 
 // Blog is now a first-class publishing surface. Keep it visible even if the
 // current Sanity navigation document predates frequent Signal articles.
@@ -68,14 +77,14 @@ const navItems = rawNavItems.map((item) => ({
 
 const ctaButton = navigation?.ctaButton || {
   label: 'Get involved',
-  href: '/get-involved',
+  href: DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact',
   style: 'primary',
 }
 
 const logo = navigation?.logo || {
   mainText: 'FUSION',
-  subText: 'VICTORIA',
-  tagline: 'Reignite Democracy',
+  subText: DEPLOYMENT.state.toUpperCase(),
+  tagline: DEPLOYMENT.tagline,
 }
 ---
 
@@ -88,21 +97,21 @@ const logo = navigation?.logo || {
       <a
         href="/"
         class="flex items-center gap-2.5 no-underline group shrink-0"
-        aria-label="Fusion Party Victoria Home"
+        aria-label={`${DEPLOYMENT.label} Home`}
       >
         <Image
           src={logoMonoWhite}
-          alt="Fusion Party Victoria"
+          alt={DEPLOYMENT.label}
           class="h-7 w-auto group-hover:opacity-80 transition-opacity"
         />
         <div class="flex flex-col leading-none">
-          <span class="font-display font-black text-white text-lg tracking-tight uppercase">
+          <span class="font-display font-black text-fg text-lg tracking-tight uppercase">
             {logo.mainText}
-            {logo.subText && <span class="text-white font-bold ml-1">{logo.subText}</span>}
+            {logo.subText && <span class="text-fg font-bold ml-1">{logo.subText}</span>}
           </span>
           {
             logo.tagline && (
-              <span class="text-xs font-medium text-white/90 tracking-wide mt-0.5">
+              <span class="text-xs font-medium text-fg/90 tracking-wide mt-0.5">
                 {logo.tagline}
               </span>
             )
@@ -112,7 +121,7 @@ const logo = navigation?.logo || {
 
       {/* ── Mobile menu toggle ── */}
       <button
-        class="xl:hidden text-white hover:text-white p-3 min-w-11 min-h-11 cursor-pointer transition-colors"
+        class="xl:hidden text-fg hover:text-fg p-3 min-w-11 min-h-11 cursor-pointer transition-colors"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -135,7 +144,7 @@ const logo = navigation?.logo || {
               return (
                 <div class="nav-dropdown-wrapper relative group">
                   <button
-                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`}
+                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-fg border-magenta' : 'text-fg/90 border-transparent hover:text-fg'}`}
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
@@ -154,11 +163,11 @@ const logo = navigation?.logo || {
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
-                          class="block px-3.5 py-2.5 text-white hover:bg-white/10 transition-all rounded-sm text-sm font-medium"
+                          class="block px-3.5 py-2.5 text-fg hover:bg-white/10 transition-all rounded-sm text-sm font-medium"
                         >
                           {child.label}
                           {child.description && (
-                            <div class="text-xs mt-0.5 text-white/85">{child.description}</div>
+                            <div class="text-xs mt-0.5 text-fg/85">{child.description}</div>
                           )}
                         </a>
                       ))}
@@ -174,7 +183,7 @@ const logo = navigation?.logo || {
                 class={`nav-link text-sm font-medium transition-colors ${
                   item.highlight
                     ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-mint hover:bg-mint hover:text-black'
-                    : `py-1 border-b ${isActive ? 'text-white border-magenta' : 'text-white/90 border-transparent hover:text-white'}`
+                    : `py-1 border-b ${isActive ? 'text-fg border-magenta' : 'text-fg/90 border-transparent hover:text-fg'}`
                 }`}
               >
                 {item.label}
@@ -189,11 +198,11 @@ const logo = navigation?.logo || {
           class:list={[
             'ml-2 px-4 py-2 text-sm font-semibold rounded-sm transition-shadow',
             ctaButton.style === 'primary' &&
-              'bg-magenta-darker text-white hover:shadow-brutal-magenta',
-            ctaButton.style === 'yellow' && 'bg-[#234080] text-white hover:shadow-brutal-yellow',
-            ctaButton.style === 'mint' && 'bg-mint text-black hover:shadow-brutal-mint',
+              'bg-magenta-darker text-on-primary hover:shadow-brutal-magenta',
+            ctaButton.style === 'yellow' && 'bg-yellow text-on-accent hover:shadow-brutal-yellow',
+            ctaButton.style === 'mint' && 'bg-mint text-on-secondary hover:shadow-brutal-mint',
             !['primary', 'yellow', 'mint'].includes(ctaButton.style) &&
-              'bg-mint text-black hover:shadow-brutal-mint',
+              'bg-mint text-on-secondary hover:shadow-brutal-mint',
           ]}
         >
           {ctaButton.label}
@@ -216,7 +225,7 @@ const logo = navigation?.logo || {
               return (
                 <div class="mobile-dropdown">
                   <button
-                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-white hover:text-white transition-colors flex justify-between items-center"
+                    class="mobile-dropdown-toggle w-full text-left px-2 py-2.5 text-sm font-medium text-fg hover:text-fg transition-colors flex justify-between items-center"
                     aria-expanded="false"
                   >
                     {item.label}
@@ -226,7 +235,7 @@ const logo = navigation?.logo || {
                     {item.children?.map((child) => (
                       <a
                         href={child.href}
-                        class="block px-2 py-2 text-sm text-white hover:text-white transition-colors"
+                        class="block px-2 py-2 text-sm text-fg hover:text-fg transition-colors"
                       >
                         {child.label}
                       </a>
@@ -242,7 +251,7 @@ const logo = navigation?.logo || {
                 class={`block text-sm font-medium transition-colors ${
                   item.highlight
                     ? 'mx-2 my-1 px-3 py-2.5 border border-mint/40 bg-mint/10 text-mint'
-                    : `px-2 py-2.5 ${isActive ? 'text-white' : 'text-white/90 hover:text-white'}`
+                    : `px-2 py-2.5 ${isActive ? 'text-fg' : 'text-fg/90 hover:text-fg'}`
                 }`}
               >
                 {item.label}
@@ -255,10 +264,10 @@ const logo = navigation?.logo || {
           class:list={[
             'mt-2 block px-4 py-2.5 text-center text-sm font-semibold rounded-sm',
             ctaButton.style === 'mint'
-              ? 'bg-mint text-black'
+              ? 'bg-mint text-on-secondary'
               : ctaButton.style === 'yellow'
-                ? 'bg-[#234080] text-white'
-                : 'bg-magenta-darker text-white',
+                ? 'bg-yellow text-on-accent'
+                : 'bg-magenta-darker text-on-primary',
           ]}
         >
           {ctaButton.label}
