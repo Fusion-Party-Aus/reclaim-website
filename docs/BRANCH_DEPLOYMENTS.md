@@ -45,15 +45,16 @@ The seed uses `createIfNotExists`: rerunning it preserves edited documents. It
 contains no copied policies, candidates, donation figures or authorisation claims.
 Complete Queensland's authorisation and campaign content in Studio before launch.
 
-Deploy the Studio separately, choosing a new hostname such as `fusion-qld`:
+The Queensland Studio is published at https://fusion-qld.sanity.studio, using
+dataset `qld` and app ID `pctplpfvvxwavjm1erscuknz`. Deploy updates separately:
 
 ```bash
 cd studio
-SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity deploy
+SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity deploy --url fusion-qld
 ```
 
-Never assign Victoria's app ID to Queensland. Once Queensland has an app ID,
-set `SANITY_STUDIO_APP_ID` for subsequent Queensland Studio deployments. Add the
+Never assign Victoria's app ID to Queensland. Both branch app IDs are configured;
+`SANITY_STUDIO_APP_ID` can explicitly override the selected app. Add the
 site and Studio preview origins in the project's CORS settings as required.
 
 Site checks and build:
