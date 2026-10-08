@@ -86,5 +86,6 @@ credentials for any integrations before publishing.
 The Queensland `SESSION` binding uses the dedicated
 `fusion-website-qld-session` KV namespace. Keep its explicit namespace ID in the
 configuration: Cloudflare preview deployments reject an automatically injected
-session binding without an ID. When moving to another Cloudflare account, create
+session binding without an ID. Preview KV bindings are not inherited, so the ID
+is declared for both production and previews. When moving to another Cloudflare account, create
 a new Queensland session namespace there and replace this ID.

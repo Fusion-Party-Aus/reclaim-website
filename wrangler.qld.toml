@@ -11,6 +11,11 @@ directory = "./dist"
 binding = "SESSION"
 id = "0771f9c48b4840bebd5091051a7bbec8"
 
+# Preview KV bindings are not inherited from the production configuration.
+[[previews.kv_namespaces]]
+binding = "SESSION"
+id = "0771f9c48b4840bebd5091051a7bbec8"
+
 [observability]
 enabled = false
 
