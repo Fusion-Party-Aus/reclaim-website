@@ -6,6 +6,11 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = "./dist"
 
+[[kv_namespaces]]
+# fusion-website-qld-session: separate from Victoria and reclaim sessions.
+binding = "SESSION"
+id = "0771f9c48b4840bebd5091051a7bbec8"
+
 [observability]
 enabled = false
 
