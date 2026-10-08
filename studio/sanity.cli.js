@@ -16,7 +16,7 @@ export default defineCliConfig({
       ? {appId: process.env.SANITY_STUDIO_APP_ID}
       : deployment.slug === 'vic'
         ? {appId: 'b1vkw1bmcrkhlb4no5vyzdlg'}
-        : {}),
+        : {appId: 'pctplpfvvxwavjm1erscuknz'}),
     /**
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/cli#auto-updates
