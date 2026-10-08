@@ -1,3 +1,4 @@
+import process from 'node:process'
 import {resolveDeployment} from '../config/deployment.mjs'
 const deployment = resolveDeployment({
   SANITY_STUDIO_BRANCH: process.env.SANITY_STUDIO_BRANCH,

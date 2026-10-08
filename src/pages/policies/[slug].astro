@@ -8,7 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
-import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
+import { BrutalCard, BrutalButton } from '@/components/ui'
 import { getDocumentBySlug, getResearchForPolicy } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
@@ -99,13 +99,6 @@ if (policy.body) {
 
 const applyHash = slugify
 
-const getPolicyIcon = (icon?: string) => {
-  if (!icon) return null
-  if (icon.includes(':')) return { type: 'icon', value: icon }
-  if (/^[a-z0-9-]+$/i.test(icon)) return { type: 'icon', value: `mdi:${icon}` }
-  return { type: 'emoji', value: icon }
-}
-
 const headingBlocks =
   policy.body?.filter(
     (block: PortableTextBlock) =>
@@ -123,17 +116,6 @@ const contentSections = headingBlocks
     return title ? { id: applyHash(title), title } : null
   })
   .filter(Boolean)
-
-const pillarConfig: Record<string, { variant: 'magenta' | 'mint' | 'yellow'; textColor: string }> =
-  {
-    'RECLAIM OUR ECONOMY': { variant: 'magenta', textColor: 'text-fg' },
-    'RECLAIM OUR INFRASTRUCTURE': { variant: 'mint', textColor: 'text-black' },
-    'RECLAIM OUR DEMOCRACY': { variant: 'yellow', textColor: 'text-fg' },
-  }
-const pillarCfg = (policy.pillar && pillarConfig[policy.pillar]) || {
-  variant: 'magenta' as const,
-  textColor: 'text-fg',
-}
 
 const detailSections = [
   { id: 'design-rationale', title: 'Design Rationale', content: policy.designRationale },
