@@ -44,8 +44,8 @@ export async function getDocumentBySlug<T = unknown>(
   type: string,
   slug: string
 ): Promise<T | null> {
-  const query = `*[_type == "${type}" && slug.current == "${slug}"][0]`
-  return await client.fetch(query)
+  const query = `*[_type == $type && slug.current == $slug][0]`
+  return await client.fetch(query, { type, slug })
 }
 
 /**

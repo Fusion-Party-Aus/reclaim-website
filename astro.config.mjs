@@ -197,8 +197,7 @@ export default defineConfig({
       projectId: deployment.projectId,
       dataset: deployment.dataset,
       // Keep Astro's Sanity integration consistent with src/lib/sanity.ts.
-      // Signal publishes live content, so stale CDN reads are not acceptable here.
-      useCdn: false,
+      useCdn: true,
       stega: {
         studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
       },
@@ -210,9 +209,6 @@ export default defineConfig({
           }),
         ]
       : []),
-    astroNoIndex({
-      allow: [new URL(deployment.siteUrl).hostname, 'fusionparty.org.au'],
-    }),
   ],
 
   vite: {

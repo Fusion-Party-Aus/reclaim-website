@@ -68,3 +68,17 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+## Agent skills
+
+### Issue tracker
+
+Track issues in Fusion-Party-Aus/reclaim-website. Read `docs/agents/issue-tracker.md` before tracker operations.
+
+### Triage labels
+
+Use the five default triage labels. See `docs/agents/triage-labels.md` before triage.
+
+### Domain docs
+
+Single-context: read `GLOSSARY.md` and relevant `docs/adr/` decisions before design or implementation. See `docs/agents/domain.md`.
