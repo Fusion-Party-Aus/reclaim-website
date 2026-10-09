@@ -42,7 +42,6 @@ const rawNavItems =
     ? [
         { href: '/', label: 'Home', order: 0 },
         { href: '/policies', label: 'Policies', order: 1 },
-        { href: '/investigations', label: 'Investigations', order: 1.5 },
         { href: '/contact', label: 'Contact', order: 2 },
       ]
     : [
@@ -53,8 +52,8 @@ const rawNavItems =
         { href: '/research', label: 'Research', order: 4 },
       ])
 
-// Ensure Queensland's investigations are discoverable even with an older CMS navigation document.
-if (DEPLOYMENT.slug === 'qld' && !rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/investigations')) {
+// Show investigations only for deployments that opt into this feature.
+if (DEPLOYMENT.features.investigations && !rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/investigations')) {
   rawNavItems.splice(rawNavItems.findIndex(item => item.href === '/policies') + 1, 0, {
     href: '/investigations', label: 'Investigations', order: 2.5,
   })
@@ -74,7 +73,7 @@ if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '
   })
 }
 
-const navItems = rawNavItems.map((item) => ({
+const navItems = rawNavItems.filter((item) => DEPLOYMENT.features.investigations || ensureRootRelative(item.href || '') !== '/investigations').map((item) => ({
   ...item,
   href: item.href ? ensureRootRelative(item.href) : item.href,
   children: item.children?.map((child) => ({
