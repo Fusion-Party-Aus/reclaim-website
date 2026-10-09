@@ -59,7 +59,11 @@ describe('resolveBranch — Queensland', () => {
     expect(qld.canonicalOrigin).toBe('https://qld.fusionparty.org.au')
     expect(qld.jurisdiction).toBe('Queensland, Australia')
     expect(qld.serviceWorkerCache).toBe('fusion-qld-1')
-    expect(qld.analytics.resolved).toEqual({ enabled: false })
+    expect(qld.analytics.resolved).toMatchObject({
+      enabled: true,
+      siteId: 'pa-6TB7kWpUyzQNp_ONfw6M_',
+      scriptUrl: 'https://analytics.fusionparty.org.au/js/pa-6TB7kWpUyzQNp_ONfw6M_.js',
+    })
     expect(qld.runtime.socialAccounts).toEqual([])
     expect(qld.assets.resolved.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
   })
@@ -140,7 +144,9 @@ describe('resolveBranch — environment override precedence', () => {
   })
 
   test('disabled analytics stays disabled and emits no site ID or script', () => {
-    const qld = resolveBranch(branchManifest, { PUBLIC_BRANCH: 'qld' })
+    const manifest = clone()
+    manifest.branches.qld.analytics = { enabled: false }
+    const qld = resolveBranch(manifest, { PUBLIC_BRANCH: 'qld' })
     expect(qld.analytics.resolved).toEqual({ enabled: false })
     expect(qld.runtime.analytics.plausibleScriptUrl).toBeUndefined()
   })
@@ -148,7 +154,9 @@ describe('resolveBranch — environment override precedence', () => {
   test.each(['', '   ', '\t\n'])(
     'blank analytics override %j preserves disabled analytics',
     (siteId) => {
-      const qld = resolveBranch(branchManifest, {
+      const manifest = clone()
+      manifest.branches.qld.analytics = { enabled: false }
+      const qld = resolveBranch(manifest, {
         PUBLIC_BRANCH: 'qld',
         PUBLIC_ANALYTICS_SITE_ID: siteId,
       })
@@ -167,6 +175,14 @@ describe('resolveBranch — environment override precedence', () => {
     expect(qld.analytics.resolved.siteId).toBe('pa-qld-override')
     expect(qld.analytics.resolved.scriptUrl).toBe(
       'https://analytics.fusionparty.org.au/js/pa-qld-override.js'
+    )
+  })
+
+  test('Queensland uses its registered Plausible site ID', () => {
+    const qld = resolveBranch(branchManifest, { PUBLIC_BRANCH: 'qld' })
+    expect(qld.analytics.resolved.siteId).toBe('pa-6TB7kWpUyzQNp_ONfw6M_')
+    expect(qld.analytics.resolved.scriptUrl).toBe(
+      'https://analytics.fusionparty.org.au/js/pa-6TB7kWpUyzQNp_ONfw6M_.js'
     )
   })
 })

@@ -195,7 +195,8 @@ export const branchManifest = {
         ogTemplate: '/og/qld-default.png',
       },
       analytics: {
-        enabled: false,
+        enabled: true,
+        siteId: 'pa-6TB7kWpUyzQNp_ONfw6M_',
       },
       deploy: {
         workerName: 'fusion-website-qld',
