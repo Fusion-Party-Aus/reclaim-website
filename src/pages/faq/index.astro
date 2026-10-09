@@ -71,7 +71,7 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
 <BaseLayout
   title={`FAQ | ${DEPLOYMENT.label}`}
   description="Answers about Fusion's policies, funding, elections and use of AI."
-  image="/og/faq.png"
+  image={DEPLOYMENT.contentProfile === 'victoria-campaign' ? '/og/faq.png' : DEPLOYMENT.seo.defaultOgImage}
 >
   <Header />
 

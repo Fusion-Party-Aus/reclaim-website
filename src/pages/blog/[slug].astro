@@ -94,7 +94,9 @@ const authorImageUrl = post.author?.image
   : null
 const ogImageUrl = post.featuredImage
   ? urlFor(post.featuredImage).width(1200).height(630).fit('crop').url()
-  : '/og/blog.png'
+  : DEPLOYMENT.contentProfile === 'victoria-campaign'
+    ? '/og/blog.png'
+    : DEPLOYMENT.seo.defaultOgImage
 
 const pageTitle = post.seoTitle || post.title
 const pageDescription = post.seoDescription || post.excerpt
@@ -149,9 +151,8 @@ const articleStructuredData = {
     <div class="bg-surface-base pt-8 pb-4">
       <div class="max-w-5xl mx-auto px-4">
         <nav class="text-xs font-mono uppercase tracking-wide flex items-center gap-2">
-          <a
-            href="/"
-            class="px-2 py-1 rounded-sm bg-yellow text-fg hover:bg-mint hover:text-black">Home</a
+          <a href="/" class="px-2 py-1 rounded-sm bg-yellow text-fg hover:bg-mint hover:text-black"
+            >Home</a
           >
           <span class="opacity-60 text-fg">/</span>
           <a
@@ -240,9 +241,8 @@ const articleStructuredData = {
         {
           post.signalProvenance?.aiAssisted && (
             <aside class="mb-8 p-4 border border-white/15 bg-white/5 rounded-sm text-sm text-fg/70">
-              <strong class="text-fg">Editorial transparency:</strong> This article was drafted
-              with assistance from Fusion Signal and reviewed by {DEPLOYMENT.label} before
-              publication.
+              <strong class="text-fg">Editorial transparency:</strong> This article was drafted with
+              assistance from Fusion Signal and reviewed by {DEPLOYMENT.label} before publication.
               {post.signalProvenance.sourceUrl && (
                 <>
                   {' '}

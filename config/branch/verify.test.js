@@ -182,6 +182,13 @@ describe('verifyParity', () => {
     expect(error.message).toContain('analytics.siteId')
   })
 
+  it('accepts explicitly disabled analytics with no site ID', () => {
+    const manifest = makeManifest()
+    const resolved = makeResolved(manifest, 'qld')
+    resolved.analytics.raw = { enabled: false }
+    expect(() => verifyParity(resolved, manifest)).not.toThrow()
+  })
+
   it('fails with PARITY_FAILURE when the deploy config is missing', () => {
     const manifest = makeManifest()
     const resolved = makeResolved(manifest, 'vic')
@@ -251,6 +258,15 @@ describe('verifyLeakage', () => {
     expect(error.message).toContain('qld')
     expect(error.message).toContain(token)
     expect(error.context).toMatchObject({ foreign: 'qld', kind: 'asset' })
+  })
+
+  it('allows an intentionally shared root asset referenced by another branch', () => {
+    const manifest = makeManifest()
+    manifest.branches.qld.assets.hero = '/solo-full-colour.svg'
+    const resolved = makeResolved(manifest, 'vic')
+    expect(() =>
+      verifyLeakage(resolved, manifest, () => '<img src="/solo-full-colour.svg">')
+    ).not.toThrow()
   })
 
   it('fails with LEAKAGE_FAILURE on a foreign analytics site id', () => {

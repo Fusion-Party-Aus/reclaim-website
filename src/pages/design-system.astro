@@ -1,4 +1,8 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
+if (DEPLOYMENT.contentProfile !== 'victoria-campaign') {
+  return new Response(null, { status: 404 })
+}
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'

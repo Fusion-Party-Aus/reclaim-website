@@ -52,7 +52,9 @@ const categoryLabel = categoryLabels[faq.category] || faq.category
 
 <BaseLayout
   title={`${faq.question} | ${DEPLOYMENT.label}`}
-  image="/og/faq.png"
+  image={DEPLOYMENT.contentProfile === 'victoria-campaign'
+    ? '/og/faq.png'
+    : DEPLOYMENT.seo.defaultOgImage}
   description={portableTextToPlainText(faq.answer).slice(0, 160)}
 >
   <script

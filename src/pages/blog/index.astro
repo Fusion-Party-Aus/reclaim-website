@@ -30,7 +30,7 @@ const date=(d:string)=>new Date(d).toLocaleDateString('en-AU',{day:'numeric',mon
 const image=(p:BlogPost,w=900,h=560)=>p.featuredImage?urlFor(p.featuredImage).width(w).height(h).fit('crop').url():null
 ---
 
-<BaseLayout title={`${title} | ${DEPLOYMENT.label}`} description={subtitle} image="/og/blog.png" noindex={Boolean(selectedCategory)}>
+<BaseLayout title={`${title} | ${DEPLOYMENT.label}`} description={subtitle} image={DEPLOYMENT.contentProfile === 'victoria-campaign' ? '/og/blog.png' : DEPLOYMENT.seo.defaultOgImage} noindex={Boolean(selectedCategory)}>
   <Header />
   <main id="main-content" class="news-page">
     <header class="masthead">

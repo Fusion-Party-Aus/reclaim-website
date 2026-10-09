@@ -66,10 +66,16 @@ export async function getDocumentsByField<T = unknown>(
  * These provide better type safety and are the recommended way to fetch data
  */
 
-export async function getPolicies(options?: { thisTerm?: boolean }): Promise<Policy[]> {
+export async function getPolicies(options?: {
+  thisTerm?: boolean
+  adoptedOnly?: boolean
+}): Promise<Policy[]> {
   let filter = '_type == "policy"'
   if (options && options.thisTerm !== undefined) {
     filter += ` && thisTerm == ${options.thisTerm}`
+  }
+  if (options?.adoptedOnly) {
+    filter += ` && coalesce(status, 'adopted') == 'adopted'`
   }
   const query = `*[${filter}] | order(_createdAt desc)`
   return await client.fetch(query)

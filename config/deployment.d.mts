@@ -23,6 +23,20 @@ export interface AnalyticsConfig {
   plausibleScriptUrl?: string
 }
 
+export interface SocialAccount {
+  platform: string
+  url: string
+}
+
+export interface BranchAssets {
+  ogDefault: string
+  hero: string
+  favicon: string
+  pwaManifest: string
+  logo: string | null
+  ogTemplate: string | null
+}
+
 export interface SeoConfig {
   nationalOrganizationUrl: string
   logoPath: string
@@ -45,6 +59,8 @@ export interface FooterConfig {
 }
 
 export interface Deployment {
+  contentProfile: 'victoria-campaign' | 'branch-neutral'
+  policyCallouts: { housing?: boolean; transportScore?: boolean }
   slug: string
   state: string
   adjective: string
@@ -59,6 +75,8 @@ export interface Deployment {
   navigation: NavigationConfig
   contact: ContactConfig
   analytics: AnalyticsConfig
+  socialAccounts: SocialAccount[]
+  assets: BranchAssets
   seo: SeoConfig
   cta: CtaConfig
   footer: FooterConfig

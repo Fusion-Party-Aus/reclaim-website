@@ -60,7 +60,7 @@ publicly readable by the site; Studio writes require Sanity authentication.
 ## Safe local commands
 
 The generic commands select the branch from `BRANCH`, `PUBLIC_BRANCH` or the
-default. These examples use `BRANCH` explicitly:
+manifest default. These examples use `BRANCH` explicitly:
 
 ```bash
 BRANCH=<slug> npm run dev:branch
@@ -116,6 +116,20 @@ and verify every manifest branch, run:
 ```bash
 npm run verify:branches
 ```
+
+Deploy builds the selected branch first, then uses that branch's manifest
+Wrangler config. With no branch variable it deploys the manifest default:
+
+```bash
+npm run deploy
+BRANCH=<slug> npm run deploy:branch
+PUBLIC_BRANCH=<slug> npm run deploy:branch -- --dry-run
+```
+
+`npm run deploy:qld` remains available as a Queensland compatibility alias.
+Deployment assumes the Cloudflare account, domain/custom-domain routing and
+required bindings/resources have been configured for the selected Worker; the
+manifest config path alone does not provision them.
 
 This builds each branch into an isolated output directory, resolves and checks
 its configuration and parity, then scans the built output for branch-content

@@ -4,7 +4,7 @@
  * Derives branch-owned asset URLs, a branch-scoped analytics script URL and a
  * branch-scoped service-worker cache namespace from a resolved branch descriptor.
  *
- * Fail-closed: a missing required asset or analytics site id throws, and an asset
+ * Fail-closed: a missing required asset or enabled analytics site id throws, and an asset
  * that is not namespaced to the branch throws rather than silently reusing another
  * branch's file. See docs/sparc/branch-agnostic/algorithm_specification.md §4 and
  * architecture_blueprint.md §3.2.
@@ -161,11 +161,12 @@ export function resolveAssets(resolved) {
  * Derive the per-branch analytics descriptor. The script URL is derived from the
  * branch site id and is never a shared hardcoded literal.
  *
- * @param {{ identity: { slug: string }, analytics?: { siteId?: string } }} resolved
- * @returns {{ siteId: string, scriptUrl: string, initPath: string }}
+ * @param {{ identity: { slug: string }, analytics?: { enabled?: boolean, siteId?: string } }} resolved
+ * @returns {{ enabled: boolean, siteId?: string, scriptUrl?: string, initPath?: string }}
  */
 export function resolveAnalytics(resolved) {
   const slug = resolved?.identity?.slug ?? ''
+  if (resolved?.analytics?.enabled === false) return { enabled: false }
   const siteId = resolved?.analytics?.siteId
 
   if (isBlank(siteId)) {
@@ -179,6 +180,7 @@ export function resolveAnalytics(resolved) {
 
   const id = asString(siteId).trim()
   return {
+    enabled: true,
     siteId: id,
     scriptUrl: `https://analytics.fusionparty.org.au/js/${id}.js`,
     initPath: '/plausible-init.js',

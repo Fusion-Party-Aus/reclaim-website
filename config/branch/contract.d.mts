@@ -59,7 +59,8 @@ export interface AssetSet {
 }
 
 export interface AnalyticsBinding {
-  siteId: string
+  enabled?: boolean
+  siteId?: string
   plausibleScriptUrl?: string
 }
 
@@ -149,6 +150,10 @@ export interface RuntimeNavigation {
  * components read today without re-validating it as PresentationConfig.
  */
 export interface RuntimeConfig {
+  contentProfile?: 'victoria-campaign' | 'branch-neutral'
+  socialAccounts?: SocialAccount[]
+  assets?: ResolvedAssets
+  policyCallouts?: { housing?: boolean; transportScore?: boolean }
   navigation: RuntimeNavigation
   contact: ContactConfig
   analytics: RuntimeAnalytics
@@ -192,9 +197,10 @@ export interface ResolvedAssets {
 }
 
 export interface ResolvedAnalytics {
-  siteId: string
-  scriptUrl: string
-  initPath: string
+  enabled: boolean
+  siteId?: string
+  scriptUrl?: string
+  initPath?: string
 }
 
 export interface ResolvedPresentation {

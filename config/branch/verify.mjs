@@ -13,6 +13,7 @@
  */
 
 import { ERROR_CODES, assert, BranchConfigError } from './contract.mjs'
+import { isBranchOwned } from './assets.mjs'
 
 /** @param {unknown} value */
 function isBlank(value) {
@@ -102,10 +103,10 @@ export function verifyParity(resolved, manifest) {
     `Resolved branch '${slug}' has no analytics binding.`
   )
   assert(
-    !isBlank(rawAnalytics.siteId),
+    rawAnalytics.enabled === false || !isBlank(rawAnalytics.siteId),
     ERROR_CODES.PARITY_FAILURE,
     'analytics.siteId',
-    `Resolved branch '${slug}' is missing required field 'analytics.siteId'.`
+    `Resolved branch '${slug}' is missing required field 'analytics.siteId' while analytics are enabled.`
   )
 
   const deploy = resolved.deploy
@@ -198,9 +199,14 @@ export function verifyLeakage(resolved, manifest, readBuiltOutput) {
 
     assertNoLeak(output, me, otherSlug, identity.label, 'identity.label', 'identity')
     assertNoLeak(output, me, otherSlug, identity.tagline, 'identity.tagline', 'identity')
-    assertNoLeak(output, me, otherSlug, assets.ogDefault, 'assets.ogDefault', 'asset')
-    assertNoLeak(output, me, otherSlug, assets.hero, 'assets.hero', 'asset')
-    assertNoLeak(output, me, otherSlug, analytics.siteId, 'analytics.siteId', 'analytics')
+    if (isBranchOwned(assets.ogDefault, otherSlug) && !isBranchOwned(assets.ogDefault, me)) {
+      assertNoLeak(output, me, otherSlug, assets.ogDefault, 'assets.ogDefault', 'asset')
+    }
+    if (isBranchOwned(assets.hero, otherSlug) && !isBranchOwned(assets.hero, me)) {
+      assertNoLeak(output, me, otherSlug, assets.hero, 'assets.hero', 'asset')
+    }
+    if (analytics.enabled !== false)
+      assertNoLeak(output, me, otherSlug, analytics.siteId, 'analytics.siteId', 'analytics')
     assertNoLeak(output, me, otherSlug, `fusion-${otherSlug}`, 'deploy.cacheNamespace', 'cache')
   }
 }

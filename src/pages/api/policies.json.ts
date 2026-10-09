@@ -8,7 +8,10 @@ export const prerender = false
 const canonicalBase = DEPLOYMENT.siteUrl
 
 export const GET: APIRoute = async () => {
-  const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
+  const [policies, manifesto] = await Promise.all([
+    getPolicies({ adoptedOnly: true }),
+    getManifestoPage(),
+  ])
   const generatedAt = new Date().toISOString()
   const sortedByUpdated = [...policies].sort(
     (a, b) =>
@@ -49,43 +52,53 @@ export const GET: APIRoute = async () => {
       method: manifesto?.oneSeat?.body || null,
     },
     policies: await Promise.all(
-      policies.map(async (policy) => ({
-        id: policy._id,
-        title: policy.title,
-        authority: {
-          publisher: DEPLOYMENT.label,
-          jurisdiction: DEPLOYMENT.jurisdiction,
-          status: 'current policy',
-          adopted_policy: true,
-          part_of: `${canonicalBase}/policies`,
-        },
-        slug: policy.slug?.current,
-        canonical_url: `${canonicalBase}/policies/${policy.slug?.current}`,
-        pillar: policy.pillar || null,
-        category: policy.category || null,
-        delivery_horizon: policy.thisTerm === true ? 'current-term' : 'long-term',
-        summary: policy.summary,
-        hook: policy.hook || null,
-        key_points: policy.keyPoints || [],
-        shareable_quote: policy.shareableQuote || null,
-        design_rationale: policy.designRationale || null,
-        system_interaction: policy.systemInteraction || null,
-        economic_logic: policy.economicLogic || null,
-        risks_and_failure_modes: policy.riskAndFailureModes || null,
-        evidence_and_precedent: policy.evidenceAndPrecedent || null,
-        implementation_outline: policy.implementationOutline || null,
-        cost: policy.cost || null,
-        funding: policy.funding || null,
-        additional_content_text: portableTextToPlainText(policy.body || []),
-        published_at: policy.publishedAt || policy._createdAt || null,
-        substantive_updated_at: policy.substantiveUpdatedAt || null,
-        change_summary: policy.changeSummary || null,
-        supporting_research: (await getResearchForPolicy(policy._id)).map((resource) => ({
-          title: resource.title,
-          canonical_url: `${canonicalBase}/research/${resource.slug.current}`,
-        })),
-        updated_at: policy._updatedAt || null,
-      }))
+      policies.map(async (policy) => {
+        const canonicalUrl = `${canonicalBase}/policies/${policy.slug?.current}`
+        return {
+          id: policy._id,
+          title: policy.title,
+          authority: {
+            publisher: DEPLOYMENT.label,
+            jurisdiction: DEPLOYMENT.jurisdiction,
+            status: 'current policy',
+            adopted_policy: true,
+            part_of: `${canonicalBase}/policies`,
+          },
+          slug: policy.slug?.current,
+          canonical_url: canonicalUrl,
+          status: policy.status || 'adopted',
+          topics: policy.topics || [],
+          source_url: policy.sourceUrl || canonicalUrl,
+          references: (policy.references || []).map((reference) => ({
+            title: reference.title,
+            url: reference.url,
+          })),
+          pillar: policy.pillar || null,
+          category: policy.category || null,
+          delivery_horizon: policy.thisTerm === true ? 'current-term' : 'long-term',
+          summary: policy.summary,
+          hook: policy.hook || null,
+          key_points: policy.keyPoints || [],
+          shareable_quote: policy.shareableQuote || null,
+          design_rationale: policy.designRationale || null,
+          system_interaction: policy.systemInteraction || null,
+          economic_logic: policy.economicLogic || null,
+          risks_and_failure_modes: policy.riskAndFailureModes || null,
+          evidence_and_precedent: policy.evidenceAndPrecedent || null,
+          implementation_outline: policy.implementationOutline || null,
+          cost: policy.cost || null,
+          funding: policy.funding || null,
+          additional_content_text: portableTextToPlainText(policy.body || []),
+          published_at: policy.publishedAt || policy._createdAt || null,
+          substantive_updated_at: policy.substantiveUpdatedAt || null,
+          change_summary: policy.changeSummary || null,
+          supporting_research: (await getResearchForPolicy(policy._id)).map((resource) => ({
+            title: resource.title,
+            canonical_url: `${canonicalBase}/research/${resource.slug.current}`,
+          })),
+          updated_at: policy._updatedAt || null,
+        }
+      })
     ),
   }
 

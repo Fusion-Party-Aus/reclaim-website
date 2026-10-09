@@ -57,7 +57,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
 
 <BaseLayout
   title={`Past Candidates | ${DEPLOYMENT.label}`}
-  description="Public archive of former Fusion Party candidates and representatives in Victoria."
+  description={`Public archive of former Fusion Party candidates and representatives in ${DEPLOYMENT.jurisdiction.replace(/, Australia$/, '')}.`}
 >
   <Header />
 

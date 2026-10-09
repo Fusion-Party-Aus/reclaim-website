@@ -101,6 +101,14 @@ export const branchManifest = {
         cacheVersion: '1',
       },
       runtime: {
+        contentProfile: 'victoria-campaign',
+        socialAccounts: [
+          { platform: 'Facebook', url: 'https://www.facebook.com/FusionPartyAus' },
+          { platform: 'Instagram', url: 'https://www.instagram.com/fusionpartyaus' },
+          { platform: 'YouTube', url: 'https://www.youtube.com/c/fusionpartyaus' },
+          { platform: 'Mastodon', url: 'https://mastodon.au/@FusionPartyAus' },
+        ],
+        policyCallouts: { housing: true, transportScore: true },
         navigation: {
           fallback: [
             { label: 'Home', href: '/' },
@@ -126,7 +134,7 @@ export const branchManifest = {
         },
         seo: {
           nationalOrganizationUrl: 'https://fusionparty.org.au/#organization',
-          logoPath: '/logo.png',
+          logoPath: '/logo-rings-color.png',
           defaultOgImage: '/og/default.png',
         },
         cta: {
@@ -180,14 +188,14 @@ export const branchManifest = {
       },
       assets: {
         ogDefault: '/og/qld-default.png',
-        hero: '/hero.png',
+        hero: '/solo-full-colour.svg',
         favicon: '/favicon.svg',
         pwaManifest: '/manifest.qld.json',
         logo: '/logo-rings-color.png',
         ogTemplate: '/og/qld-default.png',
       },
       analytics: {
-        siteId: 'pa-qld',
+        enabled: false,
       },
       deploy: {
         workerName: 'fusion-website-qld',
@@ -198,6 +206,8 @@ export const branchManifest = {
         cacheVersion: '1',
       },
       runtime: {
+        contentProfile: 'branch-neutral',
+        socialAccounts: [],
         navigation: {
           fallback: [
             { label: 'Home', href: '/' },
@@ -217,7 +227,7 @@ export const branchManifest = {
         analytics: {},
         seo: {
           nationalOrganizationUrl: 'https://fusionparty.org.au/#organization',
-          logoPath: '/logo.png',
+          logoPath: '/logo-rings-color.png',
           defaultOgImage: '/og/qld-default.png',
         },
         cta: {

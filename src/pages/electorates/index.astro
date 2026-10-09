@@ -205,7 +205,9 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
 <BaseLayout
   title={`${title} | ${DEPLOYMENT.label}`}
   description="Where we're running, who our candidates are, and how we'll fix your area."
-  image="/og/electorates.png"
+  image={DEPLOYMENT.contentProfile === 'victoria-campaign'
+    ? '/og/electorates.png'
+    : DEPLOYMENT.seo.defaultOgImage}
 >
   <Header />
   <Hero title={title} subtitle={subtitle} />
@@ -286,9 +288,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                     <span class="text-xs font-black uppercase tracking-widest bg-magenta text-fg px-2 py-0.5 rounded-sm">
                                       {state}
                                     </span>
-                                    <span class="text-sm font-bold text-fg/50">
-                                      {stateLabel}
-                                    </span>
+                                    <span class="text-sm font-bold text-fg/50">{stateLabel}</span>
                                   </div>
                                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {stateElectorates.map((electorate, idx) => {

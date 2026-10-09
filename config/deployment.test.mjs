@@ -66,7 +66,7 @@ describe('deployment configuration', () => {
       'https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js'
     )
     expect(config.seo.nationalOrganizationUrl).toBe('https://fusionparty.org.au/#organization')
-    expect(config.seo.logoPath).toBe('/logo.png')
+    expect(config.seo.logoPath).toBe('/logo-rings-color.png')
     expect(config.seo.defaultOgImage).toBe('/og/default.png')
     expect(config.cta).toEqual({
       getInvolved: '/get-involved',
@@ -91,10 +91,10 @@ describe('deployment configuration', () => {
     ])
     expect(config.navigation.cta).toEqual({ label: 'Get involved', href: '/contact' })
     expect(config.navigation).not.toEqual(victoria.navigation)
-    expect(config.analytics.plausibleScriptUrl).toBe(
-      'https://analytics.fusionparty.org.au/js/pa-qld.js'
-    )
-    expect(config.analytics.plausibleScriptUrl).not.toBe(victoria.analytics.plausibleScriptUrl)
+    expect(config.analytics.plausibleScriptUrl).toBeUndefined()
+    expect(config.socialAccounts).toEqual([])
+    expect(config.assets.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
+    expect(victoria.socialAccounts).toHaveLength(4)
     expect(config.contact.phone).toBe(undefined)
     expect(config.contact.address).toBe(undefined)
     expect(config.contact.email).toBe(victoria.contact.email)
@@ -107,12 +107,12 @@ describe('deployment configuration', () => {
     expect(config.cta.transportScore).toBe(undefined)
   })
 
-  it('a plausible analytics override is available without inventing a Queensland site id', () => {
+  it('does not enable disabled QLD analytics through a script URL override alone', () => {
     const config = resolveDeployment({
       PUBLIC_BRANCH: 'qld',
       PUBLIC_PLAUSIBLE_SRC: 'https://analytics.example.org/js/pa-test.js',
     })
-    expect(config.analytics.plausibleScriptUrl).toBe('https://analytics.example.org/js/pa-test.js')
+    expect(config.analytics.plausibleScriptUrl).toBeUndefined()
     const victoria = resolveDeployment({
       PUBLIC_PLAUSIBLE_SRC: 'https://analytics.example.org/js/pa-test.js',
     })

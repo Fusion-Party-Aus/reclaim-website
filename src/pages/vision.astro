@@ -30,9 +30,21 @@ interface Policy {
 
 const policies = await getPolicies({ thisTerm: false })
 const storedVisionPage = await getVisionPage()
+const isVictoriaCampaign = DEPLOYMENT.contentProfile === 'victoria-campaign'
+const branchContentComplete = Boolean(
+  storedVisionPage?.title &&
+  storedVisionPage?.subtitle &&
+  storedVisionPage?.manifesto?.heading &&
+  storedVisionPage?.manifesto?.body &&
+  storedVisionPage?.manifesto?.punchline &&
+  storedVisionPage?.proofStats &&
+  storedVisionPage?.ctaSection?.heading &&
+  storedVisionPage?.ctaSection?.body &&
+  storedVisionPage?.ctaSection?.buttons
+)
 const visionPage =
   storedVisionPage ||
-  (DEPLOYMENT.slug !== 'vic'
+  (!isVictoriaCampaign
     ? {
         title: 'Our vision',
         subtitle: 'Our vision is being developed with our members.',
@@ -64,41 +76,48 @@ const { title, subtitle, ctaSection, seo } = visionPage as {
   seo?: { metaTitle?: string; metaDescription?: string }
 }
 
-const manifesto = (
-  visionPage as { manifesto?: { heading: string; body: string; punchline: string } }
-).manifesto || {
-  heading: 'This is what Victoria could look like.',
-  body: 'Build homes near trains. Allow more housing choices. Keep strategic land public and make every operator serve one network. We will publish costs before claiming returns.',
-  punchline: 'The detail is below.',
-}
+const manifesto =
+  (visionPage as { manifesto?: { heading: string; body: string; punchline: string } }).manifesto ||
+  (isVictoriaCampaign
+    ? {
+        heading: 'This is what Victoria could look like.',
+        body: 'Build homes near trains. Allow more housing choices. Keep strategic land public and make every operator serve one network. We will publish costs before claiming returns.',
+        punchline: 'The detail is below.',
+      }
+    : { heading: '', body: '', punchline: '' })
 
-const proofStats: ProofStat[] = (visionPage as { proofStats?: ProofStat[] }).proofStats || [
-  {
-    number: '30,000',
-    label: 'Homes the state builds and keeps — rent flowing back to Victorians forever',
-    icon: 'mdi:home-city',
-    variant: 'magenta',
-  },
-  {
-    number: 'Audit first',
-    label: 'Compare public operation and regulated alternatives before booking transport savings',
-    icon: 'mdi:train',
-    variant: 'mint',
-  },
-  {
-    number: '40%',
-    label:
-      "Of Hong Kong MTR's revenue comes from station-adjacent property — the model we're replicating",
-    icon: 'mdi:currency-usd',
-    variant: 'yellow',
-  },
-  {
-    number: '100+yrs',
-    label: "Switzerland's citizen-initiated referendum system — the democratic model we want",
-    icon: 'mdi:vote',
-    variant: 'magenta',
-  },
-]
+const proofStats: ProofStat[] =
+  (visionPage as { proofStats?: ProofStat[] }).proofStats ||
+  (isVictoriaCampaign
+    ? [
+        {
+          number: '30,000',
+          label: 'Homes the state builds and keeps — rent flowing back to Victorians forever',
+          icon: 'mdi:home-city',
+          variant: 'magenta',
+        },
+        {
+          number: 'Audit first',
+          label:
+            'Compare public operation and regulated alternatives before booking transport savings',
+          icon: 'mdi:train',
+          variant: 'mint',
+        },
+        {
+          number: '40%',
+          label:
+            "Of Hong Kong MTR's revenue comes from station-adjacent property — the model we're replicating",
+          icon: 'mdi:currency-usd',
+          variant: 'yellow',
+        },
+        {
+          number: '100+yrs',
+          label: "Switzerland's citizen-initiated referendum system — the democratic model we want",
+          icon: 'mdi:vote',
+          variant: 'magenta',
+        },
+      ]
+    : [])
 
 // Group by Pillar → Category
 const groupedPolicies: Record<string, Record<string, Policy[]>> = {}
@@ -164,7 +183,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 ---
 
 {
-  DEPLOYMENT.slug !== 'vic' && !storedVisionPage ? (
+  !isVictoriaCampaign && !branchContentComplete ? (
     <BranchLanding />
   ) : (
     <BaseLayout
@@ -241,38 +260,42 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
               </BrutalButton>
             </aside>
 
-            <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
-              <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
-                Fusion Victoria policy direction
-              </p>
-              <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
-                Homes and Stations Code
-              </h2>
-              <p class="text-sm text-fg/80 leading-relaxed mb-3">
-                The Code allows modest infill housing and larger station precincts. Affordable
-                housing settings and public costs need legal, infrastructure and viability tests.
-              </p>
-              <a
-                class="font-bold text-[#a9c8ff] underline underline-offset-4"
-                href="/policies/homes-and-stations-code"
-              >
-                Explore the policy
-              </a>
-            </aside>
+            {DEPLOYMENT.policyCallouts.housing && (
+              <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
+                <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
+                  Fusion Victoria policy direction
+                </p>
+                <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
+                  Homes and Stations Code
+                </h2>
+                <p class="text-sm text-fg/80 leading-relaxed mb-3">
+                  The Code allows modest infill housing and larger station precincts. Affordable
+                  housing settings and public costs need legal, infrastructure and viability tests.
+                </p>
+                <a
+                  class="font-bold text-[#a9c8ff] underline underline-offset-4"
+                  href="/policies/homes-and-stations-code"
+                >
+                  Explore the policy
+                </a>
+              </aside>
+            )}
             {/* ── Evidence Credibility Strip ── */}
-            <div class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
-              {[
-                'Victorian Budget 2026-27',
-                'Parliamentary Budget Office',
-                'Hong Kong MTR annual reports',
-                'Switzerland Federal Chancellery',
-              ].map((src) => (
-                <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
-                  {src}
-                </span>
-              ))}
-            </div>
+            {isVictoriaCampaign && (
+              <div class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4">
+                <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
+                {[
+                  'Victorian Budget 2026-27',
+                  'Parliamentary Budget Office',
+                  'Hong Kong MTR annual reports',
+                  'Switzerland Federal Chancellery',
+                ].map((src) => (
+                  <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
+                    {src}
+                  </span>
+                ))}
+              </div>
+            )}
             {PILLAR_ORDER.map((pillar) => {
               const cfg = getConfig(pillar)
               return (

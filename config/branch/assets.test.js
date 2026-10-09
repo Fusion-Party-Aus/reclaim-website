@@ -151,6 +151,12 @@ describe('resolveAnalytics', () => {
     expect(error.field).toBe('analytics.siteId')
     expect(error.context).toMatchObject({ slug: 'qld' })
   })
+
+  it('allows explicitly disabled analytics without an ID or script URL', () => {
+    expect(resolveAnalytics(qldResolved({ analytics: { enabled: false } }))).toEqual({
+      enabled: false,
+    })
+  })
 })
 
 describe('resolveServiceWorkerCache', () => {

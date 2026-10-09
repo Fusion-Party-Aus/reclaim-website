@@ -4,4 +4,4 @@ import VictoriaHome from '@/components/pages/VictoriaHome.astro'
 import BranchHome from '@/components/pages/BranchHome.astro'
 ---
 
-{DEPLOYMENT.slug === 'vic' ? <VictoriaHome /> : <BranchHome />}
+{DEPLOYMENT.contentProfile === 'victoria-campaign' ? <VictoriaHome /> : <BranchHome />}

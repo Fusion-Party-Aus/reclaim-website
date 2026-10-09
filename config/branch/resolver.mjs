@@ -138,7 +138,10 @@ function validateBranchEntry(entry, _manifest) {
   }
 
   const analytics = entry?.analytics ?? {}
-  if (isBlank(analytics.siteId)) required('analytics.siteId')
+  if (analytics.enabled !== undefined && typeof analytics.enabled !== 'boolean') {
+    invalid('analytics.enabled', 'must be a boolean')
+  }
+  if (analytics.enabled !== false && isBlank(analytics.siteId)) required('analytics.siteId')
 
   const deploy = entry?.deploy ?? {}
   if (isBlank(deploy.workerName)) required('deploy.workerName')
@@ -197,8 +200,11 @@ function applyOverrides(entry, env) {
   resolved.sanity.studioAppId =
     firstNonBlank(env.SANITY_STUDIO_APP_ID, entry.sanity.studioAppId) ?? entry.sanity.studioAppId
 
+  if (env.PUBLIC_ANALYTICS_SITE_ID && entry.analytics.enabled === false) {
+    resolved.analytics.enabled = true
+  }
   resolved.analytics.siteId =
-    firstNonBlank(env.PUBLIC_ANALYTICS_SITE_ID, entry.analytics.siteId) ?? entry.analytics.siteId
+    firstNonBlank(env.PUBLIC_ANALYTICS_SITE_ID, entry.analytics.siteId) ?? undefined
 
   resolved.deploy.workerName =
     firstNonBlank(env.WORKER_NAME, entry.deploy.workerName) ?? entry.deploy.workerName
@@ -253,7 +259,9 @@ function assertCrossBranchIsolation(manifest, resolved) {
     )
 
     assert(
-      resolved.analytics.siteId !== other.analytics.siteId,
+      resolved.analytics.enabled === false ||
+        other.analytics.enabled === false ||
+        resolved.analytics.siteId !== other.analytics.siteId,
       ERROR_CODES.ANALYTICS_COLLISION,
       `branches.${me}.analytics.siteId`,
       `Branch '${me}' shares an analytics site ID with '${otherSlug}'.`,
@@ -282,9 +290,13 @@ function assertCrossBranchIsolation(manifest, resolved) {
 }
 
 /** @param {Record<string, any>} assets @param {string} origin */
-/** @param {string} siteId */
-function resolveAnalytics(siteId) {
+/** @param {{ enabled?: boolean, siteId?: string, plausibleScriptUrl?: string }} analytics */
+function resolveAnalytics(analytics) {
+  const enabled = analytics.enabled !== false
+  if (!enabled) return { enabled: false }
+  const siteId = analytics.siteId
   return {
+    enabled: true,
     siteId,
     scriptUrl: `https://analytics.fusionparty.org.au/js/${siteId}.js`,
     initPath: '/plausible-init.js',
@@ -395,6 +407,18 @@ export function resolveBranch(manifest, env = {}) {
       )
   }
   if (runtime) {
+    for (const account of runtime.socialAccounts ?? []) {
+      assert(
+        typeof account?.platform === 'string' &&
+          account.platform.trim() !== '' &&
+          isSafeHref(account?.url) &&
+          account.url.startsWith('https://'),
+        ERROR_CODES.PRESENTATION_INVALID,
+        'runtime.socialAccounts',
+        `Branch '${slug}' has an invalid social account.`,
+        { slug }
+      )
+    }
     for (const item of runtime.navigation?.fallback ?? [])
       assert(
         isSafeHref(item.href),
@@ -436,7 +460,7 @@ export function resolveBranch(manifest, env = {}) {
     },
     analytics: {
       raw: { ...resolvedEntry.analytics },
-      resolved: resolveAnalytics(resolvedEntry.analytics.siteId),
+      resolved: resolveAnalytics(resolvedEntry.analytics),
     },
     deploy: {
       ...resolvedEntry.deploy,
@@ -460,8 +484,9 @@ export function resolveBranch(manifest, env = {}) {
       ? {
           runtime: {
             ...structuredClone(runtime),
+            assets: resolvedAssets,
             analytics: {
-              plausibleScriptUrl: resolveAnalytics(resolvedEntry.analytics.siteId).scriptUrl,
+              plausibleScriptUrl: resolveAnalytics(resolvedEntry.analytics).scriptUrl,
             },
           },
         }

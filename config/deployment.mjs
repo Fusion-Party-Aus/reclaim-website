@@ -39,6 +39,8 @@ export const branches = Object.fromEntries(
     return [
       slug,
       {
+        contentProfile: runtime.contentProfile ?? 'branch-neutral',
+        policyCallouts: runtime.policyCallouts ?? {},
         slug: entry.identity.slug,
         state: entry.identity.state,
         adjective: entry.identity.adjective,
@@ -49,6 +51,8 @@ export const branches = Object.fromEntries(
         navigation: runtime.navigation,
         contact: runtime.contact,
         analytics: runtime.analytics,
+        socialAccounts: runtime.socialAccounts ?? [],
+        assets: resolved.assets.resolved,
         seo: runtime.seo,
         cta: runtime.cta,
         footer: runtime.footer,
@@ -68,11 +72,16 @@ export function resolveDeployment(env = {}) {
   const runtime = runtimeView(resolved)
 
   const analytics = {
-    ...runtime.analytics,
-    plausibleScriptUrl: env.PUBLIC_PLAUSIBLE_SRC ?? resolved.analytics.resolved.scriptUrl,
+    ...(resolved.analytics.resolved.enabled
+      ? {
+          plausibleScriptUrl: env.PUBLIC_PLAUSIBLE_SRC ?? resolved.analytics.resolved.scriptUrl,
+        }
+      : {}),
   }
 
   return {
+    contentProfile: runtime.contentProfile ?? 'branch-neutral',
+    policyCallouts: runtime.policyCallouts ?? {},
     slug: resolved.identity.slug,
     state: resolved.identity.state,
     adjective: resolved.identity.adjective,
@@ -87,6 +96,8 @@ export function resolveDeployment(env = {}) {
     navigation: runtime.navigation,
     contact: runtime.contact,
     analytics,
+    socialAccounts: runtime.socialAccounts ?? [],
+    assets: resolved.assets.resolved,
     seo: runtime.seo,
     cta: runtime.cta,
     footer: runtime.footer,

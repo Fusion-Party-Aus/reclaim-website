@@ -30,6 +30,7 @@ describe('resolveBranch — Victoria', () => {
     expect(vic.sanity.dataset).toBe('production')
     expect(vic.sanity.studioAppId).toBe(VIC_APP_ID)
     expect(vic.analytics.resolved.siteId).toBe(VIC_ANALYTICS)
+    expect(vic.runtime.socialAccounts).toHaveLength(4)
     expect(vic.canonicalOrigin).toBe('https://vic.fusionparty.org.au')
     expect(vic.jurisdiction).toBe('Victoria, Australia')
     expect(vic.description).toContain('Fusion Party Victoria — Reignite Democracy.')
@@ -58,6 +59,9 @@ describe('resolveBranch — Queensland', () => {
     expect(qld.canonicalOrigin).toBe('https://qld.fusionparty.org.au')
     expect(qld.jurisdiction).toBe('Queensland, Australia')
     expect(qld.serviceWorkerCache).toBe('fusion-qld-1')
+    expect(qld.analytics.resolved).toEqual({ enabled: false })
+    expect(qld.runtime.socialAccounts).toEqual([])
+    expect(qld.assets.resolved.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
   })
 
   test('BRANCH and SANITY_STUDIO_BRANCH agree on the same source', () => {
@@ -125,6 +129,12 @@ describe('resolveBranch — environment override precedence', () => {
     const vic = resolveBranch(branchManifest, { WORKER_NAME: '   ', PUBLIC_SANITY_DATASET: '' })
     expect(vic.deploy.workerName).toBe('fusion-website')
     expect(vic.sanity.dataset).toBe('production')
+  })
+
+  test('disabled analytics stays disabled and emits no site ID or script', () => {
+    const qld = resolveBranch(branchManifest, { PUBLIC_BRANCH: 'qld' })
+    expect(qld.analytics.resolved).toEqual({ enabled: false })
+    expect(qld.runtime.analytics.plausibleScriptUrl).toBeUndefined()
   })
 })
 

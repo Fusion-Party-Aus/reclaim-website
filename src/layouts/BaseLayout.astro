@@ -101,12 +101,7 @@ const organizationStructuredData = {
     name: 'Fusion Party Australia',
     url: 'https://fusionparty.org.au/',
   },
-  sameAs: [
-    'https://www.facebook.com/FusionPartyAus',
-    'https://www.instagram.com/fusionpartyaus',
-    'https://www.youtube.com/c/fusionpartyaus',
-    'https://mastodon.au/@FusionPartyAus',
-  ],
+  sameAs: DEPLOYMENT.socialAccounts.map((account) => account.url),
 }
 const webSiteStructuredData = {
   '@context': 'https://schema.org',

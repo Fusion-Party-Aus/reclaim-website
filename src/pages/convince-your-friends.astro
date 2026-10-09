@@ -13,6 +13,7 @@ import { getConvinceYourFriendsPage } from '../lib/sanity'
 
 // Fetch content from Sanity
 const pageData = await getConvinceYourFriendsPage()
+const isVictoriaCampaign = DEPLOYMENT.contentProfile === 'victoria-campaign'
 
 interface MessageTemplate {
   id: string
@@ -116,7 +117,8 @@ What would help families in our area?`,
   },
 ]
 
-const templates: MessageTemplate[] = pageData?.templates || defaultTemplates
+const templates: MessageTemplate[] =
+  pageData?.templates || (isVictoriaCampaign ? defaultTemplates : [])
 
 const channelInfo = {
   email: {
@@ -199,7 +201,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 ---
 
 {
-  DEPLOYMENT.slug !== 'vic' && !pageData ? (
+  !isVictoriaCampaign && !pageData?.templates?.length ? (
     <BranchLanding
       title="Share our work"
       description="Read our published policies and share the proposals that matter to you."
