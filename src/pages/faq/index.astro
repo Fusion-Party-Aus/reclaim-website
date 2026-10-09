@@ -198,8 +198,11 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
             </h2>
             <p class="text-sm font-black text-fg mb-6 border-l-4 border-yellow pl-4 max-w-lg">
               Ask us at{' '}
-              <a href="mailto:hello@fusionparty.org.au" class="text-mint font-black hover:underline">
-                hello@fusionparty.org.au
+              <a
+                href={`mailto:${DEPLOYMENT.contact.helloEmail}`}
+                class="text-mint font-black hover:underline"
+              >
+                {DEPLOYMENT.contact.helloEmail}
               </a>
             </p>
             <div class="flex flex-wrap gap-3">

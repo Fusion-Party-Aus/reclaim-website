@@ -477,23 +477,19 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           <div class="flex flex-wrap gap-3">
             <BrutalButton
               variant="magenta"
-              href={DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact'}
+              href={DEPLOYMENT.cta.getInvolved}
               icon="mdi:account-plus"
             >
               Get Involved
             </BrutalButton>
             {
-              DEPLOYMENT.slug === 'vic' && (
-                <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
+              DEPLOYMENT.cta.costings && (
+                <BrutalButton variant="mint" href={DEPLOYMENT.cta.costings} icon="mdi:calculator">
                   See the Costings
                 </BrutalButton>
               )
             }
-            <BrutalButton
-              variant="black"
-              href={DEPLOYMENT.slug === 'vic' ? '/electorate' : '/electorates'}
-              icon="mdi:map-marker"
-            >
+            <BrutalButton variant="black" href={DEPLOYMENT.cta.electorates} icon="mdi:map-marker">
               Find Your Electorate
             </BrutalButton>
           </div>

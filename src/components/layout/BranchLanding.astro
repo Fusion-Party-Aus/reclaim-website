@@ -24,7 +24,7 @@ const {
     </h1>
     <p class="text-muted text-xl max-w-2xl mt-8 leading-relaxed">{description}</p>
     <div class="flex flex-wrap gap-4 mt-10">
-      <BrutalButton href="/contact" variant="magenta">Get involved</BrutalButton>
+      <BrutalButton href={DEPLOYMENT.cta.contact} variant="magenta">Get involved</BrutalButton>
       <BrutalButton href="/policies" variant="mint">Explore our policies</BrutalButton>
     </div>
     <slot />

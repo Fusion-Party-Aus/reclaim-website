@@ -256,10 +256,10 @@ const tierConfig: Record<
                   <p class="text-sm text-fg/50 leading-relaxed">
                     From {electorate.name}? Interested in running?{' '}
                     <a
-                      href="mailto:preselection@fusionparty.org.au"
+                      href={`mailto:${DEPLOYMENT.contact.preselectionEmail}`}
                       class="text-mint font-black underline hover:no-underline"
                     >
-                      preselection@fusionparty.org.au
+                      {DEPLOYMENT.contact.preselectionEmail}
                     </a>
                   </p>
                 </div>

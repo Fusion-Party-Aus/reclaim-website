@@ -23,7 +23,7 @@ interface Props {
 const {
   title: rawTitle,
   description: rawDescription = DEPLOYMENT.description,
-  image = DEPLOYMENT.slug === 'vic' ? '/og/default.png' : `/og/${DEPLOYMENT.slug}-default.png`,
+  image = DEPLOYMENT.seo.defaultOgImage,
   imageAlt = `${DEPLOYMENT.label} — ${DEPLOYMENT.tagline}.`,
   type = 'website',
   noindex = false,
@@ -78,7 +78,7 @@ const breadcrumbSchema = {
   ],
 }
 const organizationId = `${DEPLOYMENT.siteUrl}/#organization`
-const nationalOrganizationId = 'https://fusionparty.org.au/#organization'
+const nationalOrganizationId = DEPLOYMENT.seo.nationalOrganizationUrl
 const organizationStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -88,7 +88,7 @@ const organizationStructuredData = {
   url: `${DEPLOYMENT.siteUrl}/`,
   logo: {
     '@type': 'ImageObject',
-    url: `${DEPLOYMENT.siteUrl}/logo.png`,
+    url: `${DEPLOYMENT.siteUrl}${DEPLOYMENT.seo.logoPath}`,
   },
   description: `The ${DEPLOYMENT.adjective} branch of Fusion Party Australia, publishing current ${DEPLOYMENT.adjective} policy, research, news and analysis.`,
   areaServed: {
@@ -204,9 +204,14 @@ const webSiteStructuredData = {
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title={DEPLOYMENT.label} href="/rss.xml" />
     <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js"
-    ></script>
-    <script is:inline src="/plausible-init.js"></script>
+    {
+      DEPLOYMENT.analytics.plausibleScriptUrl && (
+        <>
+          <script async src={DEPLOYMENT.analytics.plausibleScriptUrl} />
+          <script is:inline src="/plausible-init.js" />
+        </>
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

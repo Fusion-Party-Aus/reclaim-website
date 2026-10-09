@@ -89,9 +89,7 @@ const footerData: Footer = footers[0] || {
 
             {
               footerData.tagline && (
-                <p class="text-sm text-fg/50 mt-3 max-w-xs leading-relaxed">
-                  {footerData.tagline}
-                </p>
+                <p class="text-sm text-fg/50 mt-3 max-w-xs leading-relaxed">{footerData.tagline}</p>
               )
             }
           </div>
@@ -127,7 +125,11 @@ const footerData: Footer = footers[0] || {
                   {footerData.newsletter?.description}
                 </p>
 
-                <form id="footer-newsletter-form" class="flex flex-col sm:flex-row gap-2">
+                <form
+                  id="footer-newsletter-form"
+                  data-endpoint={DEPLOYMENT.footer.newsletterEndpoint}
+                  class="flex flex-col sm:flex-row gap-2"
+                >
                   <label for="footer-newsletter-email" class="sr-only">
                     Email address
                   </label>
@@ -195,10 +197,10 @@ const footerData: Footer = footers[0] || {
             </h4>
             <ul class="space-y-2.5">
               {
-                DEPLOYMENT.slug === 'vic' && (
+                DEPLOYMENT.cta.transportScore && (
                   <li>
                     <a
-                      href="https://transportscore.fusionparty.org.au"
+                      href={DEPLOYMENT.cta.transportScore}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="footer-link text-sm text-mint hover:text-fg transition-colors font-bold flex items-center gap-1"
@@ -267,7 +269,7 @@ const footerData: Footer = footers[0] || {
       <p class="text-xs font-mono text-fg/60">
         Part of{' '}
         <a
-          href={footerData.networkBranding?.url || 'https://www.fusionparty.org.au'}
+          href={footerData.networkBranding?.url || DEPLOYMENT.footer.networkBrandingUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="text-fg/70 hover:text-mint transition-colors"
@@ -310,11 +312,12 @@ const footerData: Footer = footers[0] || {
       if (!input) return
 
       const email = input.value
+      const endpoint = form.dataset.endpoint || '/api/newsletter'
       if (button) button.disabled = true
       message.classList.add('hidden')
 
       try {
-        const res = await fetch('/api/newsletter', {
+        const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),

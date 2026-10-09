@@ -48,7 +48,7 @@ export default defineConfig({
       organization: {
         name: deployment.label,
         url: deployment.siteUrl,
-        logo: `${deployment.siteUrl}/logo.png`,
+        logo: `${deployment.siteUrl}${deployment.seo.logoPath}`,
         description: `${deployment.label} — ${deployment.tagline}. A ${deployment.adjective} policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.`,
         sameAs: [
           'https://www.facebook.com/FusionPartyAus',
@@ -130,7 +130,7 @@ export default defineConfig({
       agentsMd: {
         description: `${deployment.label} — ${deployment.tagline}. The ${deployment.adjective} platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.`,
         audience: `Voters, journalists, political analysts, AI agents, and anyone researching the ${deployment.adjective} political landscape or Fusion Party policies.`,
-        contact: 'contact@fusionparty.org.au',
+        contact: deployment.contact.email,
         links: [
           {
             title: 'Policy',
