@@ -1,126 +1,94 @@
-/** Values every branch shares unchanged. */
-const sharedContact = {
-  email: 'contact@fusionparty.org.au',
-  pressEmail: 'press@fusionparty.org.au',
-  helloEmail: 'hello@fusionparty.org.au',
-  preselectionEmail: 'preselection@fusionparty.org.au',
-  techEmail: 'tech@fusionparty.org.au',
-  discord: 'https://www.fusionparty.org.au/discord',
-}
+/**
+ * Deployment facade.
+ *
+ * The branch manifest (`config/branches.mjs`) is the single source of truth.
+ * This module is a thin compatibility adapter: it resolves the requested
+ * Branch through the fail-closed `resolveBranch` and maps the resulting
+ * descriptor into the exact `Deployment` object shape that components and
+ * `astro.config.mjs` consume today.
+ *
+ * There is no `slug === 'qld'` / `slug === 'vic'` special-casing and no silent
+ * fallback: an unknown or incomplete Branch throws from the resolver.
+ *
+ * See docs/sparc/branch-agnostic/architecture_blueprint.md §5.2 and §9.
+ */
 
-const sharedFooter = {
-  networkBrandingUrl: 'https://www.fusionparty.org.au',
-  newsletterEndpoint: '/api/newsletter',
-}
+import { branchManifest } from './branches.mjs'
+import { resolveBranch } from './branch/resolver.mjs'
 
-const sharedSeo = {
-  nationalOrganizationUrl: 'https://fusionparty.org.au/#organization',
-  logoPath: '/logo.png',
-}
-
-/** Deployment identity is independent of the Git branch. Victoria remains the default. */
-export const branches = {
-  vic: {
-    slug: 'vic',
-    state: 'Victoria',
-    adjective: 'Victorian',
-    label: 'Fusion Party Victoria',
-    tagline: 'Reignite Democracy',
-    themeColor: '#D428D4',
-    siteUrl: 'https://vic.fusionparty.org.au',
-    navigation: {
-      fallback: [
-        { label: 'Home', href: '/' },
-        { label: 'About', href: '/about' },
-        { label: 'Policies', href: '/policies' },
-        { label: 'Vision', href: '/vision' },
-        { label: 'Research', href: '/research' },
-      ],
-      cta: { label: 'Get involved', href: '/get-involved' },
-    },
-    contact: {
-      ...sharedContact,
-      phone: '0410 249 574',
-      address: '254 McLeod Lane\nMansfield VIC 3722\nAustralia',
-    },
-    analytics: {
-      plausibleScriptUrl: 'https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js',
-    },
-    seo: {
-      ...sharedSeo,
-      defaultOgImage: '/og/default.png',
-    },
-    cta: {
-      getInvolved: '/get-involved',
-      donate: '/get-involved#donate',
-      donateNational: 'https://fusionparty.org.au/donate',
-      contact: '/contact',
-      costings: '/costings',
-      electorates: '/electorate',
-      transportScore: 'https://transportscore.fusionparty.org.au',
-    },
-    footer: sharedFooter,
-  },
-  qld: {
-    slug: 'qld',
-    state: 'Queensland',
-    adjective: 'Queensland',
-    label: 'Fusion Party Queensland',
-    tagline: 'A better future for Queensland',
-    themeColor: '#731E32',
-    siteUrl: 'https://qld.fusionparty.org.au',
-    navigation: {
-      fallback: [
-        { label: 'Home', href: '/' },
-        { label: 'Policies', href: '/policies' },
-        { label: 'Contact', href: '/contact' },
-      ],
-      cta: { label: 'Get involved', href: '/contact' },
-    },
-    contact: {
-      ...sharedContact,
-    },
-    analytics: {},
-    seo: {
-      ...sharedSeo,
-      defaultOgImage: '/og/qld-default.png',
-    },
-    cta: {
-      getInvolved: '/contact',
-      donate: 'https://fusionparty.org.au/donate',
-      donateNational: 'https://fusionparty.org.au/donate',
-      contact: '/contact',
-      electorates: '/electorates',
-    },
-    footer: sharedFooter,
-  },
-}
-
-export function resolveDeployment(env = {}) {
-  const slug = env.PUBLIC_BRANCH || env.SANITY_STUDIO_BRANCH || 'vic'
-  if (!Object.hasOwn(branches, slug)) throw new Error(`Unknown deployment branch: ${slug}`)
-  const branch = branches[slug]
-  const projectId = env.PUBLIC_SANITY_PROJECT_ID || env.SANITY_STUDIO_PROJECT_ID || 'qwl3f8jb'
-  const dataset =
-    env.PUBLIC_SANITY_DATASET ||
-    env.SANITY_STUDIO_DATASET ||
-    (slug === 'vic' ? 'production' : 'qld')
-  if (slug !== 'vic' && projectId === 'qwl3f8jb' && dataset === 'production') {
+/** @param {import('./branch/contract.mjs').BranchEntry} entry */
+function runtimeView(resolved) {
+  const runtime = resolved.runtime
+  if (!runtime) {
     throw new Error(
-      'Queensland must use its own Sanity dataset or project, not Victoria production'
+      `Branch '${resolved.identity.slug}' declares no runtime presentation configuration.`
     )
   }
-  const siteUrl = new URL(env.SITE_URL || env.PUBLIC_SITE_URL || branch.siteUrl).origin
-  const analytics = env.PUBLIC_PLAUSIBLE_SRC
-    ? { ...branch.analytics, plausibleScriptUrl: env.PUBLIC_PLAUSIBLE_SRC }
-    : branch.analytics
+  return runtime
+}
+
+/**
+ * Runtime branch map derived from the manifest. Retained so
+ * `config/deployment.d.mts` keeps typechecking and any legacy consumer keeps
+ * working; the values are the manifest's resolved presentation shape.
+ */
+export const branches = Object.fromEntries(
+  Object.entries(branchManifest.branches).map(([slug, entry]) => {
+    const resolved = resolveBranch(branchManifest, { PUBLIC_BRANCH: slug })
+    const runtime = runtimeView(resolved)
+    return [
+      slug,
+      {
+        slug: entry.identity.slug,
+        state: entry.identity.state,
+        adjective: entry.identity.adjective,
+        label: entry.identity.label,
+        tagline: entry.identity.tagline,
+        themeColor: entry.identity.themeColor,
+        siteUrl: resolved.canonicalOrigin,
+        navigation: runtime.navigation,
+        contact: runtime.contact,
+        analytics: runtime.analytics,
+        seo: runtime.seo,
+        cta: runtime.cta,
+        footer: runtime.footer,
+      },
+    ]
+  })
+)
+
+/**
+ * Resolve the active deployment from the manifest and environment.
+ *
+ * @param {Record<string, string | boolean | undefined>} [env]
+ * @returns {import('./deployment.d.mts').Deployment}
+ */
+export function resolveDeployment(env = {}) {
+  const resolved = resolveBranch(branchManifest, env)
+  const runtime = runtimeView(resolved)
+
+  const analytics = {
+    ...runtime.analytics,
+    plausibleScriptUrl: env.PUBLIC_PLAUSIBLE_SRC ?? resolved.analytics.resolved.scriptUrl,
+  }
+
   return {
-    ...branch,
-    siteUrl,
-    projectId,
-    dataset,
+    slug: resolved.identity.slug,
+    state: resolved.identity.state,
+    adjective: resolved.identity.adjective,
+    label: resolved.identity.label,
+    tagline: resolved.identity.tagline,
+    themeColor: resolved.identity.themeColor,
+    siteUrl: resolved.canonicalOrigin,
+    projectId: resolved.sanity.projectId,
+    dataset: resolved.sanity.dataset,
+    jurisdiction: resolved.jurisdiction,
+    description: resolved.description,
+    navigation: runtime.navigation,
+    contact: runtime.contact,
     analytics,
-    jurisdiction: `${branch.state}, Australia`,
-    description: `${branch.label} — ${branch.tagline}. Explore our policies, research and practical plans for housing, transport, integrity and civil liberties.`,
+    seo: runtime.seo,
+    cta: runtime.cta,
+    footer: runtime.footer,
   }
 }

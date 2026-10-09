@@ -1,5 +1,8 @@
 import { loadEnv } from 'vite'
 import { resolveDeployment } from './config/deployment.mjs'
+import { branchManifest } from './config/branches.mjs'
+import { resolveBranch } from './config/branch/resolver.mjs'
+import { resolveDeployConfig } from './config/branch/deploy.mjs'
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import aiReadiness from '@adkinn/astro-ai-readiness'
@@ -13,11 +16,13 @@ import node from '@astrojs/node'
 import sanity from '@sanity/astro'
 import react from '@astrojs/react'
 import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 
-const deployment = resolveDeployment({
+const env = {
   ...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''),
   ...process.env,
-})
+}
+const deployment = resolveDeployment(env)
 const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
@@ -227,10 +232,17 @@ export default defineConfig({
   // switch to cloudflare for production builds.
   adapter: isDev
     ? node({ mode: 'standalone' })
-    : cloudflare({
-        imageService: 'passthrough',
-        ...(deployment.slug === 'qld' ? { configPath: './wrangler.qld.toml' } : {}),
-        platformProxy: { enabled: false },
-      }),
+    : (() => {
+        const resolved = resolveBranch(branchManifest, env)
+        const deployConfig = resolveDeployConfig(resolved, env)
+        return cloudflare({
+          imageService: 'passthrough',
+          configPath: deployConfig.wranglerConfigPath,
+          platformProxy: { enabled: false },
+        })
+      })(),
   output: 'server',
+  outDir: process.env.ASTRO_BRANCH_BUILD_OUT_DIR
+    ? path.resolve(process.env.ASTRO_BRANCH_BUILD_OUT_DIR)
+    : './dist',
 })

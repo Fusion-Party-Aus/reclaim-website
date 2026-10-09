@@ -1,23 +1,22 @@
 import process from 'node:process'
-import {resolveDeployment} from '../config/deployment.mjs'
-const deployment = resolveDeployment({
+import {branchManifest} from '../config/branches.mjs'
+import {resolveBranch} from '../config/branch/resolver.mjs'
+import {defineCliConfig} from 'sanity/cli'
+
+const resolved = resolveBranch(branchManifest, {
   SANITY_STUDIO_BRANCH: process.env.SANITY_STUDIO_BRANCH,
   SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
   SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
+  SANITY_STUDIO_APP_ID: process.env.SANITY_STUDIO_APP_ID,
 })
-import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: deployment.projectId,
-    dataset: deployment.dataset,
+    projectId: resolved.sanity.projectId,
+    dataset: resolved.sanity.dataset,
   },
   deployment: {
-    ...(process.env.SANITY_STUDIO_APP_ID
-      ? {appId: process.env.SANITY_STUDIO_APP_ID}
-      : deployment.slug === 'vic'
-        ? {appId: 'b1vkw1bmcrkhlb4no5vyzdlg'}
-        : {appId: 'pctplpfvvxwavjm1erscuknz'}),
+    appId: resolved.sanity.studioAppId,
     /**
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/cli#auto-updates

@@ -1,0 +1,149 @@
+%% Branch-Agnostic Framework — system architecture
+%% Phase P (Planning) companion to architecture_blueprint.md
+%% Contains no secrets and no PII.
+
+flowchart TB
+
+  %% ---------------- Declarative data (single source of truth) ----------------
+  subgraph DATA["Declarative data"]
+    MAN["BranchManifest<br/>schemaVersion, defaultBranch,<br/>branches, tokenContract"]
+    TC["TokenContract<br/>requiredRoles + kinds"]
+    SR["SingletonRegistry<br/>homePage, navigation, footer, siteConfig"]
+    SC["StarterContent<br/>branch-neutral, built from identity"]
+    NEU["NEUTRAL presentation constant<br/>branch-free defaults"]
+  end
+
+  %% ---------------- Core resolution (deep module) ----------------
+  subgraph CORE["Resolution core"]
+    RES["BranchResolver — deep module<br/>validate shape -> select slug -><br/>validate entry -> apply overrides -><br/>assert isolation -> derive"]
+    ERR["ErrorTaxonomy<br/>closed ErrorCode set; throw, never fall back"]
+  end
+
+  %% ---------------- Derivations from the descriptor ----------------
+  subgraph DERIVE["Derivations from ResolvedBranch"]
+    THM["ThemeResolver<br/>token contract + selector"]
+    REG["ThemeRegistry<br/>import list from manifest keys"]
+    AST["AssetResolver<br/>ownership + SW cache namespace"]
+    ANL["AnalyticsResolver<br/>siteId -> script URL"]
+    PRS["PresentationResolver<br/>content > manifest > NEUTRAL"]
+    DEP["DeployConfigResolver<br/>worker, wrangler path, KV"]
+  end
+
+  %% ---------------- Provisioning ----------------
+  subgraph PROV["Provisioning"]
+    PROVBR["BranchProvisioner<br/>idempotent or refuse"]
+    MW["ManifestWriter<br/>atomic upsert"]
+    ADPT["SanityAdapter — port<br/>create project/dataset/studio, seed"]
+  end
+
+  %% ---------------- Consumers ----------------
+  subgraph CONS["Consumers"]
+    FAC["DeploymentFacade<br/>legacy runtime shape"]
+    ASTRO["Astro build config<br/>adapter configPath, sitemap, SEO"]
+    SITE["Site runtime / pages / components"]
+    STUDIO["Studio CLI config<br/>projectId, dataset, appId"]
+    NPMP["npm scripts<br/>provision / deploy / build <slug>"]
+  end
+
+  %% ---------------- CI matrix + verification ----------------
+  subgraph CI["CI matrix and verification"]
+    BO["BuildOrchestrator<br/>for each manifest key: resolve, derive, build, verify"]
+    VP["verifyParity<br/>resolved slug == requested"]
+    VL["verifyLeakage<br/>scan built output"]
+  end
+
+  %% ---------------- Security controls ----------------
+  subgraph SEC["Security and isolation controls"]
+    ISO["Cross-branch isolation assertions<br/>sanity / studio / worker / KV / analytics"]
+    LEAKS["Foreign identity, asset, analytics, cache scan"]
+    CRED["Credentials injected at runtime<br/>never persisted, never in manifest"]
+  end
+
+  %% ---------------- External services ----------------
+  subgraph EXT["External services"]
+    SANITY["Sanity API"]
+    CF["Cloudflare Workers / KV"]
+  end
+
+  %% ---------------- Test seams ----------------
+  subgraph TEST["Test seams"]
+    T1["Seam 1 — resolver as pure function<br/>(manifest, env) -> ResolvedBranch"]
+    T2["Seam 2 — built site per branch<br/>injected output reader"]
+  end
+
+  %% ---------------- Resolution flow ----------------
+  MAN --> RES
+  TC --> RES
+  ERR -.-> RES
+  RES -->|"ResolvedBranch (immutable)"| THM
+  RES --> AST
+  RES --> ANL
+  RES --> PRS
+  RES --> DEP
+  RES --> FAC
+  MAN --> REG
+  MAN --> BO
+
+  %% ---------------- Consumer wiring ----------------
+  THM --> ASTRO
+  AST --> ASTRO
+  ANL --> ASTRO
+  DEP --> ASTRO
+  FAC --> SITE
+  RES --> STUDIO
+  RES --> NPMP
+  REG --> ASTRO
+  NPMP --> CF
+  DEP --> CF
+  ASTRO --> CF
+
+  %% ---------------- Provisioning flow ----------------
+  PROVBR --> SR
+  PROVBR --> SC
+  PROVBR --> ADPT
+  PROVBR --> MW
+  MW --> MAN
+  ADPT --> SANITY
+  CRED -.-> PROVBR
+
+  %% ---------------- CI + verification flow ----------------
+  BO --> RES
+  BO --> THM
+  BO --> AST
+  BO --> ANL
+  BO --> DEP
+  BO --> PRS
+  BO --> VP
+  BO --> VL
+  VP --> MAN
+  VL --> MAN
+  VL --> T2
+
+  %% ---------------- Security wiring ----------------
+  RES --> ISO
+  VL --> LEAKS
+  PRS --> NEU
+
+  %% ---------------- Test seam wiring ----------------
+  RES --> T1
+
+  %% ---------------- Styling ----------------
+  classDef data fill:#e8f0fe,stroke:#1a73e8,stroke-width:2px,color:#0b1f3a
+  classDef core fill:#d428d4,stroke:#4a1120,stroke-width:3px,color:#ffffff
+  classDef derive fill:#00ddb8,stroke:#0f5f52,stroke-width:2px,color:#08221d
+  classDef prov fill:#731e32,stroke:#4a1120,stroke-width:2px,color:#ffffff
+  classDef cons fill:#fff7ec,stroke:#8f6119,stroke-width:2px,color:#233d3a
+  classDef ci fill:#233d3a,stroke:#0b1f3a,stroke-width:2px,color:#fff7ec
+  classDef sec fill:#f4c66a,stroke:#8f6119,stroke-width:2px,color:#233d3a
+  classDef ext fill:#f0f0f0,stroke:#666666,stroke-width:1px,color:#222222
+  classDef test fill:#efe7ff,stroke:#5b21b6,stroke-width:2px,color:#2e1065
+
+  class MAN,TC,SR,SC,NEU data
+  class RES,ERR core
+  class THM,REG,AST,ANL,PRS,DEP derive
+  class PROVBR,MW,ADPT prov
+  class FAC,ASTRO,SITE,STUDIO,NPMP cons
+  class BO,VP,VL ci
+  class ISO,LEAKS,CRED sec
+  class SANITY,CF ext
+  class T1,T2 test

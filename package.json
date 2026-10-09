@@ -1,17 +1,25 @@
 {
   "name": "astro",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
     "dev:sanity": "cd studio && ./node_modules/.bin/sanity dev --port 3333",
-    "prebuild": "node scripts/og/generate-policy-images.mjs",
+    "predev": "node scripts/branch/generate-theme-index.mjs",
+    "prebuild": "node scripts/branch/generate-theme-index.mjs && node scripts/og/generate-policy-images.mjs",
     "build": "astro build",
     "build:sanity": "cd studio && ./node_modules/.bin/sanity build",
     "deploy:sanity": "cd studio && ./node_modules/.bin/sanity deploy",
+    "dev:branch": "node scripts/branch/verify-builds.mjs --run npx astro dev",
+    "build:branch": "node scripts/branch/verify-builds.mjs --run npm run build",
+    "seed:branch": "node scripts/branch/verify-builds.mjs --run node --env-file-if-exists=.env scripts/sanity/seed-branch.mjs",
+    "provision:branch": "node --env-file-if-exists=.env scripts/sanity/provision-branch.mjs",
+    "provision:qld": "node --env-file-if-exists=.env scripts/sanity/provision-qld.mjs",
+    "verify:branches": "node scripts/branch/verify-builds.mjs",
+    "deploy": "wrangler deploy",
     "preview": "astro preview",
     "astro": "astro",
     "sanity": "cd studio && ./node_modules/.bin/sanity",
@@ -25,6 +33,7 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
+    "test:config": "vitest run config",
     "migrate": "node scripts/migration/migrate.js",
     "import:policies": "node scripts/migration/import-policies.js",
     "import:policies:scaffold": "node scripts/migration/import-scaffolded-policies.js",
@@ -42,11 +51,11 @@
     "generate:og:policies": "node scripts/og/generate-policy-images.mjs",
     "prepare": "husky",
     "import:research": "node scripts/migration/import-research-resources.js",
-    "dev:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld astro dev",
-    "build:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld npm run build",
+    "dev:qld": "BRANCH=qld npm run dev:branch",
+    "build:qld": "BRANCH=qld npm run build:branch",
     "dev:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity dev --port 3334",
     "build:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity build",
-    "seed:qld": "PUBLIC_BRANCH=qld PUBLIC_SANITY_DATASET=qld node --env-file-if-exists=.env scripts/sanity/seed-branch.mjs"
+    "seed:qld": "BRANCH=qld npm run seed:branch"
   },
   "lint-staged": {
     "*.{js,ts,tsx,astro}": [
