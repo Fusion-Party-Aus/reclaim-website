@@ -371,6 +371,7 @@ export function resolveBranch(manifest, env = {}) {
     identity: resolvedEntry.identity,
     canonicalOrigin,
     assets: resolvedEntry.assets,
+    branchSlugs: Object.keys(manifest.branches),
   })
   const runtime = resolvedEntry.runtime
   const manifestPresentation = resolvedEntry.presentation
@@ -473,10 +474,7 @@ export function resolveBranch(manifest, env = {}) {
             contact: runtime.contact,
             social: [],
             seo: runtime.seo,
-            ctas: [
-              ...(runtime.navigation?.cta ? [runtime.navigation.cta] : []),
-              ...Object.entries(runtime.cta ?? {}).map(([label, href]) => ({ label, href })),
-            ],
+            ctas: [...(runtime.navigation?.cta ? [runtime.navigation.cta] : [])],
           }
         : resolvedEntry.presentation
     ),

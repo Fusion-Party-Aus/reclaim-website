@@ -194,7 +194,7 @@ async function resolveStudioAppId(projectId, existing, options, identity, creden
  *
  * @param {object} manifest BranchManifest.
  * @param {string} slug Branch slug to provision.
- * @param {object} [options] Provisioning options (`mode`, `allowDefault`, identity and binding overrides).
+ * @param {object} [options] Provisioning options (`mode`, authorization flags, `aclMode`, identity and binding overrides).
  * @param {{ writeToken: string }} [credentials] Runtime-injected secrets.
  * @param {object} [adapters] Injected Sanity port plus `manifestWriter`.
  * @returns {Promise<object>} ProvisionResult.
@@ -277,13 +277,7 @@ export async function provisionBranch(
       )
     }
   }
-  const preflight = buildManifestEntry(
-    identity,
-    options.projectId ?? existing?.sanity?.projectId ?? 'pendingproject',
-    options.dataset ?? existing?.sanity?.dataset ?? 'production',
-    options.studioAppId ?? existing?.sanity?.studioAppId ?? 'pendingapp',
-    options
-  )
+  const preflight = candidateEntry(identity, options, existing)
   assertCandidate(manifest, slug, preflight)
 
   const remoteSideEffects = []
@@ -326,7 +320,7 @@ export async function provisionBranch(
     adapters
   )
 
-  const entry = buildManifestEntry(identity, projectId, dataset, studioAppId, options)
+  const entry = candidateEntry(identity, { ...options, projectId, dataset, studioAppId }, existing)
   try {
     assertCandidate(manifest, slug, entry)
   } catch (error) {
@@ -335,6 +329,7 @@ export async function provisionBranch(
   }
 
   await adapters.deployStudio({ projectId, dataset, studioAppId, themeSlug: slug }, credentials)
+  await adapters.manifestWriter(manifest, slug, entry)
 
   const starterDocuments = buildStarterContent({ identity })
   const seeded = []
@@ -350,8 +345,6 @@ export async function provisionBranch(
     await adapters.createIfNotExists(projectId, dataset, document, credentials)
     seeded.push(type)
   }
-
-  await adapters.manifestWriter(manifest, slug, entry)
 
   return { slug, projectId, dataset, studioAppId, seeded, skipped, manifestUpdated: true }
 }

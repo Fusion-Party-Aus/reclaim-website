@@ -172,6 +172,28 @@ describe('resolveDeployConfig', () => {
     expect(error.code).toBe(ERROR_CODES.DEPLOY_CONFIG_MISSING)
   })
 
+  it('wraps canonicalization failures with deploy context', () => {
+    const error = captureError(() =>
+      resolveDeployConfig(
+        resolvedFor('qld'),
+        {},
+        {
+          fileExists: allowAll,
+          realpath: () => {
+            throw new Error('unavailable')
+          },
+        }
+      )
+    )
+    expect(error).toBeInstanceOf(BranchConfigError)
+    expect(error.code).toBe(ERROR_CODES.DEPLOY_CONFIG_MISSING)
+    expect(error.field).toBe('deploy.wranglerConfig')
+    expect(error.context).toMatchObject({
+      slug: 'qld',
+      path: expect.stringContaining('wrangler.qld.toml'),
+    })
+  })
+
   it('throws DEPLOY_CONFIG_MISSING when a KV namespace binding is incomplete', () => {
     const error = captureError(() =>
       resolveDeployConfig(

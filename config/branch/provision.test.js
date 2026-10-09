@@ -181,6 +181,21 @@ describe('provisionBranch — fail-closed refusals', () => {
     expect(error.code).toBe(ERROR_CODES.BRANCH_RESERVED)
   })
 
+  it('requires authorization as well as allowDefault for the manifest default branch', async () => {
+    const { state, adapters } = makeHarness()
+    const error = await captureError(
+      provisionBranch(
+        state.manifest,
+        'vic',
+        { allowDefault: true, aclMode: 'public' },
+        CREDENTIALS,
+        adapters
+      )
+    )
+    expect(error.code).toBe(ERROR_CODES.BRANCH_RESERVED)
+    expect(Object.values(state.calls).flat()).toHaveLength(0)
+  })
+
   it('refuses an already-registered slug with BRANCH_ALREADY_REGISTERED', async () => {
     const { state, adapters } = makeHarness()
     state.manifest.branches.qld = { ...vicEntry(), identity: QLD_IDENTITY }
@@ -189,6 +204,22 @@ describe('provisionBranch — fail-closed refusals', () => {
     )
     expect(error).toBeInstanceOf(BranchConfigError)
     expect(error.code).toBe(ERROR_CODES.BRANCH_ALREADY_REGISTERED)
+  })
+
+  it('requires authorizeUpdate before reconciling an existing branch', async () => {
+    const { state, adapters } = makeHarness()
+    state.manifest.branches.qld = { ...vicEntry(), identity: QLD_IDENTITY }
+    const error = await captureError(
+      provisionBranch(
+        state.manifest,
+        'qld',
+        { mode: 'update', aclMode: 'public' },
+        CREDENTIALS,
+        adapters
+      )
+    )
+    expect(error.code).toBe(ERROR_CODES.BRANCH_ALREADY_REGISTERED)
+    expect(Object.values(state.calls).flat()).toHaveLength(0)
   })
 
   it('requires a write token with CREDENTIAL_MISSING', async () => {
@@ -312,6 +343,32 @@ describe('provisionBranch — creation and seeding', () => {
       dataset: 'production',
       studioAppId: 'app-new',
     })
+  })
+
+  it('writes the validated manifest entry before seeding so failed seeding retains resource IDs', async () => {
+    const { state, adapters } = makeHarness()
+    adapters.createIfNotExists = async () => {
+      throw new Error('seed failed')
+    }
+
+    const error = await captureError(
+      provisionBranch(
+        state.manifest,
+        'qld',
+        { identity: QLD_IDENTITY, aclMode: 'public' },
+        CREDENTIALS,
+        adapters
+      )
+    )
+
+    expect(error.message).toBe('seed failed')
+    expect(state.manifest.branches.qld.sanity).toEqual({
+      projectId: 'proj-new',
+      dataset: 'production',
+      studioAppId: 'app-new',
+    })
+    expect(error.remoteSideEffects).toContain('manifestWriter')
+    expect(error.remoteSideEffects).toContain('deployStudio')
   })
 
   it('reuses a supplied project, dataset and Studio app instead of creating them', async () => {

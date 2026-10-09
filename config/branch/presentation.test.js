@@ -70,6 +70,20 @@ describe('resolvePresentation precedence', () => {
     expect(result).not.toEqual(NEUTRAL)
   })
 
+  it('preserves all declared contact fields', () => {
+    const contact = {
+      email: 'general@example.org',
+      pressEmail: 'press@example.org',
+      helloEmail: 'hello@example.org',
+      preselectionEmail: 'preselection@example.org',
+      techEmail: 'tech@example.org',
+      discord: 'https://discord.gg/example',
+      phone: '0400 000 000',
+      address: '1 Example St',
+    }
+    expect(resolvePresentation(resolvedFor('qld'), { contact }).contact).toEqual(contact)
+  })
+
   it('resolves per-field, letting content fill gaps the manifest leaves', () => {
     const result = resolvePresentation(resolvedFor('qld', manifestPresentation()), {
       contact: { email: 'content@example.org' },

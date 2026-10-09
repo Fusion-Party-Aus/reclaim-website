@@ -12,7 +12,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { ERROR_CODES, assert } from './contract.mjs'
+import { ERROR_CODES, BranchConfigError, assert } from './contract.mjs'
 
 function deriveRepoRoot() {
   const base = import.meta.url
@@ -113,8 +113,11 @@ export function resolveDeployConfig(resolved, env = {}, deps = {}) {
   try {
     realConfigPath = realpath(wranglerConfigPath)
   } catch {
-    throw new /** @type {any} */ (Error)(
-      `Wrangler config for Branch '${slug}' could not be canonicalized.`
+    throw new BranchConfigError(
+      ERROR_CODES.DEPLOY_CONFIG_MISSING,
+      'deploy.wranglerConfig',
+      `Wrangler config for Branch '${slug}' could not be canonicalized.`,
+      { slug, path: wranglerConfigPath }
     )
   }
   assert(
@@ -122,7 +125,7 @@ export function resolveDeployConfig(resolved, env = {}, deps = {}) {
     ERROR_CODES.DEPLOY_CONFIG_MISSING,
     'deploy.wranglerConfig',
     'Wrangler config resolves outside the repository.',
-    { slug }
+    { slug, path: realConfigPath }
   )
 
   const kvNamespaces = deploy.kvNamespaces ?? []

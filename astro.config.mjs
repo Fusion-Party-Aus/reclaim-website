@@ -202,7 +202,7 @@ export default defineConfig({
       projectId: deployment.projectId,
       dataset: deployment.dataset,
       // Keep Astro's Sanity integration consistent with src/lib/sanity.ts.
-      useCdn: true,
+      useCdn: false,
       stega: {
         studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
       },

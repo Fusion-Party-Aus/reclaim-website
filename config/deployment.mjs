@@ -74,7 +74,10 @@ export function resolveDeployment(env = {}) {
   const analytics = {
     ...(resolved.analytics.resolved.enabled
       ? {
-          plausibleScriptUrl: env.PUBLIC_PLAUSIBLE_SRC ?? resolved.analytics.resolved.scriptUrl,
+          plausibleScriptUrl:
+            typeof env.PUBLIC_PLAUSIBLE_SRC === 'string' && env.PUBLIC_PLAUSIBLE_SRC.trim()
+              ? env.PUBLIC_PLAUSIBLE_SRC.trim()
+              : resolved.analytics.resolved.scriptUrl,
         }
       : {}),
   }
@@ -88,6 +91,7 @@ export function resolveDeployment(env = {}) {
     label: resolved.identity.label,
     tagline: resolved.identity.tagline,
     themeColor: resolved.identity.themeColor,
+    themeTokens: resolved.theme.tokens,
     siteUrl: resolved.canonicalOrigin,
     projectId: resolved.sanity.projectId,
     dataset: resolved.sanity.dataset,

@@ -260,6 +260,30 @@ describe('verifyLeakage', () => {
     expect(error.context).toMatchObject({ foreign: 'qld', kind: 'asset' })
   })
 
+  it('detects an asset owned by a third registered branch', () => {
+    const manifest = makeManifest()
+    manifest.branches.nsw = JSON.parse(JSON.stringify(manifest.branches.qld))
+    manifest.branches.nsw.identity = {
+      ...manifest.branches.qld.identity,
+      slug: 'nsw',
+      state: 'New South Wales',
+      label: 'Fusion Party New South Wales',
+      siteUrl: 'https://nsw.fusionparty.org.au',
+    }
+    manifest.branches.nsw.theme.slug = 'nsw'
+    manifest.branches.nsw.assets.ogDefault = '/og/nsw-default.png'
+    manifest.branches.nsw.assets.hero = '/nsw/hero.png'
+    manifest.branches.nsw.analytics.siteId = 'pa-nsw-ccc'
+    manifest.branches.nsw.deploy.workerName = 'fusion-nsw'
+
+    const resolved = makeResolved(manifest, 'vic')
+    const error = expectCode(
+      () => verifyLeakage(resolved, manifest, () => '<img src="/og/nsw-default.png">'),
+      ERROR_CODES.LEAKAGE_FAILURE
+    )
+    expect(error.context).toMatchObject({ foreign: 'nsw', kind: 'asset' })
+  })
+
   it('allows an intentionally shared root asset referenced by another branch', () => {
     const manifest = makeManifest()
     manifest.branches.qld.assets.hero = '/solo-full-colour.svg'

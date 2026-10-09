@@ -64,6 +64,14 @@ describe('resolveBranch — Queensland', () => {
     expect(qld.assets.resolved.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
   })
 
+  test('does not normalize runtime CTA object keys into human-readable labels', () => {
+    const manifest = clone()
+    manifest.branches.vic.runtime.cta = { join: '/join', contribute: '/donate' }
+    const vic = resolveBranch(manifest, {})
+    expect(vic.presentation.ctas).toEqual([{ label: 'Get involved', href: '/get-involved' }])
+    expect(vic.runtime.cta).toEqual({ join: '/join', contribute: '/donate' })
+  })
+
   test('BRANCH and SANITY_STUDIO_BRANCH agree on the same source', () => {
     const viaPublic = resolveBranch(branchManifest, { PUBLIC_BRANCH: 'qld' })
     const viaStudio = resolveBranch(branchManifest, { SANITY_STUDIO_BRANCH: 'qld' })

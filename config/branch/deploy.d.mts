@@ -10,6 +10,8 @@ export type BranchEnv = Record<string, string | boolean | undefined>
 export interface DeployResolverDeps {
   /** Existence predicate for the resolved wrangler config path. Defaults to fs.existsSync. */
   fileExists?: (path: string) => boolean
+  /** Canonicalize the existing config path. Defaults to fs.realpathSync. */
+  realpath?: (path: string) => string
 }
 
 export interface BranchBuildResult {
@@ -23,6 +25,7 @@ export interface BuildAllBranchesDeps {
   buildBranch: (resolved: ResolvedBranch, deploy: DeployConfig, env: BranchEnv) => void
   verify: (resolved: ResolvedBranch, manifest: BranchManifest, env: BranchEnv) => void
   fileExists?: (path: string) => boolean
+  realpath?: (path: string) => string
 }
 
 /**

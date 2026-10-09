@@ -28,7 +28,7 @@ function asString(value) {
   return typeof value === 'string' ? value : ''
 }
 
-function canonicalAsset(value, origin, slug) {
+function canonicalAsset(value, origin, slug, branchSlugs = []) {
   if (typeof value !== 'string' || !value.trim() || /[\\\u0000-\u001f\u007f]/.test(value))
     return null
   const raw = value.trim()
@@ -66,27 +66,29 @@ function canonicalAsset(value, origin, slug) {
   )
     return null
   const path = url.pathname.toLowerCase()
-  const foreign = slug === 'vic' ? /(?:^|\/)qld(?:\/|[-.])/ : /(?:^|\/)vic(?:\/|[-.])/
-  if (foreign.test(path)) return null
+  const foreignSlugs = branchSlugs.filter((branchSlug) => branchSlug !== slug)
+  if (foreignSlugs.some((branchSlug) => new RegExp(`(?:^|/)${branchSlug}(?:/|[-.])`).test(path)))
+    return null
   return `${url.pathname}${url.search}${url.hash}`
 }
 
 /**
- * A branch owns an asset when the asset path is namespaced to the branch: a path
- * segment or filename token equals the branch slug (`/vic/hero.png`,
- * `/og/qld-default.png`). Assets owned by another branch — or not namespaced at
- * all — are rejected by `resolveAssets`.
+ * Return false when an asset path carries a marker belonging to any other
+ * registered branch. Generic shared paths remain allowed; branch-specific paths
+ * are recognized from the complete manifest slug list rather than a fixed pair.
  *
  * @param {unknown} assetPath
  * @param {string} slug
+ * @param {string[]} [branchSlugs]
  */
-export function isBranchOwned(assetPath, slug) {
+export function isBranchOwned(assetPath, slug, branchSlugs = [slug]) {
   if (isBlank(assetPath) || isBlank(slug)) return false
   const value = String(assetPath).toLowerCase()
-  return (
-    !(/(?:^|\/)qld(?:\/|[-.])/.test(value) && slug !== 'qld') &&
-    !(/(?:^|\/)vic(?:\/|[-.])/.test(value) && slug !== 'vic')
-  )
+  return !branchSlugs.some((otherSlug) => {
+    if (otherSlug === slug) return false
+    const escapedSlug = String(otherSlug).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    return new RegExp(`(?:^|[\\/_-])${escapedSlug}(?=$|[\\/_.-])`, 'i').test(value)
+  })
 }
 
 /** Ensure a root-relative path; leave absolute URLs untouched. @param {string} value */
@@ -110,6 +112,7 @@ function absolutise(origin, value) {
  *   identity: { slug: string },
  *   canonicalOrigin: string,
  *   assets?: Partial<Record<string, string>>,
+ *   branchSlugs?: string[],
  * }} resolved
  * @returns {{
  *   ogDefault: string, hero: string, favicon: string,
@@ -120,6 +123,7 @@ export function resolveAssets(resolved) {
   const slug = resolved?.identity?.slug ?? ''
   const origin = resolved?.canonicalOrigin ?? ''
   const assets = resolved?.assets ?? {}
+  const branchSlugs = resolved?.branchSlugs ?? [slug]
 
   for (const field of REQUIRED_ASSET_FIELDS) {
     if (isBlank(assets[field])) {
@@ -136,7 +140,7 @@ export function resolveAssets(resolved) {
   for (const field of ALL_ASSET_FIELDS) {
     if (
       !isBlank(assets[field]) &&
-      !(canonical[field] = canonicalAsset(assets[field], origin, slug))
+      !(canonical[field] = canonicalAsset(assets[field], origin, slug, branchSlugs))
     ) {
       throw new BranchConfigError(
         ERROR_CODES.ASSET_LEAKAGE,

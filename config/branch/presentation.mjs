@@ -1,6 +1,15 @@
 import { BranchConfigError, ERROR_CODES, NEUTRAL } from './contract.mjs'
 
-const CONTACT_FIELDS = ['email', 'pressEmail', 'phone', 'address']
+const CONTACT_FIELDS = [
+  'email',
+  'pressEmail',
+  'helloEmail',
+  'preselectionEmail',
+  'techEmail',
+  'discord',
+  'phone',
+  'address',
+]
 
 const isBlank = (value) => typeof value !== 'string' || value.trim() === ''
 

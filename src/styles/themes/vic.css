@@ -56,8 +56,6 @@
   /* Manifest-role mappings: primary→magenta, secondary→mint; these established
      VIC palette values are intentionally preserved rather than copied from
      manifest literals. */
-  --color-magenta: #d428d4;
-  --color-magenta-dark: #8b1a8b;
   --color-fg: #ffffff;
   --color-muted: rgba(255, 255, 255, 0.5);
   --color-on-primary: #ffffff;
@@ -73,8 +71,6 @@
   --color-surface-raised: #2e004d;
 
   /* Surface ladder */
-  --color-surface-base: #1a0029;
-  --color-surface-raised: #2e004d;
   --color-surface-overlay: #470060;
   --color-surface-brand: #5c006b;
 

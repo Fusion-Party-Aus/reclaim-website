@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { ERROR_CODES, BranchConfigError } from './contract.mjs'
-import { resolveAssets, resolveAnalytics, resolveServiceWorkerCache } from './assets.mjs'
+import {
+  isBranchOwned,
+  resolveAssets,
+  resolveAnalytics,
+  resolveServiceWorkerCache,
+} from './assets.mjs'
 
 /**
  * Inline fixtures. `resolved` is the mid-resolution descriptor shape the spec's
@@ -10,6 +15,7 @@ import { resolveAssets, resolveAnalytics, resolveServiceWorkerCache } from './as
 function vicResolved(overrides = {}) {
   return {
     identity: { slug: 'vic' },
+    branchSlugs: ['vic', 'qld', 'nsw'],
     canonicalOrigin: 'https://vic.fusionparty.org.au',
     deploy: { cacheVersion: undefined },
     assets: {
@@ -28,6 +34,7 @@ function vicResolved(overrides = {}) {
 function qldResolved(overrides = {}) {
   return {
     identity: { slug: 'qld' },
+    branchSlugs: ['vic', 'qld', 'nsw'],
     canonicalOrigin: 'https://qld.fusionparty.org.au',
     deploy: { cacheVersion: undefined },
     assets: {
@@ -53,6 +60,14 @@ function thrownBy(fn) {
 }
 
 describe('resolveAssets', () => {
+  it('recognizes foreign assets from any registered branch slug', () => {
+    const slugs = ['vic', 'qld', 'nsw']
+    expect(isBranchOwned('/og/nsw-default.png', 'vic', slugs)).toBe(false)
+    expect(isBranchOwned('/nsw/hero.png', 'vic', slugs)).toBe(false)
+    expect(isBranchOwned('/solo-full-colour.svg', 'vic', slugs)).toBe(true)
+    expect(isBranchOwned('/og/nsw-default.png', 'nsw', slugs)).toBe(true)
+  })
+
   it('resolves and absolutises the Victoria asset set', () => {
     const assets = resolveAssets(vicResolved())
     expect(assets.ogDefault).toBe('https://vic.fusionparty.org.au/og/vic-default.png')
@@ -100,6 +115,17 @@ describe('resolveAssets', () => {
     expect(error.code).toBe(ERROR_CODES.ASSET_LEAKAGE)
     expect(error.field).toBe('assets.ogDefault')
     expect(error.context).toMatchObject({ slug: 'qld', path: '/og/vic-default.png' })
+  })
+
+  it('rejects assets owned by any other manifest branch, including a third branch', () => {
+    const error = thrownBy(() =>
+      resolveAssets({
+        ...vicResolved(),
+        branchSlugs: ['vic', 'qld', 'nsw'],
+        assets: { ...vicResolved().assets, hero: '/nsw/hero.png' },
+      })
+    )
+    expect(error.code).toBe(ERROR_CODES.ASSET_LEAKAGE)
   })
 
   it('allows safe shared root-relative assets such as logos and favicons', () => {

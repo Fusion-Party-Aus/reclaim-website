@@ -1,17 +1,21 @@
 import type { APIRoute } from 'astro'
 import { DEPLOYMENT } from '../lib/deployment'
-import { branchManifest } from '../../config/branches.mjs'
 
 export const prerender = true
-export const GET: APIRoute = () =>
-  new Response(
+export const GET: APIRoute = () => {
+  const backgroundColor = DEPLOYMENT.themeTokens['surface-base']
+  if (typeof backgroundColor !== 'string' || !backgroundColor.trim()) {
+    throw new Error(`Branch '${DEPLOYMENT.slug}' has no valid surface-base theme token.`)
+  }
+
+  return new Response(
     JSON.stringify({
       name: `${DEPLOYMENT.label} — ${DEPLOYMENT.tagline}`,
       short_name: DEPLOYMENT.label,
       description: DEPLOYMENT.description,
       start_url: '/',
       display: 'standalone',
-      background_color: branchManifest.branches[DEPLOYMENT.slug].theme.tokens['surface-base'],
+      background_color: backgroundColor,
       theme_color: DEPLOYMENT.themeColor,
       orientation: 'portrait-primary',
       categories: ['politics', 'news', 'government'],
@@ -24,3 +28,4 @@ export const GET: APIRoute = () =>
     }),
     { headers: { 'Content-Type': 'application/manifest+json' } }
   )
+}

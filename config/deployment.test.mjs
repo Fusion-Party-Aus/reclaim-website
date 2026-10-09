@@ -81,6 +81,18 @@ describe('deployment configuration', () => {
     expect(config.footer.newsletterEndpoint).toBe('/api/newsletter')
   })
 
+  it('blank Plausible overrides use the resolved analytics script URL', () => {
+    const config = resolveDeployment({ PUBLIC_PLAUSIBLE_SRC: '  \t ' })
+    expect(config.analytics.plausibleScriptUrl).toBe(
+      'https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js'
+    )
+  })
+
+  it('exposes the resolved surface theme token for the web manifest', () => {
+    const config = resolveDeployment()
+    expect(config.themeTokens['surface-base']).toMatch(/^#[\da-f]{6}$/i)
+  })
+
   it('Queensland presentation config uses its own values, never Victoria copy', () => {
     const victoria = resolveDeployment()
     const config = resolveDeployment({ PUBLIC_BRANCH: 'qld' })

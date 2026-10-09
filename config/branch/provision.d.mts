@@ -16,10 +16,16 @@ import type {
 } from './contract.d.mts'
 
 export interface ProvisionOptions {
-  /** 'update' reconciles an already-registered branch; anything else refuses. */
+  /** 'create' provisions a new branch; 'update' reconciles an existing one. */
   mode?: 'create' | 'update'
-  /** Explicitly allow targeting the manifest default branch. */
+  /** Permit targeting the manifest default branch; also requires authorizeDefault. */
   allowDefault?: boolean
+  /** Explicit authorization required together with allowDefault. */
+  authorizeDefault?: boolean
+  /** Explicit authorization required together with mode: 'update'. */
+  authorizeUpdate?: boolean
+  /** Dataset access control mode. */
+  aclMode: 'public' | 'private'
   projectId?: string
   dataset?: string
   studioAppId?: string

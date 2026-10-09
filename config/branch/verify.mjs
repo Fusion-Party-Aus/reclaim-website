@@ -189,6 +189,7 @@ export function verifyLeakage(resolved, manifest, readBuiltOutput) {
   const output = typeof built === 'string' ? built : JSON.stringify(built ?? '')
 
   const branches = isObject(manifest?.branches) ? manifest.branches : {}
+  const branchSlugs = Object.keys(branches)
 
   for (const [otherSlug, other] of Object.entries(branches)) {
     if (otherSlug === me) continue
@@ -199,10 +200,16 @@ export function verifyLeakage(resolved, manifest, readBuiltOutput) {
 
     assertNoLeak(output, me, otherSlug, identity.label, 'identity.label', 'identity')
     assertNoLeak(output, me, otherSlug, identity.tagline, 'identity.tagline', 'identity')
-    if (isBranchOwned(assets.ogDefault, otherSlug) && !isBranchOwned(assets.ogDefault, me)) {
+    if (
+      isBranchOwned(assets.ogDefault, otherSlug, branchSlugs) &&
+      !isBranchOwned(assets.ogDefault, me, branchSlugs)
+    ) {
       assertNoLeak(output, me, otherSlug, assets.ogDefault, 'assets.ogDefault', 'asset')
     }
-    if (isBranchOwned(assets.hero, otherSlug) && !isBranchOwned(assets.hero, me)) {
+    if (
+      isBranchOwned(assets.hero, otherSlug, branchSlugs) &&
+      !isBranchOwned(assets.hero, me, branchSlugs)
+    ) {
       assertNoLeak(output, me, otherSlug, assets.hero, 'assets.hero', 'asset')
     }
     if (analytics.enabled !== false)

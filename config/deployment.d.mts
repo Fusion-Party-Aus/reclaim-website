@@ -67,6 +67,7 @@ export interface Deployment {
   label: string
   tagline: string
   themeColor: string
+  themeTokens: Record<string, string>
   siteUrl: string
   projectId: string
   dataset: string
