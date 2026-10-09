@@ -156,7 +156,7 @@ export default defineConfig({
             S.divider(),
 
             // 🔎 PUBLIC INVESTIGATIONS
-            ...(deployment.slug === 'qld' ? [S.listItem()
+            ...(deployment.features.investigations ? [S.listItem()
               .title('Public Investigations')
               .icon(() => '🔎')
               .child(S.documentTypeList('investigation').title('Public Investigations')),
