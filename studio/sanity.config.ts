@@ -159,7 +159,7 @@ export default defineConfig({
             ...(deployment.features.investigations ? [S.listItem()
               .title('Public Investigations')
               .icon(() => '🔎')
-              .child(S.documentTypeList('investigation').title('Public Investigations')),
+              .child(S.list().title('Public Investigations').items([S.listItem().title('Investigations').child(S.documentTypeList('investigation')),S.listItem().title('Source Library').child(S.documentTypeList('investigationSource')),S.listItem().title('Comparisons').child(S.documentTypeList('investigationComparison')),S.listItem().title('Cross-project Issues').child(S.documentTypeList('investigationIssue'))])),
               S.divider()] : []),
 
             // 📝 LETTERHEAD
