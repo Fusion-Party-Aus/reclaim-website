@@ -32,38 +32,38 @@ Policies explicitly marked `draft` or `archived` are excluded.
 
 Each entry in `policies` has:
 
-| Field                     | Type           | Notes                                                               |
-| ------------------------- | -------------- | ------------------------------------------------------------------- |
-| `id`                      | string         | Sanity document id.                                                 |
-| `title`                   | string         | Policy title.                                                       |
-| `authority`               | object         | Publisher, jurisdiction, `adopted_policy: true`.                    |
-| `slug`                    | string         | URL slug.                                                           |
-| `canonical_url`           | string         | Public policy page.                                                 |
-| `status`                  | string         | `adopted`, `draft` or `archived`. Missing defaults to `adopted`.    |
-| `topics`                  | string[]       | Topic taxonomy tags. Defaults to `[]`.                              |
-| `source_url`              | string         | Canonical source of the policy text; falls back to `canonical_url`. |
-| `references`              | array          | Cited sources as `{ title, url }`. Defaults to `[]`.                |
-| `pillar`                  | string \| null | Platform pillar.                                                    |
-| `category`                | string \| null | Sub-category within the pillar.                                     |
-| `delivery_horizon`        | string         | `current-term` or `long-term`.                                      |
-| `summary`                 | string         | Introductory statement.                                             |
-| `hook`                    | string \| null | Campaign framing.                                                   |
-| `key_points`              | array          | Key points with `point` and optional `description`.                 |
-| `shareable_quote`         | string \| null | Pull-quote.                                                         |
-| `design_rationale`        | string \| null | Further detail.                                                     |
-| `system_interaction`      | string \| null | Further detail.                                                     |
-| `economic_logic`          | string \| null | Further detail.                                                     |
-| `risks_and_failure_modes` | string \| null | Further detail.                                                     |
-| `evidence_and_precedent`  | string \| null | Further detail.                                                     |
-| `implementation_outline`  | string \| null | Further detail.                                                     |
-| `cost`                    | string \| null | Estimated cost.                                                     |
-| `funding`                 | string \| null | Funding approach.                                                   |
-| `additional_content_text` | string         | Additional body content as plain text.                              |
-| `published_at`            | string \| null | First publication.                                                  |
-| `substantive_updated_at`  | string \| null | Last substantive policy change.                                     |
-| `change_summary`          | string \| null | Public note for that change.                                        |
-| `supporting_research`     | array          | Related research as `{ title, canonical_url }`.                     |
-| `updated_at`              | string \| null | Last CMS revision.                                                  |
+| Field                     | Type           | Notes                                                                                                                     |
+| ------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `id`                      | string         | Sanity document id.                                                                                                       |
+| `title`                   | string         | Policy title.                                                                                                             |
+| `authority`               | object         | Publisher, jurisdiction, `adopted_policy: true`.                                                                          |
+| `slug`                    | string         | URL slug.                                                                                                                 |
+| `canonical_url`           | string         | Public policy page.                                                                                                       |
+| `status`                  | string         | Always `adopted` in this endpoint. Draft and archived policies are excluded. Missing source status defaults to `adopted`. |
+| `topics`                  | string[]       | Topic taxonomy tags. Defaults to `[]`.                                                                                    |
+| `source_url`              | string         | Canonical source of the policy text; falls back to `canonical_url`.                                                       |
+| `references`              | array          | Cited sources as `{ title, url }`. Defaults to `[]`.                                                                      |
+| `pillar`                  | string \| null | Platform pillar.                                                                                                          |
+| `category`                | string \| null | Sub-category within the pillar.                                                                                           |
+| `delivery_horizon`        | string         | `current-term` or `long-term`.                                                                                            |
+| `summary`                 | string         | Introductory statement.                                                                                                   |
+| `hook`                    | string \| null | Campaign framing.                                                                                                         |
+| `key_points`              | array          | Key points with `point` and optional `description`.                                                                       |
+| `shareable_quote`         | string \| null | Pull-quote.                                                                                                               |
+| `design_rationale`        | string \| null | Further detail.                                                                                                           |
+| `system_interaction`      | string \| null | Further detail.                                                                                                           |
+| `economic_logic`          | string \| null | Further detail.                                                                                                           |
+| `risks_and_failure_modes` | string \| null | Further detail.                                                                                                           |
+| `evidence_and_precedent`  | string \| null | Further detail.                                                                                                           |
+| `implementation_outline`  | string \| null | Further detail.                                                                                                           |
+| `cost`                    | string \| null | Estimated cost.                                                                                                           |
+| `funding`                 | string \| null | Funding approach.                                                                                                         |
+| `additional_content_text` | string         | Additional body content as plain text.                                                                                    |
+| `published_at`            | string \| null | First publication.                                                                                                        |
+| `substantive_updated_at`  | string \| null | Last substantive policy change.                                                                                           |
+| `change_summary`          | string \| null | Public note for that change.                                                                                              |
+| `supporting_research`     | array          | Related research as `{ title, canonical_url }`.                                                                           |
+| `updated_at`              | string \| null | Last CMS revision.                                                                                                        |
 
 ## Example
 

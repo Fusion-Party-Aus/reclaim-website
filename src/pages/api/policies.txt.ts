@@ -11,7 +11,10 @@ const section = (label: string, value?: string | null) =>
   value?.trim() ? `\n### ${label}\n${value.trim()}\n` : ''
 
 export const GET: APIRoute = async () => {
-  const [policies, manifesto] = await Promise.all([getPolicies(), getManifestoPage()])
+  const [policies, manifesto] = await Promise.all([
+    getPolicies({ adoptedOnly: true }),
+    getManifestoPage(),
+  ])
   const recentSubstantiveChanges = [...policies]
     .filter((policy) => policy.substantiveUpdatedAt && policy.changeSummary)
     .sort(

@@ -28,7 +28,7 @@ interface Policy {
   body?: unknown
 }
 
-const policies = await getPolicies({ thisTerm: false })
+const policies = await getPolicies({ thisTerm: false, adoptedOnly: true })
 const storedVisionPage = await getVisionPage()
 const isVictoriaCampaign = DEPLOYMENT.contentProfile === 'victoria-campaign'
 const branchContentComplete = Boolean(
@@ -263,7 +263,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
             {DEPLOYMENT.policyCallouts.housing && (
               <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
                 <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
-                  Fusion Victoria policy direction
+                  {DEPLOYMENT.label} policy direction
                 </p>
                 <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
                   Homes and Stations Code

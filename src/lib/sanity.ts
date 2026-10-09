@@ -86,6 +86,11 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
   return await client.fetch(query, { slug })
 }
 
+export async function getAdoptedPolicyBySlug(slug: string): Promise<Policy | null> {
+  const query = `*[_type == "policy" && coalesce(status, 'adopted') == 'adopted' && slug.current == $slug][0]`
+  return await client.fetch(query, { slug })
+}
+
 export async function getElectorates(): Promise<Electorate[]> {
   const query = `*[_type == "electorate" && coalesce(isArchived, false) != true] | order(_createdAt desc)`
   return await client.fetch(query)

@@ -35,7 +35,7 @@ interface ProofStat {
   variant?: 'magenta' | 'mint' | 'yellow'
 }
 
-const policies = await getPolicies()
+const policies = await getPolicies({ adoptedOnly: true })
 const isVictoriaCampaign = DEPLOYMENT.contentProfile === 'victoria-campaign'
 const pageData =
   (await getPoliciesPage()) ||

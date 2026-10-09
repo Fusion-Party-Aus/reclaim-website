@@ -144,6 +144,31 @@ describe('resolveBranch — environment override precedence', () => {
     expect(qld.analytics.resolved).toEqual({ enabled: false })
     expect(qld.runtime.analytics.plausibleScriptUrl).toBeUndefined()
   })
+
+  test.each(['', '   ', '\t\n'])(
+    'blank analytics override %j preserves disabled analytics',
+    (siteId) => {
+      const qld = resolveBranch(branchManifest, {
+        PUBLIC_BRANCH: 'qld',
+        PUBLIC_ANALYTICS_SITE_ID: siteId,
+      })
+      expect(qld.analytics.raw.enabled).toBe(false)
+      expect(qld.analytics.resolved).toEqual({ enabled: false })
+      expect(qld.runtime.analytics.plausibleScriptUrl).toBeUndefined()
+    }
+  )
+
+  test('nonblank analytics override enables analytics with its trimmed site ID', () => {
+    const qld = resolveBranch(branchManifest, {
+      PUBLIC_BRANCH: 'qld',
+      PUBLIC_ANALYTICS_SITE_ID: '  pa-qld-override  ',
+    })
+    expect(qld.analytics.resolved.enabled).toBe(true)
+    expect(qld.analytics.resolved.siteId).toBe('pa-qld-override')
+    expect(qld.analytics.resolved.scriptUrl).toBe(
+      'https://analytics.fusionparty.org.au/js/pa-qld-override.js'
+    )
+  })
 })
 
 describe('resolveBranch — cross-branch isolation after overrides', () => {

@@ -9,7 +9,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton } from '@/components/ui'
-import { getDocumentBySlug, getResearchForPolicy } from '../../lib/sanity'
+import { getAdoptedPolicyBySlug, getResearchForPolicy } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
@@ -61,7 +61,7 @@ if (!slug) {
   return Astro.redirect('/404')
 }
 
-const policy = await getDocumentBySlug<Policy>('policy', slug)
+const policy = await getAdoptedPolicyBySlug(slug)
 
 if (!policy) {
   return Astro.redirect('/404')

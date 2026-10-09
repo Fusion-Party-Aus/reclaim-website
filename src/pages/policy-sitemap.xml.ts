@@ -6,7 +6,7 @@ import { getPolicies } from '../lib/sanity'
 export const prerender = false
 
 export const GET: APIRoute = async () => {
-  const documents = await getPolicies()
+  const documents = await getPolicies({ adoptedOnly: true })
   return sitemapResponse([
     ...documents.flatMap((policy) =>
       policy.slug?.current

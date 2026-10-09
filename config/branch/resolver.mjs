@@ -200,11 +200,13 @@ function applyOverrides(entry, env) {
   resolved.sanity.studioAppId =
     firstNonBlank(env.SANITY_STUDIO_APP_ID, entry.sanity.studioAppId) ?? entry.sanity.studioAppId
 
-  if (env.PUBLIC_ANALYTICS_SITE_ID && entry.analytics.enabled === false) {
+  const analyticsSiteIdOverride = env.PUBLIC_ANALYTICS_SITE_ID
+  if (!isBlank(analyticsSiteIdOverride) && entry.analytics.enabled === false) {
     resolved.analytics.enabled = true
   }
   resolved.analytics.siteId =
-    firstNonBlank(env.PUBLIC_ANALYTICS_SITE_ID, entry.analytics.siteId) ?? undefined
+    (isBlank(analyticsSiteIdOverride) ? entry.analytics.siteId : analyticsSiteIdOverride.trim()) ??
+    undefined
 
   resolved.deploy.workerName =
     firstNonBlank(env.WORKER_NAME, entry.deploy.workerName) ?? entry.deploy.workerName
