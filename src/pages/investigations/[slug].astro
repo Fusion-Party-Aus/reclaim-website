@@ -8,7 +8,7 @@ import {getInvestigation} from '@/lib/investigations'
 import '@/styles/global.css'
 import '@/styles/editorial.css'
 const {slug} = Astro.params
-const item = slug ? await getInvestigation(slug) : null
+const item = DEPLOYMENT.features.investigations && slug ? await getInvestigation(slug) : null
 if(!item) Astro.response.status = 404
 const counts = {answered:item?.questions?.filter(q=>q.status==='answered').length||0,partial:item?.questions?.filter(q=>q.status==='partial').length||0,outstanding:item?.questions?.filter(q=>q.status==='outstanding').length||0}
 ---
