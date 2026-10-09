@@ -52,6 +52,13 @@ const rawNavItems =
         { href: '/research', label: 'Research', order: 4 },
       ])
 
+// Show investigations only for deployments that opt into this feature.
+if (DEPLOYMENT.features.investigations && !rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/investigations')) {
+  rawNavItems.splice(rawNavItems.findIndex(item => item.href === '/policies') + 1, 0, {
+    href: '/investigations', label: 'Investigations', order: 2.5,
+  })
+}
+
 // Blog is now a first-class publishing surface. Keep it visible even if the
 // current Sanity navigation document predates frequent Signal articles.
 if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/blog')) {
@@ -66,7 +73,7 @@ if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '
   })
 }
 
-const navItems = rawNavItems.map((item) => ({
+const navItems = rawNavItems.filter((item) => DEPLOYMENT.features.investigations || ensureRootRelative(item.href || '') !== '/investigations').map((item) => ({
   ...item,
   href: item.href ? ensureRootRelative(item.href) : item.href,
   children: item.children?.map((child) => ({

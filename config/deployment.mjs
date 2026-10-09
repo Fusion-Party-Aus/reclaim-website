@@ -8,6 +8,7 @@ export const branches = {
     tagline: 'Reignite Democracy',
     themeColor: '#D428D4',
     siteUrl: 'https://vic.fusionparty.org.au',
+    features: { investigations: false },
   },
   qld: {
     slug: 'qld',
@@ -17,6 +18,7 @@ export const branches = {
     tagline: 'A better future for Queensland',
     themeColor: '#731E32',
     siteUrl: 'https://qld.fusionparty.org.au',
+    features: { investigations: true },
   },
 }
 
@@ -37,6 +39,7 @@ export function resolveDeployment(env = {}) {
   const siteUrl = new URL(env.SITE_URL || env.PUBLIC_SITE_URL || branch.siteUrl).origin
   return {
     ...branch,
+    features: { ...branch.features, investigations: env.PUBLIC_ENABLE_INVESTIGATIONS === 'true' ? true : env.PUBLIC_ENABLE_INVESTIGATIONS === 'false' ? false : branch.features.investigations },
     siteUrl,
     projectId,
     dataset,

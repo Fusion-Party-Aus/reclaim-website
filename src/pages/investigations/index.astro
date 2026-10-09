@@ -1,0 +1,32 @@
+---
+export const prerender = false
+import {DEPLOYMENT} from '@/lib/deployment'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import {Header} from '@/components/layout/Header'
+import {Footer} from '@/components/layout/Footer'
+import {getInvestigations} from '@/lib/investigations'
+import '@/styles/global.css'
+import '@/styles/editorial.css'
+if (!DEPLOYMENT.features.investigations) Astro.response.status = 404
+const investigations = DEPLOYMENT.features.investigations ? await getInvestigations() : []
+---
+<BaseLayout title={`Public Investigations | ${DEPLOYMENT.label}`} description="Public evidence trackers, unresolved questions and documented updates." noindex={!DEPLOYMENT.features.investigations}>
+ <Header/>
+ <main id="main-content" class="site-editorial bg-surface-base min-h-screen">
+  <header class="editorial-masthead"><div class="editorial-shell">
+   <p class="editorial-kicker">Community Fusion · Evidence tracker</p>
+   <h1 class="editorial-title">Public investigations</h1>
+   <p class="editorial-deck">Evidence first. Then make the decision. Follow what is known, what has changed and what still needs a public answer.</p>
+  </div></header>
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
+   <p class="text-white/60 max-w-3xl mb-10">These are public-interest investigations, not adopted party policy. Source documents, outstanding questions and corrections are identified wherever possible.</p>
+   {investigations.length ? <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{investigations.map(item=><article class="bg-surface-raised border border-white/15 border-t-4 border-t-mint p-7">
+    <p class="text-xs uppercase font-black tracking-widest text-mint">{item.location || 'Queensland'} · {item.projectStage || 'Investigation'}</p>
+    <h2 class="font-display text-3xl font-black mt-5"><a href={`/investigations/${item.slug.current}`} class="hover:text-mint">{item.title}</a></h2>
+    <p class="text-white/70 mt-4">{item.summary}</p>
+    <p class="text-sm text-white/50 mt-5">{item.questions?.filter(q=>q.status==='outstanding').length || 0} outstanding questions · {item.evidence?.length || 0} sources</p>
+    <a class="inline-block mt-6 font-black text-mint" href={`/investigations/${item.slug.current}`}>View investigation →</a>
+   </article>)}</div> : <div class="border-l-4 border-l-mint bg-surface-raised p-8 max-w-3xl"><h2 class="text-2xl font-display font-black">Investigations are being prepared</h2><p class="mt-3 text-white/65">Verified, reviewed investigations will appear here once published.</p></div>}
+  </section>
+ </main><Footer/>
+</BaseLayout>
