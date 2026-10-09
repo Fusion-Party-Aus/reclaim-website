@@ -7,9 +7,10 @@ import {Footer} from '@/components/layout/Footer'
 import {getInvestigations} from '@/lib/investigations'
 import '@/styles/global.css'
 import '@/styles/editorial.css'
-const investigations = await getInvestigations()
+if (!DEPLOYMENT.features.investigations) Astro.response.status = 404
+const investigations = DEPLOYMENT.features.investigations ? await getInvestigations() : []
 ---
-<BaseLayout title={`Public Investigations | ${DEPLOYMENT.label}`} description="Public evidence trackers, unresolved questions and documented updates.">
+<BaseLayout title={`Public Investigations | ${DEPLOYMENT.label}`} description="Public evidence trackers, unresolved questions and documented updates." noindex={!DEPLOYMENT.features.investigations}>
  <Header/>
  <main id="main-content" class="site-editorial bg-surface-base min-h-screen">
   <header class="editorial-masthead"><div class="editorial-shell">
