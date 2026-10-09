@@ -103,7 +103,9 @@ describe('deployment configuration', () => {
     ])
     expect(config.navigation.cta).toEqual({ label: 'Get involved', href: '/contact' })
     expect(config.navigation).not.toEqual(victoria.navigation)
-    expect(config.analytics.plausibleScriptUrl).toBeUndefined()
+    expect(config.analytics.plausibleScriptUrl).toBe(
+      'https://analytics.fusionparty.org.au/js/pa-6TB7kWpUyzQNp_ONfw6M_.js'
+    )
     expect(config.socialAccounts).toEqual([])
     expect(config.assets.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
     expect(victoria.socialAccounts).toHaveLength(4)
@@ -119,12 +121,12 @@ describe('deployment configuration', () => {
     expect(config.cta.transportScore).toBe(undefined)
   })
 
-  it('does not enable disabled QLD analytics through a script URL override alone', () => {
+  it('uses the registered QLD analytics site and accepts an explicit script override', () => {
     const config = resolveDeployment({
       PUBLIC_BRANCH: 'qld',
       PUBLIC_PLAUSIBLE_SRC: 'https://analytics.example.org/js/pa-test.js',
     })
-    expect(config.analytics.plausibleScriptUrl).toBeUndefined()
+    expect(config.analytics.plausibleScriptUrl).toBe('https://analytics.example.org/js/pa-test.js')
     const victoria = resolveDeployment({
       PUBLIC_PLAUSIBLE_SRC: 'https://analytics.example.org/js/pa-test.js',
     })
