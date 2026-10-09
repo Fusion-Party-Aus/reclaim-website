@@ -155,6 +155,13 @@ export default defineConfig({
 
             S.divider(),
 
+            // 🔎 PUBLIC INVESTIGATIONS
+            ...(deployment.slug === 'qld' ? [S.listItem()
+              .title('Public Investigations')
+              .icon(() => '🔎')
+              .child(S.documentTypeList('investigation').title('Public Investigations')),
+              S.divider()] : []),
+
             // 📝 LETTERHEAD
             S.listItem()
               .title('Letterhead Generator')
