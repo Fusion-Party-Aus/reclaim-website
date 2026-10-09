@@ -10,6 +10,9 @@ export default defineType({
     defineField({name:'location',type:'string',group:'editorial'}),
     defineField({name:'projectStage',title:'Project stage',type:'string',group:'editorial',options:{list:['Early investigation','Planning','Consultation','Assessment','Approved','Under construction','Operational','Unknown']}}),
     defineField({name:'status',title:'Editorial status',type:'string',group:'governance',initialValue:'investigating',options:{list:[{title:'Investigating',value:'investigating'},{title:'Awaiting response',value:'awaiting-response'},{title:'Updated',value:'updated'},{title:'Closed',value:'closed'}]}}),
+    defineField({name:'attribution',type:'string',group:'editorial'}),
+    defineField({name:'editorialDisclaimer',type:'text',group:'editorial'}),
+    defineField({name:'sourceReferences',type:'array',group:'evidence',of:[{type:'reference',to:[{type:'investigationSource'}]}]}),
     defineField({name:'body',type:'array',group:'editorial',of:[{type:'block'}]}),
     defineField({name:'evidence',title:'Source register',type:'array',group:'evidence',of:[{type:'object',fields:[
       {name:'title',type:'string',validation:r=>r.required()},
@@ -20,12 +23,16 @@ export default defineType({
     defineField({name:'questions',title:'Public questions',type:'array',group:'evidence',of:[{type:'object',fields:[
       {name:'question',type:'text',rows:2,validation:r=>r.required()},
       {name:'status',type:'string',validation:r=>r.required(),options:{list:[{title:'Answered',value:'answered'},{title:'Partially answered',value:'partial'},{title:'Outstanding',value:'outstanding'}]}},
+      {name:'provenance',type:'string',options:{list:['submitted','proposed','research']}},
+      {name:'submittedOn',type:'date'},
       {name:'answer',type:'text',rows:3},{name:'evidenceUrls',type:'array',of:[{type:'url'}]},
-      {name:'lastChecked',type:'date'}
+      {name:'lastChecked',type:'date'},
+      {name:'sources',type:'array',of:[{type:'reference',to:[{type:'investigationSource'}]}]}
     ]}]}),
     defineField({name:'updates',title:'Investigation updates',type:'array',group:'evidence',of:[{type:'object',fields:[
       {name:'date',type:'date',validation:r=>r.required()},{name:'headline',type:'string',validation:r=>r.required()},
-      {name:'detail',type:'text',rows:3},{name:'sourceUrl',type:'url'}
+      {name:'detail',type:'text',rows:3},{name:'sourceUrl',type:'url'},
+      {name:'previousPosition',type:'text'},{name:'changeAssessment',type:'text'}
     ]}]}),
     defineField({name:'relatedInvestigations',type:'array',group:'evidence',of:[{type:'reference',to:[{type:'investigation'}]}]}),
     defineField({name:'editor',title:'Responsible editor',type:'string',group:'governance'}),
