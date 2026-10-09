@@ -151,6 +151,7 @@ export interface RuntimeNavigation {
  */
 export interface RuntimeConfig {
   contentProfile?: 'victoria-campaign' | 'branch-neutral'
+  features?: { investigations?: boolean }
   socialAccounts?: SocialAccount[]
   assets?: ResolvedAssets
   policyCallouts?: { housing?: boolean; transportScore?: boolean }

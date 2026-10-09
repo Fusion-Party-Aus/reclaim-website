@@ -321,6 +321,28 @@ export default defineConfig({
                       .child(
                         S.documentTypeList('convinceYourFriends').title('Convince Your Friends'),
                       ),
+                    S.listItem()
+                      .title('🔎 Public Investigations')
+                      .child(
+                        S.list()
+                          .title('Public Investigations')
+                          .items([
+                            S.listItem()
+                              .title('Investigation cases')
+                              .child(
+                                S.documentTypeList('investigation')
+                                  .title('Investigation cases')
+                                  .defaultOrdering([{field: 'publishedAt', direction: 'desc'}]),
+                              ),
+                            S.listItem()
+                              .title('Shared sources')
+                              .child(
+                                S.documentTypeList('investigationSource')
+                                  .title('Shared sources')
+                                  .defaultOrdering([{field: 'title', direction: 'asc'}]),
+                              ),
+                          ]),
+                      ),
                   ]),
               ),
           ])

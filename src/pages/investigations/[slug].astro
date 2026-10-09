@@ -1,0 +1,296 @@
+---
+export const prerender = false
+import { DEPLOYMENT } from '@/lib/deployment'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { getInvestigation } from '@/lib/investigations'
+import { PortableText } from 'astro-portabletext'
+import '@/styles/global.css'
+import '@/styles/editorial.css'
+
+const { slug } = Astro.params
+const item = DEPLOYMENT.features.investigations && slug ? await getInvestigation(slug) : null
+if (!item) Astro.response.status = 404
+const questionCounts = {
+  answered: item?.questions?.filter((question) => question.status === 'answered').length || 0,
+  partial: item?.questions?.filter((question) => question.status === 'partial').length || 0,
+  outstanding: item?.questions?.filter((question) => question.status === 'outstanding').length || 0,
+}
+---
+
+<BaseLayout
+  title={`${item?.title || 'Investigation not found'} | ${DEPLOYMENT.label}`}
+  description={item?.summary || 'Investigation not found'}
+  noindex={!item}
+>
+  <Header />
+  <main id="main-content" class="site-editorial bg-surface-base min-h-screen">
+    {
+      item ? (
+        <>
+          <header class="editorial-masthead">
+            <div class="editorial-shell">
+              <a href="/investigations" class="text-mint font-black">
+                ← All investigations
+              </a>
+              <p class="editorial-kicker mt-8">
+                {item.location || DEPLOYMENT.state} · {item.projectStage || 'Investigation'}
+              </p>
+              <h1 class="editorial-title">{item.title}</h1>
+              <p class="editorial-deck">{item.summary}</p>
+              {item.attribution && <p class="mt-5 text-fg/75">By {item.attribution}</p>}
+              <p class="mt-6 text-sm text-fg/60">
+                Last reviewed: {item.lastReviewed || 'Not recorded'} · Published:{' '}
+                {item.publishedAt?.slice(0, 10) || 'Not recorded'}
+              </p>
+            </div>
+          </header>
+          <div class="max-w-5xl mx-auto px-4 md:px-8 py-14 space-y-16">
+            <section aria-labelledby="question-summary">
+              <h2 id="question-summary" class="text-3xl font-display font-black mb-5">
+                Questions tracker
+              </h2>
+              <div class="flex flex-wrap gap-3 text-sm font-black">
+                <span class="border border-mint/50 px-4 py-2 text-mint">
+                  {questionCounts.answered} answered
+                </span>
+                <span class="border border-yellow/50 px-4 py-2 text-yellow">
+                  {questionCounts.partial} partial
+                </span>
+                <span class="border border-red-400/50 px-4 py-2 text-red-300">
+                  {questionCounts.outstanding} outstanding
+                </span>
+              </div>
+            </section>
+            {item.body?.length && (
+              <section class="prose prose-invert max-w-none">
+                <PortableText value={item.body} />
+              </section>
+            )}
+            {(item.entities?.length || item.dependencies?.length || item.nextSteps) && (
+              <section class="grid gap-8 md:grid-cols-2">
+                {item.entities?.length && (
+                  <div>
+                    <h2 class="text-2xl font-display font-black mb-3">
+                      People, organisations and places
+                    </h2>
+                    <ul class="list-disc pl-5 text-fg/75 space-y-1">
+                      {item.entities.map((entity) => (
+                        <li>{entity}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {item.dependencies?.length && (
+                  <div>
+                    <h2 class="text-2xl font-display font-black mb-3">
+                      Dependencies and affected interests
+                    </h2>
+                    <ul class="list-disc pl-5 text-fg/75 space-y-1">
+                      {item.dependencies.map((dependency) => (
+                        <li>{dependency}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {item.nextSteps && (
+                  <div>
+                    <h2 class="text-2xl font-display font-black mb-3">Next steps</h2>
+                    <p class="text-fg/75 whitespace-pre-line">{item.nextSteps}</p>
+                  </div>
+                )}
+              </section>
+            )}
+            {Boolean(item.questions?.length) && (
+              <section aria-labelledby="questions">
+                <h2 id="questions" class="text-3xl font-display font-black mb-6">
+                  Public questions
+                </h2>
+                <div class="space-y-4">
+                  {item.questions!.map((question) => (
+                    <article class="bg-surface-raised border border-white/15 p-6">
+                      <span class="uppercase text-xs font-black tracking-wider text-mint">
+                        {question.status}
+                      </span>
+                      {question.provenance && (
+                        <span class="ml-3 text-xs text-fg/55">
+                          {question.provenance === 'submitted'
+                            ? 'Submitted question'
+                            : question.provenance === 'proposed'
+                              ? 'Proposed question'
+                              : 'Research question'}
+                        </span>
+                      )}
+                      <h3 class="text-xl font-bold mt-2">{question.question}</h3>
+                      {question.answer && (
+                        <p class="text-fg/70 mt-3 whitespace-pre-line">{question.answer}</p>
+                      )}
+                      {Boolean(question.evidenceUrls?.length) && (
+                        <ul class="mt-4 space-y-1">
+                          {question.evidenceUrls!.map((url) => (
+                            <li>
+                              <a
+                                href={url}
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                class="text-mint underline break-all"
+                              >
+                                {url}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {question.lastChecked && (
+                        <p class="mt-3 text-xs text-fg/55">Checked {question.lastChecked}</p>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+            {Boolean(item.evidence?.length) && (
+              <section aria-labelledby="sources">
+                <h2 id="sources" class="text-3xl font-display font-black mb-6">
+                  Evidence register
+                </h2>
+                <div class="space-y-4">
+                  {item.evidence!.map((evidence) => (
+                    <article class="border border-white/15 border-t-2 border-t-mint bg-surface-raised p-6">
+                      <h3 class="font-bold text-xl">
+                        <a
+                          class="text-mint underline"
+                          href={evidence.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {evidence.title} ↗
+                        </a>
+                      </h3>
+                      <p class="text-fg/55 text-sm mt-2">
+                        {evidence.publisher} {evidence.date && `· ${evidence.date}`}
+                      </p>
+                      {evidence.finding && (
+                        <p class="mt-3 text-fg/75 whitespace-pre-line">{evidence.finding}</p>
+                      )}
+                      {evidence.limitations && (
+                        <p class="mt-3 text-yellow text-sm">Limitations: {evidence.limitations}</p>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+            {Boolean(item.sourceReferences?.length) && (
+              <section aria-labelledby="source-library">
+                <h2 id="source-library" class="text-3xl font-display font-black mb-5">
+                  Source library
+                </h2>
+                <ul class="space-y-3">
+                  {item
+                    .sourceReferences!.filter((source) => source?.url)
+                    .map((source) => (
+                      <li>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-mint underline"
+                        >
+                          {source.title} ↗
+                        </a>
+                        {source.pageReference && (
+                          <span class="text-fg/55"> · {source.pageReference}</span>
+                        )}
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )}
+            {Boolean(item.updates?.length) && (
+              <section aria-labelledby="updates">
+                <h2 id="updates" class="text-3xl font-display font-black mb-6">
+                  Updates
+                </h2>
+                <ol class="space-y-5">
+                  {[...item.updates!]
+                    .sort((a, b) => b.date.localeCompare(a.date))
+                    .map((update) => (
+                      <li class="border-l border-white/25 pl-6">
+                        <time class="text-mint font-mono">{update.date}</time>
+                        <h3 class="font-black text-xl mt-2">{update.headline}</h3>
+                        {update.detail && (
+                          <p class="mt-2 text-fg/70 whitespace-pre-line">{update.detail}</p>
+                        )}
+                        {update.previousPosition && (
+                          <p class="mt-2 text-fg/55 text-sm">
+                            Earlier position: {update.previousPosition}
+                          </p>
+                        )}
+                        {update.changeAssessment && (
+                          <p class="mt-2 text-fg/70 text-sm">
+                            What changed: {update.changeAssessment}
+                          </p>
+                        )}
+                        {update.sourceUrl && (
+                          <a
+                            href={update.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-mint underline"
+                          >
+                            Source ↗
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                </ol>
+              </section>
+            )}
+            {Boolean(item.relatedInvestigations?.length) && (
+              <section aria-labelledby="related">
+                <h2 id="related" class="text-3xl font-display font-black mb-5">
+                  Related investigations
+                </h2>
+                <ul class="space-y-3">
+                  {item
+                    .relatedInvestigations!.filter((related) => related?.slug?.current)
+                    .map((related) => (
+                      <li>
+                        <a
+                          class="text-mint underline"
+                          href={`/investigations/${related.slug.current}`}
+                        >
+                          {related.title} →
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )}
+            <p class="border-t border-white/15 pt-6 text-fg/55 text-sm">
+              {item.editorialDisclaimer ||
+                'Investigation findings are provisional where identified and are not formal party policy positions.'}{' '}
+              Corrections and new source material can be sent through the{' '}
+              <a class="text-mint underline" href="/contact">
+                contact page
+              </a>
+              .
+            </p>
+          </div>
+        </>
+      ) : (
+        <section class="max-w-5xl mx-auto p-10">
+          <>
+            <h1 class="text-4xl font-black">Investigation not found</h1>
+            <a href="/investigations" class="text-mint underline">
+              Browse investigations
+            </a>
+          </>
+        </section>
+      )
+    }
+  </main>
+  <Footer />
+</BaseLayout>

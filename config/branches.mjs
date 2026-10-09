@@ -208,6 +208,7 @@ export const branchManifest = {
       },
       runtime: {
         contentProfile: 'branch-neutral',
+        features: { investigations: true },
         socialAccounts: [],
         navigation: {
           fallback: [

@@ -40,6 +40,7 @@ export const branches = Object.fromEntries(
       slug,
       {
         contentProfile: runtime.contentProfile ?? 'branch-neutral',
+        features: { investigations: runtime.features?.investigations ?? false },
         policyCallouts: runtime.policyCallouts ?? {},
         slug: entry.identity.slug,
         state: entry.identity.state,
@@ -84,6 +85,12 @@ export function resolveDeployment(env = {}) {
 
   return {
     contentProfile: runtime.contentProfile ?? 'branch-neutral',
+    features: {
+      investigations:
+        typeof env.PUBLIC_ENABLE_INVESTIGATIONS === 'string'
+          ? env.PUBLIC_ENABLE_INVESTIGATIONS === 'true'
+          : (runtime.features?.investigations ?? false),
+    },
     policyCallouts: runtime.policyCallouts ?? {},
     slug: resolved.identity.slug,
     state: resolved.identity.state,
