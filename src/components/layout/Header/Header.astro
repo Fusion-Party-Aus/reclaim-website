@@ -36,9 +36,22 @@ const navigation = navigations[0]
 const ensureRootRelative = (href: string) =>
   href && !href.startsWith('/') && !href.startsWith('http') ? `/${href}` : href
 
-const rawNavItems =
+const rawNavItems = (
   navigation?.mainNav?.sort((a, b) => a.order - b.order) ||
   DEPLOYMENT.navigation.fallback.map((item, order) => ({ ...item, order }))
+).filter(
+  (item) =>
+    DEPLOYMENT.features.investigations ||
+    !item.href ||
+    ensureRootRelative(item.href) !== '/investigations'
+)
+
+if (
+  DEPLOYMENT.features.investigations &&
+  !rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/investigations')
+) {
+  rawNavItems.push({ href: '/investigations', label: 'Investigations', order: 20 })
+}
 
 // Blog is now a first-class publishing surface. Keep it visible even if the
 // current Sanity navigation document predates frequent Signal articles.

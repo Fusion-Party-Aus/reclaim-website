@@ -60,6 +60,7 @@ export interface FooterConfig {
 
 export interface Deployment {
   contentProfile: 'victoria-campaign' | 'branch-neutral'
+  features: { investigations: boolean }
   policyCallouts: { housing?: boolean; transportScore?: boolean }
   slug: string
   state: string

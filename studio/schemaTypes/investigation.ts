@@ -1,0 +1,177 @@
+import {defineField, defineType} from 'sanity'
+
+export default defineType({
+  name: 'investigation',
+  title: 'Public Investigation',
+  type: 'document',
+  groups: [
+    {name: 'editorial', title: 'Editorial', default: true},
+    {name: 'evidence', title: 'Evidence & Questions'},
+    {name: 'governance', title: 'Review & Governance'},
+  ],
+  fields: [
+    defineField({
+      name: 'title',
+      type: 'string',
+      group: 'editorial',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      group: 'editorial',
+      options: {source: 'title'},
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'summary',
+      type: 'text',
+      rows: 4,
+      group: 'editorial',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({name: 'location', type: 'string', group: 'editorial'}),
+    defineField({name: 'projectStage', title: 'Project stage', type: 'string', group: 'editorial'}),
+    defineField({
+      name: 'status',
+      title: 'Editorial status',
+      type: 'string',
+      group: 'governance',
+      initialValue: 'investigating',
+      options: {
+        list: [
+          {title: 'Investigating', value: 'investigating'},
+          {title: 'Awaiting response', value: 'awaiting-response'},
+          {title: 'Updated', value: 'updated'},
+          {title: 'Closed', value: 'closed'},
+        ],
+      },
+    }),
+    defineField({name: 'attribution', type: 'string', group: 'editorial'}),
+    defineField({name: 'editorialDisclaimer', type: 'text', group: 'editorial'}),
+    defineField({name: 'body', type: 'array', group: 'editorial', of: [{type: 'block'}]}),
+    defineField({
+      name: 'sourceReferences',
+      type: 'array',
+      group: 'evidence',
+      of: [{type: 'reference', to: [{type: 'investigationSource'}]}],
+    }),
+    defineField({
+      name: 'evidence',
+      title: 'Source register',
+      type: 'array',
+      group: 'evidence',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'title', type: 'string', validation: (rule) => rule.required()},
+            {
+              name: 'url',
+              type: 'url',
+              validation: (rule) => rule.required().uri({scheme: ['http', 'https']}),
+            },
+            {name: 'publisher', type: 'string'},
+            {name: 'date', type: 'date'},
+            {name: 'finding', type: 'text', rows: 3},
+            {name: 'limitations', type: 'text', rows: 2},
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'questions',
+      title: 'Public questions',
+      type: 'array',
+      group: 'evidence',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'question', type: 'text', rows: 2, validation: (rule) => rule.required()},
+            {
+              name: 'status',
+              type: 'string',
+              validation: (rule) => rule.required(),
+              options: {
+                list: [
+                  {title: 'Answered', value: 'answered'},
+                  {title: 'Partially answered', value: 'partial'},
+                  {title: 'Outstanding', value: 'outstanding'},
+                ],
+              },
+            },
+            {
+              name: 'provenance',
+              type: 'string',
+              options: {list: ['submitted', 'proposed', 'research']},
+            },
+            {name: 'submittedOn', type: 'date'},
+            {name: 'answer', type: 'text', rows: 3},
+            {name: 'evidenceUrls', type: 'array', of: [{type: 'url'}]},
+            {name: 'lastChecked', type: 'date'},
+            {
+              name: 'sources',
+              type: 'array',
+              of: [{type: 'reference', to: [{type: 'investigationSource'}]}],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'updates',
+      title: 'Investigation updates',
+      type: 'array',
+      group: 'evidence',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'date', type: 'date', validation: (rule) => rule.required()},
+            {name: 'headline', type: 'string', validation: (rule) => rule.required()},
+            {name: 'detail', type: 'text', rows: 3},
+            {name: 'sourceUrl', type: 'url'},
+            {name: 'previousPosition', type: 'text'},
+            {name: 'changeAssessment', type: 'text'},
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'relatedInvestigations',
+      type: 'array',
+      group: 'evidence',
+      of: [{type: 'reference', to: [{type: 'investigation'}]}],
+    }),
+    defineField({
+      name: 'entities',
+      title: 'People, organisations & places',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
+    defineField({
+      name: 'dependencies',
+      title: 'Dependencies and affected interests',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
+    defineField({name: 'nextSteps', type: 'text', rows: 3, group: 'editorial'}),
+    defineField({name: 'editor', title: 'Responsible editor', type: 'string', group: 'governance'}),
+    defineField({name: 'lastReviewed', type: 'date', group: 'governance'}),
+    defineField({
+      name: 'reviewNotes',
+      type: 'text',
+      group: 'governance',
+      description: 'Internal only; never displayed publicly.',
+    }),
+    defineField({
+      name: 'readyForPublication',
+      type: 'boolean',
+      group: 'governance',
+      initialValue: false,
+    }),
+    defineField({name: 'publishedAt', type: 'datetime', group: 'governance'}),
+  ],
+  preview: {select: {title: 'title', subtitle: 'status'}},
+})

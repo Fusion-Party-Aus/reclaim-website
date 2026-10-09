@@ -20,6 +20,19 @@ describe('deployment configuration', () => {
     expect(JSON.stringify(starterContent(config))).not.toContain('Victoria')
   })
 
+  it('investigations are opt-in by branch and can be explicitly enabled', () => {
+    expect(resolveDeployment({ PUBLIC_BRANCH: 'vic' }).features.investigations).toBe(false)
+    expect(resolveDeployment({ PUBLIC_BRANCH: 'qld' }).features.investigations).toBe(true)
+    expect(
+      resolveDeployment({ PUBLIC_BRANCH: 'vic', PUBLIC_ENABLE_INVESTIGATIONS: 'true' }).features
+        .investigations
+    ).toBe(true)
+    expect(
+      resolveDeployment({ PUBLIC_BRANCH: 'qld', PUBLIC_ENABLE_INVESTIGATIONS: 'false' }).features
+        .investigations
+    ).toBe(false)
+  })
+
   it('Studio and site resolve the same Queensland source', () => {
     expect(resolveDeployment({ SANITY_STUDIO_BRANCH: 'qld' })).toEqual(
       resolveDeployment({ PUBLIC_BRANCH: 'qld' })
