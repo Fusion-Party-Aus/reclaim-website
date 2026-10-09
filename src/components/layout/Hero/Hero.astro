@@ -19,7 +19,7 @@ const {
   stats,
   showCTA = false,
   compact = false,
-  bgImage = '/hero.png',
+  bgImage = DEPLOYMENT.assets.hero.replace(`${DEPLOYMENT.siteUrl}`, ''),
 } = Astro.props
 ---
 

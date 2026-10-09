@@ -73,7 +73,9 @@ if (!electorate) {
 
 const ogImageUrl = electorate.candidateImage
   ? urlFor(electorate.candidateImage).width(1200).height(630).fit('crop').url()
-  : '/og/electorates.png'
+  : DEPLOYMENT.contentProfile === 'victoria-campaign'
+    ? '/og/electorates.png'
+    : DEPLOYMENT.seo.defaultOgImage
 
 // HTV Sorting
 const hasHTV = Array.isArray(electorate.htv) && electorate.htv.length > 0
@@ -256,10 +258,10 @@ const tierConfig: Record<
                   <p class="text-sm text-fg/50 leading-relaxed">
                     From {electorate.name}? Interested in running?{' '}
                     <a
-                      href="mailto:preselection@fusionparty.org.au"
+                      href={`mailto:${DEPLOYMENT.contact.preselectionEmail}`}
                       class="text-mint font-black underline hover:no-underline"
                     >
-                      preselection@fusionparty.org.au
+                      {DEPLOYMENT.contact.preselectionEmail}
                     </a>
                   </p>
                 </div>

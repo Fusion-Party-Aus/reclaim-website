@@ -52,7 +52,8 @@ export default defineType({
       title: 'Current-Term Priority',
       type: 'boolean',
       group: 'basic',
-      description: 'Delivery horizon only. False means the policy needs a broader mandate or longer implementation horizon; it remains part of the policy platform.',
+      description:
+        'Delivery horizon only. False means the policy needs a broader mandate or longer implementation horizon; it remains part of the policy platform.',
       initialValue: false,
     }),
     defineField({
@@ -307,15 +308,85 @@ export default defineType({
       title: 'Substantive policy update',
       type: 'datetime',
       group: 'meta',
-      description: 'Set only when policy substance changes. Do not update for formatting, metadata, republishing or routine CMS touches.',
+      description:
+        'Set only when policy substance changes. Do not update for formatting, metadata, republishing or routine CMS touches.',
     }),
     defineField({
       name: 'changeSummary',
       title: 'Public change summary',
       type: 'string',
       group: 'meta',
-      description: 'One-sentence explanation of the substantive policy change. Published in machine-readable change feeds.',
+      description:
+        'One-sentence explanation of the substantive policy change. Published in machine-readable change feeds.',
       validation: (Rule) => Rule.max(240),
+    }),
+    defineField({
+      name: 'status',
+      title: 'Policy status',
+      type: 'string',
+      group: 'meta',
+      description:
+        'Adopted policies are the default public API contract. Draft and archived policies are excluded from machine-readable feeds.',
+      options: {
+        list: [
+          {title: 'Adopted', value: 'adopted'},
+          {title: 'Draft', value: 'draft'},
+          {title: 'Archived', value: 'archived'},
+        ],
+      },
+      initialValue: 'adopted',
+    }),
+    defineField({
+      name: 'topics',
+      title: 'Topics',
+      type: 'array',
+      group: 'meta',
+      description: 'Topic taxonomy tags for grouping and filtering this policy.',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
+      name: 'sourceUrl',
+      title: 'Source URL',
+      type: 'url',
+      group: 'meta',
+      description: 'Canonical source of the policy text (for example the Git repository path).',
+    }),
+    defineField({
+      name: 'references',
+      title: 'References',
+      type: 'array',
+      group: 'meta',
+      description: 'Cited sources that support this policy.',
+      of: [
+        {
+          type: 'object',
+          name: 'policyReference',
+          title: 'Reference',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'url',
+            },
+          },
+        },
+      ],
     }),
   ],
   preview: {

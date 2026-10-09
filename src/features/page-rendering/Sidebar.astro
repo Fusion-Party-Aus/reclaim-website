@@ -74,14 +74,14 @@ import { BrutalButton } from '@/components/ui'
             All Policies
           </a>
           <a
-            href={DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact'}
+            href={DEPLOYMENT.cta.getInvolved}
             class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-xs border border-white/10 bg-grey-dark hover:border-magenta/40 hover:text-magenta transition-all"
           >
             <Icon name="mdi:hand-heart" class="w-4 h-4" />
             Get Involved
           </a>
           <a
-            href="https://fusionparty.org.au/donate"
+            href={DEPLOYMENT.cta.donateNational}
             class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-sm bg-accent-deep text-fg hover:bg-magenta-darker transition-colors"
           >
             <Icon name="mdi:currency-usd" class="w-4 h-4" />

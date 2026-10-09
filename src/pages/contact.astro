@@ -53,21 +53,21 @@ const intro =
 const general = data.generalContact ?? {
   heading: 'General Enquiries',
   description: 'For feedback or questions about the party or this website:',
-  email: 'contact@fusionparty.org.au',
-  phone: DEPLOYMENT.slug === 'vic' ? '0410 249 574' : '',
-  discordUrl: 'https://www.fusionparty.org.au/discord',
+  email: DEPLOYMENT.contact.email,
+  phone: DEPLOYMENT.contact.phone,
+  discordUrl: DEPLOYMENT.contact.discord,
 }
 
 const media = data.mediaContact ?? {
   heading: 'Media Inquiries',
   description: 'For members of the press only:',
-  email: 'press@fusionparty.org.au',
+  email: DEPLOYMENT.contact.pressEmail,
 }
 
 const address = data.mailingAddress ?? {
   heading: 'Mailing Address',
   description: 'Legal correspondence only:',
-  address: DEPLOYMENT.slug === 'vic' ? '254 McLeod Lane\nMansfield VIC 3722\nAustralia' : '',
+  address: DEPLOYMENT.contact.address,
 }
 
 const socialLinks: SocialLink[] = data.socialLinks ?? [

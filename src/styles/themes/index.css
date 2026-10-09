@@ -1,11 +1,2 @@
-/* Branch theme index.
- *
- * Each branch theme is a self-contained file that re-points the shared
- * semantic role tokens under `:root[data-theme='<slug>']`.
- *
- * To add a branch: drop `<slug>.css` beside this file, add it below, add the
- * branch to the `branches` registry in config/deployment.mjs, then deploy with
- * PUBLIC_BRANCH=<slug>. Nothing in the shared components or layouts changes.
- */
-
+@import './vic.css';
 @import './qld.css';

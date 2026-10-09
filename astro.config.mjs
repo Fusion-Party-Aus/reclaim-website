@@ -1,5 +1,8 @@
 import { loadEnv } from 'vite'
 import { resolveDeployment } from './config/deployment.mjs'
+import { branchManifest } from './config/branches.mjs'
+import { resolveBranch } from './config/branch/resolver.mjs'
+import { resolveDeployConfig } from './config/branch/deploy.mjs'
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import aiReadiness from '@adkinn/astro-ai-readiness'
@@ -13,11 +16,13 @@ import node from '@astrojs/node'
 import sanity from '@sanity/astro'
 import react from '@astrojs/react'
 import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 
-const deployment = resolveDeployment({
+const env = {
   ...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''),
   ...process.env,
-})
+}
+const deployment = resolveDeployment(env)
 const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
@@ -48,7 +53,7 @@ export default defineConfig({
       organization: {
         name: deployment.label,
         url: deployment.siteUrl,
-        logo: `${deployment.siteUrl}/logo.png`,
+        logo: `${deployment.siteUrl}${deployment.seo.logoPath}`,
         description: `${deployment.label} — ${deployment.tagline}. A ${deployment.adjective} policy platform focused on integrity, urban form, open government, evidence over ideology, and freedom above a strong common floor.`,
         sameAs: [
           'https://www.facebook.com/FusionPartyAus',
@@ -130,7 +135,7 @@ export default defineConfig({
       agentsMd: {
         description: `${deployment.label} — ${deployment.tagline}. The ${deployment.adjective} platform is organised around integrity, urban form, evidence over ideology, open government, and a strong common floor with wide freedom above it.`,
         audience: `Voters, journalists, political analysts, AI agents, and anyone researching the ${deployment.adjective} political landscape or Fusion Party policies.`,
-        contact: 'contact@fusionparty.org.au',
+        contact: deployment.contact.email,
         links: [
           {
             title: 'Policy',
@@ -197,7 +202,6 @@ export default defineConfig({
       projectId: deployment.projectId,
       dataset: deployment.dataset,
       // Keep Astro's Sanity integration consistent with src/lib/sanity.ts.
-      // Signal publishes live content, so stale CDN reads are not acceptable here.
       useCdn: false,
       stega: {
         studioUrl: process.env.PUBLIC_SANITY_STUDIO_URL || 'http://localhost:3333',
@@ -210,9 +214,6 @@ export default defineConfig({
           }),
         ]
       : []),
-    astroNoIndex({
-      allow: [new URL(deployment.siteUrl).hostname, 'fusionparty.org.au'],
-    }),
   ],
 
   vite: {
@@ -231,10 +232,17 @@ export default defineConfig({
   // switch to cloudflare for production builds.
   adapter: isDev
     ? node({ mode: 'standalone' })
-    : cloudflare({
-        imageService: 'passthrough',
-        ...(deployment.slug === 'qld' ? { configPath: './wrangler.qld.toml' } : {}),
-        platformProxy: { enabled: false },
-      }),
+    : (() => {
+        const resolved = resolveBranch(branchManifest, env)
+        const deployConfig = resolveDeployConfig(resolved, env)
+        return cloudflare({
+          imageService: 'passthrough',
+          configPath: deployConfig.wranglerConfigPath,
+          platformProxy: { enabled: false },
+        })
+      })(),
   output: 'server',
+  outDir: process.env.ASTRO_BRANCH_BUILD_OUT_DIR
+    ? path.resolve(process.env.ASTRO_BRANCH_BUILD_OUT_DIR)
+    : './dist',
 })

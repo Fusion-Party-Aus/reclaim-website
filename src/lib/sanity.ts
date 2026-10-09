@@ -44,8 +44,8 @@ export async function getDocumentBySlug<T = unknown>(
   type: string,
   slug: string
 ): Promise<T | null> {
-  const query = `*[_type == "${type}" && slug.current == "${slug}"][0]`
-  return await client.fetch(query)
+  const query = `*[_type == $type && slug.current == $slug][0]`
+  return await client.fetch(query, { type, slug })
 }
 
 /**
@@ -66,10 +66,16 @@ export async function getDocumentsByField<T = unknown>(
  * These provide better type safety and are the recommended way to fetch data
  */
 
-export async function getPolicies(options?: { thisTerm?: boolean }): Promise<Policy[]> {
+export async function getPolicies(options?: {
+  thisTerm?: boolean
+  adoptedOnly?: boolean
+}): Promise<Policy[]> {
   let filter = '_type == "policy"'
   if (options && options.thisTerm !== undefined) {
     filter += ` && thisTerm == ${options.thisTerm}`
+  }
+  if (options?.adoptedOnly) {
+    filter += ` && coalesce(status, 'adopted') == 'adopted'`
   }
   const query = `*[${filter}] | order(_createdAt desc)`
   return await client.fetch(query)
@@ -77,6 +83,11 @@ export async function getPolicies(options?: { thisTerm?: boolean }): Promise<Pol
 
 export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
   const query = `*[_type == "policy" && slug.current == $slug][0]`
+  return await client.fetch(query, { slug })
+}
+
+export async function getAdoptedPolicyBySlug(slug: string): Promise<Policy | null> {
+  const query = `*[_type == "policy" && coalesce(status, 'adopted') == 'adopted' && slug.current == $slug][0]`
   return await client.fetch(query, { slug })
 }
 

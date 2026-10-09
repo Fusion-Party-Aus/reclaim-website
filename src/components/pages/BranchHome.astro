@@ -11,7 +11,13 @@ import '@/styles/editorial.css'
 
 interface BranchHomeContent {
   title?: string
-  hero?: { eyebrow?: string; title?: string; subtitle?: string; showCTA?: boolean; stats?: {number: string; label: string}[] }
+  hero?: {
+    eyebrow?: string
+    title?: string
+    subtitle?: string
+    showCTA?: boolean
+    stats?: { number: string; label: string }[]
+  }
   theftSection?: { heading?: string; description?: string }
   electoratesSection?: { heading?: string; description?: string }
   manifestoSection?: { heading?: string; description?: string }
@@ -20,19 +26,44 @@ interface BranchHomeContent {
 }
 const home = ((await getHomePage()) || starterContent(DEPLOYMENT)[0]) as BranchHomeContent
 const [allPolicies, allElectorates, allResearch] = await Promise.all([
-  getPolicies(), getElectorates(), getResearchResources(),
+  getPolicies({ adoptedOnly: true }),
+  getElectorates(),
+  getResearchResources(),
 ])
 const policies = allPolicies.filter((item) => item.slug?.current).slice(0, 6)
-const electorates = allElectorates.filter((item) => item.slug?.current && item.candidateName).slice(0, 6)
+const electorates = allElectorates
+  .filter((item) => item.slug?.current && item.candidateName)
+  .slice(0, 6)
 const research = allResearch.filter((item) => item.slug?.current).slice(0, 3)
 const introCards = [
-  { icon: 'mdi:lightbulb-outline', title: 'Ideas worth testing', description: 'Explore practical approaches to the challenges facing our state.', href: '/policies', action: 'Explore policies' },
-  { icon: 'mdi:scale-balance', title: 'Rights worth defending', description: 'A commitment to civil liberties, democratic accountability and open debate.', href: '/about', action: 'About the movement' },
-  { icon: 'mdi:account-group-outline', title: 'A movement worth building', description: 'Bring your experience, questions and ideas to the conversation.', href: '/contact', action: 'Get involved' },
+  {
+    icon: 'mdi:lightbulb-outline',
+    title: 'Ideas worth testing',
+    description: 'Explore practical approaches to the challenges facing our state.',
+    href: '/policies',
+    action: 'Explore policies',
+  },
+  {
+    icon: 'mdi:scale-balance',
+    title: 'Rights worth defending',
+    description: 'A commitment to civil liberties, democratic accountability and open debate.',
+    href: '/about',
+    action: 'About the movement',
+  },
+  {
+    icon: 'mdi:account-group-outline',
+    title: 'A movement worth building',
+    description: 'Bring your experience, questions and ideas to the conversation.',
+    href: '/contact',
+    action: 'Get involved',
+  },
 ]
 ---
 
-<BaseLayout title={home.seo?.metaTitle || home.title || DEPLOYMENT.label} description={home.seo?.metaDescription || home.hero?.subtitle || DEPLOYMENT.description}>
+<BaseLayout
+  title={home.seo?.metaTitle || home.title || DEPLOYMENT.label}
+  description={home.seo?.metaDescription || home.hero?.subtitle || DEPLOYMENT.description}
+>
   <Header />
   <main id="main-content" class="site-editorial">
     <header class="editorial-masthead home-masthead">
@@ -52,78 +83,217 @@ const introCards = [
             </div>
           </aside>
         </div>
-        {home.hero?.showCTA !== false && <div class="home-actions"><a class="editorial-action" href="/contact">Get involved →</a></div>}
-        {Boolean(home.hero?.stats?.length) && <dl class="home-stats">{home.hero!.stats!.map((stat) => <div><dt>{stat.label}</dt><dd>{stat.number}</dd></div>)}</dl>}
+        {
+          home.hero?.showCTA !== false && (
+            <div class="home-actions">
+              <a class="editorial-action" href="/contact">
+                Get involved →
+              </a>
+            </div>
+          )
+        }
+        {
+          Boolean(home.hero?.stats?.length) && (
+            <dl class="home-stats">
+              {home.hero!.stats!.map((stat) => (
+                <div>
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.number}</dd>
+                </div>
+              ))}
+            </dl>
+          )
+        }
       </div>
     </header>
 
-    <section class="bg-surface-raised border-b border-white/10 py-20 px-4 md:px-8" aria-labelledby="branch-intro">
+    <section
+      class="bg-surface-raised border-b border-white/10 py-20 px-4 md:px-8"
+      aria-labelledby="branch-intro"
+    >
       <div class="max-w-7xl mx-auto">
-        <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-4">A different kind of politics</p>
-        <h2 id="branch-intro" class="text-5xl md:text-7xl font-display font-black leading-none max-w-4xl">Built for the future of {DEPLOYMENT.state}.</h2>
-        <p class="mt-6 text-lg text-white/70 max-w-3xl">Good decisions start with clear problems, open evidence and a willingness to change course when something isn't working.</p>
+        <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-4">
+          A different kind of politics
+        </p>
+        <h2
+          id="branch-intro"
+          class="text-5xl md:text-7xl font-display font-black leading-none max-w-4xl"
+        >
+          Built for the future of {DEPLOYMENT.state}.
+        </h2>
+        <p class="mt-6 text-lg text-white/70 max-w-3xl">
+          Good decisions start with clear problems, open evidence and a willingness to change course
+          when something isn't working.
+        </p>
         <div class="mt-12 grid gap-5 md:grid-cols-3">
-          {introCards.map((card, index) => <a href={card.href} class="group border border-white/15 border-t-2 border-t-magenta bg-surface-base p-7 hover:border-mint/60 transition-colors">
-            <Icon name={card.icon} class="w-11 h-11 text-mint mb-6" />
-            <p class="text-xs font-mono text-white/40 mb-3">0{index + 1}</p>
-            <h3 class="text-2xl font-display font-black">{card.title}</h3>
-            <p class="text-white/65 mt-3 leading-relaxed">{card.description}</p>
-            <span class="inline-block mt-6 text-sm font-black uppercase text-mint">{card.action} →</span>
-          </a>)}
+          {
+            introCards.map((card, index) => (
+              <a
+                href={card.href}
+                class="group border border-white/15 border-t-2 border-t-magenta bg-surface-base p-7 hover:border-mint/60 transition-colors"
+              >
+                <Icon name={card.icon} class="w-11 h-11 text-mint mb-6" />
+                <p class="text-xs font-mono text-white/40 mb-3">0{index + 1}</p>
+                <h3 class="text-2xl font-display font-black">{card.title}</h3>
+                <p class="text-white/65 mt-3 leading-relaxed">{card.description}</p>
+                <span class="inline-block mt-6 text-sm font-black uppercase text-mint">
+                  {card.action} →
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
 
-    <section id="policies" class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8" aria-labelledby="branch-policies">
+    <section
+      id="policies"
+      class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8"
+      aria-labelledby="branch-policies"
+    >
       <div class="max-w-7xl mx-auto">
-        <p class="text-xs font-black uppercase tracking-[0.22em] text-magenta mb-4">Policy and priorities</p>
-        <h2 id="branch-policies" class="text-5xl md:text-7xl font-display font-black leading-none">{home.theftSection?.heading || 'Practical ideas. Real outcomes.'}</h2>
-        <p class="text-white/65 text-lg mt-6 max-w-3xl">{home.theftSection?.description || 'We are building a platform grounded in evidence and open to scrutiny.'}</p>
-        {policies.length ? <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">{policies.map((policy) => <a href={`/policies/${policy.slug.current}`} class="group bg-surface-raised border border-white/15 p-7 hover:border-magenta/70 transition-colors">
-          <span class="text-xs font-black uppercase tracking-widest text-magenta">{policy.pillar || 'Policy'}</span>
-          <h3 class="text-2xl font-display font-black mt-4 group-hover:text-magenta">{policy.title}</h3>
-          <p class="text-white/65 mt-3">{policy.summary}</p>
-          <span class="block mt-6 text-sm font-black">Read proposal →</span>
-        </a>)}</div> : <div class="mt-12 border-l-4 border-mint bg-surface-raised p-8 max-w-3xl">
-          <h3 class="text-2xl font-display font-black">Help shape what comes next.</h3>
-          <p class="mt-3 text-white/65">The state policy library is being developed. Explore the movement and contribute to the discussion as proposals are prepared.</p>
-          <a href="/contact" class="inline-block mt-6 font-black text-mint">Join the conversation →</a>
-        </div>}
-        {policies.length > 0 && <a href="/policies" class="inline-block mt-10 font-black text-mint">See all policies →</a>}
+        <p class="text-xs font-black uppercase tracking-[0.22em] text-magenta mb-4">
+          Policy and priorities
+        </p>
+        <h2 id="branch-policies" class="text-5xl md:text-7xl font-display font-black leading-none">
+          {home.theftSection?.heading || 'Practical ideas. Real outcomes.'}
+        </h2>
+        <p class="text-white/65 text-lg mt-6 max-w-3xl">
+          {
+            home.theftSection?.description ||
+              'We are building a platform grounded in evidence and open to scrutiny.'
+          }
+        </p>
+        {
+          policies.length ? (
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+              {policies.map((policy) => (
+                <a
+                  href={`/policies/${policy.slug.current}`}
+                  class="group bg-surface-raised border border-white/15 p-7 hover:border-magenta/70 transition-colors"
+                >
+                  <span class="text-xs font-black uppercase tracking-widest text-magenta">
+                    {policy.pillar || 'Policy'}
+                  </span>
+                  <h3 class="text-2xl font-display font-black mt-4 group-hover:text-magenta">
+                    {policy.title}
+                  </h3>
+                  <p class="text-white/65 mt-3">{policy.summary}</p>
+                  <span class="block mt-6 text-sm font-black">Read proposal →</span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="mt-12 border-l-4 border-mint bg-surface-raised p-8 max-w-3xl">
+              <h3 class="text-2xl font-display font-black">Help shape what comes next.</h3>
+              <p class="mt-3 text-white/65">
+                The state policy library is being developed. Explore the movement and contribute to
+                the discussion as proposals are prepared.
+              </p>
+              <a href="/contact" class="inline-block mt-6 font-black text-mint">
+                Join the conversation →
+              </a>
+            </div>
+          )
+        }
+        {
+          policies.length > 0 && (
+            <a href="/policies" class="inline-block mt-10 font-black text-mint">
+              See all policies →
+            </a>
+          )
+        }
       </div>
     </section>
 
-    <section class="bg-surface-raised border-b border-white/10 py-20 px-4 md:px-8" aria-labelledby="branch-evidence">
+    <section
+      class="bg-surface-raised border-b border-white/10 py-20 px-4 md:px-8"
+      aria-labelledby="branch-evidence"
+    >
       <div class="max-w-7xl mx-auto">
         <p class="text-xs font-black uppercase tracking-[0.22em] text-mint mb-4">Show the work</p>
-        <h2 id="branch-evidence" class="text-5xl md:text-7xl font-display font-black leading-none">Don't take policy on faith.</h2>
-        <p class="mt-6 text-lg text-white/65 max-w-3xl">The evidence, the trade-offs and the outcomes matter more than slogans. Research should be open to correction and improvement.</p>
-        {research.length > 0 && <div class="mt-12 grid gap-5 md:grid-cols-3">{research.map((item) => <a href={`/research/${item.slug.current}`} class="block border border-white/15 bg-surface-base p-7 hover:border-mint/60">
-          <span class="text-xs uppercase font-black text-mint">{item.researchArea || item.resourceType || 'Research'}</span>
-          <h3 class="text-2xl font-display font-black mt-4">{item.title}</h3>
-          <p class="mt-3 text-white/65">{item.abstract}</p>
-          <span class="inline-block mt-5 font-black text-sm">Read research →</span>
-        </a>)}</div>}
-        <a href={research.length ? '/research' : '/about'} class="inline-block mt-10 font-black text-mint">{research.length ? 'Explore the research library' : 'Learn about our approach'} →</a>
+        <h2 id="branch-evidence" class="text-5xl md:text-7xl font-display font-black leading-none">
+          Don't take policy on faith.
+        </h2>
+        <p class="mt-6 text-lg text-white/65 max-w-3xl">
+          The evidence, the trade-offs and the outcomes matter more than slogans. Research should be
+          open to correction and improvement.
+        </p>
+        {
+          research.length > 0 && (
+            <div class="mt-12 grid gap-5 md:grid-cols-3">
+              {research.map((item) => (
+                <a
+                  href={`/research/${item.slug.current}`}
+                  class="block border border-white/15 bg-surface-base p-7 hover:border-mint/60"
+                >
+                  <span class="text-xs uppercase font-black text-mint">
+                    {item.researchArea || item.resourceType || 'Research'}
+                  </span>
+                  <h3 class="text-2xl font-display font-black mt-4">{item.title}</h3>
+                  <p class="mt-3 text-white/65">{item.abstract}</p>
+                  <span class="inline-block mt-5 font-black text-sm">Read research →</span>
+                </a>
+              ))}
+            </div>
+          )
+        }
+        <a
+          href={research.length ? '/research' : '/about'}
+          class="inline-block mt-10 font-black text-mint"
+          >{research.length ? 'Explore the research library' : 'Learn about our approach'} →</a
+        >
       </div>
     </section>
 
-    {electorates.length > 0 && <section class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8" aria-labelledby="branch-candidates">
-      <div class="max-w-7xl mx-auto">
-        <h2 id="branch-candidates" class="text-5xl md:text-7xl font-display font-black">{home.electoratesSection?.heading || 'Meet our candidates'}</h2>
-        <p class="mt-5 text-white/65">{home.electoratesSection?.description}</p>
-        <div class="mt-10 grid gap-4 md:grid-cols-3">{electorates.map((item) => <a class="border border-white/15 bg-surface-raised p-6 hover:border-mint/60" href={`/electorates/${item.slug.current}`}><h3 class="font-display font-black text-xl">{item.candidateName}</h3><p class="text-white/60 mt-2">{item.name}</p></a>)}</div>
-      </div>
-    </section>}
+    {
+      electorates.length > 0 && (
+        <section
+          class="bg-surface-base border-b border-white/10 py-20 px-4 md:px-8"
+          aria-labelledby="branch-candidates"
+        >
+          <div class="max-w-7xl mx-auto">
+            <h2 id="branch-candidates" class="text-5xl md:text-7xl font-display font-black">
+              {home.electoratesSection?.heading || 'Meet our candidates'}
+            </h2>
+            <p class="mt-5 text-white/65">{home.electoratesSection?.description}</p>
+            <div class="mt-10 grid gap-4 md:grid-cols-3">
+              {electorates.map((item) => (
+                <a
+                  class="border border-white/15 bg-surface-raised p-6 hover:border-mint/60"
+                  href={`/electorates/${item.slug.current}`}
+                >
+                  <h3 class="font-display font-black text-xl">{item.candidateName}</h3>
+                  <p class="text-white/60 mt-2">{item.name}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <section class="bg-surface-base py-24 px-4 md:px-8" aria-labelledby="branch-join">
       <div class="max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
-          <p class="text-xs font-black uppercase tracking-[0.22em] text-magenta mb-4">Be part of it</p>
-          <h2 id="branch-join" class="text-5xl md:text-7xl font-display font-black leading-none">{home.joinSection?.heading || 'Build something better.'}</h2>
-          <p class="mt-6 text-lg text-white/65 max-w-2xl">{home.joinSection?.description || 'A stronger movement begins with people willing to ask questions, share ideas and get involved.'}</p>
+          <p class="text-xs font-black uppercase tracking-[0.22em] text-magenta mb-4">
+            Be part of it
+          </p>
+          <h2 id="branch-join" class="text-5xl md:text-7xl font-display font-black leading-none">
+            {home.joinSection?.heading || 'Build something better.'}
+          </h2>
+          <p class="mt-6 text-lg text-white/65 max-w-2xl">
+            {
+              home.joinSection?.description ||
+                'A stronger movement begins with people willing to ask questions, share ideas and get involved.'
+            }
+          </p>
         </div>
-        <a href="/contact" class="inline-block bg-magenta text-white font-black uppercase px-8 py-5 hover:brightness-110">Get involved →</a>
+        <a
+          href="/contact"
+          class="inline-block bg-magenta text-white font-black uppercase px-8 py-5 hover:brightness-110"
+          >Get involved →</a
+        >
       </div>
     </section>
   </main>

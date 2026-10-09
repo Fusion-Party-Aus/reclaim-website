@@ -71,6 +71,12 @@ export interface PolicyKeyPoint {
   description?: string
 }
 
+export interface PolicyReference {
+  _key?: string
+  title: string
+  url: string
+}
+
 export interface Policy extends SanityDocument {
   _type: 'policy'
   pillar?: 'RECLAIM OUR ECONOMY' | 'RECLAIM OUR INFRASTRUCTURE' | 'RECLAIM OUR DEMOCRACY'
@@ -101,6 +107,11 @@ export interface Policy extends SanityDocument {
   publishedAt?: string
   substantiveUpdatedAt?: string
   changeSummary?: string
+  /** Publication status. Missing is treated as 'adopted' by the policy API. */
+  status?: 'adopted' | 'draft' | 'archived'
+  topics?: string[]
+  sourceUrl?: string
+  references?: PolicyReference[]
   seo?: SEOMetadata
 }
 

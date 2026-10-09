@@ -25,7 +25,7 @@ export const GET: APIRoute = async () => {
       ? `Collection last updated: ${sorted[0]._updatedAt || sorted[0].publishedAt}`
       : '',
     '',
-    'These resources expose the evidence, methodology, sources, limitations and data behind the Victorian policy platform. Prefer each canonical resource URL when citing.',
+    `These resources expose the evidence, methodology, sources, limitations and data behind the ${DEPLOYMENT.adjective} policy platform. Prefer each canonical resource URL when citing.`,
     '',
   ]
 

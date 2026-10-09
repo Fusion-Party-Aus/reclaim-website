@@ -83,12 +83,14 @@ const heroBgMap: Record<string, string> = {
   contact: '/color_panel_rally.jpg',
 }
 
-const bgImage = heroBgMap[slug] || '/hero.png'
+const bgImage =
+  (DEPLOYMENT.contentProfile === 'victoria-campaign' && heroBgMap[slug]) ||
+  DEPLOYMENT.assets.hero.replace(DEPLOYMENT.siteUrl, '')
 
 const ogImageUrl =
   page.pageType === 'bio' && page.profileImage
     ? urlFor(page.profileImage).width(1200).height(630).fit('crop').url()
-    : '/og/default.png'
+    : DEPLOYMENT.seo.defaultOgImage
 ---
 
 <BaseLayout

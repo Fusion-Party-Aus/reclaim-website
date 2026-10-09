@@ -1,0 +1,126 @@
+/* ============================================================
+   BRANCH THEME — FUSION VICTORIA (default)
+
+   Victoria is the reference branch: its values are the shared
+   defaults declared in src/styles/global.css and
+   src/styles/editorial.css. This file re-points those semantic
+   role tokens under `:root[data-theme='vic']` so every branch key
+   in the manifest has a concrete theme file, while the rendered
+   result stays identical to the base defaults.
+
+   The `--branch-*` convenience roles are deliberately NOT declared
+   here: shared components carry their own per-surface fallbacks for
+   those (e.g. blog/index, blog/[slug], MovementMetrics, Footer), so
+   a single root value would change those surfaces. Leaving them
+   undeclared preserves Victoria exactly.
+
+   Activated by <html data-theme="vic">. No component forks.
+   ============================================================ */
+
+:root[data-theme='vic'] {
+  /* Primary family */
+  --color-magenta: #d428d4;
+  --color-magenta-dark: #8b1a8b;
+  --color-magenta-darker: #5c006b;
+  --color-magenta-bright: #ec6aed;
+
+  /* Secondary family */
+  --color-mint: #00ddb8;
+  --color-mint-dark: #00b89a;
+  --color-mint-bright: #0bb8d4;
+  --color-mint-hover: #5eedd8;
+
+  /* Emphasis */
+  --color-yellow: #4a7aeb;
+  --color-yellow-bright: #7ea8f5;
+
+  /* Tertiary */
+  --color-lavender: #7b3fe4;
+  --color-lavender-light: #a87af2;
+  --color-lavender-bright: #a87af2;
+
+  /* Neutrals */
+  --color-grey: #887898;
+  --color-grey-dark: #2e004d;
+  --color-grey-light: #d8d0e0;
+  --color-black: #0f0018;
+  --color-white: #ffffff;
+
+  /* Functional */
+  --color-red: #e84040;
+  --color-orange: #f5a623;
+  --color-blue: #4a7aeb;
+  --color-green: #00ddb8;
+
+  /* Semantic foregrounds + fills */
+  /* Manifest-role mappings: primary→magenta, secondary→mint; these established
+     VIC palette values are intentionally preserved rather than copied from
+     manifest literals. */
+  --color-fg: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.5);
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #0f0018;
+  --color-on-accent: #ffffff;
+  --color-on-tertiary: #ffffff;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-mid: rgba(255, 255, 255, 0.2);
+  --color-line-strong: rgba(255, 255, 255, 0.25);
+  --color-chalk: #f2eef7;
+  --color-focus: #00ddb8;
+  --color-surface-base: #1a0029;
+  --color-surface-raised: #2e004d;
+
+  /* Surface ladder */
+  --color-surface-overlay: #470060;
+  --color-surface-brand: #5c006b;
+
+  /* Supporting roles */
+  --color-accent-deep: #234080;
+  --color-neutral-panel: color-mix(in srgb, #0f0018 20%, transparent);
+
+  /* Depth: neon glows on the dark-first canvas. */
+  --shadow-brutal: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-sm: 0 4px 16px 0px rgba(0, 0, 0, 0.5);
+  --shadow-brutal-lg: 0 12px 40px 0px rgba(0, 0, 0, 0.65);
+  --shadow-brutal-xl: 0 16px 48px 0px rgba(0, 0, 0, 0.7);
+  --shadow-brutal-magenta: 0 0 24px rgba(212, 40, 212, 0.35);
+  --shadow-brutal-mint: 0 0 24px rgba(0, 221, 184, 0.3);
+  --shadow-brutal-yellow: 0 0 24px rgba(74, 122, 235, 0.35);
+  --shadow-brutal-red: 0 0 24px rgba(232, 64, 64, 0.35);
+  --shadow-brutal-orange: 0 0 24px rgba(245, 166, 35, 0.35);
+  --shadow-brutal-asymmetric-1: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-asymmetric-2: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-asymmetric-3: 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-inverted: 0 -8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-double: 0 0 16px rgba(0, 221, 184, 0.3), 0 8px 32px 0px rgba(0, 0, 0, 0.6);
+  --shadow-brutal-triple:
+    0 0 12px rgba(74, 122, 235, 0.3), 0 0 20px rgba(212, 40, 212, 0.3),
+    0 8px 32px 0px rgba(0, 0, 0, 0.6);
+
+  /* Editorial roles retain their dark-first defaults. */
+  --editorial-base: #100d13;
+  --editorial-header: #100d13f5;
+  --editorial-panel: #1b1720;
+  --editorial-overlay: #28222e;
+  --editorial-hover: #221c28;
+  --editorial-gradient-start: #160d19;
+  --editorial-glow: #302039;
+  --editorial-fg: #f7f3f8;
+  --editorial-title: #fff;
+  --editorial-line: #413647;
+  --editorial-line-strong: #67566f;
+  --editorial-muted: #a99bae;
+  --editorial-muted-mid: #bdb0c4;
+  --editorial-muted-light: #c9c0ce;
+  --editorial-light: #ddd4e2;
+  --editorial-secondary: #00ddb8;
+  --editorial-primary: #d428d4;
+  --editorial-secondary-line: rgba(0, 221, 184, 0.45);
+  --editorial-white-12: rgba(255, 255, 255, 0.12);
+  --editorial-white-13: rgba(255, 255, 255, 0.13);
+  --editorial-white-14: rgba(255, 255, 255, 0.14);
+  --editorial-white-15: rgba(255, 255, 255, 0.15);
+  --editorial-white-5: rgba(255, 255, 255, 0.5);
+  --editorial-white-64: rgba(255, 255, 255, 0.64);
+  --editorial-white-66: rgba(255, 255, 255, 0.66);
+}

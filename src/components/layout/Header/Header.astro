@@ -38,19 +38,7 @@ const ensureRootRelative = (href: string) =>
 
 const rawNavItems =
   navigation?.mainNav?.sort((a, b) => a.order - b.order) ||
-  (DEPLOYMENT.slug !== 'vic'
-    ? [
-        { href: '/', label: 'Home', order: 0 },
-        { href: '/policies', label: 'Policies', order: 1 },
-        { href: '/contact', label: 'Contact', order: 2 },
-      ]
-    : [
-        { href: '/', label: 'Home', order: 0 },
-        { href: '/about', label: 'About', order: 1 },
-        { href: '/policies', label: 'Policies', order: 2 },
-        { href: '/vision', label: 'Vision', order: 3 },
-        { href: '/research', label: 'Research', order: 4 },
-      ])
+  DEPLOYMENT.navigation.fallback.map((item, order) => ({ ...item, order }))
 
 // Blog is now a first-class publishing surface. Keep it visible even if the
 // current Sanity navigation document predates frequent Signal articles.
@@ -76,8 +64,7 @@ const navItems = rawNavItems.map((item) => ({
 }))
 
 const ctaButton = navigation?.ctaButton || {
-  label: 'Get involved',
-  href: DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact',
+  ...DEPLOYMENT.navigation.cta,
   style: 'primary',
 }
 

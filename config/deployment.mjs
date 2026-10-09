@@ -1,46 +1,109 @@
-/** Deployment identity is independent of the Git branch. Victoria remains the default. */
-export const branches = {
-  vic: {
-    slug: 'vic',
-    state: 'Victoria',
-    adjective: 'Victorian',
-    label: 'Fusion Party Victoria',
-    tagline: 'Reignite Democracy',
-    themeColor: '#D428D4',
-    siteUrl: 'https://vic.fusionparty.org.au',
-  },
-  qld: {
-    slug: 'qld',
-    state: 'Queensland',
-    adjective: 'Queensland',
-    label: 'Fusion Party Queensland',
-    tagline: 'A better future for Queensland',
-    themeColor: '#731E32',
-    siteUrl: 'https://qld.fusionparty.org.au',
-  },
-}
+/**
+ * Deployment facade.
+ *
+ * The branch manifest (`config/branches.mjs`) is the single source of truth.
+ * This module is a thin compatibility adapter: it resolves the requested
+ * Branch through the fail-closed `resolveBranch` and maps the resulting
+ * descriptor into the exact `Deployment` object shape that components and
+ * `astro.config.mjs` consume today.
+ *
+ * There is no `slug === 'qld'` / `slug === 'vic'` special-casing and no silent
+ * fallback: an unknown or incomplete Branch throws from the resolver.
+ *
+ * See docs/sparc/branch-agnostic/architecture_blueprint.md §5.2 and §9.
+ */
 
-export function resolveDeployment(env = {}) {
-  const slug = env.PUBLIC_BRANCH || env.SANITY_STUDIO_BRANCH || 'vic'
-  if (!Object.hasOwn(branches, slug)) throw new Error(`Unknown deployment branch: ${slug}`)
-  const branch = branches[slug]
-  const projectId = env.PUBLIC_SANITY_PROJECT_ID || env.SANITY_STUDIO_PROJECT_ID || 'qwl3f8jb'
-  const dataset =
-    env.PUBLIC_SANITY_DATASET ||
-    env.SANITY_STUDIO_DATASET ||
-    (slug === 'vic' ? 'production' : 'qld')
-  if (slug !== 'vic' && projectId === 'qwl3f8jb' && dataset === 'production') {
+import { branchManifest } from './branches.mjs'
+import { resolveBranch } from './branch/resolver.mjs'
+
+/** @param {import('./branch/contract.mjs').BranchEntry} entry */
+function runtimeView(resolved) {
+  const runtime = resolved.runtime
+  if (!runtime) {
     throw new Error(
-      'Queensland must use its own Sanity dataset or project, not Victoria production'
+      `Branch '${resolved.identity.slug}' declares no runtime presentation configuration.`
     )
   }
-  const siteUrl = new URL(env.SITE_URL || env.PUBLIC_SITE_URL || branch.siteUrl).origin
+  return runtime
+}
+
+/**
+ * Runtime branch map derived from the manifest. Retained so
+ * `config/deployment.d.mts` keeps typechecking and any legacy consumer keeps
+ * working; the values are the manifest's resolved presentation shape.
+ */
+export const branches = Object.fromEntries(
+  Object.entries(branchManifest.branches).map(([slug, entry]) => {
+    const resolved = resolveBranch(branchManifest, { PUBLIC_BRANCH: slug })
+    const runtime = runtimeView(resolved)
+    return [
+      slug,
+      {
+        contentProfile: runtime.contentProfile ?? 'branch-neutral',
+        policyCallouts: runtime.policyCallouts ?? {},
+        slug: entry.identity.slug,
+        state: entry.identity.state,
+        adjective: entry.identity.adjective,
+        label: entry.identity.label,
+        tagline: entry.identity.tagline,
+        themeColor: entry.identity.themeColor,
+        siteUrl: resolved.canonicalOrigin,
+        navigation: runtime.navigation,
+        contact: runtime.contact,
+        analytics: runtime.analytics,
+        socialAccounts: runtime.socialAccounts ?? [],
+        assets: resolved.assets.resolved,
+        seo: runtime.seo,
+        cta: runtime.cta,
+        footer: runtime.footer,
+      },
+    ]
+  })
+)
+
+/**
+ * Resolve the active deployment from the manifest and environment.
+ *
+ * @param {Record<string, string | boolean | undefined>} [env]
+ * @returns {import('./deployment.d.mts').Deployment}
+ */
+export function resolveDeployment(env = {}) {
+  const resolved = resolveBranch(branchManifest, env)
+  const runtime = runtimeView(resolved)
+
+  const analytics = {
+    ...(resolved.analytics.resolved.enabled
+      ? {
+          plausibleScriptUrl:
+            typeof env.PUBLIC_PLAUSIBLE_SRC === 'string' && env.PUBLIC_PLAUSIBLE_SRC.trim()
+              ? env.PUBLIC_PLAUSIBLE_SRC.trim()
+              : resolved.analytics.resolved.scriptUrl,
+        }
+      : {}),
+  }
+
   return {
-    ...branch,
-    siteUrl,
-    projectId,
-    dataset,
-    jurisdiction: `${branch.state}, Australia`,
-    description: `${branch.label} — ${branch.tagline}. Explore our policies, research and practical plans for housing, transport, integrity and civil liberties.`,
+    contentProfile: runtime.contentProfile ?? 'branch-neutral',
+    policyCallouts: runtime.policyCallouts ?? {},
+    slug: resolved.identity.slug,
+    state: resolved.identity.state,
+    adjective: resolved.identity.adjective,
+    label: resolved.identity.label,
+    tagline: resolved.identity.tagline,
+    themeColor: resolved.identity.themeColor,
+    themeTokens: resolved.theme.tokens,
+    siteUrl: resolved.canonicalOrigin,
+    projectId: resolved.sanity.projectId,
+    dataset: resolved.sanity.dataset,
+    jurisdiction: resolved.jurisdiction,
+    description: resolved.description,
+    navigation: runtime.navigation,
+    contact: runtime.contact,
+    analytics,
+    socialAccounts: runtime.socialAccounts ?? [],
+    assets: resolved.assets.resolved,
+    seo: runtime.seo,
+    cta: runtime.cta,
+    footer: runtime.footer,
   }
 }

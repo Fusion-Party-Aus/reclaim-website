@@ -1,4 +1,8 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
+if (DEPLOYMENT.contentProfile !== 'victoria-campaign') {
+  return new Response(null, { status: 404 })
+}
 import { getDocuments } from '../lib/sanity'
 import { renderPortableText } from '../lib/portableText'
 import type { PortableTextBlock } from '../lib/portableText'
@@ -477,7 +481,10 @@ if (letterhead?.content) {
     </style>
   </head>
   <body>
-    <div class="page-wrapper" style="min-height: 100vh; background: var(--branch-ink, #FFFFFF); padding: 32px;">
+    <div
+      class="page-wrapper"
+      style="min-height: 100vh; background: var(--branch-ink, #FFFFFF); padding: 32px;"
+    >
       <!-- Letterhead Container - A4 proportions -->
       <table
         class="letterhead-container"
@@ -648,7 +655,9 @@ if (letterhead?.content) {
         <tfoot style="display: table-footer-group;">
           <tr>
             <td style="padding: 0;">
-              <footer style="border-top: 1px solid #000000; background: #000000; color: var(--branch-ink, #FFFFFF);">
+              <footer
+                style="border-top: 1px solid #000000; background: #000000; color: var(--branch-ink, #FFFFFF);"
+              >
                 <div
                   style="padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;"
                 >

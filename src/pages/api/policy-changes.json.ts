@@ -7,7 +7,7 @@ export const prerender = false
 const base = DEPLOYMENT.siteUrl
 
 export const GET: APIRoute = async () => {
-  const policies = await getPolicies()
+  const policies = await getPolicies({ adoptedOnly: true })
 
   const publications = policies
     .filter((policy) => policy.slug?.current && policy.publishedAt)

@@ -35,10 +35,11 @@ interface ProofStat {
   variant?: 'magenta' | 'mint' | 'yellow'
 }
 
-const policies = await getPolicies()
+const policies = await getPolicies({ adoptedOnly: true })
+const isVictoriaCampaign = DEPLOYMENT.contentProfile === 'victoria-campaign'
 const pageData =
   (await getPoliciesPage()) ||
-  (DEPLOYMENT.slug !== 'vic'
+  (!isVictoriaCampaign
     ? {
         title: 'Policy Platform',
         subtitle: 'Our platform will be published here as proposals are developed and reviewed.',
@@ -55,48 +56,71 @@ const pageData =
 const title = pageData?.title || 'Policy Platform'
 const subtitle =
   pageData?.subtitle ||
-  'One platform, from what we can push now to the structural reforms Victoria needs next.'
+  (isVictoriaCampaign
+    ? 'One platform, from what we can push now to the structural reforms Victoria needs next.'
+    : 'Our platform will be published here as proposals are developed and reviewed.')
 const seoDescription =
   pageData?.seoDescription ||
-  "Explore Fusion Party Victoria's complete policy platform, including current-term priorities and long-term structural reform."
-const manifesto = pageData?.manifesto || {
-  heading: 'They built the system to take from you.',
-  body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
-  punchline: 'The proposals are below. Check the evidence and costing status.',
-}
-const proofStats: ProofStat[] = pageData?.proofStats || [
-  {
-    number: '$2M/day',
-    label: 'Flowing to Transurban from Victorian roads',
-    icon: 'mdi:cash-remove',
-    variant: 'magenta',
-  },
-  {
-    number: '42 years',
-    label: 'Of lottery revenue sold to a private operator in one deal',
-    icon: 'mdi:clock-alert',
-    variant: 'yellow',
-  },
-  {
-    number: '$199B',
-    label: 'State debt — while private operators keep the income',
-    icon: 'mdi:trending-up',
-    variant: 'mint',
-  },
-  {
-    number: '30,000',
-    label: 'Homes we can build and keep — without selling the upside',
-    icon: 'mdi:home-city',
-    variant: 'magenta',
-  },
-]
+  (isVictoriaCampaign
+    ? "Explore Fusion Party Victoria's complete policy platform, including current-term priorities and long-term structural reform."
+    : `Explore ${DEPLOYMENT.label}'s policy proposals.`)
+const manifesto =
+  pageData?.manifesto ||
+  (isVictoriaCampaign
+    ? {
+        heading: 'They built the system to take from you.',
+        body: "For thirty years, Victoria borrowed to build infrastructure — then handed the profits to private operators while you carried the debt. Transurban collects $2M a day from your commute. A private operator just locked in 42 years of Victorian lottery revenue. Southern Cross Station's commercial income goes to a consortium. The people who built this state are subsidising the people who own it. That ends here.",
+        punchline: 'The proposals are below. Check the evidence and costing status.',
+      }
+    : {
+        heading: 'Evidence. Rights. Results.',
+        body: 'Read our published proposals below.',
+        punchline: 'Judge us by the work.',
+      })
+const proofStats: ProofStat[] =
+  pageData?.proofStats ||
+  (isVictoriaCampaign
+    ? [
+        {
+          number: '$2M/day',
+          label: 'Flowing to Transurban from Victorian roads',
+          icon: 'mdi:cash-remove',
+          variant: 'magenta',
+        },
+        {
+          number: '42 years',
+          label: 'Of lottery revenue sold to a private operator in one deal',
+          icon: 'mdi:clock-alert',
+          variant: 'yellow',
+        },
+        {
+          number: '$199B',
+          label: 'State debt — while private operators keep the income',
+          icon: 'mdi:trending-up',
+          variant: 'mint',
+        },
+        {
+          number: '30,000',
+          label: 'Homes we can build and keep — without selling the upside',
+          icon: 'mdi:home-city',
+          variant: 'magenta',
+        },
+      ]
+    : [])
 const currentTermCount = policies.filter((policy) => policy.thisTerm === true).length
 const longTermCount = policies.length - currentTermCount
 
-const ctaSection = pageData?.ctaSection || {
-  title: 'These Policies Can Win',
-  body: "But only if we build a movement that can't be ignored. Join us.",
-}
+const ctaSection =
+  pageData?.ctaSection ||
+  (isVictoriaCampaign
+    ? {
+        title: 'These Policies Can Win',
+        body: "But only if we build a movement that can't be ignored. Join us.",
+      }
+    : {
+        title: 'Help shape our platform',
+        body: 'Join members developing and reviewing our proposals.',
+      })
 
 // Group by Pillar → Category
 const groupedPolicies: Record<string, Record<string, Policy[]>> = {}
@@ -163,7 +187,9 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 <BaseLayout
   title={`${title} | ${DEPLOYMENT.label}`}
   description={seoDescription}
-  image="/og/policies.png"
+  image={DEPLOYMENT.contentProfile === 'victoria-campaign'
+    ? '/og/policies.png'
+    : DEPLOYMENT.seo.defaultOgImage}
 >
   <Header />
   <main id="main-content" class="editorial-page">
@@ -205,21 +231,23 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
     {/* ── Proof Stats Strip ── */}
     <div class="bg-surface-base border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
-        <div
-          class={`grid gap-3 ${proofStats.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}
-        >
-          {
-            proofStats.map((stat) => (
-              <StatCard
-                value={stat.number}
-                label={stat.label}
-                icon={stat.icon}
-                variant={stat.variant || 'magenta'}
-                size="sm"
-              />
-            ))
-          }
-        </div>
+        {
+          proofStats.length > 0 && (
+            <div
+              class={`grid gap-3 ${proofStats.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}
+            >
+              {proofStats.map((stat) => (
+                <StatCard
+                  value={stat.number}
+                  label={stat.label}
+                  icon={stat.icon}
+                  variant={stat.variant || 'magenta'}
+                  size="sm"
+                />
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
 
@@ -243,9 +271,11 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                 Policy and vision, together
               </h2>
               <p class="text-sm text-fg/65 mt-2 max-w-2xl">
-                “Vision” is a delivery horizon, not a different kind of idea. Every proposal is part
-                of the policy platform; use the filters to see what we can push now or what needs a
-                broader mandate.
+                {
+                  isVictoriaCampaign
+                    ? '“Vision” is a delivery horizon, not a different kind of idea. Every proposal is part of the policy platform; use the filters to see what we can push now or what needs a broader mandate.'
+                    : 'Explore proposals as they are published and reviewed.'
+                }
               </p>
             </div>
             <div
@@ -282,26 +312,26 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
         </section>
 
         {/* ── Evidence Credibility Strip ── */}
-        <div
-          class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4"
-        >
-          <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
-          {
-            (DEPLOYMENT.slug === 'vic'
-              ? [
-                  'Victorian Budget 2026-27',
-                  'Parliamentary Budget Office',
-                  "Auditor-General's Reports",
-                  'NYC Mamdani Budget',
-                ]
-              : []
-            ).map((src) => (
-              <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
-                {src}
-              </span>
-            ))
-          }
-        </div>
+        {
+          isVictoriaCampaign && (
+            <div class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4">
+              <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
+              {(isVictoriaCampaign
+                ? [
+                    'Victorian Budget 2026-27',
+                    'Parliamentary Budget Office',
+                    "Auditor-General's Reports",
+                    'NYC Mamdani Budget',
+                  ]
+                : []
+              ).map((src) => (
+                <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
+                  {src}
+                </span>
+              ))}
+            </div>
+          )
+        }
 
         {
           PILLAR_ORDER.map((pillar) => {
@@ -346,33 +376,33 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                       </aside>
                     )}
 
-                    {pillar === 'RECLAIM OUR INFRASTRUCTURE' && (
-                      <div class="mb-10 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
-                        <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
-                          <Icon name="mdi:train" class="w-32 h-32 text-mint" />
+                    {pillar === 'RECLAIM OUR INFRASTRUCTURE' &&
+                      DEPLOYMENT.policyCallouts.transportScore &&
+                      DEPLOYMENT.cta.transportScore && (
+                        <div class="mb-10 bg-mint/10 border border-mint/30 rounded-sm p-6 relative overflow-hidden">
+                          <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
+                            <Icon name="mdi:train" class="w-32 h-32 text-mint" />
+                          </div>
+                          <div class="relative z-10 max-w-2xl">
+                            <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
+                              📊 Check Your Local Transport Score
+                            </h3>
+                            <p class="text-sm font-semibold text-fg/80 leading-relaxed mb-4">
+                              Review local public transport frequency, coverage, and connectivity.
+                            </p>
+                            <BrutalButton
+                              href={DEPLOYMENT.cta.transportScore}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              variant="mint"
+                              size="sm"
+                              icon="mdi:launch"
+                            >
+                              Go to Transport Score Tool
+                            </BrutalButton>
+                          </div>
                         </div>
-                        <div class="relative z-10 max-w-2xl">
-                          <h3 class="text-xl font-display font-black uppercase text-mint mb-2 tracking-tight">
-                            📊 Check Your Local Transport Score
-                          </h3>
-                          <p class="text-sm font-semibold text-fg/80 leading-relaxed mb-4">
-                            How does your electorate stack up? Use our Victoria-wide transport
-                            scoring tool to see how your local public transport frequency, coverage,
-                            and connectivity rate.
-                          </p>
-                          <BrutalButton
-                            href="https://transportscore.fusionparty.org.au"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variant="mint"
-                            size="sm"
-                            icon="mdi:launch"
-                          >
-                            Go to Transport Score Tool
-                          </BrutalButton>
-                        </div>
-                      </div>
-                    )}
+                      )}
 
                     {Object.entries(groupedPolicies[pillar]).map(([category, catPolicies]) => (
                       <div
@@ -477,25 +507,29 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           <div class="flex flex-wrap gap-3">
             <BrutalButton
               variant="magenta"
-              href={DEPLOYMENT.slug === 'vic' ? '/get-involved' : '/contact'}
+              href={DEPLOYMENT.cta.getInvolved}
               icon="mdi:account-plus"
             >
               Get Involved
             </BrutalButton>
             {
-              DEPLOYMENT.slug === 'vic' && (
-                <BrutalButton variant="mint" href="/costings" icon="mdi:calculator">
+              DEPLOYMENT.cta.costings && (
+                <BrutalButton variant="mint" href={DEPLOYMENT.cta.costings} icon="mdi:calculator">
                   See the Costings
                 </BrutalButton>
               )
             }
-            <BrutalButton
-              variant="black"
-              href={DEPLOYMENT.slug === 'vic' ? '/electorate' : '/electorates'}
-              icon="mdi:map-marker"
-            >
-              Find Your Electorate
-            </BrutalButton>
+            {
+              isVictoriaCampaign && (
+                <BrutalButton
+                  variant="black"
+                  href={DEPLOYMENT.cta.electorates}
+                  icon="mdi:map-marker"
+                >
+                  Find Your Electorate
+                </BrutalButton>
+              )
+            }
           </div>
         </BrutalCard>
       </div>

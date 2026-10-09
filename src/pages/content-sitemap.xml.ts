@@ -1,3 +1,4 @@
+import { sitemapResponse } from '../lib/sitemap'
 import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
 import { getDocuments, getElectorates, getArchivedElectorates, getPages } from '../lib/sanity'
@@ -5,8 +6,6 @@ import { getDocuments, getElectorates, getArchivedElectorates, getPages } from '
 export const prerender = false
 
 const base = DEPLOYMENT.siteUrl
-const escapeXml = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 interface Document {
   slug?: { current?: string }
@@ -58,23 +57,9 @@ export const GET: APIRoute = async () => {
     }
     entries.set(`/${segments.join('/')}`, page._updatedAt)
   }
-  const urls = [...entries]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([path, updated]) => {
-      const timestamp = updated ? new Date(updated) : null
-      const lastmod =
-        timestamp && !Number.isNaN(timestamp.getTime())
-          ? `<lastmod>${timestamp.toISOString()}</lastmod>`
-          : ''
-      return `<url><loc>${escapeXml(new URL(path, base).href)}</loc>${lastmod}</url>`
-    })
-  return new Response(
-    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join('')}</urlset>`,
-    {
-      headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=300, s-maxage=900',
-      },
-    }
+  return sitemapResponse(
+    [...entries]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([path, lastmod]) => ({ loc: new URL(path, base).href, lastmod }))
   )
 }

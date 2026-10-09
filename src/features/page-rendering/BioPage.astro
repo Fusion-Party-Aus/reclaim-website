@@ -7,6 +7,7 @@ import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton } from '@/components/ui'
+import { DEPLOYMENT } from '@/lib/deployment'
 
 interface Props {
   page: Page
@@ -171,7 +172,10 @@ if (page.body) {
         <p
           class="font-bold text-sm uppercase border-l-4 border-black pl-3 leading-relaxed text-black"
         >
-          {page.subtitle || '"Fighting for a fairer Victoria through evidence-based policy."'}
+          {
+            page.subtitle ||
+              `Fighting for a fairer ${DEPLOYMENT.state} through evidence-based policy.`
+          }
         </p>
       </BrutalCard>
     </div>
