@@ -7,7 +7,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import '@/styles/global.css'
 ---
-<BaseLayout title="Help shape Queensland | Fusion Party Queensland" description="Explore ten issues facing Queensland, read Fusion's national policy foundations and help develop Queensland's response.">
+<BaseLayout title={home?.seo?.metaTitle || home?.title || "Help shape our state"} description={home?.seo?.metaDescription || home?.hero?.subtitle || "Explore issues and help shape state policy."}>
 <Header />
 <main id="main-content" class="qld-home">
 <header class="hero"><div class="shell"><p class="eyebrow">{home?.hero?.eyebrow || "Your state, your ideas"}</p><h1>{home?.hero?.title || "What should our state do differently?"}</h1><p>{home?.hero?.subtitle || "Explore the issues and help shape solutions."}</p><div class="actions"><a class="primary" href="#issues">Explore the issues ↓</a><a href="/contact">Share an idea →</a></div><small>These are starting points for discussion, not adopted Queensland policies.</small></div></header>
