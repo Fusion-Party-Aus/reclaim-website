@@ -5,6 +5,15 @@ export interface Investigation {
   title: string
   slug: { current: string }
   summary: string
+  featuredOnHome?: boolean
+  homeOrder?: number
+  shortTagline?: string
+  issueQuestion?: string
+  issueContext?: string
+  stateLevers?: string[]
+  federalLevers?: string[]
+  nationalPolicyUrl?: string
+  nationalPolicyName?: string
   location?: string
   entities?: string[]
   dependencies?: string[]
@@ -55,7 +64,7 @@ export interface Investigation {
 }
 
 const fields = `{
-  _id, title, slug, summary, location, entities, dependencies, projectStage, status, body,
+  _id, title, slug, summary, featuredOnHome, homeOrder, shortTagline, issueQuestion, issueContext, stateLevers, federalLevers, nationalPolicyUrl, nationalPolicyName, location, entities, dependencies, projectStage, status, body,
   attribution, editorialDisclaimer, nextSteps, evidence, questions, updates, lastReviewed, publishedAt,
   "sourceReferences": sourceReferences[]->{_id,title,url,publisher,pageReference},
   "relatedInvestigations": relatedInvestigations[]->{_id,title,slug}

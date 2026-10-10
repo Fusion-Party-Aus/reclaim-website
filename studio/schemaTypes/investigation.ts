@@ -10,6 +10,15 @@ export default defineType({
     {name: 'governance', title: 'Review & Governance'},
   ],
   fields: [
+    defineField({name:'featuredOnHome',title:'Feature on participatory homepage',type:'boolean',group:'editorial',initialValue:false}),
+    defineField({name:'homeOrder',title:'Homepage order',type:'number',group:'editorial'}),
+    defineField({name:'shortTagline',title:'Short card tagline',type:'string',group:'editorial'}),
+    defineField({name:'issueQuestion',title:'Core issue question',type:'text',group:'editorial'}),
+    defineField({name:'issueContext',title:'Why this issue matters',type:'text',group:'editorial'}),
+    defineField({name:'stateLevers',title:'State government responsibilities',type:'array',of:[{type:'string'}],group:'editorial'}),
+    defineField({name:'federalLevers',title:'Commonwealth responsibilities',type:'array',of:[{type:'string'}],group:'editorial'}),
+    defineField({name:'nationalPolicyUrl',title:'National policy foundation URL',type:'url',group:'editorial'}),
+    defineField({name:'nationalPolicyName',title:'National policy foundation title',type:'string',group:'editorial'}),
     defineField({
       name: 'title',
       type: 'string',
