@@ -1,7 +1,8 @@
 ---
 import { DEPLOYMENT } from '@/lib/deployment'
 import VictoriaHome from '@/components/pages/VictoriaHome.astro'
+import QueenslandHome from '@/components/pages/QueenslandHome.astro'
 import BranchHome from '@/components/pages/BranchHome.astro'
 ---
 
-{DEPLOYMENT.contentProfile === 'victoria-campaign' ? <VictoriaHome /> : <BranchHome />}
+{DEPLOYMENT.contentProfile === 'participatory' ? <QueenslandHome /> : DEPLOYMENT.contentProfile === 'victoria-campaign' ? <VictoriaHome /> : <BranchHome />}

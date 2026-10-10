@@ -5,6 +5,8 @@ export default defineType({
   title: 'Home Page',
   type: 'document',
   fields: [
+    defineField({name: 'participatoryHeading', title: 'Participatory Issues Heading', type: 'string', description: 'Heading above the public issue cards for participatory branch homepages.'}),
+    defineField({name: 'participatoryIntroduction', title: 'Participatory Issues Introduction', type: 'text', description: 'Short explanation of the investigation and consultation process.'}),
     defineField({
       name: 'title',
       title: 'Page Title',

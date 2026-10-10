@@ -207,7 +207,7 @@ export const branchManifest = {
         cacheVersion: '1',
       },
       runtime: {
-        contentProfile: 'branch-neutral',
+        contentProfile: 'participatory',
         features: { investigations: true },
         socialAccounts: [],
         navigation: {
