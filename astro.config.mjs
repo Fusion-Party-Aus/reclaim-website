@@ -236,6 +236,8 @@ export default defineConfig({
         const resolved = resolveBranch(branchManifest, env)
         const deployConfig = resolveDeployConfig(resolved, env)
         return cloudflare({
+          // Brand icons use native sharp during prerendering, which requires Node.
+          prerenderEnvironment: 'node',
           imageService: 'passthrough',
           configPath: deployConfig.wranglerConfigPath,
           platformProxy: { enabled: false },
