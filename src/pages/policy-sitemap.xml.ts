@@ -1,11 +1,12 @@
 import { sitemapResponse } from '../lib/sitemap'
-import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getPolicies } from '../lib/sanity'
 
 export const prerender = false
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getPolicies } = content
+
   const documents = await getPolicies({ adoptedOnly: true })
   return sitemapResponse([
     ...documents.flatMap((policy) =>

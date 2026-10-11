@@ -1,12 +1,12 @@
-import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getPolicies } from '../../lib/sanity'
 
 export const prerender = false
 
-const base = DEPLOYMENT.siteUrl
+export const GET: APIRoute = async ({ locals }) => {
+  const { content } = locals.siteContext
+  const { getPolicies } = content
+  const base = locals.siteContext.site.canonicalOrigin
 
-export const GET: APIRoute = async () => {
   const policies = await getPolicies({ adoptedOnly: true })
 
   const publications = policies

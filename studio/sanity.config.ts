@@ -322,6 +322,13 @@ export default defineConfig({
                         S.documentTypeList('convinceYourFriends').title('Convince Your Friends'),
                       ),
                     S.listItem()
+                      .title('📚 Research Resources')
+                      .child(
+                        S.documentTypeList('researchResource')
+                          .title('Research Resources')
+                          .defaultOrdering([{field: 'title', direction: 'asc'}]),
+                      ),
+                    S.listItem()
                       .title('🔎 Public Investigations')
                       .child(
                         S.list()

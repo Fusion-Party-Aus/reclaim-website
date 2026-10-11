@@ -1,11 +1,12 @@
 import { sitemapResponse } from '../lib/sitemap'
-import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getResearchResources } from '../lib/sanity'
 
 export const prerender = false
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getResearchResources } = content
+
   const documents = await getResearchResources()
   return sitemapResponse([
     { loc: `${DEPLOYMENT.siteUrl}/research`, changefreq: 'weekly' as const },

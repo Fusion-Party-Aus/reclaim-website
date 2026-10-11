@@ -2,36 +2,21 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { DEPLOYMENT } from '@/lib/deployment'
-import {
-  client,
-  getHomePage,
-  getPolicies,
-  getElectorates,
-  getResearchResources,
-  urlFor,
-} from '@/lib/sanity'
 import { resolveHomeContent, selectHomePolicies } from '@/features/homepage/content'
+import type { Investigation } from '@/lib/investigations'
 import '@/styles/global.css'
 import '@/styles/home.css'
 
-interface Investigation {
-  _id: string
-  title: string
-  summary?: string
-  shortTagline?: string
-  slug: { current: string }
-  nationalPolicyUrl?: string
-}
+const { deployment: DEPLOYMENT, content } = Astro.locals.siteContext
+const { getHomePage, getPolicies, getElectorates, getResearchResources, urlFor } = content
+
 const [document, adopted, electorates, research, investigations] = await Promise.all([
   getHomePage(),
   getPolicies({ adoptedOnly: true }),
   getElectorates(),
   getResearchResources(),
   DEPLOYMENT.features.investigations
-    ? client.fetch<Investigation[]>(
-        `*[_type == 'investigation' && readyForPublication == true && defined(slug.current) && featuredOnHome == true && defined(publishedAt)] | order(homeOrder asc) { _id, title, summary, shortTagline, slug, nationalPolicyUrl }`
-      )
+    ? content.getHomeInvestigations()
     : Promise.resolve([] as Investigation[]),
 ])
 const home = resolveHomeContent(document, DEPLOYMENT)

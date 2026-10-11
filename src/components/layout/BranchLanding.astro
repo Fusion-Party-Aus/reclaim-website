@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import BaseLayout from '@/layouts/BaseLayout.astro'

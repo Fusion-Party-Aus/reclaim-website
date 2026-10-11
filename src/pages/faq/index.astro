@@ -1,18 +1,16 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/layout/Hero';
 import { Footer } from '@/components/layout/Footer';
 import { FaqSidebar } from '@/features/faq';
-import { getDocuments } from '../../lib/sanity';
+const { getDocuments } = Astro.locals.siteContext.content
 import { portableTextToPlainText } from '../../lib/portableText';
 import { PortableText } from 'astro-portabletext';
 import CustomLink from '../../components/portable-text/CustomLink.astro';
 import TableBlock from '../../components/portable-text/TableBlock.astro';
 import { Icon } from 'astro-icon/components';
-import { FAQPageSchema } from '@adkinn/astro-ai-readiness/components';
-import type { FAQItem } from '@adkinn/astro-ai-readiness/components';
 import { BrutalBadge, CTA, BrutalButton } from '@/components/ui';
 import type { PortableTextBlock } from '../../lib/portableText';
 import '../../styles/global.css'
@@ -76,12 +74,15 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
   <Header />
 
   <!-- FAQPage JSON-LD Structured Data -->
-  <FAQPageSchema
-    items={allFaqs.map((faq): FAQItem => ({
-      question: faq.question,
-      answer: portableTextToPlainText(faq.answer),
-    }))}
-  />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${DEPLOYMENT.siteUrl}/faq#faq`,
+    mainEntity: allFaqs.map(faq => ({
+      '@type': 'Question', name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: portableTextToPlainText(faq.answer) }
+    }))
+  }).replace(/</g, '\\u003c')} />
 
   <Hero
     title="Frequently Asked Questions"

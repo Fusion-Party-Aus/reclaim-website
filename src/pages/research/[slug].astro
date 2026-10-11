@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -9,7 +9,7 @@ import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
-import { getResearchResourceBySlug } from '../../lib/sanity'
+const { getResearchResourceBySlug } = Astro.locals.siteContext.content
 import { portableTextToPlainText } from '../../lib/portableText'
 import '../../styles/global.css'
 import '../../styles/editorial.css'

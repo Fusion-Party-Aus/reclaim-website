@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -57,9 +57,7 @@ if (Astro.request.method === 'POST') {
           <div class="inline-block bg-magenta/10 border border-magenta rounded-sm p-4 mb-4">
             <Icon name="mdi:lock" class="w-12 h-12 text-magenta" />
           </div>
-          <h1 class="text-4xl font-black uppercase text-fg font-display">
-            AUTHORISED ACCESS ONLY
-          </h1>
+          <h1 class="text-4xl font-black uppercase text-fg font-display">AUTHORISED ACCESS ONLY</h1>
           <p class="text-fg/50 mt-2 font-bold uppercase tracking-wider text-sm">
             Please enter your passphrase
           </p>

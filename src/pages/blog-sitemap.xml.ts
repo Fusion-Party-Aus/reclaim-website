@@ -1,7 +1,5 @@
 import { sitemapResponse } from '../lib/sitemap'
-import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getDocuments } from '../lib/sanity'
 
 export const prerender = false
 
@@ -11,7 +9,10 @@ interface BlogSitemapPost {
   _updatedAt?: string
 }
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getDocuments } = content
+
   const documents = await getDocuments<BlogSitemapPost>('blogPost')
   return sitemapResponse([
     { loc: `${DEPLOYMENT.siteUrl}/blog` },

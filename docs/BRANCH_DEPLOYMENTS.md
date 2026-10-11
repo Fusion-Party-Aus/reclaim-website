@@ -1,5 +1,45 @@
 # Branch deployments
 
+## Request-scoped Site runtime (#76)
+
+Site identity is resolved per request. `SITE_RUNTIME_MODE=production` accepts only
+registered VIC/QLD hostnames and returns 404 for unknown hosts; `SITE_ID` cannot
+override a production host. In explicitly configured `development` or `preview`
+mode, a valid `SITE_ID=vic|qld` is required. These runtime settings are separate
+from the legacy `BRANCH` selection used by build assets, Studio and deployment
+commands below. Victoria still reads `production`; Queensland still reads `qld`.
+
+`npm run dev` defaults explicitly to VIC development while preserving a supplied
+`SITE_ID` or `SITE_RUNTIME_MODE`. `npm run dev:qld` selects QLD and also preserves
+an explicitly supplied runtime mode.
+`BRANCH=<slug> npm run dev:branch` injects that branch's `SITE_ID` and development
+mode. `npm run preview` selects VIC preview; `npm run preview:qld` selects QLD.
+Previewing a branch build still requires building that branch first, because
+routes outside the #76 homepage slice retain build-selected configuration.
+
+`build:branch` injects an explicit matching `SITE_ID`; normal builds use production
+runtime mode unless deliberately configured otherwise. `verify:branches` always
+checks production-mode builds with an explicit Site ID for each branch. It does
+not deploy or mutate CMS data. Existing per-branch deploy commands retain their
+individual Wrangler configurations and Workers.
+
+**No shared-Worker cutover yet.** #76 establishes the homepage/request-context
+seam only. Public content routes (#79), authenticated preview (#80), integrations
+and OAuth (#81), and SEO/discovery/offline surfaces (#83) require their own
+verification before one Worker can safely replace the current branch sites.
+Do not activate National hosts, switch live CMS reads, change DNS, or deploy this
+milestone to production as an eight-site network. Keep current Workers and both
+source datasets available. The shared dataset additionally requires the approved
+writer access model (#77), hostname roster (#78), ownership reconciliation and
+non-destructive migration (#82–#86), and demonstrated preview rollback (#87).
+
+Before proposing a cutover, run both branch builds and host-level end-to-end
+checks, including overlapping VIC/QLD requests, identical slugs, desktop/mobile
+navigation, canonical/discovery/PWA identity, and site-specific integration
+credentials. Record backup locations, migration reconciliation, quota evidence,
+rollback criteria and preview rollback results. Production deployment, DNS
+changes and live CMS cutover need separate approval under epic #75.
+
 The branch manifest at `config/branches.mjs` is the version-controlled source of
 truth for branch identity and deployment configuration. The Git branch does not
 select a state. `BRANCH`, `PUBLIC_BRANCH` or `SANITY_STUDIO_BRANCH` selects a

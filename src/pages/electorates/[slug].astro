@@ -1,22 +1,13 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
-export const prerender = true
-
-export async function getStaticPaths() {
-  const electorates = await getElectorates()
-  return electorates
-    .filter((e) => e.slug?.current)
-    .map((e) => ({
-      params: { slug: e.slug.current },
-    }))
-}
+const DEPLOYMENT = Astro.locals.siteContext.deployment
+export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Hero } from '@/components/layout/Hero'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getDocumentBySlug, getElectorates, urlFor } from '../../lib/sanity'
+const { getDocumentBySlug, urlFor } = Astro.locals.siteContext.content
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
@@ -67,7 +58,7 @@ if (!slug) {
 
 const electorate = await getDocumentBySlug<Electorate>('electorate', slug)
 
-if (!electorate) {
+if (!electorate || electorate.isArchived) {
   return Astro.redirect('/404')
 }
 

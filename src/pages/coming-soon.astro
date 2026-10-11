@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -98,9 +98,7 @@ import '../styles/global.css'
                 class="w-16 h-16 mx-auto mb-3 text-yellow"
                 style="animation: wiggle 2s ease-in-out infinite;"
               />
-              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">
-                New Features
-              </h3>
+              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">New Features</h3>
               <p class="text-sm font-bold text-fg/70">Game-changing functionality</p>
             </div>
 
@@ -124,9 +122,7 @@ import '../styles/global.css'
                 class="w-16 h-16 mx-auto mb-3 text-magenta"
                 style="animation: pulse 2s ease-in-out infinite;"
               />
-              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">
-                More Content
-              </h3>
+              <h3 class="font-black uppercase text-lg mb-2 text-fg font-display">More Content</h3>
               <p class="text-sm font-bold text-fg/70">Expanded resources</p>
             </div>
           </div>

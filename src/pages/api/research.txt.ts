@@ -1,13 +1,13 @@
-import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getResearchResources } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const base = DEPLOYMENT.siteUrl
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getResearchResources } = content
+  const base = locals.siteContext.site.canonicalOrigin
 
-export const GET: APIRoute = async () => {
   const resources = await getResearchResources()
   const sorted = [...resources].sort(
     (a, b) =>

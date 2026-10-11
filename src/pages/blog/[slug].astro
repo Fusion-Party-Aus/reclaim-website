@@ -1,16 +1,17 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 export const prerender = false
 
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BrutalCard, BrutalBadge, BrutalButton } from '@/components/ui'
-import { getDocuments, getDocumentBySlug } from '../../lib/sanity'
-import { urlFor } from '../../lib/sanity'
+const { getDocuments, getDocumentBySlug } = Astro.locals.siteContext.content
+const { urlFor } = Astro.locals.siteContext.content
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
+import { siteOgImage } from '@/lib/site-og-image'
 import type { PortableTextBlock } from '../../lib/portableText'
 import '../../styles/global.css'
 import '../../styles/editorial.css'
@@ -115,7 +116,9 @@ const articleStructuredData = {
   inLanguage: 'en-AU',
   articleSection: post.category,
   keywords: post.tags,
-  image: imageUrl ? [imageUrl] : [`${DEPLOYMENT.siteUrl}${ogImageUrl}`],
+  image: imageUrl
+    ? [imageUrl]
+    : [`${DEPLOYMENT.siteUrl}${siteOgImage(Astro.locals.siteContext.site.siteId, ogImageUrl)}`],
   author: post.author?.name
     ? { '@type': 'Person', name: post.author.name }
     : { '@id': `${DEPLOYMENT.siteUrl}/#organization` },

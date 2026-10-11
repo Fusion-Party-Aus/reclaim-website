@@ -6,7 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "SITE_ID=${SITE_ID:?Set SITE_ID=vic or SITE_ID=qld} SITE_RUNTIME_MODE=${SITE_RUNTIME_MODE:-development} astro dev",
     "dev:sanity": "cd studio && ./node_modules/.bin/sanity dev --port 3333",
     "predev": "node scripts/branch/generate-theme-index.mjs",
     "prebuild": "node scripts/branch/generate-theme-index.mjs && node scripts/og/generate-policy-images.mjs",
@@ -22,7 +22,8 @@
     "deploy:branch": "node scripts/branch/deploy-branch.mjs",
     "deploy": "npm run deploy:branch",
     "deploy:qld": "BRANCH=qld npm run deploy:branch",
-    "preview": "astro preview",
+    "preview": "SITE_ID=vic SITE_RUNTIME_MODE=preview astro preview",
+    "preview:qld": "SITE_ID=qld SITE_RUNTIME_MODE=preview astro preview",
     "astro": "astro",
     "sanity": "cd studio && ./node_modules/.bin/sanity",
     "lint": "eslint src/",
@@ -53,7 +54,7 @@
     "generate:og:policies": "node scripts/og/generate-policy-images.mjs",
     "prepare": "husky",
     "import:research": "node scripts/migration/import-research-resources.js",
-    "dev:qld": "BRANCH=qld npm run dev:branch",
+    "dev:qld": "BRANCH=qld SITE_ID=qld SITE_RUNTIME_MODE=${SITE_RUNTIME_MODE:-development} npm run dev:branch",
     "build:qld": "BRANCH=qld npm run build:branch",
     "dev:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity dev --port 3334",
     "build:sanity:qld": "cd studio && SANITY_STUDIO_BRANCH=qld ./node_modules/.bin/sanity build",
@@ -78,7 +79,7 @@
     "@nuasite/agent-summary": "^0.0.37",
     "@portabletext/react": "^5.0.0",
     "@sanity/astro": "^3.4.0",
-    "@sanity/client": "^7.14.1",
+    "@sanity/client": "^7.22.1",
     "@sanity/image-url": "^1.2.0",
     "@tailwindcss/vite": "^4.1.17",
     "@types/react": "^19.2.2",
@@ -97,7 +98,8 @@
     "sass": "^1.73.0",
     "sharp": "^0.34.5",
     "styled-components": "^6.3.8",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "@sanity/preview-url-secret": "4.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

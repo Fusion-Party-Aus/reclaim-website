@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 export const prerender = false
 
 import PolicyHero from '@/components/layout/Hero/PolicyHero.astro'
@@ -9,7 +9,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton } from '@/components/ui'
-import { getAdoptedPolicyBySlug, getResearchForPolicy, urlFor } from '../../lib/sanity'
+const { getAdoptedPolicyBySlug, getResearchForPolicy, urlFor } = Astro.locals.siteContext.content
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'

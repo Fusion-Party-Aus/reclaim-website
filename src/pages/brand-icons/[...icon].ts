@@ -1,7 +1,7 @@
 import type { APIRoute, GetStaticPaths } from 'astro'
 import sharp from 'sharp'
 import mark from '../../../public/favicon.svg?raw'
-import { DEPLOYMENT } from '../../lib/deployment'
+import { siteRegistry } from '../../../config/sites.mjs'
 
 export const prerender = true
 
@@ -14,14 +14,16 @@ const sizes: Record<string, number> = {
 }
 
 export const getStaticPaths: GetStaticPaths = () =>
-  ['favicon.svg', 'favicon.ico', ...Object.keys(sizes)].map((file) => ({
-    params: { icon: `${DEPLOYMENT.slug}/${file}` },
-    props: { file },
-  }))
+  Object.values(siteRegistry).flatMap((site) =>
+    ['favicon.svg', 'favicon.ico', ...Object.keys(sizes)].map((file) => ({
+      params: { icon: `${site.siteId}/${file}` },
+      props: { file, themeColor: site.deployment.themeColor },
+    }))
+  )
 
 export const GET: APIRoute = async ({ props }) => {
   const file = props.file as string
-  const svg = mark.replace('#32105a', DEPLOYMENT.themeColor)
+  const svg = mark.replace('#32105a', props.themeColor as string)
   if (file === 'favicon.svg') {
     return new Response(svg, { headers: { 'Content-Type': 'image/svg+xml' } })
   }

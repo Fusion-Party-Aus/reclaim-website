@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -92,9 +92,7 @@ const randomMessage = offlineMessages[Math.floor(Math.random() * offlineMessages
                 <Icon name="mdi:access-point-network-off" class="w-10 h-10 text-magenta" />
               </div>
               <div>
-                <h2 class="text-xl font-black uppercase text-fg font-display">
-                  Connection Status
-                </h2>
+                <h2 class="text-xl font-black uppercase text-fg font-display">Connection Status</h2>
                 <p class="text-sm font-bold text-magenta">Disconnected</p>
               </div>
             </div>

@@ -1,6 +1,6 @@
 /**
  * Renders one branded 1200x630 OG card per policy, using that policy's own
- * title/summary and its pillar's accent colour.
+ * title/summary, using the active Site's resolved theme.
  *
  * Runs as a plain Node script (see generate-og-images.mjs) rather than as an
  * Astro route: @resvg/resvg-js ships a native binary that Vite/Rollup can't
@@ -9,25 +9,10 @@
  */
 import satori from 'satori'
 import { Resvg } from '@resvg/resvg-js'
+import { COLORS } from './lib.mjs'
 
 const WIDTH = 1200
 const HEIGHT = 630
-
-const COLORS = {
-  deepPurple: '#1a0029',
-  surfaceRaised: '#2e004d',
-  white: '#ffffff',
-  magenta: '#d428d4',
-  blue: '#4a7aeb',
-  teal: '#00ddb8',
-}
-
-export const PILLAR_ACCENT = {
-  'RECLAIM OUR ECONOMY': COLORS.magenta,
-  'RECLAIM OUR INFRASTRUCTURE': COLORS.blue,
-  'RECLAIM OUR DEMOCRACY': COLORS.teal,
-}
-export const DEFAULT_ACCENT = COLORS.magenta
 
 /** Rough headline size so long policy titles still fit within the 630px canvas. */
 function headlineSize(title) {
@@ -39,12 +24,19 @@ function headlineSize(title) {
 }
 
 function buildTree({
-  eyebrow,
   title,
   subline,
   tag,
-  accent,
-  logoMarkDataUri,
+  theme = {
+    background: COLORS.deepPurple,
+    surface: COLORS.surfaceRaised,
+    foreground: COLORS.white,
+    muted: 'rgba(255, 255, 255, 0.72)',
+    primary: COLORS.brandPurple,
+    onPrimary: COLORS.white,
+    accent: COLORS.teal,
+    line: 'rgba(255, 255, 255, 0.25)',
+  },
   branchLabel = 'VICTORIA',
 }) {
   const watermarkLetter = title.trim().charAt(0).toUpperCase()
@@ -58,16 +50,16 @@ function buildTree({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundImage: `linear-gradient(160deg, ${COLORS.deepPurple} 0%, ${COLORS.surfaceRaised} 100%)`,
+        backgroundColor: theme.background,
         borderBottomWidth: '8px',
         borderBottomStyle: 'solid',
-        borderBottomColor: COLORS.teal,
+        borderBottomColor: theme.primary,
         padding: '70px 72px 56px 76px',
         position: 'relative',
         fontFamily: 'Barlow',
       },
       children: [
-        // Triple colour stripe — the Reclaim system's signature top edge
+        // One decisive site-color bar anchors the shared graphic system.
         {
           type: 'div',
           props: {
@@ -77,38 +69,8 @@ function buildTree({
               top: 0,
               left: 0,
               width: '100%',
-              height: '8px',
-              backgroundColor: COLORS.magenta,
-            },
-            children: [],
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            style: {
-              display: 'flex',
-              position: 'absolute',
-              top: '8px',
-              left: 0,
-              width: '100%',
-              height: '5px',
-              backgroundColor: COLORS.teal,
-            },
-            children: [],
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            style: {
-              display: 'flex',
-              position: 'absolute',
-              top: '13px',
-              left: 0,
-              width: '100%',
-              height: '3px',
-              backgroundColor: COLORS.blue,
+              height: '12px',
+              backgroundColor: theme.accent,
             },
             children: [],
           },
@@ -137,7 +99,7 @@ function buildTree({
                     textTransform: 'uppercase',
                     fontSize: '520px',
                     lineHeight: 1,
-                    color: COLORS.white,
+                    color: theme.foreground,
                     opacity: 0.045,
                   },
                   children: watermarkLetter,
@@ -151,29 +113,9 @@ function buildTree({
           props: {
             style: {
               display: 'flex',
-              alignSelf: 'flex-start',
-              backgroundColor: `${accent}1F`,
-              color: accent,
-              fontFamily: 'Space Mono',
-              fontSize: '18px',
-              letterSpacing: '0.16em',
-              padding: '9px 18px 9px 16px',
-              borderLeftWidth: '3px',
-              borderLeftStyle: 'solid',
-              borderLeftColor: accent,
-              marginBottom: '34px',
-            },
-            children: eyebrow,
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            style: {
-              display: 'flex',
               fontFamily: 'Barlow Condensed',
               fontWeight: 900,
-              color: COLORS.white,
+              color: theme.foreground,
               fontSize: `${headlineSize(title)}px`,
               lineHeight: 0.98,
               letterSpacing: '-0.02em',
@@ -190,7 +132,7 @@ function buildTree({
               display: 'flex',
               width: '84px',
               height: '6px',
-              backgroundColor: COLORS.teal,
+              backgroundColor: theme.accent,
               marginTop: '28px',
               marginBottom: subline ? '24px' : 0,
             },
@@ -205,11 +147,10 @@ function buildTree({
                   display: 'flex',
                   fontFamily: 'Barlow',
                   fontWeight: 600,
-                  color: COLORS.white,
+                  color: theme.muted,
                   fontSize: '26px',
                   lineHeight: 1.4,
                   maxWidth: '820px',
-                  opacity: 0.8,
                 },
                 children: subline,
               },
@@ -231,15 +172,24 @@ function buildTree({
               {
                 type: 'div',
                 props: {
-                  style: { display: 'flex', alignItems: 'center', gap: '68px' },
+                  style: { display: 'flex', alignItems: 'center', gap: '18px' },
                   children: [
                     {
-                      type: 'img',
+                      type: 'div',
                       props: {
-                        src: logoMarkDataUri,
-                        width: 46,
-                        height: 46,
-                        style: { display: 'flex', opacity: 0.9 },
+                        style: {
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: '44px',
+                          height: '44px',
+                          backgroundColor: theme.primary,
+                          color: theme.onPrimary,
+                          fontFamily: 'Barlow Condensed',
+                          fontWeight: 900,
+                          fontSize: '28px',
+                        },
+                        children: 'F',
                       },
                     },
                     {
@@ -250,7 +200,7 @@ function buildTree({
                           fontFamily: 'Barlow Condensed',
                           fontWeight: 900,
                           textTransform: 'uppercase',
-                          color: COLORS.white,
+                          color: theme.foreground,
                           fontSize: '24px',
                         },
                         children: [
@@ -259,7 +209,7 @@ function buildTree({
                             type: 'span',
                             props: {
                               style: {
-                                color: 'rgba(255,255,255,0.5)',
+                                color: theme.muted,
                                 fontWeight: 700,
                                 marginLeft: '0.4em',
                               },
@@ -278,13 +228,13 @@ function buildTree({
                   style: {
                     display: 'flex',
                     fontFamily: 'Space Mono',
-                    color: 'rgba(255,255,255,0.7)',
+                    color: theme.foreground,
                     fontSize: '15px',
                     letterSpacing: '0.08em',
                     padding: '7px 14px',
                     borderWidth: '1px',
                     borderStyle: 'solid',
-                    borderColor: 'rgba(255,255,255,0.25)',
+                    borderColor: theme.line,
                   },
                   children: tag,
                 },
@@ -299,12 +249,10 @@ function buildTree({
 
 /**
  * @param {object} spec
- * @param {string} spec.eyebrow
  * @param {string} spec.title
  * @param {string} [spec.subline]
- * @param {string} spec.accent
  * @param {string} spec.tag
- * @param {string} spec.logoMarkDataUri
+ * @param {object} spec.theme
  * @param {Array<{name: string, data: Buffer, weight: number, style: 'normal'}>} fonts
  */
 export async function renderPolicyCardPng(spec, fonts) {

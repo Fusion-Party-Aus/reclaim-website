@@ -1,5 +1,5 @@
 ---
-import { urlFor } from '@/lib/sanity'
+const { urlFor } = Astro.locals.siteContext.content
 import type { Page } from '@/types/sanity'
 import type { PortableTextBlock } from '@/lib/portableText'
 import { PortableText } from 'astro-portabletext'
@@ -7,7 +7,7 @@ import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton } from '@/components/ui'
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 
 interface Props {
   page: Page

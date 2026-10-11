@@ -6,12 +6,23 @@ const mocks = vi.hoisted(() => ({
   getElectorates: vi.fn(),
   getArchivedElectorates: vi.fn(),
   getPages: vi.fn(),
+  getInvestigations: vi.fn(),
 }))
-vi.mock('../lib/sanity', () => mocks)
+import { siteRegistry } from '../../config/sites.mjs'
 import { GET } from './content-sitemap.xml'
 
-async function sitemap() {
-  return (await GET({} as Parameters<typeof GET>[0])).text()
+async function sitemap(siteId: 'vic' | 'qld' = 'vic') {
+  return (
+    await GET({
+      locals: {
+        siteContext: {
+          site: siteRegistry[siteId],
+          deployment: siteRegistry[siteId].deployment,
+          content: mocks,
+        },
+      },
+    } as unknown as Parameters<typeof GET>[0])
+  ).text()
 }
 
 describe('live content sitemap', () => {
@@ -39,4 +50,31 @@ describe('live content sitemap', () => {
     mocks.getDocuments.mockResolvedValue([{ slug: { current: 'just-published' } }])
     expect(await sitemap()).toContain('/blog/just-published</loc>')
   })
+})
+
+it('includes only enabled investigation routes and live electorate detail paths', async () => {
+  mocks.getDocuments.mockResolvedValue([])
+  mocks.getElectorates.mockResolvedValue([{ slug: { current: 'current-seat' } }])
+  mocks.getArchivedElectorates.mockResolvedValue([{ slug: { current: 'archived-seat' } }])
+  mocks.getPages.mockResolvedValue([])
+  mocks.getInvestigations.mockResolvedValue([
+    { slug: { current: 'new-investigation' }, _updatedAt: 'invalid' },
+    { title: 'No route' },
+  ])
+  const disabledId = Object.values(siteRegistry).find(
+    (site) => !site.deployment.features.investigations
+  )!.siteId as 'vic' | 'qld'
+  const enabledId = Object.values(siteRegistry).find(
+    (site) => site.deployment.features.investigations
+  )!.siteId as 'vic' | 'qld'
+  const disabled = await sitemap(disabledId)
+  expect(disabled).not.toContain('/investigations')
+  expect(disabled).not.toContain('/electorates/archived-seat')
+  expect(disabled).toContain('/electorates/current-seat')
+  expect(disabled).toContain('/past-candidates')
+  const enabled = await sitemap(enabledId)
+  expect(enabled).toContain('/investigations</loc>')
+  expect(enabled).toContain('/investigations/new-investigation</loc>')
+  expect(enabled).not.toContain('invalid')
+  expect(enabled).not.toContain('undefined')
 })

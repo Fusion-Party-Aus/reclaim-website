@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
@@ -7,7 +7,7 @@ import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge } from '@/components/ui'
-import { getElectorates, getElectoratesPage, urlFor } from '../../lib/sanity'
+const { getElectorates, getElectoratesPage, urlFor } = Astro.locals.siteContext.content
 import '../../styles/global.css'
 import '../../styles/editorial.css'
 import type { Electorate } from '../../types/sanity'

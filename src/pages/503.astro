@@ -1,5 +1,5 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -100,9 +100,7 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
               <h2 class="text-2xl font-black uppercase text-yellow mb-2 font-display">
                 System Upgrade In Progress
               </h2>
-              <p class="text-fg/80 font-bold">
-                We're improving our platform to serve you better
-              </p>
+              <p class="text-fg/80 font-bold">We're improving our platform to serve you better</p>
             </div>
           </div>
 
@@ -181,9 +179,7 @@ const randomMessage = maintenanceMessages[Math.floor(Math.random() * maintenance
             <Icon name="mdi:shield-check" class="w-10 h-10 text-yellow" />
           </div>
           <h3 class="text-xl font-black uppercase text-center mb-3 font-display">Security</h3>
-          <p class="text-sm font-bold text-fg/60 text-center">
-            Enhancing protection for your data
-          </p>
+          <p class="text-sm font-bold text-fg/60 text-center">Enhancing protection for your data</p>
         </BrutalCard>
 
         <BrutalCard variant="surface" shadow="magenta" padding="md">

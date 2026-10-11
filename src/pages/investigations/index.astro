@@ -1,10 +1,10 @@
 ---
 export const prerender = false
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { getInvestigations } from '@/lib/investigations'
+const { getInvestigations } = Astro.locals.siteContext.content
 import '@/styles/global.css'
 import '@/styles/editorial.css'
 

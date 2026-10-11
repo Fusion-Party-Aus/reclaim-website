@@ -73,6 +73,7 @@ jobs:
       - name: Build and verify every manifest branch
         run: npm run verify:branches
         env:
+          SITE_RUNTIME_MODE: production
           PUBLIC_SANITY_PROJECT_ID: ${{ secrets.PUBLIC_SANITY_PROJECT_ID }}
 
   security-audit:

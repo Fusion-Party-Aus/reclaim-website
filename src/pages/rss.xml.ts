@@ -1,6 +1,5 @@
-import { DEPLOYMENT } from '../lib/deployment'
+import type { APIContext } from 'astro'
 import rss from '@astrojs/rss'
-import { getDocuments } from '../lib/sanity'
 
 interface BlogPost {
   title: string
@@ -11,7 +10,11 @@ interface BlogPost {
   author?: { name: string }
 }
 
-export async function GET() {
+export async function GET({ locals }: APIContext) {
+  const {
+    deployment: DEPLOYMENT,
+    content: { getDocuments },
+  } = locals.siteContext
   const posts = await getDocuments<BlogPost>('blogPost')
   const sorted = posts.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

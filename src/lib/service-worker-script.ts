@@ -5,15 +5,21 @@ export function createServiceWorkerScript(branch: string): string {
     throw new Error(`Invalid service worker branch slug: ${branch}`)
   }
 
-  return `const CACHE_NAME = 'fusion-${branch}-v1';
+  return `const CACHE_NAME = 'fusion-${branch}-v2';
 const CACHE_PREFIX = 'fusion-${branch}-';
 const OFFLINE_URL = '/offline';
 const PRECACHE_ASSETS = ['/', '/offline', '/solo-full-colour.svg'];
+function isPublicResponse(response) {
+  return response.status === 200 && !/private|no-store/i.test(response.headers.get('Cache-Control') || '') && !/noindex/i.test(response.headers.get('X-Robots-Tag') || '');
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(PRECACHE_ASSETS))
+      .then((cache) => Promise.all(PRECACHE_ASSETS.map(async (asset) => {
+        const response = await fetch(asset, { credentials: 'same-origin', cache: 'no-store' });
+        if (isPublicResponse(response)) await cache.put(asset, response.clone());
+      })))
       .then(() => self.skipWaiting())
       .catch((error) => caches.delete(CACHE_NAME).then(() => { throw error; }))
   );
@@ -33,11 +39,13 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin || url.pathname.startsWith('/api/') || url.pathname.startsWith('/preview') || url.searchParams.has('preview')) return;
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (response.status === 200) {
+        if (isPublicResponse(response)) {
           const responseToCache = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
         }

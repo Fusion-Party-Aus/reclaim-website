@@ -1,3 +1,5 @@
+import { createSiteContext } from '../lib/site-context'
+import { siteRegistry } from '../../config/sites.mjs'
 // @vitest-environment node
 import { describe, expect, it, vi } from 'vitest'
 
@@ -20,7 +22,11 @@ for (const [name, handler, prefix, frequency] of [
         { slug: { current: 'fresh' }, _updatedAt: '2026-10-09T00:00:00Z' },
         { title: 'No route' },
       ])
-      const response = await handler({} as Parameters<typeof handler>[0])
+      const response = await handler({
+        locals: {
+          siteContext: createSiteContext(siteRegistry.vic, { clientFactory: () => ({ fetch }) }),
+        },
+      } as Parameters<typeof handler>[0])
       const xml = await response.text()
       expect(response.status).toBe(200)
       expect(response.headers.get('Content-Type')).toBe('application/xml; charset=utf-8')

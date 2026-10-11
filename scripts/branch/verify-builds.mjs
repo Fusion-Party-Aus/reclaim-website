@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { branchManifest } from '../../config/branches.mjs'
 import { resolveBranch } from '../../config/branch/resolver.mjs'
 import { verifyLeakage, verifyParity } from '../../config/branch/verify.mjs'
+import { branchRuntimeEnvironment } from './runtime-environment.mjs'
 
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
 
@@ -29,6 +30,7 @@ function runBranchCommand(args) {
     cwd: repoRoot,
     env: {
       ...process.env,
+      ...branchRuntimeEnvironment(process.env, requestedBranch, args),
       BRANCH: requestedBranch,
       PUBLIC_BRANCH: requestedBranch,
       PUBLIC_SANITY_DATASET: entry.sanity.dataset,
@@ -72,6 +74,7 @@ function verifyBuilds() {
       const outputDirectory = path.join(buildRoot, slug)
       const env = {
         ...process.env,
+        ...branchRuntimeEnvironment({ SITE_RUNTIME_MODE: 'production' }, slug),
         BRANCH: slug,
         PUBLIC_BRANCH: slug,
         PUBLIC_SANITY_DATASET: entry.sanity.dataset,

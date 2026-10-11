@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
  * Generates the site's 5 static OpenGraph images (1200x630) — home/default
- * and section index pages — with Playwright, styled to the Reclaim design
- * system (dark-first, spectrum accents, Barlow Condensed display type —
- * see "Fusion Brand Guide.dc.html").
+ * and section index pages — once per registered Site, using its resolved
+ * design tokens and canonical hostname.
  *
  * These are stable, hand-authored brand assets that don't depend on Sanity
  * content, so unlike the per-policy generator (generate-policy-images.mjs)
@@ -15,19 +14,10 @@
  *   node scripts/og/generate-static-images.mjs
  */
 import { chromium } from 'playwright'
-import {
-  COLORS,
-  WIDTH,
-  HEIGHT,
-  root,
-  outDir,
-  fontFile,
-  logoMarkBase64,
-  ensureOutDirs,
-} from './lib.mjs'
+import { WIDTH, HEIGHT, root, outDir, fontFile, ogTheme } from './lib.mjs'
+import { siteRegistry } from '../../config/sites.mjs'
 import path from 'node:path'
-
-ensureOutDirs()
+import { mkdirSync } from 'node:fs'
 
 // ---------------------------------------------------------------------------
 // Fonts — inlined as base64 so rendering never depends on network access.
@@ -58,15 +48,19 @@ const FONT_CSS = [
 
 /**
  * @param {object} spec
- * @param {string} spec.eyebrow - small uppercase tag above the headline
- * @param {string[]} spec.headline - plain headline lines, rendered white
+ * @param {string[]} spec.headline - plain headline lines, rendered in the Site foreground
  * @param {string} [spec.accentLine] - final headline line, rendered in the accent color
  * @param {string} [spec.subline] - smaller supporting line under the headline
- * @param {string} spec.accent - primary spectrum accent (badge, rule, accent line, top stripe)
  * @param {string} [spec.tag] - bottom-right corner tag, defaults to the domain
  */
-function renderTemplate(spec) {
-  const { eyebrow, headline, accentLine, subline, accent, tag = 'VIC.FUSIONPARTY.ORG.AU' } = spec
+function renderTemplate(spec, site) {
+  const theme = ogTheme(site.deployment)
+  const {
+    headline,
+    accentLine,
+    subline,
+    tag = new URL(site.canonicalOrigin).hostname.toUpperCase(),
+  } = spec
 
   const headlineLines = headline.map((line) => `<div class="line">${line}</div>`).join('\n')
   const watermarkLetter = (accentLine || headline[0] || '').trim().charAt(0)
@@ -83,17 +77,21 @@ function renderTemplate(spec) {
   body {
     width: ${WIDTH}px;
     height: ${HEIGHT}px;
-    background: linear-gradient(160deg, ${COLORS.deepPurple} 0%, ${COLORS.surfaceRaised} 100%);
+    background: ${theme.background};
     overflow: hidden;
     position: relative;
     font-family: 'Barlow', sans-serif;
-    border-bottom: 8px solid ${COLORS.teal};
+    border-bottom: 8px solid ${theme.primary};
   }
 
-  /* Triple colour stripe — the Reclaim system's signature top edge */
-  .stripe-magenta { position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: ${COLORS.magenta}; }
-  .stripe-teal { position: absolute; top: 8px; left: 0; width: 100%; height: 5px; background: ${COLORS.teal}; }
-  .stripe-blue { position: absolute; top: 13px; left: 0; width: 100%; height: 3px; background: ${COLORS.blue}; }
+  .stripe-primary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: ${theme.accent};
+  }
 
   /* Ghosted structural watermark, matching the Hero component's initial-letter motif */
   .watermark {
@@ -112,19 +110,22 @@ function renderTemplate(spec) {
     text-transform: uppercase;
     font-size: 520px;
     line-height: 1;
-    color: ${COLORS.white};
-    opacity: 0.045;
+    color: ${theme.foreground};
+    opacity: 0.055;
   }
 
-  .logo-mark {
-    position: absolute;
-    bottom: 44px;
-    right: 72px;
+  .monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 46px;
     height: 46px;
-    opacity: 0.9;
+    background: ${theme.primary};
+    color: ${theme.onPrimary};
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
   }
-  .logo-mark img { width: 100%; height: 100%; }
 
   .content {
     position: relative;
@@ -136,25 +137,10 @@ function renderTemplate(spec) {
     justify-content: center;
   }
 
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    background: color-mix(in srgb, ${accent} 12%, transparent);
-    color: ${accent};
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 0.16em;
-    padding: 9px 18px 9px 16px;
-    border-left: 3px solid ${accent};
-    margin-bottom: 34px;
-  }
-
   .headline {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    color: ${COLORS.white};
+    color: ${theme.foreground};
     font-size: 90px;
     line-height: 0.96;
     letter-spacing: -0.02em;
@@ -162,12 +148,15 @@ function renderTemplate(spec) {
     max-width: 980px;
   }
   .headline .line { display: block; }
-  .headline .accent-line { display: block; color: ${accent}; }
+  .headline .accent-line {
+    display: block;
+    color: ${theme.accent};
+  }
 
   .rule {
     width: 84px;
     height: 6px;
-    background: ${COLORS.teal};
+    background: ${theme.secondary};
     margin-top: 28px;
     margin-bottom: 24px;
   }
@@ -175,8 +164,7 @@ function renderTemplate(spec) {
   .subline {
     font-family: 'Barlow', sans-serif;
     font-weight: 600;
-    color: ${COLORS.white};
-    opacity: 0.8;
+    color: ${theme.muted};
     font-size: 27px;
     line-height: 1.45;
     max-width: 780px;
@@ -196,19 +184,19 @@ function renderTemplate(spec) {
   .brand {
     display: flex;
     align-items: center;
-    gap: 68px;
+    gap: 18px;
   }
   .brand-text {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
-    color: ${COLORS.white};
+    color: ${theme.foreground};
     font-size: 24px;
     letter-spacing: 0.01em;
     line-height: 1;
   }
   .brand-text span {
-    color: rgba(255, 255, 255, 0.5);
+    color: ${theme.muted};
     font-weight: 700;
     margin-left: 0.4em;
   }
@@ -216,22 +204,19 @@ function renderTemplate(spec) {
   .tag {
     font-family: 'Space Mono', monospace;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.7);
+    color: ${theme.foreground};
     font-size: 15px;
     letter-spacing: 0.08em;
     padding: 7px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid ${theme.line};
   }
 </style>
 </head>
 <body>
-  <div class="stripe-magenta"></div>
-  <div class="stripe-teal"></div>
-  <div class="stripe-blue"></div>
+  <div class="stripe-primary"></div>
   <div class="watermark"><span>${watermarkLetter}</span></div>
 
   <div class="content">
-    <div class="eyebrow">${eyebrow}</div>
     <div class="headline">
       ${headlineLines}
       ${accentLine ? `<span class="accent-line">${accentLine}</span>` : ''}
@@ -242,8 +227,10 @@ function renderTemplate(spec) {
 
   <div class="footer">
     <div class="brand">
-      <div class="logo-mark"><img src="data:image/png;base64,${logoMarkBase64}" /></div>
-      <div class="brand-text">FUSION<span>VICTORIA</span></div>
+      <div class="monogram">F</div>
+      <div class="brand-text">
+        FUSION<span>${site.deployment.state.toUpperCase()}</span>
+      </div>
     </div>
     <div class="tag">${tag}</div>
   </div>
@@ -252,49 +239,42 @@ function renderTemplate(spec) {
 }
 
 // ---------------------------------------------------------------------------
-// Image specs
+// Shared copy; the Site supplies the palette, identity and canonical host.
 // ---------------------------------------------------------------------------
-const IMAGES = [
-  {
-    name: 'default',
-    eyebrow: 'FUSION PARTY VICTORIA',
-    headline: ['TAKING BACK'],
-    accentLine: 'WHAT THEY STOLE',
-    subline: 'A progressive, evidence-based movement to reclaim Victoria.',
-    accent: COLORS.magenta,
-  },
-  {
-    name: 'policies',
-    eyebrow: 'OUR POLICIES',
-    headline: ['REAL COSTINGS.'],
-    accentLine: 'NO BULLSHIT.',
-    subline: 'Evidence-based solutions to fix the systems that failed us.',
-    accent: COLORS.teal,
-  },
-  {
-    name: 'blog',
-    eyebrow: 'FUSION VICTORIA / BLOG',
-    headline: ['STORIES FROM'],
-    accentLine: 'THE MOVEMENT',
-    subline: 'Campaign updates and policy announcements.',
-    accent: COLORS.violet,
-  },
-  {
-    name: 'electorates',
-    eyebrow: 'VIC ELECTORATES',
-    headline: ['WHERE WE’RE'],
-    accentLine: 'TAKING IT BACK',
-    subline: 'Find your electorate. See the plan.',
-    accent: COLORS.blue,
-  },
-  {
-    name: 'faq',
-    eyebrow: 'GOT QUESTIONS?',
-    headline: ['NO SPIN. NO DODGE.'],
-    accentLine: 'STRAIGHT TALK.',
-    accent: COLORS.cyan,
-  },
-]
+function imagesFor(site) {
+  const state = site.deployment.state
+  return [
+    {
+      name: 'default',
+      headline: ['REASON. RIGHTS.'],
+      accentLine: 'RESULTS.',
+      subline: site.deployment.tagline,
+    },
+    {
+      name: 'policies',
+      headline: ['POLICY'],
+      accentLine: 'IN PRACTICE',
+      subline: `Evidence, detail and priorities for ${state}.`,
+    },
+    {
+      name: 'blog',
+      headline: ['LATEST'],
+      accentLine: 'UPDATES',
+      subline: `${site.deployment.label} news and policy updates.`,
+    },
+    {
+      name: 'electorates',
+      headline: ['YOUR'],
+      accentLine: 'ELECTORATE',
+      subline: 'Local representation, policy and community priorities.',
+    },
+    {
+      name: 'faq',
+      headline: ['CLEAR ANSWERS'],
+      accentLine: 'ABOUT FUSION',
+    },
+  ]
+}
 
 async function main() {
   const browser = await chromium.launch({
@@ -305,13 +285,17 @@ async function main() {
     deviceScaleFactor: 1,
   })
 
-  for (const spec of IMAGES) {
-    const html = renderTemplate(spec)
-    await page.setContent(html, { waitUntil: 'load' })
-    await page.evaluate(() => document.fonts.ready)
-    const outPath = path.join(outDir, `${spec.name}.png`)
-    await page.screenshot({ path: outPath })
-    console.log(`Generated ${path.relative(root, outPath)}`)
+  for (const site of Object.values(siteRegistry)) {
+    const siteOutDir = path.join(outDir, site.siteId)
+    mkdirSync(siteOutDir, { recursive: true })
+    for (const spec of imagesFor(site)) {
+      const html = renderTemplate(spec, site)
+      await page.setContent(html, { waitUntil: 'load' })
+      await page.evaluate(() => document.fonts.ready)
+      const outPath = path.join(siteOutDir, `${spec.name}.png`)
+      await page.screenshot({ path: outPath })
+      console.log(`Generated ${path.relative(root, outPath)}`)
+    }
   }
 
   await browser.close()

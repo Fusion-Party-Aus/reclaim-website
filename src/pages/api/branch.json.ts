@@ -1,7 +1,7 @@
+import type { Deployment } from '../../../config/deployment.mjs'
 import type { APIRoute } from 'astro'
-import { DEPLOYMENT } from '../../lib/deployment'
 
-export function buildBranchInfo(deployment: typeof DEPLOYMENT) {
+export function buildBranchInfo(deployment: Deployment) {
   return {
     slug: deployment.slug,
     label: deployment.label,
@@ -15,8 +15,9 @@ export function buildBranchInfo(deployment: typeof DEPLOYMENT) {
   }
 }
 
-export const GET: APIRoute = () =>
-  new Response(JSON.stringify(buildBranchInfo(DEPLOYMENT)), {
+export const GET: APIRoute = ({ locals }) => {
+  const DEPLOYMENT = locals.siteContext.deployment
+  return new Response(JSON.stringify(buildBranchInfo(DEPLOYMENT)), {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
@@ -25,3 +26,4 @@ export const GET: APIRoute = () =>
       'Access-Control-Allow-Headers': 'Content-Type',
     },
   })
+}

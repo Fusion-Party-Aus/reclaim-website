@@ -1,72 +1,73 @@
 import type { APIRoute } from 'astro'
 import { getSecret } from 'astro:env/server'
 import { storeTokens } from '../../../../../nationbuilder/oauth.js'
+import { resolveSiteIntegrations, runtimeBindings } from '../../../../lib/site-integrations'
+import {
+  completeOAuth,
+  InvalidOAuthStateError,
+  OAUTH_COOKIE,
+  type OAuthTokens,
+} from '../../../../lib/oauth-flow'
 
-// NationBuilder redirects here after the admin grants consent.
-// Exchanges the authorization code for access + refresh tokens and stores
-// them in the NATIONBUILDER_TOKENS KV namespace.
-export const GET: APIRoute = async ({ url, locals }) => {
-  const code = url.searchParams.get('code')
-  const error = url.searchParams.get('error')
-
-  if (error || !code) {
-    return new Response(`OAuth error: ${error ?? 'no authorization code returned'}`, {
+export const GET: APIRoute = async ({ url, locals, cookies }) => {
+  const { site } = locals.siteContext
+  const headers = { 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' }
+  if (url.origin !== site.canonicalOrigin)
+    return new Response('OAuth callback requires the configured canonical origin', {
       status: 400,
+      headers,
     })
+  const session = cookies.get(OAUTH_COOKIE)?.value
+  cookies.delete(OAUTH_COOKIE, { path: '/' })
+  if (url.searchParams.has('error'))
+    return new Response('OAuth authorization was not completed', { status: 400, headers })
+  try {
+    const { oauth, nationbuilder } = resolveSiteIntegrations(
+      site,
+      getSecret,
+      await runtimeBindings(locals)
+    )
+    if (
+      !oauth.store ||
+      !oauth.slug ||
+      !oauth.clientId ||
+      !oauth.clientSecret ||
+      !nationbuilder.NATIONBUILDER_TOKENS
+    )
+      return new Response(
+        'OAuth Site credentials, token storage and atomic state service are required',
+        { status: 503, headers }
+      )
+    await completeOAuth(
+      oauth,
+      {
+        state: url.searchParams.get('state') ?? undefined,
+        session,
+        code: url.searchParams.get('code') ?? undefined,
+      },
+      {
+        exchange: async (body) => {
+          const response = await fetch(`https://${oauth.slug}.nationbuilder.com/oauth/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          })
+          if (!response.ok) throw new Error('OAuth token exchange failed')
+          return (await response.json()) as OAuthTokens
+        },
+        save: (tokens) => storeTokens(nationbuilder, tokens),
+      }
+    )
+    return new Response('OAuth complete. Tokens stored for this Site.', {
+      status: 200,
+      headers: { ...headers, 'Content-Type': 'text/plain; charset=utf-8' },
+    })
+  } catch (error) {
+    return new Response(
+      error instanceof InvalidOAuthStateError
+        ? 'Invalid or expired OAuth state'
+        : 'OAuth could not be completed',
+      { status: error instanceof InvalidOAuthStateError ? 400 : 502, headers }
+    )
   }
-
-  const slug = getSecret('NATIONBUILDER_SLUG') ?? ''
-  const clientId = getSecret('NATIONBUILDER_CLIENT_ID') ?? ''
-  const clientSecret = getSecret('NATIONBUILDER_CLIENT_SECRET') ?? ''
-  const redirectUri = new URL('/api/oauth/nationbuilder/callback', url).toString()
-
-  if (!slug || !clientId || !clientSecret) {
-    return new Response('OAuth credentials not configured', { status: 500 })
-  }
-
-  const res = await fetch(`https://${slug}.nationbuilder.com/oauth/token`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      grant_type: 'authorization_code',
-      code,
-      client_id: clientId,
-      client_secret: clientSecret,
-      redirect_uri: redirectUri,
-    }),
-  })
-
-  if (!res.ok) {
-    const body = await res.text()
-    return new Response(`Token exchange failed: ${res.status} ${body}`, { status: 502 })
-  }
-
-  const data = (await res.json()) as {
-    access_token: string
-    refresh_token: string
-    expires_in?: number
-  }
-
-  // KV namespace comes from the Cloudflare runtime env (not accessible via getSecret).
-  // Locally this will be undefined — run the OAuth dance in production (or use wrangler dev).
-  const cfEnv = (locals as { runtime?: { env?: Record<string, unknown> } })?.runtime?.env ?? {}
-
-  await storeTokens(
-    {
-      NATIONBUILDER_SLUG: slug,
-      NATIONBUILDER_CLIENT_ID: clientId,
-      NATIONBUILDER_CLIENT_SECRET: clientSecret,
-      NATIONBUILDER_TOKENS: cfEnv.NATIONBUILDER_TOKENS,
-    },
-    { ...data, expires_in: data.expires_in ?? 0 }
-  )
-
-  return new Response(
-    `<html><body style="font-family:monospace;padding:2rem;background:#1A0029;color:#fff">
-      <p style="color:#00DDB8;font-size:1.2rem">✓ OAuth complete</p>
-      <p>Tokens stored in KV. NationBuilder API calls will now use OAuth access tokens.</p>
-      <p style="opacity:.6;font-size:.8rem">You can close this tab.</p>
-    </body></html>`,
-    { status: 200, headers: { 'content-type': 'text/html' } }
-  )
 }

@@ -1,3 +1,5 @@
+import { createSiteContext } from '../../lib/site-context'
+import { siteRegistry } from '../../../config/sites.mjs'
 // @vitest-environment node
 import { describe, expect, it, vi } from 'vitest'
 
@@ -65,7 +67,11 @@ async function fetchPolicies() {
     }
     return Promise.resolve(null)
   })
-  const response = await GET({} as Parameters<typeof GET>[0])
+  const response = await GET({
+    locals: {
+      siteContext: createSiteContext(siteRegistry.vic, { clientFactory: () => ({ fetch }) }),
+    },
+  } as Parameters<typeof GET>[0])
   return { response, body: JSON.parse(await response.text()) }
 }
 

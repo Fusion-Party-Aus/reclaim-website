@@ -1,19 +1,23 @@
 // NationBuilder OAuth2 token management.
 //
 // Stores access + refresh tokens in a Cloudflare KV namespace
-// (NATIONBUILDER_TOKENS binding). Falls back to env.NATIONBUILDER_API_TOKEN
-// if KV is unavailable (local dev, or before the first OAuth dance completes).
+// (NATIONBUILDER_TOKENS binding). Falls back to the selected Site's
+// NATIONBUILDER_API_TOKEN if KV is unavailable or no OAuth tokens exist.
 //
 // Refresh flow: access tokens expire after 24 hours; refresh tokens are
 // long-lived. On first access after expiry, a refresh call is made, the
-// rotated tokens are written back to KV, and the in-memory cache is updated
-// for subsequent calls in the same Worker instance.
+// rotated tokens are written back to a Site/provider-specific KV key.
+// No shared module token cache is used.
 
-// Per-instance cache — survives across requests for ~30s–5 min until the
-// Worker instance is recycled. Avoids a KV read on every API call.
-let _cached = null
-
-const KV_KEY = "nationbuilder:tokens"
+function tokenKey(env) {
+  if (
+    !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(env.SITE_ID ?? '') ||
+    !/^[a-z0-9-]+$/.test(env.NATIONBUILDER_SLUG ?? '')
+  ) {
+    throw new Error('Explicit Site and provider identity required')
+  }
+  return `site:${env.SITE_ID}:nationbuilder:${env.NATIONBUILDER_SLUG}:tokens`
+}
 
 function isExpired(expiresAt) {
   return Date.now() >= expiresAt - 5 * 60 * 1000 // 5-minute buffer
@@ -22,7 +26,7 @@ function isExpired(expiresAt) {
 async function readKV(env) {
   if (!env.NATIONBUILDER_TOKENS) return null
   try {
-    const raw = await env.NATIONBUILDER_TOKENS.get(KV_KEY)
+    const raw = await env.NATIONBUILDER_TOKENS.get(tokenKey(env))
     return raw ? JSON.parse(raw) : null
   } catch {
     return null
@@ -30,31 +34,26 @@ async function readKV(env) {
 }
 
 async function writeKV(env, tokens) {
-  if (!env.NATIONBUILDER_TOKENS) return
+  if (!env.NATIONBUILDER_TOKENS) throw new Error('Site token storage is not configured')
   // TTL: 1 year (refresh tokens are long-lived; KV entry is effectively permanent)
-  await env.NATIONBUILDER_TOKENS.put(KV_KEY, JSON.stringify(tokens), {
+  await env.NATIONBUILDER_TOKENS.put(tokenKey(env), JSON.stringify(tokens), {
     expirationTtl: 60 * 60 * 24 * 365,
   })
 }
 
 async function doRefresh(env, refreshToken) {
-  const res = await fetch(
-    `https://${env.NATIONBUILDER_SLUG}.nationbuilder.com/oauth/token`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        grant_type: "refresh_token",
-        refresh_token: refreshToken,
-        client_id: env.NATIONBUILDER_CLIENT_ID,
-        client_secret: env.NATIONBUILDER_CLIENT_SECRET,
-      }),
-    }
-  )
+  const res = await fetch(`https://${env.NATIONBUILDER_SLUG}.nationbuilder.com/oauth/token`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+      client_id: env.NATIONBUILDER_CLIENT_ID,
+      client_secret: env.NATIONBUILDER_CLIENT_SECRET,
+    }),
+  })
   if (!res.ok) {
-    throw new Error(
-      `NationBuilder token refresh failed: ${res.status} ${await res.text().catch(() => "")}`
-    )
+    throw new Error(`NationBuilder token refresh failed: ${res.status}`)
   }
   const data = await res.json()
   return {
@@ -69,9 +68,7 @@ async function doRefresh(env, refreshToken) {
 // NATIONBUILDER_CLIENT_SECRET, NATIONBUILDER_TOKENS (KV binding),
 // and NATIONBUILDER_API_TOKEN (fallback).
 export async function getAccessToken(env) {
-  if (_cached && !isExpired(_cached.expires_at)) {
-    return _cached.access_token
-  }
+  tokenKey(env)
 
   const stored = await readKV(env)
 
@@ -81,23 +78,20 @@ export async function getAccessToken(env) {
   }
 
   if (!isExpired(stored.expires_at)) {
-    _cached = stored
     return stored.access_token
   }
 
   const refreshed = await doRefresh(env, stored.refresh_token)
   await writeKV(env, refreshed)
-  _cached = refreshed
   return refreshed.access_token
 }
 
 // Called by the OAuth callback handler after the initial code exchange.
-export async function storeTokens(env, { access_token, refresh_token, expires_in }) {
+export async function storeTokens(env, { access_token, refresh_token, expires_in = 86400 }) {
   const tokens = {
     access_token,
     refresh_token,
     expires_at: Date.now() + (expires_in ?? 86400) * 1000,
   }
   await writeKV(env, tokens)
-  _cached = tokens
 }

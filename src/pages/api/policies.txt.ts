@@ -1,16 +1,16 @@
-import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getPolicies, getManifestoPage } from '../../lib/sanity'
 import { portableTextToPlainText } from '../../lib/portableText'
 
 export const prerender = false
 
-const base = DEPLOYMENT.siteUrl
-
 const section = (label: string, value?: string | null) =>
   value?.trim() ? `\n### ${label}\n${value.trim()}\n` : ''
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getPolicies, getManifestoPage } = content
+  const base = locals.siteContext.site.canonicalOrigin
+
   const [policies, manifesto] = await Promise.all([
     getPolicies({ adoptedOnly: true }),
     getManifestoPage(),

@@ -1,10 +1,10 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 export const prerender = false
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { getDocuments, getBlogPage, urlFor } from '../../lib/sanity'
+const { getDocuments, getBlogPage, urlFor } = Astro.locals.siteContext.content
 import '../../styles/global.css'
 
 interface BlogPost {

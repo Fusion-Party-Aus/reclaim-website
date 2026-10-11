@@ -1,8 +1,9 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
-import { getDocuments } from '@/lib/sanity'
 import { Icon } from 'astro-icon/components'
 import FusionLogo from '@/components/brand/FusionLogo.astro'
+
+const { deployment: DEPLOYMENT, content } = Astro.locals.siteContext
+const { getDocuments } = content
 
 const currentPath = Astro.url.pathname
 

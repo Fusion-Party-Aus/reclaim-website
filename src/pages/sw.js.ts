@@ -1,10 +1,9 @@
 import type { APIRoute } from 'astro'
-import { DEPLOYMENT } from '../lib/deployment'
 import { createServiceWorkerScript } from '../lib/service-worker-script'
 
-export const prerender = true
+export const prerender = false
 
-export const GET: APIRoute = () =>
-  new Response(createServiceWorkerScript(DEPLOYMENT.slug), {
+export const GET: APIRoute = ({ locals }) =>
+  new Response(createServiceWorkerScript(locals.siteContext.site.siteId), {
     headers: { 'Content-Type': 'application/javascript; charset=utf-8' },
   })

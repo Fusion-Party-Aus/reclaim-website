@@ -1,8 +1,16 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { fetch } = vi.hoisted(() => ({ fetch: vi.fn() }))
-vi.mock('@sanity/client', () => ({ createClient: () => ({ fetch }) }))
+const { fetch, clientConfigs } = vi.hoisted(() => ({
+  fetch: vi.fn(),
+  clientConfigs: [] as Array<Record<string, unknown>>,
+}))
+vi.mock('@sanity/client', () => ({
+  createClient: (config: Record<string, unknown>) => {
+    clientConfigs.push(config)
+    return { fetch }
+  },
+}))
 vi.mock('@sanity/image-url', () => ({ default: () => ({ image: vi.fn() }) }))
 
 import { getAdoptedPolicyBySlug, getPolicies } from './sanity'
@@ -10,6 +18,11 @@ import { getAdoptedPolicyBySlug, getPolicies } from './sanity'
 beforeEach(() => fetch.mockReset())
 
 describe('public policy filters', () => {
+  it('keeps the shared Sanity client published and credential-free', () => {
+    expect(clientConfigs[0]).toMatchObject({ perspective: 'published', stega: { enabled: false } })
+    expect(clientConfigs[0]).not.toHaveProperty('token')
+  })
+
   it('preserves the thisTerm option when filtering to adopted policies', async () => {
     fetch.mockResolvedValue([])
 

@@ -1,13 +1,13 @@
 ---
 import BranchLanding from '@/components/layout/BranchLanding.astro'
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Hero } from '@/components/layout/Hero'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
-import { getManifestoPage } from '../lib/sanity'
+const { getManifestoPage } = Astro.locals.siteContext.content
 import '../styles/global.css'
 import '../styles/editorial.css'
 

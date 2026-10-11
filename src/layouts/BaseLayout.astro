@@ -1,14 +1,16 @@
 ---
-import { DEPLOYMENT } from '../lib/deployment'
 import { SEO } from 'astro-seo'
-import { getSiteConfig } from '../lib/sanity'
 import { KonamiCode } from '@/features/engagement'
 import { VisualEditing } from '@sanity/astro/visual-editing'
 import { stegaClean } from '@sanity/client/stega'
 import { Icon } from 'astro-icon/components'
+import { siteOgImage } from '@/lib/site-og-image'
 import '../styles/global.css'
 import '../styles/editorial.css'
 import '../styles/fusion-site.css'
+
+const { deployment: DEPLOYMENT, content } = Astro.locals.siteContext
+const { getSiteConfig } = content
 
 interface Props {
   title: string
@@ -38,11 +40,14 @@ const {
 const title = stegaClean(rawTitle)
 const description = stegaClean(rawDescription)
 const siteConfig = await getSiteConfig()
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
+const visualEditingEnabled = Astro.locals.preview === true
 
-const siteUrl = Astro.site ?? new URL(DEPLOYMENT.siteUrl)
+const siteUrl = new URL(DEPLOYMENT.siteUrl)
 const canonicalUrl = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', siteUrl).href
-const canonicalImage = new URL(stegaClean(image), siteUrl)
+const canonicalImage = new URL(
+  siteOgImage(Astro.locals.siteContext.site.siteId, stegaClean(image)),
+  siteUrl
+)
 const utilityPages = new Set([
   '/404',
   '/403',
@@ -221,6 +226,23 @@ const webSiteStructuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class:list={{ 'public-editorial': !isUtilityPage }}>
+    {
+      visualEditingEnabled && (
+        <form
+          method="post"
+          action="/api/preview/exit"
+          aria-label="Preview controls"
+          class="fixed bottom-4 right-4 z-[100]"
+        >
+          <button
+            type="submit"
+            class="border border-line bg-surface-raised px-4 py-2 font-bold text-fg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-deep"
+          >
+            Exit Preview
+          </button>
+        </form>
+      )
+    }
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent-deep focus:text-white focus:px-4 focus:py-2 focus:border focus:border-white focus:font-black focus:uppercase focus:text-sm"
@@ -235,7 +257,10 @@ const webSiteStructuredData = {
     <VisualEditing enabled={visualEditingEnabled} />
 
     <!-- PWA Service Worker Registration & Install Prompt -->
-    <script is:inline define:vars={{ serviceWorkerEnabled: import.meta.env.PROD }}>
+    <script
+      is:inline
+      define:vars={{ serviceWorkerEnabled: import.meta.env.PROD && !visualEditingEnabled }}
+    >
       if (serviceWorkerEnabled && 'serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker

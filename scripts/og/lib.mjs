@@ -24,20 +24,40 @@ export function ensureOutDirs() {
   mkdirSync(policiesOutDir, { recursive: true })
 }
 
-// Brand tokens — the Reclaim spectrum (see "Fusion Brand Guide.dc.html")
+// Fallback values are used only by legacy callers without resolved Site tokens.
 export const COLORS = {
-  deepPurple: '#1a0029',
-  surfaceRaised: '#2e004d',
-  brandPurple: '#5c006b',
+  deepPurple: '#0b0b0b',
+  surfaceRaised: '#161616',
+  brandPurple: '#003c71',
   white: '#ffffff',
-  magenta: '#d428d4',
-  violet: '#7b3fe4',
-  blue: '#4a7aeb',
-  cyan: '#0bb8d4',
-  teal: '#00ddb8',
+  teal: '#3ce0c0',
 }
 
-export const logoMarkBase64 = readFileSync(
-  path.join(root, 'src/assets/brand/logo-rings-mono-white.png')
-).toString('base64')
-export const logoMarkDataUri = `data:image/png;base64,${logoMarkBase64}`
+function luminance(color) {
+  const match = /^#([\da-f]{6})$/i.exec(color)
+  if (!match) return 0
+  const channels = [0, 2, 4].map((offset) => parseInt(match[1].slice(offset, offset + 2), 16) / 255)
+  const linear = channels.map((channel) =>
+    channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+  )
+  return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722
+}
+
+/** Resolve the palette from the active Branch/Site design tokens. */
+export function ogTheme(deployment) {
+  const tokens = deployment.themeTokens ?? {}
+  const background = tokens['surface-base'] ?? COLORS.deepPurple
+  const isLight = luminance(background) > 0.5
+  return {
+    background,
+    surface: tokens['surface-raised'] ?? COLORS.surfaceRaised,
+    foreground: tokens.fg ?? COLORS.white,
+    muted: tokens.muted ?? 'rgba(255, 255, 255, 0.72)',
+    primary: tokens.primary ?? COLORS.brandPurple,
+    onPrimary: tokens['on-primary'] ?? COLORS.white,
+    accent: isLight ? (tokens.primary ?? COLORS.brandPurple) : (tokens.secondary ?? COLORS.teal),
+    secondary: tokens.secondary ?? COLORS.teal,
+    line: tokens.line ?? 'rgba(255, 255, 255, 0.25)',
+    isLight,
+  }
+}

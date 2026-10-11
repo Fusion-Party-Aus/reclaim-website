@@ -1,6 +1,6 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
-export const prerender = true
+const DEPLOYMENT = Astro.locals.siteContext.deployment
+export const prerender = false
 import '../../styles/global.css'
 import { Hero } from '@/components/layout/Hero'
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -8,7 +8,6 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ShareIcon } from '@/features/sharing'
 import { BrutalBadge, BrutalButton } from '@/components/ui'
-import { getDocuments } from '../../lib/sanity'
 import { PortableText } from 'astro-portabletext'
 import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
@@ -24,20 +23,10 @@ interface FAQ {
   slug: { current: string }
 }
 
-export async function getStaticPaths() {
-  const faqs = await getDocuments<FAQ>('faq')
-  return faqs
-    .filter((faq) => faq.slug?.current)
-    .map((faq) => ({
-      params: { slug: faq.slug.current },
-      props: { faq },
-    }))
-}
-
-export interface Props {
-  faq: FAQ
-}
-const { faq } = Astro.props
+const { slug } = Astro.params
+if (!slug) return Astro.redirect('/404')
+const faq = await Astro.locals.siteContext.content.getDocumentBySlug<FAQ>('faq', slug)
+if (!faq) return Astro.redirect('/404')
 
 const categoryLabels: Record<string, string> = {
   debt: 'Debt & Fiscal Policy',

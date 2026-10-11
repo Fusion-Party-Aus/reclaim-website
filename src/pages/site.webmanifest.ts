@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro'
-import { DEPLOYMENT } from '../lib/deployment'
 
-export const prerender = true
-export const GET: APIRoute = () => {
+export const prerender = false
+export const GET: APIRoute = ({ locals }) => {
+  const { deployment: DEPLOYMENT } = locals.siteContext
+
   const backgroundColor = DEPLOYMENT.themeTokens['surface-base']
   if (typeof backgroundColor !== 'string' || !backgroundColor.trim()) {
     throw new Error(`Branch '${DEPLOYMENT.slug}' has no valid surface-base theme token.`)

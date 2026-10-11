@@ -1,9 +1,9 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 if (DEPLOYMENT.contentProfile !== 'victoria-campaign') {
   return new Response(null, { status: 404 })
 }
-import { getDocuments } from '../lib/sanity'
+const { getDocuments } = Astro.locals.siteContext.content
 import { renderPortableText } from '../lib/portableText'
 import type { PortableTextBlock } from '../lib/portableText'
 

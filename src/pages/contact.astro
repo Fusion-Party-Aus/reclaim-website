@@ -1,11 +1,11 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Icon } from 'astro-icon/components'
 import { Hero } from '@/components/layout/Hero'
-import { getDocuments } from '../lib/sanity'
+const { getDocuments } = Astro.locals.siteContext.content
 import '../styles/global.css'
 import '../styles/editorial.css'
 

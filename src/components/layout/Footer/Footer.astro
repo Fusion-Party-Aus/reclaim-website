@@ -1,9 +1,10 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
-import { getDocuments, getElectorates } from '@/lib/sanity'
 import FusionLogo from '@/components/brand/FusionLogo.astro'
+
+const { deployment: DEPLOYMENT, content } = Astro.locals.siteContext
+const { getDocuments, getElectorates } = content
 
 interface SocialLink {
   platform: string

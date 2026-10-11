@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { resolveDeployment } from '../../config/deployment.mjs'
-const deployment = resolveDeployment(process.env)
 /**
  * Generates one OG card per policy (public/og/policies/<slug>.png), built
  * from that policy's own title/summary, via satori + @resvg/resvg-js (see
@@ -16,8 +14,10 @@ const deployment = resolveDeployment(process.env)
  */
 import { createClient } from '@sanity/client'
 import path from 'node:path'
-import { renderPolicyCardPng, PILLAR_ACCENT, DEFAULT_ACCENT } from './policy-card.mjs'
-import { root, policiesOutDir, fontFile, logoMarkDataUri, ensureOutDirs } from './lib.mjs'
+import { renderPolicyCardPng } from './policy-card.mjs'
+import { root, outDir, fontFile, ogTheme, ensureOutDirs } from './lib.mjs'
+import { siteRegistry } from '../../config/sites.mjs'
+import { mkdirSync } from 'node:fs'
 
 ensureOutDirs()
 
@@ -43,55 +43,41 @@ const satoriFonts = [
   },
 ]
 
-async function generatePolicyImages() {
+async function generatePolicyImages(site) {
   const { writeFileSync } = await import('node:fs')
-  if (deployment.slug !== 'vic') {
-    const png = await renderPolicyCardPng(
-      {
-        eyebrow: deployment.label,
-        title: deployment.tagline,
-        subline: 'Reason. Rights. Results.',
-        accent: deployment.themeColor,
-        tag: new URL(deployment.siteUrl).hostname.toUpperCase(),
-        branchLabel: deployment.state.toUpperCase(),
-        logoMarkDataUri,
-      },
-      satoriFonts
-    )
-    writeFileSync(path.join(root, 'public/og', `${deployment.slug}-default.png`), png)
-  }
+  const deployment = site.deployment
   const client = createClient({
-    projectId: deployment.projectId,
-    dataset: deployment.dataset,
+    projectId: site.cms.projectId,
+    dataset: site.cms.dataset,
     useCdn: true,
     apiVersion: '2024-01-29',
+    perspective: 'published',
   })
 
   const policies = await client.fetch(
     `*[_type == "policy" && defined(slug.current)]{ title, summary, pillar, "slug": slug.current }`
   )
 
+  const sitePoliciesDir = path.join(outDir, site.siteId, 'policies')
+  mkdirSync(sitePoliciesDir, { recursive: true })
   for (const policy of policies) {
-    const accent = PILLAR_ACCENT[policy.pillar] || DEFAULT_ACCENT
     const png = await renderPolicyCardPng(
       {
-        eyebrow: policy.pillar || 'OUR POLICIES',
         title: policy.title,
         subline: policy.summary,
-        accent,
-        tag: new URL(deployment.siteUrl).hostname.toUpperCase(),
+        tag: policy.pillar || 'OUR POLICIES',
+        theme: ogTheme(deployment),
         branchLabel: deployment.state.toUpperCase(),
-        logoMarkDataUri,
       },
       satoriFonts
     )
-    const outPath = path.join(policiesOutDir, `${policy.slug}.png`)
+    const outPath = path.join(sitePoliciesDir, `${policy.slug}.png`)
     writeFileSync(outPath, png)
     console.log(`Generated ${path.relative(root, outPath)}`)
   }
 }
 
-generatePolicyImages()
+Promise.all(Object.values(siteRegistry).map(generatePolicyImages))
   .catch((err) => {
     console.warn(`Skipping per-policy OG images — couldn't reach Sanity: ${err.message}`)
   })

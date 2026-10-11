@@ -1,11 +1,7 @@
 import { sitemapResponse } from '../lib/sitemap'
-import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getDocuments, getElectorates, getArchivedElectorates, getPages } from '../lib/sanity'
 
 export const prerender = false
-
-const base = DEPLOYMENT.siteUrl
 
 interface Document {
   slug?: { current?: string }
@@ -14,13 +10,18 @@ interface Document {
 }
 
 /** Live CMS routes cannot be discovered by Astro's build-time sitemap crawler. */
-export const GET: APIRoute = async () => {
-  const [posts, faqs, electorates, archived, pages] = await Promise.all([
+export const GET: APIRoute = async ({ locals }) => {
+  const { content } = locals.siteContext
+  const { getDocuments, getElectorates, getPages, getInvestigations } = content
+  const investigationsEnabled = locals.siteContext.deployment.features.investigations
+  const base = locals.siteContext.site.canonicalOrigin
+
+  const [posts, faqs, electorates, pages, investigations] = await Promise.all([
     getDocuments<Document>('blogPost'),
     getDocuments<Document>('faq'),
     getElectorates(),
-    getArchivedElectorates(),
     getPages(),
+    investigationsEnabled ? getInvestigations() : Promise.resolve([]),
   ])
   const entries = new Map<string, string | undefined>()
   for (const route of [
@@ -37,10 +38,19 @@ export const GET: APIRoute = async () => {
     '/convince-your-friends',
   ])
     entries.set(route, undefined)
+  if (investigationsEnabled) entries.set('/investigations', undefined)
   for (const [prefix, documents] of [
     ['blog', posts],
     ['faq', faqs],
-    ['electorates', [...electorates, ...archived]],
+    ['electorates', electorates],
+    [
+      'investigations',
+      investigations.map((item) => ({
+        slug: item.slug,
+        publishedAt: item.publishedAt,
+        _updatedAt: undefined,
+      })),
+    ],
   ] as const) {
     for (const doc of documents) {
       if (doc.slug?.current)

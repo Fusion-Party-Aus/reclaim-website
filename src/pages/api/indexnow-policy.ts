@@ -1,11 +1,9 @@
-import { DEPLOYMENT } from '../../lib/deployment'
 import type { APIRoute } from 'astro'
 
 export const prerender = false
 
-const base = DEPLOYMENT.siteUrl
-
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  const base = locals.siteContext.site.canonicalOrigin
   const webhookSecret = import.meta.env.SANITY_REINDEX_SECRET
   const indexNowKey = import.meta.env.INDEXNOW_KEY
 
@@ -72,7 +70,7 @@ export const POST: APIRoute = async ({ request }) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify({
-      host: new URL(DEPLOYMENT.siteUrl).hostname,
+      host: new URL(base).hostname,
       key: indexNowKey,
       keyLocation: `${base}/${indexNowKey}.txt`,
       urlList: urls,

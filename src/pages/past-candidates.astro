@@ -1,11 +1,11 @@
 ---
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 import { Hero } from '@/components/layout/Hero'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BrutalBadge, BrutalCard } from '@/components/ui'
-import { getPages, getArchivedElectorates, urlFor } from '../lib/sanity'
+const { getPages, getArchivedElectorates, urlFor } = Astro.locals.siteContext.content
 import type { Page, Electorate } from '../types/sanity'
 import '../styles/global.css'
 import '../styles/editorial.css'

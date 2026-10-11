@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import { getSecret } from 'astro:env/server'
+import { resolveSiteIntegrations, runtimeBindings } from '../../lib/site-integrations'
 import { subscribeToNewsletter } from '../../../nationbuilder/nationbuilder.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -17,30 +18,40 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'A valid email is required' }), { status: 422 })
   }
 
-  const cfEnv = (locals as { runtime?: { env?: Record<string, unknown> } })?.runtime?.env ?? {}
-  const env = {
-    NATIONBUILDER_SLUG: getSecret('NATIONBUILDER_SLUG'),
-    NATIONBUILDER_API_TOKEN: getSecret('NATIONBUILDER_API_TOKEN'),
-    NATIONBUILDER_CLIENT_ID: getSecret('NATIONBUILDER_CLIENT_ID'),
-    NATIONBUILDER_CLIENT_SECRET: getSecret('NATIONBUILDER_CLIENT_SECRET'),
-    NATIONBUILDER_TOKENS: cfEnv.NATIONBUILDER_TOKENS,
-  }
-
-  if (!env.NATIONBUILDER_SLUG || !env.NATIONBUILDER_API_TOKEN) {
+  let env
+  try {
+    env = resolveSiteIntegrations(
+      locals.siteContext.site,
+      getSecret,
+      await runtimeBindings(locals)
+    ).nationbuilder
+  } catch {
     return new Response(JSON.stringify({ error: 'Newsletter signup is not configured' }), {
-      status: 500,
+      status: 503,
     })
+  }
+  if (
+    !env.NATIONBUILDER_SLUG ||
+    !(
+      env.NATIONBUILDER_API_TOKEN ||
+      (env.NATIONBUILDER_TOKENS && env.NATIONBUILDER_CLIENT_ID && env.NATIONBUILDER_CLIENT_SECRET)
+    )
+  ) {
+    return new Response(
+      JSON.stringify({ error: 'Newsletter signup is not configured for this Site' }),
+      { status: 503 }
+    )
   }
 
   const result = await subscribeToNewsletter(env, email)
   if (!result.ok) {
-    return new Response(JSON.stringify({ error: 'Could not subscribe', detail: result }), {
+    return new Response(JSON.stringify({ error: 'Could not subscribe' }), {
       status: 502,
     })
   }
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', 'Cache-Control': 'no-store' },
   })
 }

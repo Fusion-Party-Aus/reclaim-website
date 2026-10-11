@@ -4,8 +4,6 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { Policy, Electorate, FAQ, Page, HomePage, ResearchResource } from '../types/sanity'
 
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
-
 export const client = createClient({
   projectId: DEPLOYMENT.projectId,
   dataset: DEPLOYMENT.dataset,
@@ -13,9 +11,10 @@ export const client = createClient({
   // Signal publishes directly to Content Lake; SSR routes must see new documents immediately.
   // Sanity's CDN is appropriate for static/build-time content, but can serve stale query results here.
   useCdn: false,
-  perspective: visualEditingEnabled ? 'drafts' : 'published',
-  stega: { enabled: visualEditingEnabled },
-  ...(visualEditingEnabled ? { token: import.meta.env.SANITY_API_READ_TOKEN } : {}),
+  // This shared client is used by public content paths and must never read drafts.
+  // Authenticated preview uses the separate server-only preview content service.
+  perspective: 'published',
+  stega: { enabled: false },
 })
 
 /**

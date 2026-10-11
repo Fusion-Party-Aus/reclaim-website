@@ -1,10 +1,7 @@
-import { DEPLOYMENT } from '../lib/deployment'
 import type { APIRoute } from 'astro'
-import { getDocuments } from '../lib/sanity'
 
 export const prerender = false
 
-const base = DEPLOYMENT.siteUrl
 const escapeXml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -15,7 +12,11 @@ interface NewsPost {
   category?: string
 }
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
+  const { deployment: DEPLOYMENT, content } = locals.siteContext
+  const { getDocuments } = content
+  const base = locals.siteContext.site.canonicalOrigin
+
   const cutoff = Date.now() - 2 * 24 * 60 * 60 * 1000
   const posts = (await getDocuments<NewsPost>('blogPost'))
     .filter(

@@ -1,6 +1,6 @@
 ---
 // No auth needed for quick access during meeting
-import { DEPLOYMENT } from '@/lib/deployment'
+const DEPLOYMENT = Astro.locals.siteContext.deployment
 if (DEPLOYMENT.contentProfile !== 'victoria-campaign') {
   return new Response(null, { status: 404 })
 }
