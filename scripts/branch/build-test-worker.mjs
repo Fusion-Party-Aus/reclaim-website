@@ -8,7 +8,7 @@ if (process.env.DEPLOY_TARGET !== 'branch-agnostic-test')
 const target = resolveBuildTarget(process.env, {})
 const output = path.resolve(target.outputDirectory, 'server')
 await mkdir(output, { recursive: true })
-await build({
+const result = await build({
   entryPoints: ['src/workers/branch-agnostic-test.ts'],
   outfile: path.join(output, 'worker.mjs'),
   bundle: true,
@@ -16,7 +16,9 @@ await build({
   platform: 'browser',
   target: 'es2022',
   logLevel: 'info',
+  metafile: true,
 })
+await writeFile(path.join(output, 'metafile.json'), JSON.stringify(result.metafile, null, 2) + '\n')
 // This landing-only Worker needs no assets, CMS credentials, sessions or CRM bindings.
 await writeFile(
   path.join(output, 'wrangler.json'),
@@ -24,7 +26,7 @@ await writeFile(
     {
       name: target.workerName,
       main: './worker.mjs',
-  compatibility_date: '2025-01-29',
+      compatibility_date: '2025-01-29',
       compatibility_flags: ['nodejs_compat'],
     },
     null,
