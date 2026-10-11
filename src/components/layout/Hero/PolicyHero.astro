@@ -1,0 +1,338 @@
+---
+import { DEPLOYMENT } from '@/lib/deployment'
+
+interface Props {
+  title: string
+  summary: string
+  category?: string
+  image?: { src: string; alt: string }
+  researchCount: number
+  updatedAt?: string
+  thisTerm?: boolean
+}
+const { title, summary, category, image, researchCount, updatedAt, thisTerm } = Astro.props
+const updated = updatedAt ? new Date(updatedAt) : undefined
+const validUpdated = updated && !Number.isNaN(updated.valueOf()) ? updated : undefined
+---
+
+<header id="top" class:list={['policy-hero', { 'policy-hero-with-image': image }]}>
+  <div class="policy-hero-masthead">
+    <div class="policy-hero-shell">
+      <div class="policy-hero-copy">
+        <nav class="policy-hero-breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li><li><a href="/policies">Policies</a></li><li
+              aria-current="page"
+            >
+              {title}
+            </li>
+          </ol>
+        </nav>
+        <h1>{title}</h1>
+        <p class="policy-hero-summary">{summary}</p>
+        {
+          (category || thisTerm !== undefined) && (
+            <p class="policy-hero-priority">
+              {category}
+              {category && thisTerm !== undefined && ' · '}
+              {thisTerm !== undefined &&
+                (thisTerm ? 'Current-term priority' : 'Long-term policy direction')}
+            </p>
+          )
+        }
+      </div>
+    </div>
+    {
+      image && (
+        <figure class="policy-hero-photo">
+          <>
+            <img src={image.src} alt={image.alt} width="1200" height="1000" fetchpriority="high" />
+            <svg
+              viewBox="0 0 100 600"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path fill="var(--fusion-purple)" d="M0 0H100C20 160 20 420 100 600H0Z" />
+            </svg>
+          </>
+        </figure>
+      )
+    }
+  </div>
+  <div class="policy-hero-details">
+    <div class="policy-hero-shell">
+      <dl class="policy-hero-meta">
+        <div><dt>Published by</dt><dd>{DEPLOYMENT.label}</dd></div>
+        <div><dt>Jurisdiction</dt><dd>{DEPLOYMENT.jurisdiction}</dd></div>
+        <div><dt>Status</dt><dd>Adopted policy</dd></div>
+        <div>
+          <dt>Supporting research</dt><dd>
+            {
+              researchCount > 0 ? (
+                <a href="#research">
+                  {researchCount} linked resource{researchCount === 1 ? '' : 's'} ↓
+                </a>
+              ) : (
+                'None linked yet'
+              )
+            }
+          </dd>
+        </div>
+      </dl>
+      <div class="policy-hero-publication">
+        <a href="/policies">View the policy platform →</a>
+        {
+          validUpdated && (
+            <p>
+              Updated{' '}
+              <time datetime={updatedAt}>
+                {validUpdated.toLocaleDateString('en-AU', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                  timeZone: 'Australia/Melbourne',
+                })}
+              </time>
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  body.public-editorial .policy-hero {
+    scroll-margin-top: 5rem;
+    background: #fff;
+    color: var(--fusion-purple);
+  }
+  body.public-editorial .policy-hero .policy-hero-masthead {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--fusion-purple);
+    color: #fff;
+  }
+  body.public-editorial .policy-hero .policy-hero-shell {
+    width: min(100%, 1280px);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+  body.public-editorial .policy-hero .policy-hero-copy {
+    position: relative;
+    z-index: 1;
+    padding-block: 1.75rem clamp(3rem, 5vw, 5rem);
+  }
+  body.public-editorial .policy-hero-with-image .policy-hero-copy {
+    width: 62%;
+  }
+  body.public-editorial .policy-hero h1 {
+    max-width: 20ch;
+    margin: 0;
+    color: #fff;
+    font:
+      700 clamp(2.75rem, 4.8vw, 4.75rem)/1.05 Georgia,
+      'Times New Roman',
+      serif;
+    letter-spacing: -0.025em;
+    text-transform: none;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+  body.public-editorial .policy-hero .policy-hero-summary {
+    max-width: 58ch;
+    margin: 1.5rem 0 0;
+    color: #f4eef8;
+    font:
+      400 clamp(1.1rem, 1.5vw, 1.3rem)/1.6 Barlow,
+      Arial,
+      sans-serif;
+    text-wrap: pretty;
+  }
+  body.public-editorial .policy-hero .policy-hero-priority {
+    margin: 1.75rem 0 0;
+    color: #e3d2fa;
+    font:
+      600 0.9rem/1.5 Barlow,
+      Arial,
+      sans-serif;
+  }
+  body.public-editorial .policy-hero .policy-hero-breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+    padding: 0;
+    list-style: none;
+    color: #e3d2fa;
+    font:
+      400 0.9rem/1.5 Barlow,
+      Arial,
+      sans-serif;
+  }
+  body.public-editorial .policy-hero .policy-hero-breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 0.75rem;
+    color: #e3d2fa;
+  }
+  body.public-editorial .policy-hero .policy-hero-breadcrumbs a {
+    display: inline-block;
+    padding-block: 0.5rem;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  body.public-editorial .policy-hero .policy-hero-photo {
+    position: absolute;
+    inset: 0 0 0 65%;
+    margin: 0;
+    overflow: hidden;
+  }
+  body.public-editorial .policy-hero .policy-hero-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  body.public-editorial .policy-hero .policy-hero-photo svg {
+    position: absolute;
+    inset: 0 auto 0 -1px;
+    width: 20%;
+    height: 100%;
+    pointer-events: none;
+  }
+  body.public-editorial .policy-hero .policy-hero-details {
+    padding-block: 1.75rem 1.25rem;
+    background: var(--fusion-accent-soft);
+    border-bottom: 1px solid var(--color-line);
+  }
+  body.public-editorial .policy-hero .policy-hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+    margin: 0;
+  }
+  body.public-editorial .policy-hero .policy-hero-meta dt {
+    margin-bottom: 0.35rem;
+    color: #54465f;
+    font:
+      400 0.8rem/1.5 Barlow,
+      Arial,
+      sans-serif;
+  }
+  body.public-editorial .policy-hero .policy-hero-meta dd {
+    margin: 0;
+    color: var(--fusion-purple);
+    font:
+      600 0.95rem/1.5 Barlow,
+      Arial,
+      sans-serif;
+    overflow-wrap: break-word;
+  }
+  body.public-editorial .policy-hero .policy-hero-meta a,
+  body.public-editorial .policy-hero .policy-hero-publication a {
+    color: var(--fusion-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  body.public-editorial .policy-hero .policy-hero-publication {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+    font:
+      400 0.85rem/1.5 Barlow,
+      Arial,
+      sans-serif;
+  }
+  body.public-editorial .policy-hero .policy-hero-publication p {
+    margin: 0;
+    color: #54465f;
+  }
+  body.public-editorial .policy-hero .policy-hero-publication a {
+    padding-block: 0.5rem;
+  }
+  body.public-editorial .policy-hero .policy-hero-breadcrumbs a:focus-visible {
+    outline-color: #fff !important;
+  }
+  /* Keep copy visible throughout the entrance, including before images load.
+     The stationary curve masks the photograph while it settles into place. */
+  @media (prefers-reduced-motion: no-preference) {
+    body.public-editorial .policy-hero h1 {
+      animation: policy-title-enter 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    body.public-editorial .policy-hero .policy-hero-summary {
+      animation: policy-summary-enter 640ms 60ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    body.public-editorial .policy-hero .policy-hero-photo img {
+      animation: policy-photo-enter 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+  }
+  @keyframes policy-title-enter {
+    from {
+      transform: translateY(12px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes policy-summary-enter {
+    from {
+      transform: translateY(8px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes policy-photo-enter {
+    from {
+      transform: scale(1.04);
+      clip-path: inset(0 12% 0 0);
+    }
+    to {
+      transform: scale(1);
+      clip-path: inset(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body.public-editorial .policy-hero h1,
+    body.public-editorial .policy-hero .policy-hero-summary,
+    body.public-editorial .policy-hero .policy-hero-photo img {
+      animation: none;
+      transform: none;
+      clip-path: none;
+    }
+  }
+  @media (max-width: 800px) {
+    body.public-editorial .policy-hero-with-image .policy-hero-copy {
+      width: 100%;
+    }
+    body.public-editorial .policy-hero .policy-hero-photo {
+      position: relative;
+      inset: auto;
+      height: clamp(220px, 55vw, 360px);
+    }
+    body.public-editorial .policy-hero .policy-hero-photo svg {
+      display: none;
+    }
+    body.public-editorial .policy-hero .policy-hero-meta {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 420px) {
+    body.public-editorial .policy-hero .policy-hero-meta {
+      column-gap: 1rem;
+    }
+    body.public-editorial .policy-hero h1 {
+      font-size: clamp(2.3rem, 10vw, 2.75rem);
+    }
+  }
+</style>

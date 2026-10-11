@@ -213,21 +213,23 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
   <Hero title={title} subtitle={subtitle} />
 
   {/* ── Intro panel ── */}
-  <section class="border-b border-mint/30 py-14 px-4 md:px-8 relative overflow-hidden bg-mint">
+  <section
+    class="electorates-intro border-b border-mint/30 py-14 px-4 md:px-8 relative overflow-hidden bg-mint"
+  >
     <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
       <span
-        class="text-[16rem] font-display font-black uppercase leading-none select-none text-black"
+        class="text-[16rem] font-display font-black uppercase leading-none select-none text-on-primary"
         style="opacity: 0.05; transform: translateX(10%);">AUS</span
       >
     </div>
     <div class="max-w-5xl mx-auto relative z-10">
       <BrutalBadge variant="black" size="lg" class="mb-5">{introCard.title}</BrutalBadge>
       <p
-        class="text-xl md:text-2xl font-black uppercase leading-tight mb-5 border-l-4 border-black pl-6 text-black"
+        class="text-xl md:text-2xl font-black uppercase leading-tight mb-5 border-l-4 border-white/70 pl-6 text-on-primary"
       >
         {introCard.body}
       </p>
-      <p class="text-base font-black text-black/70 border-l-4 border-black/40 pl-4 max-w-2xl">
+      <p class="text-base font-black text-on-primary border-l-4 border-white/50 pl-4 max-w-2xl">
         {introCard.highlight}
       </p>
     </div>
@@ -334,7 +336,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                                 </span>
                                               </div>
                                             )}
-                                            <div class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta transition-all">
+                                            <div class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta group-hover:text-on-primary transition-all">
                                               <Icon name="mdi:eye" class="w-4 h-4" /> View Plan
                                             </div>
                                           </div>
@@ -412,7 +414,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                           ))}
                                         </ul>
                                       )}
-                                    <div class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta transition-all">
+                                    <div class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta group-hover:text-on-primary transition-all">
                                       <Icon name="mdi:eye" class="w-4 h-4" /> View Plan for{' '}
                                       {electorate.name}
                                     </div>

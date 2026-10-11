@@ -262,7 +262,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
             {DEPLOYMENT.policyCallouts.housing && (
               <aside class="mb-8 rounded-sm border border-yellow/40 bg-yellow/10 p-6">
-                <p class="text-xs font-black uppercase tracking-widest text-[#a9c8ff] mb-2">
+                <p class="text-xs font-black uppercase tracking-widest text-magenta mb-2">
                   {DEPLOYMENT.label} policy direction
                 </p>
                 <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
@@ -273,7 +273,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                   housing settings and public costs need legal, infrastructure and viability tests.
                 </p>
                 <a
-                  class="font-bold text-[#a9c8ff] underline underline-offset-4"
+                  class="font-bold text-magenta underline underline-offset-4"
                   href="/policies/homes-and-stations-code"
                 >
                   Explore the policy
@@ -370,7 +370,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
 
                                   <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
                                     {policy.cost && (
-                                      <span class="text-sm font-black uppercase rounded-sm bg-accent-deep text-fg px-2 py-1 flex items-center gap-1">
+                                      <span class="text-sm font-black uppercase rounded-sm bg-accent-deep text-on-primary px-2 py-1 flex items-center gap-1">
                                         <span class="opacity-80">Cost:</span>
                                         {policy.cost}
                                       </span>
@@ -378,7 +378,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                     <a
                                       href={`/policies/${policy.slug.current}`}
                                       aria-label={`Read ${policy.title}`}
-                                      class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
+                                      class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-magenta hover:gap-2 transition-all"
                                     >
                                       Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
                                     </a>

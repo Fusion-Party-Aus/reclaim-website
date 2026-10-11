@@ -8,7 +8,8 @@ import { Footer } from '@/components/layout/Footer'
 import { Sidebar } from '@/features/page-rendering'
 import { Icon } from 'astro-icon/components'
 import { BrutalCard, BrutalButton, BrutalBadge, StatCard } from '@/components/ui'
-import { getPolicies, getPoliciesPage } from '../../lib/sanity'
+import { getPolicies, getPoliciesPage, urlFor } from '../../lib/sanity'
+import type { SanityImageAsset } from '../../types/sanity'
 import '../../styles/global.css'
 import '../../styles/editorial.css'
 
@@ -17,6 +18,7 @@ interface Policy {
   title: string
   slug: { current: string }
   icon?: string
+  image?: SanityImageAsset & { alt?: string }
   pillar?: string
   category?: string
   summary: string
@@ -312,26 +314,6 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
         </section>
 
         {/* ── Evidence Credibility Strip ── */}
-        {
-          isVictoriaCampaign && (
-            <div class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
-              {(isVictoriaCampaign
-                ? [
-                    'Victorian Budget 2026-27',
-                    'Parliamentary Budget Office',
-                    "Auditor-General's Reports",
-                    'NYC Mamdani Budget',
-                  ]
-                : []
-              ).map((src) => (
-                <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
-                  {src}
-                </span>
-              ))}
-            </div>
-          )
-        }
 
         {
           PILLAR_ORDER.map((pillar) => {
@@ -432,6 +414,23 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                   padding="sm"
                                   class="flex flex-col"
                                 >
+                                  {policy.image ? (
+                                    <img
+                                      class="policy-card-media"
+                                      src={urlFor(policy.image)
+                                        .width(720)
+                                        .height(420)
+                                        .fit('crop')
+                                        .url()}
+                                      alt={policy.image.alt || policy.title}
+                                      loading="lazy"
+                                    />
+                                  ) : (
+                                    <div
+                                      class="policy-card-media policy-card-media-empty aspect-[12/7] bg-surface-overlay"
+                                      aria-hidden="true"
+                                    />
+                                  )}
                                   <div class="flex items-start justify-between gap-3 mb-3">
                                     <div class="min-w-0">
                                       <span
@@ -444,12 +443,6 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                       <h4 class="text-base md:text-lg font-display font-black uppercase leading-tight">
                                         {policy.title}
                                       </h4>
-                                    </div>
-                                    <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
-                                      <Icon
-                                        name={toIconName(policy.icon) as string}
-                                        class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-fg'}`}
-                                      />
                                     </div>
                                   </div>
 
@@ -467,16 +460,10 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                   </p>
 
                                   <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
-                                    {policy.cost && (
-                                      <span class="text-sm font-black uppercase rounded-sm bg-accent-deep text-fg px-2 py-1 flex items-center gap-1">
-                                        <span class="opacity-80">Cost:</span>
-                                        {policy.cost}
-                                      </span>
-                                    )}
                                     <a
                                       href={`/policies/${policy.slug.current}`}
                                       aria-label={`Read ${policy.title}`}
-                                      class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-[#ef9eef] hover:gap-2 transition-all"
+                                      class="ml-auto inline-flex items-center gap-1 text-sm font-black uppercase text-magenta hover:gap-2 transition-all"
                                     >
                                       Read More <Icon name="mdi:arrow-right-bold" class="w-4 h-4" />
                                     </a>

@@ -18,11 +18,16 @@
    ============================================================ */
 
 :root[data-theme='vic'] {
+  --fusion-accent: #003c71;
+  --fusion-accent-dark: #002c53;
+  --fusion-accent-ink: #ffffff;
+  --fusion-accent-soft: #e8f2fa;
+
   /* Primary family */
-  --color-magenta: #d428d4;
-  --color-magenta-dark: #8b1a8b;
-  --color-magenta-darker: #5c006b;
-  --color-magenta-bright: #ec6aed;
+  --color-magenta: #003c71;
+  --color-magenta-dark: #002c53;
+  --color-magenta-darker: #002c53;
+  --color-magenta-bright: #14578e;
 
   /* Secondary family */
   --color-mint: #00ddb8;
@@ -31,8 +36,8 @@
   --color-mint-hover: #5eedd8;
 
   /* Emphasis */
-  --color-yellow: #4a7aeb;
-  --color-yellow-bright: #7ea8f5;
+  --color-yellow: #003c71;
+  --color-yellow-bright: #14578e;
 
   /* Tertiary */
   --color-lavender: #7b3fe4;
@@ -56,23 +61,23 @@
   /* Manifest-role mappings: primary→magenta, secondary→mint; these established
      VIC palette values are intentionally preserved rather than copied from
      manifest literals. */
-  --color-fg: #ffffff;
-  --color-muted: rgba(255, 255, 255, 0.5);
+  --color-fg: #32105a;
+  --color-muted: #54465f;
   --color-on-primary: #ffffff;
   --color-on-secondary: #0f0018;
   --color-on-accent: #ffffff;
   --color-on-tertiary: #ffffff;
-  --color-line: rgba(255, 255, 255, 0.1);
-  --color-line-mid: rgba(255, 255, 255, 0.2);
-  --color-line-strong: rgba(255, 255, 255, 0.25);
-  --color-chalk: #f2eef7;
-  --color-focus: #00ddb8;
-  --color-surface-base: #1a0029;
-  --color-surface-raised: #2e004d;
+  --color-line: #ded6e7;
+  --color-line-mid: #c8bed4;
+  --color-line-strong: #a99bb9;
+  --color-chalk: #32105a;
+  --color-focus: #003c71;
+  --color-surface-base: #ffffff;
+  --color-surface-raised: #f8f5fb;
 
   /* Surface ladder */
-  --color-surface-overlay: #470060;
-  --color-surface-brand: #5c006b;
+  --color-surface-overlay: #eee6f6;
+  --color-surface-brand: #32105a;
 
   /* Supporting roles */
   --color-accent-deep: #234080;

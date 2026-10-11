@@ -66,6 +66,21 @@ export default defineType({
       placeholder: 'mdi:home-city',
     }),
     defineField({
+      name: 'image',
+      title: 'Featured Image',
+      type: 'image',
+      group: 'basic',
+      description: 'Landscape image used when this policy is featured in a card.',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'summary',
       title: 'Summary',
       type: 'text',

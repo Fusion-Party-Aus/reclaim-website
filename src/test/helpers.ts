@@ -91,79 +91,24 @@ export function createMockHomePage(overrides?: Partial<HomePage>): HomePage {
     _id: 'home-page-1',
     _type: 'homePage',
     title: 'Home',
-    heroTitle: 'Test Hero',
-    heroSubtitle: 'Test Subtitle',
+    hero: { title: 'Test Hero', subtitle: 'Test Subtitle' },
     theftSection: {
-      title: 'What They Stole',
-      subtitle: 'Test subtitle',
-      cards: [
-        {
-          title: 'Housing',
-          description: 'Test description',
-          icon: 'mdi:home',
-        },
-      ],
-    },
-    manifestoSection: {
-      title: 'Our Plan',
-      subtitle: 'Test subtitle',
+      heading: 'Our policies',
       description: 'Test description',
-      stats: [
-        {
-          value: '100K',
-          label: 'Homes',
-          icon: 'mdi:home',
-        },
-      ],
+      cards: [{ title: 'Housing', description: 'Test description', link: '/policies/housing' }],
     },
+    manifestoSection: { heading: 'Our approach', description: 'Test description' },
     joinSection: {
-      title: 'Join Us',
-      subtitle: 'Test subtitle',
+      heading: 'Join us',
       cards: [
         {
           title: 'Volunteer',
           description: 'Test description',
-          ctaText: 'Sign Up',
-          ctaLink: '/volunteer',
-          icon: 'mdi:hand-heart',
+          buttonText: 'Sign up',
+          buttonLink: '/volunteer',
         },
       ],
     },
     ...overrides,
   }
-}
-
-/**
- * Create Mock Sanity Image
- */
-export function createMockSanityImage() {
-  return {
-    _type: 'image',
-    asset: {
-      _ref: 'image-test-123',
-      _type: 'reference',
-      url: 'https://via.placeholder.com/400x300',
-    },
-  }
-}
-
-/**
- * Wait for async operations
- */
-export async function waitFor(callback: () => void, timeout = 1000): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const startTime = Date.now()
-    const interval = setInterval(() => {
-      try {
-        callback()
-        clearInterval(interval)
-        resolve()
-      } catch (error) {
-        if (Date.now() - startTime > timeout) {
-          clearInterval(interval)
-          reject(new Error('Timeout waiting for condition'))
-        }
-      }
-    }, 50)
-  })
 }

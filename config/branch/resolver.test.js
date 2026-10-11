@@ -65,7 +65,9 @@ describe('resolveBranch — Queensland', () => {
       scriptUrl: 'https://analytics.fusionparty.org.au/js/pa-6TB7kWpUyzQNp_ONfw6M_.js',
     })
     expect(qld.runtime.socialAccounts).toEqual([])
-    expect(qld.assets.resolved.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
+    expect(qld.assets.resolved.hero).toBe(
+      'https://qld.fusionparty.org.au/fusion-queensland-hero.jpg'
+    )
   })
 
   test('does not normalize runtime CTA object keys into human-readable labels', () => {

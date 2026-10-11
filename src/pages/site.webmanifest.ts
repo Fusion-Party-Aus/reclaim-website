@@ -20,7 +20,7 @@ export const GET: APIRoute = () => {
       orientation: 'portrait-primary',
       categories: ['politics', 'news', 'government'],
       icons: [192, 512].map((size) => ({
-        src: `/icons/android-chrome-${size}x${size}.png`,
+        src: `/brand-icons/${DEPLOYMENT.slug}/android-chrome-${size}x${size}.png`,
         sizes: `${size}x${size}`,
         type: 'image/png',
         purpose: 'any maskable',

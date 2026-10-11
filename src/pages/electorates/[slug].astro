@@ -130,7 +130,7 @@ const tierConfig: Record<
     borderLeft: 'border-l-red',
     bg: 'bg-red/10',
     badgeBg: 'bg-red',
-    badgeText: 'text-fg',
+    badgeText: 'text-on-primary',
     label: 'Vote Last',
   },
 }
@@ -354,7 +354,7 @@ const tierConfig: Record<
                         </div>
                         <div class="h-1 w-full bg-white/10" />
                         <p
-                          class={`font-black text-sm uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through opacity-50' : ''}`}
+                          class={`font-black text-sm uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through text-muted' : ''}`}
                         >
                           {candidate.candidateParty}
                         </p>
@@ -386,12 +386,12 @@ const tierConfig: Record<
                         </div>
                         <div class="flex-1 min-w-0">
                           <p
-                            class={`font-black text-base md:text-lg uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through opacity-50' : ''}`}
+                            class={`font-black text-base md:text-lg uppercase leading-tight ${candidate.candidateTier === 'red' ? 'line-through text-muted' : ''}`}
                           >
                             {candidate.candidateName}
                           </p>
                           <p
-                            class={`font-bold text-xs uppercase mt-0.5 ${candidate.candidateTier === 'red' ? 'line-through opacity-40' : 'opacity-70'}`}
+                            class={`font-bold text-xs uppercase mt-0.5 ${candidate.candidateTier === 'red' ? 'line-through text-muted' : 'text-fg/75'}`}
                           >
                             {candidate.candidateParty}
                           </p>

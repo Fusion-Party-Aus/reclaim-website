@@ -120,7 +120,7 @@ describe('deployment configuration', () => {
       'https://analytics.fusionparty.org.au/js/pa-6TB7kWpUyzQNp_ONfw6M_.js'
     )
     expect(config.socialAccounts).toEqual([])
-    expect(config.assets.hero).toBe('https://qld.fusionparty.org.au/solo-full-colour.svg')
+    expect(config.assets.hero).toBe('https://qld.fusionparty.org.au/fusion-queensland-hero.jpg')
     expect(victoria.socialAccounts).toHaveLength(4)
     expect(config.contact.phone).toBe(undefined)
     expect(config.contact.address).toBe(undefined)

@@ -56,7 +56,7 @@ export const branchManifest = {
         adjective: 'Victorian',
         label: 'Fusion Party Victoria',
         tagline: 'Reignite Democracy',
-        themeColor: '#D428D4',
+        themeColor: '#003C71',
         siteUrl: 'https://vic.fusionparty.org.au',
         allowedOrigins: ['https://vic.fusionparty.org.au'],
       },
@@ -68,8 +68,8 @@ export const branchManifest = {
       theme: {
         slug: 'vic',
         tokens: {
-          primary: '#D428D4',
-          'primary-dark': '#A81EA8',
+          primary: '#003C71',
+          'primary-dark': '#002C53',
           'on-primary': '#FFFFFF',
           secondary: '#3CE0C0',
           'on-secondary': '#0B0B0B',
@@ -83,7 +83,7 @@ export const branchManifest = {
       },
       assets: {
         ogDefault: '/og/default.png',
-        hero: '/hero.png',
+        hero: '/fusion-victoria-hero.jpg',
         favicon: '/favicon.svg',
         pwaManifest: '/manifest.json',
         logo: '/logo-rings-color.png',
@@ -160,7 +160,7 @@ export const branchManifest = {
         adjective: 'Queensland',
         label: 'Fusion Party Queensland',
         tagline: 'A better future for Queensland',
-        themeColor: '#731E32',
+        themeColor: '#73182C',
         siteUrl: 'https://qld.fusionparty.org.au',
         allowedOrigins: ['https://qld.fusionparty.org.au'],
       },
@@ -173,8 +173,8 @@ export const branchManifest = {
       theme: {
         slug: 'qld',
         tokens: {
-          primary: '#731E32',
-          'primary-dark': '#5E1628',
+          primary: '#73182C',
+          'primary-dark': '#581322',
           'on-primary': '#FFF7EC',
           secondary: '#233D3A',
           'on-secondary': '#FFF7EC',
@@ -188,7 +188,7 @@ export const branchManifest = {
       },
       assets: {
         ogDefault: '/og/qld-default.png',
-        hero: '/solo-full-colour.svg',
+        hero: '/fusion-queensland-hero.jpg',
         favicon: '/favicon.svg',
         pwaManifest: '/manifest.qld.json',
         logo: '/logo-rings-color.png',

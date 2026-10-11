@@ -149,9 +149,16 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
 export async function getHomePage(): Promise<HomePage | null> {
   const query = `*[_type == "homePage"][0]{
     ...,
+    hero {
+      ...,
+      image { ..., asset, alt }
+    },
     theftSection {
       ...,
-      featuredPolicies[]->
+      featuredPolicies[]->{
+        ...,
+        image { ..., asset, alt }
+      }
     }
   }`
   return await client.fetch(query)

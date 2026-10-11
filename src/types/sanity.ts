@@ -84,6 +84,7 @@ export interface Policy extends SanityDocument {
   title: string
   slug: SanitySlug
   icon?: string // MDI icon name (e.g., 'mdi:home')
+  image?: SanityImageAsset & { alt?: string }
   summary: string
   hook?: string
   villain?: string
@@ -301,26 +302,59 @@ export interface JoinCard {
 
 export interface HomePage extends SanityDocument {
   _type: 'homePage'
-  title: string
-  heroTitle: string
-  heroSubtitle: string
-  theftSection: {
-    title: string
-    subtitle: string
-    cards: TheftCard[]
+  title?: string
+  heroTitle?: string
+  heroSubtitle?: string
+  seo?: { metaTitle?: string; metaDescription?: string }
+  hero?: {
+    eyebrow?: string
+    title?: string
+    subtitle?: string
+    image?: SanityImageAsset & { alt?: string }
+    showCTA?: boolean
+    stats?: { number: string; label: string }[]
   }
-  manifestoSection: {
-    title: string
-    subtitle: string
-    description: string
-    stats: ManifestoStat[]
+  alertBar?: { enabled?: boolean; text?: string; linkText?: string; linkUrl?: string }
+  movementMetrics?: {
+    label: string
+    current: number
+    goal: number
+    prefix?: string
+    suffix?: string
+  }[]
+  theftSection?: {
+    heading?: string
+    description?: string
+    featuredPolicies?: Policy[]
+    cards?: {
+      title?: string
+      amount?: string
+      description?: string
+      imageUrl?: string
+      link?: string
+      linkText?: string
+    }[]
   }
-  joinSection: {
-    title: string
-    subtitle: string
-    cards: JoinCard[]
+  electoratesSection?: {
+    heading?: string
+    description?: string
+    callToAction?: { heading: string; description: string; buttonText: string; buttonLink: string }
   }
-  seo?: SEOMetadata
+  manifestoSection?: {
+    heading?: string
+    description?: string
+    stats?: { number: string; label: string; size?: 'small' | 'medium' | 'large' }[] | null
+  }
+  joinSection?: {
+    heading?: string
+    description?: string
+    cards?: { title: string; description: string; buttonText: string; buttonLink: string }[]
+  }
+  signupCTA?: { heading: string; description: string; buttonText: string; footerText?: string }
+  participatoryHeading?: string
+  participatoryIntroduction?: string
+  participatoryResources?: { label: string; url: string; description?: string }[]
+  participatoryStages?: { title: string; description: string }[]
 }
 
 /**

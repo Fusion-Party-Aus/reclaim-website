@@ -29,9 +29,9 @@
    surface. Nothing in the shared Victoria system references these,
    so declaring them is inert outside the QLD theme. */
 @theme {
-  --color-maroon: #731e32;
-  --color-maroon-deep: #5e1628;
-  --color-maroon-darker: #4a1120;
+  --color-maroon: #73182c;
+  --color-maroon-deep: #581322;
+  --color-maroon-darker: #43101b;
   --color-maroon-bright: #8e2a42;
   --color-gold: #f4c66a;
   --color-gold-bright: #f9d68c;
@@ -48,10 +48,15 @@
    Left column is the Victoria role; right column is the
    Queensland value that inherits it. */
 :root[data-theme='qld'] {
+  --fusion-accent: #73182c;
+  --fusion-accent-dark: #581322;
+  --fusion-accent-ink: #ffffff;
+  --fusion-accent-soft: #f7e8eb;
+
   /* Primary — Maroon replaces magenta */
-  --color-magenta: #731e32;
-  --color-magenta-dark: #5e1628;
-  --color-magenta-darker: #4a1120;
+  --color-magenta: #73182c;
+  --color-magenta-dark: #581322;
+  --color-magenta-darker: #43101b;
   --color-magenta-bright: #8e2a42;
 
   /* Secondary — Eucalyptus Ink replaces mint */
@@ -217,10 +222,10 @@
   --branch-ink: #233d3a;
   --branch-muted: #61716c;
   --branch-line: #e5dccb;
-  --branch-primary: #731e32;
+  --branch-primary: #73182c;
   --branch-secondary: #233d3a;
-  --branch-accent: #8f6119;
-  --branch-accent-deep: #8f6119;
+  --branch-accent: #73182c;
+  --branch-accent-deep: #581322;
   --branch-tertiary: #a34a38;
 }
 /* Full-colour bands establish their own foreground, inherited by descendants. */
@@ -268,14 +273,6 @@
 }
 :root[data-theme='qld'] :is(.bg-mint, .bg-mint-dark).text-black {
   color: var(--color-on-secondary);
-}
-:root[data-theme='qld'] :is(.publication-header, .publication-footer) img {
-  filter: brightness(0) saturate(100%);
-}
-/* The editorial footer banner is a light panel, even though its utility name is magenta. */
-:root[data-theme='qld'] .public-editorial .publication-footer > .bg-magenta {
-  --color-fg: #233d3a;
-  --branch-ink: #233d3a;
 }
 /* Alpha white was designed for Victoria's dark canvas. Use an opaque muted role
    for small secondary text so it stays legible on either Queensland surface. */

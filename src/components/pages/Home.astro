@@ -1,0 +1,530 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { DEPLOYMENT } from '@/lib/deployment'
+import {
+  client,
+  getHomePage,
+  getPolicies,
+  getElectorates,
+  getResearchResources,
+  urlFor,
+} from '@/lib/sanity'
+import { resolveHomeContent, selectHomePolicies } from '@/features/homepage/content'
+import '@/styles/global.css'
+import '@/styles/home.css'
+
+interface Investigation {
+  _id: string
+  title: string
+  summary?: string
+  shortTagline?: string
+  slug: { current: string }
+  nationalPolicyUrl?: string
+}
+const [document, adopted, electorates, research, investigations] = await Promise.all([
+  getHomePage(),
+  getPolicies({ adoptedOnly: true }),
+  getElectorates(),
+  getResearchResources(),
+  DEPLOYMENT.features.investigations
+    ? client.fetch<Investigation[]>(
+        `*[_type == 'investigation' && readyForPublication == true && defined(slug.current) && featuredOnHome == true && defined(publishedAt)] | order(homeOrder asc) { _id, title, summary, shortTagline, slug, nationalPolicyUrl }`
+      )
+    : Promise.resolve([] as Investigation[]),
+])
+const home = resolveHomeContent(document, DEPLOYMENT)
+const policies = selectHomePolicies(adopted, document?.theftSection?.featuredPolicies)
+const policyCards = policies.length
+  ? policies.map((policy) => ({
+      title: policy.title,
+      description: policy.summary,
+      href: `/policies/${policy.slug.current}`,
+      image: policy.image
+        ? urlFor(policy.image).width(720).height(480).fit('crop').url()
+        : undefined,
+      action: 'Explore policy',
+    }))
+  : (document?.theftSection?.cards || [])
+      .filter((card) => card.link && card.link !== '#')
+      .map((card) => ({
+        title: card.title || card.amount,
+        description: card.description,
+        href: card.link!,
+        image: card.imageUrl,
+        action: card.linkText || 'Explore policy',
+      }))
+const featuredResearch = research.filter((item) => item.featured)
+const researchItems = (featuredResearch.length ? featuredResearch : research).slice(0, 3)
+const candidates = electorates.filter((item) => item.slug?.current && item.candidateName)
+const heroImage = home.hero.image
+  ? urlFor(home.hero.image).width(1800).height(1100).fit('crop').url()
+  : DEPLOYMENT.assets.hero.replace(DEPLOYMENT.siteUrl, '')
+const candidateCTA = home.electoratesSection?.callToAction
+---
+
+<BaseLayout title={home.title} description={home.description} image={DEPLOYMENT.assets.ogDefault}>
+  <Header />
+  <main id="main-content" class="fusion-home">
+    {
+      home.alertBar?.enabled && home.alertBar.text && (
+        <div class="home-alert">
+          {home.alertBar.text}
+          {home.alertBar.linkUrl && (
+            <a href={home.alertBar.linkUrl}>{home.alertBar.linkText || 'Learn more'} →</a>
+          )}
+        </div>
+      )
+    }
+    <header class="home-hero">
+      <figure class="home-hero-photo">
+        <img
+          src={heroImage}
+          alt={home.hero.image?.alt || ''}
+          width="1800"
+          height="1100"
+          fetchpriority="high"
+        />
+      </figure>
+      <svg
+        class="home-ribbons"
+        viewBox="0 0 360 800"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill="var(--fusion-purple)"
+          d="M0 0H360C275 105 150 180 20 330C125 280 215 460 215 585C250 650 300 740 360 800H0Z"
+        ></path>
+        <path
+          fill="var(--fusion-purple-rich)"
+          d="M100 0H310C230 115 65 165 78 300S230 530 260 800H130C150 640 35 485 20 330S35 100 100 0Z"
+        ></path>
+        <path
+          fill="var(--fusion-accent)"
+          d="M235 0H360C275 105 150 180 20 330C35 210 120 105 235 0Z"></path>
+        <path fill="var(--fusion-lilac)" d="M20 330C125 280 215 460 215 585C120 515 35 425 20 330Z"
+        ></path>
+        <path
+          fill="var(--fusion-lavender)"
+          d="M20 330C105 380 100 485 215 585C190 460 150 350 100 305C70 300 40 310 20 330Z"></path>
+        <path
+          fill="var(--fusion-accent)"
+          d="M215 585C250 650 300 740 360 800H260C240 730 225 650 215 585Z"></path>
+      </svg>
+      <div class="home-shell">
+        <div class="home-hero-copy">
+          <p class="home-eyebrow">{home.hero.eyebrow}</p>
+          <h1>{home.hero.title}</h1>
+          <p class="home-deck">{home.hero.subtitle}</p>
+          <p class="home-motto">Reason. Rights. Results.</p>
+          <div class="home-actions">
+            <a
+              class="home-button home-button-light"
+              href={investigations.length ? '#issues' : '/policies'}
+              >{investigations.length ? 'Explore the issues' : 'Explore our policies'} →</a
+            >
+            {
+              home.hero.showCTA && (
+                <a class="home-button home-button-outline" href={DEPLOYMENT.cta.getInvolved}>
+                  Get involved →
+                </a>
+              )
+            }
+          </div>
+          {
+            home.hero.stats.length > 0 && (
+              <dl class="home-hero-stats">
+                {home.hero.stats.map((stat) => (
+                  <div>
+                    <dt>{stat.label}</dt>
+                    <dd>{stat.number}</dd>
+                  </div>
+                ))}
+              </dl>
+            )
+          }
+        </div>
+      </div>
+    </header>
+
+    {
+      home.movementMetrics.length > 0 && (
+        <section id="movement" class="home-section" aria-labelledby="home-movement-title">
+          <div class="home-shell">
+            <div class="home-section-heading">
+              <>
+                <h2 id="home-movement-title">A movement in motion.</h2>
+                <p>Members, volunteers and campaign goals.</p>
+              </>
+            </div>
+            <dl class="home-metrics">
+              {home.movementMetrics.map((metric) => (
+                <div>
+                  <dt>{metric.label}</dt>
+                  <dd>
+                    {metric.prefix}
+                    {metric.current.toLocaleString('en-AU')}
+                    {metric.suffix}
+                  </dd>
+                  <dd class="home-metric-goal">
+                    <progress
+                      max={metric.goal}
+                      value={metric.current}
+                      aria-label={`${metric.label}: ${metric.current} of ${metric.goal}`}
+                    />
+                    <p>
+                      Goal: {metric.prefix}
+                      {metric.goal.toLocaleString('en-AU')}
+                      {metric.suffix}
+                    </p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      policyCards.length > 0 && (
+        <section
+          id="policies"
+          class="home-section home-section-tint"
+          aria-labelledby="home-policies-title"
+        >
+          <div class="home-shell">
+            <div class="home-section-heading">
+              <>
+                <h2 id="home-policies-title">
+                  {home.theftSection?.heading || 'A better place to live.'}
+                </h2>
+                <p>{home.theftSection?.description}</p>
+              </>
+            </div>
+            <>
+              <div class="home-policy-list">
+                {policyCards.map((card) => (
+                  <a class="home-policy" href={card.href}>
+                    {card.image && (
+                      <img src={card.image} alt="" loading="lazy" width="720" height="480" />
+                    )}
+                    <div>
+                      <h3>{card.title}</h3>
+                      <p>{card.description}</p>
+                      <span>{card.action} →</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <a class="home-button" href="/policies">
+                See all policies →
+              </a>
+            </>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      investigations.length > 0 && (
+        <section
+          id="issues"
+          class="home-section home-section-tint"
+          aria-labelledby="home-issues-title"
+        >
+          <div class="home-shell">
+            <div class="home-section-heading">
+              <>
+                <h2 id="home-issues-title">
+                  {home.participatoryHeading || 'What matters to you?'}
+                </h2>
+                <p>
+                  {home.participatoryIntroduction ||
+                    `Explore the issues and help shape a response for ${DEPLOYMENT.state}. Investigations are starting points for discussion, not adopted party policy.`}
+                </p>
+              </>
+            </div>
+            <div class="home-reading-list">
+              {investigations.map((issue) => (
+                <article>
+                  <h3>
+                    <a href={`/investigations/${issue.slug.current}`}>{issue.title}</a>
+                  </h3>
+                  <p>{issue.shortTagline || issue.summary}</p>
+                  <div class="home-actions">
+                    <a href={`/investigations/${issue.slug.current}`}>
+                      Explore the investigation →
+                    </a>
+                    {issue.nationalPolicyUrl && (
+                      <a href={issue.nationalPolicyUrl} target="_blank" rel="noopener noreferrer">
+                        National policy ↗
+                      </a>
+                    )}
+                    <a href={DEPLOYMENT.cta.contact}>Share your perspective →</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      researchItems.length > 0 && (
+        <section id="research" class="home-section" aria-labelledby="home-research-title">
+          <div class="home-shell">
+            <div class="home-section-heading">
+              <>
+                <h2 id="home-research-title">Don’t take policy on faith.</h2>
+                <p>Read the evidence, assumptions and limitations behind the proposals.</p>
+              </>
+            </div>
+            <div class="home-reading-list">
+              {researchItems.map((item) => (
+                <article>
+                  <h3>
+                    <a href={`/research/${item.slug.current}`}>{item.title}</a>
+                  </h3>
+                  <p>{item.abstract}</p>
+                  <a href={`/research/${item.slug.current}`}>Read the evidence →</a>
+                </article>
+              ))}
+            </div>
+            <a class="home-button" href="/research">
+              Explore research and data →
+            </a>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      (candidates.length > 0 || candidateCTA) && (
+        <section
+          id="electorates"
+          class="home-section home-section-dark"
+          aria-labelledby="home-candidates-title"
+        >
+          <div class="home-shell">
+            <div class="home-section-heading">
+              <>
+                <h2 id="home-candidates-title">
+                  {home.electoratesSection?.heading || 'Meet our candidates'}
+                </h2>
+                <p>{home.electoratesSection?.description}</p>
+              </>
+            </div>
+            {candidates.length > 0 && (
+              <div class="home-candidates">
+                <label for="home-candidate-search">Find your electorate or candidate</label>
+                <input
+                  id="home-candidate-search"
+                  type="search"
+                  placeholder="Search by name"
+                  aria-controls="home-candidate-list"
+                />
+                <ul id="home-candidate-list">
+                  {candidates.map((candidate) => (
+                    <li
+                      data-candidate={`${candidate.name} ${candidate.candidateName}`.toLowerCase()}
+                    >
+                      <a href={`/electorates/${candidate.slug.current}`}>
+                        <span>{candidate.candidateName}</span>
+                        <span>{candidate.name} →</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p id="home-candidate-status" role="status" aria-live="polite" />
+              </div>
+            )}
+            {candidateCTA && (
+              <div class="home-candidate-cta">
+                <h3>{candidateCTA.heading}</h3>
+                <p>{candidateCTA.description}</p>
+                <a class="home-button home-button-light" href={candidateCTA.buttonLink}>
+                  {candidateCTA.buttonText} →
+                </a>
+              </div>
+            )}
+            {candidates.length > 0 && <a href="/electorates">View all candidates →</a>}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      home.resources.length > 0 && (
+        <section class="home-section" aria-labelledby="home-participation-title">
+          <div class="home-shell">
+            <>
+              <h2 id="home-participation-title">Have your say. Where it counts.</h2>
+              <p>
+                Use official channels to comment on public decisions and petitions. Check
+                eligibility and closing dates at the source.
+              </p>
+              <ul class="home-resource-list">
+                {home.resources.map((resource) => (
+                  <li>
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                      {resource.label} ↗
+                    </a>
+                    {resource.description && <p>{resource.description}</p>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      home.stages.length > 0 && (
+        <section class="home-section home-section-tint" aria-labelledby="home-stages-title">
+          <div class="home-shell">
+            <>
+              <h2 id="home-stages-title">How an idea could become policy</h2>
+              <p>
+                Submitting an idea starts a conversation, not an endorsement or guarantee of
+                adoption.
+              </p>
+              <ol class="home-stage-list">
+                {home.stages.map((stage) => (
+                  <li>
+                    <h3>{stage.title}</h3>
+                    <p>{stage.description}</p>
+                  </li>
+                ))}
+              </ol>
+              <p>
+                Proposed pathway only. Formal decisions must follow Fusion’s applicable party rules.
+              </p>
+            </>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      home.manifestoSection?.heading && (
+        <section class="home-section home-section-tint" aria-labelledby="home-approach-title">
+          <div class="home-shell">
+            <>
+              <h2 id="home-approach-title">{home.manifestoSection.heading}</h2>
+              <p>{home.manifestoSection.description}</p>
+              {Boolean(home.manifestoSection.stats?.length) && (
+                <dl class="home-manifesto-highlights">
+                  {home.manifestoSection.stats?.map((stat) => (
+                    <div data-size={stat.size || 'medium'}>
+                      <dt>{stat.label}</dt>
+                      <dd>{stat.number}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <div class="home-actions">
+                <>
+                  <a class="home-button" href="/manifesto">
+                    Read the manifesto →
+                  </a>
+                  <a class="home-button" href="/vision">
+                    Long-term vision →
+                  </a>
+                </>
+              </div>
+            </>
+          </div>
+        </section>
+      )
+    }
+
+    <section
+      class="home-section home-section-dark home-join-banner"
+      aria-labelledby="home-join-title"
+    >
+      <svg
+        class="home-banner-folds"
+        viewBox="0 0 240 220"
+        preserveAspectRatio="xMaxYMin meet"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill="var(--fusion-purple-rich)"
+          d="M0 0H165C130 55 110 115 90 220H220C190 135 65 75 0 0Z"></path>
+        <path fill="var(--fusion-lilac)" d="M0 0H95C140 55 185 95 220 150C130 120 45 65 0 0Z"
+        ></path>
+        <path fill="var(--fusion-accent)" d="M95 0H195C235 65 250 115 220 190C230 105 145 55 95 0Z"
+        ></path>
+        <path fill="var(--fusion-lavender)" d="M90 220C125 170 175 155 220 190L240 220Z"></path>
+      </svg>
+      <div class="home-shell">
+        <h2 id="home-join-title">{home.joinSection?.heading || 'Help shape what comes next.'}</h2><p
+        >
+          {home.joinSection?.description || `Different voices. A stronger ${DEPLOYMENT.state}.`}
+        </p>
+        {
+          home.joinCards.length > 0 ? (
+            <div class="home-join-list">
+              {home.joinCards.map((card) => (
+                <article>
+                  <h3>{card.title}</h3>
+                  <p>{card.description}</p>
+                  <a class="home-button" href={card.buttonLink}>
+                    {card.buttonText} →
+                  </a>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <a class="home-button home-button-light" href={DEPLOYMENT.cta.getInvolved}>
+              Get involved →
+            </a>
+          )
+        }
+      </div>
+    </section>
+
+    {
+      home.signupCTA && (
+        <section class="home-section" aria-labelledby="home-signup-title">
+          <div class="home-shell">
+            <h2 id="home-signup-title">{home.signupCTA.heading || 'Be part of Fusion'}</h2>
+            {home.signupCTA.description && <p>{home.signupCTA.description}</p>}
+            <a
+              class="home-button"
+              href="https://www.fusionparty.org.au/join"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {home.signupCTA.buttonText} ↗
+            </a>
+            {home.signupCTA.footerText && <p class="home-fine">{home.signupCTA.footerText}</p>}
+          </div>
+        </section>
+      )
+    }
+  </main>
+  <Footer />
+</BaseLayout>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#home-candidate-search')
+  const rows = document.querySelectorAll<HTMLElement>('[data-candidate]')
+  const status = document.querySelector('#home-candidate-status')
+  input?.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase()
+    let count = 0
+    rows.forEach((row) => {
+      row.hidden = !row.dataset.candidate?.includes(query)
+      if (!row.hidden) count++
+    })
+    if (status)
+      status.textContent = query ? `${count} matching candidate${count === 1 ? '' : 's'}` : ''
+  })
+</script>

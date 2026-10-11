@@ -2,9 +2,8 @@
 import { DEPLOYMENT } from '@/lib/deployment'
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
 import { getDocuments, getElectorates } from '@/lib/sanity'
-import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
+import FusionLogo from '@/components/brand/FusionLogo.astro'
 
 interface SocialLink {
   platform: string
@@ -76,15 +75,7 @@ const footerData: Footer = footers[0] || {
           {/* Campaign Branding */}
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
-                  {footerData.logo.mainText}
-                </span>
-                <span class="text-sm font-medium text-fg/40 uppercase tracking-wide">
-                  {footerData.logo.subText}
-                </span>
-              </div>
+              <FusionLogo mainText={footerData.logo.mainText} subText={footerData.logo.subText} />
             </div>
 
             {
@@ -118,9 +109,9 @@ const footerData: Footer = footers[0] || {
           {
             footerData.newsletter && (
               <div class="border border-white/10 rounded-sm p-6">
-                <h4 class="text-sm font-semibold text-fg mb-1.5">
+                <h2 class="text-sm font-semibold text-fg mb-1.5">
                   {footerData.newsletter?.heading}
-                </h4>
+                </h2>
                 <p class="text-xs text-fg/50 mb-4 leading-relaxed">
                   {footerData.newsletter?.description}
                 </p>
@@ -142,7 +133,7 @@ const footerData: Footer = footers[0] || {
                   />
                   <button
                     type="submit"
-                    class="px-4 py-2 bg-magenta text-fg rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="px-4 py-2 bg-magenta text-on-primary rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:cursor-not-allowed"
                   >
                     {footerData.newsletter?.buttonText}
                   </button>
@@ -158,9 +149,9 @@ const footerData: Footer = footers[0] || {
           {
             footerData.navColumns?.map((col) => (
               <div>
-                <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
                   {col.badgeLabel}
-                </h4>
+                </h2>
                 <ul class="space-y-2.5">
                   {col.links.map((link) => (
                     <li>
@@ -192,9 +183,9 @@ const footerData: Footer = footers[0] || {
 
           {/* Column: Governance (resource links) */}
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
-              {footerData.resourceLinksLabel}
-            </h4>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+              {footerData.resourceLinksLabel || 'Resources'}
+            </h2>
             <ul class="space-y-2.5">
               {
                 DEPLOYMENT.cta.transportScore && (
@@ -233,7 +224,7 @@ const footerData: Footer = footers[0] || {
                   href={footerData.donateCta.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-black transition-shadow hover:shadow-brutal-mint w-full"
+                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-on-secondary transition-shadow hover:shadow-brutal-mint w-full"
                 >
                   <Icon name="mdi:currency-usd" class="w-4 h-4" />
                   {footerData.donateCta.buttonText}
@@ -246,13 +237,8 @@ const footerData: Footer = footers[0] || {
     </div>
   </div>
 
-  {/* Spectrum divider */}
-  <div class="max-w-7xl mx-auto px-4 md:px-8">
-    <div
-      class="h-px w-full"
-      style="background: linear-gradient(90deg, var(--branch-primary, #D428D4), var(--branch-tertiary, #7B3FE4), var(--branch-accent, #4A7AEB), #0BB8D4, var(--branch-secondary, #00DDB8));"
-    >
-    </div>
+  <div class="max-w-7xl mx-auto px-4 md:px-8" aria-hidden="true">
+    <div class="h-px w-full" style="background: var(--color-line);"></div>
   </div>
 
   {/* ═══ BOTTOM BAR ═══ */}

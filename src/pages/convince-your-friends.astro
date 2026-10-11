@@ -422,7 +422,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                     <div class="mb-4">
                       <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
                         <span>Message:</span>
-                        <span class="text-xs text-fg/60 normal-case font-bold">
+                        <span class="text-xs text-fg/75 normal-case font-bold">
                           (Click to edit if you want to personalize)
                         </span>
                       </label>
@@ -527,7 +527,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
             <BrutalCard variant="magenta" shadow="black" padding="xl" class="text-center">
               {/* Form content (same as before) */}
-              <h3 class="text-2xl font-display font-black uppercase mb-4 text-fg">
+              <h3 class="text-2xl font-display font-black uppercase mb-4 text-on-primary">
                 Quick Feedback Form
               </h3>
               <form
@@ -538,13 +538,13 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 {/* TODO: Replace YOUR_FORM_ID with actual Formspree ID or use your own form endpoint */}
                 <input type="hidden" name="_subject" value="Convince Your Friends - Feedback" />
                 <div class="text-left">
-                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                  <label class="block text-on-primary font-black uppercase text-sm mb-2">
                     Which template did you use?
                   </label>
                   <select
                     name="template"
                     required
-                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold focus:outline-none focus:border-yellow"
+                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-on-primary font-bold focus:outline-none focus:border-yellow"
                   >
                     <option value="">Select a template...</option>
                     {templates.map((t) => (
@@ -554,7 +554,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 </div>
 
                 <div class="text-left">
-                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                  <label class="block text-on-primary font-black uppercase text-sm mb-2">
                     How did it go?
                   </label>
                   <div class="flex gap-3">
@@ -566,13 +566,13 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                         class="sr-only peer"
                         required
                       />
-                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint">
+                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-on-primary peer-checked:border-mint">
                         Great!
                       </div>
                     </label>
                     <label class="flex-1">
                       <input type="radio" name="result" value="ok" class="sr-only peer" />
-                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-fg peer-checked:border-yellow">
+                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-on-primary peer-checked:border-yellow">
                         OK
                       </div>
                     </label>
@@ -586,14 +586,14 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 </div>
 
                 <div class="text-left">
-                  <label class="block text-fg font-black uppercase text-sm mb-2">
+                  <label class="block text-on-primary font-black uppercase text-sm mb-2">
                     What happened? (Optional but helpful!)
                   </label>
                   <textarea
                     name="feedback"
                     rows="4"
                     placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
-                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold resize-none focus:outline-none focus:border-yellow"
+                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-on-primary font-bold resize-none focus:outline-none focus:border-yellow"
                   />
                 </div>
 
@@ -605,7 +605,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                       value="yes"
                       class="mt-1 w-5 h-5 border border-white/30 rounded-sm bg-neutral-panel"
                     />
-                    <span class="text-fg font-bold text-sm">
+                    <span class="text-on-primary font-bold text-sm">
                       You can share this as a testimonial (we'll keep you anonymous unless you tell
                       us otherwise)
                     </span>
