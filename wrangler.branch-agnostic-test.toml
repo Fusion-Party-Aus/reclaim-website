@@ -1,0 +1,11 @@
+name = "branch-agnostic-test"
+compatibility_date = "2025-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist-branch-agnostic-test"
+
+# Existing isolated test namespace, verified in the Worker dashboard.
+[[kv_namespaces]]
+binding = "SESSION"
+id = "1956f688a05a46c29541beb08f42e10c"

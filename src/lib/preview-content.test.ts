@@ -5,7 +5,7 @@ import { createContentService } from './content'
 import { createDraftContentService } from './preview-content'
 import { authenticatedPreviewContent } from './site-preview'
 import { issuePreviewSession } from './preview-session'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveContentSite as resolveSite } from '../test/site-fixtures'
 
 describe('separate public and authenticated draft services', () => {
   it('does not allow an authenticated draft token or perspective to alter the public factory', () => {

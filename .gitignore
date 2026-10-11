@@ -1,5 +1,6 @@
 # build output
 dist/
+dist-branch-agnostic-test/
 
 # generated types
 .astro/

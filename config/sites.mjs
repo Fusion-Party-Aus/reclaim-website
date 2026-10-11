@@ -1,3 +1,5 @@
+import { landingSiteRegistry } from './site-landings.mjs'
+export { landingSiteRegistry } from './site-landings.mjs'
 import { resolveDeployment } from './deployment.mjs'
 
 function deepFreeze(value) {
@@ -11,6 +13,7 @@ function deepFreeze(value) {
 function site(siteId, canonicalOrigin, dataset) {
   const deployment = resolveDeployment({ PUBLIC_BRANCH: siteId, PUBLIC_SANITY_DATASET: dataset })
   return {
+    kind: 'content',
     siteId,
     branchId: siteId,
     canonicalOrigin,
@@ -40,7 +43,15 @@ export function validateSiteRegistry(registry) {
   for (const [key, entry] of Object.entries(registry)) {
     if (key !== entry?.siteId || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(key))
       throw new Error(`Invalid site id: ${key}`)
-    const allowed = ['siteId', 'branchId', 'canonicalOrigin', 'hostnames', 'cms', 'deployment']
+    const allowed = [
+      'kind',
+      'siteId',
+      'branchId',
+      'canonicalOrigin',
+      'hostnames',
+      'cms',
+      'deployment',
+    ]
     if (
       Object.keys(entry).some((field) => !allowed.includes(field)) ||
       Object.keys(entry.cms ?? {}).some((field) => !['projectId', 'dataset'].includes(field))
@@ -102,18 +113,20 @@ export const siteRegistry = deepFreeze(
   })
 )
 
+
 export function resolveSite(requestUrl, options = {}) {
   const mode = options.mode ?? 'production'
   if (!['production', 'development', 'preview'].includes(mode))
     throw new Error(`Invalid site runtime mode: ${mode}`)
   const url = new URL(requestUrl)
+  const registry = { ...siteRegistry, ...landingSiteRegistry }
   if (mode !== 'production') {
-    if (!options.siteId || !Object.hasOwn(siteRegistry, options.siteId))
+    if (!options.siteId || !Object.hasOwn(registry, options.siteId))
       throw new Error('An explicit registered SITE_ID is required for development or preview')
-    return siteRegistry[options.siteId]
+    return registry[options.siteId]
   }
   const host = url.hostname.toLowerCase()
-  const resolved = Object.values(siteRegistry).find((entry) => entry.hostnames.includes(host))
+  const resolved = Object.values(registry).find((entry) => entry.hostnames.includes(host))
   if (!resolved) throw new UnknownSiteHostError(host)
   return resolved
 }

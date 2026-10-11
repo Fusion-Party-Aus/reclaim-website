@@ -1,4 +1,3 @@
-
 import { spawnSync } from 'node:child_process'
 import path from 'node:path'
 import { branchManifest } from '../../config/branches.mjs'
@@ -18,6 +17,10 @@ export function deployBranch({
   runCommand: execute = runCommand,
   manifest = branchManifest,
 } = {}) {
+  if (env.DEPLOY_TARGET === 'branch-agnostic-test')
+    throw new Error(
+      'Use the explicit dist-branch-agnostic-test/server/wrangler.json configuration to deploy the test Worker'
+    )
   const dryRun = args.includes('--dry-run')
   const unknownArgs = args.filter((arg) => arg !== '--dry-run')
   if (unknownArgs.length) throw new Error(`Unknown deploy option: ${unknownArgs[0]}`)

@@ -11,6 +11,8 @@
     "predev": "node scripts/branch/generate-theme-index.mjs",
     "prebuild": "node scripts/branch/generate-theme-index.mjs && node scripts/og/generate-policy-images.mjs",
     "build": "astro build",
+    "build:test": "DEPLOY_TARGET=branch-agnostic-test SITE_ID=vic SITE_RUNTIME_MODE=production NODE_ENV=production node scripts/branch/build-test-worker.mjs",
+    "build:test:app": "DEPLOY_TARGET=branch-agnostic-test SITE_ID=vic SITE_RUNTIME_MODE=production NODE_ENV=production npm run build",
     "build:sanity": "cd studio && ./node_modules/.bin/sanity build",
     "deploy:sanity": "cd studio && ./node_modules/.bin/sanity deploy",
     "dev:branch": "node scripts/branch/verify-builds.mjs --run npx astro dev",
@@ -102,6 +104,7 @@
     "@sanity/preview-url-secret": "4.0.7"
   },
   "devDependencies": {
+    "esbuild": "0.27.7",
     "@eslint/js": "^9.39.1",
     "@fontsource/barlow": "^5.2.8",
     "@fontsource/barlow-condensed": "^5.2.8",

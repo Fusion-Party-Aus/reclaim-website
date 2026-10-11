@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveContentSite as resolveSite } from '../test/site-fixtures'
 import { createSiteContext } from './site-context'
 import type { ContentOptions } from './content'
 

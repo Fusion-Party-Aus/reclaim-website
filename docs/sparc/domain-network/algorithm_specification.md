@@ -552,3 +552,10 @@ Prove the approved eight-Site network in non-public previews before any producti
 - #83 Make SEO, discovery and offline output Site-aware
 - #85 Migrate VIC and QLD data into the shared CMS
 - #86 Add National and the remaining approved Sites
+
+## Later candidate landing-host approval
+
+Following session approval, NSW/SA/NT/ACT now resolve to separate content-free
+coming-soon landing contexts in the candidate, without datasets, integrations or
+VIC/QLD presentation. This is not completion of #86 and does not activate National,
+TAS or WA, change production DNS, or authorize live CMS consolidation.

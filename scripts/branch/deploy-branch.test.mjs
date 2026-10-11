@@ -10,6 +10,14 @@ function commandRunner(buildStatus = 0) {
 }
 
 describe('deployBranch', () => {
+  it('rejects the isolated test target before running any legacy build or deployment', () => {
+    const runCommand = commandRunner()
+    expect(() =>
+      deployBranch({ env: { DEPLOY_TARGET: 'branch-agnostic-test' }, runCommand }),
+    ).toThrow(/dist-branch-agnostic-test\/server\/wrangler\.json/)
+    expect(runCommand).not.toHaveBeenCalled()
+  })
+
   it.each(['vic', 'qld'])('builds and deploys the manifest-selected %s config', (slug) => {
     const runCommand = commandRunner()
     const status = deployBranch({ env: { BRANCH: slug }, runCommand })

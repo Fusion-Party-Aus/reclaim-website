@@ -6,6 +6,7 @@ import { authenticatedPreviewContent } from './lib/site-preview'
 import { previewSettings } from './lib/preview-settings'
 import { PREVIEW_BROWSER_COOKIE, PREVIEW_SESSION_COOKIE } from './lib/preview-auth'
 import { runtimeBindings } from './lib/site-integrations'
+import { createLandingResponse } from './lib/site-landing'
 
 const privateHeaders = {
   'Cache-Control': 'private, no-store',
@@ -21,6 +22,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
       mode: context.isPrerendered ? 'preview' : (mode as SiteRuntimeMode),
       siteId: import.meta.env.SITE_ID,
     })
+    if (site.kind === 'landing')
+      return createLandingResponse(site, context.url, context.request.method)
     context.locals.siteContext = createSiteContext(site)
     context.locals.preview = false
     // Public feeds, integrations, static outputs and prerendering never use drafts.

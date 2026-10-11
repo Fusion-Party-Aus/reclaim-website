@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, it, expect } from 'vitest'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveContentSite as resolveSite } from '../test/site-fixtures'
 import { resolveSiteIntegrations } from './site-integrations'
 
 describe('Site integration configuration', () => {

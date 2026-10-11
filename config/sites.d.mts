@@ -1,5 +1,6 @@
 import type { Deployment } from './deployment.mjs'
 export interface Site {
+  readonly kind: 'content'
   readonly siteId: string
   readonly branchId?: string
   readonly canonicalOrigin: string
@@ -7,6 +8,16 @@ export interface Site {
   readonly cms: { readonly projectId: string; readonly dataset: string }
   readonly deployment: Deployment
 }
+export interface LandingSite {
+  readonly kind: 'landing'
+  readonly siteId: string
+  readonly branchId: string
+  readonly canonicalOrigin: string
+  readonly hostnames: readonly string[]
+  readonly landing: { readonly label: string; readonly state: string }
+}
+export type ResolvedSite = Site | LandingSite
+export const landingSiteRegistry: Readonly<Record<string, LandingSite>>
 export type SiteRuntimeMode = 'production' | 'development' | 'preview'
 export const siteRegistry: Readonly<Record<string, Site>>
 export class UnknownSiteHostError extends Error {
@@ -16,4 +27,4 @@ export function validateSiteRegistry<T extends Record<string, Site>>(registry: T
 export function resolveSite(
   requestUrl: string | URL,
   options?: { mode?: SiteRuntimeMode; siteId?: string }
-): Site
+): ResolvedSite

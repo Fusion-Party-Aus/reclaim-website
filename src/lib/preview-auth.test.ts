@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, it, expect, vi } from 'vitest'
 import { authenticatePreview } from './preview-auth'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveContentSite as resolveSite } from '../test/site-fixtures'
 import { verifyPreviewSession } from './preview-session'
 
 const signingKey = 'test-preview-signing-key-with-at-least-32-bytes'

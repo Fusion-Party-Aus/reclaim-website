@@ -3,6 +3,7 @@ import { resolveDeployment } from './config/deployment.mjs'
 import { branchManifest } from './config/branches.mjs'
 import { resolveBranch } from './config/branch/resolver.mjs'
 import { resolveDeployConfig } from './config/branch/deploy.mjs'
+import { resolveBuildTarget } from './config/deployment-target.mjs'
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import { agentsSummary } from '@nuasite/agent-summary'
@@ -12,7 +13,6 @@ import node from '@astrojs/node'
 import sanity from '@sanity/astro'
 import react from '@astrojs/react'
 import { fileURLToPath } from 'node:url'
-import path from 'node:path'
 
 const env = {
   ...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''),
@@ -20,6 +20,10 @@ const env = {
 }
 const deployment = resolveDeployment(env)
 const isDev = process.env.NODE_ENV !== 'production'
+const buildTarget = resolveBuildTarget(
+  env,
+  resolveDeployConfig(resolveBranch(branchManifest, env), env)
+)
 
 // https://astro.build/config
 export default defineConfig({
@@ -61,18 +65,14 @@ export default defineConfig({
   adapter: isDev
     ? node({ mode: 'standalone' })
     : (() => {
-        const resolved = resolveBranch(branchManifest, env)
-        const deployConfig = resolveDeployConfig(resolved, env)
         return cloudflare({
           // Brand icons use native sharp during prerendering, which requires Node.
           prerenderEnvironment: 'node',
           imageService: 'passthrough',
-          configPath: deployConfig.wranglerConfigPath,
+          configPath: buildTarget.wranglerConfigPath,
           platformProxy: { enabled: false },
         })
       })(),
   output: 'server',
-  outDir: process.env.ASTRO_BRANCH_BUILD_OUT_DIR
-    ? path.resolve(process.env.ASTRO_BRANCH_BUILD_OUT_DIR)
-    : './dist',
+  outDir: buildTarget.outputDirectory,
 })

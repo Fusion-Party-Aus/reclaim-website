@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveContentSite as resolveSite } from '../test/site-fixtures'
 
 const fakes = vi.hoisted(() => ({
   secrets: {} as Record<string, string>,
