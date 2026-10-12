@@ -19,6 +19,18 @@ export interface SharedBranchBaseContent {
   readonly links: Readonly<
     Record<'values' | 'policy' | 'join' | 'volunteer' | 'contact' | 'privacy', string>
   >
+  readonly footer: Readonly<{
+    tagline: string
+    bannerText: string
+    newsletter: Readonly<{ heading: string; description: string; buttonText: string }>
+    navColumns: readonly Readonly<{
+      badgeLabel: string
+      badgeVariant: 'mint' | 'yellow' | 'white' | 'magenta'
+      links: readonly Readonly<{ label: string; url: string; external: boolean }>[]
+    }>[]
+    resourceLinksLabel: string
+    resourceLinks: readonly Readonly<{ label: string; url: string }>[]
+  }>
 }
 export const sharedBranchBaseContent: SharedBranchBaseContent
 export function getBranchBaseContent(siteId: string): SharedBranchBaseContent

@@ -21,8 +21,34 @@ describe('explicit National-owned shared branch base', () => {
       sharedBranchBaseContent.siteIds,
       sharedBranchBaseContent.values,
       sharedBranchBaseContent.links,
+      sharedBranchBaseContent.footer,
+      sharedBranchBaseContent.footer.newsletter,
+      sharedBranchBaseContent.footer.navColumns,
+      sharedBranchBaseContent.footer.resourceLinks,
     ])
       expect(Object.isFrozen(value)).toBe(true)
+    expect(sharedBranchBaseContent.footer.navColumns.map((column) => column.badgeLabel)).toEqual([
+      'Explore',
+      'Get involved',
+      'Information',
+    ])
+    expect(
+      sharedBranchBaseContent.footer.navColumns.flatMap((column) => column.links)
+    ).toContainEqual({ label: 'Find your electorate', url: '/electorates', external: false })
+    for (const column of sharedBranchBaseContent.footer.navColumns) {
+      expect(Object.isFrozen(column)).toBe(true)
+      expect(Object.isFrozen(column.links)).toBe(true)
+      for (const link of column.links) {
+        expect(Object.isFrozen(link)).toBe(true)
+        const url = new URL(link.url, 'https://qld.fusionparty.org.au')
+        expect(url.protocol).toBe('https:')
+        expect(['qld.fusionparty.org.au', 'www.fusionparty.org.au']).toContain(url.hostname)
+      }
+    }
+    for (const link of sharedBranchBaseContent.footer.resourceLinks) {
+      expect(Object.isFrozen(link)).toBe(true)
+      expect(new URL(link.url).hostname).toBe('www.fusionparty.org.au')
+    }
     expect(() =>
       sharedBranchBaseContent.values.push({ name: 'Injected', description: 'bad' })
     ).toThrow()

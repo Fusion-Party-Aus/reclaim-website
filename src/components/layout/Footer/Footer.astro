@@ -2,8 +2,12 @@
 // Footer component — Reclaim design system
 import { Icon } from 'astro-icon/components'
 import FusionLogo from '@/components/brand/FusionLogo.astro'
+import {
+  getBranchBaseContent,
+  sharedBranchBaseContent,
+} from '../../../../config/shared-branch-base.mjs'
 
-const { deployment: DEPLOYMENT, content } = Astro.locals.siteContext
+const { deployment: DEPLOYMENT, content, site } = Astro.locals.siteContext
 const { getDocuments, getElectorates } = content
 
 interface SocialLink {
@@ -43,67 +47,86 @@ interface Footer {
 const footers = await getDocuments<Footer>('footer')
 const electorates = await getElectorates()
 const cmsFooter = footers[0]
+const sharedFooter = sharedBranchBaseContent.siteIds.includes(site.siteId)
+  ? getBranchBaseContent(site.siteId).footer
+  : undefined
 const footerData: Footer = {
   ...cmsFooter,
   logo: cmsFooter?.logo || { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
-  tagline: cmsFooter?.tagline || DEPLOYMENT.tagline,
+  tagline: cmsFooter?.tagline || sharedFooter?.tagline || DEPLOYMENT.tagline,
   socialLinks: cmsFooter?.socialLinks?.length ? cmsFooter.socialLinks : [],
   resourceLinks: cmsFooter?.resourceLinks?.length
     ? cmsFooter.resourceLinks
-    : [
-        { label: 'Our vision', url: '/vision' },
-        { label: 'Manifesto', url: '/manifesto' },
-        { label: 'Frequently asked questions', url: '/faq' },
-        { label: 'Contact us', url: DEPLOYMENT.cta.contact },
-      ],
-  banner: cmsFooter?.banner || { text: DEPLOYMENT.tagline, rotation: 0 },
-  newsletter: cmsFooter?.newsletter || {
-    heading: 'Get campaign updates',
-    description: `News, policy updates and ways to take action with Fusion ${DEPLOYMENT.state}.`,
-    buttonText: 'Sign up',
+    : sharedFooter
+      ? sharedFooter.resourceLinks.map((link) => ({ ...link }))
+      : [
+          { label: 'Our vision', url: '/vision' },
+          { label: 'Manifesto', url: '/manifesto' },
+          { label: 'Frequently asked questions', url: '/faq' },
+          { label: 'Contact us', url: DEPLOYMENT.cta.contact },
+        ],
+  banner: cmsFooter?.banner || {
+    text: sharedFooter?.bannerText || DEPLOYMENT.tagline,
+    rotation: 0,
   },
+  newsletter: cmsFooter?.newsletter ||
+    sharedFooter?.newsletter || {
+      heading: 'Get campaign updates',
+      description: `News, policy updates and ways to take action with Fusion ${DEPLOYMENT.state}.`,
+      buttonText: 'Sign up',
+    },
   navColumns: cmsFooter?.navColumns?.length
     ? cmsFooter.navColumns
-    : [
-        {
-          badgeLabel: 'Policy',
-          badgeVariant: 'mint',
-          links: [
-            { label: 'Our policies', url: '/policies' },
-            { label: 'Policy research', url: '/research' },
-            { label: 'News and updates', url: '/blog' },
-          ],
-        },
-        {
-          badgeLabel: 'Candidates',
-          badgeVariant: 'yellow',
-          showElectorates: true,
-          links: [{ label: 'All electorates', url: DEPLOYMENT.cta.electorates || '/electorates' }],
-        },
-        {
-          badgeLabel: 'Take action',
-          badgeVariant: 'magenta',
-          links: [
-            { label: 'Get involved', url: DEPLOYMENT.cta.getInvolved || DEPLOYMENT.cta.contact },
-            {
-              label: 'Donate',
-              url: DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational,
-              external: (DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational).startsWith('http'),
-            },
-            { label: 'Contact', url: DEPLOYMENT.cta.contact },
-          ],
-        },
-      ],
+    : sharedFooter
+      ? sharedFooter.navColumns.map((column) => ({
+          ...column,
+          links: column.links.map((link) => ({ ...link })),
+        }))
+      : [
+          {
+            badgeLabel: 'Policy',
+            badgeVariant: 'mint',
+            links: [
+              { label: 'Our policies', url: '/policies' },
+              { label: 'Policy research', url: '/research' },
+              { label: 'News and updates', url: '/blog' },
+            ],
+          },
+          {
+            badgeLabel: 'Candidates',
+            badgeVariant: 'yellow',
+            showElectorates: true,
+            links: [
+              { label: 'All electorates', url: DEPLOYMENT.cta.electorates || '/electorates' },
+            ],
+          },
+          {
+            badgeLabel: 'Take action',
+            badgeVariant: 'magenta',
+            links: [
+              { label: 'Get involved', url: DEPLOYMENT.cta.getInvolved || DEPLOYMENT.cta.contact },
+              {
+                label: 'Donate',
+                url: DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational,
+                external: (DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational).startsWith(
+                  'http'
+                ),
+              },
+              { label: 'Contact', url: DEPLOYMENT.cta.contact },
+            ],
+          },
+        ],
   donateCta: cmsFooter?.donateCta || {
     buttonText: 'Support the campaign',
     url: DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational,
   },
+  resourceLinksLabel: cmsFooter?.resourceLinksLabel || sharedFooter?.resourceLinksLabel,
   authorization: cmsFooter?.authorization || '',
 }
 ---
 
 <footer class="publication-footer bg-surface-base text-fg">
-  {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
+  {/* ═══ BRANCH MESSAGE ═══ */}
   <div class="bg-magenta py-4 px-4">
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"

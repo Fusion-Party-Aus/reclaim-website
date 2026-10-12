@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { resolveDeployment } from './deployment.mjs'
 import { starterContent } from './starter-content.mjs'
+import { buildStarterContent } from './branch/starter-content.mjs'
 
 describe('deployment configuration', () => {
   it('existing Victoria deployments retain identity and content source', () => {
@@ -18,6 +19,23 @@ describe('deployment configuration', () => {
     expect(config.siteUrl).toBe('https://qld.fusionparty.org.au')
     expect(starterContent(config)[0].movementMetrics.length).toBe(0)
     expect(JSON.stringify(starterContent(config))).not.toContain('Victoria')
+  })
+
+  it('branch-agnostic starter documents include the shared footer for eligible sites', () => {
+    const footer = buildStarterContent({
+      identity: {
+        slug: 'qld',
+        state: 'Queensland',
+        label: 'Fusion Party Queensland',
+        tagline: 'A better future for Queensland',
+      },
+    }).find((document) => document._type === 'footer')
+
+    expect(footer.tagline).toBe('A better future, built together.')
+    expect(footer.navColumns).toHaveLength(3)
+    expect(footer.resourceLinks.length).toBeGreaterThan(0)
+    expect(footer.newsletter.heading).toBe('Get campaign updates')
+    expect(footer.banner.text).toBe('Help shape the future of your state.')
   })
 
   it('investigations are opt-in by branch and can be explicitly enabled', () => {

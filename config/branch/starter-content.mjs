@@ -9,6 +9,7 @@
  * See algorithm_specification.md §6.1.
  */
 import { SINGLETON_TYPES } from './singletons.mjs'
+import { sharedBranchBaseContent } from '../shared-branch-base.mjs'
 
 const describeBranch = (identity) => `${identity.label} — ${identity.tagline}.`
 
@@ -76,23 +77,30 @@ const builders = {
     ctaButton: { label: 'Get involved', href: '/contact', style: 'primary' },
   }),
 
-  footer: (identity) => ({
-    _id: 'footer',
-    _type: 'footer',
-    title: identity.label,
-    logo: { mainText: 'FUSION', subText: identity.state.toUpperCase() },
-    tagline: identity.tagline,
-    socialLinks: [],
-    resourceLinks: [],
-    navColumns: [],
-    banner: { text: identity.tagline, rotation: 0 },
-    authorization: '',
-    newsletter: {
-      heading: 'Get campaign updates',
-      description: 'Stay in touch with our movement.',
-      buttonText: 'Sign up',
-    },
-  }),
+  footer: (identity) => {
+    const sharedFooter = sharedBranchBaseContent.siteIds.includes(identity.slug)
+      ? sharedBranchBaseContent.footer
+      : undefined
+
+    return {
+      _id: 'footer',
+      _type: 'footer',
+      title: identity.label,
+      logo: { mainText: 'FUSION', subText: identity.state.toUpperCase() },
+      tagline: sharedFooter?.tagline || identity.tagline,
+      socialLinks: [],
+      resourceLinks: sharedFooter?.resourceLinks || [],
+      resourceLinksLabel: sharedFooter?.resourceLinksLabel || 'Governance',
+      navColumns: sharedFooter?.navColumns || [],
+      banner: { text: sharedFooter?.bannerText || identity.tagline, rotation: 0 },
+      authorization: '',
+      newsletter: sharedFooter?.newsletter || {
+        heading: 'Get campaign updates',
+        description: 'Stay in touch with our movement.',
+        buttonText: 'Sign up',
+      },
+    }
+  },
 
   siteConfig: (identity) => ({
     _id: 'siteConfig',

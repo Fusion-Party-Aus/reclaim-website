@@ -137,6 +137,61 @@ export const sharedBranchBaseContent = Object.freeze({
       }).map(([key, path]) => [key, `https://www.fusionparty.org.au/${path}`])
     )
   ),
+  footer: Object.freeze({
+    tagline: 'A better future, built together.',
+    bannerText: 'Help shape the future of your state.',
+    newsletter: Object.freeze({
+      heading: 'Get campaign updates',
+      description: 'News, policy updates and ways to take part in your community.',
+      buttonText: 'Sign up',
+    }),
+    navColumns: Object.freeze(
+      [
+        {
+          badgeLabel: 'Explore',
+          badgeVariant: 'mint',
+          links: [
+            {
+              label: 'Our values',
+              url: 'https://www.fusionparty.org.au/our_values',
+              external: true,
+            },
+            { label: 'Policy', url: 'https://www.fusionparty.org.au/policy', external: true },
+          ],
+        },
+        {
+          badgeLabel: 'Get involved',
+          badgeVariant: 'yellow',
+          links: [
+            { label: 'Find your electorate', url: '/electorates', external: false },
+            { label: 'Join Fusion', url: 'https://www.fusionparty.org.au/join', external: true },
+            { label: 'Volunteer', url: 'https://www.fusionparty.org.au/volunteer', external: true },
+          ],
+        },
+        {
+          badgeLabel: 'Information',
+          badgeVariant: 'magenta',
+          links: [
+            { label: 'Contact', url: 'https://www.fusionparty.org.au/contact', external: true },
+            {
+              label: 'Privacy policy',
+              url: 'https://www.fusionparty.org.au/privacy_policy',
+              external: true,
+            },
+          ],
+        },
+      ].map((column) =>
+        Object.freeze({ ...column, links: Object.freeze(column.links.map(Object.freeze)) })
+      )
+    ),
+    resourceLinksLabel: 'The movement',
+    resourceLinks: Object.freeze(
+      [
+        { label: 'Fusion Party Australia', url: 'https://www.fusionparty.org.au' },
+        { label: 'Donate', url: 'https://www.fusionparty.org.au/donate' },
+      ].map(Object.freeze)
+    ),
+  }),
 })
 export function getBranchBaseContent(siteId) {
   if (!sharedBranchBaseContent.siteIds.includes(siteId))
