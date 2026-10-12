@@ -1,6 +1,6 @@
 # Shared branch base content proposal
 
-Planning snapshot: 12 October 2026. Local implementation drafted; no CMS document, push or deployment changes made. Awaiting maintainer response about shared National introduction, values and participation links.
+Planning snapshot: 12 October 2026. Local implementation drafted; no CMS document, push or deployment changes made. Maintainer approved the shared base copy in chat on 12 October 2026.
 
 ## Current evidence
 
@@ -37,13 +37,13 @@ Lead with the state identity, then answer what Fusion is, what it values and wha
 
 Acceptance: all four active branch homepages share the same approved base version while showing distinct state heading, title and canonical; NSW never renders NT identity; National links are explicitly labelled; existing unavailable local routes remain 404; no CMS/integration import enters the lean bundle; VIC/QLD hosts remain rejected by this Worker and their sites are unchanged. Actual bundled Worker HTTP, desktop/mobile reading and keyboard focus were checked locally; external pages were checked read-only without submitting forms.
 
-Decisions still needed: approve or revise the draft introduction; confirm six National value names as shared base; approve National join/volunteer/contact links and whether National policy should appear. Parent has already asked the maintainer; do not duplicate that question or treat no reply as approval.
+Content decision: maintainer approved the concrete shared base draft in chat on 12 October 2026. This covers the introduction, six National values and clearly labelled National links. State policies and candidates remain unpublished; VIC/QLD datasets remain untouched.
 
 ## Local verification completed
 
 26 focused tests passed across shared content, landing registry, renderer and Worker suites. Built artifact audit passed: four bundled inputs, no CMS imports, external runtime dependencies or deployment bindings. Scoped TypeScript and ESLint passed. Actual local Cloudflare runtime passed all four state host checks, HEAD, unavailable routes, rejected writes and root-only discovery. Desktop (1440px) and mobile (390px) browser checks passed without horizontal overflow; keyboard focus is visible. No forms were submitted. National membership and volunteer source pages confirm location fields; volunteer also offers participation choices. Privacy destination corrected to `/privacy_policy` from the National footer.
 
-Nothing has been pushed or deployed. Existing live empty landing pages remain unchanged pending copy approval.
+At approval time, the shared draft was local commit `bb1e6ba`, and the remote deployment branch remained `976424a`. Publication targets only the existing `branch-agnostic-test` Worker; TAS/WA activation and VIC/QLD CMS changes are outside this release.
 
 ## Source review
 
