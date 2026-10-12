@@ -42,13 +42,63 @@ interface Footer {
 
 const footers = await getDocuments<Footer>('footer')
 const electorates = await getElectorates()
-const footerData: Footer = footers[0] || {
-  logo: { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
-  tagline: DEPLOYMENT.tagline,
-  socialLinks: [],
-  resourceLinks: [],
-  banner: { text: DEPLOYMENT.tagline, rotation: 0 },
-  authorization: '',
+const cmsFooter = footers[0]
+const footerData: Footer = {
+  ...cmsFooter,
+  logo: cmsFooter?.logo || { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
+  tagline: cmsFooter?.tagline || DEPLOYMENT.tagline,
+  socialLinks: cmsFooter?.socialLinks?.length ? cmsFooter.socialLinks : [],
+  resourceLinks: cmsFooter?.resourceLinks?.length
+    ? cmsFooter.resourceLinks
+    : [
+        { label: 'Our vision', url: '/vision' },
+        { label: 'Manifesto', url: '/manifesto' },
+        { label: 'Frequently asked questions', url: '/faq' },
+        { label: 'Contact us', url: DEPLOYMENT.cta.contact },
+      ],
+  banner: cmsFooter?.banner || { text: DEPLOYMENT.tagline, rotation: 0 },
+  newsletter: cmsFooter?.newsletter || {
+    heading: 'Get campaign updates',
+    description: `News, policy updates and ways to take action with Fusion ${DEPLOYMENT.state}.`,
+    buttonText: 'Sign up',
+  },
+  navColumns: cmsFooter?.navColumns?.length
+    ? cmsFooter.navColumns
+    : [
+        {
+          badgeLabel: 'Policy',
+          badgeVariant: 'mint',
+          links: [
+            { label: 'Our policies', url: '/policies' },
+            { label: 'Policy research', url: '/research' },
+            { label: 'News and updates', url: '/blog' },
+          ],
+        },
+        {
+          badgeLabel: 'Candidates',
+          badgeVariant: 'yellow',
+          showElectorates: true,
+          links: [{ label: 'All electorates', url: DEPLOYMENT.cta.electorates || '/electorates' }],
+        },
+        {
+          badgeLabel: 'Take action',
+          badgeVariant: 'magenta',
+          links: [
+            { label: 'Get involved', url: DEPLOYMENT.cta.getInvolved || DEPLOYMENT.cta.contact },
+            {
+              label: 'Donate',
+              url: DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational,
+              external: (DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational).startsWith('http'),
+            },
+            { label: 'Contact', url: DEPLOYMENT.cta.contact },
+          ],
+        },
+      ],
+  donateCta: cmsFooter?.donateCta || {
+    buttonText: 'Support the campaign',
+    url: DEPLOYMENT.cta.donate || DEPLOYMENT.cta.donateNational,
+  },
+  authorization: cmsFooter?.authorization || '',
 }
 ---
 
