@@ -8,6 +8,9 @@ const states = {
   sa: 'South Australia',
   nt: 'Northern Territory',
   act: 'Australian Capital Territory',
+  tas: 'Tasmania',
+  wa: 'Western Australia',
+  qld: 'Queensland',
 }
 describe('shared base on existing branch landing roots', () => {
   for (const [id, state] of Object.entries(states)) {
@@ -18,7 +21,22 @@ describe('shared base on existing branch landing roots', () => {
       const html = await response.text()
       expect(html).toContain('data-base-version="1"')
       expect(html).toContain('data-content-owner="national"')
-      expect(html).toContain(`<h1>Fusion Party ${state}</h1>`)
+      const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1]
+      expect(
+        heading
+          ?.replace(/<[^>]*>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+      ).toBe(sharedBranchBaseContent.heroSlogan)
+      const hero = html.match(/<header\b[^>]*class="home-hero"[^>]*>[\s\S]*?<\/header>/)?.[0]
+      expect(hero).toBeDefined()
+      expect(hero).not.toContain(state)
+      expect(hero).not.toContain(`Fusion Party ${state}`)
+      const header = html.match(
+        /<header\b[^>]*class="site-header[^"]*"[^>]*>[\s\S]*?<\/header>/
+      )?.[0]
+      expect(header).toContain(state)
+      expect(html).toContain(`<title>Fusion Party ${state}</title>`)
       expect(html).toContain(`rel="canonical" href="${origin}/"`)
       const meta = [...html.matchAll(/<meta\b[^>]*>/g)].map(([tag]) => tag)
       expect(meta.find((tag) => tag.includes('property="og:url"'))).toContain(
@@ -30,9 +48,7 @@ describe('shared base on existing branch landing roots', () => {
       for (const url of Object.values(sharedBranchBaseContent.links))
         expect(html).toContain(`href="${url}"`)
       expect(html).toMatch(/National|nationally/)
-      expect(html).not.toMatch(
-        /Fusion Party Victoria|Fusion Party Queensland|api\.sanity\.io|cdn\.sanity\.io/
-      )
+      expect(html).not.toMatch(/Fusion Party Victoria|api\.sanity\.io|cdn\.sanity\.io/)
       for (const match of html.matchAll(/href="(#[^"]+)"/g)) {
         expect(html).toContain(`id="${match[1].slice(1)}"`)
       }

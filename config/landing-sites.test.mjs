@@ -6,6 +6,8 @@ const branches = {
   sa: 'South Australia',
   nt: 'Northern Territory',
   act: 'Australian Capital Territory',
+  tas: 'Tasmania',
+  wa: 'Western Australia',
 }
 
 describe('approved empty state landing Sites', () => {
@@ -29,12 +31,7 @@ describe('approved empty state landing Sites', () => {
   it('preserves existing content Sites and keeps unapproved hosts unavailable', () => {
     expect(resolveSite('https://vic.fusionparty.org.au').cms.dataset).toBe('production')
     expect(resolveSite('https://qld.fusionparty.org.au').cms.dataset).toBe('qld')
-    for (const host of [
-      'fusionparty.org.au',
-      'tas.fusionparty.org.au',
-      'wa.fusionparty.org.au',
-      'www.nsw.fusionparty.org.au',
-    ]) {
+    for (const host of ['fusionparty.org.au', 'www.nsw.fusionparty.org.au']) {
       expect(() => resolveSite(`https://${host}`)).toThrow(UnknownSiteHostError)
     }
   })

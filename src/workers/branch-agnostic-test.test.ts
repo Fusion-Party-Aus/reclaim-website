@@ -1,25 +1,40 @@
 import { describe, expect, it } from 'vitest'
 import worker from './branch-agnostic-test'
+import { sharedBranchBaseContent } from '../../config/shared-branch-base.mjs'
 
 const labels = {
   nsw: 'Fusion Party New South Wales',
   nt: 'Fusion Party Northern Territory',
   sa: 'Fusion Party South Australia',
   act: 'Fusion Party Australian Capital Territory',
+  tas: 'Fusion Party Tasmania',
+  wa: 'Fusion Party Western Australia',
+  qld: 'Fusion Party Queensland',
 }
 const request = (host: string, path = '/', method = 'GET', headers = {}) =>
   new Request(`https://${host}${path}`, { method, headers })
 
 describe('isolated branch-agnostic test Worker', () => {
-  it('renders four approved landings with distinct NSW and NT identity and canonical', async () => {
+  it('renders seven approved landings with distinct NSW and NT identity and canonical', async () => {
     const bodies = new Map<string, string>()
     for (const [id, label] of Object.entries(labels)) {
       const response = worker.fetch(request(`${id}.fusionparty.org.au`))
       expect(response.status).toBe(200)
       const html = await response.text()
-      expect(html).toContain(`<h1>${label}</h1>`)
+      const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1]
+      expect(
+        heading
+          ?.replace(/<[^>]*>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+      ).toBe(sharedBranchBaseContent.heroSlogan)
+      expect(html).toContain(`<title>${label}</title>`)
+      const hero = html.match(/<header\b[^>]*class="home-hero"[^>]*>[\s\S]*?<\/header>/)?.[0]
+      expect(hero).toBeDefined()
+      expect(hero).not.toContain(label)
+      expect(hero).not.toContain(label.replace('Fusion Party ', ''))
       expect(html).toContain(`rel="canonical" href="https://${id}.fusionparty.org.au/"`)
-      expect(html).not.toMatch(/sanity\.io|Fusion Party Victoria|Fusion Party Queensland/)
+      expect(html).not.toMatch(/sanity\.io|Fusion Party Victoria/)
       bodies.set(id, html)
     }
     expect(bodies.get('nsw')).not.toBe(bodies.get('nt'))
@@ -30,10 +45,7 @@ describe('isolated branch-agnostic test Worker', () => {
   it('fails closed for unknown hosts and does not take over existing VIC or QLD', async () => {
     for (const host of [
       'vic.fusionparty.org.au',
-      'qld.fusionparty.org.au',
       'fusionparty.org.au',
-      'tas.fusionparty.org.au',
-      'wa.fusionparty.org.au',
       'www.nsw.fusionparty.org.au',
       'nsw.fusionparty.org.au.attacker.example',
       'branch-agnostic-test.workers.dev',
@@ -55,7 +67,9 @@ describe('isolated branch-agnostic test Worker', () => {
         'X-Forwarded-Host': 'nt.fusionparty.org.au',
       })
     )
-    expect(await response.text()).toContain(`<h1>${labels.nsw}</h1>`)
+    const html = await response.text()
+    expect(html).toContain(`<title>${labels.nsw}</title>`)
+    expect(html).not.toContain(labels.nt)
   })
 
   it('does not expose unavailable APIs or state routes', async () => {

@@ -2,8 +2,9 @@ import { describe, it, expect, vi } from 'vitest'
 import { resolveSite } from '../../config/sites.mjs'
 import { createLandingResponse } from './site-landing'
 import { createSiteContext } from './site-context'
+import { sharedBranchBaseContent } from '../../config/shared-branch-base.mjs'
 
-const landingIds = ['nsw', 'sa', 'nt', 'act'] as const
+const landingIds = ['nsw', 'sa', 'nt', 'act', 'tas', 'wa', 'qld'] as const
 
 describe('CMS-free empty state landing responses', () => {
   for (const siteId of landingIds) {
@@ -24,10 +25,16 @@ describe('CMS-free empty state landing responses', () => {
       expect(html).toContain(site.landing.label)
       expect(html).toContain(`href="${site.canonicalOrigin}/"`)
       expect(html.match(/<h1(?:\s[^>]*)?>/g)).toHaveLength(1)
+      const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1]
+      expect(
+        heading
+          ?.replace(/<[^>]*>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+      ).toBe(sharedBranchBaseContent.heroSlogan)
       expect(html).not.toContain('cdn.sanity.io')
       expect(html).not.toContain('api.sanity.io')
       expect(html).not.toContain('Fusion Party Victoria')
-      expect(html).not.toContain('Fusion Party Queensland')
     })
   }
 

@@ -4,8 +4,14 @@
  * No CMS queries, writes, screenshots or deploy operations.
  */
 import assert from 'node:assert/strict'
+import { log } from 'node:console'
+import process from 'node:process'
+import { URL } from 'node:url'
 import http from 'node:http'
 import { resolveSite } from '../../config/sites.mjs'
+import { sharedBranchBaseContent } from '../../config/shared-branch-base.mjs'
+import { getSiteBranding } from '../../config/site-branding.mjs'
+import { branchCityPhotography } from '../../config/branch-city-photography.mjs'
 
 const server = new URL(process.argv[2] || 'http://127.0.0.1:4322')
 assert.equal(server.protocol, 'http:')
@@ -29,7 +35,7 @@ function request(host, pathname, method = 'GET') {
     req.end()
   })
 }
-for (const siteId of ['nsw', 'sa', 'nt', 'act']) {
+for (const siteId of ['nsw', 'sa', 'nt', 'act', 'tas', 'wa']) {
   const host = `${siteId}.fusionparty.org.au`
   const site = resolveSite(`https://${host}`)
   assert.equal(site.kind, 'landing')
@@ -38,6 +44,29 @@ for (const siteId of ['nsw', 'sa', 'nt', 'act']) {
   assert.equal(root.status, 200, `${siteId} root`)
   assert.ok(root.body.includes(site.landing.label))
   assert.ok(root.body.includes(`href="${site.canonicalOrigin}/"`))
+  assert.ok(root.body.includes(sharedBranchBaseContent.missionHeading), `${siteId} shared mission`)
+  assert.ok(
+    root.body.includes(sharedBranchBaseContent.introduction),
+    `${siteId} shared introduction`
+  )
+  assert.ok(
+    root.body.includes(branchCityPhotography[siteId].src.replaceAll('&', '&amp;')),
+    `${siteId} own city image`
+  )
+  assert.ok(
+    root.body.includes(`--fusion-accent:${getSiteBranding(siteId).accent}`),
+    `${siteId} approved accent`
+  )
+  assert.equal(
+    (root.body.match(/class="value-photo"/g) || []).length,
+    6,
+    `${siteId} value photographs`
+  )
+  assert.ok(root.body.includes('class="home-mobile-ribbons"'), `${siteId} mobile fold`)
+  assert.ok(root.body.includes('class="home-ribbons"'), `${siteId} incumbent folds`)
+  assert.ok(root.body.includes('data:font/woff2'), `${siteId} embedded fonts`)
+  for (const area of sharedBranchBaseContent.policyAreas)
+    assert.ok(root.body.includes(area.href), `${siteId} National policy link`)
   assert.equal((root.body.match(/<h1(?:\s[^>]*)?>/g) || []).length, 1)
   assert.ok(!/api\.sanity\.io|cdn\.sanity\.io/.test(root.body))
   const head = await request(host, '/', 'HEAD')
@@ -66,7 +95,7 @@ for (const siteId of ['nsw', 'sa', 'nt', 'act']) {
   assert.equal(sitemap.status, 200)
   assert.equal((sitemap.body.match(/<loc>/g) || []).length, 1)
   assert.ok(sitemap.body.includes(`<loc>${site.canonicalOrigin}/</loc>`))
-  console.log(
+  log(
     `PASS: ${siteId} CMS-free landing, canonical, HEAD, 404 routes, 405 writes and root-only discovery`
   )
 }
@@ -76,6 +105,6 @@ for (const [id, dataset] of [
 ]) {
   assert.equal(resolveSite(`https://${id}.fusionparty.org.au`).cms.dataset, dataset)
 }
-console.log(
+log(
   'PASS: VIC/QLD content source resolution unchanged; no CMS reads were performed by this runner.'
 )

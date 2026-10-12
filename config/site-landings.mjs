@@ -11,6 +11,8 @@ export const landingSiteRegistry = freeze(
     Object.entries({
       nsw: 'New South Wales',
       sa: 'South Australia',
+      wa: 'Western Australia',
+      tas: 'Tasmania',
       nt: 'Northern Territory',
       act: 'Australian Capital Territory',
     }).map(([siteId, state]) => [

@@ -17,6 +17,7 @@ const result = await build({
   target: 'es2022',
   logLevel: 'info',
   metafile: true,
+  loader: { '.woff2': 'dataurl', '.svg': 'dataurl' },
 })
 await writeFile(path.join(output, 'metafile.json'), JSON.stringify(result.metafile, null, 2) + '\n')
 // This landing-only Worker needs no assets, CMS credentials, sessions or CRM bindings.

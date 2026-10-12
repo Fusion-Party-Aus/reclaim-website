@@ -43,4 +43,25 @@ describe('explicit National-owned shared branch base', () => {
       expect(url.username + url.password + url.search + url.hash).toBe('')
     }
   })
+  it('keeps the three National policy areas immutable and explicitly linked to their source pages', () => {
+    expect(sharedBranchBaseContent.heroSlogan.trim().length).toBeGreaterThan(0)
+    expect(sharedBranchBaseContent.missionHeading.trim().length).toBeGreaterThan(0)
+    expect(Object.isFrozen(sharedBranchBaseContent.policyAreas)).toBe(true)
+    expect(sharedBranchBaseContent.policyAreas.map((area) => new URL(area.href).pathname)).toEqual([
+      '/fair_inclusive_society',
+      '/ethical_governance',
+      '/climate_rescue',
+    ])
+    for (const area of sharedBranchBaseContent.policyAreas) {
+      expect(Object.isFrozen(area)).toBe(true)
+      expect(area.title.trim().length).toBeGreaterThan(0)
+      expect(area.description.trim().length).toBeGreaterThan(0)
+      const url = new URL(area.href)
+      expect(url.origin).toBe('https://www.fusionparty.org.au')
+      expect(url.username + url.password + url.search + url.hash).toBe('')
+    }
+    expect(() => {
+      sharedBranchBaseContent.policyAreas[0].href = 'https://attacker.example'
+    }).toThrow()
+  })
 })
