@@ -7,11 +7,11 @@ export const sharedBranchBaseContent = Object.freeze({
   version: 1,
   ownerSiteId: 'national',
   heroSlogan: 'A better future, built together.',
-  missionHeading: 'Good ideas. Better lives.',
+  missionHeading: 'Better homes. Fairer opportunity. A liveable future.',
   policyAreas: Object.freeze(
     [
       {
-        title: 'Fair + Inclusive Society',
+        title: 'Housing + Urban Form',
         photography: Object.freeze({
           src: 'https://images.unsplash.com/photo-1772325652571-f1406f80ee01?auto=format&fit=crop&w=800&q=80',
           alt: 'Homes and green parkland in a Sydney neighbourhood',
@@ -19,11 +19,12 @@ export const sharedBranchBaseContent = Object.freeze({
           creditUrl:
             'https://unsplash.com/photos/aerial-view-of-a-suburban-neighborhood-with-houses-and-trees-D52yMVa1nZw',
         }),
-        description: 'Housing, health and a fairer society.',
+        description:
+          'More homes, better-connected neighbourhoods and planning that supports walkable communities, reliable transport and social housing.',
         href: 'https://www.fusionparty.org.au/fair_inclusive_society',
       },
       {
-        title: 'Ethical Governance',
+        title: 'Land, Tax + Public Wealth',
         photography: Object.freeze({
           src: 'https://images.unsplash.com/photo-1672264597620-d792bb6de88d?auto=format&fit=crop&w=800&q=80',
           alt: 'Australian Parliament House in Canberra',
@@ -31,25 +32,27 @@ export const sharedBranchBaseContent = Object.freeze({
           creditUrl:
             'https://unsplash.com/photos/a-large-building-with-a-flag-on-top-of-it-WWVLdFbTiVk',
         }),
-        description: 'Transparency, accountability and public trust.',
+        description:
+          'Explore Henry George-inspired land tax reform, easier moves between homes and ways to turn shared resources into lasting public wealth.',
         href: 'https://www.fusionparty.org.au/ethical_governance',
       },
       {
-        title: 'Climate Rescue',
+        title: 'Climate + Open Technology',
         photography: Object.freeze({
           src: 'https://images.unsplash.com/photo-1577925966603-3e9c98617875?auto=format&fit=crop&w=800&q=80',
           alt: 'Sea and coastal cliffs at Rapid Bay, South Australia',
           photographer: 'lovebyLouis',
           creditUrl: 'https://unsplash.com/photos/landscape-photography-of-seacoast-ANDnlCxSgrg',
         }),
-        description: 'Climate action and a transition to negative emissions.',
+        description:
+          'Climate action alongside open-source cybernetics: using transparent, publicly inspectable technology to help people understand and shape complex systems.',
         href: 'https://www.fusionparty.org.au/climate_rescue',
       },
     ].map(Object.freeze)
   ),
   siteIds: Object.freeze(['nsw', 'sa', 'tas', 'wa', 'nt', 'act', 'qld']),
   introduction:
-    'Fusion is an Australian political party working towards a free and fair society for current and future generations. We bring people together to develop ideas and take part in democratic life.',
+    'Fusion brings people together to develop practical ideas and take part in democratic life. Our shared branch focus connects housing and urban form with land tax reform, public wealth, climate action and open-source cybernetics.',
   values: Object.freeze(
     [
       {
