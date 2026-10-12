@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { sharedBranchBaseContent, getBranchBaseContent } from './shared-branch-base.mjs'
 
-const eligible = ['nsw', 'sa', 'tas', 'wa', 'nt', 'act']
+const eligible = ['nsw', 'sa', 'tas', 'wa', 'nt', 'act', 'qld']
 describe('explicit National-owned shared branch base', () => {
   it('supplies an immutable shared record only to eligible branches', () => {
     expect(sharedBranchBaseContent.version).toBe(1)
@@ -27,8 +27,8 @@ describe('explicit National-owned shared branch base', () => {
       sharedBranchBaseContent.values.push({ name: 'Injected', description: 'bad' })
     ).toThrow()
   })
-  it('does not override existing Victorian, Queensland or National content', () => {
-    for (const id of ['vic', 'qld', 'national', 'unknown', '', 'NSW']) {
+  it('does not override existing Victorian or National content', () => {
+    for (const id of ['vic', 'national', 'unknown', '', 'NSW']) {
       expect(() => getBranchBaseContent(id)).toThrow()
     }
   })

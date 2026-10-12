@@ -10,6 +10,7 @@ export const landingSiteRegistry = freeze(
   Object.fromEntries(
     Object.entries({
       nsw: 'New South Wales',
+      qld: 'Queensland',
       sa: 'South Australia',
       wa: 'Western Australia',
       tas: 'Tasmania',

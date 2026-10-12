@@ -32,6 +32,14 @@ const records = {
     slug: 'a-view-of-a-city-and-the-ocean-from-a-hill-gl7nkS_h4lo',
     position: '50% 50%',
   },
+  qld: {
+    city: 'Brisbane',
+    alt: 'Brisbane skyline, river and Neville Bonner Bridge at golden hour',
+    photo: '1789758385737-1125f82baa59',
+    photographer: 'Queensland, Australia',
+    slug: 'brisbane-skyline-and-river-at-sunset-nHSi9DcuLdQ',
+    position: '50% 50%',
+  },
   nt: {
     city: 'Darwin',
     alt: 'Darwin waterfront park and port with a docked cruise ship',

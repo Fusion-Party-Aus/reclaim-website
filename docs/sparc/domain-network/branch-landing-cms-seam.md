@@ -9,3 +9,5 @@ A later CMS adapter belongs at content acquisition in the Worker: resolve the ac
 Future adapters must preserve published-only reads, site scoping, fail-closed ownership, and preview separation. Do not infer a VIC/QLD fallback, share credentials, create datasets or seed content as part of adding an adapter. Existing separate VIC/QLD datasets remain untouched. Shared CMS consolidation, editor access and cutover/rollback remain staged work under #77.
 
 Shared National policy areas include image metadata (source, alt, photographer and credit URL); these pass the same HTTPS host checks as the city photograph. Branch branding is deliberately outside the editable content DTO: it comes from the approved trusted Site registry. A future CMS adapter can change editorial content without changing host identity or brand configuration.
+
+Latest maintainer direction supersedes the earlier QLD exclusion: Queensland now uses this Worker with the shared approved base, Brisbane photograph and maroon accent. Only VIC remains on its existing content deployment. The legacy QLD CMS record/dataset is retained for rollback; no dataset wipe or live consolidation is included.

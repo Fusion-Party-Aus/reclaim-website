@@ -31,3 +31,5 @@ Three credited National policy photographs add a restrained image rhythm beneath
 The latest approved overrides replace NSW blue with pale pink `#FFE6EA` and ACT blue with deep purple `#472D8C`. ACT uses a lavender display tint on the purple hero for readable contrast.
 
 Final requested extension includes TAS/Hobart and WA/Perth on this Worker, with existing green/gold accents. The participation banner folds now use a clamped width and full banner height, keeping the complete top-to-bottom shape visible. Cloudflare domain mappings remain separate from the code registry.
+
+Latest maintainer direction supersedes the earlier QLD exclusion: Queensland now uses this Worker with the shared approved base, Brisbane photograph and maroon accent. Only VIC remains on its existing content deployment. The legacy QLD CMS record/dataset is retained for rollback; no dataset wipe or live consolidation is included.

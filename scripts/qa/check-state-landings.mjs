@@ -8,7 +8,7 @@ import { log } from 'node:console'
 import process from 'node:process'
 import { URL } from 'node:url'
 import http from 'node:http'
-import { resolveSite } from '../../config/sites.mjs'
+import { resolveSite, siteRegistry } from '../../config/sites.mjs'
 import { sharedBranchBaseContent } from '../../config/shared-branch-base.mjs'
 import { getSiteBranding } from '../../config/site-branding.mjs'
 import { branchCityPhotography } from '../../config/branch-city-photography.mjs'
@@ -35,7 +35,7 @@ function request(host, pathname, method = 'GET') {
     req.end()
   })
 }
-for (const siteId of ['nsw', 'sa', 'nt', 'act', 'tas', 'wa']) {
+for (const siteId of ['nsw', 'sa', 'nt', 'act', 'tas', 'wa', 'qld']) {
   const host = `${siteId}.fusionparty.org.au`
   const site = resolveSite(`https://${host}`)
   assert.equal(site.kind, 'landing')
@@ -103,8 +103,10 @@ for (const [id, dataset] of [
   ['vic', 'production'],
   ['qld', 'qld'],
 ]) {
-  assert.equal(resolveSite(`https://${id}.fusionparty.org.au`).cms.dataset, dataset)
+  const contentSite =
+    id === 'qld' ? siteRegistry.qld : resolveSite(`https://${id}.fusionparty.org.au`)
+  assert.equal(contentSite.cms.dataset, dataset)
 }
 log(
-  'PASS: VIC/QLD content source resolution unchanged; no CMS reads were performed by this runner.'
+  'PASS: VIC content resolution and legacy QLD rollback source unchanged; no CMS reads were performed by this runner.'
 )

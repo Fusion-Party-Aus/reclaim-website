@@ -47,7 +47,7 @@ export const sharedBranchBaseContent = Object.freeze({
       },
     ].map(Object.freeze)
   ),
-  siteIds: Object.freeze(['nsw', 'sa', 'tas', 'wa', 'nt', 'act']),
+  siteIds: Object.freeze(['nsw', 'sa', 'tas', 'wa', 'nt', 'act', 'qld']),
   introduction:
     'Fusion is an Australian political party working towards a free and fair society for current and future generations. We bring people together to develop ideas and take part in democratic life.',
   values: Object.freeze(

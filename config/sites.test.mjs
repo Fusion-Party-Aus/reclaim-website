@@ -12,13 +12,16 @@ function assertDeepFrozen(value) {
 const cloneRegistry = () => structuredClone(siteRegistry)
 
 describe('site registry and host resolution', () => {
-  it('registers only existing Victoria and Queensland hosts with unchanged presentation', () => {
+  it('retains existing Victoria and legacy Queensland content records with unchanged presentation', () => {
     assert.deepEqual(Object.keys(siteRegistry).sort(), ['qld', 'vic'])
     for (const [siteId, dataset] of [
       ['vic', 'production'],
       ['qld', 'qld'],
     ]) {
-      const site = resolveSite(`https://${siteId}.fusionparty.org.au/policies`)
+      const site =
+        siteId === 'qld'
+          ? siteRegistry.qld
+          : resolveSite(`https://${siteId}.fusionparty.org.au/policies`)
       assert.equal(site.siteId, siteId)
       assert.equal(site.branchId, siteId)
       assert.equal(site.canonicalOrigin, `https://${siteId}.fusionparty.org.au`)

@@ -8,9 +8,10 @@ const cities = {
   act: 'Canberra',
   tas: 'Hobart',
   wa: 'Perth',
+  qld: 'Brisbane',
 }
 describe('explicit branch city photography', () => {
-  it('provides six distinct immutable photographs mapped to the correct cities', () => {
+  it('provides seven distinct immutable photographs mapped to the correct cities', () => {
     expect(Object.keys(branchCityPhotography).sort()).toEqual(Object.keys(cities).sort())
     const photos = new Set()
     for (const [id, city] of Object.entries(cities)) {
@@ -35,14 +36,14 @@ describe('explicit branch city photography', () => {
       expect(credit.username + credit.password + credit.search + credit.hash).toBe('')
       photos.add(image.pathname)
     }
-    expect(photos.size).toBe(6)
+    expect(photos.size).toBe(7)
     expect(Object.isFrozen(branchCityPhotography)).toBe(true)
     expect(() => {
       branchCityPhotography.nsw.city = 'Melbourne'
     }).toThrow()
   })
   it('does not activate or supply images to existing or unapproved branches', () => {
-    for (const id of ['vic', 'qld', 'national', 'unknown', '', 'NSW']) {
+    for (const id of ['vic', 'national', 'unknown', '', 'NSW']) {
       expect(() => getBranchCityPhotography(id)).toThrow()
     }
   })
