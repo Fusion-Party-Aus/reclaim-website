@@ -102,6 +102,15 @@ This makes the Citizens Dividend a share in Australia’s productive base rather
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Direct predecessor: unconditional basic income.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — A universal income floor broadens access to economic security and opportunity.
+
+---
 </details>
 
 ### **Build Fair and Stable Labour Markets**
@@ -147,6 +156,15 @@ Sector-level bargaining councils would be recognised in law, representative bodi
 
 ---
 
+**Policy Lineage**
+
+- [Other positions and policy FAQ](https://www.fusionparty.org.au/policy_faq) — Broader antecedent: fair wages, awards, and union representation.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Sector-wide bargaining seeks to distribute productivity gains through more stable employment terms.
+
+---
 </details>
 
 ### **Protect Migrant Workers from Exploitation**
@@ -189,6 +207,15 @@ Bring in stronger visa protections for workers reporting exploitation, coordinat
 
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Authority to Protect* — Visa security and coordinated enforcement protect migrant workers from coercion and exploitation.
+
+---
 </details>
 
 ### **Simplify Access to Supplementary Supports**
@@ -225,6 +252,16 @@ Eligibility interfaces, agency processes, and data-sharing systems would be stan
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Broader antecedent: accessible social supports.
+
+**Values Alignment**
+
+- Principle: *Open & Efficient Government* — Simpler administration reduces barriers to supplementary public services.
+- Value: *Equity* — Standardised access helps people receive support regardless of which agency administers it.
+
+---
 </details>
 
 ### **End Forced Indue Cards**
@@ -262,6 +299,16 @@ Payment conditions and provider communications would be updated as compulsory us
 
 ---
 
+**Policy Lineage**
+
+- [Other positions and policy FAQ](https://www.fusionparty.org.au/policy_faq) — Direct predecessor: opposition to compulsory Indue cards.
+
+**Values Alignment**
+
+- Value: *Personal Liberty* — Ending compulsory cards restores people’s control over everyday spending.
+- Value: *Equity* — Welfare recipients should have the same presumption of financial autonomy as other Australians.
+
+---
 </details>
 
 ### **Bring Dental and Mental Health Into Medicare**
@@ -303,6 +350,15 @@ Dental and mental health services would be added in stages, with provider incent
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Direct predecessor: dental and mental healthcare under Medicare.
+
+**Values Alignment**
+
+- Principle: *Equitable Healthcare* — Expanding Medicare reduces financial barriers to essential treatment.
+
+---
 </details>
 
 ### **Make Health Care Keep Up With Population Growth**
@@ -343,13 +399,22 @@ Even with stronger planning, workforce and service growth will not move evenly a
 
 Demand projections, workforce and service benchmarks, training targets, placements, and funding agreements would be updated on a regular review cycle so health capacity tracks projected community need.
 
-**Reference**
+**References**
 
 [Workforce intelligence report 2025](https://www.health.gov.au/sites/default/files/2026-04/workforce-intelligence-report-2025.pdf) | 
 [National Health Reform Agreement](https://www.health.gov.au/our-work/national-health-reform-agreement-nhra)
 
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Equitable Healthcare* — Demand-linked capacity planning helps communities retain timely access to care.
+
+---
 </details>
 
 ### **Rebuild Aged Care Standards**
@@ -391,6 +456,16 @@ Funding, provider standards, workforce requirements, and compliance powers would
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Broader antecedent: universal public healthcare.
+
+**Values Alignment**
+
+- Principle: *Equitable Healthcare* — Better funding oversight and workforce standards improve access to safe aged care.
+- Value: *Safety* — Enforceable staffing and quality standards protect older people from neglect and preventable harm.
+
+---
 </details>
 
 ### **Deliver Free or Affordable Childcare for Families**
@@ -452,6 +527,15 @@ Phased expansion includes:
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Direct predecessor: access to childcare.
+
+**Values Alignment**
+
+- Principle: *Systemic Barrier Deconstruction* — Affordable childcare reduces obstacles to work and early childhood development.
+
+---
 </details>
 
 ## Solve the Housing Crisis
@@ -525,6 +609,15 @@ Federal legislation establishes the default system and certification process. St
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Direct predecessor: replacing stamp duty with land tax.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Replacing transaction taxes with land-value taxation reduces barriers to moving and better land use.
+
+---
 </details>
 
 ### **Make Housing Tax Fair Across Generations**
@@ -570,6 +663,16 @@ CGT discount provisions, indexation factor definitions, transitional acquisition
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=the%20capital%20gains%20tax%20discount%20for%20owners%20not%20occupying%20the%20home) — Direct predecessor for reducing housing CGT concessions; the replacement of the discount with inflation indexation is a new design.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Less preferential capital-gains treatment reduces tax-driven disparities between housing investors and other households.
+- Value: *Equity* — Removing preferential treatment reduces the advantage held by people who already own investment housing.
+
+---
 </details>
 
 ### **End Housing Speculation Incentives**
@@ -610,6 +713,15 @@ Tax law amendments would establish quarantining, transitional rules for existing
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=Negative%20gearing%20shall%20be%20quarantined) — Direct predecessor: quarantining negative gearing losses to the investment where they arise.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Restricting housing loss deductions reduces incentives to use housing for tax-driven speculation.
+
+---
 </details>
 
 ### **Shift Rezoning Gains to Benefit the Public**
@@ -651,6 +763,17 @@ Valuation methods, uplift assessment notices, deferral rules, and Land Value Tax
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=make%20them%20pay%20for%20the%20upzoning%20windfalls) — Direct predecessor for capturing rezoning windfalls.
+- [Bell Station planning submission](https://www.fusionparty.org.au/submission-darebin-c232dare/#:~:text=Transit%20Land%20Value%20Tax) — Further specific precedent for taxing publicly created location value.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Capturing rezoning windfalls helps fund infrastructure created by planning decisions.
+- Value: *Equity* — Publicly created land value should benefit the wider community rather than only the landowner.
+
+---
 </details>
 
 ### **Stop Wasting Our Best Land**
@@ -723,6 +846,16 @@ Federal legislation defines priority geographies and compliance certification. S
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=councils%20have%20been%20blocking%20such%20developments) — Broader antecedent: enabling greater housing density and reducing inefficient urban sprawl.
+- [Bell Station planning submission](https://www.fusionparty.org.au/submission-darebin-c232dare/#:~:text=high-density%20urban%20infill) — Specific support for denser housing around established rail stations; national as-of-right permissions remain new.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Steering development away from valuable productive land protects long-term urban and agricultural capacity.
+
+---
 </details>
 
 ### **Create a Housing Approval Fast-Track**
@@ -785,6 +918,16 @@ State planning law would establish code standards, statutory clocks, an escalati
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=councils%20have%20been%20blocking%20such%20developments) — Broader antecedent: identifying council obstruction of permissible higher-density housing; a binding code pathway is new.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Faster assessment of suitable development supports more timely housing supply.
+- Value: *Advancement* — More predictable approvals enable useful new housing to be delivered without sacrificing safety standards.
+
+---
 </details>
 
 ### **Reward Communities That Build Quality Homes**
@@ -856,6 +999,16 @@ Federal legislation defines payment amounts, uplift criteria, indexing method, a
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Sharing development benefits with communities supports infrastructure and better planned growth.
+- Value: *Equity* — Completion-based payments return some of the benefits of housing growth to the communities accommodating it.
+
+---
 </details>
 
 ### **Supply Integrated Public Housing at Scale**
@@ -909,6 +1062,16 @@ Federal legislation establishes funding authority, eligibility criteria, acquisi
 
 ---
 
+**Policy Lineage**
+
+- [Fair + Inclusive Society](https://www.fusionparty.org.au/fair_inclusive_society) — Direct predecessor for increased public housing.
+- [Separation Street planning submission](https://www.fusionparty.org.au/submission-darebin-c234dare/#:~:text=10%25%20inclusionary%20zoning) — Related proposal for affordable homes in mixed developments; public purchase rights are a different mechanism.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Integrating more public housing into communities expands secure, well-located housing choices.
+
+---
 </details>
 
 ### **Guarantee Secure and Safe Renting**
@@ -962,6 +1125,15 @@ Federal legislation establishes funding-linked national tenancy benchmarks and R
 
 ---
 
+**Policy Lineage**
+
+- [Housing as a Home](https://www.fusionparty.org.au/housing_as_a_home/#:~:text=minimum%20standards%20for%20air%20quality) — Direct predecessor for rental safety standards and stronger tenant protection; the earlier proposal retained no-grounds evictions with 12 months’ notice.
+
+**Values Alignment**
+
+- Principle: *Systemic Barrier Deconstruction* — Rental protections reduce insecurity and unequal treatment in access to housing.
+
+---
 </details>
 
 ### **Connect Regions with High Speed Rail**
@@ -1010,6 +1182,15 @@ Federal-led corridor development would use staged construction, priority routing
 
 ---
 
+**Policy Lineage**
+
+- [Future Focused](https://www.fusionparty.org.au/future_focused) — Direct predecessor: an intercity high-speed rail network.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Faster connections broaden housing and employment choices across regions.
+
+---
 </details>
 
 ## Fix the Tax Exploits
@@ -1068,6 +1249,16 @@ Resource tax legislation would amend profit-tax provisions, establish rent adjus
 
 ---
 
+**Policy Lineage**
+
+- [Fusion Victoria — Build the Sovereign Fund](https://vic.fusionparty.org.au/policies/build-the-sovereign-fund/) — Direct state-level predecessor: invest resource royalties in a permanent sovereign wealth fund; the federal tax framework is new.
+
+**Values Alignment**
+
+- Value: *Equity* — Preserving resource income in public assets shares finite national wealth across generations.
+- Value: *Ethical Conduct* — Transparent rules for saving and withdrawing resource revenue limit short-term political appropriation.
+
+---
 </details>
 
 ### **Stop Corporate Tax Avoidance**
@@ -1125,6 +1316,16 @@ Amendments to corporate tax integrity provisions strengthen transfer pricing, an
 
 ---
 
+**Policy Lineage**
+
+- [Ethical Governance](https://www.fusionparty.org.au/ethical_governance) — Broader antecedent: fairer economic rules and reduced exploitation.
+
+**Values Alignment**
+
+- Value: *Ethical Conduct* — Enforcing tax obligations limits the gains available through artificial profit shifting.
+- Value: *Equity* — Consistent tax enforcement prevents compliant businesses and ordinary taxpayers carrying an unfair share.
+
+---
 </details>
 
 ### **Stop Ultra-Wealthy Tax Avoidance**
@@ -1181,6 +1382,16 @@ Legislation would reform discretionary trust distribution integrity rules, stren
 
 ---
 
+**Policy Lineage**
+
+- [Ethical Governance](https://www.fusionparty.org.au/ethical_governance) — Broader antecedent: fairer economic rules.
+
+**Values Alignment**
+
+- Value: *Equity* — Closing preferential pathways reduces tax advantages available mainly to the ultra-wealthy.
+- Value: *Ethical Conduct* — Requiring tax outcomes to reflect real economic control discourages contrived legal arrangements.
+
+---
 </details>
 
 ### **End Fossil Fuel Subsidies**
@@ -1226,6 +1437,15 @@ Budget legislation and tax law amendments identify, catalogue, and repeal define
 
 ---
 
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Direct predecessor: ending subsidies for emissions-intensive activities.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Removing fossil-fuel subsidies reduces public support for environmentally damaging activity.
+
+---
 </details>
 
 ### **Make Carbon Compliance Real**
@@ -1291,6 +1511,15 @@ Amend safeguard and carbon credit legislation to:
 
 ---
 
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Broader antecedent: material carbon pricing and emissions reduction.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Enforceable carbon obligations strengthen the incentive to cut emissions.
+
+---
 </details>
 
 ## Build up Small Businesses
@@ -1347,6 +1576,16 @@ Legislation would define corporate coverage, group treatment, the reference infl
 
 ---
 
+**Policy Lineage**
+
+- [Submission: Excessive Pricing Prohibition for Supermarkets](https://assets.nationbuilder.com/futureparty/pages/3623/attachments/original/1762126142/Fusion_price_gouging_submission.pdf?1762126142=#page=8) — Related antecedent: using additional large-company tax obligations to change pricing incentives; the inflation-triggered rate is a distinct mechanism.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Adjusting corporate taxation seeks to relieve competitive pressure on smaller businesses.
+- Value: *Equity* — The tax adjustment seeks to correct the unequal bargaining position of smaller enterprises.
+
+---
 </details>
 
 ### **Enforce Prompt Payment of Small Businesses**
@@ -1396,6 +1635,15 @@ Legislation would define the covered large-customer class, protected small-busin
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Enforceable payment periods reduce the financing burden imposed on smaller suppliers.
+
+---
 </details>
 
 ### **Give Small Business a Fair Shot**
@@ -1451,6 +1699,15 @@ Legislation would define the covered corporate class, require sector allocation 
 
 ---
 
+**Policy Lineage**
+
+- [Submission: Excessive Pricing Prohibition for Supermarkets](https://assets.nationbuilder.com/futureparty/pages/3623/attachments/original/1762126142/Fusion_price_gouging_submission.pdf?1762126142=#page=8) — Direct predecessor: an ACCC-calibrated market-dominance tax scaled to market share above a competitive threshold.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Fairer market rules give smaller businesses a better chance to compete.
+
+---
 </details>
 
 ### **Guarantee Net Neutrality**
@@ -1497,6 +1754,15 @@ Legislation would define prohibited discriminatory treatment, set narrow technic
 
 ---
 
+**Policy Lineage**
+
+- [Civil + Digital Liberties](https://www.fusionparty.org.au/civil_digital_liberties/) — Direct predecessor: network neutrality in law.
+
+**Values Alignment**
+
+- Principle: *Digital Privacy & Security* — Neutral networks preserve open access to lawful digital services without provider discrimination.
+
+---
 </details>
 
 ### **Protect Your Privacy from Big Tech**
@@ -1544,6 +1810,15 @@ Legislation would define necessity-based collection limits, regulate retention a
 
 ---
 
+**Policy Lineage**
+
+- [Civil + Digital Liberties](https://www.fusionparty.org.au/civil_digital_liberties/) — Direct predecessor: privacy and digital rights.
+
+**Values Alignment**
+
+- Principle: *Digital Privacy & Security* — Limiting exploitative data practices protects people’s control over personal information.
+
+---
 </details>
 
 ### **Simplify Unfair Contract Disputes for Small Business**
@@ -1593,6 +1868,15 @@ Legislation would define the covered small-business class, eligible contract dis
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Accessible contract remedies reduce bargaining disadvantages for small businesses.
+
+---
 </details>
 
 ### **Support Small Businesses to Stay Compliant**
@@ -1640,6 +1924,15 @@ Legislation or intergovernmental agreements would define agency responsibilities
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Open & Efficient Government* — Practical compliance guidance reduces avoidable administrative burdens on small firms.
+
+---
 </details>
 
 ### **Stop IP Abuse Against Small Business**
@@ -1689,6 +1982,15 @@ Legislation would define revised protection periods, tighten claim-scope rules, 
 
 ---
 
+**Policy Lineage**
+
+- [Civil + Digital Liberties](https://www.fusionparty.org.au/civil_digital_liberties/) — Direct predecessor: reforming copyright and patent abuses.
+
+**Values Alignment**
+
+- Principle: *Applied Science and Innovation* — Limiting abusive intellectual-property claims allows smaller innovators to develop and compete.
+
+---
 </details>
 
 ## Grow a Clean Economy
@@ -1781,6 +2083,16 @@ The reform would require electricity settlement and retail billing to distinguis
 
 ---
 
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Broader antecedent: transitioning to clean energy.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — A stable electricity market supports the long-term shift toward lower-emissions power.
+- Value: *Safety* — Reliable electricity supply protects households and essential services from preventable disruption.
+
+---
 </details>
 
 ### **Let the Cheapest Power Win in a Fair Market**
@@ -1871,6 +2183,16 @@ Some technologies may also involve uncommon or long-duration risks that are diff
 
 ---
 
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Broader antecedent: carbon pricing and clean energy transition.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Technology-neutral market rules help lower-emissions generation compete on cost.
+- Value: *Advancement* — Technology-neutral competition allows better generation options to displace older ones.
+
+---
 </details>
 
 ### **Electrify Everything**
@@ -1931,6 +2253,16 @@ This keeps the objective focused on giving consumers better energy choices rathe
 [Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts — New Vehicle Efficiency Standard](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/vehicles/new-vehicle-efficiency-standard) | 
 [Australian Renewable Energy Agency — Electrifying Road Freight: Australia’s Blueprint for a Cleaner Transport Future](https://arena.gov.au/blog/electrifying-road-freight-australias-blueprint-for-a-cleaner-transport-future/) | 
 [Australian Energy Market Commission — AEMC proposes gas network reforms for an uncertain future](https://www.aemc.gov.au/news-centre/media-releases/aemc-proposes-gas-network-reforms-uncertain-future)
+
+---
+
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Broader antecedent: reducing emissions across sectors.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Switching end uses to electricity cuts dependence on direct fossil-fuel combustion.
 
 ---
 </details>
@@ -2040,6 +2372,17 @@ Broader competition policy would separately address concentrated purchasing powe
 [Meat & Livestock Australia — Optimising Australian feedlot cattle performance and reducing emissions with a low dose 3-NOP](https://www.mla.com.au/research-and-development/reports/2026/b.flt.5019---optimising-australian-feedlot-cattle-performance-and-reducing-emissions-with-a-low-dose-3-nop) | 
 [Clean Energy Finance Corporation — Variable Rate Fertiliser](https://www.cefc.com.au/pathfinder/farm-emissions-reduction-activities/agronomic-footprints/variable-rate-fertiliser/)
 
+---
+
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Direct predecessor: regenerative agriculture and land stewardship.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Rewarding lower-emissions farm practices supports productive land use with less ecological damage.
+
+---
 </details>
 
 ### **Build a Carbon Removal Industry**
@@ -2134,6 +2477,15 @@ A mining operation that can economically remove atmospheric carbon through its t
 
 ---
 
+**Policy Lineage**
+
+- [Climate Rescue](https://www.fusionparty.org.au/climate_rescue) — Direct predecessor: industrial and natural carbon removal.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Scalable carbon removal addresses emissions remaining in the atmosphere.
+
+---
 </details>
 
 ### **Build & Export Climate Tech to the World**
@@ -2208,6 +2560,15 @@ The incentive would complement, rather than replace, ordinary research and comme
 
 ---
 
+**Policy Lineage**
+
+- [Federal Budget Submission: Cooling the Planet and Australia’s STEM Future](https://www.fusionparty.org.au/submission_pre-budget/) — Direct predecessor for major climate-focused R&D investment and Australian STEM-sector growth; export mechanisms extend the approach.
+
+**Values Alignment**
+
+- Principle: *Applied Science and Innovation* — Developing exportable climate technologies turns research into practical industrial capability.
+
+---
 </details>
 
 ---
@@ -2265,12 +2626,22 @@ This reform interacts with redistribution rules, party nomination processes, cam
 
 Legislation would redefine House electorates, district magnitude, ballot structure, local allocation rules, the national under-representation correction process, nomination requirements for candidate blocks and independents, and the transition arrangements for moving from the current single-member structure to the Wolfendale System.
 
-**Reference**
+**References**
 
 [Wolfendale System](https://wolfofauspol.me/electoral-reform)
 
 ---
 
+**Policy Lineage**
+
+- [Submission: Review of the 2022 Federal Election](https://www.fusionparty.org.au/submission_2022_federal_election/#:~:text=Proportional%20representation) — Broader antecedent: improving proportionality for parliamentary representation; the Wolfendale System is a distinct electoral mechanism.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — More proportional representation gives voters a stronger connection to parliamentary outcomes.
+- Value: *Equity* — Votes should carry more comparable influence over parliamentary representation.
+
+---
 </details>
 
 ### **Expose Political Donations**
@@ -2325,6 +2696,15 @@ Amendments to federal electoral law establish reporting timeframes, aggregation 
 
 ---
 
+**Policy Lineage**
+
+- [Submission: Review of the 2022 Federal Election](https://www.fusionparty.org.au/submission_2022_federal_election/#:~:text=Donations%20above%20a%20threshold) — Direct predecessor for rapid disclosure and cumulative donor thresholds; machine-readable databases extend the proposal.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — Faster disclosure lets voters scrutinise financial influence over elected representatives.
+
+---
 </details>
 
 ### **End Lies in Political Advertising**
@@ -2369,12 +2749,21 @@ This reform interacts with electoral authorisation rules, campaign disclosure, m
 
 Legislation should align to the system already shown to work effectively in South Australia by defining the prohibited class of materially misleading factual claims in electoral advertising, empowering the Electoral Commissioner to seek withdrawal or corrective publication, providing court-backed enforcement and penalties, and aligning the scheme with authorisation requirements and fast campaign-period complaint handling.
 
-**Reference**
+**References**
 
 [South Australian Legislation](https://www.legislation.sa.gov.au/_legislation-documents/lz/c/a/electoral-act-1985/current/1985.77.auth.pdf)
 
 ---
 
+**Policy Lineage**
+
+- [Submission: Review of the 2022 Federal Election](https://www.fusionparty.org.au/submission_2022_federal_election/#:~:text=Truth%20in%20political%20advertising) — Direct predecessor for legislated restrictions on unsubstantiated claims in electoral material; the South Australian enforcement model further specifies the mechanism.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — Truthfulness rules help voters assess electoral claims on reliable information.
+
+---
 </details>
 
 ### **Reform the National Anti-Corruption Commission**
@@ -2429,6 +2818,16 @@ Amendments to the National Anti-Corruption Commission Act establish expanded jur
 
 ---
 
+**Policy Lineage**
+
+- [Submission: NACC Performance (May 2026)](https://assets.nationbuilder.com/futureparty/pages/3623/attachments/original/1785194206/2026_05_22_-_FUSION_-_Submissions_to_PJC-NACC_on_the_NACCs_performance_of_its_functions_v1.1.pdf?1785194206=#page=2) — Direct predecessor for statutory reporting and referral-process accountability; the baseline expands the Commission’s wider powers and scope.
+- [Whistleblower Protection](https://www.fusionparty.org.au/whistleblower_policy/#:~:text=Accountability%20in%20Investigations) — Related commitment to disclosure follow-through and independent institutional accountability, not a specific NACC redesign.
+
+**Values Alignment**
+
+- Principle: *Open & Efficient Government* — Effective independent oversight holds public decision-makers accountable.
+
+---
 </details>
 
 ### **Reward Whistleblowers For Exposing Corruption**
@@ -2485,12 +2884,20 @@ This reform interacts with anti-corruption oversight, workplace health and safet
 
 A single national framework would consolidate existing protections, define protected disclosures and immunities consistently across sectors, establish the Whistleblower Protection Authority and its powers, create support and reward mechanisms, impose positive duties on organisations, and align enforcement with existing integrity, workplace, and regulatory systems.
 
-**Reference**
-
-[Whistleblower Policy](https://www.fusionparty.org.au/whistleblower_policy)
-
 ---
 
+**Policy Lineage**
+
+- [Whistleblower Policy](https://www.fusionparty.org.au/whistleblower_policy)
+- [Submission: Whistleblower Protection Authority Bill 2025](https://www.fusionparty.org.au/whistleblower_protection_authority/#:~:text=Recommendations%20for%20the%20Whistleblower%20Protection%20Authority) — Direct predecessor for an independent parliamentary-accountable protection body.
+- [Submission: Public Interest Disclosure Amendment 2025](https://assets.nationbuilder.com/futureparty/pages/3623/attachments/original/1761520197/Whistleblower_protections_submission.pdf?1761520197=#page=3) — Further predecessor for enforceable scrutiny of disclosure investigations; reward payments are additional.
+
+**Values Alignment**
+
+- Value: *Ethical Conduct* — Protecting and rewarding disclosures makes wrongdoing harder to conceal.
+- Value: *Safety* — Effective whistleblower safeguards reduce retaliation against people who expose misconduct.
+
+---
 </details>
 
 ### **Break Up Media Monopolies**
@@ -2538,6 +2945,16 @@ Legislation would define the covered media classes, concentration metrics for na
 
 ---
 
+**Policy Lineage**
+
+- [Civil + Digital Liberties](https://www.fusionparty.org.au/civil_digital_liberties/) — Broader antecedent: opposition to concentrated corporate control.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — Reducing media concentration broadens the range of voices shaping public debate.
+- Value: *Personal Liberty* — A less concentrated media landscape makes it easier to encounter independent viewpoints.
+
+---
 </details>
 
 ### **Open Up Access to Australian News**
@@ -2585,6 +3002,16 @@ Legislation would define the covered Australian news publisher class, require to
 
 ---
 
+**Policy Lineage**
+
+- [Whistleblower Protection Authority submission](https://www.fusionparty.org.au/whistleblower_protection_authority/#:~:text=Recommendations%20for%20the%20Whistleblower%20Protection%20Authority#:~:text=fund%20a%20broader) — Broader antecedent: public support for a wider range of news providers; the ACMA token-payment mechanism is new.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — Fairer access to news reporting supports pluralism and informed public discussion.
+- Value: *Personal Liberty* — Fairer access to news supports people’s ability to seek and share information.
+
+---
 </details>
 
 ### **Reinforce ABC and SBS Funding**
@@ -2655,6 +3082,16 @@ That constraint is inherent to meaningful funding certainty. Governments would r
 
 ---
 
+**Policy Lineage**
+
+- [Ethical Governance](https://www.fusionparty.org.au/ethical_governance) — Direct predecessor: restoring ABC funding.
+
+**Values Alignment**
+
+- Principle: *Democratic Reform* — Stable public broadcasting supports independent information for democratic participation.
+- Value: *Ethical Conduct* — Stable funding makes public broadcasters less vulnerable to short-term political pressure.
+
+---
 </details>
 
 ## Rebuild Our Communities
@@ -2703,12 +3140,21 @@ Even with the system working as intended, some gambling harm will still occur be
 
 Amendments to the Interactive Gambling Act and related communications and payments law would stage the advertising ban over a defined transition period and commence the consumer-protection architecture on a fixed national timetable. The legislative sequence would usually begin with inducements, identity verification, and regulator powers, then move to the full advertising prohibition and product bans, with data reporting and enforcement obligations applied across licensed operators from the start date. This sequencing mirrors the way the Murphy framework separates immediate restrictions from broader structural reform.
 
-**Reference**
+**References**
 
 [Murphy Framework Recommendations](https://www.aph.gov.au/Parliamentary_Business/Committees/House/Social_Policy_and_Legal_Affairs/Onlinegamblingimpacts/Report/List_of_recommendations)
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Authority to Protect* — Online gambling protections address foreseeable financial and social harm without banning all wagering.
+
+---
 </details>
 
 ### **Crack Down on Coercive Control and Sexual Violence**
@@ -2756,6 +3202,15 @@ Federal legislation, court rules, online safety regulation, migration settings, 
 
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Authority to Protect* — Stronger responses to coercive control and sexual violence protect people from exploitation and abuse.
+
+---
 </details>
 
 ### **Finally End the War on Drugs**
@@ -2799,6 +3254,15 @@ Federal law would create the national cannabis framework, remove relevant federa
 
 ---
 
+**Policy Lineage**
+
+- [Other positions and policy FAQ](https://www.fusionparty.org.au/policy_faq) — Direct predecessor: cannabis legalisation and health-led drug reform.
+
+**Values Alignment**
+
+- Principle: *Authority to Protect* — Harm-reduction rules replace avoidable criminal penalties with health and safety measures.
+
+---
 </details>
 
 ### **Match Migration to What Australia Can Support**
@@ -2839,12 +3303,18 @@ Even with a well-designed framework, intake settings will still involve judgemen
 
 Federal planning rules would establish the framework, define its indicators, publish its methodology, and require annual migration settings to be justified against it. The review cycle should include transparent adjustment triggers so changes in capacity are reflected in planning before pressure becomes acute.
 
-**Reference**
-
-[Migration Policy](https://www.fusionparty.org.au/migration_policy)
-
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Sustainable Urban Prosperity* — Linking migration settings to service and housing capacity reduces pressure on receiving communities.
+- Value: *Safety* — Matching arrivals to housing and service capacity reduces foreseeable hardship for migrants and residents.
+
+---
 </details>
 
 ### **Provide Civic Orientation to New Migrants**
@@ -2881,12 +3351,18 @@ Making orientation mandatory matters because optional programs are most often mi
 
 Covered settlement pathways, minimum civic-orientation content, practical support funding, and completion milestones would be defined in federal settlement and visa rules. Delivery should be flexible enough to work across different languages, family situations, and local contexts without changing the core civic standard.
 
-**Reference**
-
-[Migration Policy](https://www.fusionparty.org.au/migration_policy)
-
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Freedom & Accommodation of Culture* — Civic orientation gives newcomers practical knowledge to participate in Australian community life.
+- Value: *Equity* — Accessible civic information helps new residents participate on more equal terms.
+
+---
 </details>
 
 ### **Coordinate Refugee Support Through Local Communities**
@@ -2927,12 +3403,18 @@ Even with strong local coordination, settlement choices will still involve trade
 
 Settlement-ready communities would be designated against published criteria, with funding and placements aligned to those communities and expansion built from existing settlement locations, regional partnerships, and community-led models. Funding and placements should remain linked so local support capacity grows with the settlement task rather than trailing behind it.
 
-**Reference**
-
-[Migration Policy](https://www.fusionparty.org.au/migration_policy)
-
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Value: *Equity* — Local coordination helps refugees access services and opportunities on fair terms.
+- Value: *Safety* — Reliable settlement support reduces the risk of deprivation and isolation after arrival.
+
+---
 </details>
 
 ### **Make Every Visa Fit Its Purpose**
@@ -2969,12 +3451,18 @@ A well-designed system still needs lawful ways to deal with genuine changes in c
 
 The federal government would review pathway definitions, tighten rules where substitution has become routine, align visa conditions and integrity checks to each stream’s stated purpose, and improve data and enforcement so pathway use can be measured against design. Any lawful transition routes between visa categories should be clearly defined rather than left to informal drift.
 
-**Reference**
-
-[Migration Policy](https://www.fusionparty.org.au/migration_policy)
-
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Open & Efficient Government* — Clearer visa purposes and rules reduce institutional complexity and arbitrary treatment.
+- Value: *Equity* — Clear visa rules reduce inconsistent treatment of people in otherwise comparable circumstances.
+
+---
 </details>
 
 ### **Put Essential Services Back in Public Hands**
@@ -3021,6 +3509,16 @@ The federal government would build a public-interest test into ownership, procur
 
 ---
 
+**Policy Lineage**
+
+- [Fusion Victoria — Take Back Public Assets](https://vic.fusionparty.org.au/policies/take-back-public-assets/) — Direct state-level predecessor for returning essential utility and transport networks to public ownership, subject to different federal powers and scope.
+
+**Values Alignment**
+
+- Value: *Equity* — Public stewardship seeks to preserve access to essential services regardless of income.
+- Value: *Safety* — Accountable essential-service provision reduces the risk that people are deprived of basic needs.
+
+---
 </details>
 
 ### **Take Religious Advantage Out of Public Services**
@@ -3062,12 +3560,21 @@ Tax-deductible status should follow public benefit, not worship alone. Reforming
 
 Federal law would define where secular and non-discriminatory rules apply, narrow exemptions in publicly funded and public-function contexts, and amend philanthropy law in line with Recommendation 6.1 from the "Future foundations for giving" Inquiry report, so tax-deductible status no longer applies to activities solely for advancing religion. Guidance and reporting rules would then need to make the boundaries clear for Commonwealth institutions, funded providers, and mixed-purpose organisations.
 
-**Reference**
+**References**
 
 [Inquiry report: Future foundations for giving](https://assets.pc.gov.au/inquiries/completed/philanthropy/report/philanthropy.pdf)
 
 ---
 
+**Policy Lineage**
+
+- [Secular Humanism](https://www.fusionparty.org.au/secular_humanism) — Direct predecessor: removing religious privilege from public institutions and charity rules.
+
+**Values Alignment**
+
+- Principle: *Secular Government* — Neutral public-service and charity rules prevent government favouritism toward religion.
+
+---
 </details>
 
 ### **Set National Animal Welfare Standards**
@@ -3111,6 +3618,15 @@ Federal law would create the office with defined functions in standard-setting c
 
 ---
 
+**Policy Lineage**
+
+- [Other positions and policy FAQ](https://www.fusionparty.org.au/policy_faq) — Direct predecessor: a federal Office of Animal Welfare.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — National welfare rules extend ethical treatment and protection to nonhuman life.
+
+---
 </details>
 
 ## Update Our Schools
@@ -3155,7 +3671,7 @@ No national formula can perfectly capture every school’s circumstances. States
 
 Federal funding legislation and bilateral agreements would be updated so public-school systems not already reaching 100% of the SRS earlier do so by 2030. Annual contribution schedules and the phase-out of indirect expenditure would be aligned with that timetable, using the existing funding, compliance, and independent-review framework rather than creating a parallel system.
 
-**Reference**
+**References**
 
 [Better and Fairer Schools Agreement 2025–2034 — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/resources/heads-agreement-better-and-fairer-schools-agreement-full-and-fair-funding-20252034) | 
 [Schooling Resource Standard — Australian Government Department of Education](https://www.education.gov.au/recurrent-funding-schools/schooling-resource-standard) | 
@@ -3163,6 +3679,15 @@ Federal funding legislation and bilateral agreements would be updated so public-
 
 ---
 
+**Policy Lineage**
+
+- [Education for Life](https://www.fusionparty.org.au/education_for_life/) — Direct predecessor: needs-based school funding.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Full needs-based funding enables schools to meet students’ different learning needs.
+
+---
 </details>
 
 ### **Free Teachers to Teach**
@@ -3203,13 +3728,22 @@ Some school responsibilities naturally cross teaching, wellbeing, administration
 
 National staffing and workload standards would be incorporated into federal-state school funding and reform agreements, with states and territories retaining responsibility for employment structures and local deployment. Evidence from the existing workload-reduction pilots would inform the initial staffing benchmarks and task boundaries.
 
-**Reference**
+**References**
 
 [National Teacher Workforce Action Plan — Australian Government Department of Education](https://www.education.gov.au/national-teacher-workforce-action-plan) | 
 [Workload Reduction Fund Pilots — Australian Government Department of Education](https://www.education.gov.au/workload-reduction-pilots)
 
 ---
 
+**Policy Lineage**
+
+- [Education for Life](https://www.fusionparty.org.au/education_for_life/) — Broader antecedent: teaching for modern life.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Reducing administrative burdens allows teachers to devote more time to teaching.
+
+---
 </details>
 
 ### **Teach Students How Australia Works**
@@ -3252,13 +3786,23 @@ Jurisdictions would report annually on how the national civics requirement is be
 
 The next Australian Curriculum review would establish the nationally aligned civics sequence, minimum teaching requirements, and senior secondary module. Federal-state education agreements would support consistent implementation, reporting, teacher resources, and professional development while states and territories retain ordinary responsibility for school delivery.
 
-**Reference**
+**References**
 
 [From Classroom to Community: Civics education and political participation in Australia — Joint Standing Committee on Electoral Matters](https://www.aph.gov.au/Parliamentary_Business/Committees/Joint/Electoral_Matters/Civicseducation/From_Classroom_to_Community/List_of_recommendations) | 
 [National Assessment Program — Civics and Citizenship results — ACARA.](https://www.acara.edu.au/reporting/national-report-on-schooling-in-australia/national-report-on-schooling-in-australia-2024)
 
 ---
 
+**Policy Lineage**
+
+- [Education for Life](https://www.fusionparty.org.au/education_for_life/) — Broader antecedent: practical education for modern life.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Civic education develops knowledge needed for informed democratic participation.
+- Value: *Ethical Conduct* — Civic literacy helps future voters assess institutions and political claims responsibly.
+
+---
 </details>
 
 ### **Make NAPLAN Help Students, Not Rank Schools**
@@ -3305,7 +3849,7 @@ NAPLAN measures literacy and numeracy at particular points in time and cannot ca
 
 National assessment and reporting arrangements would be updated through the Education Ministers Meeting and ACARA so public school comparisons use student progress measures rather than average achievement scores, while individual and system-level diagnostic uses of NAPLAN are retained. Teacher performance frameworks and funding agreements would prohibit the use of students’ absolute achievement levels as a measure of individual teacher performance.
 
-**Reference**
+**References**
 
 [National Assessment Program: Literacy and Numeracy](https://www.education.gov.au/national-assessment-program/national-assessment-program-literacy-and-numeracy) | 
 [Australian Teacher Performance and Development Framework](https://www.aitsl.edu.au/tools-resources/resource/australian-teacher-performance-and-development-framework) | 
@@ -3313,6 +3857,16 @@ National assessment and reporting arrangements would be updated through the Educ
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Using assessment diagnostically supports individual learning rather than competition between schools.
+- Value: *Equity* — Individual learning feedback supports pupils without turning schools into misleading league tables.
+
+---
 </details>
 
 ### **Make Your Skills Count**
@@ -3382,6 +3936,16 @@ The existing Advanced Entry Trades Training program provides a current model for
 
 ---
 
+**Policy Lineage**
+
+- [Education for Life](https://www.fusionparty.org.au/education_for_life/) — Broader antecedent: lifelong education and skills access.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Recognising established skills reduces unnecessary barriers to further education and work.
+- Value: *Equity* — Recognising demonstrated competence reduces exclusion based on where or how skills were acquired.
+
+---
 </details>
 
 ### **End University Dependence on Mass Student Migration**
@@ -3422,12 +3986,22 @@ Some universities are already deeply reliant on international fee revenue, so th
 
 The federal government would establish the contribution-credit system in higher-education funding law, define eligible employer contributions and credit-earning activities, create the transition fund and levy settings, and align provider regulation and student visa integrity rules to the rebuilt funding model. The funding framework should also include anti-backsliding rules so universities are not pushed back into migration-volume dependence once the transition period ends.
 
-**Reference**
+**References**
 
 [Australia's universities under sustained financial strain ...](https://universitiesaustralia.edu.au/media-item/australias-universities-under-sustained-financial-strain-new-report-warns)
 
 ---
 
+**Policy Lineage**
+
+- [Education for Life](https://www.fusionparty.org.au/education_for_life/) — Broader antecedent: universities for education rather than profit.
+
+**Values Alignment**
+
+- Principle: *Excellence in Public Education* — Reducing dependence on international-student revenue helps align university incentives with education.
+- Value: *Equity* — Funding stability should protect domestic students’ access to quality university teaching.
+
+---
 </details>
 
 ### **Fund Research for the Long Term**
@@ -3470,13 +4044,22 @@ Longer funding commitments inevitably reduce some flexibility to redirect resear
 
 Federal competitive research programs would progressively adopt longer scale-appropriate grant periods, multi-year forward funding schedules, and continuation review as existing schemes are renewed. The ARC's current NCGP transition provides the immediate opportunity to embed these settings without disrupting grants already underway.
 
-**Reference**
+**References**
 
 [Australian Research Council — New NCGP Schemes: Overview](https://www.arc.gov.au/funding-research/applying-grant/new-ncgp-schemes-overview) | 
 [Australian Research Council — Release of the National Competitive Grants Program Policy Review Final Report](https://www.arc.gov.au/news-and-publications/media/release-national-competitive-grants-program-policy-review-final-report)
 
 ---
 
+**Policy Lineage**
+
+- [Future Focused](https://www.fusionparty.org.au/future_focused) — Direct predecessor for increasing research funding. [Federal Budget Submission: Cooling the Planet and Australia’s STEM Future](https://www.fusionparty.org.au/submission_pre-budget/) — Specific precedent for multi-year R&D funding, although the baseline’s grant-continuation mechanism is new.
+
+**Values Alignment**
+
+- Principle: *Applied Science and Innovation* — Long-term research support gives scientific work time to produce meaningful advances.
+
+---
 </details>
 
 ## Transform Our Industries
@@ -3569,6 +4152,15 @@ These examples are illustrative rather than preferred industries. Support would 
 
 ---
 
+**Policy Lineage**
+
+- [Future Focused](https://www.fusionparty.org.au/future_focused) — Direct predecessor: commercialising new technologies.
+
+**Values Alignment**
+
+- Principle: *Applied Science and Innovation* — Better pathways from discovery to deployment translate ideas into productive activity.
+
+---
 </details>
 
 ### **Build a Pro-Innovation Government**
@@ -3666,6 +4258,15 @@ The pathway would apply only where government has a genuine need for the resulti
 
 ---
 
+**Policy Lineage**
+
+- [Future Focused](https://www.fusionparty.org.au/future_focused) — Broader antecedent: supporting research and innovation.
+
+**Values Alignment**
+
+- Principle: *Applied Science and Innovation* — Government procurement and institutions can create demand for useful innovation.
+
+---
 </details>
 
 ### **Secure Australia's Fertiliser Supply**
@@ -3746,6 +4347,16 @@ The framework would therefore distinguish the value of resilience and technology
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+
+**Values Alignment**
+
+- Value: *Safety* — Reliable fertiliser availability protects food production against supply disruptions.
+- Value: *Advancement* — Building domestic production capability enables more resilient agricultural industry.
+
+---
 </details>
 
 ### **Unlock Regional Manufacturing with Hemp**
@@ -3823,6 +4434,17 @@ Hemp production or hemp-based materials would not receive automatic carbon credi
 
 ---
 
+**Policy Lineage**
+
+- No specific pre-existing Fusion policy, submission, or statement.
+- Imported from Legalise Cannabis Australia as part of alignment efforts.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Hemp-based regional industry creates new options for domestic production and enterprise.
+- Value: *Advancement* — New industrial uses for hemp expand the range of productive technologies available to regional firms.
+
+---
 </details>
 
 ### **Make More From What We Mine**
@@ -3904,6 +4526,16 @@ Shared infrastructure is long-lived while mineral markets and processing technol
 
 ---
 
+**Policy Lineage**
+
+- [Future Focused](https://www.fusionparty.org.au/future_focused) — Broader antecedent: advanced manufacturing and future industries.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Processing more minerals domestically captures more value from Australian resources.
+- Value: *Advancement* — Domestic processing develops more sophisticated productive capabilities beyond raw-material extraction.
+
+---
 </details>
 
 ### **Build a Circular Economy**
@@ -4020,6 +4652,15 @@ Existing stewardship arrangements could be recognised where they provide the evi
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Broader antecedent: reducing environmental waste and damage.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Circular material flows reduce extraction pressure and discarded resources.
+
+---
 </details>
 
 ### **Match Skilled Migration to Genuine National Need**
@@ -4068,6 +4709,16 @@ Skilled migration pathways and occupation access would be tied to independent sh
 
 ---
 
+**Policy Lineage**
+
+- [Unpublished Migration Policy - Accepted cica March 2026](https://docs.google.com/document/d/19096_ElIVU42g9FJc3RVSj7yDjvOXuQU/edit?usp=drive_link&ouid=109632054075675368927&rtpof=true&sd=true) — Used to make this.
+
+**Values Alignment**
+
+- Principle: *Inclusive Economic Advancement* — Linking skilled entry to demonstrated needs supports the workforce without treating migration as an end in itself.
+- Value: *Safety* — Linking recruitment to shortages reduces the risk of essential workforce gaps.
+
+---
 </details>
 
 ---
@@ -4139,6 +4790,15 @@ Ending domestic native-forest harvesting could increase demand for imported timb
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Direct predecessor: ending native logging and broadscale clearing.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Preserving intact habitats prevents further loss of irreplaceable biodiversity.
+
+---
 </details>
 
 ### **Reward More Types of Nature Repair**
@@ -4204,6 +4864,15 @@ Biodiversity is inherently location-specific, so different ecological outcomes c
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Direct predecessor: incentivising biodiversity and ecological repair.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — More restoration methods make verified improvements to ecosystems worth funding.
+
+---
 </details>
 
 ### **Give Restored Land Lasting Returns**
@@ -4274,6 +4943,16 @@ Changes in carbon stocks within existing, heterogeneous vegetation can be harder
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Broader antecedent: credits for sequestration and rewilding.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Ongoing returns reward long-term stewardship of repaired ecosystems.
+- Value: *Ecological Harmony* — Long-term financial returns can reward protection of ecological value beyond immediate human use.
+
+---
 </details>
 
 ### **Restore Murray-Darling Rivers and Wetlands**
@@ -4355,6 +5034,15 @@ Future rainfall, runoff, and ecological responses cannot be forecast perfectly, 
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Direct predecessor: restoring watersheds and the Murray–Darling.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Restoring rivers and wetlands supports biodiversity and functioning water cycles.
+
+---
 </details>
 
 ### **Overhaul Invasive Species Controls**
@@ -4436,6 +5124,16 @@ Some control methods can affect non-target species or ecological relationships. 
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Broader antecedent: protecting and restoring native biodiversity.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Coordinated pest control protects ecosystems from recurring invasive threats.
+- Value: *Ecological Harmony* — Preventing recurring pest damage protects native species and ecological relationships.
+
+---
 </details>
 
 ### **Protect Every Australian Marine Region**
@@ -4480,6 +5178,15 @@ This would prevent the target being met through areas that remain open to substa
 
 ---
 
+**Policy Lineage**
+
+- [Ecological Restoration](https://www.fusionparty.org.au/ecological_restoration/) — Broader antecedent: restoring marine ecological systems.
+
+**Values Alignment**
+
+- Principle: *Sustainable Environmental Stewardship* — Protecting marine regions safeguards ocean biodiversity and ecosystem resilience.
+
+---
 </details>
 
 ---
