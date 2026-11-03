@@ -1,63 +1,88 @@
 ---
+import { foldedRibbon, ribbonSweep, RIBBON_COLORS } from '@/lib/horizon-ribbons'
 interface Props {
   accent?: string
-  variant?: 'hero' | 'band'
+  variant?: 'hero' | 'band' | 'sweep'
+  /** Unique within a page when a variant is repeated. */
+  id?: string
 }
-const { accent = 'var(--fusion-accent)', variant = 'hero' } = Astro.props
+const {
+  accent = RIBBON_COLORS.victoriaAccent,
+  variant = 'hero',
+  id = `horizon-ribbon-${variant}`,
+} = Astro.props
+const surfaces = variant === 'sweep' ? ribbonSweep(accent) : foldedRibbon(accent)
 ---
 
 <svg
   class:list={['ribbon', `ribbon--${variant}`]}
-  style={`--ribbon-accent:${accent}`}
-  viewBox="0 0 600 900"
+  viewBox={variant === 'sweep' ? '0 0 1000 500' : '0 0 1000 1000'}
   preserveAspectRatio="none"
   aria-hidden="true"
   focusable="false"
 >
-  <path class="ribbon__accent" d="M600 0H443C365 176 367 307 493 437 579 526 566 699 424 900h176V0Z"
-  ></path>
-  <path class="ribbon__light" d="M600 0h-74c-68 187-50 313 52 419 82 85 68 271-87 481h109V0Z"
-  ></path>
-  <path class="ribbon__base" d="M600 0h-36c-53 189-29 308 63 394 83 77 75 270-27 506h0V0Z"></path>
+  <defs
+    >{
+      surfaces.map((surface, index) => (
+        <linearGradient
+          id={`${id}-${index}`}
+          gradientUnits="userSpaceOnUse"
+          x1={surface.points[0]}
+          y1={surface.points[1]}
+          x2={surface.points[2]}
+          y2={surface.points[3]}
+        >
+          {surface.stops.map(([offset, color]) => (
+            <stop offset={offset} stop-color={color} />
+          ))}
+        </linearGradient>
+      ))
+    }</defs
+  >
+  <g>{surfaces.map((surface, index) => <path d={surface.path} fill={`url(#${id}-${index})`} />)}</g>
 </svg>
 <style>
   .ribbon {
     position: absolute;
-    inset: 0 auto 0 0;
-    width: clamp(7rem, 17vw, 16rem);
-    height: 100%;
     pointer-events: none;
+    overflow: hidden;
   }
   .ribbon--hero {
-    right: 50%;
-    left: auto;
-    width: clamp(14rem, 26vw, 30rem);
-    transform: translateX(20%);
-  }
-  .ribbon__accent {
-    fill: var(--ribbon-accent);
-  }
-  .ribbon__light {
-    fill: #fff;
-  }
-  .ribbon__base {
-    fill: #32105a;
+    right: -5%;
+    top: 0;
+    width: 65%;
+    height: 100%;
   }
   .ribbon--band {
-    width: 15rem;
     right: 0;
-    left: auto;
-    opacity: 0.95;
+    top: 0;
+    width: 35%;
+    height: 100%;
+    opacity: 0.65;
+    transform: rotate(180deg);
+  }
+  .ribbon--sweep {
+    right: 0;
+    bottom: 0;
+    width: 15rem;
+    height: 5rem;
+    opacity: 0.16;
   }
   @media (max-width: 760px) {
     .ribbon--hero {
       top: auto;
-      right: 0;
       bottom: 0;
-      left: auto;
-      width: clamp(9rem, 42vw, 16rem);
+      right: -8%;
+      width: 80%;
       height: 48%;
-      transform: none;
+    }
+    .ribbon--band {
+      width: 65%;
+      opacity: 0.25;
+    }
+    .ribbon--sweep {
+      width: 11rem;
+      height: 3rem;
     }
   }
 </style>

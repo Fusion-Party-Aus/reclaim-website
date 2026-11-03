@@ -21,7 +21,7 @@ Do not publish drafts or deploy the frontend until review and release checks pas
 
 ## Remaining release gates
 
-- Complete the standard Cloudflare production build and `npm run verify:branches` in an environment with Sanity DNS/network access. This task environment failed in workerd prerendering before it could fetch the production dataset.
+- GitHub CI passed the standard production branch-build verification on initial PR head `8af4be9`; require that check to pass on the final revision as well. This task environment failed in workerd prerendering before it could fetch the production dataset.
 - Verify desktop (1440px), tablet (768px), mobile (390px) and narrow mobile (320px): no horizontal overflow, correct header/menu, readable wrapping, one-column cards, clear CTA focus and no clipped editorial graphics. Capture desktop/mobile screenshots for the PR.
 - Test keyboard: skip link, navigation/dropdowns, mobile open/close/Escape, all CTAs, article/policy/research links and form focus. Run a browser accessibility scan and inspect the focus ring on both purple and white surfaces.
 - Check homepage source content against current Sanity; confirm no placeholder metrics, candidate recruitment, registration targets or claim to contest 2026 remains.

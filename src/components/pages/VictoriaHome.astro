@@ -75,7 +75,7 @@ const heroImage = hp.hero?.image?.asset
           </div>
         )
       }
-      <Ribbon accent="var(--horizon-blue)" />
+      <Ribbon />
     </section>
     {
       posts[0] && (
@@ -100,6 +100,7 @@ const heroImage = hp.hero?.image?.asset
           }
         </p><a href="/manifesto">How we think <span aria-hidden="true">→</span></a>
       </div>
+      <Ribbon variant="sweep" />
     </section>
     <section class="horizon-section tinted" aria-labelledby="latest-heading">
       <div class="horizon-shell">
@@ -281,7 +282,7 @@ const heroImage = hp.hero?.image?.asset
             href="/contact">Contribute research or volunteer</a
           ><a class="horizon-button outline" href="/get-involved">Ways to get involved</a>
         </div>
-      </div><Ribbon variant="band" accent="var(--horizon-blue)" />
+      </div><Ribbon variant="band" />
     </section>
   </main>
   <Footer />
