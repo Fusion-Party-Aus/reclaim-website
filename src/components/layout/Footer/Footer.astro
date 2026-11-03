@@ -40,8 +40,10 @@ interface Footer {
   networkBranding?: { text: string; url: string }
 }
 
+import Brand from '@/components/horizon/Brand.astro'
+const isVictoria = DEPLOYMENT.slug === 'vic'
 const footers = await getDocuments<Footer>('footer')
-const electorates = await getElectorates()
+const electorates = isVictoria ? [] : await getElectorates()
 const footerData: Footer = footers[0] || {
   logo: { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
   tagline: DEPLOYMENT.tagline,
@@ -49,6 +51,18 @@ const footerData: Footer = footers[0] || {
   resourceLinks: [],
   banner: { text: DEPLOYMENT.tagline, rotation: 0 },
   authorization: '',
+}
+if (isVictoria) {
+  footerData.tagline = DEPLOYMENT.tagline
+  footerData.banner = { text: 'Reason. Rights. Results.', rotation: 0 }
+  footerData.navColumns = footerData.navColumns?.map((column) => ({
+    ...column,
+    badgeLabel: column.badgeLabel === 'Candidates' ? 'Archives' : column.badgeLabel,
+    showElectorates: false,
+    links: column.links.filter(
+      (link) => !['/stand', '/electorates', '/candidates'].includes(link.url)
+    ),
+  }))
 }
 ---
 
@@ -76,15 +90,23 @@ const footerData: Footer = footers[0] || {
           {/* Campaign Branding */}
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
-                  {footerData.logo.mainText}
-                </span>
-                <span class="text-sm font-medium text-fg/40 uppercase tracking-wide">
-                  {footerData.logo.subText}
-                </span>
-              </div>
+              {
+                isVictoria ? (
+                  <Brand />
+                ) : (
+                  <>
+                    <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
+                    <div class="flex items-baseline gap-1.5 flex-wrap">
+                      <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
+                        {footerData.logo.mainText}
+                      </span>
+                      <span class="text-sm font-medium text-fg/40 uppercase tracking-wide">
+                        {footerData.logo.subText}
+                      </span>
+                    </div>
+                  </>
+                )
+              }
             </div>
 
             {

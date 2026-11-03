@@ -79,7 +79,7 @@ describe('deployment configuration', () => {
       'https://analytics.fusionparty.org.au/js/pa-HF_gBIYZhzFUGLXpsvgWh.js'
     )
     expect(config.seo.nationalOrganizationUrl).toBe('https://fusionparty.org.au/#organization')
-    expect(config.seo.logoPath).toBe('/logo-rings-color.png')
+    expect(config.seo.logoPath).toBe('/brand/fusion_horizon_logo_light.svg')
     expect(config.seo.defaultOgImage).toBe('/og/default.png')
     expect(config.cta).toEqual({
       getInvolved: '/get-involved',

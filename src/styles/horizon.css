@@ -1,0 +1,372 @@
+@import '@fontsource/newsreader/latin-400.css';
+@import '@fontsource/newsreader/latin-600.css';
+@import '@fontsource/outfit/latin-400.css';
+@import '@fontsource/outfit/latin-700.css';
+
+/* Horizon source: frontend BaseLayout, HeroSplit and Ribbon; Newsreader by editorial direction. */
+
+:root[data-theme='vic'] body {
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+:root[data-theme='vic'] :is(h1, h2, h3, h4, .editorial-title) {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 600;
+}
+:root[data-theme='vic'] :is(a, button, input, summary, textarea):focus-visible {
+  outline: 3px solid #003c71;
+  outline-offset: 4px;
+}
+:root[data-theme='vic'] .publication-header {
+  color: #32105a;
+  background: #fff;
+  border-color: #ded6e7;
+}
+:root[data-theme='vic'] .publication-header :is(.bg-surface-raised, .bg-grey-dark) {
+  background: #f8f5fb;
+}
+:root[data-theme='vic'] .publication-footer {
+  color: #32105a;
+  background: #fff;
+}
+.horizon-brand {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+.horizon-brand img {
+  width: 2.75rem;
+  height: auto;
+}
+.horizon-brand .horizon-wordmark {
+  width: 7.5rem;
+  max-height: 2.3rem;
+}
+.horizon-brand > span {
+  border-left: 1px solid #ded6e7;
+  padding-left: 0.65rem;
+  color: #54465f;
+  font-size: 0.9rem;
+}
+.horizon-home {
+  background: #fff;
+  color: #32105a;
+  line-height: 1.6;
+}
+.horizon-shell {
+  width: min(1280px, 100% - 3rem);
+  margin-inline: auto;
+}
+.horizon-section {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+.horizon-home h2 {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  margin: 0;
+}
+.horizon-home h3 {
+  font-size: 1.85rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  margin: 0.65rem 0 1rem;
+}
+.horizon-home p {
+  margin: 0 0 1rem;
+}
+.horizon-home a {
+  text-underline-offset: 0.2em;
+}
+.horizon-home a:hover {
+  text-decoration: underline;
+}
+.horizon-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #32105a;
+  color: white;
+  overflow: hidden;
+}
+.hero-copy {
+  align-self: center;
+  padding: clamp(3rem, 6vw, 6rem) max(1.5rem, calc((100vw - 1280px) / 2));
+  padding-right: 3rem;
+  z-index: 2;
+}
+.horizon-home h1 {
+  font:
+    600 clamp(3.2rem, 5.4vw, 5.8rem)/1.03 'Newsreader',
+    Georgia,
+    serif;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  color: white;
+  max-width: 13ch;
+  margin: 0.8rem 0 1.5rem;
+}
+.hero-intro {
+  max-width: 34rem;
+  font-size: 1.2rem;
+}
+.hero-photo {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 38rem;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.horizon-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.8rem;
+}
+.horizon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid white;
+  border-radius: 999px;
+  background: white;
+  color: #32105a;
+  font-weight: 700;
+  text-decoration: none;
+}
+.horizon-button.outline {
+  background: transparent;
+  color: white;
+}
+:root[data-theme='vic'] :is(.horizon-hero, .participation) a:focus-visible {
+  outline-color: white;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.latest-strip {
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid #ded6e7;
+}
+.latest-strip a {
+  flex: 1;
+  font-weight: 700;
+}
+.latest-strip time {
+  font-size: 0.8rem;
+  color: #54465f;
+  white-space: nowrap;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.intro > div {
+  padding-left: 2rem;
+  border-left: 1px solid #ded6e7;
+  font-size: 1.15rem;
+}
+.tinted {
+  background: #f8f5fb;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+.section-heading > a {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.section-deck {
+  max-width: 48rem;
+  font-size: 1.12rem;
+}
+.horizon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.horizon-card {
+  border: 1px solid #ded6e7;
+  background: white;
+  min-width: 0;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+.horizon-card h3 a {
+  text-decoration: none;
+}
+.card-copy {
+  padding: 1.6rem;
+}
+.card-copy > p:not(.card-meta) {
+  color: #54465f;
+}
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  color: #54465f;
+  font-size: 0.8rem;
+}
+.card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee7f4;
+}
+.card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.participation {
+  position: relative;
+  overflow: hidden;
+  background: #32105a;
+  color: white;
+}
+.participation > .horizon-shell {
+  position: relative;
+  z-index: 1;
+}
+.participation h2 {
+  max-width: 19ch;
+  color: white;
+}
+.participation .section-deck {
+  margin-top: 1.5rem;
+}
+@media (max-width: 900px) {
+  .horizon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero-copy {
+    padding-inline: 1.5rem;
+  }
+}
+@media (max-width: 760px) {
+  .horizon-hero,
+  .intro {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo {
+    grid-column: 1;
+    grid-row: 2;
+    height: 65vw;
+    min-height: 15rem;
+  }
+  .hero-copy {
+    padding-block: 3rem;
+  }
+  .intro {
+    gap: 2rem;
+  }
+  .intro > div {
+    padding-left: 0;
+    border: 0;
+  }
+  .section-heading,
+  .latest-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .horizon-brand.compact > span {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 560px) {
+  .horizon-grid {
+    grid-template-columns: 1fr;
+  }
+  .horizon-shell {
+    width: calc(100% - 2rem);
+  }
+  .horizon-brand img {
+    width: 2rem;
+  }
+  .horizon-brand .horizon-wordmark {
+    width: 6rem;
+  }
+}
+
+:root[data-theme='vic'] {
+  --branch-primary: #003c71;
+  --branch-secondary: #003c71;
+  --branch-accent: #003c71;
+  --branch-panel: #f8f5fb;
+  --branch-surface-gradient: #f8f5fb;
+}
+:root[data-theme='vic'] .publication-header :is(.text-mint, .nav-link) {
+  color: #32105a;
+}
+:root[data-theme='vic'] .publication-header :is(.nav-link, .mobile-nav a) {
+  border-color: transparent;
+}
+:root[data-theme='vic'] .publication-header a[aria-current='page'] {
+  border-color: #003c71;
+}
+:root[data-theme='vic'] .publication-footer :is(.text-fg\/50, .text-fg\/40, .text-fg\/30) {
+  color: #54465f;
+}
+:root[data-theme='vic'] .publication-footer > .bg-magenta {
+  border: 0;
+  background: #f8f5fb;
+}
+:root[data-theme='vic'] .publication-footer .bg-mint {
+  color: #32105a;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='vic'] *,
+  :root[data-theme='vic'] *::before,
+  :root[data-theme='vic'] *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Adapt retained publication components to the light canvas through their shared variants. */
+:root[data-theme='vic'] .public-editorial [data-card-variant='black'] {
+  background: #f8f5fb;
+  color: #32105a;
+  border-color: #ded6e7;
+}
+:root[data-theme='vic'] .public-editorial .ui-button.bg-black {
+  background: #003c71;
+  color: #fff;
+}
+:root[data-theme='vic'] .public-editorial .text-mint {
+  color: #003c71;
+}
+:root[data-theme='vic'] .public-editorial [class*='text-fg/'] {
+  color: #54465f;
+}
+:root[data-theme='vic'] .public-editorial :is(.contact-links a, .contact-socials a):hover {
+  color: #32105a;
+}
+:root[data-theme='vic'] .public-editorial .ui-button {
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: 'Outfit', sans-serif;
+}
