@@ -1,3 +1,4 @@
+import electionGuide from './electionGuide'
 import page from './page'
 import policy from './policy'
 import electorate from './electorate'
@@ -21,6 +22,7 @@ import investigation from './investigation'
 import investigationSource from './investigationSource'
 
 export const schemaTypes = [
+  electionGuide,
   page,
   policy,
   electorate,

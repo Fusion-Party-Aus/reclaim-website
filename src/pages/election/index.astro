@@ -1,0 +1,72 @@
+---
+import { DEPLOYMENT } from '@/lib/deployment'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { getElectionGuides, getElectionArticles } from '@/lib/sanity'
+import { formatDate } from '@/lib/homepage'
+import '@/styles/global.css'
+if (DEPLOYMENT.slug !== 'vic') return Astro.redirect('/404')
+const [guides, articles] = await Promise.all([getElectionGuides(), getElectionArticles()])
+---
+
+<BaseLayout
+  title="2026 Victorian election coverage | Fusion Victoria"
+  description="Documented commitments, election analysis and published voting recommendations from Fusion Victoria."
+>
+  <Header />
+  <main id="main-content" class="horizon-home horizon-shell horizon-section">
+    <p class="eyebrow">Election coverage</p><h1 style="color:var(--horizon-purple);max-width:20ch">
+      Victoria votes, 2026
+    </h1>
+    <p class="section-deck">
+      Fusion Victoria is not contesting the 2026 Victorian state election. We continue to analyse
+      documented party commitments and publish approved voting recommendations. Recommendations are
+      organisational positions; source material and analysis are identified in each publication.
+    </p>
+    <section class="horizon-section" aria-labelledby="analysis-heading">
+      <h2 id="analysis-heading">Articles and analysis</h2><div class="horizon-grid">
+        {
+          articles.map((post) => (
+            <article class="horizon-card card-copy">
+              <>
+                <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                <h3>
+                  <a href={`/blog/${post.slug.current}`}>{post.title}</a>
+                </h3>
+                <p>{post.excerpt}</p>
+              </>
+            </article>
+          ))
+        }
+      </div>{!articles.length && <p>Election articles will appear here once published.</p>}
+    </section>
+    {
+      (['lower', 'upper'] as const).map((house) => (
+        <section class="horizon-section" aria-labelledby={`${house}-heading`}>
+          <div class="horizon-grid">
+            {guides
+              .filter((g) => g.house === house)
+              .map((guide) => (
+                <article class="horizon-card card-copy">
+                  <h3>
+                    <a href={`/election/${guide.slug.current}`}>{guide.electorateName}</a>
+                  </h3>
+                  <p>{guide.summary}</p>
+                  <p>
+                    Updated{' '}
+                    <time datetime={guide.updatedAt || guide.publishedAt}>
+                      {formatDate(guide.updatedAt || guide.publishedAt)}
+                    </time>
+                  </p>
+                </article>
+              ))}
+          </div>
+          {!guides.some((g) => g.house === house) && (
+            <p>No recommendations published yet. Only approved recommendations will be listed.</p>
+          )}
+        </section>
+      ))
+    }
+  </main><Footer />
+</BaseLayout>

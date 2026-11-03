@@ -2,7 +2,15 @@ import { DEPLOYMENT } from './deployment'
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import type { Policy, Electorate, FAQ, Page, HomePage, ResearchResource } from '../types/sanity'
+import type {
+  Policy,
+  Electorate,
+  FAQ,
+  Page,
+  HomePage,
+  ResearchResource,
+  SanityImageAsset,
+} from '../types/sanity'
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true'
 
@@ -266,4 +274,43 @@ export async function getResearchForPolicy(policyId: string): Promise<ResearchRe
     }
   }`
   return await client.fetch(query, { policyId })
+}
+
+export interface HomepagePost {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  publishedAt: string
+  category?: string
+  featuredImage?: SanityImageAsset & { alt?: string }
+}
+export async function getLatestPosts(): Promise<HomepagePost[]> {
+  return client.fetch(
+    `*[_type == "blogPost" && !(_id in path("drafts.**")) && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc)[0...3]{_id,title,slug,excerpt,publishedAt,category,featuredImage}`
+  )
+}
+export interface ElectionGuide {
+  _id: string
+  title: string
+  slug: { current: string }
+  electorateId: string
+  electorateName: string
+  house: 'lower' | 'upper'
+  electionYear: number
+  publishedAt: string
+  updatedAt?: string
+  summary?: string
+  recommendation?: import('./portableText').PortableTextBlock[]
+  sources?: { title: string; url: string; accessedAt?: string }[]
+}
+export async function getElectionGuides(): Promise<ElectionGuide[]> {
+  return client.fetch(
+    `*[_type == "electionGuide" && !(_id in path("drafts.**")) && status == "published" && electionYear == 2026 && defined(slug.current) && defined(electorateId) && defined(electorateName) && count(recommendation) > 0 && count(sources) > 0 && house in ["lower","upper"] && publishedAt <= now()] | order(house asc, electorateName asc){_id,title,slug,electorateId,electorateName,house,electionYear,publishedAt,updatedAt,summary,recommendation,sources}`
+  )
+}
+export async function getElectionArticles(): Promise<HomepagePost[]> {
+  return client.fetch(
+    `*[_type == "blogPost" && !(_id in path("drafts.**")) && ((electionCoverage == true && electionYear == 2026) || (!defined(electionCoverage) && "election" in tags && publishedAt >= "2026-01-01T00:00:00Z" && publishedAt < "2027-01-01T00:00:00Z")) && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc){_id,title,slug,excerpt,publishedAt,category,featuredImage}`
+  )
 }
