@@ -12,6 +12,10 @@
   --color-on-secondary: #0f0018;
   --color-magenta: #003c71;
   --color-magenta-dark: #002c53;
+  --color-magenta-bright: #002c53;
+  --color-yellow: #003c71;
+  --color-yellow-bright: #002c53;
+  --shadow-brutal-magenta: 0 2px 10px rgba(50, 16, 90, 0.15);
   --color-fg: #32105a;
   --color-muted: #54465f;
   --color-focus: #003c71;

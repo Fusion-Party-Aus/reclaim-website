@@ -15,14 +15,28 @@ import type { Electorate } from '../../types/sanity'
 const electorates = await getElectorates()
 const pageData = await getElectoratesPage()
 
-const title = pageData?.title || 'Electorates'
-const subtitle = pageData?.subtitle || "Where we're running"
-const introCard = pageData?.introCard || {
+const isVictoria = DEPLOYMENT.slug === 'vic'
+const title = isVictoria ? 'Candidate records' : pageData?.title || 'Electorates'
+const subtitle = isVictoria
+  ? 'Legacy candidate profiles and voting guides. Fusion Victoria is not contesting the 2026 Victorian election.'
+  : pageData?.subtitle || "Where we're running"
+const introCard = (isVictoria
+  ? {
+      title: 'Candidate records',
+      body: 'These retained pages are separate from current election coverage. Candidate biographies and older voting guides are preserved for reference.',
+      highlight: 'For current analysis and approved recommendations, visit Election coverage.',
+    }
+  : pageData?.introCard) || {
   title: 'Our Candidates',
   body: "We're fielding candidates across Australia. Each electorate page shows our candidate, local commitments, and exactly how we'll fund and deliver them.",
   highlight: 'Click any electorate to see our full plan for your area.',
 }
-const ctaSection = pageData?.ctaSection || {
+const ctaSection = (isVictoria
+  ? {
+      title: 'Follow our ongoing work',
+      body: 'Read current research, policy commentary and election analysis, or get involved in your community.',
+    }
+  : pageData?.ctaSection) || {
   title: 'Not in these electorates?',
   body: "We're building campaigns across more areas. Help us bring real change to your electorate.",
 }
@@ -210,6 +224,13 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
     : DEPLOYMENT.seo.defaultOgImage}
 >
   <Header />
+  {
+    isVictoria && (
+      <aside class="horizon-shell py-6">
+        <a href="/election">Read current 2026 Victorian election coverage →</a>
+      </aside>
+    )
+  }
   <Hero title={title} subtitle={subtitle} />
 
   {/* ── Intro panel ── */}

@@ -143,6 +143,15 @@ const tierConfig: Record<
   imageAlt={electorate.candidateName || electorate.name}
 >
   <Header />
+  {
+    DEPLOYMENT.slug === 'vic' && (
+      <aside class="horizon-shell py-6" aria-label="Legacy candidate page">
+        <strong>Legacy candidate page.</strong> Fusion Victoria is not contesting the 2026 Victorian
+        election.{' '}
+        <a href="/election">Read current election analysis and approved voting recommendations →</a>
+      </aside>
+    )
+  }
 
   <Hero
     title={electorate.name}

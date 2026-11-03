@@ -370,3 +370,8 @@
   letter-spacing: normal;
   font-family: 'Outfit', sans-serif;
 }
+:root[data-theme='vic'] .public-editorial > a[href='#main-content']:focus {
+  background: #fff;
+  color: #32105a;
+  border-color: #003c71;
+}

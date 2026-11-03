@@ -15,6 +15,8 @@ import '../styles/editorial.css'
 const pages = await getPages()
 
 const slug = Astro.params.slug || ''
+// Retire the obsolete 2026 candidate recruitment entry point without deleting its CMS record.
+if (DEPLOYMENT.slug === 'vic' && slug === 'stand') return Astro.redirect('/get-involved', 302)
 
 const allPages = (pages as Page[])
   .filter((p) => p.slug?.current)
