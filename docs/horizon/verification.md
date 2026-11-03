@@ -1,32 +1,46 @@
 # Verification and handover — 3 November 2026
 
-## Passing checks
+## Implementation checks
 
-- `npm test -- --run`: **262 tests pass across 22 files**, including added editorial selection tests and existing branch, Sanity, policy-feed and service-worker tests.
-- `NODE_ENV=development npm run type-check`: **0 errors, 0 warnings**, 62 informational/deprecation hints. Development selects the existing Node adapter; the default Cloudflare adapter cannot initialise network-interface inspection in this host without a temporary host shim.
-- `npm run lint`: **0 errors**, 93 existing warnings. Changed-feature formatting checks pass. Whole-repository `format:check` still flags unrelated pre-existing files; these were not reformatted wholesale.
-- `npx tsc --project studio/tsconfig.json --noEmit`: passes after installing the Studio's declared dependencies with `npm ci --ignore-scripts`.
-- Node-adapter Astro build completes, including existing static electorate/FAQ routes. Existing large-bundle warnings remain.
-- Built SSR homepage returns **200** against the production Sanity dataset. It displays the Melton council question article, Preston submission and toll-cap analysis, three real research resources, and the curated Data Centres / Complete Neighbourhoods / Open Government policies.
-- Built SSR navigation checks return **200** for `/blog`, the Melton article, `/research`, the SRL audit resource, `/policies`, Complete Neighbourhoods, `/election`, `/get-involved`, and `/contact`.
-- Rendered homepage HTML contains none of `Reignite Democracy`, `Contesting Victoria`, `Registered Members`, `Candidates Ready`, or `No candidate yet`.
-- Square image inspected in rendered markup: `1080x1080.png?w=800&fit=max&auto=format`, without a height/crop transform; CSS uses intrinsic height. Canonical light mark and wordmark were rasterised and visually inspected for correct source assets.
-- The election article query was checked against live published metadata: it returns the toll-cap and Melbourne/Madrid housing-politics articles using their existing explicit `election` tag. No political recommendations or rankings were generated.
+- `npm test -- --run`: **279 tests pass across 23 files**, including editorial content selection and 17 semantic contrast checks.
+- `NODE_ENV=development npx astro check`: **0 errors, 0 warnings**, 62 informational/deprecation hints.
+- `npm run lint`: **0 errors**, 93 existing warnings.
+- Studio TypeScript check passed during schema implementation.
+- Node-adapter Astro production-output build passes. The host cannot run the default Cloudflare adapter because `os.networkInterfaces()` fails; a temporary host-only shim supplies loopback metadata for supplementary local tooling. It is outside the repository.
+- **GitHub CI on implementation commit `3a08b691994b2074bffafaac6c245ec90689a068`: production Branch build verification passes; Security Audit passes; lint passes.** Run: https://github.com/Fusion-Party-Aus/reclaim-website/actions/runs/41609163381
+- CI's Lint & Test job stops at eight pre-existing formatting failures, before its type/test steps. All eight files are unchanged by this PR: `docs/agents/skills/fusion-policy-style/SKILL.md`, `policy-baseline-style-rule.md`, `policy-baseline.md`, `src/components/pages/QueenslandHome.astro`, `src/components/ui/MovementMetrics.astro`, `src/pages/index.astro`, `src/pages/investigations/[slug].astro`, `studio/schemaTypes/investigation.ts`. Local type checks and tests pass. These unrelated files were not reformatted to conceal the baseline failure.
 
-## Contrast and structural review
+## Rendered-page verification
 
-New homepage colour pairs have calculated contrast ratios: purple/white **15.47:1**, body text/white **8.68:1**, body text/paper **8.04:1**, white/purple **15.47:1**, blue/white **11.14:1**. These exceed AA normal-text thresholds for those pairs; they are not a claim of a completed site-wide accessibility audit.
+Browser checks use actual built SSR HTML against published production Sanity content, with the matching compiled assets. A local review shell supplies independent 320px/390px iframe viewports; it is outside the production site. This is rendered implementation evidence, not a mockup.
 
-Source review confirms one main landmark and one H1 on the homepage, ordered section/card headings, semantic dates, named navigation, retained skip link, keyboard-focus rings on white and purple, mobile navigation Escape handling, reduced motion, responsive grids and uncropped editorial graphics. Historical candidate pages have a legacy notice pointing to current coverage, without claiming the 2026 election has ended.
+Reviewed beyond the homepage: About, blog listing, blog article, research listing and report, policy platform and individual policy, election hub, Get involved and Contact. Desktop checks cover homepage, About, research and participation layouts. Mobile checks cover the listed page families, including 320px Contact and long policy titles. Checked pages have no horizontal document overflow at the observed widths.
 
-## External verification limits — release remains blocked
+Fixed issues found during review:
 
-The standard `npm run build` reaches the Cloudflare/workerd prerender stage but fails resolving `qwl3f8jb.apicdn.sanity.io` in this environment. Earlier initialisation also encountered `uv_interface_addresses` restrictions. A temporary, untracked `/tmp` shim supplied loopback metadata only to permit local build tooling; it is not part of the PR and does not change production networking. A Node-adapter build is supplementary evidence, not a substitute for a passing Cloudflare release build.
+- White inherited prose on About's paper background and purple headings on navy panels.
+- Dark gradient and teal fallbacks in the blog masthead; links now use accessible semantic ink.
+- Grey overlays that dirtied light research/policy panels.
+- Unreadable cost badges and policy links; typography and control wrapping on mobile.
+- Long policy titles breaking the final letter onto a line of its own.
+- Two-column election cards squeezed on narrow phones, and missing chamber section headings.
+- Mobile navigation open/close and Escape focus return; visible navy/white keyboard focus treatment.
+- Oversized stretched ribbon overlays: unchanged Signal geometry now preserves aspect ratio, stays within the mobile hero image and reserves an edge below participation controls.
+- Active Get involved campaign/candidate prompts are suppressed for Victoria without modifying archived content or CMS documents.
 
-The available browser could not connect to the local preview, and the host's local HTTP connection also failed despite Astro reporting readiness. Therefore **desktop/mobile screenshots, browser accessibility scanning, visual layout verification and interactive keyboard checks remain unverified**. No synthetic screenshots are supplied. Complete the browser checklist in `sanity-release.md` in a reachable development/preview environment before approving release.
+Representative screenshots are committed alongside this report:
 
-Queensland's manifest and theme CSS are unchanged, conditional brand changes are Victoria-only, and the existing branch test suite passes. A separate Queensland Node build is checked during handover; both Victoria and Queensland supplementary Node builds pass, and both SSR homepages return 200 with the correct theme and content. GitHub CI on initial PR head `8af4be9` also passed **Branch build verification** (all manifest branches) and Security Audit. The Lint & Test job passed lint but stopped at the 11 unrelated baseline formatting files before its type/test steps; local type checks and 262 tests pass. Queensland browser regression checks remain a release gate.
+- [Desktop homepage](screenshots/desktop-homepage.jpg)
+- [About, policy platform and research at 390px](screenshots/mobile-inner-pages.jpg)
 
-No Sanity draft was overwritten or published. No schema was deployed, no production deployment was made, and main was not merged. The PR must remain a draft until release gates are completed.
+Built SSR routes return HTTP 200 for `/`, `/about`, `/blog`, the current commute article, the Melton article, `/research`, the SRL audit report, `/policies`, Complete Neighbourhoods, `/election`, `/get-involved`, `/contact`, `/faq` and `/vision`.
 
-Signal ribbon follow-up: folded and sweep SVG surfaces were rasterised and visually inspected against the source geometry, including the silver branch face, lit lavender curves and dark reverses. These are asset checks, not website screenshots. The SVGs have unique gradient IDs per placement, are decorative and noninteractive, and ship without client JavaScript.
+The homepage displays real current published articles, three research resources and curated adopted policies. No draft/future content or invented recommendations are included. Article images use width-only `fit=max` transforms and intrinsic height / `object-fit: contain`; square graphics are not cropped. Keyboard focus was observed in the blog feed; mobile menu Escape handling was exercised.
+
+## Accessibility scope and remaining release gates
+
+The automated contrast tests cover normal text, filled buttons, hover states and control borders across the semantic palette. Browser review includes text/panel contrast, headings, navigation, responsive layout and focus states. This is not a claim of exhaustive WCAG certification or assistive-technology testing of every page.
+
+Keep the PR in draft pending design approval, review of the eight-file baseline formatting failure and coordinated Sanity/schema release decisions in `sanity-release.md`. Current About/Get involved content changed editorially during the review; fresh SSR snapshots consume that published content. This agent did not publish or overwrite any Sanity document.
+
+Queensland is served from a separate branch, per the user's clarification. No further Queensland implementation or browser verification was performed. No main merge or production deployment was made.
