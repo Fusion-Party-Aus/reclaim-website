@@ -87,7 +87,7 @@ const relatedPosts = allPosts
 
 const colors = getCategoryColor(post.category)
 const imageUrl = post.featuredImage
-  ? urlFor(post.featuredImage).width(1200).height(600).url()
+  ? urlFor(post.featuredImage).width(1200).fit('max').url()
   : null
 const authorImageUrl = post.author?.image
   ? urlFor(post.author.image).width(100).height(100).url()
@@ -264,7 +264,6 @@ const articleStructuredData = {
                 alt={post.featuredImage?.alt || post.title}
                 loading="eager"
                 width="1200"
-                height="600"
                 class="w-full h-auto rounded-sm"
               />
             </div>
