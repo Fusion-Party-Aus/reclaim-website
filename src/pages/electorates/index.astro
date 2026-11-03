@@ -70,7 +70,7 @@ const accentCycle = [
     name: 'magenta',
     bg: 'bg-magenta',
     text: 'text-fg',
-    accentText: 'text-magenta',
+    accentText: 'text-link',
     border: 'border-magenta',
     borderTop: 'border-t-magenta',
   },
@@ -78,7 +78,7 @@ const accentCycle = [
     name: 'mint',
     bg: 'bg-mint',
     text: 'text-black',
-    accentText: 'text-mint',
+    accentText: 'text-secondary-ink',
     border: 'border-mint',
     borderTop: 'border-t-mint',
   },
@@ -86,7 +86,7 @@ const accentCycle = [
     name: 'yellow',
     bg: 'bg-yellow',
     text: 'text-fg',
-    accentText: 'text-yellow',
+    accentText: 'text-link',
     border: 'border-yellow',
     borderTop: 'border-t-yellow',
   },
@@ -234,7 +234,9 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
   <Hero title={title} subtitle={subtitle} />
 
   {/* ── Intro panel ── */}
-  <section class="border-b border-mint/30 py-14 px-4 md:px-8 relative overflow-hidden bg-mint">
+  <section
+    class="border-b border-mint/30 py-14 px-4 md:px-8 relative overflow-hidden bg-mint surface-secondary"
+  >
     <div class="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
       <span
         class="text-[16rem] font-display font-black uppercase leading-none select-none text-black"
@@ -254,7 +256,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
     </div>
   </section>
 
-  <main id="main-content" class="site-editorial bg-surface-base py-16 px-4 md:px-8">
+  <main id="main-content" class="site-editorial bg-surface-base py-16 px-4 md:px-8 surface-paper">
     <div class="max-w-7xl mx-auto">
       {
         electorates.length === 0 ? (
@@ -272,7 +274,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
             {electionGroups.map(({ election, count, houses }) => (
               <section>
                 {/* ── Election heading ── */}
-                <div class="flex flex-wrap items-center gap-4 mb-8 pb-4 border-b border-white/10">
+                <div class="flex flex-wrap items-center gap-4 mb-8 pb-4 border-b border-line">
                   <BrutalBadge
                     variant="black"
                     icon={election === 'Current Campaign' ? 'mdi:vote' : 'mdi:archive'}
@@ -283,7 +285,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                   <h2 class="text-3xl md:text-4xl font-display font-black uppercase leading-tight text-fg">
                     {election}
                   </h2>
-                  <span class="text-sm font-black text-fg/40 uppercase tracking-widest ml-auto shrink-0">
+                  <span class="text-sm font-black text-muted uppercase tracking-widest ml-auto shrink-0">
                     {count} seat{count !== 1 ? 's' : ''}
                   </span>
                 </div>
@@ -306,10 +308,10 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                               ({ state, label: stateLabel, electorates: stateElectorates }) => (
                                 <div>
                                   <div class="flex items-center gap-3 mb-4">
-                                    <span class="text-xs font-black uppercase tracking-widest bg-magenta text-fg px-2 py-0.5 rounded-sm">
+                                    <span class="text-xs font-black uppercase tracking-widest bg-magenta text-on-primary px-2 py-0.5 rounded-sm surface-primary">
                                       {state}
                                     </span>
-                                    <span class="text-sm font-bold text-fg/50">{stateLabel}</span>
+                                    <span class="text-sm font-bold text-muted">{stateLabel}</span>
                                   </div>
                                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {stateElectorates.map((electorate, idx) => {
@@ -317,7 +319,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                       return (
                                         <a
                                           href={`/electorates/${electorate.slug.current}`}
-                                          class={`group bg-grey-dark border border-white/10 rounded-sm border-t-2 flex flex-col hover:border-white/25 transition-colors ${accent.borderTop}`}
+                                          class={`group bg-grey-dark border border-line rounded-sm border-t-2 flex flex-col hover:border-line-mid transition-colors ${accent.borderTop}`}
                                         >
                                           {electorate.candidateImage ? (
                                             <div class="overflow-hidden relative">
@@ -345,7 +347,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                               {electorate.name}
                                             </h4>
                                             {electorate.candidateName && (
-                                              <div class="flex items-center gap-2 bg-black/30 rounded-sm px-3 py-2 w-fit mt-2 mb-auto">
+                                              <div class="flex items-center gap-2 bg-surface-raised rounded-sm px-3 py-2 w-fit mt-2 mb-auto surface-paper">
                                                 <Icon
                                                   name="mdi:account"
                                                   class={`w-4 h-4 ${accent.accentText}`}
@@ -355,7 +357,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                                 </span>
                                               </div>
                                             )}
-                                            <div class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta transition-all">
+                                            <div class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-surface-raised text-fg group-hover:bg-magenta transition-all surface-paper">
                                               <Icon name="mdi:eye" class="w-4 h-4" /> View Plan
                                             </div>
                                           </div>
@@ -375,7 +377,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                               return (
                                 <a
                                   href={`/electorates/${electorate.slug.current}`}
-                                  class={`group bg-grey-dark border border-white/10 rounded-sm border-t-2 flex flex-col hover:border-white/25 transition-colors border-t-${accent.name}`}
+                                  class={`group bg-grey-dark border border-line rounded-sm border-t-2 flex flex-col hover:border-line-mid transition-colors border-t-${accent.name}`}
                                 >
                                   {electorate.candidateImage ? (
                                     <div class="overflow-hidden relative">
@@ -403,12 +405,12 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                       {electorate.name}
                                     </h4>
                                     {electorate.subtitle && (
-                                      <p class="text-xs font-black uppercase tracking-wide text-fg/50 mb-2">
+                                      <p class="text-xs font-black uppercase tracking-wide text-muted mb-2">
                                         {electorate.subtitle}
                                       </p>
                                     )}
                                     {electorate.candidateName && (
-                                      <div class="flex items-center gap-2 bg-black/30 rounded-sm px-3 py-2 w-fit mt-2 mb-3">
+                                      <div class="flex items-center gap-2 bg-surface-raised rounded-sm px-3 py-2 w-fit mt-2 mb-3 surface-paper">
                                         <Icon
                                           name="mdi:account"
                                           class={`w-4 h-4 ${accent.accentText}`}
@@ -433,7 +435,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
                                           ))}
                                         </ul>
                                       )}
-                                    <div class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-black/30 text-fg group-hover:bg-magenta transition-all">
+                                    <div class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 font-black uppercase text-xs rounded-sm bg-surface-raised text-fg group-hover:bg-magenta transition-all surface-paper">
                                       <Icon name="mdi:eye" class="w-4 h-4" /> View Plan for{' '}
                                       {electorate.name}
                                     </div>
@@ -459,7 +461,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
         <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
           {ctaSection.title}
         </h2>
-        <p class="text-base font-black text-fg/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+        <p class="text-base font-black text-muted mb-8 border-l-4 border-yellow pl-4 max-w-lg">
           {ctaSection.body}
         </p>
         <div class="flex flex-wrap gap-3">
@@ -477,7 +479,7 @@ const electionGroups: ElectionGroup[] = electionKeys.map((election) => {
           <div class="mt-10 text-center">
             <a
               href="/past-candidates"
-              class="inline-flex items-center gap-2 font-black uppercase text-xs border-b border-white/30 hover:text-magenta hover:border-magenta transition-colors pb-0.5"
+              class="inline-flex items-center gap-2 font-black uppercase text-xs border-b border-line-mid hover:text-link hover:border-magenta transition-colors pb-0.5"
             >
               <Icon name="mdi:archive-search-outline" class="w-4 h-4" /> View Past Candidates
               Archive

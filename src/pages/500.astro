@@ -36,13 +36,16 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 >
   <Header />
 
-  <main id="main-content" class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
+  <main
+    id="main-content"
+    class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20 surface-dark"
+  >
     <!-- Fire and chaos background -->
     <div class="absolute inset-0 opacity-20">
       {
         [...Array(8)].map((_, i) => (
           <div
-            class={`absolute text-8xl ${i % 2 === 0 ? 'text-yellow' : 'text-magenta'}`}
+            class={`absolute text-8xl ${i % 2 === 0 ? 'text-link' : 'text-link'}`}
             style={`
             top: ${Math.random() * 80 + 10}%;
             left: ${Math.random() * 90}%;
@@ -59,7 +62,8 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
       <!-- Giant 500 -->
       <div class="text-center mb-12">
         <div class="relative inline-block mb-8">
-          <div class="absolute inset-0 bg-yellow blur-3xl opacity-30 animate-pulse"></div>
+          <div class="absolute inset-0 bg-yellow blur-3xl opacity-30 animate-pulse surface-accent">
+          </div>
           <h1
             class="relative text-[12rem] md:text-[20rem] font-black uppercase leading-none text-fg font-display"
             style="animation: shake 0.5s ease-in-out infinite;"
@@ -72,7 +76,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
           INTERNAL SERVER ERROR
         </h2>
 
-        <p class="text-2xl font-bold text-yellow">(We're the ones who messed up this time)</p>
+        <p class="text-2xl font-bold text-link">(We're the ones who messed up this time)</p>
       </div>
 
       <!-- Error Message Card -->
@@ -81,7 +85,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
           class="absolute -top-8 -right-8 w-24 h-24 bg-yellow/20 border border-yellow rounded-sm rotate-45 flex items-center justify-center"
           style="animation: spin 4s linear infinite;"
         >
-          <Icon name="mdi:fire" class="w-16 h-16 text-yellow -rotate-45" />
+          <Icon name="mdi:fire" class="w-16 h-16 text-link -rotate-45" />
         </div>
 
         <BrutalCard variant="surface" shadow="yellow" padding="lg">
@@ -90,10 +94,10 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
               class="w-16 h-16 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center flex-shrink-0"
               style="animation: wiggle 2s ease-in-out infinite;"
             >
-              <Icon name="mdi:alert-octagon" class="w-10 h-10 text-magenta" />
+              <Icon name="mdi:alert-octagon" class="w-10 h-10 text-link" />
             </div>
             <div>
-              <h3 class="text-3xl font-black uppercase text-yellow mb-2 font-display">OH NO!</h3>
+              <h3 class="text-3xl font-black uppercase text-link mb-2 font-display">OH NO!</h3>
               <p class="text-xl md:text-2xl font-bold text-fg">
                 {randomMessage}
               </p>
@@ -102,27 +106,27 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 
           <!-- Fake Console Output -->
           <div
-            class="bg-black/40 border border-white/10 rounded-sm p-6 font-mono text-sm overflow-x-auto"
+            class="bg-surface-raised border border-line rounded-sm p-6 font-mono text-sm overflow-x-auto surface-paper"
           >
-            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
+            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-line">
               <div class="flex gap-2">
-                <div class="w-3 h-3 bg-magenta rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow rounded-full"></div>
-                <div class="w-3 h-3 bg-mint rounded-full"></div>
+                <div class="w-3 h-3 bg-magenta rounded-full surface-primary"></div>
+                <div class="w-3 h-3 bg-yellow rounded-full surface-accent"></div>
+                <div class="w-3 h-3 bg-mint rounded-full surface-secondary"></div>
               </div>
-              <span class="text-fg/40 text-xs">console.error()</span>
+              <span class="text-muted text-xs">console.error()</span>
             </div>
             {
               techErrors.map((error, i) => (
                 <div
-                  class="mb-2 text-magenta"
+                  class="mb-2 text-link"
                   style={`animation: fadeIn 0.5s ease-in ${i * 0.2}s backwards;`}
                 >
-                  <span class="text-fg/30">[{new Date().toLocaleTimeString()}]</span> {error}
+                  <span class="text-muted">[{new Date().toLocaleTimeString()}]</span> {error}
                 </div>
               ))
             }
-            <div class="mt-4 text-yellow animate-pulse">&gt; Attempting to recover...</div>
+            <div class="mt-4 text-link animate-pulse">&gt; Attempting to recover...</div>
           </div>
         </BrutalCard>
       </div>
@@ -131,15 +135,15 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
         <button
           onclick="window.location.reload()"
-          class="block bg-yellow rounded-sm border border-white/10 p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden"
+          class="block bg-yellow rounded-sm border border-line p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden surface-accent"
         >
           <div
-            class="absolute top-0 right-0 w-32 h-32 bg-magenta opacity-20 rounded-sm rotate-45 -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute top-0 right-0 w-32 h-32 bg-magenta opacity-20 rounded-sm rotate-45 -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform surface-primary"
           >
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-black/10 border border-black/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-surface-raised border border-black/20 rounded-full group-hover:rotate-180 transition-transform duration-500 surface-paper"
             >
               <Icon name="mdi:refresh" class="w-12 h-12 text-fg" />
             </div>
@@ -150,34 +154,34 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 
         <a
           href="/"
-          class="block bg-grey-dark border border-white/10 rounded-sm p-8 text-center group transition-all hover:-translate-y-2 hover:-rotate-1 relative overflow-hidden"
+          class="block bg-grey-dark border border-line rounded-sm p-8 text-center group transition-all hover:-translate-y-2 hover:-rotate-1 relative overflow-hidden surface-paper"
         >
           <div
-            class="absolute bottom-0 left-0 w-32 h-32 bg-yellow opacity-10 rounded-sm -rotate-45 translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute bottom-0 left-0 w-32 h-32 bg-yellow opacity-10 rounded-sm -rotate-45 translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform surface-accent"
           >
           </div>
           <div class="relative z-10">
             <div
               class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-magenta/10 border border-magenta rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
-              <Icon name="mdi:home" class="w-12 h-12 text-magenta" />
+              <Icon name="mdi:home" class="w-12 h-12 text-link" />
             </div>
             <h3 class="text-3xl font-black uppercase mb-2 text-fg font-display">Go Home</h3>
-            <p class="text-sm font-bold text-fg/60">Safe haven awaits</p>
+            <p class="text-sm font-bold text-muted">Safe haven awaits</p>
           </div>
         </a>
 
         <a
           href={DEPLOYMENT.cta.contact}
-          class="block bg-magenta rounded-sm border border-white/10 p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden"
+          class="block bg-magenta rounded-sm border border-line p-8 text-center group transition-all hover:-translate-y-2 hover:rotate-1 relative overflow-hidden surface-primary"
         >
           <div
-            class="absolute top-0 left-0 w-32 h-32 bg-yellow opacity-20 rounded-sm rotate-12 -translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform"
+            class="absolute top-0 left-0 w-32 h-32 bg-yellow opacity-20 rounded-sm rotate-12 -translate-y-12 -translate-x-12 group-hover:scale-150 transition-transform surface-accent"
           >
           </div>
           <div class="relative z-10">
             <div
-              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white/10 border border-white/20 rounded-full group-hover:rotate-180 transition-transform duration-500"
+              class="w-20 h-20 mb-4 mx-auto flex items-center justify-center bg-white/10 border border-line-mid rounded-full group-hover:rotate-180 transition-transform duration-500"
             >
               <Icon name="mdi:email-alert" class="w-12 h-12 text-fg" />
             </div>
@@ -194,15 +198,15 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
             <div
               class="w-16 h-16 bg-yellow/10 border border-yellow rounded-sm flex items-center justify-center"
             >
-              <Icon name="mdi:emoticon-sad" class="w-10 h-10 text-yellow" />
+              <Icon name="mdi:emoticon-sad" class="w-10 h-10 text-link" />
             </div>
             <h3 class="text-2xl font-black uppercase font-display">Our Sincere Apologies</h3>
           </div>
-          <p class="text-lg font-bold text-fg/70 leading-relaxed mb-4">
+          <p class="text-lg font-bold text-muted leading-relaxed mb-4">
             We're experiencing technical difficulties. Our team has been notified and we're working
             on it!
           </p>
-          <p class="text-sm font-bold text-fg/50">
+          <p class="text-sm font-bold text-muted">
             Unlike the major parties, we actually admit when we make mistakes and work to fix them.
             💪
           </p>

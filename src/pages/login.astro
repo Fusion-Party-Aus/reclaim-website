@@ -49,17 +49,15 @@ if (Astro.request.method === 'POST') {
 
   <main
     id="main-content"
-    class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20 flex items-center justify-center"
+    class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20 flex items-center justify-center surface-dark"
   >
     <div class="max-w-md w-full mx-auto px-4 relative z-10">
       <BrutalCard variant="surface" shadow="magenta" padding="lg" class="relative">
         <div class="text-center mb-8">
           <div class="inline-block bg-magenta/10 border border-magenta rounded-sm p-4 mb-4">
-            <Icon name="mdi:lock" class="w-12 h-12 text-magenta" />
+            <Icon name="mdi:lock" class="w-12 h-12 text-link" />
           </div>
-          <h1 class="text-4xl font-black uppercase text-fg font-display">
-            AUTHORISED ACCESS ONLY
-          </h1>
+          <h1 class="text-4xl font-black uppercase text-fg font-display">AUTHORISED ACCESS ONLY</h1>
           <p class="text-fg/50 mt-2 font-bold uppercase tracking-wider text-sm">
             Please enter your passphrase
           </p>
@@ -91,7 +89,7 @@ if (Astro.request.method === 'POST') {
 
           <button
             type="submit"
-            class="w-full bg-mint text-black border border-white/10 rounded-sm p-4 font-black uppercase text-lg hover:bg-mint-bright transition-all font-display"
+            class="w-full bg-mint text-on-secondary border border-white/10 rounded-sm p-4 font-black uppercase text-lg hover:bg-mint-bright transition-all font-display surface-secondary"
           >
             Verify Identity <Icon name="mdi:arrow-right" class="w-6 h-6 inline ml-2" />
           </button>

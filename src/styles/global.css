@@ -3,9 +3,13 @@
     Dark-first, evidence-forward, spectrum accents.
     ============================================ */
 
-/* Import Google Fonts. Archivo Black/Anton stay loaded for any
-   not-yet-migrated inline font-family references on long-tail pages. */
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&family=Space+Mono:wght@400;700&family=Archivo+Black&family=Anton&display=swap');
+/* Bundled fallback faces for retained legacy/archival pages; no remote font request. */
+@import '@fontsource/barlow/latin-400.css';
+@import '@fontsource/barlow/latin-700.css';
+@import '@fontsource/barlow-condensed/latin-700.css';
+@import '@fontsource/barlow-condensed/latin-900.css';
+@import '@fontsource/space-mono/latin-400.css';
+@import '@fontsource/space-mono/latin-700.css';
 
 @import 'tailwindcss';
 
@@ -47,6 +51,9 @@
   /* Semantic role tokens — the contract shared components render against.
      Branch themes (e.g. Queensland) re-point these; components never hardcode
      a surface, a foreground, or an on-fill text colour directly. */
+  --color-secondary-ink: var(--color-mint);
+  --color-link: var(--color-magenta);
+  --color-on-dark: #ffffff;
   --color-fg: #ffffff; /* default text on base + raised surfaces */
   --color-muted: rgba(255, 255, 255, 0.5); /* secondary text on base + raised surfaces */
   --color-on-primary: #ffffff; /* text on a magenta fill */
@@ -394,14 +401,17 @@
   }
 
   .brutal-section-header.bg-magenta {
+    color: var(--color-on-primary);
     border-bottom-color: var(--color-magenta);
   }
 
   .brutal-section-header.bg-mint {
+    color: var(--color-on-secondary);
     border-bottom-color: var(--color-mint);
   }
 
   .brutal-section-header.bg-yellow {
+    color: var(--color-on-accent);
     border-bottom-color: var(--color-yellow);
   }
 
@@ -434,7 +444,7 @@
   }
 
   .prose p:nth-of-type(3n) strong {
-    color: var(--color-mint);
+    color: var(--color-secondary-ink);
   }
 
   .prose p:nth-of-type(3n + 1) strong {

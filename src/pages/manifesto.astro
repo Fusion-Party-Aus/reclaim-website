@@ -183,7 +183,7 @@ const closing =
 
 const cardAccents = ['magenta', 'mint', 'yellow'] as const
 const tileIcons = ['mdi:bank', 'mdi:home-group', 'mdi:cash-multiple']
-const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
+const tileColors = ['text-secondary-ink', 'text-link', 'text-link']
 ---
 
 {
@@ -199,11 +199,11 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
         <Hero title={title} subtitle={subtitle} compact={true} bgImage={heroImage} />
 
         {/* ── Breadcrumb ── */}
-        <div class="bg-yellow border-b border-white/10 py-3 px-4">
+        <div class="bg-yellow border-b border-line py-3 px-4 surface-accent">
           <nav class="max-w-6xl mx-auto text-xs font-mono font-black uppercase tracking-wide flex items-center gap-2">
             <a
               href="/"
-              class="px-2 py-1 rounded-sm bg-black text-yellow hover:bg-white hover:text-black transition-colors"
+              class="px-2 py-1 rounded-sm bg-black text-link hover:bg-white hover:text-black transition-colors surface-dark"
             >
               Home
             </a>
@@ -237,7 +237,7 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
             )}
 
             {lede.footnote && (
-              <p class="text-base font-semibold text-fg/70 leading-relaxed max-w-3xl border-l-4 border-yellow pl-5">
+              <p class="text-base font-semibold text-muted leading-relaxed max-w-3xl border-l-4 border-yellow pl-5">
                 {lede.footnote}
               </p>
             )}
@@ -246,7 +246,7 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
           {/* ── Governing Rule ── */}
           <BrutalCard variant="black" shadow="magenta" padding="lg">
             {lieBlock.eyebrow && (
-              <p class="text-xs font-black uppercase tracking-widest text-magenta mb-4">
+              <p class="text-xs font-black uppercase tracking-widest text-link mb-4">
                 {lieBlock.eyebrow}
               </p>
             )}
@@ -254,7 +254,7 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
               {lieBlock.headline}
             </p>
             {lieBlock.body && (
-              <p class="text-base font-semibold text-fg/70 leading-relaxed max-w-2xl">
+              <p class="text-base font-semibold text-muted leading-relaxed max-w-2xl">
                 {lieBlock.body}
               </p>
             )}
@@ -281,7 +281,7 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
                         {item.title}
                       </h3>
                     </div>
-                    <p class="text-sm font-semibold text-fg/70 leading-relaxed">{item.body}</p>
+                    <p class="text-sm font-semibold text-muted leading-relaxed">{item.body}</p>
                   </BrutalCard>
                 )
               })}
@@ -295,7 +295,7 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
                 {whyNobody.badge}
               </BrutalBadge>
             )}
-            <p class="text-base font-semibold text-fg/80 leading-relaxed max-w-3xl">
+            <p class="text-base font-semibold text-muted leading-relaxed max-w-3xl">
               {whyNobody.body}
             </p>
           </BrutalCard>
@@ -306,18 +306,18 @@ const tileColors = ['text-mint', 'text-yellow', 'text-magenta']
               What Government Is For
             </h2>
             {notPromising.intro && (
-              <p class="text-base font-semibold text-fg/70 leading-relaxed max-w-3xl mb-6">
+              <p class="text-base font-semibold text-muted leading-relaxed max-w-3xl mb-6">
                 {notPromising.intro}
               </p>
             )}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               {notPromising.items?.map((tile: HonestyTile, index: number) => (
-                <div class="p-5 bg-grey-dark border border-white/10 rounded-sm">
+                <div class="p-5 bg-grey-dark border border-line rounded-sm surface-paper">
                   <Icon
                     name={tile.icon || tileIcons[index % tileIcons.length]}
                     class={`w-6 h-6 mb-3 ${tileColors[index % tileColors.length]}`}
                   />
-                  <p class="text-sm font-semibold text-fg/70 leading-relaxed">{tile.text}</p>
+                  <p class="text-sm font-semibold text-muted leading-relaxed">{tile.text}</p>
                 </div>
               ))}
             </div>

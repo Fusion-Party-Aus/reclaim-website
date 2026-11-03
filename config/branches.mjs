@@ -71,8 +71,8 @@ export const branchManifest = {
           primary: '#003C71',
           'primary-dark': '#002C53',
           'on-primary': '#FFFFFF',
-          secondary: '#00DDB8',
-          'on-secondary': '#0F0018',
+          secondary: '#A8A8AD',
+          'on-secondary': '#32105A',
           'surface-base': '#FFFFFF',
           'surface-raised': '#F8F5FB',
           fg: '#32105A',
@@ -84,9 +84,9 @@ export const branchManifest = {
       assets: {
         ogDefault: '/og/default.png',
         hero: '/hero.png',
-        favicon: '/brand/fusion_horizon_logo_light.svg',
+        favicon: '/brand/fusion_horizon_logo_vic.svg',
         pwaManifest: '/manifest.json',
-        logo: '/brand/fusion_horizon_logo_light.svg',
+        logo: '/brand/fusion_horizon_logo_vic.svg',
         ogTemplate: '/og/default.png',
       },
       analytics: {
@@ -134,7 +134,7 @@ export const branchManifest = {
         },
         seo: {
           nationalOrganizationUrl: 'https://fusionparty.org.au/#organization',
-          logoPath: '/brand/fusion_horizon_logo_light.svg',
+          logoPath: '/brand/fusion_horizon_logo_vic.svg',
           defaultOgImage: '/og/default.png',
         },
         cta: {

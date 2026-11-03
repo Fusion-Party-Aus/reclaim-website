@@ -43,7 +43,44 @@ if (!pageMatch) {
   return Astro.redirect('/404')
 }
 
-const { page, segments: originalSegments } = pageMatch
+const { segments: originalSegments } = pageMatch
+let { page } = pageMatch
+// Retire current campaign prompts without mutating the CMS or archived records.
+if (DEPLOYMENT.slug === 'vic' && slug === 'get-involved' && page.body) {
+  let obsoleteSection = false
+  page = {
+    ...page,
+    body: page.body.filter((block) => {
+      if (block._type === 'block' && block.style === 'h2') {
+        const heading =
+          block.children?.map((span: { text?: string }) => span.text || '').join('') || ''
+        obsoleteSection = /vote fusion|run for office/i.test(heading)
+      }
+      return !obsoleteSection
+    }),
+  }
+}
+if (DEPLOYMENT.slug === 'vic' && slug === 'about' && page.body) {
+  page = {
+    ...page,
+    body: page.body.map((block) => {
+      if (block._type !== 'block' || block.style !== 'h2') return block
+      const heading =
+        block.children?.map((span: { text?: string }) => span.text || '').join('') || ''
+      if (heading.trim().toLowerCase() !== 'reignite democracy') return block
+      return {
+        ...block,
+        children: [{ _type: 'span', _key: 'current-title', marks: [], text: 'Democratic reform' }],
+      }
+    }),
+  }
+}
+const currentSubtitle =
+  DEPLOYMENT.slug === 'vic' &&
+  ['about', 'get-involved'].includes(slug) &&
+  /reignite|reclaim/i.test(page.subtitle || '')
+    ? DEPLOYMENT.tagline
+    : page.subtitle
 
 // Intercept breadcrumbs if this page is an 'Archived' bio profile
 const isArchivedBio = page.pageType === 'bio' && (page as any).isArchived === true
@@ -109,13 +146,13 @@ const ogImageUrl =
         <div class="editorial-shell">
           <div class="editorial-kicker">{DEPLOYMENT.label}</div>
           <h1 class="editorial-title">{page.title}</h1>
-          {page.subtitle && <p class="editorial-deck">{page.subtitle}</p>}
+          {currentSubtitle && <p class="editorial-deck">{currentSubtitle}</p>}
         </div>
       </header>
     )
   }
 
-  <main id="main-content" class="site-editorial bg-surface-base py-8 pb-16">
+  <main id="main-content" class="site-editorial bg-surface-base py-8 pb-16 surface-paper">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         page.pageType === 'bio' ? (

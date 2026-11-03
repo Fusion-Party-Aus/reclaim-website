@@ -262,32 +262,32 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
             <h1 class="text-5xl md:text-7xl font-display font-black uppercase mb-6 leading-[1]">
               {pageData?.title || 'Convince Your'}
-              {!pageData?.title && <span class="text-magenta">Friends</span>}
+              {!pageData?.title && <span class="text-link">Friends</span>}
             </h1>
 
-            <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight text-fg/80">
+            <p class="text-xl md:text-2xl font-bold mb-8 max-w-2xl mx-auto leading-tight text-muted">
               {pageData?.subtitle ||
                 "Don't know what to say? Use these pre-written templates to share Fusion policies with your network. One click to copy, customized for different audiences."}
             </p>
 
             <div class="flex flex-wrap gap-4 justify-center items-center mb-8">
-              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
-                <Icon name="mdi:rocket-launch" class="w-5 h-5 text-magenta" />
+              <div class="flex items-center gap-2 bg-grey-dark border border-line rounded-sm px-4 py-2 surface-paper">
+                <Icon name="mdi:rocket-launch" class="w-5 h-5 text-link" />
                 <span class="font-black text-sm">READY TO SEND</span>
               </div>
-              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
-                <Icon name="mdi:account-multiple" class="w-5 h-5 text-magenta" />
+              <div class="flex items-center gap-2 bg-grey-dark border border-line rounded-sm px-4 py-2 surface-paper">
+                <Icon name="mdi:account-multiple" class="w-5 h-5 text-link" />
                 <span class="font-black text-sm">{templates.length} AUDIENCES</span>
               </div>
-              <div class="flex items-center gap-2 bg-grey-dark border border-white/10 rounded-sm px-4 py-2">
-                <Icon name="mdi:content-copy" class="w-5 h-5 text-magenta" />
+              <div class="flex items-center gap-2 bg-grey-dark border border-line rounded-sm px-4 py-2 surface-paper">
+                <Icon name="mdi:content-copy" class="w-5 h-5 text-link" />
                 <span class="font-black text-sm">ONE CLICK COPY</span>
               </div>
             </div>
 
             {/* Why It Works */}
             <BrutalCard variant="surface" shadow="magenta" padding="lg" class="text-left">
-              <h3 class="text-2xl font-display font-black text-magenta mb-4 uppercase flex items-center gap-3">
+              <h3 class="text-2xl font-display font-black text-link mb-4 uppercase flex items-center gap-3">
                 <Icon name="mdi:lightbulb-on" class="w-8 h-8" />
                 Why This Works
               </h3>
@@ -296,7 +296,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                   <li class="flex items-start gap-3">
                     <Icon
                       name={item.icon || 'mdi:check-bold'}
-                      class="w-6 h-6 text-mint flex-shrink-0 mt-1"
+                      class="w-6 h-6 text-secondary-ink flex-shrink-0 mt-1"
                     />
                     <span>
                       <strong>{item.title}:</strong> {item.description}
@@ -305,28 +305,40 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                 )) || (
                   <>
                     <li class="flex items-start gap-3">
-                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <Icon
+                        name="mdi:check-bold"
+                        class="w-6 h-6 text-secondary-ink flex-shrink-0 mt-1"
+                      />
                       <span>
                         <strong>Lower Friction:</strong> Don't know what to say? We've written it
                         for you.
                       </span>
                     </li>
                     <li class="flex items-start gap-3">
-                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <Icon
+                        name="mdi:check-bold"
+                        class="w-6 h-6 text-secondary-ink flex-shrink-0 mt-1"
+                      />
                       <span>
                         <strong>Targeted Messaging:</strong> Different approaches for different
                         audiences.
                       </span>
                     </li>
                     <li class="flex items-start gap-3">
-                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <Icon
+                        name="mdi:check-bold"
+                        class="w-6 h-6 text-secondary-ink flex-shrink-0 mt-1"
+                      />
                       <span>
                         <strong>Exponential Growth:</strong> Every person you reach can reach their
                         network.
                       </span>
                     </li>
                     <li class="flex items-start gap-3">
-                      <Icon name="mdi:check-bold" class="w-6 h-6 text-mint flex-shrink-0 mt-1" />
+                      <Icon
+                        name="mdi:check-bold"
+                        class="w-6 h-6 text-secondary-ink flex-shrink-0 mt-1"
+                      />
                       <span>
                         <strong>Authentic:</strong> Fully customizable - make it your own voice.
                       </span>
@@ -348,11 +360,11 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               {Object.entries(channelInfo).map(([key, info]) => (
                 <button
                   data-channel={key}
-                  class="channel-filter bg-grey-dark border border-white/10 rounded-sm p-4 hover:border-yellow/50 transition-all transform hover:scale-105 active:scale-95"
+                  class="channel-filter bg-grey-dark border border-line rounded-sm p-4 hover:border-yellow/50 transition-all transform hover:scale-105 active:scale-95 surface-paper"
                 >
-                  <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-magenta" />
+                  <Icon name={info.icon} class="w-10 h-10 mx-auto mb-2 text-link" />
                   <p class="font-black uppercase text-sm mb-1">{info.name}</p>
-                  <p class="text-xs text-fg/60">{info.tip}</p>
+                  <p class="text-xs text-muted">{info.tip}</p>
                 </button>
               ))}
             </div>
@@ -364,7 +376,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
               <h2 class="text-4xl font-display font-black uppercase mb-4">Pick Your Template</h2>
-              <p class="text-lg font-bold max-w-2xl mx-auto text-fg/70">
+              <p class="text-lg font-bold max-w-2xl mx-auto text-muted">
                 Click to expand, customize if needed, then copy and send!
               </p>
             </div>
@@ -391,7 +403,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                         <h3 class="text-xl font-display font-black uppercase mb-1">
                           {template.title}
                         </h3>
-                        <p class="text-sm font-bold text-fg/60 mb-2">{template.audience}</p>
+                        <p class="text-sm font-bold text-muted mb-2">{template.audience}</p>
                         <div class="flex flex-wrap gap-2">
                           {template.tags.map((tag) => (
                             <span class="text-xs bg-white/10 rounded-sm px-2 py-1 font-bold">
@@ -407,26 +419,26 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                   </div>
 
                   {/* Expanded View */}
-                  <div class="template-body hidden mt-6 pt-6 border-t border-white/10">
+                  <div class="template-body hidden mt-6 pt-6 border-t border-line">
                     {template.subject && (
                       <div class="mb-4">
-                        <label class="block text-sm font-black uppercase mb-2 text-magenta">
+                        <label class="block text-sm font-black uppercase mb-2 text-link">
                           Subject Line:
                         </label>
-                        <div class="bg-black/30 border border-white/10 rounded-sm p-3 font-bold">
+                        <div class="bg-surface-raised border border-line rounded-sm p-3 font-bold surface-paper">
                           {template.subject}
                         </div>
                       </div>
                     )}
 
                     <div class="mb-4">
-                      <label class="block text-sm font-black uppercase mb-2 text-magenta flex items-center justify-between">
+                      <label class="block text-sm font-black uppercase mb-2 text-link flex items-center justify-between">
                         <span>Message:</span>
-                        <span class="text-xs text-fg/60 normal-case font-bold">
+                        <span class="text-xs text-muted normal-case font-bold">
                           (Click to edit if you want to personalize)
                         </span>
                       </label>
-                      <textarea class="w-full h-64 bg-black/30 border border-white/10 rounded-sm p-4 font-mono text-sm text-fg resize-none focus:outline-none focus:border-magenta">
+                      <textarea class="w-full h-64 bg-surface-raised border border-line rounded-sm p-4 font-mono text-sm text-fg resize-none focus:outline-none focus:border-magenta surface-paper">
                         {template.body}
                       </textarea>
                     </div>
@@ -447,10 +459,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
                     <div class="mt-4 p-4 bg-yellow/10 border border-yellow/30 rounded-sm">
                       <p class="text-sm font-bold flex items-start gap-2">
-                        <Icon
-                          name="mdi:lightbulb"
-                          class="w-5 h-5 text-yellow flex-shrink-0 mt-0.5"
-                        />
+                        <Icon name="mdi:lightbulb" class="w-5 h-5 text-link flex-shrink-0 mt-0.5" />
                         <span>
                           <strong>Pro tip:</strong> Personalize the template with your own words and
                           experiences. Authentic messages are more convincing!
@@ -480,7 +489,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                     <Icon name={tip.icon} class="w-6 h-6" />
                     {tip.title}
                   </h3>
-                  <p class="font-bold text-fg/70">{tip.description}</p>
+                  <p class="font-bold text-muted">{tip.description}</p>
                 </BrutalCard>
               ))}
             </div>
@@ -499,7 +508,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               <h2 class="text-4xl md:text-5xl font-display font-black uppercase mb-6 leading-tight">
                 Tell Us How It Went!
               </h2>
-              <p class="text-xl font-bold mb-8 max-w-2xl mx-auto text-fg/70">
+              <p class="text-xl font-bold mb-8 max-w-2xl mx-auto text-muted">
                 Did it work? Did you customize it? Did your boomer dad actually read it? Your
                 feedback helps us improve these for everyone.
               </p>
@@ -507,18 +516,18 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
             <div class="grid md:grid-cols-2 gap-6 mb-8">
               <BrutalCard variant="surface" shadow="magenta" padding="lg">
-                <Icon name="mdi:thumb-up" class="w-12 h-12 text-magenta mb-3" />
+                <Icon name="mdi:thumb-up" class="w-12 h-12 text-link mb-3" />
                 <h3 class="text-xl font-display font-black uppercase mb-2">Success Stories</h3>
-                <p class="font-bold text-fg/70 text-sm">
+                <p class="font-bold text-muted text-sm">
                   "Used the parent template and my mum actually joined!" - These are gold. Help
                   others see what works.
                 </p>
               </BrutalCard>
 
               <BrutalCard variant="surface" shadow="mint" padding="lg">
-                <Icon name="mdi:pencil-box" class="w-12 h-12 text-mint mb-3" />
+                <Icon name="mdi:pencil-box" class="w-12 h-12 text-secondary-ink mb-3" />
                 <h3 class="text-xl font-display font-black uppercase mb-2">Your Tweaks</h3>
-                <p class="font-bold text-fg/70 text-sm">
+                <p class="font-bold text-muted text-sm">
                   Changed something that landed better? Share it! Community-sourced improvements
                   make these templates stronger.
                 </p>
@@ -544,7 +553,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                   <select
                     name="template"
                     required
-                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold focus:outline-none focus:border-yellow"
+                    class="w-full px-4 py-3 bg-neutral-panel border border-line-mid rounded-sm text-fg font-bold focus:outline-none focus:border-yellow surface-paper"
                   >
                     <option value="">Select a template...</option>
                     {templates.map((t) => (
@@ -566,19 +575,19 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                         class="sr-only peer"
                         required
                       />
-                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint">
+                      <div class="bg-neutral-panel border border-line-mid rounded-sm p-3 text-center font-black cursor-pointer hover:border-mint/50 transition-all peer-checked:bg-mint peer-checked:text-black peer-checked:border-mint surface-paper">
                         Great!
                       </div>
                     </label>
                     <label class="flex-1">
                       <input type="radio" name="result" value="ok" class="sr-only peer" />
-                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-fg peer-checked:border-yellow">
+                      <div class="bg-neutral-panel border border-line-mid rounded-sm p-3 text-center font-black cursor-pointer hover:border-yellow/50 transition-all peer-checked:bg-yellow peer-checked:text-fg peer-checked:border-yellow surface-paper">
                         OK
                       </div>
                     </label>
                     <label class="flex-1">
                       <input type="radio" name="result" value="meh" class="sr-only peer" />
-                      <div class="bg-neutral-panel border border-white/20 rounded-sm p-3 text-center font-black cursor-pointer hover:border-white/40 transition-all peer-checked:bg-white/20 peer-checked:border-white/40">
+                      <div class="bg-neutral-panel border border-line-mid rounded-sm p-3 text-center font-black cursor-pointer hover:border-white/40 transition-all peer-checked:bg-white/20 peer-checked:border-white/40 surface-paper">
                         Meh
                       </div>
                     </label>
@@ -593,7 +602,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                     name="feedback"
                     rows="4"
                     placeholder="e.g., 'My dad actually read the whole thing and said he'd look into it!' or 'The work chat ignored it but my colleague DM'd me asking for more info'"
-                    class="w-full px-4 py-3 bg-neutral-panel border border-white/20 rounded-sm text-fg font-bold resize-none focus:outline-none focus:border-yellow"
+                    class="w-full px-4 py-3 bg-neutral-panel border border-line-mid rounded-sm text-fg font-bold resize-none focus:outline-none focus:border-yellow surface-paper"
                   />
                 </div>
 
@@ -603,7 +612,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                       type="checkbox"
                       name="can_share"
                       value="yes"
-                      class="mt-1 w-5 h-5 border border-white/30 rounded-sm bg-neutral-panel"
+                      class="mt-1 w-5 h-5 border border-line-mid rounded-sm bg-neutral-panel surface-paper"
                     />
                     <span class="text-fg font-bold text-sm">
                       You can share this as a testimonial (we'll keep you anonymous unless you tell
@@ -631,7 +640,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               <h2 class="text-4xl font-display font-black uppercase mb-4">
                 {contrastSection.title}
               </h2>
-              <p class="text-xl font-bold max-w-3xl mx-auto text-fg/70">
+              <p class="text-xl font-bold max-w-3xl mx-auto text-muted">
                 {contrastSection.subtitle}
               </p>
             </div>
@@ -639,15 +648,15 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
             <div class="grid md:grid-cols-2 gap-8">
               {/* Major Parties Way */}
               <div>
-                <div class="bg-grey-dark border border-white/10 rounded-sm p-6 mb-4 relative">
+                <div class="bg-grey-dark border border-line rounded-sm p-6 mb-4 relative surface-paper">
                   <div class="absolute -top-3 -right-3 bg-white/20 text-fg px-3 py-1 text-xs font-black rounded-sm">
                     OLD POLITICS
                   </div>
-                  <Icon name="mdi:alert-circle" class="w-10 h-10 text-fg/50 mb-3" />
-                  <h3 class="text-xl font-display font-black uppercase mb-3 text-fg/70">
+                  <Icon name="mdi:alert-circle" class="w-10 h-10 text-muted mb-3" />
+                  <h3 class="text-xl font-display font-black uppercase mb-3 text-muted">
                     {contrastSection.oldWay.title}
                   </h3>
-                  <ul class="space-y-2 text-sm font-bold text-fg/50">
+                  <ul class="space-y-2 text-sm font-bold text-muted">
                     {contrastSection.oldWay.points.map((point: any) => (
                       <li class="flex items-start gap-2">
                         <span class="text-red">✗</span>
@@ -655,7 +664,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
                       </li>
                     ))}
                   </ul>
-                  <p class="mt-4 text-xs font-black text-fg/40 italic">
+                  <p class="mt-4 text-xs font-black text-muted italic">
                     Feels like: {contrastSection.oldWay.feeling}
                   </p>
                 </div>
@@ -664,22 +673,22 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
               {/* Fusion Way */}
               <div>
                 <BrutalCard variant="surface" shadow="magenta" padding="lg" class="h-full relative">
-                  <div class="absolute -top-3 -right-3 bg-magenta text-fg px-3 py-1 text-xs font-black rounded-sm">
+                  <div class="absolute -top-3 -right-3 bg-magenta text-on-primary px-3 py-1 text-xs font-black rounded-sm surface-primary">
                     FUSION WAY
                   </div>
-                  <Icon name="mdi:heart-multiple" class="w-10 h-10 text-magenta mb-3" />
-                  <h3 class="text-xl font-display font-black uppercase mb-3 text-magenta">
+                  <Icon name="mdi:heart-multiple" class="w-10 h-10 text-link mb-3" />
+                  <h3 class="text-xl font-display font-black uppercase mb-3 text-link">
                     {contrastSection.fusionWay.title}
                   </h3>
                   <ul class="space-y-2 text-sm font-bold">
                     {contrastSection.fusionWay.points.map((point: any) => (
                       <li class="flex items-start gap-2">
-                        <span class="text-mint">✓</span>
+                        <span class="text-secondary-ink">✓</span>
                         <span>{point}</span>
                       </li>
                     ))}
                   </ul>
-                  <p class="mt-4 text-xs font-black text-magenta italic">
+                  <p class="mt-4 text-xs font-black text-link italic">
                     Feels like: {contrastSection.fusionWay.feeling}
                   </p>
                 </BrutalCard>
@@ -725,9 +734,9 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
         </Section>
 
         {/* CTA Section */}
-        <Section padding="xl" bg="dark" class="bg-magenta">
+        <Section padding="xl" bg="dark" class="bg-magenta surface-primary">
           <div class="max-w-3xl mx-auto text-center text-fg">
-            <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-yellow" />
+            <Icon name="mdi:rocket-launch" class="w-20 h-20 mx-auto mb-6 text-link" />
             <h2 class="text-4xl font-display font-black uppercase mb-6">
               Every Conversation Counts
             </h2>
@@ -848,7 +857,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
 
   textarea:focus {
     outline: none;
-    border-color: var(--branch-primary, #d428d4);
+    border-color: var(--color-link, #d428d4);
   }
 
   /* Channel filter hover effect */
@@ -857,7 +866,7 @@ const contrastSection = pageData?.contrastSection || defaultContrastSection
   }
 
   .channel-filter.bg-yellow {
-    border-color: var(--branch-primary, #d428d4);
+    border-color: var(--color-link, #d428d4);
   }
 
   /* Template card hover effect */

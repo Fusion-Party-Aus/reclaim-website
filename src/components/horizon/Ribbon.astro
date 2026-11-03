@@ -1,28 +1,22 @@
 ---
-import { foldedRibbon, ribbonSweep, RIBBON_COLORS } from '@/lib/horizon-ribbons'
+import { foldedRibbon } from '@/lib/horizon-ribbons'
 interface Props {
-  accent?: string
-  variant?: 'hero' | 'band' | 'sweep'
-  /** Unique within a page when a variant is repeated. */
-  id?: string
+  variant?: 'hero' | 'band'
 }
-const {
-  accent = RIBBON_COLORS.victoriaAccent,
-  variant = 'hero',
-  id = `horizon-ribbon-${variant}`,
-} = Astro.props
-const surfaces = variant === 'sweep' ? ribbonSweep(accent) : foldedRibbon(accent)
+const { variant = 'hero' } = Astro.props
+const id = `horizon-ribbon-${variant}`
+const surfaces = foldedRibbon()
 ---
 
 <svg
-  class:list={['ribbon', `ribbon--${variant}`]}
-  viewBox={variant === 'sweep' ? '0 0 1000 500' : '0 0 1000 1000'}
-  preserveAspectRatio="none"
+  class:list={['horizon-ribbon', `horizon-ribbon--${variant}`]}
+  viewBox="0 0 1000 1000"
+  preserveAspectRatio="xMidYMid meet"
   aria-hidden="true"
   focusable="false"
 >
-  <defs
-    >{
+  <defs>
+    {
       surfaces.map((surface, index) => (
         <linearGradient
           id={`${id}-${index}`}
@@ -37,52 +31,7 @@ const surfaces = variant === 'sweep' ? ribbonSweep(accent) : foldedRibbon(accent
           ))}
         </linearGradient>
       ))
-    }</defs
-  >
+    }
+  </defs>
   <g>{surfaces.map((surface, index) => <path d={surface.path} fill={`url(#${id}-${index})`} />)}</g>
 </svg>
-<style>
-  .ribbon {
-    position: absolute;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .ribbon--hero {
-    right: -5%;
-    top: 0;
-    width: 65%;
-    height: 100%;
-  }
-  .ribbon--band {
-    right: 0;
-    top: 0;
-    width: 35%;
-    height: 100%;
-    opacity: 0.65;
-    transform: rotate(180deg);
-  }
-  .ribbon--sweep {
-    right: 0;
-    bottom: 0;
-    width: 15rem;
-    height: 5rem;
-    opacity: 0.16;
-  }
-  @media (max-width: 760px) {
-    .ribbon--hero {
-      top: auto;
-      bottom: 0;
-      right: -8%;
-      width: 80%;
-      height: 48%;
-    }
-    .ribbon--band {
-      width: 65%;
-      opacity: 0.25;
-    }
-    .ribbon--sweep {
-      width: 11rem;
-      height: 3rem;
-    }
-  }
-</style>

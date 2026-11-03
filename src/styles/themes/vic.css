@@ -8,10 +8,11 @@
   --font-heading: 'Newsreader', Georgia, serif;
   --font-sans: 'Outfit', system-ui, sans-serif;
   --color-on-primary: #ffffff;
-  --color-mint: #00ddb8;
-  --color-on-secondary: #0f0018;
+  --color-mint: #a8a8ad;
+  --color-on-secondary: #32105a;
   --color-magenta: #003c71;
   --color-magenta-dark: #002c53;
+  --color-magenta-darker: #32105a;
   --color-magenta-bright: #002c53;
   --color-yellow: #003c71;
   --color-yellow-bright: #002c53;
@@ -22,6 +23,19 @@
   --color-surface-base: #fff;
   --color-surface-raised: #f8f5fb;
   --color-line: #ded6e7;
+  --color-mint-dark: #5d5d65;
+  --color-mint-bright: #f2f2f4;
+  --color-mint-hover: #f2f2f4;
+  --color-secondary-ink: #5d5d65;
+  --color-link: #003c71;
+  --color-on-dark: #ffffff;
+  --color-chalk: #32105a;
+  --color-grey: #5d5d65;
+  --color-grey-light: #54465f;
+  --color-neutral-panel: #f2f2f4;
+  --color-accent-deep: #003c71;
+  --color-surface-brand: #32105a;
+  --editorial-glow: #f8f5fb;
   --color-grey-dark: #f8f5fb;
   --color-surface-overlay: #eee7f4;
   --editorial-header: #fff;
@@ -52,4 +66,24 @@
   --branch-ink: #32105a;
   --branch-muted: #54465f;
   --branch-line: #ded6e7;
+}
+:root[data-theme='vic'] {
+  --shadow-brutal: 0 6px 20px rgba(50, 16, 90, 0.08);
+  --shadow-brutal-sm: 0 2px 8px rgba(50, 16, 90, 0.06);
+  --shadow-brutal-lg: 0 10px 28px rgba(50, 16, 90, 0.1);
+  --shadow-brutal-xl: 0 14px 32px rgba(50, 16, 90, 0.12);
+  --shadow-brutal-mint: 0 4px 16px rgba(50, 16, 90, 0.1);
+  --shadow-brutal-yellow: 0 4px 16px rgba(50, 16, 90, 0.1);
+}
+:root[data-theme='vic'] {
+  --color-line-mid: #887898;
+  --color-line-strong: #5d5d65;
+  --color-red: #b3261e;
+  --color-orange: #8c4e00;
+  --color-blue: #003c71;
+  --color-green: #23634a;
+}
+/* Horizon purple used by dark feature surfaces. */
+:root[data-theme='vic'] {
+  --fusion-purple: #32105a;
 }

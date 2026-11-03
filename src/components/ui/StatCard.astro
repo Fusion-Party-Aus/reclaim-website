@@ -38,10 +38,10 @@ const {
 
 // Raised surface panel; the stat figure itself carries the accent colour.
 const accentText: Record<string, string> = {
-  magenta: 'text-magenta',
-  mint: 'text-mint',
-  yellow: 'text-yellow',
-  lavender: 'text-lavender',
+  magenta: 'text-link',
+  mint: 'text-secondary-ink',
+  yellow: 'text-link',
+  lavender: 'text-link',
   white: 'text-fg',
 }
 
@@ -91,14 +91,14 @@ const animationClass = animated && icon ? 'animate-bounce-subtle' : ''
 
   <div
     class={`font-bold ${accentText[variant]} ${sizeClasses.value}`}
-    style="font-family: 'Space Mono', monospace;"
+    style="font-family: var(--font-sans);"
   >
     {value}
   </div>
 
   <div
     class={`font-bold uppercase tracking-widest text-muted mt-1 ${sizeClasses.label}`}
-    style="font-family: 'Space Mono', monospace; font-size: 0.625rem;"
+    style="font-family: var(--font-sans); font-size: 0.625rem;"
   >
     {label}
   </div>

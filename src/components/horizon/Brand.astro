@@ -6,13 +6,9 @@ const { compact = false } = Astro.props
 ---
 
 <span class:list={['horizon-brand', { compact }]}>
-  <img src="/brand/fusion_horizon_logo_light.svg" width="48" height="48" alt="" />
-  <img
-    class="horizon-wordmark"
-    src="/brand/fusion_horizon_wordmark.svg"
-    width="136"
-    height="40"
-    alt="Fusion"
-  />
-  <span>Victoria</span>
+  <img src="/brand/fusion_horizon_logo_vic.svg" width="48" height="48" alt="" />
+  <span class="horizon-brand-copy">
+    <span class="horizon-wordmark">FUSION</span>
+    <span class="horizon-branch">Victoria</span>
+  </span>
 </span>

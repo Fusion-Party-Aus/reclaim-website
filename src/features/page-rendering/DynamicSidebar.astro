@@ -61,10 +61,10 @@ const currentPath = Astro.url.pathname
 {
   headings.length > 0 && (
     <aside
-      class="sidebar-container bg-grey-dark border border-white/10 rounded-sm p-6 sticky top-24"
-      style="border-top: 2px solid var(--branch-secondary, #00DDB8);"
+      class="sidebar-container bg-grey-dark border border-line rounded-sm p-6 sticky top-24 surface-paper"
+      style="border-top: 2px solid var(--color-secondary-ink, #00DDB8);"
     >
-      <h3 class="text-xl font-display font-black uppercase mb-6 pb-3 border-b border-white/10 text-mint">
+      <h3 class="text-xl font-display font-black uppercase mb-6 pb-3 border-b border-line text-secondary-ink">
         {title}
       </h3>
 
@@ -77,12 +77,12 @@ const currentPath = Astro.url.pathname
           return (
             <a
               href={`#${heading.id}`}
-              class={`sidebar-link font-display block py-2 font-bold text-sm transition-all border-l-4 border-transparent hover:border-yellow hover:bg-yellow/10 hover:text-yellow ${
+              class={`sidebar-link font-display block py-2 font-bold text-sm transition-all border-l-4 border-transparent hover:border-yellow hover:bg-yellow/10 hover:text-link ${
                 isH2
                   ? 'pl-3 text-fg'
                   : isH3
-                    ? 'pl-6 text-mint text-xs'
-                    : 'pl-9 text-lavender text-xs'
+                    ? 'pl-6 text-secondary-ink text-xs'
+                    : 'pl-9 text-link text-xs'
               }`}
             >
               {heading.text}
@@ -91,13 +91,13 @@ const currentPath = Astro.url.pathname
         })}
       </nav>
 
-      <div class="mt-8 pt-6 border-t border-white/10 space-y-3">
+      <div class="mt-8 pt-6 border-t border-line space-y-3">
         <BrutalButton href="/get-involved" variant="magenta" fullWidth>
           Get Involved
         </BrutalButton>
         <a
           href="/policies"
-          class="block px-4 py-2 text-center font-display font-bold uppercase text-xs border border-mint text-mint rounded-sm hover:bg-mint hover:text-black transition-all"
+          class="block px-4 py-2 text-center font-display font-bold uppercase text-xs border border-mint text-secondary-ink rounded-sm hover:bg-mint hover:text-on-secondary transition-all"
         >
           All Policies
         </a>
@@ -130,16 +130,16 @@ const currentPath = Astro.url.pathname
   }
 
   .sidebar-container::-webkit-scrollbar-track {
-    background: var(--branch-surface, #1a0029);
-    border: 1px solid var(--branch-line, rgba(255, 255, 255, 0.1));
+    background: var(--color-surface-base, #1a0029);
+    border: 1px solid var(--color-line, rgba(255, 255, 255, 0.1));
   }
 
   .sidebar-container::-webkit-scrollbar-thumb {
-    background: var(--branch-primary, #d428d4);
+    background: var(--color-link, #d428d4);
   }
 
   .sidebar-container::-webkit-scrollbar-thumb:hover {
-    background: var(--branch-secondary, #00ddb8);
+    background: var(--color-secondary-ink, #00ddb8);
   }
 
   /* Smooth scroll behavior */

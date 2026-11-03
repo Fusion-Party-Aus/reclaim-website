@@ -26,7 +26,10 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
 >
   <Header />
 
-  <main id="main-content" class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20">
+  <main
+    id="main-content"
+    class="min-h-screen bg-black relative overflow-hidden pt-28 pb-20 surface-dark"
+  >
     <!-- Warning signs floating -->
     <div class="absolute inset-0 opacity-15">
       {
@@ -49,14 +52,17 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
       <!-- Giant 403 with Lock -->
       <div class="text-center mb-12">
         <div class="relative inline-block mb-8">
-          <div class="absolute inset-0 bg-magenta blur-3xl opacity-40 animate-pulse"></div>
           <div
-            class="relative w-48 h-48 mx-auto bg-grey-dark border border-magenta rounded-full flex items-center justify-center"
-            style="box-shadow: 0 0 60px var(--branch-primary, #D428D4); animation: pulse 2s ease-in-out infinite;"
+            class="absolute inset-0 bg-magenta blur-3xl opacity-40 animate-pulse surface-primary"
+          >
+          </div>
+          <div
+            class="relative w-48 h-48 mx-auto bg-grey-dark border border-magenta rounded-full flex items-center justify-center surface-paper"
+            style="box-shadow: 0 0 60px var(--color-link, #D428D4); animation: pulse 2s ease-in-out infinite;"
           >
             <Icon
               name="mdi:lock"
-              class="w-32 h-32 text-magenta"
+              class="w-32 h-32 text-link"
               style="animation: wiggle 3s ease-in-out infinite;"
             />
           </div>
@@ -68,7 +74,7 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
           403
         </h1>
 
-        <h2 class="text-4xl md:text-6xl font-black uppercase text-yellow mb-6 font-display">
+        <h2 class="text-4xl md:text-6xl font-black uppercase text-link mb-6 font-display">
           ACCESS DENIED
         </h2>
 
@@ -85,16 +91,16 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
               class="w-24 h-24 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center flex-shrink-0"
               style="animation: bounce 2s ease-in-out infinite;"
             >
-              <Icon name="mdi:shield-lock" class="w-16 h-16 text-magenta" />
+              <Icon name="mdi:shield-lock" class="w-16 h-16 text-link" />
             </div>
             <div>
               <h3 class="text-3xl font-black uppercase mb-4 font-display">Restricted Area</h3>
-              <p class="text-lg font-bold text-fg/80 leading-relaxed mb-4">
+              <p class="text-lg font-bold text-muted leading-relaxed mb-4">
                 This page is protected and requires special permissions to access.
               </p>
-              <div class="bg-black/40 border border-white/10 rounded-sm p-4">
+              <div class="bg-surface-raised border border-line rounded-sm p-4 surface-paper">
                 <p class="text-fg font-bold text-sm">
-                  <Icon name="mdi:information" class="w-5 h-5 inline mr-2 text-yellow" />
+                  <Icon name="mdi:information" class="w-5 h-5 inline mr-2 text-link" />
                   If you believe you should have access, please contact us or sign in.
                 </p>
               </div>
@@ -110,11 +116,11 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
             <div
               class="w-16 h-16 bg-magenta/10 border border-magenta rounded-sm flex items-center justify-center"
             >
-              <Icon name="mdi:account-key" class="w-10 h-10 text-magenta" />
+              <Icon name="mdi:account-key" class="w-10 h-10 text-link" />
             </div>
-            <h3 class="text-2xl font-black uppercase text-magenta font-display">Need Access?</h3>
+            <h3 class="text-2xl font-black uppercase text-link font-display">Need Access?</h3>
           </div>
-          <p class="text-fg/80 font-bold mb-6">
+          <p class="text-muted font-bold mb-6">
             Some content is reserved for {DEPLOYMENT.label} members. Join us to unlock exclusive resources!
           </p>
           <BrutalButton href="/get-involved" variant="primary" fullWidth icon="mdi:account-plus">
@@ -127,11 +133,11 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
             <div
               class="w-16 h-16 bg-mint/10 border border-mint rounded-sm flex items-center justify-center"
             >
-              <Icon name="mdi:login" class="w-10 h-10 text-mint" />
+              <Icon name="mdi:login" class="w-10 h-10 text-secondary-ink" />
             </div>
             <h3 class="text-2xl font-black uppercase font-display">Already a Member?</h3>
           </div>
-          <p class="text-fg/80 font-bold mb-6">
+          <p class="text-muted font-bold mb-6">
             Sign in to access member-exclusive content and resources.
           </p>
           <BrutalButton href="/login" variant="secondary" fullWidth icon="mdi:lock-open">
@@ -147,19 +153,19 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
         </h3>
         <div class="grid md:grid-cols-3 gap-4">
           <BrutalCard variant="surface" shadow="magenta" padding="md" class="text-center">
-            <Icon name="mdi:file-document-multiple" class="w-12 h-12 mx-auto mb-3 text-magenta" />
+            <Icon name="mdi:file-document-multiple" class="w-12 h-12 mx-auto mb-3 text-link" />
             <h4 class="font-black uppercase text-sm mb-2 font-display">Exclusive Content</h4>
-            <p class="text-xs font-bold text-fg/50">Policy drafts & research</p>
+            <p class="text-xs font-bold text-muted">Policy drafts & research</p>
           </BrutalCard>
           <BrutalCard variant="surface" shadow="yellow" padding="md" class="text-center">
-            <Icon name="mdi:calendar-star" class="w-12 h-12 mx-auto mb-3 text-yellow" />
+            <Icon name="mdi:calendar-star" class="w-12 h-12 mx-auto mb-3 text-link" />
             <h4 class="font-black uppercase text-sm mb-2 font-display">Events</h4>
-            <p class="text-xs font-bold text-fg/50">Early access to events</p>
+            <p class="text-xs font-bold text-muted">Early access to events</p>
           </BrutalCard>
           <BrutalCard variant="surface" shadow="white" padding="md" class="text-center">
             <Icon name="mdi:vote" class="w-12 h-12 mx-auto mb-3 text-fg" />
             <h4 class="font-black uppercase text-sm mb-2 font-display">Voting Rights</h4>
-            <p class="text-xs font-bold text-fg/50">Shape party policy</p>
+            <p class="text-xs font-bold text-muted">Shape party policy</p>
           </BrutalCard>
         </div>
       </div>
@@ -175,7 +181,7 @@ const randomMessage = forbiddenMessages[Math.floor(Math.random() * forbiddenMess
             </BrutalButton>
             <button
               onclick="window.history.back()"
-              class="inline-flex items-center justify-center gap-2 font-black uppercase tracking-wide rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-fg border border-white/20 hover:bg-white/10 font-display"
+              class="inline-flex items-center justify-center gap-2 font-black uppercase tracking-wide rounded-sm transition-all duration-200 hover:scale-[1.02] px-6 py-3 text-base bg-black text-on-dark surface-dark border border-line-mid hover:bg-white/10 font-display"
             >
               <Icon name="mdi:arrow-left" class="w-5 h-5" />
               Go Back

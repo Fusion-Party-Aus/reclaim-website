@@ -52,20 +52,24 @@ const heroImage = hp.hero?.image?.asset
   <Header />
   <main id="main-content" class="horizon-home">
     <section class="horizon-hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">{hp.hero?.eyebrow || 'Fusion Victoria'}</p>
-        <h1 id="hero-title">{hp.hero?.title || 'Better places. Better systems. More freedom.'}</h1>
-        <p class="hero-intro">
-          {
-            hp.hero?.subtitle ||
-              'Evidence-led policies, independent research and practical reform for Victoria.'
-          }
-        </p>
-        <div class="horizon-actions">
-          <a class="horizon-button" href="/policies">Explore our policies</a><a
-            class="horizon-button outline"
-            href="/get-involved">Get involved</a
-          >
+      <div class="horizon-shell hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">{hp.hero?.eyebrow || 'Fusion Victoria'}</p>
+          <h1 id="hero-title">
+            {hp.hero?.title || 'Better places. Better systems. More freedom.'}
+          </h1>
+          <p class="hero-intro">
+            {
+              hp.hero?.subtitle ||
+                'Evidence-led policies, independent research and practical reform for Victoria.'
+            }
+          </p>
+          <div class="horizon-actions">
+            <a class="horizon-button" href="/policies">Explore our policies</a><a
+              class="horizon-button outline"
+              href="/get-involved">Get involved</a
+            >
+          </div>
         </div>
       </div>
       {
@@ -100,7 +104,6 @@ const heroImage = hp.hero?.image?.asset
           }
         </p><a href="/manifesto">How we think <span aria-hidden="true">→</span></a>
       </div>
-      <Ribbon variant="sweep" />
     </section>
     <section class="horizon-section tinted" aria-labelledby="latest-heading">
       <div class="horizon-shell">
@@ -109,10 +112,19 @@ const heroImage = hp.hero?.image?.asset
             >All news &amp; analysis →</a
           >
         </div>
-        <div class="horizon-grid">
+        <div class="horizon-grid news-grid">
           {
-            posts.map((post) => (
-              <article class="horizon-card">
+            posts.map((post, index) => (
+              <article
+                class:list={[
+                  'horizon-card',
+                  {
+                    'lead-story': index === 0,
+                    'brief-story': index > 0,
+                    'has-image': !!post.featuredImage?.asset,
+                  },
+                ]}
+              >
                 {post.featuredImage?.asset && (
                   <a
                     class="card-image"
@@ -128,6 +140,12 @@ const heroImage = hp.hero?.image?.asset
                   </a>
                 )}
                 <div class="card-copy">
+                  <p class="card-meta">
+                    <>
+                      <span>{post.category || 'News'}</span>
+                      <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                    </>
+                  </p>
                   <h3>
                     <a href={`/blog/${post.slug.current}`}>{post.title}</a>
                   </h3>
@@ -160,7 +178,7 @@ const heroImage = hp.hero?.image?.asset
             Fusion Victoria is not contesting this election. Our coverage examines documented
             commitments and publishes editorially approved voting recommendations.
           </p>
-          <div class="horizon-grid">
+          <div class="horizon-grid coverage-grid">
             {electionArticles.slice(0, 3).map((post) => (
               <article class="horizon-card card-copy">
                 <p class="card-meta">
@@ -198,10 +216,13 @@ const heroImage = hp.hero?.image?.asset
         Examine the sources, methods and limitations behind our work. Research findings inform
         debate; they are distinct from adopted party policy.
       </p>
-      <div class="horizon-grid">
+      <div class="horizon-grid research-grid">
         {
-          research.map((resource) => (
+          research.map((resource, index) => (
             <article class="horizon-card card-copy">
+              <span class="research-number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
               <>
                 <p class="card-meta">
                   {resource.researchArea} · {resource.resourceType}
@@ -241,10 +262,10 @@ const heroImage = hp.hero?.image?.asset
               'Explore Fusion Victoria’s adopted policy positions and the evidence behind them.'
           }
         </p>
-        <div class="horizon-grid">
+        <div class="horizon-grid policy-grid">
           {
-            featuredPolicies.map((policy) => (
-              <article class="horizon-card card-copy">
+            featuredPolicies.map((policy, index) => (
+              <article class:list={['horizon-card', 'card-copy', { 'lead-policy': index === 0 }]}>
                 <>
                   <p class="card-meta">Adopted policy</p>
                   <h3>

@@ -44,6 +44,9 @@ const [guides, articles] = await Promise.all([getElectionGuides(), getElectionAr
     {
       (['lower', 'upper'] as const).map((house) => (
         <section class="horizon-section" aria-labelledby={`${house}-heading`}>
+          <h2 id={`${house}-heading`}>
+            {house === 'lower' ? 'Legislative Assembly districts' : 'Legislative Council regions'}
+          </h2>
           <div class="horizon-grid">
             {guides
               .filter((g) => g.house === house)

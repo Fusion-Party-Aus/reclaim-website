@@ -97,10 +97,10 @@ export function renderPortableText(blocks: PortableTextBlock[] | undefined | nul
         row.cells.forEach((cellText) => {
           if (rowIndex === 0) {
             // First row gets Header styling
-            html += `<th class="border border-white/10 bg-yellow p-4 font-black uppercase text-lg text-white">${cellText || ''}</th>`
+            html += `<th class="border border-white/10 bg-yellow p-4 font-bold text-lg text-on-accent">${cellText || ''}</th>`
           } else {
             // Regular cells
-            html += `<td class="border border-white/10 p-4 bg-grey-dark text-white font-medium">${cellText || ''}</td>`
+            html += `<td class="border border-white/10 p-4 bg-grey-dark text-fg font-medium">${cellText || ''}</td>`
           }
         })
         html += `</tr>`

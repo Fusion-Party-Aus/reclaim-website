@@ -54,7 +54,7 @@ const variantStyles = {
   magenta: 'bg-magenta text-on-primary hover:bg-magenta-bright',
   lavender: 'bg-lavender text-on-tertiary hover:bg-lavender-bright',
   white: 'bg-white text-black hover:bg-mint hover:text-on-secondary',
-  black: 'bg-black text-fg border border-line-mid hover:bg-white/10',
+  black: 'bg-black text-on-dark surface-dark border border-line-mid hover:bg-white/10',
 }
 
 // Size styles
@@ -86,7 +86,7 @@ const Element = href ? 'a' : 'button'
   rel={href ? rel : undefined}
   type={!href ? type : undefined}
   class={baseClasses}
-  style="font-family: 'Barlow Condensed', sans-serif;"
+  style="font-family: var(--font-sans);"
 >
   {icon && iconPosition === 'left' && <Icon name={icon} class="w-5 h-5" />}
   <slot />
