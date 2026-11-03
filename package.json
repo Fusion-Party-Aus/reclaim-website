@@ -75,6 +75,8 @@
     "@astrojs/react": "^5.0.5",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.2",
+    "@fontsource/newsreader": "^5.3.0",
+    "@fontsource/outfit": "^5.3.0",
     "@nuasite/agent-summary": "^0.0.37",
     "@portabletext/react": "^5.0.0",
     "@sanity/astro": "^3.4.0",

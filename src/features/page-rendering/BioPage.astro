@@ -28,7 +28,11 @@ const breadcrumbs = segments.map((seg, i) => {
   }
 })
 
-const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
+const sectionColors = [
+  'bg-magenta text-on-primary',
+  'bg-mint text-on-secondary',
+  'bg-yellow text-on-accent',
+]
 
 const slugify = (text: string) =>
   text
@@ -62,17 +66,17 @@ if (page.body) {
   <nav class="flex items-center flex-wrap gap-1 mb-12 text-xs font-black uppercase tracking-widest">
     <a
       href="/"
-      class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors"
+      class="px-3 py-1.5 rounded-sm border border-line bg-grey-dark text-fg hover:border-mint/40 transition-colors surface-paper"
     >
       Home
     </a>
     {
       breadcrumbs.map((bc, i) => (
         <>
-          <span class="text-fg/30 font-black">›</span>
+          <span class="text-muted font-black">›</span>
           {i === breadcrumbs.length - 1 ? (
             <span
-              class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
+              class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-link max-w-xs truncate"
               title={page.title}
             >
               {page.title}
@@ -80,7 +84,7 @@ if (page.body) {
           ) : (
             <a
               href={bc.path}
-              class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-magenta/40 hover:text-magenta transition-all"
+              class="px-3 py-1.5 rounded-sm border border-line bg-grey-dark text-fg hover:border-magenta/40 hover:text-link transition-all surface-paper"
             >
               {bc.label}
             </a>
@@ -96,7 +100,7 @@ if (page.body) {
       {/* Profile image + name card */}
       {
         page.profileImage && (
-          <div class="rounded-sm overflow-hidden bg-grey-dark border border-white/10 shadow-brutal-magenta">
+          <div class="rounded-sm overflow-hidden bg-grey-dark border border-line shadow-brutal-magenta surface-paper">
             <div class="relative overflow-hidden">
               <img
                 src={urlFor(page.profileImage).width(800).height(900).url()}
@@ -105,12 +109,12 @@ if (page.body) {
                 class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 block"
               />
             </div>
-            <div class="p-6 border-t border-white/10">
+            <div class="p-6 border-t border-line">
               <h1 class="text-2xl font-display font-black uppercase leading-tight mb-1 text-fg">
                 {page.title}
               </h1>
               {page.role && (
-                <p class="text-xs font-black uppercase tracking-widest border-l-4 border-magenta pl-3 text-magenta">
+                <p class="text-xs font-black uppercase tracking-widest border-l-4 border-magenta pl-3 text-link">
                   {page.role}
                 </p>
               )}
@@ -123,8 +127,8 @@ if (page.body) {
       {
         !page.profileImage && (
           <BrutalCard variant="surface" shadow="magenta" padding="md">
-            <div class="w-24 h-24 rounded-sm border border-white/20 bg-white/10 flex items-center justify-center mb-4">
-              <svg class="w-12 h-12 text-fg/30" viewBox="0 0 24 24" fill="currentColor">
+            <div class="w-24 h-24 rounded-sm border border-line-mid bg-white/10 flex items-center justify-center mb-4">
+              <svg class="w-12 h-12 text-muted" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
               </svg>
             </div>
@@ -132,7 +136,9 @@ if (page.body) {
               {page.title}
             </h1>
             {page.role && (
-              <p class="text-xs font-black uppercase tracking-wide text-mint">{page.role}</p>
+              <p class="text-xs font-black uppercase tracking-wide text-secondary-ink">
+                {page.role}
+              </p>
             )}
           </BrutalCard>
         )
@@ -142,7 +148,7 @@ if (page.body) {
       {
         page.socialLinks && page.socialLinks.length > 0 && (
           <BrutalCard variant="surface" shadow="yellow" padding="md">
-            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b border-white/10 pb-2">
+            <h3 class="font-black uppercase text-xs tracking-widest mb-4 border-b border-line pb-2">
               Connect
             </h3>
             <div class="flex flex-col gap-2">
@@ -151,7 +157,7 @@ if (page.body) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-white/10 bg-grey-dark text-fg hover:bg-magenta hover:text-fg hover:border-magenta transition-all px-3 py-2"
+                  class="flex items-center gap-3 font-black text-sm uppercase rounded-sm border border-line bg-grey-dark text-fg hover:bg-magenta hover:text-on-primary hover:border-magenta transition-all px-3 py-2 surface-paper"
                 >
                   <div class="w-6 h-6 flex items-center justify-center shrink-0">
                     <Icon
@@ -217,7 +223,7 @@ if (page.body) {
                 })}
               </>
             ) : (
-              <p class="text-lg font-bold uppercase text-fg/60">Full biography coming soon...</p>
+              <p class="text-lg font-bold uppercase text-muted">Full biography coming soon...</p>
             )
           }
         </div>
@@ -245,14 +251,14 @@ if (page.body) {
               <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg leading-tight">
                 {group.title}
               </h2>
-              <div class="h-2 w-24 bg-magenta mt-2" />
+              <div class="h-2 w-24 bg-magenta mt-2 surface-primary" />
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {group.pages.map((child, index) => {
                 const accents = [
-                  'var(--branch-secondary, #00DDB8)',
-                  'var(--branch-accent, #4A7AEB)',
-                  'var(--branch-primary, #D428D4)',
+                  'var(--color-secondary-ink, #00DDB8)',
+                  'var(--color-link, #4A7AEB)',
+                  'var(--color-link, #D428D4)',
                 ]
                 const accent = accents[index % accents.length]
 
@@ -263,10 +269,10 @@ if (page.body) {
                 return (
                   <a
                     href={`/${child.fullPath}`}
-                    class="team-member-card group flex flex-col rounded-sm border border-white/10 bg-grey-dark transition-colors duration-200"
+                    class="team-member-card group flex flex-col rounded-sm border border-line bg-grey-dark transition-colors duration-200 surface-paper"
                     style={`--accent-color: ${accent}; border-top: 2px solid ${accent};`}
                   >
-                    <div class="aspect-square w-full border-b border-white/10 overflow-hidden relative">
+                    <div class="aspect-square w-full border-b border-line overflow-hidden relative">
                       {imageUrl ? (
                         <img
                           src={imageUrl}
@@ -276,7 +282,7 @@ if (page.body) {
                         />
                       ) : (
                         <div class="w-full h-full flex items-center justify-center bg-white/5">
-                          <svg class="w-20 h-20 text-fg/20" viewBox="0 0 24 24" fill="currentColor">
+                          <svg class="w-20 h-20 text-muted" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                           </svg>
                         </div>

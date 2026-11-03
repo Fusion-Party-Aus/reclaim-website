@@ -217,6 +217,7 @@ export default defineConfig({
   ],
 
   vite: {
+    server: { allowedHosts: ['terminal.local'] },
     plugins: [tailwindcss()],
     resolve: {
       alias: {

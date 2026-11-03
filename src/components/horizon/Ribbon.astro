@@ -1,0 +1,37 @@
+---
+import { foldedRibbon } from '@/lib/horizon-ribbons'
+interface Props {
+  variant?: 'hero' | 'band'
+}
+const { variant = 'hero' } = Astro.props
+const id = `horizon-ribbon-${variant}`
+const surfaces = foldedRibbon()
+---
+
+<svg
+  class:list={['horizon-ribbon', `horizon-ribbon--${variant}`]}
+  viewBox="0 0 1000 1000"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    {
+      surfaces.map((surface, index) => (
+        <linearGradient
+          id={`${id}-${index}`}
+          gradientUnits="userSpaceOnUse"
+          x1={surface.points[0]}
+          y1={surface.points[1]}
+          x2={surface.points[2]}
+          y2={surface.points[3]}
+        >
+          {surface.stops.map(([offset, color]) => (
+            <stop offset={offset} stop-color={color} />
+          ))}
+        </linearGradient>
+      ))
+    }
+  </defs>
+  <g>{surfaces.map((surface, index) => <path d={surface.path} fill={`url(#${id}-${index})`} />)}</g>
+</svg>

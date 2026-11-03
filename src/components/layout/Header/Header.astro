@@ -5,6 +5,9 @@ import { Image } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
 import logoMonoWhite from '@/assets/brand/logo-rings-mono-white.png'
 
+import Brand from '@/components/horizon/Brand.astro'
+
+const isVictoria = DEPLOYMENT.slug === 'vic'
 const currentPath = Astro.url.pathname
 
 interface DropdownItem {
@@ -55,6 +58,9 @@ if (
 
 // Blog is now a first-class publishing surface. Keep it visible even if the
 // current Sanity navigation document predates frequent Signal articles.
+if (isVictoria && !rawNavItems.some((item) => item.href === '/election'))
+  rawNavItems.push({ label: 'Election coverage', href: '/election', order: 5 })
+
 if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '/blog')) {
   const researchIndex = rawNavItems.findIndex(
     (item) => item.href && ensureRootRelative(item.href) === '/research'
@@ -67,21 +73,29 @@ if (!rawNavItems.some((item) => item.href && ensureRootRelative(item.href) === '
   })
 }
 
-const navItems = rawNavItems.map((item) => ({
-  ...item,
-  href: item.href ? ensureRootRelative(item.href) : item.href,
-  children: item.children?.map((child) => ({
-    ...child,
-    href: ensureRootRelative(child.href),
-  })),
-}))
+const navItems = rawNavItems
+  .filter(
+    (item) =>
+      !isVictoria ||
+      !['/stand', '/candidates', '/electorates'].includes(ensureRootRelative(item.href || ''))
+  )
+  .map((item) => ({
+    ...item,
+    href: item.href ? ensureRootRelative(item.href) : item.href,
+    children: item.children?.map((child) => ({
+      ...child,
+      href: ensureRootRelative(child.href),
+    })),
+  }))
 
 const ctaButton = navigation?.ctaButton || {
   ...DEPLOYMENT.navigation.cta,
   style: 'primary',
 }
 
-const logo = navigation?.logo || {
+const logo = (isVictoria
+  ? { mainText: 'FUSION', subText: 'VICTORIA', tagline: DEPLOYMENT.tagline }
+  : navigation?.logo) || {
   mainText: 'FUSION',
   subText: DEPLOYMENT.state.toUpperCase(),
   tagline: DEPLOYMENT.tagline,
@@ -89,7 +103,7 @@ const logo = navigation?.logo || {
 ---
 
 <header
-  class="publication-header sticky top-0 z-50 backdrop-blur-md bg-surface-base/85 border-b border-white/10"
+  class="publication-header sticky top-0 z-50 backdrop-blur-md bg-surface-base/85 border-b border-line"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
@@ -99,24 +113,30 @@ const logo = navigation?.logo || {
         class="flex items-center gap-2.5 no-underline group shrink-0"
         aria-label={`${DEPLOYMENT.label} Home`}
       >
-        <Image
-          src={logoMonoWhite}
-          alt={DEPLOYMENT.label}
-          class="h-7 w-auto group-hover:opacity-80 transition-opacity"
-        />
-        <div class="flex flex-col leading-none">
-          <span class="font-display font-black text-fg text-lg tracking-tight uppercase">
-            {logo.mainText}
-            {logo.subText && <span class="text-fg font-bold ml-1">{logo.subText}</span>}
-          </span>
-          {
-            logo.tagline && (
-              <span class="text-xs font-medium text-fg/90 tracking-wide mt-0.5">
-                {logo.tagline}
-              </span>
-            )
-          }
-        </div>
+        {
+          isVictoria ? (
+            <Brand compact />
+          ) : (
+            <>
+              <Image
+                src={logoMonoWhite}
+                alt={DEPLOYMENT.label}
+                class="h-7 w-auto group-hover:opacity-80 transition-opacity"
+              />
+              <div class="flex flex-col leading-none">
+                <span class="font-display font-black text-fg text-lg tracking-tight uppercase">
+                  {logo.mainText}
+                  {logo.subText && <span class="text-fg font-bold ml-1">{logo.subText}</span>}
+                </span>
+                {logo.tagline && (
+                  <span class="text-xs font-medium text-muted tracking-wide mt-0.5">
+                    {logo.tagline}
+                  </span>
+                )}
+              </div>
+            </>
+          )
+        }
       </a>
 
       {/* ── Mobile menu toggle ── */}
@@ -144,7 +164,7 @@ const logo = navigation?.logo || {
               return (
                 <div class="nav-dropdown-wrapper relative group">
                   <button
-                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-fg border-magenta' : 'text-fg/90 border-transparent hover:text-fg'}`}
+                    class={`nav-link flex items-center gap-1 text-sm font-medium py-1 border-b transition-colors ${isActive ? 'text-fg border-magenta' : 'text-muted border-transparent hover:text-fg'}`}
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
@@ -159,7 +179,7 @@ const logo = navigation?.logo || {
                     class="dropdown-menu absolute top-full left-0 pt-3 hidden group-hover:block group-focus-within:block"
                     style="min-width: 240px; z-index: 100;"
                   >
-                    <div class="bg-surface-raised border border-white/10 rounded-sm p-1.5 shadow-brutal-md">
+                    <div class="bg-surface-raised border border-line rounded-sm p-1.5 shadow-brutal-md surface-paper">
                       {item.children?.map((child) => (
                         <a
                           href={child.href}
@@ -167,7 +187,7 @@ const logo = navigation?.logo || {
                         >
                           {child.label}
                           {child.description && (
-                            <div class="text-xs mt-0.5 text-fg/85">{child.description}</div>
+                            <div class="text-xs mt-0.5 text-muted">{child.description}</div>
                           )}
                         </a>
                       ))}
@@ -182,8 +202,8 @@ const logo = navigation?.logo || {
                 href={item.href}
                 class={`nav-link text-sm font-medium transition-colors ${
                   item.highlight
-                    ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-mint hover:bg-mint hover:text-black'
-                    : `py-1 border-b ${isActive ? 'text-fg border-magenta' : 'text-fg/90 border-transparent hover:text-fg'}`
+                    ? 'px-3 py-1.5 border border-mint/50 bg-mint/10 text-secondary-ink hover:bg-mint hover:text-black'
+                    : `py-1 border-b ${isActive ? 'text-fg border-magenta' : 'text-muted border-transparent hover:text-fg'}`
                 }`}
               >
                 {item.label}
@@ -212,7 +232,7 @@ const logo = navigation?.logo || {
 
     {/* ── Mobile navigation ── */}
     <nav class="mobile-nav hidden xl:hidden" id="mobile-nav" aria-label="Mobile">
-      <div class="flex flex-col gap-1 py-4 border-t border-white/10">
+      <div class="flex flex-col gap-1 py-4 border-t border-line">
         {
           navItems.map((item) => {
             const hasDropdown = item.children && item.children.length > 0
@@ -250,8 +270,8 @@ const logo = navigation?.logo || {
                 href={item.href}
                 class={`block text-sm font-medium transition-colors ${
                   item.highlight
-                    ? 'mx-2 my-1 px-3 py-2.5 border border-mint/40 bg-mint/10 text-mint'
-                    : `px-2 py-2.5 ${isActive ? 'text-fg' : 'text-fg/90 hover:text-fg'}`
+                    ? 'mx-2 my-1 px-3 py-2.5 border border-mint/40 bg-mint/10 text-secondary-ink'
+                    : `px-2 py-2.5 ${isActive ? 'text-fg' : 'text-muted hover:text-fg'}`
                 }`}
               >
                 {item.label}

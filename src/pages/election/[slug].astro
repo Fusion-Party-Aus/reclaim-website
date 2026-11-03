@@ -1,0 +1,63 @@
+---
+import { DEPLOYMENT } from '@/lib/deployment'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { getElectionGuides } from '@/lib/sanity'
+import { formatDate } from '@/lib/homepage'
+import { PortableText } from 'astro-portabletext'
+import '@/styles/global.css'
+if (DEPLOYMENT.slug !== 'vic') return Astro.redirect('/404')
+const guide = (await getElectionGuides()).find((g) => g.slug.current === Astro.params.slug)
+if (!guide) return Astro.redirect('/404')
+---
+
+<BaseLayout
+  title={`${guide.title} | Fusion Victoria`}
+  description={guide.summary}
+  type="article"
+  publishedAt={guide.publishedAt}
+  modifiedAt={guide.updatedAt || guide.publishedAt}
+>
+  <Header /><main id="main-content" class="horizon-home horizon-shell horizon-section">
+    <a href="/election">← Election coverage</a><p class="eyebrow">
+      {guide.house === 'lower' ? 'Legislative Assembly district' : 'Legislative Council region'} · {
+        guide.electorateId
+      }
+    </p>
+    <h1 style="color:var(--horizon-purple);max-width:22ch">{guide.title}</h1>
+    <p>
+      Published <time datetime={guide.publishedAt}>{formatDate(guide.publishedAt)}</time>{
+        guide.updatedAt && (
+          <>
+            {' '}
+            · Updated <time datetime={guide.updatedAt}>{formatDate(guide.updatedAt)}</time>
+          </>
+        )
+      }
+    </p>
+    <p class="section-deck">{guide.summary}</p><p>
+      Fusion Victoria organisational recommendation. Fusion is not contesting this election.
+    </p>
+    <article class="editorial-prose">
+      {guide.recommendation && <PortableText value={guide.recommendation} />}
+    </article>
+    {
+      guide.sources?.length && (
+        <section class="horizon-section">
+          <>
+            <h2>Sources</h2>
+            <ul>
+              {guide.sources.map((source) => (
+                <li>
+                  <a href={source.url}>{source.title}</a>
+                  {source.accessedAt && <> — accessed {formatDate(source.accessedAt)}</>}
+                </li>
+              ))}
+            </ul>
+          </>
+        </section>
+      )
+    }
+  </main><Footer />
+</BaseLayout>

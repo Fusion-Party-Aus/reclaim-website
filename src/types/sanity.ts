@@ -301,6 +301,11 @@ export interface JoinCard {
 
 export interface HomePage extends SanityDocument {
   _type: 'homePage'
+  hero?: { eyebrow?: string; title?: string; subtitle?: string; image?: SanityImageAsset }
+  participatoryResources?: { label: string; url: string; description?: string }[]
+  participatoryStages?: { title: string; description: string }[]
+  participatoryHeading?: string
+  participatoryIntroduction?: string
   title: string
   heroTitle: string
   heroSubtitle: string

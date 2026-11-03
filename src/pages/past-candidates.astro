@@ -69,14 +69,14 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
   />
 
   <!-- ARCHIVE GRID -->
-  <main id="main-content" class="site-editorial bg-surface-raised py-16 min-h-screen">
+  <main id="main-content" class="site-editorial bg-surface-raised py-16 min-h-screen surface-paper">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {
         sortedGroups.length > 0 ? (
           <div class="space-y-16">
             {sortedGroups.map((group) => (
               <section>
-                <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-8 border-b border-white/10 pb-4 text-fg text-center">
+                <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-8 border-b border-line pb-4 text-fg text-center">
                   {group}
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
@@ -91,14 +91,14 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
                     return (
                       <a
                         href={`/${bio.slug}`}
-                        class="group flex flex-col bg-grey-dark border border-white/10 rounded-sm transition-colors hover:border-white/25 overflow-hidden relative"
+                        class="group flex flex-col bg-grey-dark border border-line rounded-sm transition-colors hover:border-line-mid overflow-hidden relative surface-paper"
                       >
                         {/* Archival tag */}
                         <BrutalBadge variant="black" size="sm" class="absolute top-2 right-2 z-10">
                           Archived
                         </BrutalBadge>
 
-                        <div class="aspect-square w-full overflow-hidden bg-black/30">
+                        <div class="aspect-square w-full overflow-hidden bg-surface-raised surface-paper">
                           {imageUrl ? (
                             <img
                               src={imageUrl}
@@ -127,7 +127,7 @@ const sortedGroups = Object.keys(groupedByElection).sort((a, b) => {
                           </h3>
 
                           {(bio.role || bio.subtitle) && (
-                            <p class="mt-1 text-[10px] md:text-xs font-bold text-fg/60 uppercase tracking-widest">
+                            <p class="mt-1 text-[10px] md:text-xs font-bold text-muted uppercase tracking-widest">
                               {bio.role || bio.subtitle}
                             </p>
                           )}

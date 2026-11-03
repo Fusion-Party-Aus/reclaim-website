@@ -25,11 +25,11 @@ import { BrutalButton } from '@/components/ui'
 <aside class="sidebar hidden lg:block">
   <div class="sticky-sidebar">
     <div
-      class="bg-grey-dark border border-white/10 rounded-sm p-5"
-      style="border-top: 2px solid var(--branch-primary, #D428D4);"
+      class="bg-grey-dark border border-line rounded-sm p-5 surface-paper"
+      style="border-top: 2px solid var(--color-link, #D428D4);"
     >
-      <div class="mb-5 pb-3 border-b border-white/10">
-        <h3 class="text-xl font-display font-black text-magenta uppercase">Jump To</h3>
+      <div class="mb-5 pb-3 border-b border-line">
+        <h3 class="text-xl font-display font-black text-link uppercase">Jump To</h3>
       </div>
 
       <nav class="space-y-3" aria-label="On this page">
@@ -39,7 +39,7 @@ import { BrutalButton } from '@/components/ui'
               <a
                 href={`#${section.id}`}
                 data-nav={section.id}
-                class="block py-2 px-3 rounded-sm font-display font-black uppercase bg-mint text-black hover:bg-mint-dark transition-colors text-sm tracking-wide"
+                class="block py-2 px-3 rounded-sm font-display font-black uppercase bg-mint text-on-secondary hover:bg-mint-dark transition-colors text-sm tracking-wide surface-secondary"
               >
                 {section.title}
               </a>
@@ -49,7 +49,7 @@ import { BrutalButton } from '@/components/ui'
                     <a
                       href={`#${child.id}`}
                       data-nav={child.id}
-                      class="block py-2 px-2 font-bold text-sm uppercase tracking-wide text-fg hover:text-mint hover:bg-white/10 transition-all"
+                      class="block py-2 px-2 font-bold text-sm uppercase tracking-wide text-fg hover:text-secondary-ink hover:bg-white/10 transition-all"
                     >
                       {child.title}
                     </a>
@@ -61,21 +61,21 @@ import { BrutalButton } from '@/components/ui'
         }
       </nav>
 
-      <div class="mt-6 pt-5 border-t border-white/10">
-        <h4 class="text-sm font-display font-black text-magenta mb-3 uppercase tracking-wider">
+      <div class="mt-6 pt-5 border-t border-line">
+        <h4 class="text-sm font-display font-black text-link mb-3 uppercase tracking-wider">
           Quick Links
         </h4>
         <div class="space-y-2">
           <a
             href="/policies"
-            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-xs border border-white/10 bg-grey-dark hover:border-mint/40 hover:text-mint transition-all"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-xs border border-line bg-grey-dark hover:border-mint/40 hover:text-secondary-ink transition-all surface-paper"
           >
             <Icon name="mdi:file-document" class="w-4 h-4" />
             All Policies
           </a>
           <a
             href={DEPLOYMENT.cta.getInvolved}
-            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-xs border border-white/10 bg-grey-dark hover:border-magenta/40 hover:text-magenta transition-all"
+            class="flex items-center gap-2 py-2 px-3 rounded-sm font-bold text-xs border border-line bg-grey-dark hover:border-magenta/40 hover:text-link transition-all surface-paper"
           >
             <Icon name="mdi:hand-heart" class="w-4 h-4" />
             Get Involved
@@ -91,7 +91,7 @@ import { BrutalButton } from '@/components/ui'
       </div>
 
       <div class="mt-5 p-3 rounded-sm bg-magenta/10 border-l-2 border-magenta">
-        <p class="font-black text-xs uppercase text-magenta">No Corporate Donations. Ever.</p>
+        <p class="font-black text-xs uppercase text-link">No Corporate Donations. Ever.</p>
       </div>
     </div>
   </div>
@@ -144,7 +144,7 @@ import { BrutalButton } from '@/components/ui'
   }
   .sidebar a.is-active {
     background-color: var(--branch-accent-deep, #234080) !important;
-    color: var(--branch-ink, #ffffff) !important;
+    color: var(--color-fg, #ffffff) !important;
   }
   .sidebar a.is-active[href^='#'] {
     transform: translateX(2px) !important;

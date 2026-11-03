@@ -1,0 +1,737 @@
+@import '@fontsource/newsreader/latin-400.css';
+@import '@fontsource/newsreader/latin-600.css';
+@import '@fontsource/outfit/latin-400.css';
+@import '@fontsource/outfit/latin-700.css';
+
+/* Victoria's presentation language. Palette and semantic roles live in themes/vic.css. */
+:root[data-theme='vic'] body {
+  font-family: var(--font-sans);
+}
+:root[data-theme='vic'] :is(h1, h2, h3, h4, h5, h6) {
+  text-transform: none;
+  font-weight: 600;
+}
+:root[data-theme='vic'] :is(h1, h2, .font-display, .font-heading, .editorial-title) {
+  font-family: var(--font-display);
+}
+:root[data-theme='vic'] :is(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid #003c71;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
+}
+:root[data-theme='vic'] :is(input, textarea, select) {
+  border-color: var(--color-line-mid);
+  color: var(--color-fg);
+}
+:root[data-theme='vic'] :is(input, textarea)::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+:root[data-theme='vic'] .public-editorial > a[href='#main-content']:focus {
+  background: #fff;
+  color: #32105a;
+  border-color: #003c71;
+}
+
+/* A panel owns its foreground roles; nested paper panels reset them. */
+:root[data-theme='vic'] :is(.surface-primary, .surface-dark, .surface-accent, .surface-tertiary) {
+  --color-fg: #fff;
+  --color-muted: #fff;
+  --color-chalk: #fff;
+  --color-link: #fff;
+  --color-secondary-ink: #fff;
+  --editorial-title: #fff;
+  --color-line: rgba(255, 255, 255, 0.25);
+  --color-line-mid: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+:root[data-theme='vic'] .surface-primary,
+:root[data-theme='vic'] .surface-accent {
+  background-color: #003c71;
+}
+:root[data-theme='vic'] .surface-dark {
+  background-color: #32105a;
+}
+:root[data-theme='vic'] .surface-tertiary {
+  background-color: #6f31bc;
+}
+:root[data-theme='vic'] .surface-secondary {
+  --color-fg: #32105a;
+  --color-muted: #32105a;
+  --color-chalk: #32105a;
+  --color-link: #32105a;
+  --color-secondary-ink: #32105a;
+  color: #32105a;
+  background-color: #a8a8ad;
+}
+:root[data-theme='vic'] .surface-paper {
+  --color-fg: #32105a;
+  --color-muted: #54465f;
+  --color-chalk: #32105a;
+  --color-link: #003c71;
+  --color-secondary-ink: #5d5d65;
+  --editorial-title: #32105a;
+  --color-line: #ded6e7;
+  --color-line-mid: #887898;
+  color: #32105a;
+}
+
+/* Long-form organisation pages use the editorial system, without campaign panels. */
+.publication-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+}
+.publication-section-title {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: 0;
+  color: var(--color-fg);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.15;
+}
+.publication-section-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Current signature: the supplied open, spaced sans wordmark and silver branch emblem. */
+.horizon-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.horizon-brand img {
+  display: block;
+  width: 2.75rem;
+  height: auto;
+}
+.horizon-brand-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.horizon-wordmark {
+  color: #32105a;
+  font:
+    400 1.4rem/1 'Outfit',
+    sans-serif;
+  letter-spacing: 0.26em;
+}
+.horizon-branch {
+  color: #54465f;
+  font:
+    400 0.7rem/1 'Outfit',
+    sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+:root[data-theme='vic'] .publication-header {
+  color: #32105a;
+  background: #fff;
+  border-color: #ded6e7;
+}
+:root[data-theme='vic'] .publication-header .nav-link {
+  color: #32105a;
+}
+:root[data-theme='vic'] .publication-header a[aria-current='page'] {
+  border-color: #a8a8ad;
+}
+:root[data-theme='vic'] .publication-footer {
+  background: #fff;
+  color: #32105a;
+}
+:root[data-theme='vic'] .publication-footer > .bg-magenta {
+  --color-fg: #32105a;
+  --color-muted: #54465f;
+  color: #32105a;
+  background: #f8f5fb;
+  border: 0;
+}
+:root[data-theme='vic'] .publication-footer h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+:root[data-theme='vic'] .public-editorial .ui-button {
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: 0.015em;
+  font-family: var(--font-sans);
+}
+:root[data-theme='vic'] .editorial-masthead {
+  background: #f8f5fb;
+  border-top: 1px solid #ded6e7;
+}
+:root[data-theme='vic'] .prose {
+  font-family: var(--font-sans);
+  color: var(--color-chalk);
+}
+:root[data-theme='vic'] .prose :is(h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+:root[data-theme='vic'] .prose strong {
+  color: var(--color-fg);
+  font-weight: 700;
+}
+:root[data-theme='vic'] .brutal-section {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+:root[data-theme='vic'] .brutal-section-header {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+:root[data-theme='vic'] .brutal-section-content {
+  padding: 1.75rem 1.5rem;
+  color: var(--color-fg);
+}
+:root[data-theme='vic'] .team-member-card {
+  box-shadow: none;
+}
+:root[data-theme='vic'] [data-policy-card] h4 {
+  font-size: 1.55rem;
+  line-height: 1.12;
+}
+:root[data-theme='vic'] [data-policy-card] .policy-cost {
+  font-weight: 400;
+  text-transform: none;
+  background: none;
+  max-width: 42ch;
+}
+:root[data-theme='vic'] [data-policy-card] .policy-card-footer > a {
+  color: var(--color-link);
+  min-height: 2.75rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.horizon-home {
+  background: #fff;
+  color: #32105a;
+  line-height: 1.6;
+}
+.horizon-shell {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+.horizon-section {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+.horizon-home h2 {
+  font:
+    600 clamp(2.4rem, 4vw, 4rem)/1.08 'Newsreader',
+    Georgia,
+    serif;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.horizon-home h3 {
+  font:
+    600 1.85rem/1.15 'Newsreader',
+    Georgia,
+    serif;
+  letter-spacing: -0.015em;
+  margin: 0.65rem 0 1rem;
+}
+.horizon-home p {
+  margin: 0 0 1rem;
+}
+.horizon-home a {
+  text-underline-offset: 0.2em;
+}
+.horizon-home a:hover {
+  text-decoration: underline;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.horizon-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.8rem;
+}
+.horizon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid white;
+  border-radius: 999px;
+  background: white;
+  color: #32105a;
+  font-weight: 700;
+  text-decoration: none;
+}
+.horizon-button.outline {
+  background: transparent;
+  color: white;
+}
+
+/* Signal geometry keeps its proportions and stays outside the copy column. */
+.horizon-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(3rem, 5vw, 5rem);
+  min-height: 660px;
+  background: var(--fusion-purple);
+  color: #fff;
+}
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  width: 44%;
+}
+.horizon-home h1 {
+  font:
+    600 clamp(3.25rem, 6vw, 5.5rem)/1.05 'Newsreader',
+    Georgia,
+    serif;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  color: white;
+  max-width: 13ch;
+  margin: 0.8rem 0 1.5rem;
+}
+.hero-intro {
+  max-width: 36rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #e3d2fa;
+}
+.hero-photo {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 49%;
+  margin: 0;
+  overflow: hidden;
+}
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.horizon-ribbon {
+  position: absolute;
+  pointer-events: none;
+}
+.horizon-ribbon--hero {
+  inset: 0 -8% 0 auto;
+  width: 55%;
+  height: 100%;
+  z-index: 1;
+}
+.latest-strip {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid #ded6e7;
+}
+.latest-strip a {
+  flex: 1;
+  font-weight: 700;
+}
+.latest-strip time {
+  font-size: 0.8rem;
+  color: #54465f;
+  white-space: nowrap;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+.intro > div {
+  padding-left: 2rem;
+  border-left: 1px solid #ded6e7;
+  font-size: 1.15rem;
+}
+.tinted {
+  background: #f8f5fb;
+}
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.section-heading > a {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.section-deck {
+  max-width: 48rem;
+  font-size: 1.12rem;
+}
+.horizon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.horizon-card {
+  border: 1px solid #ded6e7;
+  background: white;
+  min-width: 0;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+.horizon-card h3 a {
+  text-decoration: none;
+}
+.card-copy {
+  padding: 1.6rem;
+}
+.card-copy > p:not(.card-meta) {
+  color: #54465f;
+}
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  color: #54465f;
+  font-size: 0.8rem;
+}
+.card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee7f4;
+}
+.card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.news-grid {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+}
+.news-grid .lead-story {
+  grid-row: span 2;
+}
+.news-grid .lead-story h3 {
+  font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+}
+.news-grid .brief-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6rem;
+  gap: 1rem;
+  border: 0;
+  border-bottom: 1px solid #ded6e7;
+  border-radius: 0;
+  background: transparent;
+  padding-bottom: 1.5rem;
+}
+.news-grid .brief-story:not(.has-image) {
+  grid-template-columns: 1fr;
+}
+.news-grid .brief-story .card-copy {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 0;
+}
+.news-grid .brief-story .card-image {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+}
+.news-grid .brief-story h3 {
+  font-size: 1.55rem;
+}
+.research-number {
+  display: none;
+}
+
+/* Reserve a separate edge for the sculptural motif, including on mobile. */
+.participation {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--fusion-purple);
+  color: white;
+}
+.participation .horizon-shell {
+  padding-right: max(clamp(1.25rem, 4vw, 3rem), clamp(220px, 30vw, 480px));
+}
+.participation h2 {
+  max-width: 19ch;
+  color: white;
+}
+.participation .section-deck {
+  margin-top: 1.5rem;
+  color: #e3d2fa;
+}
+.horizon-ribbon--band {
+  top: 0;
+  right: -3%;
+  width: clamp(220px, 30vw, 480px);
+  height: 100%;
+  z-index: -1;
+}
+
+@media (max-width: 900px) {
+  .horizon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .horizon-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0;
+  }
+  .hero-shell {
+    order: 1;
+    padding-block: 3rem 2.5rem;
+  }
+  .hero-copy {
+    width: 100%;
+  }
+  .horizon-home h1 {
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    max-width: 16ch;
+  }
+  .hero-photo {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    order: 2;
+    height: clamp(220px, 64vw, 360px);
+  }
+  .horizon-ribbon--hero {
+    inset: auto -15% 0 auto;
+    width: 75%;
+    height: clamp(220px, 64vw, 360px);
+  }
+  .latest-strip {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.45rem 1rem;
+    padding-block: 1.15rem;
+  }
+  .latest-strip .eyebrow {
+    margin: 0;
+  }
+  .latest-strip time {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .latest-strip > a {
+    grid-column: 1/-1;
+    line-height: 1.4;
+  }
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-block: 3.25rem;
+  }
+  .intro > div {
+    border-left: 3px solid #003c71;
+    padding-left: 1.1rem;
+    font-size: 1.05rem;
+  }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading h2 {
+    font-size: 2.65rem;
+  }
+  .news-grid {
+    display: block;
+    margin-top: 0;
+  }
+  .news-grid .lead-story {
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+  }
+  .news-grid .lead-story .card-copy {
+    padding: 1.25rem 0 1rem;
+  }
+  .news-grid .lead-story h3 {
+    font-size: 2.1rem;
+  }
+  .news-grid .card-image {
+    border-radius: 0.35rem;
+    overflow: hidden;
+  }
+  .news-grid .brief-story {
+    grid-template-columns: minmax(0, 1fr) 5.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid #ded6e7;
+    border-bottom: 0;
+  }
+  .news-grid .brief-story .card-copy > p:not(.card-meta) {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .news-grid .card-meta {
+    font-size: 0.72rem;
+    gap: 0.35rem 0.8rem;
+  }
+  .research-grid {
+    display: block;
+  }
+  .research-grid .horizon-card {
+    position: relative;
+    padding: 1.5rem 1.75rem 1.5rem 0;
+    border: 0;
+    border-top: 1px solid #ded6e7;
+    border-radius: 0;
+    background: transparent;
+  }
+  .research-grid h3 {
+    font-size: 1.65rem;
+    max-width: 25ch;
+  }
+  .research-grid .research-number {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
+    font:
+      400 0.75rem/1 'Outfit',
+      sans-serif;
+    color: #54465f;
+  }
+  .research-grid .card-copy > p:not(.card-meta) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .policy-grid {
+    display: block;
+  }
+  .policy-grid .lead-policy {
+    margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3rem));
+    padding: 2rem 1.5rem;
+    background: #32105a;
+    color: white;
+    border: 0;
+    border-radius: 0;
+  }
+  .policy-grid .lead-policy h3 {
+    font-size: 2.3rem;
+    max-width: 20ch;
+  }
+  .policy-grid .lead-policy :is(.card-meta, p) {
+    color: white;
+  }
+  .policy-grid .horizon-card:not(.lead-policy) {
+    padding: 1.5rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ded6e7;
+    border-radius: 0;
+  }
+  .policy-grid .horizon-card:not(.lead-policy) h3 {
+    font-size: 1.65rem;
+  }
+  .coverage-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .coverage-grid .horizon-card {
+    border: 0;
+    border-left: 3px solid #003c71;
+    border-radius: 0;
+    background: #f2f2f4;
+  }
+  .coverage-grid h3 {
+    font-size: 1.6rem;
+  }
+  .participation .horizon-shell {
+    padding-right: clamp(1.25rem, 4vw, 3rem);
+  }
+  .participation {
+    padding-bottom: 7rem;
+  }
+  .horizon-ribbon--band {
+    top: auto;
+    bottom: -12rem;
+    right: -3rem;
+    width: 16rem;
+    height: 17rem;
+  }
+  .participation .horizon-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .participation .horizon-actions .outline {
+    justify-content: space-between;
+    text-align: left;
+  }
+  :root[data-theme='vic'] .brutal-section-header {
+    padding: 1rem;
+    font-size: 1.8rem;
+  }
+  :root[data-theme='vic'] .brutal-section-content {
+    padding: 1.25rem 1rem;
+  }
+  :root[data-theme='vic'] [data-policy-card] .policy-cost {
+    max-width: none;
+  }
+  .horizon-brand img {
+    width: 2rem;
+  }
+}
+@media (max-width: 500px) {
+  :root[data-theme='vic'] .editorial-title {
+    font-size: clamp(2rem, 8.5vw, 2.5rem);
+    line-height: 1.08;
+  }
+  .horizon-grid {
+    grid-template-columns: 1fr;
+  }
+  .horizon-actions .horizon-button {
+    width: 100%;
+  }
+}
+@media (max-width: 360px) {
+  .horizon-wordmark {
+    font-size: 1.25rem;
+  }
+  .horizon-branch {
+    font-size: 0.65rem;
+  }
+  .section-heading h2 {
+    font-size: 2.3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='vic'] *,
+  :root[data-theme='vic'] *::before,
+  :root[data-theme='vic'] *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

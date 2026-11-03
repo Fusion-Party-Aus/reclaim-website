@@ -5,10 +5,47 @@ export default defineType({
   title: 'Home Page',
   type: 'document',
   fields: [
-    defineField({name:'participatoryResources',title:'Public participation resources',type:'array',of:[{type:'object',fields:[{name:'label',type:'string'},{name:'url',type:'url'},{name:'description',type:'text'}]}]}),
-    defineField({name:'participatoryStages',title:'Policy development stages',type:'array',of:[{type:'object',fields:[{name:'title',type:'string'},{name:'description',type:'string'}]}]}),
-    defineField({name: 'participatoryHeading', title: 'Participatory Issues Heading', type: 'string', description: 'Heading above the public issue cards for participatory branch homepages.'}),
-    defineField({name: 'participatoryIntroduction', title: 'Participatory Issues Introduction', type: 'text', description: 'Short explanation of the investigation and consultation process.'}),
+    defineField({
+      name: 'participatoryResources',
+      title: 'Public participation resources',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'label', type: 'string'},
+            {name: 'url', type: 'url'},
+            {name: 'description', type: 'text'},
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'participatoryStages',
+      title: 'Policy development stages',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'title', type: 'string'},
+            {name: 'description', type: 'string'},
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'participatoryHeading',
+      title: 'Participatory Issues Heading',
+      type: 'string',
+      description: 'Heading above the public issue cards for participatory branch homepages.',
+    }),
+    defineField({
+      name: 'participatoryIntroduction',
+      title: 'Participatory Issues Introduction',
+      type: 'text',
+      description: 'Short explanation of the investigation and consultation process.',
+    }),
     defineField({
       name: 'title',
       title: 'Page Title',
@@ -20,6 +57,12 @@ export default defineType({
       title: 'Hero Section',
       type: 'object',
       fields: [
+        defineField({
+          name: 'image',
+          type: 'image',
+          options: {hotspot: true},
+          fields: [defineField({name: 'alt', type: 'string'})],
+        }),
         {
           name: 'eyebrow',
           title: 'Eyebrow Text',

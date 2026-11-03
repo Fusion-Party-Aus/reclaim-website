@@ -200,21 +200,21 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
           </div>
         </header>
         {/* ── Manifesto Strip ── */}
-        <div class="bg-black border-b-4 border-yellow">
+        <div class="bg-black border-b-4 border-yellow surface-dark">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
             <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
               <div class="max-w-3xl">
                 <h2 class="text-2xl md:text-4xl font-display font-black uppercase text-fg leading-tight mb-5">
                   {manifesto.heading}
                 </h2>
-                <p class="text-base md:text-lg font-semibold text-fg/75 leading-relaxed border-l-4 border-yellow pl-5 mb-5">
+                <p class="text-base md:text-lg font-semibold text-muted leading-relaxed border-l-4 border-yellow pl-5 mb-5">
                   {manifesto.body}
                 </p>
-                <p class="text-sm font-black uppercase tracking-widest text-yellow">
+                <p class="text-sm font-black uppercase tracking-widest text-link">
                   {manifesto.punchline}
                 </p>
               </div>
-              <div class="hidden lg:flex flex-col items-center justify-center w-32 h-32 bg-yellow rounded-sm shrink-0 self-center">
+              <div class="hidden lg:flex flex-col items-center justify-center w-32 h-32 bg-yellow rounded-sm shrink-0 self-center surface-accent">
                 <Icon name="mdi:telescope" class="w-16 h-16 text-fg" />
               </div>
             </div>
@@ -222,7 +222,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
         </div>
 
         {/* ── Proof Stats Strip ── */}
-        <div class="bg-surface-base border-b border-white/10">
+        <div class="bg-surface-base border-b border-line surface-paper">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
             <div
               class={`grid gap-3 ${proofStats.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}
@@ -244,13 +244,13 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
         <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
           <div class="min-w-0">
             <aside class="mb-8 rounded-sm border border-mint/40 bg-mint/10 p-6">
-              <p class="text-xs font-black uppercase tracking-widest text-mint mb-2">
+              <p class="text-xs font-black uppercase tracking-widest text-secondary-ink mb-2">
                 Long-term view
               </p>
               <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
                 Part of one policy platform
               </h2>
-              <p class="text-sm text-fg/80 leading-relaxed mb-4">
+              <p class="text-sm text-muted leading-relaxed mb-4">
                 This page highlights proposals that need a broader mandate or longer delivery
                 horizon. They are not a separate class of “vision-only” ideas — every proposal also
                 appears in the full policy platform.
@@ -268,7 +268,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                 <h2 class="text-xl font-display font-black uppercase text-fg mb-2">
                   Homes and Stations Code
                 </h2>
-                <p class="text-sm text-fg/80 leading-relaxed mb-3">
+                <p class="text-sm text-muted leading-relaxed mb-3">
                   The Code allows modest infill housing and larger station precincts. Affordable
                   housing settings and public costs need legal, infrastructure and viability tests.
                 </p>
@@ -282,15 +282,15 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
             )}
             {/* ── Evidence Credibility Strip ── */}
             {isVictoriaCampaign && (
-              <div class="mb-8 flex flex-wrap gap-3 items-center border border-white/10 rounded-sm bg-neutral-panel px-5 py-4">
-                <Icon name="mdi:magnify" class="w-5 h-5 text-mint shrink-0" />
+              <div class="mb-8 flex flex-wrap gap-3 items-center border border-line rounded-sm bg-neutral-panel px-5 py-4 surface-paper">
+                <Icon name="mdi:magnify" class="w-5 h-5 text-secondary-ink shrink-0" />
                 {[
                   'Victorian Budget 2026-27',
                   'Parliamentary Budget Office',
                   'Hong Kong MTR annual reports',
                   'Switzerland Federal Chancellery',
                 ].map((src) => (
-                  <span class="text-xs font-black uppercase text-mint/80 bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
+                  <span class="text-xs font-black uppercase text-secondary-ink bg-mint/10 px-2 py-1 rounded-sm border border-mint/20">
                     {src}
                   </span>
                 ))}
@@ -308,9 +308,9 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                   >
                     {/* Pillar header bar */}
                     <div
-                      class={`bg-${cfg.variant} border-b border-white/10 px-8 py-6 flex items-center gap-5`}
+                      class={`surface-${cfg.variant === 'mint' ? 'secondary' : cfg.variant === 'yellow' ? 'accent' : 'primary'} bg-${cfg.variant} border-b border-line px-8 py-6 flex items-center gap-5`}
                     >
-                      <div class="p-3 bg-neutral-panel rounded-sm">
+                      <div class="p-3 bg-neutral-panel rounded-sm surface-paper">
                         <Icon name={cfg.icon} class={`w-8 h-8 ${cfg.textColor}`} />
                       </div>
                       <h2
@@ -327,7 +327,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                           class="mb-12 last:mb-0 scroll-mt-24"
                         >
                           {/* Category header */}
-                          <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                          <div class="flex items-center gap-3 mb-6 border-b border-line pb-4">
                             <h3>
                               <BrutalBadge variant={cfg.variant}>{category}</BrutalBadge>
                             </h3>
@@ -351,24 +351,24 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
                                     <div class={`p-2 rounded-sm shrink-0 bg-${accent}`}>
                                       <Icon
                                         name={toIconName(policy.icon) as string}
-                                        class={`w-5 h-5 ${accent === 'mint' ? 'text-black' : 'text-fg'}`}
+                                        class={`w-5 h-5 ${accent === 'mint' ? 'text-on-secondary' : 'text-on-primary'}`}
                                       />
                                     </div>
                                   </div>
 
                                   {policy.hook ? (
                                     <p
-                                      class={`text-sm font-black text-${accent} mb-2 leading-snug italic`}
+                                      class={`text-sm font-black text-${accent === 'mint' ? 'secondary-ink' : 'link'} mb-2 leading-snug italic`}
                                     >
                                       "{policy.hook}"
                                     </p>
                                   ) : null}
 
-                                  <p class="text-sm font-semibold text-fg/70 mb-4 flex-1 leading-snug">
+                                  <p class="text-sm font-semibold text-muted mb-4 flex-1 leading-snug">
                                     {policy.summary}
                                   </p>
 
-                                  <div class="border-t border-white/10 pt-4 flex items-center justify-between gap-2">
+                                  <div class="border-t border-line pt-4 flex items-center justify-between gap-2">
                                     {policy.cost && (
                                       <span class="text-sm font-black uppercase rounded-sm bg-accent-deep text-fg px-2 py-1 flex items-center gap-1">
                                         <span class="opacity-80">Cost:</span>
@@ -403,7 +403,7 @@ const sidebarSections = PILLAR_ORDER.map((pillar) => ({
               <h2 class="text-3xl md:text-4xl font-display font-black uppercase mb-3 leading-tight">
                 {ctaSection.heading}
               </h2>
-              <p class="text-base font-black text-fg/65 mb-8 border-l-4 border-yellow pl-4 max-w-lg">
+              <p class="text-base font-black text-muted mb-8 border-l-4 border-yellow pl-4 max-w-lg">
                 {ctaSection.body}
               </p>
               <div class="flex flex-wrap gap-3">

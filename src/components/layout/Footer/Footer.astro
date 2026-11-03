@@ -40,8 +40,10 @@ interface Footer {
   networkBranding?: { text: string; url: string }
 }
 
+import Brand from '@/components/horizon/Brand.astro'
+const isVictoria = DEPLOYMENT.slug === 'vic'
 const footers = await getDocuments<Footer>('footer')
-const electorates = await getElectorates()
+const electorates = isVictoria ? [] : await getElectorates()
 const footerData: Footer = footers[0] || {
   logo: { mainText: 'FUSION', subText: DEPLOYMENT.state.toUpperCase() },
   tagline: DEPLOYMENT.tagline,
@@ -50,18 +52,30 @@ const footerData: Footer = footers[0] || {
   banner: { text: DEPLOYMENT.tagline, rotation: 0 },
   authorization: '',
 }
+if (isVictoria) {
+  footerData.tagline = DEPLOYMENT.tagline
+  footerData.banner = { text: 'Reason. Rights. Results.', rotation: 0 }
+  footerData.navColumns = footerData.navColumns?.map((column) => ({
+    ...column,
+    badgeLabel: column.badgeLabel === 'Candidates' ? 'Archives' : column.badgeLabel,
+    showElectorates: false,
+    links: column.links.filter(
+      (link) => !['/stand', '/electorates', '/candidates'].includes(link.url)
+    ),
+  }))
+}
 ---
 
-<footer class="publication-footer bg-surface-base text-fg">
+<footer class="publication-footer bg-surface-base text-fg surface-paper">
   {/* ═══ NO CORPORATE DONATIONS — static banner ═══ */}
-  <div class="bg-magenta py-4 px-4">
+  <div class="bg-magenta py-4 px-4 surface-primary">
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"
     >
       <p class="text-lg md:text-xl font-display font-black uppercase text-fg tracking-tight">
         {footerData.banner.text}
       </p>
-      <p class="text-xs font-semibold text-fg/80">
+      <p class="text-xs font-semibold text-muted">
         {footerData.banner.subtext}
       </p>
     </div>
@@ -76,20 +90,28 @@ const footerData: Footer = footers[0] || {
           {/* Campaign Branding */}
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
-                  {footerData.logo.mainText}
-                </span>
-                <span class="text-sm font-medium text-fg/40 uppercase tracking-wide">
-                  {footerData.logo.subText}
-                </span>
-              </div>
+              {
+                isVictoria ? (
+                  <Brand />
+                ) : (
+                  <>
+                    <Image src={logoMonoWhite} alt={DEPLOYMENT.label} class="h-8 w-auto" />
+                    <div class="flex items-baseline gap-1.5 flex-wrap">
+                      <span class="font-display font-black text-fg text-2xl tracking-tight uppercase">
+                        {footerData.logo.mainText}
+                      </span>
+                      <span class="text-sm font-medium text-muted uppercase tracking-wide">
+                        {footerData.logo.subText}
+                      </span>
+                    </div>
+                  </>
+                )
+              }
             </div>
 
             {
               footerData.tagline && (
-                <p class="text-sm text-fg/50 mt-3 max-w-xs leading-relaxed">{footerData.tagline}</p>
+                <p class="text-sm text-muted mt-3 max-w-xs leading-relaxed">{footerData.tagline}</p>
               )
             }
           </div>
@@ -107,7 +129,7 @@ const footerData: Footer = footers[0] || {
                 >
                   <Icon
                     name={social.icon}
-                    class="w-4 h-4 text-fg/60 transition-colors duration-150"
+                    class="w-4 h-4 text-muted transition-colors duration-150"
                   />
                 </a>
               ))
@@ -117,11 +139,11 @@ const footerData: Footer = footers[0] || {
           {/* Newsletter Signup Card */}
           {
             footerData.newsletter && (
-              <div class="border border-white/10 rounded-sm p-6">
+              <div class="border border-line rounded-sm p-6">
                 <h4 class="text-sm font-semibold text-fg mb-1.5">
                   {footerData.newsletter?.heading}
                 </h4>
-                <p class="text-xs text-fg/50 mb-4 leading-relaxed">
+                <p class="text-xs text-muted mb-4 leading-relaxed">
                   {footerData.newsletter?.description}
                 </p>
 
@@ -138,11 +160,11 @@ const footerData: Footer = footers[0] || {
                     type="email"
                     required
                     placeholder="Enter your email"
-                    class="flex-1 px-3 py-2 text-sm rounded-sm border border-white/15 bg-surface-raised text-fg placeholder-white/30 focus:outline-none focus:border-magenta transition-colors"
+                    class="flex-1 px-3 py-2 text-sm rounded-sm border border-line bg-surface-raised text-fg placeholder-muted focus:outline-none focus:border-magenta transition-colors surface-paper"
                   />
                   <button
                     type="submit"
-                    class="px-4 py-2 bg-magenta text-fg rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="px-4 py-2 bg-magenta text-on-primary rounded-sm text-sm font-semibold transition-shadow hover:shadow-brutal-magenta whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed surface-primary"
                   >
                     {footerData.newsletter?.buttonText}
                   </button>
@@ -158,7 +180,7 @@ const footerData: Footer = footers[0] || {
           {
             footerData.navColumns?.map((col) => (
               <div>
-                <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+                <h4 class="text-xs font-semibold uppercase tracking-widest text-link mb-4">
                   {col.badgeLabel}
                 </h4>
                 <ul class="space-y-2.5">
@@ -168,7 +190,7 @@ const footerData: Footer = footers[0] || {
                         href={link.url}
                         target={link.external ? '_blank' : undefined}
                         rel={link.external ? 'noopener' : undefined}
-                        class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
+                        class="footer-link text-sm text-muted hover:text-fg transition-colors"
                       >
                         {link.label}
                       </a>
@@ -179,7 +201,7 @@ const footerData: Footer = footers[0] || {
                       <li>
                         <a
                           href={`/electorates/${electorate.slug.current}`}
-                          class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
+                          class="footer-link text-sm text-muted hover:text-fg transition-colors"
                         >
                           {electorate.name}
                         </a>
@@ -192,7 +214,7 @@ const footerData: Footer = footers[0] || {
 
           {/* Column: Governance (resource links) */}
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-widest text-magenta mb-4">
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-link mb-4">
               {footerData.resourceLinksLabel}
             </h4>
             <ul class="space-y-2.5">
@@ -203,7 +225,7 @@ const footerData: Footer = footers[0] || {
                       href={DEPLOYMENT.cta.transportScore}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="footer-link text-sm text-mint hover:text-fg transition-colors font-bold flex items-center gap-1"
+                      class="footer-link text-sm text-secondary-ink hover:text-fg transition-colors font-bold flex items-center gap-1"
                     >
                       <Icon name="mdi:train" class="w-4 h-4" />
                       Transport Score Tool
@@ -218,7 +240,7 @@ const footerData: Footer = footers[0] || {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="footer-link text-sm text-fg/50 hover:text-fg transition-colors"
+                      class="footer-link text-sm text-muted hover:text-fg transition-colors"
                     >
                       {link.label}
                     </a>
@@ -233,7 +255,7 @@ const footerData: Footer = footers[0] || {
                   href={footerData.donateCta.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-black transition-shadow hover:shadow-brutal-mint w-full"
+                  class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-sm bg-mint text-on-secondary transition-shadow hover:shadow-brutal-mint w-full surface-secondary"
                 >
                   <Icon name="mdi:currency-usd" class="w-4 h-4" />
                   {footerData.donateCta.buttonText}
@@ -250,7 +272,7 @@ const footerData: Footer = footers[0] || {
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div
       class="h-px w-full"
-      style="background: linear-gradient(90deg, var(--branch-primary, #D428D4), var(--branch-tertiary, #7B3FE4), var(--branch-accent, #4A7AEB), #0BB8D4, var(--branch-secondary, #00DDB8));"
+      style="background: linear-gradient(90deg, var(--color-link, #D428D4), var(--branch-tertiary, #7B3FE4), var(--color-link, #4A7AEB), #0BB8D4, var(--color-secondary-ink, #00DDB8));"
     >
     </div>
   </div>
@@ -260,19 +282,19 @@ const footerData: Footer = footers[0] || {
     <div
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
     >
-      <p class="text-xs font-mono text-fg/60">
+      <p class="text-xs font-mono text-muted">
         © {footerData.copyrightText || `2024–2026 ${DEPLOYMENT.label}. All rights reserved.`}
       </p>
-      <p class="text-xs font-mono text-fg/60 max-w-md">
+      <p class="text-xs font-mono text-muted max-w-md">
         {footerData.authorization}
       </p>
-      <p class="text-xs font-mono text-fg/60">
+      <p class="text-xs font-mono text-muted">
         Part of{' '}
         <a
           href={footerData.networkBranding?.url || DEPLOYMENT.footer.networkBrandingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-fg/70 hover:text-mint transition-colors"
+          class="text-muted hover:text-secondary-ink transition-colors"
         >
           {footerData.networkBranding?.text || 'Fusion'}
         </a>
@@ -292,10 +314,10 @@ const footerData: Footer = footers[0] || {
     transition: background-color 0.15s ease;
   }
   .social-icon:hover {
-    background-color: var(--branch-line, rgba(255, 255, 255, 0.06));
+    background-color: var(--color-line, rgba(255, 255, 255, 0.06));
   }
   .social-icon:hover :global(svg) {
-    color: var(--branch-ink, #ffffff);
+    color: var(--color-fg, #ffffff);
   }
 </style>
 
@@ -325,20 +347,20 @@ const footerData: Footer = footers[0] || {
 
         if (res.ok) {
           message.textContent = `Success — ${email} added to alerts.`
-          message.classList.remove('text-magenta')
-          message.classList.add('text-mint')
+          message.classList.remove('text-link')
+          message.classList.add('text-secondary-ink')
           message.classList.remove('hidden')
           form.classList.add('hidden')
         } else {
           message.textContent = "Couldn't subscribe right now — please try again shortly."
-          message.classList.remove('text-mint')
-          message.classList.add('text-magenta')
+          message.classList.remove('text-secondary-ink')
+          message.classList.add('text-link')
           message.classList.remove('hidden')
         }
       } catch {
         message.textContent = "Couldn't subscribe right now — please try again shortly."
-        message.classList.remove('text-mint')
-        message.classList.add('text-magenta')
+        message.classList.remove('text-secondary-ink')
+        message.classList.add('text-link')
         message.classList.remove('hidden')
       } finally {
         if (button) button.disabled = false

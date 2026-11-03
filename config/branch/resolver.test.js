@@ -33,7 +33,7 @@ describe('resolveBranch — Victoria', () => {
     expect(vic.runtime.socialAccounts).toHaveLength(4)
     expect(vic.canonicalOrigin).toBe('https://vic.fusionparty.org.au')
     expect(vic.jurisdiction).toBe('Victoria, Australia')
-    expect(vic.description).toContain('Fusion Party Victoria — Reignite Democracy.')
+    expect(vic.description).toContain('Fusion Party Victoria — Policy · Research · Participation.')
     expect(vic.serviceWorkerCache).toBe('fusion-vic-1')
     expect(vic.theme.selector).toBe(":root[data-theme='vic']")
   })

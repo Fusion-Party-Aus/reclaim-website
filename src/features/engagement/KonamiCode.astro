@@ -51,7 +51,7 @@ const content = {
   aria-modal="true"
   aria-label="Fusion research links"
   inert
-  class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 bg-surface-raised z-[9999] flex items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300 surface-paper"
 >
   <BrutalCard
     variant="surface"
@@ -62,14 +62,14 @@ const content = {
   >
     <button
       id="konami-close"
-      class="absolute top-4 right-4 text-fg hover:text-magenta transition-colors"
+      class="absolute top-4 right-4 text-fg hover:text-link transition-colors"
       aria-label="Close"
     >
       <Icon name="mdi:close" class="w-8 h-8" />
     </button>
 
     <div class="text-center">
-      <h2 class="text-4xl font-black uppercase text-magenta mb-4">
+      <h2 class="text-4xl font-black uppercase text-link mb-4">
         {content.title}
       </h2>
       <p class="text-xl font-bold text-fg mb-6">
@@ -80,10 +80,10 @@ const content = {
         class="bg-mint/10 border border-mint/30 border-t-2 border-t-mint rounded-sm p-6 mb-6 text-left"
       >
         <div class="flex items-start gap-3 mb-4">
-          <Icon name="mdi:file-document-outline" class="w-8 h-8 text-mint shrink-0" />
+          <Icon name="mdi:file-document-outline" class="w-8 h-8 text-secondary-ink shrink-0" />
           <div>
             <h3 class="font-black text-xl text-fg mb-2">{content.manifestoTitle}</h3>
-            <p class="text-sm font-bold text-fg/70">
+            <p class="text-sm font-bold text-muted">
               {content.manifestoDescription}
             </p>
           </div>
@@ -92,17 +92,17 @@ const content = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <div
-          class="bg-yellow/10 border border-white/10 border-t-2 border-t-yellow rounded-sm p-4 text-left"
+          class="bg-yellow/10 border border-line border-t-2 border-t-yellow rounded-sm p-4 text-left"
         >
-          <Icon name="mdi:laptop" class="w-6 h-6 text-yellow mb-2" />
+          <Icon name="mdi:laptop" class="w-6 h-6 text-link mb-2" />
           <h4 class="font-black text-fg mb-2">{content.githubLabel}</h4>
-          <p class="text-sm font-bold text-fg/70">
+          <p class="text-sm font-bold text-muted">
             This entire site is open source. Fork it, learn from it, improve it.
           </p>
           <a
             href={content.githubUrl}
             target="_blank"
-            class="inline-flex items-center gap-2 mt-3 text-magenta font-black hover:underline"
+            class="inline-flex items-center gap-2 mt-3 text-link font-black hover:underline"
           >
             <span>View on GitHub</span>
             <Icon name="mdi:arrow-right" class="w-4 h-4" />
@@ -110,11 +110,11 @@ const content = {
         </div>
 
         <div
-          class="bg-magenta/10 border border-white/10 border-t-2 border-t-magenta rounded-sm p-4 text-left"
+          class="bg-magenta/10 border border-line border-t-2 border-t-magenta rounded-sm p-4 text-left"
         >
-          <Icon name="mdi:magnify" class="w-6 h-6 text-magenta mb-2" />
+          <Icon name="mdi:magnify" class="w-6 h-6 text-link mb-2" />
           <h4 class="font-black text-fg mb-2">{content.zeroTrackingTitle}</h4>
-          <p class="text-sm font-bold text-fg/70">
+          <p class="text-sm font-bold text-muted">
             {content.zeroTrackingDescription}
           </p>
         </div>
@@ -124,7 +124,7 @@ const content = {
         {content.downloadButtonLabel}
       </BrutalButton>
 
-      <p class="text-sm text-fg/60 mt-6 font-bold">
+      <p class="text-sm text-muted mt-6 font-bold">
         {content.footerMessage}
       </p>
     </div>

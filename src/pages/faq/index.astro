@@ -42,11 +42,11 @@ Object.keys(faqsByCategory).forEach(category => {
 });
 
 const categoryInfo: Record<string, { title: string; description: string; bg: string; textColor: string; icon: string }> = {
-  'debt':         { title: 'Debt & Fiscal Policy',  description: `Debt, spending and fiscal choices in ${DEPLOYMENT.state}.`, bg: 'var(--branch-primary, #681268)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:currency-usd' },
-  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: 'var(--branch-secondary, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:arrow-left-bold' },
+  'debt':         { title: 'Debt & Fiscal Policy',  description: `Debt, spending and fiscal choices in ${DEPLOYMENT.state}.`, bg: 'var(--color-link, #681268)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:currency-usd' },
+  'left-attacks': { title: 'From the Left',          description: 'Addressing progressive concerns and comparisons with the Greens.',               bg: 'var(--color-secondary-ink, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:arrow-left-bold' },
   'right-attacks':{ title: 'From the Right',         description: 'Answers to conservative critiques.',          bg: 'var(--branch-accent-deep, #234080)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:arrow-right-bold' },
-  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: 'var(--branch-secondary, #2E004D)',    textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:information' },
-  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: 'var(--branch-secondary, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:vote' },
+  'general':      { title: 'About Fusion',           description: "Who we are, how we're different, and why we exist.",                              bg: 'var(--color-secondary-ink, #2E004D)',    textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:information' },
+  'electoral':    { title: 'Electoral Strategy',     description: "How we plan to win and what happens if we don't.",                                bg: 'var(--color-secondary-ink, #00DDB8)', textColor: 'var(--color-on-secondary, #0F0018)', icon: 'mdi:vote' },
   'policy':       { title: 'Policy Details',         description: 'How proposals work and what remains to be costed.',                           bg: 'var(--branch-accent-deep, #234080)', textColor: 'var(--color-on-primary, #fff)', icon: 'mdi:file-document' },
 };
 
@@ -65,7 +65,7 @@ const sidebarSections = sortedCategories.map(category => {
   };
 });
 
-const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, #00DDB8)', 'var(--branch-accent, #4A7AEB)'];
+const shadowCycle = ['var(--color-link, #D428D4)', 'var(--color-secondary-ink, #00DDB8)', 'var(--color-link, #4A7AEB)'];
 ---
 
 <BaseLayout
@@ -88,14 +88,14 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
     subtitle="How our policies work, what they cost and who makes the decisions."
   />
 
-  <main id="main-content" class="site-editorial bg-surface-base py-12 pb-24">
+  <main id="main-content" class="site-editorial bg-surface-base py-12 pb-24 surface-paper">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
 
       {/* ── Breadcrumbs ── */}
       <nav class="flex items-center flex-wrap gap-1 mb-10 text-xs font-black uppercase tracking-widest">
-        <a href="/" class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors">Home</a>
-        <span class="text-fg/30">›</span>
-        <span class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta">FAQ</span>
+        <a href="/" class="px-3 py-1.5 rounded-sm border border-line bg-grey-dark text-fg hover:border-mint/40 transition-colors surface-paper">Home</a>
+        <span class="text-muted">›</span>
+        <span class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-link">FAQ</span>
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
@@ -107,7 +107,7 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
 
         <div>
           {/* ── Quick-jump nav ── */}
-          <div class="rounded-sm border border-white/10 bg-grey-dark p-6 mb-10" style="border-top: 2px solid var(--branch-accent, #4A7AEB);">
+          <div class="rounded-sm border border-line bg-grey-dark p-6 mb-10 surface-paper" style="border-top: 2px solid var(--color-link, #4A7AEB);">
             <div class="flex items-center gap-3 mb-4">
               <Icon name="mdi:compass" class="w-6 h-6 text-fg" />
               <h2 class="text-lg font-display font-black uppercase text-fg">Jump to Category</h2>
@@ -139,7 +139,7 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
                 {/* Category header */}
                 <div class="rounded-sm px-6 py-5 flex items-center gap-4"
                   style={`background: ${info.bg};`}>
-                  <div class="p-2 rounded-sm bg-neutral-panel shrink-0">
+                  <div class="p-2 rounded-sm bg-neutral-panel shrink-0 surface-paper">
                     <Icon name={info.icon} class="w-6 h-6" style={`color: ${info.textColor};`} />
                   </div>
                   <div>
@@ -158,17 +158,17 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
                   {faqs.map((faq, _index) => (
                     <article
                       id={`faq-${faq._id}`}
-                      class="faq-item scroll-mt-24 rounded-sm border border-white/10 bg-grey-dark transition-colors duration-150"
+                      class="faq-item scroll-mt-24 rounded-sm border border-line bg-grey-dark transition-colors duration-150 surface-paper"
                       style={`border-top: 2px solid ${shadow};`}
                     >
-                      <div class="border-b border-white/10 px-6 py-4 flex items-start gap-3">
-                        <span class="text-magenta font-black text-lg shrink-0 mt-0.5">Q.</span>
+                      <div class="border-b border-line px-6 py-4 flex items-start gap-3">
+                        <span class="text-link font-black text-lg shrink-0 mt-0.5">Q.</span>
                         <h3 class="text-lg font-display font-black uppercase text-fg leading-tight">
                           {faq.question}
                         </h3>
                         {
                           faq._updatedAt && (
-                            <p class="mt-1 text-sm font-bold text-fg/85">
+                            <p class="mt-1 text-sm font-bold text-muted">
                               Updated: {new Date(faq._updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
                             </p>
                           )
@@ -200,7 +200,7 @@ const shadowCycle = ['var(--branch-primary, #D428D4)', 'var(--branch-secondary, 
               Ask us at{' '}
               <a
                 href={`mailto:${DEPLOYMENT.contact.helloEmail}`}
-                class="text-mint font-black hover:underline"
+                class="text-secondary-ink font-black hover:underline"
               >
                 {DEPLOYMENT.contact.helloEmail}
               </a>

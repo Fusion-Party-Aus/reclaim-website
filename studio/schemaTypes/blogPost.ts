@@ -6,6 +6,18 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'electionCoverage',
+      title: 'Include in election coverage',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'electionYear',
+      type: 'number',
+      hidden: ({document}) => !document?.electionCoverage,
+      validation: (r) => r.integer(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -169,7 +181,8 @@ export default defineType({
       name: 'signalProvenance',
       title: 'Signal provenance',
       type: 'object',
-      description: 'Machine-readable provenance for articles drafted/published through Fusion Signal.',
+      description:
+        'Machine-readable provenance for articles drafted/published through Fusion Signal.',
       readOnly: true,
       fields: [
         {name: 'articleId', title: 'Signal article ID', type: 'string'},

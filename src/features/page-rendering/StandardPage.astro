@@ -1,4 +1,5 @@
 ---
+import { DEPLOYMENT } from '@/lib/deployment'
 import DynamicSidebar from './DynamicSidebar.astro'
 import type { Page } from '@/types/sanity'
 import type { PortableTextBlock } from '@/lib/portableText'
@@ -29,8 +30,6 @@ import CustomLink from '../../components/portable-text/CustomLink.astro'
 import TableBlock from '../../components/portable-text/TableBlock.astro'
 import { urlFor } from '@/lib/sanity'
 import { BrutalCard, BrutalBadge, CTA, BrutalButton } from '@/components/ui'
-
-const sectionColors = ['bg-magenta', 'bg-mint text-black', 'bg-yellow']
 
 const slugify = (text: string) =>
   text
@@ -77,17 +76,17 @@ if (page.body) {
     >
       <a
         href="/"
-        class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-mint/40 transition-colors"
+        class="px-3 py-1.5 rounded-sm border border-line bg-grey-dark text-fg hover:border-mint/40 transition-colors surface-paper"
       >
         Home
       </a>
       {
         breadcrumbs.map((bc, i) => (
           <>
-            <span class="text-fg/30 font-black">›</span>
+            <span class="text-muted font-black">›</span>
             {i === breadcrumbs.length - 1 ? (
               <span
-                class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-magenta max-w-xs truncate"
+                class="px-3 py-1.5 rounded-sm border border-magenta/40 bg-magenta/10 text-link max-w-xs truncate"
                 title={page.title}
               >
                 {page.title}
@@ -95,7 +94,7 @@ if (page.body) {
             ) : (
               <a
                 href={bc.path}
-                class="px-3 py-1.5 rounded-sm border border-white/10 bg-grey-dark text-fg hover:border-magenta/40 hover:text-magenta transition-all"
+                class="px-3 py-1.5 rounded-sm border border-line bg-grey-dark text-fg hover:border-magenta/40 hover:text-link transition-all surface-paper"
               >
                 {bc.label}
               </a>
@@ -113,7 +112,7 @@ if (page.body) {
         prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
         prose-h2:text-3xl prose-h2:border-l-8 prose-h2:border-magenta prose-h2:pl-4 prose-h2:mt-10
         prose-h3:text-xl prose-h3:border-l-4 prose-h3:border-mint prose-h3:pl-3
-        prose-a:text-magenta prose-a:font-black prose-a:no-underline hover:prose-a:underline
+        prose-a:text-link prose-a:font-black prose-a:no-underline hover:prose-a:underline
         prose-strong:font-black
         prose-blockquote:border-l-8 prose-blockquote:border-yellow prose-blockquote:bg-yellow/10 prose-blockquote:not-italic prose-blockquote:font-bold"
         >
@@ -126,14 +125,13 @@ if (page.body) {
               }}
             />
           )}
-          {bodySections.map((section, i) => {
-            const bgColor = sectionColors[i % sectionColors.length]
+          {bodySections.map((section) => {
             return (
-              <div class="brutal-section mb-12">
-                <h2 class={`brutal-section-header ${bgColor}`} id={section.id}>
+              <section class="publication-section">
+                <h2 class="publication-section-title" id={section.id}>
                   {section.title}
                 </h2>
-                <div class="brutal-section-content">
+                <div class="publication-section-body">
                   <PortableText
                     value={section.blocks}
                     components={{
@@ -142,7 +140,7 @@ if (page.body) {
                     }}
                   />
                 </div>
-              </div>
+              </section>
             )
           })}
         </article>
@@ -170,14 +168,14 @@ if (page.body) {
                 <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-fg leading-tight">
                   {group.title}
                 </h2>
-                <div class="h-2 w-24 bg-magenta mt-2" />
+                <div class="h-2 w-24 bg-magenta mt-2 surface-primary" />
               </div>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                 {group.pages.map((child, index) => {
                   const accents = [
-                    'var(--branch-secondary, #00DDB8)',
-                    'var(--branch-accent, #4A7AEB)',
-                    'var(--branch-primary, #D428D4)',
+                    'var(--color-secondary-ink, #00DDB8)',
+                    'var(--color-link, #4A7AEB)',
+                    'var(--color-link, #D428D4)',
                   ]
                   const accent = accents[index % accents.length]
 
@@ -188,10 +186,10 @@ if (page.body) {
                   return (
                     <a
                       href={`/${child.fullPath}`}
-                      class="team-member-card group flex flex-col rounded-sm border border-white/10 bg-grey-dark transition-colors duration-200"
+                      class="team-member-card group flex flex-col rounded-sm border border-line bg-grey-dark transition-colors duration-200 surface-paper"
                       style={`--accent-color: ${accent}; border-top: 2px solid ${accent};`}
                     >
-                      <div class="aspect-square w-full border-b border-white/10 overflow-hidden relative">
+                      <div class="aspect-square w-full border-b border-line overflow-hidden relative">
                         {imageUrl ? (
                           <img
                             src={imageUrl}
@@ -202,7 +200,7 @@ if (page.body) {
                         ) : (
                           <div class="w-full h-full flex items-center justify-center bg-white/5">
                             <svg
-                              class="w-20 h-20 text-fg/20"
+                              class="w-20 h-20 text-muted"
                               viewBox="0 0 24 24"
                               fill="currentColor"
                             >
@@ -245,18 +243,21 @@ if (page.body) {
             Ready to Join
             <>
               <br />
-              <span class="text-mint">the Movement?</span>
+              <span class="text-secondary-ink">the Movement?</span>
             </>
           </h2>
-          <p class="text-base font-black text-fg/70 mb-6 border-l-4 border-yellow pl-4 max-w-lg">
+          <p class="text-base font-black text-muted mb-6 border-l-4 border-yellow pl-4 max-w-lg">
             We don't take corporate donations. We answer to you, not donors.
           </p>
           <div class="flex flex-wrap gap-3">
             <BrutalButton href="https://www.fusionparty.org.au/join" variant="white">
               Join Fusion
             </BrutalButton>
-            <BrutalButton href="/electorates" variant="black">
-              Find Your Electorate
+            <BrutalButton
+              href={DEPLOYMENT.slug === 'vic' ? '/election' : '/electorates'}
+              variant="black"
+            >
+              {DEPLOYMENT.slug === 'vic' ? 'Election coverage' : 'Find Your Electorate'}
             </BrutalButton>
             <BrutalButton href="/policies" variant="black">
               Read Our Policies
