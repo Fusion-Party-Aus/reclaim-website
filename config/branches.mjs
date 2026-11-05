@@ -213,6 +213,7 @@ export const branchManifest = {
         navigation: {
           fallback: [
             { label: 'Home', href: '/' },
+            { label: 'Issues we're investigating', href: '/investigations' },
             { label: 'Policies', href: '/policies' },
             { label: 'Contact', href: '/contact' },
           ],
